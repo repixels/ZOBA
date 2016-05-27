@@ -1,0 +1,522 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		827827571CF837D600684CE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827561CF837D600684CE5 /* AppDelegate.swift */; };
+		827827591CF837D600684CE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* ViewController.swift */; };
+		8278275C1CF837D600684CE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8278275A1CF837D600684CE5 /* Main.storyboard */; };
+		8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */; };
+		827827611CF837D600684CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 827827601CF837D600684CE5 /* Assets.xcassets */; };
+		827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 827827621CF837D600684CE5 /* LaunchScreen.storyboard */; };
+		8278276F1CF837D600684CE5 /* ZOBATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8278276E1CF837D600684CE5 /* ZOBATests.swift */; };
+		8278277A1CF837D600684CE5 /* ZOBAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827791CF837D600684CE5 /* ZOBAUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8278276B1CF837D600684CE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8278274B1CF837D600684CE5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 827827521CF837D600684CE5;
+			remoteInfo = ZOBA;
+		};
+		827827761CF837D600684CE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8278274B1CF837D600684CE5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 827827521CF837D600684CE5;
+			remoteInfo = ZOBA;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		827827531CF837D600684CE5 /* ZOBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZOBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		827827561CF837D600684CE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		827827581CF837D600684CE5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8278275B1CF837D600684CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8278275E1CF837D600684CE5 /* ZOBA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ZOBA.xcdatamodel; sourceTree = "<group>"; };
+		827827601CF837D600684CE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		827827631CF837D600684CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		827827651CF837D600684CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8278276A1CF837D600684CE5 /* ZOBATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZOBATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8278276E1CF837D600684CE5 /* ZOBATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZOBATests.swift; sourceTree = "<group>"; };
+		827827701CF837D600684CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		827827751CF837D600684CE5 /* ZOBAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZOBAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		827827791CF837D600684CE5 /* ZOBAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZOBAUITests.swift; sourceTree = "<group>"; };
+		8278277B1CF837D600684CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		827827501CF837D600684CE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827827671CF837D600684CE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827827721CF837D600684CE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8278274A1CF837D600684CE5 = {
+			isa = PBXGroup;
+			children = (
+				827827551CF837D600684CE5 /* ZOBA */,
+				8278276D1CF837D600684CE5 /* ZOBATests */,
+				827827781CF837D600684CE5 /* ZOBAUITests */,
+				827827541CF837D600684CE5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		827827541CF837D600684CE5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				827827531CF837D600684CE5 /* ZOBA.app */,
+				8278276A1CF837D600684CE5 /* ZOBATests.xctest */,
+				827827751CF837D600684CE5 /* ZOBAUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		827827551CF837D600684CE5 /* ZOBA */ = {
+			isa = PBXGroup;
+			children = (
+				827827561CF837D600684CE5 /* AppDelegate.swift */,
+				827827581CF837D600684CE5 /* ViewController.swift */,
+				8278275A1CF837D600684CE5 /* Main.storyboard */,
+				827827601CF837D600684CE5 /* Assets.xcassets */,
+				827827621CF837D600684CE5 /* LaunchScreen.storyboard */,
+				827827651CF837D600684CE5 /* Info.plist */,
+				8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */,
+			);
+			path = ZOBA;
+			sourceTree = "<group>";
+		};
+		8278276D1CF837D600684CE5 /* ZOBATests */ = {
+			isa = PBXGroup;
+			children = (
+				8278276E1CF837D600684CE5 /* ZOBATests.swift */,
+				827827701CF837D600684CE5 /* Info.plist */,
+			);
+			path = ZOBATests;
+			sourceTree = "<group>";
+		};
+		827827781CF837D600684CE5 /* ZOBAUITests */ = {
+			isa = PBXGroup;
+			children = (
+				827827791CF837D600684CE5 /* ZOBAUITests.swift */,
+				8278277B1CF837D600684CE5 /* Info.plist */,
+			);
+			path = ZOBAUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		827827521CF837D600684CE5 /* ZOBA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8278277E1CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBA" */;
+			buildPhases = (
+				8278274F1CF837D600684CE5 /* Sources */,
+				827827501CF837D600684CE5 /* Frameworks */,
+				827827511CF837D600684CE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZOBA;
+			productName = ZOBA;
+			productReference = 827827531CF837D600684CE5 /* ZOBA.app */;
+			productType = "com.apple.product-type.application";
+		};
+		827827691CF837D600684CE5 /* ZOBATests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 827827811CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBATests" */;
+			buildPhases = (
+				827827661CF837D600684CE5 /* Sources */,
+				827827671CF837D600684CE5 /* Frameworks */,
+				827827681CF837D600684CE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8278276C1CF837D600684CE5 /* PBXTargetDependency */,
+			);
+			name = ZOBATests;
+			productName = ZOBATests;
+			productReference = 8278276A1CF837D600684CE5 /* ZOBATests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		827827741CF837D600684CE5 /* ZOBAUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 827827841CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBAUITests" */;
+			buildPhases = (
+				827827711CF837D600684CE5 /* Sources */,
+				827827721CF837D600684CE5 /* Frameworks */,
+				827827731CF837D600684CE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				827827771CF837D600684CE5 /* PBXTargetDependency */,
+			);
+			name = ZOBAUITests;
+			productName = ZOBAUITests;
+			productReference = 827827751CF837D600684CE5 /* ZOBAUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8278274B1CF837D600684CE5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "RE Pixels";
+				TargetAttributes = {
+					827827521CF837D600684CE5 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					827827691CF837D600684CE5 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 827827521CF837D600684CE5;
+					};
+					827827741CF837D600684CE5 = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 827827521CF837D600684CE5;
+					};
+				};
+			};
+			buildConfigurationList = 8278274E1CF837D600684CE5 /* Build configuration list for PBXProject "ZOBA" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8278274A1CF837D600684CE5;
+			productRefGroup = 827827541CF837D600684CE5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				827827521CF837D600684CE5 /* ZOBA */,
+				827827691CF837D600684CE5 /* ZOBATests */,
+				827827741CF837D600684CE5 /* ZOBAUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		827827511CF837D600684CE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */,
+				827827611CF837D600684CE5 /* Assets.xcassets in Resources */,
+				8278275C1CF837D600684CE5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827827681CF837D600684CE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827827731CF837D600684CE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8278274F1CF837D600684CE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				827827591CF837D600684CE5 /* ViewController.swift in Sources */,
+				8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */,
+				827827571CF837D600684CE5 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827827661CF837D600684CE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8278276F1CF837D600684CE5 /* ZOBATests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		827827711CF837D600684CE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8278277A1CF837D600684CE5 /* ZOBAUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8278276C1CF837D600684CE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 827827521CF837D600684CE5 /* ZOBA */;
+			targetProxy = 8278276B1CF837D600684CE5 /* PBXContainerItemProxy */;
+		};
+		827827771CF837D600684CE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 827827521CF837D600684CE5 /* ZOBA */;
+			targetProxy = 827827761CF837D600684CE5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8278275A1CF837D600684CE5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8278275B1CF837D600684CE5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		827827621CF837D600684CE5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				827827631CF837D600684CE5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8278277C1CF837D600684CE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8278277D1CF837D600684CE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8278277F1CF837D600684CE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ZOBA/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		827827801CF837D600684CE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ZOBA/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		827827821CF837D600684CE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ZOBATests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBATests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZOBA.app/ZOBA";
+			};
+			name = Debug;
+		};
+		827827831CF837D600684CE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ZOBATests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBATests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZOBA.app/ZOBA";
+			};
+			name = Release;
+		};
+		827827851CF837D600684CE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ZOBAUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBAUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ZOBA;
+			};
+			name = Debug;
+		};
+		827827861CF837D600684CE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ZOBAUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBAUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ZOBA;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8278274E1CF837D600684CE5 /* Build configuration list for PBXProject "ZOBA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8278277C1CF837D600684CE5 /* Debug */,
+				8278277D1CF837D600684CE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8278277E1CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8278277F1CF837D600684CE5 /* Debug */,
+				827827801CF837D600684CE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		827827811CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBATests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				827827821CF837D600684CE5 /* Debug */,
+				827827831CF837D600684CE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		827827841CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBAUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				827827851CF837D600684CE5 /* Debug */,
+				827827861CF837D600684CE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8278275E1CF837D600684CE5 /* ZOBA.xcdatamodel */,
+			);
+			currentVersion = 8278275E1CF837D600684CE5 /* ZOBA.xcdatamodel */;
+			path = ZOBA.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 8278274B1CF837D600684CE5 /* Project object */;
+}
