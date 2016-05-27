@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreData
+import Onboard
+
+let isFirstTime = "isFirstTime"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        if let window = window {
+            window.backgroundColor = UIColor.whiteColor()
+            window.rootViewController = generateOnBoardingWithImage()
+            window.makeKeyAndVisible()
+        }
         return true
     }
 
@@ -105,6 +114,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 abort()
             }
         }
+    }
+    
+    func generateOnBoardingWithImage() -> OnboardingViewController
+    {
+        let trackingPage = OnboardingContentViewController(title: "Auto Trip Tracking", body: "Page body goes here.", image: UIImage(named: "tracking"), buttonText: "Text For Button") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            NSLog("Tracking Page")
+        }
+        
+//        
+        trackingPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        
+        
+        
+        let autoTracking = OnboardingContentViewController(title: "Track your Consumption", body: "Page body goes here.", image: UIImage(named: "statistics"), buttonText: "Text For Button") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            NSLog("Tracking Page")
+        }
+        
+        autoTracking.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        
+        let servicesPage = OnboardingContentViewController(title: "Push To Rescue", body: "Page body goes here.", image: UIImage(named: "rescue"), buttonText: "Text For Button") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            NSLog("Tracking Page")
+        }
+        
+        servicesPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        
+        let tripsPage = OnboardingContentViewController(title: "Smart Tips", body: "Page body goes here.", image: UIImage(named: "tips"), buttonText: "Text For Button") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            NSLog("Tracking Page")
+        }
+        
+        tripsPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        
+        let serviceCentersPage = OnboardingContentViewController(title: "Service Centers", body: "Page body goes here.", image: UIImage(named: "service-centers"), buttonText: "Text For Button") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            NSLog("Tracking Page")
+        }
+        
+        serviceCentersPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        
+        let zobaPage = OnboardingContentViewController(title: "Zoba", body: "Your Car Pal.", image: UIImage(named: "logo"), buttonText: "Text For Button") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            NSLog("Tracking Page")
+        }
+        
+        zobaPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        
+        // Image
+        let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "street"), contents: [trackingPage, autoTracking, servicesPage,tripsPage,serviceCentersPage,zobaPage])
+        
+        onboardingVC.shouldFadeTransitions = true
+        
+        return onboardingVC
     }
 
 }
