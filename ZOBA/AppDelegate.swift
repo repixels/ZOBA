@@ -9,17 +9,24 @@
 import UIKit
 import CoreData
 import Onboard
+import CoreLocation
 
 let isFirstTime = "isFirstTime"
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
+    var locationManager = CLLocationManager()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.requestAlwaysAuthorization()
+            NSLog("Yalla")
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         if let window = window {
             window.backgroundColor = UIColor.whiteColor()
@@ -120,7 +127,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         let trackingPage = OnboardingContentViewController(title: "Auto Trip Tracking", body: "Page body goes here.", image: UIImage(named: "tracking"), buttonText: "Text For Button") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
-            NSLog("Tracking Page")
+            if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedAlways
+            {
+                self.locationManager.delegate = self
+                self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                self.locationManager.requestAlwaysAuthorization()
+                NSLog("Yalla")
+            }
+            else
+            {
+                NSLog("Not Yalla")
+            }
         }
         
 //        
@@ -156,12 +173,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         serviceCentersPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
         
-        let zobaPage = OnboardingContentViewController(title: "Zoba", body: "Your Car Pal.", image: UIImage(named: "logo"), buttonText: "Text For Button") { () -> Void in
+        let zobaPage = OnboardingContentViewController(title: "Zoba", body: "Your Car Pal", image: UIImage(named: "logo"), buttonText: "Lets Get Started") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
             NSLog("Tracking Page")
         }
         
-        zobaPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        zobaPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 72.0)
+        zobaPage.bodyLabel.font = UIFont(name: "Continuum Light" , size: 28.0)
         
         // Image
         let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "street"), contents: [trackingPage, autoTracking, servicesPage,tripsPage,serviceCentersPage,zobaPage])
