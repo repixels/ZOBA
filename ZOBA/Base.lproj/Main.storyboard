@@ -42,7 +42,7 @@
         <!--Register Screen-->
         <scene sceneID="18b-PX-kRX">
             <objects>
-                <viewController title="Register Screen" id="R8G-2M-mrc" sceneMemberID="viewController">
+                <viewController title="Register Screen" id="R8G-2M-mrc" customClass="OnboardingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zFp-UT-Zn6"/>
                         <viewControllerLayoutGuide type="bottom" id="FfN-m6-hWJ"/>
