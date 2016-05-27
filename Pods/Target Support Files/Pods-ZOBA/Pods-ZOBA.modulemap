@@ -1,0 +1,6 @@
+framework module Pods_ZOBA {
+  umbrella header "Pods-ZOBA-umbrella.h"
+
+  export *
+  module * { export * }
+}

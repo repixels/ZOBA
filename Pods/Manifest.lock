@@ -1,0 +1,15 @@
+PODS:
+  - CBZSplashView (1.0.0)
+  - FoldingTabBar (1.0.2)
+
+DEPENDENCIES:
+  - CBZSplashView (~> 1.0.0)
+  - FoldingTabBar (~> 1.0.2)
+
+SPEC CHECKSUMS:
+  CBZSplashView: 9ce4cba22024476ff4a97d6433e7347da6376016
+  FoldingTabBar: 79df76dfd5a84c0a369beaa378a31c07aa53b6b2
+
+PODFILE CHECKSUM: 73c112c118d68b34c1f84389bf3794f8e7263073
+
+COCOAPODS: 1.0.0

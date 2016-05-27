@@ -1,0 +1,1064 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00C7F014C727DDAC7C80C2B55888C022 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		00D9A6BF682C495BE80D2D4C8AEC2B63 /* YALAnimatingTabBarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = C0EABFB035BB36A61013135CD91290DD /* YALAnimatingTabBarConstants.m */; };
+		0406ADDCA97CC68BCE486B607F508C03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		06192BEF4786E7971FE2F52F2389E17D /* YALSpringAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 11D1B9148D82DA79781AF1E60F65446F /* YALSpringAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CE5B65177B4BC135AED6D8A06C5DC51 /* FoldingTabBar-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 55138963F7B3CC8944925024D1269F44 /* FoldingTabBar-dummy.m */; };
+		14F33AE84F3EAE897A9CFC66FA5B998C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		15A07BC13D7BE762CA9792B5C9F97595 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23016F69B2480F44D0BB5526B39192FA /* QuartzCore.framework */; };
+		15D55433E48625EE2286C379780A6086 /* Pods-ZOBAUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EB206EED20C0C02479804F4CEBCED02E /* Pods-ZOBAUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1E6527EA104754E499013D3BACDF3D3D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		25DEF719A61C37E5CB10C799A01DFE42 /* YALTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6561C3C2C261B47E51233CA941402813 /* YALTabBarItem.m */; };
+		2C9B7EAB72202D40809359524E271462 /* CBZSplashView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 56189FC7BB00941F5F28D0DEDC816DBE /* CBZSplashView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2E6622CA82364E5E9D4FA5BE73BE1689 /* CBZRasterSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = EB8FC582B708D14575914B54D9048D02 /* CBZRasterSplashView.m */; };
+		375D5687696A3D2F77580F4E13F447DC /* YALFoldingTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8756FE6DCDEB5022CD8A71AC4E2D6A /* YALFoldingTabBarController.m */; };
+		3E22999CB405CBBC0B1172D29CFC8F0C /* CBZVectorSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A78C2135852A4D160BDB75416D78DB /* CBZVectorSplashView.m */; };
+		473915DFCF0BE86A8570AD80A5381E49 /* CAAnimation+YALTabBarViewAnimations.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E0EA5F684E07DC480B86192A3C6D13 /* CAAnimation+YALTabBarViewAnimations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		59EE9732B9336C6450E3224869BCA715 /* CBZVectorSplashView.h in Headers */ = {isa = PBXBuildFile; fileRef = EC22F06C3DED91A9BC9A4A045CDA38ED /* CBZVectorSplashView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5B020F114D388505FE63D8197941C9D4 /* Pods-ZOBAUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836BF88A5C654509AFE4FC954910F6C /* Pods-ZOBAUITests-dummy.m */; };
+		5EECB665352F33357612F51630336021 /* YALFoldingTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 371B74D2BF6F4E44FFED1230BCF05B43 /* YALFoldingTabBar.m */; };
+		5FFDA3142014F88B93ADB3FDCF3546C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091D54A73E1E8BB182C9D7D245AF1C2F /* UIKit.framework */; };
+		64165A4763C4D32CE8EC3AA8160359D9 /* YALSpringAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE8A2F4A268324288EFEF9220C2A004 /* YALSpringAnimation.m */; };
+		67BB62D463A15FE5D32D091C5EACA2F0 /* Pods-ZOBA-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BB4E5CFF50E2FCB9B0431DBF5CF1600E /* Pods-ZOBA-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7106B361CA57148640756546450E0F74 /* CATransaction+TransactionWithAnimationsAndCompletion.h in Headers */ = {isa = PBXBuildFile; fileRef = A0F37DCF5F3DDC74396DFCB480644A64 /* CATransaction+TransactionWithAnimationsAndCompletion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		83BC00F4435C0D529B1B94522E2CF482 /* Pods-ZOBATests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FE7E0936834C84989CC5F68928712A /* Pods-ZOBATests-dummy.m */; };
+		8855405239F714F572F10BF9F7F5C554 /* Pods-ZOBA-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A553D9544FB66A6CF7A356C32B8E656 /* Pods-ZOBA-dummy.m */; };
+		94F6B95FD263B8271100E4B9A40A68D9 /* CAAnimation+YALTabBarViewAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C41A4448DB4CFC7E11DA9DC4D73F2D /* CAAnimation+YALTabBarViewAnimations.m */; };
+		96E9F673A40C2E3C5FE99E592144CC72 /* CBZRasterSplashView.h in Headers */ = {isa = PBXBuildFile; fileRef = 00C944C01919671B1286DCA42E4DFBD8 /* CBZRasterSplashView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A62D772340E1ECB7C35053CB0E594111 /* Pods-ZOBATests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C5058AD0A258EFAA938DFD7966633A6 /* Pods-ZOBATests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B33149BB6AFF371AC9E5D779FD552DD0 /* YALTabBarInteracting.h in Headers */ = {isa = PBXBuildFile; fileRef = A837F68E8CC5B02766432E1FE9DA5041 /* YALTabBarInteracting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B947C061CA65FFD5F18D92A880569C1C /* CBZSplashView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 86835EB984B99E6B2F69E66BDADC8F20 /* CBZSplashView-dummy.m */; };
+		C189A4A418ED4CFEAC1C63F7FFE0FAD8 /* YALTabBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E318485C116D9725110C6CCC8B4AAF7 /* YALTabBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2D1986F363E54A9162F8718AB6B8F75 /* YALAnimatingTabBarConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E1203F26F3CBC637EBDD47971C6EFEA /* YALAnimatingTabBarConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CA9B2A21A886487DD89DBB8DDCCFEF99 /* FoldingTabBar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 72614863FD0B813BBB073D9862BDD119 /* FoldingTabBar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D8BE45A7B0621551DF48DAB76858E1D1 /* YALFoldingTabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DC0003BFA250B8231261C513C7F4C13 /* YALFoldingTabBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E363B284842076CA4770DF76611050C5 /* CBZSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3263CB047FDD0DB426B278766F4D5DC /* CBZSplashView.m */; };
+		ED16DDA04FD591F4FEE094BA7E04B3FB /* CATransaction+TransactionWithAnimationsAndCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C60884E77995DF29EA9DEB079CE55BE /* CATransaction+TransactionWithAnimationsAndCompletion.m */; };
+		ED2872BAF722C070583309D2A4E808AA /* CBZSplashView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EEDA6D5622C79F888992D7F06683A6F /* CBZSplashView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FABB6CAC4FDDB99E3C3B4FA04FA4EB50 /* YALFoldingTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = A4F96393E73D12D367C65DA27EF28E29 /* YALFoldingTabBarController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FC84333C0EBEB7015237DD0617E0AF10 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A5180E433D469DD497E4D4D098C85478 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F5E891BB114FD7D0CEE62EA8B4D0AF4;
+			remoteInfo = CBZSplashView;
+		};
+		B1DE004828775C4E4DD12DB1F1B6FFC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F52284BB73D7CF6A946B01B92E4E07F;
+			remoteInfo = FoldingTabBar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		002C019CF770379D718EF67EE5ED447D /* Pods-ZOBAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBAUITests.release.xcconfig"; sourceTree = "<group>"; };
+		00C944C01919671B1286DCA42E4DFBD8 /* CBZRasterSplashView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBZRasterSplashView.h; path = Pod/Classes/CBZRasterSplashView.h; sourceTree = "<group>"; };
+		04A79B18F00A19D1C0A3B91F904E78E4 /* CBZSplashView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CBZSplashView-prefix.pch"; sourceTree = "<group>"; };
+		063055C465E6B5396FE4F2EFB8E18DC1 /* Pods_ZOBATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		08C154C40A93270A476D68B0502AEC69 /* FoldingTabBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoldingTabBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0904EF71D12DDB3227246228128CDF5B /* Pods-ZOBATests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBATests-resources.sh"; sourceTree = "<group>"; };
+		091D54A73E1E8BB182C9D7D245AF1C2F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		11D1B9148D82DA79781AF1E60F65446F /* YALSpringAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALSpringAnimation.h; path = FoldingTabBar/Animation/YALSpringAnimation/YALSpringAnimation.h; sourceTree = "<group>"; };
+		15437541BF933674A5C7656CFE1E0FE2 /* Pods-ZOBATests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ZOBATests.modulemap"; sourceTree = "<group>"; };
+		197A1F610075CA673446EAA97386FDD7 /* Pods-ZOBATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBATests.debug.xcconfig"; sourceTree = "<group>"; };
+		1EE8A2F4A268324288EFEF9220C2A004 /* YALSpringAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALSpringAnimation.m; path = FoldingTabBar/Animation/YALSpringAnimation/YALSpringAnimation.m; sourceTree = "<group>"; };
+		21E61F1C3C62543FEE22DF30ECF5371F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23016F69B2480F44D0BB5526B39192FA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		29A78C2135852A4D160BDB75416D78DB /* CBZVectorSplashView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CBZVectorSplashView.m; path = Pod/Classes/CBZVectorSplashView.m; sourceTree = "<group>"; };
+		2A0D4AB348F70CE5ACEAB777B37C9012 /* FoldingTabBar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FoldingTabBar.modulemap; sourceTree = "<group>"; };
+		2C60884E77995DF29EA9DEB079CE55BE /* CATransaction+TransactionWithAnimationsAndCompletion.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CATransaction+TransactionWithAnimationsAndCompletion.m"; path = "FoldingTabBar/Category/CATransaction/CATransaction+TransactionWithAnimationsAndCompletion/CATransaction+TransactionWithAnimationsAndCompletion.m"; sourceTree = "<group>"; };
+		2DBC2B40702BDEBA760EC7BBE6B4B60B /* Pods-ZOBAUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ZOBAUITests.modulemap"; sourceTree = "<group>"; };
+		331CD805CD65FAABB8D0CA0CF76E510F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		371B74D2BF6F4E44FFED1230BCF05B43 /* YALFoldingTabBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALFoldingTabBar.m; path = FoldingTabBar/View/FoldingTabBar/YALFoldingTabBar.m; sourceTree = "<group>"; };
+		3C5058AD0A258EFAA938DFD7966633A6 /* Pods-ZOBATests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZOBATests-umbrella.h"; sourceTree = "<group>"; };
+		404D8AA344BD73E6CB444100581FFE6B /* Pods-ZOBATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBATests.release.xcconfig"; sourceTree = "<group>"; };
+		4D04DEBCEDC13D49A707EF59EB3BFAAB /* Pods-ZOBAUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZOBAUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4E1203F26F3CBC637EBDD47971C6EFEA /* YALAnimatingTabBarConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALAnimatingTabBarConstants.h; path = FoldingTabBar/Constants/YALAnimatingTabBarConstants.h; sourceTree = "<group>"; };
+		5114C896F8FFDB9D0D853F79F292EAA7 /* Pods-ZOBA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBA.release.xcconfig"; sourceTree = "<group>"; };
+		52DA2E6265B984B04E90039E19E56D5F /* Pods-ZOBAUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZOBAUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		55138963F7B3CC8944925024D1269F44 /* FoldingTabBar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FoldingTabBar-dummy.m"; sourceTree = "<group>"; };
+		56189FC7BB00941F5F28D0DEDC816DBE /* CBZSplashView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CBZSplashView-umbrella.h"; sourceTree = "<group>"; };
+		5A553D9544FB66A6CF7A356C32B8E656 /* Pods-ZOBA-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZOBA-dummy.m"; sourceTree = "<group>"; };
+		5CEF901DA4C20E501FC69CAF43ACB96A /* Pods-ZOBAUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBAUITests-frameworks.sh"; sourceTree = "<group>"; };
+		5DC0003BFA250B8231261C513C7F4C13 /* YALFoldingTabBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALFoldingTabBar.h; path = FoldingTabBar/View/FoldingTabBar/YALFoldingTabBar.h; sourceTree = "<group>"; };
+		646B89BF3334C50693B6604A06E3D1C5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6561C3C2C261B47E51233CA941402813 /* YALTabBarItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALTabBarItem.m; path = FoldingTabBar/Model/TabBarItem/YALTabBarItem.m; sourceTree = "<group>"; };
+		6836BF88A5C654509AFE4FC954910F6C /* Pods-ZOBAUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZOBAUITests-dummy.m"; sourceTree = "<group>"; };
+		70149AE23DF4E3E34E5E380C9DAFDB8D /* Pods-ZOBATests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBATests-frameworks.sh"; sourceTree = "<group>"; };
+		72614863FD0B813BBB073D9862BDD119 /* FoldingTabBar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FoldingTabBar-umbrella.h"; sourceTree = "<group>"; };
+		75FE7E0936834C84989CC5F68928712A /* Pods-ZOBATests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZOBATests-dummy.m"; sourceTree = "<group>"; };
+		76C4FE7B803A85AFE6E3C7D17B1080B8 /* Pods-ZOBAUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBAUITests-resources.sh"; sourceTree = "<group>"; };
+		7AB7A8BC500335EF6E4995800773F9C1 /* FoldingTabBar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FoldingTabBar-prefix.pch"; sourceTree = "<group>"; };
+		86835EB984B99E6B2F69E66BDADC8F20 /* CBZSplashView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CBZSplashView-dummy.m"; sourceTree = "<group>"; };
+		8FD6A35B1DB12C8924CA8A4EDE888450 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		99CCC06E0B1635BF4F20BCFA5C8A78BF /* Pods_ZOBAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E318485C116D9725110C6CCC8B4AAF7 /* YALTabBarItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALTabBarItem.h; path = FoldingTabBar/Model/TabBarItem/YALTabBarItem.h; sourceTree = "<group>"; };
+		9EEDA6D5622C79F888992D7F06683A6F /* CBZSplashView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBZSplashView.h; path = Pod/Classes/CBZSplashView.h; sourceTree = "<group>"; };
+		A0F37DCF5F3DDC74396DFCB480644A64 /* CATransaction+TransactionWithAnimationsAndCompletion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CATransaction+TransactionWithAnimationsAndCompletion.h"; path = "FoldingTabBar/Category/CATransaction/CATransaction+TransactionWithAnimationsAndCompletion/CATransaction+TransactionWithAnimationsAndCompletion.h"; sourceTree = "<group>"; };
+		A3263CB047FDD0DB426B278766F4D5DC /* CBZSplashView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CBZSplashView.m; path = Pod/Classes/CBZSplashView.m; sourceTree = "<group>"; };
+		A330692C09F49C804E5FF0A655B7648A /* CBZSplashView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CBZSplashView.modulemap; sourceTree = "<group>"; };
+		A4F96393E73D12D367C65DA27EF28E29 /* YALFoldingTabBarController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALFoldingTabBarController.h; path = FoldingTabBar/Controller/FoldingTabBarController/YALFoldingTabBarController.h; sourceTree = "<group>"; };
+		A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		A837F68E8CC5B02766432E1FE9DA5041 /* YALTabBarInteracting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALTabBarInteracting.h; path = FoldingTabBar/Protocol/TabBarInteracting/YALTabBarInteracting.h; sourceTree = "<group>"; };
+		ADF69B2275396FE65D250A3A38F87088 /* Pods-ZOBAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBAUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B9A4138B6AC9ACA27F380BF6EADAFB54 /* Pods-ZOBA-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZOBA-acknowledgements.plist"; sourceTree = "<group>"; };
+		BB4E5CFF50E2FCB9B0431DBF5CF1600E /* Pods-ZOBA-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZOBA-umbrella.h"; sourceTree = "<group>"; };
+		BDA220EA7485BCCB98D280BF9872BAB7 /* Pods-ZOBA.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ZOBA.modulemap"; sourceTree = "<group>"; };
+		BE8756FE6DCDEB5022CD8A71AC4E2D6A /* YALFoldingTabBarController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALFoldingTabBarController.m; path = FoldingTabBar/Controller/FoldingTabBarController/YALFoldingTabBarController.m; sourceTree = "<group>"; };
+		C0EABFB035BB36A61013135CD91290DD /* YALAnimatingTabBarConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALAnimatingTabBarConstants.m; path = FoldingTabBar/Constants/YALAnimatingTabBarConstants.m; sourceTree = "<group>"; };
+		C485938C23E8E8776D51ABF056214399 /* FoldingTabBar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FoldingTabBar.xcconfig; sourceTree = "<group>"; };
+		C5FD0C54DFAC7F12210B44D79E4B0E61 /* Pods-ZOBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBA.debug.xcconfig"; sourceTree = "<group>"; };
+		D1DFC36947594BA970A4E08C0DB05021 /* Pods_ZOBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3E0EA5F684E07DC480B86192A3C6D13 /* CAAnimation+YALTabBarViewAnimations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CAAnimation+YALTabBarViewAnimations.h"; path = "FoldingTabBar/Category/CAAnimation/CAAnimation+YALTabBarViewAnimations/CAAnimation+YALTabBarViewAnimations.h"; sourceTree = "<group>"; };
+		D61E1127B13C9DFB7C7B31255E782704 /* CBZSplashView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CBZSplashView.xcconfig; sourceTree = "<group>"; };
+		DC5C1DFE519FBAA109E86A6C8E3B1B78 /* CBZSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBZSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2DBFF46EED999EBA4CA2D8733986DB4 /* Pods-ZOBATests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZOBATests-acknowledgements.plist"; sourceTree = "<group>"; };
+		E4685289B69FAE4750650F4B0FE436E6 /* Pods-ZOBA-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBA-frameworks.sh"; sourceTree = "<group>"; };
+		E4C41A4448DB4CFC7E11DA9DC4D73F2D /* CAAnimation+YALTabBarViewAnimations.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CAAnimation+YALTabBarViewAnimations.m"; path = "FoldingTabBar/Category/CAAnimation/CAAnimation+YALTabBarViewAnimations/CAAnimation+YALTabBarViewAnimations.m"; sourceTree = "<group>"; };
+		E9E8B2ACBA30AC5E6B888DB7CB60FBF1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB206EED20C0C02479804F4CEBCED02E /* Pods-ZOBAUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZOBAUITests-umbrella.h"; sourceTree = "<group>"; };
+		EB8FC582B708D14575914B54D9048D02 /* CBZRasterSplashView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CBZRasterSplashView.m; path = Pod/Classes/CBZRasterSplashView.m; sourceTree = "<group>"; };
+		EC22F06C3DED91A9BC9A4A045CDA38ED /* CBZVectorSplashView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBZVectorSplashView.h; path = Pod/Classes/CBZVectorSplashView.h; sourceTree = "<group>"; };
+		F5B9CB791719D58E10FB1C938176CE96 /* Pods-ZOBA-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZOBA-acknowledgements.markdown"; sourceTree = "<group>"; };
+		F99D59C2CBF0639E1508634A6ADA64A5 /* Pods-ZOBA-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBA-resources.sh"; sourceTree = "<group>"; };
+		FB307244E5AB9AB5BBE4ACC47C6B1A1A /* Pods-ZOBATests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZOBATests-acknowledgements.markdown"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		12164504F510B8F45CADA4778A794CB6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00C7F014C727DDAC7C80C2B55888C022 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5A26AA3657CEBF8527D0D057F8FDFD62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC84333C0EBEB7015237DD0617E0AF10 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		743C14918637A3A90B7D8388AE90EFF7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E6527EA104754E499013D3BACDF3D3D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FA1383E3387730F5DBD62EFAFFBA087 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0406ADDCA97CC68BCE486B607F508C03 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE92B6904276D96AABE735278A581F62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14F33AE84F3EAE897A9CFC66FA5B998C /* Foundation.framework in Frameworks */,
+				15A07BC13D7BE762CA9792B5C9F97595 /* QuartzCore.framework in Frameworks */,
+				5FFDA3142014F88B93ADB3FDCF3546C0 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DFDE779C6E5D3445E0CB8CCB8D424449 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4111331D483243050146098D3E5A98FA /* Pods-ZOBATests */ = {
+			isa = PBXGroup;
+			children = (
+				E9E8B2ACBA30AC5E6B888DB7CB60FBF1 /* Info.plist */,
+				15437541BF933674A5C7656CFE1E0FE2 /* Pods-ZOBATests.modulemap */,
+				FB307244E5AB9AB5BBE4ACC47C6B1A1A /* Pods-ZOBATests-acknowledgements.markdown */,
+				E2DBFF46EED999EBA4CA2D8733986DB4 /* Pods-ZOBATests-acknowledgements.plist */,
+				75FE7E0936834C84989CC5F68928712A /* Pods-ZOBATests-dummy.m */,
+				70149AE23DF4E3E34E5E380C9DAFDB8D /* Pods-ZOBATests-frameworks.sh */,
+				0904EF71D12DDB3227246228128CDF5B /* Pods-ZOBATests-resources.sh */,
+				3C5058AD0A258EFAA938DFD7966633A6 /* Pods-ZOBATests-umbrella.h */,
+				197A1F610075CA673446EAA97386FDD7 /* Pods-ZOBATests.debug.xcconfig */,
+				404D8AA344BD73E6CB444100581FFE6B /* Pods-ZOBATests.release.xcconfig */,
+			);
+			name = "Pods-ZOBATests";
+			path = "Target Support Files/Pods-ZOBATests";
+			sourceTree = "<group>";
+		};
+		53FEF2F67930A0AD52232AB1661A6C8D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B615B89698D5F86E1CC03664BF957002 /* CBZSplashView */,
+				6A67F8370076A91FFE8BB7CF7702992B /* FoldingTabBar */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		65D47A88689A976CBAFFACB77190C223 /* Pods-ZOBA */ = {
+			isa = PBXGroup;
+			children = (
+				646B89BF3334C50693B6604A06E3D1C5 /* Info.plist */,
+				BDA220EA7485BCCB98D280BF9872BAB7 /* Pods-ZOBA.modulemap */,
+				F5B9CB791719D58E10FB1C938176CE96 /* Pods-ZOBA-acknowledgements.markdown */,
+				B9A4138B6AC9ACA27F380BF6EADAFB54 /* Pods-ZOBA-acknowledgements.plist */,
+				5A553D9544FB66A6CF7A356C32B8E656 /* Pods-ZOBA-dummy.m */,
+				E4685289B69FAE4750650F4B0FE436E6 /* Pods-ZOBA-frameworks.sh */,
+				F99D59C2CBF0639E1508634A6ADA64A5 /* Pods-ZOBA-resources.sh */,
+				BB4E5CFF50E2FCB9B0431DBF5CF1600E /* Pods-ZOBA-umbrella.h */,
+				C5FD0C54DFAC7F12210B44D79E4B0E61 /* Pods-ZOBA.debug.xcconfig */,
+				5114C896F8FFDB9D0D853F79F292EAA7 /* Pods-ZOBA.release.xcconfig */,
+			);
+			name = "Pods-ZOBA";
+			path = "Target Support Files/Pods-ZOBA";
+			sourceTree = "<group>";
+		};
+		6A67F8370076A91FFE8BB7CF7702992B /* FoldingTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D3E0EA5F684E07DC480B86192A3C6D13 /* CAAnimation+YALTabBarViewAnimations.h */,
+				E4C41A4448DB4CFC7E11DA9DC4D73F2D /* CAAnimation+YALTabBarViewAnimations.m */,
+				A0F37DCF5F3DDC74396DFCB480644A64 /* CATransaction+TransactionWithAnimationsAndCompletion.h */,
+				2C60884E77995DF29EA9DEB079CE55BE /* CATransaction+TransactionWithAnimationsAndCompletion.m */,
+				4E1203F26F3CBC637EBDD47971C6EFEA /* YALAnimatingTabBarConstants.h */,
+				C0EABFB035BB36A61013135CD91290DD /* YALAnimatingTabBarConstants.m */,
+				5DC0003BFA250B8231261C513C7F4C13 /* YALFoldingTabBar.h */,
+				371B74D2BF6F4E44FFED1230BCF05B43 /* YALFoldingTabBar.m */,
+				A4F96393E73D12D367C65DA27EF28E29 /* YALFoldingTabBarController.h */,
+				BE8756FE6DCDEB5022CD8A71AC4E2D6A /* YALFoldingTabBarController.m */,
+				11D1B9148D82DA79781AF1E60F65446F /* YALSpringAnimation.h */,
+				1EE8A2F4A268324288EFEF9220C2A004 /* YALSpringAnimation.m */,
+				A837F68E8CC5B02766432E1FE9DA5041 /* YALTabBarInteracting.h */,
+				9E318485C116D9725110C6CCC8B4AAF7 /* YALTabBarItem.h */,
+				6561C3C2C261B47E51233CA941402813 /* YALTabBarItem.m */,
+				CA87479611E0D5FA89EF3B9451A0EB70 /* Support Files */,
+			);
+			path = FoldingTabBar;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
+				53FEF2F67930A0AD52232AB1661A6C8D /* Pods */,
+				C05789C47B47385B5513ED09D195C42D /* Products */,
+				EF53116A33AF00D1DF5F0CDE42D26F3E /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		A038B0DC3E0EB252B7651DE446F5FD46 /* Pods-ZOBAUITests */ = {
+			isa = PBXGroup;
+			children = (
+				21E61F1C3C62543FEE22DF30ECF5371F /* Info.plist */,
+				2DBC2B40702BDEBA760EC7BBE6B4B60B /* Pods-ZOBAUITests.modulemap */,
+				4D04DEBCEDC13D49A707EF59EB3BFAAB /* Pods-ZOBAUITests-acknowledgements.markdown */,
+				52DA2E6265B984B04E90039E19E56D5F /* Pods-ZOBAUITests-acknowledgements.plist */,
+				6836BF88A5C654509AFE4FC954910F6C /* Pods-ZOBAUITests-dummy.m */,
+				5CEF901DA4C20E501FC69CAF43ACB96A /* Pods-ZOBAUITests-frameworks.sh */,
+				76C4FE7B803A85AFE6E3C7D17B1080B8 /* Pods-ZOBAUITests-resources.sh */,
+				EB206EED20C0C02479804F4CEBCED02E /* Pods-ZOBAUITests-umbrella.h */,
+				ADF69B2275396FE65D250A3A38F87088 /* Pods-ZOBAUITests.debug.xcconfig */,
+				002C019CF770379D718EF67EE5ED447D /* Pods-ZOBAUITests.release.xcconfig */,
+			);
+			name = "Pods-ZOBAUITests";
+			path = "Target Support Files/Pods-ZOBAUITests";
+			sourceTree = "<group>";
+		};
+		B615B89698D5F86E1CC03664BF957002 /* CBZSplashView */ = {
+			isa = PBXGroup;
+			children = (
+				00C944C01919671B1286DCA42E4DFBD8 /* CBZRasterSplashView.h */,
+				EB8FC582B708D14575914B54D9048D02 /* CBZRasterSplashView.m */,
+				9EEDA6D5622C79F888992D7F06683A6F /* CBZSplashView.h */,
+				A3263CB047FDD0DB426B278766F4D5DC /* CBZSplashView.m */,
+				EC22F06C3DED91A9BC9A4A045CDA38ED /* CBZVectorSplashView.h */,
+				29A78C2135852A4D160BDB75416D78DB /* CBZVectorSplashView.m */,
+				D5EEE8BC1ACF7C97600A2AC9D27F0FFF /* Support Files */,
+			);
+			path = CBZSplashView;
+			sourceTree = "<group>";
+		};
+		C05789C47B47385B5513ED09D195C42D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC5C1DFE519FBAA109E86A6C8E3B1B78 /* CBZSplashView.framework */,
+				08C154C40A93270A476D68B0502AEC69 /* FoldingTabBar.framework */,
+				D1DFC36947594BA970A4E08C0DB05021 /* Pods_ZOBA.framework */,
+				063055C465E6B5396FE4F2EFB8E18DC1 /* Pods_ZOBATests.framework */,
+				99CCC06E0B1635BF4F20BCFA5C8A78BF /* Pods_ZOBAUITests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CA87479611E0D5FA89EF3B9451A0EB70 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2A0D4AB348F70CE5ACEAB777B37C9012 /* FoldingTabBar.modulemap */,
+				C485938C23E8E8776D51ABF056214399 /* FoldingTabBar.xcconfig */,
+				55138963F7B3CC8944925024D1269F44 /* FoldingTabBar-dummy.m */,
+				7AB7A8BC500335EF6E4995800773F9C1 /* FoldingTabBar-prefix.pch */,
+				72614863FD0B813BBB073D9862BDD119 /* FoldingTabBar-umbrella.h */,
+				8FD6A35B1DB12C8924CA8A4EDE888450 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FoldingTabBar";
+			sourceTree = "<group>";
+		};
+		D5EEE8BC1ACF7C97600A2AC9D27F0FFF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				A330692C09F49C804E5FF0A655B7648A /* CBZSplashView.modulemap */,
+				D61E1127B13C9DFB7C7B31255E782704 /* CBZSplashView.xcconfig */,
+				86835EB984B99E6B2F69E66BDADC8F20 /* CBZSplashView-dummy.m */,
+				04A79B18F00A19D1C0A3B91F904E78E4 /* CBZSplashView-prefix.pch */,
+				56189FC7BB00941F5F28D0DEDC816DBE /* CBZSplashView-umbrella.h */,
+				331CD805CD65FAABB8D0CA0CF76E510F /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CBZSplashView";
+			sourceTree = "<group>";
+		};
+		DFDE779C6E5D3445E0CB8CCB8D424449 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */,
+				23016F69B2480F44D0BB5526B39192FA /* QuartzCore.framework */,
+				091D54A73E1E8BB182C9D7D245AF1C2F /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		EF53116A33AF00D1DF5F0CDE42D26F3E /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				65D47A88689A976CBAFFACB77190C223 /* Pods-ZOBA */,
+				4111331D483243050146098D3E5A98FA /* Pods-ZOBATests */,
+				A038B0DC3E0EB252B7651DE446F5FD46 /* Pods-ZOBAUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		06C9CB4A0D4D1F312141331177EEBBC6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15D55433E48625EE2286C379780A6086 /* Pods-ZOBAUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B77FEEA45FDAFAC90E61D9507C8B3A6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67BB62D463A15FE5D32D091C5EACA2F0 /* Pods-ZOBA-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EC6D175408D70C0757CE5CA3AB171AA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A62D772340E1ECB7C35053CB0E594111 /* Pods-ZOBATests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DFD0768198030F7ED0AAAB94D858CC69 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96E9F673A40C2E3C5FE99E592144CC72 /* CBZRasterSplashView.h in Headers */,
+				2C9B7EAB72202D40809359524E271462 /* CBZSplashView-umbrella.h in Headers */,
+				ED2872BAF722C070583309D2A4E808AA /* CBZSplashView.h in Headers */,
+				59EE9732B9336C6450E3224869BCA715 /* CBZVectorSplashView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE1E551D92398799D43309CEE9B1D557 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				473915DFCF0BE86A8570AD80A5381E49 /* CAAnimation+YALTabBarViewAnimations.h in Headers */,
+				7106B361CA57148640756546450E0F74 /* CATransaction+TransactionWithAnimationsAndCompletion.h in Headers */,
+				CA9B2A21A886487DD89DBB8DDCCFEF99 /* FoldingTabBar-umbrella.h in Headers */,
+				C2D1986F363E54A9162F8718AB6B8F75 /* YALAnimatingTabBarConstants.h in Headers */,
+				D8BE45A7B0621551DF48DAB76858E1D1 /* YALFoldingTabBar.h in Headers */,
+				FABB6CAC4FDDB99E3C3B4FA04FA4EB50 /* YALFoldingTabBarController.h in Headers */,
+				06192BEF4786E7971FE2F52F2389E17D /* YALSpringAnimation.h in Headers */,
+				B33149BB6AFF371AC9E5D779FD552DD0 /* YALTabBarInteracting.h in Headers */,
+				C189A4A418ED4CFEAC1C63F7FFE0FAD8 /* YALTabBarItem.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0F52284BB73D7CF6A946B01B92E4E07F /* FoldingTabBar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23D529782B826D4145385D9F722BCD02 /* Build configuration list for PBXNativeTarget "FoldingTabBar" */;
+			buildPhases = (
+				4128CDA34F3112B2109187153E4F1197 /* Sources */,
+				AE92B6904276D96AABE735278A581F62 /* Frameworks */,
+				FE1E551D92398799D43309CEE9B1D557 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FoldingTabBar;
+			productName = FoldingTabBar;
+			productReference = 08C154C40A93270A476D68B0502AEC69 /* FoldingTabBar.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4F5E891BB114FD7D0CEE62EA8B4D0AF4 /* CBZSplashView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E12EC04EF46D40D9304DA934CA464D13 /* Build configuration list for PBXNativeTarget "CBZSplashView" */;
+			buildPhases = (
+				61238C540636322DADE4E73A8645DE2D /* Sources */,
+				8FA1383E3387730F5DBD62EFAFFBA087 /* Frameworks */,
+				DFD0768198030F7ED0AAAB94D858CC69 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CBZSplashView;
+			productName = CBZSplashView;
+			productReference = DC5C1DFE519FBAA109E86A6C8E3B1B78 /* CBZSplashView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8F27B52EBEFF2510D6502A1653FD3173 /* Pods-ZOBAUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 189CF80E9ECAC31DAC9EFCDEF611BAA2 /* Build configuration list for PBXNativeTarget "Pods-ZOBAUITests" */;
+			buildPhases = (
+				5E490EC2B73858C008CA86B70F6A4C9D /* Sources */,
+				12164504F510B8F45CADA4778A794CB6 /* Frameworks */,
+				06C9CB4A0D4D1F312141331177EEBBC6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-ZOBAUITests";
+			productName = "Pods-ZOBAUITests";
+			productReference = 99CCC06E0B1635BF4F20BCFA5C8A78BF /* Pods_ZOBAUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		97FD3ACB626FD2371A571E09E9DEE60B /* Pods-ZOBATests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72DC976B07202028B2E9E0BF3EF88F5E /* Build configuration list for PBXNativeTarget "Pods-ZOBATests" */;
+			buildPhases = (
+				08A24EA4ADCAEEE200515818B10BF5AF /* Sources */,
+				743C14918637A3A90B7D8388AE90EFF7 /* Frameworks */,
+				7EC6D175408D70C0757CE5CA3AB171AA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-ZOBATests";
+			productName = "Pods-ZOBATests";
+			productReference = 063055C465E6B5396FE4F2EFB8E18DC1 /* Pods_ZOBATests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F989A29B92327CC69F68DA0018EB063E /* Pods-ZOBA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BBD96D6D55F1D82D3D0C5D5F7828095 /* Build configuration list for PBXNativeTarget "Pods-ZOBA" */;
+			buildPhases = (
+				1C7C104E71B31FA3B5A203D53500B16C /* Sources */,
+				5A26AA3657CEBF8527D0D057F8FDFD62 /* Frameworks */,
+				2B77FEEA45FDAFAC90E61D9507C8B3A6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				111C801190B3DCD3AFF8B5EE128D450D /* PBXTargetDependency */,
+				B319323F3C9F16989589C5563515454C /* PBXTargetDependency */,
+			);
+			name = "Pods-ZOBA";
+			productName = "Pods-ZOBA";
+			productReference = D1DFC36947594BA970A4E08C0DB05021 /* Pods_ZOBA.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = C05789C47B47385B5513ED09D195C42D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F5E891BB114FD7D0CEE62EA8B4D0AF4 /* CBZSplashView */,
+				0F52284BB73D7CF6A946B01B92E4E07F /* FoldingTabBar */,
+				F989A29B92327CC69F68DA0018EB063E /* Pods-ZOBA */,
+				97FD3ACB626FD2371A571E09E9DEE60B /* Pods-ZOBATests */,
+				8F27B52EBEFF2510D6502A1653FD3173 /* Pods-ZOBAUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		08A24EA4ADCAEEE200515818B10BF5AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83BC00F4435C0D529B1B94522E2CF482 /* Pods-ZOBATests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C7C104E71B31FA3B5A203D53500B16C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8855405239F714F572F10BF9F7F5C554 /* Pods-ZOBA-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4128CDA34F3112B2109187153E4F1197 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94F6B95FD263B8271100E4B9A40A68D9 /* CAAnimation+YALTabBarViewAnimations.m in Sources */,
+				ED16DDA04FD591F4FEE094BA7E04B3FB /* CATransaction+TransactionWithAnimationsAndCompletion.m in Sources */,
+				0CE5B65177B4BC135AED6D8A06C5DC51 /* FoldingTabBar-dummy.m in Sources */,
+				00D9A6BF682C495BE80D2D4C8AEC2B63 /* YALAnimatingTabBarConstants.m in Sources */,
+				5EECB665352F33357612F51630336021 /* YALFoldingTabBar.m in Sources */,
+				375D5687696A3D2F77580F4E13F447DC /* YALFoldingTabBarController.m in Sources */,
+				64165A4763C4D32CE8EC3AA8160359D9 /* YALSpringAnimation.m in Sources */,
+				25DEF719A61C37E5CB10C799A01DFE42 /* YALTabBarItem.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E490EC2B73858C008CA86B70F6A4C9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B020F114D388505FE63D8197941C9D4 /* Pods-ZOBAUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61238C540636322DADE4E73A8645DE2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E6622CA82364E5E9D4FA5BE73BE1689 /* CBZRasterSplashView.m in Sources */,
+				B947C061CA65FFD5F18D92A880569C1C /* CBZSplashView-dummy.m in Sources */,
+				E363B284842076CA4770DF76611050C5 /* CBZSplashView.m in Sources */,
+				3E22999CB405CBBC0B1172D29CFC8F0C /* CBZVectorSplashView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		111C801190B3DCD3AFF8B5EE128D450D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CBZSplashView;
+			target = 4F5E891BB114FD7D0CEE62EA8B4D0AF4 /* CBZSplashView */;
+			targetProxy = A5180E433D469DD497E4D4D098C85478 /* PBXContainerItemProxy */;
+		};
+		B319323F3C9F16989589C5563515454C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FoldingTabBar;
+			target = 0F52284BB73D7CF6A946B01B92E4E07F /* FoldingTabBar */;
+			targetProxy = B1DE004828775C4E4DD12DB1F1B6FFC3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0E9538E72214CB0800003C215954A39C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 002C019CF770379D718EF67EE5ED447D /* Pods-ZOBAUITests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ZOBAUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ZOBAUITests/Pods-ZOBAUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ZOBAUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		1DE865A8497954D3BF98616AD2705054 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADF69B2275396FE65D250A3A38F87088 /* Pods-ZOBAUITests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ZOBAUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ZOBAUITests/Pods-ZOBAUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ZOBAUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2BE7EF6FA7A589682349E6AB45375592 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5FD0C54DFAC7F12210B44D79E4B0E61 /* Pods-ZOBA.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ZOBA/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ZOBA/Pods-ZOBA.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ZOBA;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		51492CD5E4C45CAB544D12D83F3488FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D61E1127B13C9DFB7C7B31255E782704 /* CBZSplashView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CBZSplashView/CBZSplashView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CBZSplashView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CBZSplashView/CBZSplashView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CBZSplashView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		79B74B4028D363C52A7313BA1DEE40B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C485938C23E8E8776D51ABF056214399 /* FoldingTabBar.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FoldingTabBar/FoldingTabBar-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FoldingTabBar/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FoldingTabBar/FoldingTabBar.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = FoldingTabBar;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B59A7B9CE212AAFF9DD94C936C14A6D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 404D8AA344BD73E6CB444100581FFE6B /* Pods-ZOBATests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ZOBATests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ZOBATests/Pods-ZOBATests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ZOBATests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CD13C063387C2A65A203527864FA5FD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5114C896F8FFDB9D0D853F79F292EAA7 /* Pods-ZOBA.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ZOBA/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ZOBA/Pods-ZOBA.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ZOBA;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E6BBC42DF433A7C4B448725C07AF819E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D61E1127B13C9DFB7C7B31255E782704 /* CBZSplashView.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CBZSplashView/CBZSplashView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CBZSplashView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CBZSplashView/CBZSplashView.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CBZSplashView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E8E37485A4F79D78FA93135511C73A50 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C485938C23E8E8776D51ABF056214399 /* FoldingTabBar.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FoldingTabBar/FoldingTabBar-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FoldingTabBar/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FoldingTabBar/FoldingTabBar.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = FoldingTabBar;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FF79116E3BED9329074C2B2CE1B04153 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 197A1F610075CA673446EAA97386FDD7 /* Pods-ZOBATests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ZOBATests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ZOBATests/Pods-ZOBATests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ZOBATests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		189CF80E9ECAC31DAC9EFCDEF611BAA2 /* Build configuration list for PBXNativeTarget "Pods-ZOBAUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DE865A8497954D3BF98616AD2705054 /* Debug */,
+				0E9538E72214CB0800003C215954A39C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23D529782B826D4145385D9F722BCD02 /* Build configuration list for PBXNativeTarget "FoldingTabBar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79B74B4028D363C52A7313BA1DEE40B5 /* Debug */,
+				E8E37485A4F79D78FA93135511C73A50 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */,
+				3FA451D268613890FA8A5A03801E11D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BBD96D6D55F1D82D3D0C5D5F7828095 /* Build configuration list for PBXNativeTarget "Pods-ZOBA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BE7EF6FA7A589682349E6AB45375592 /* Debug */,
+				CD13C063387C2A65A203527864FA5FD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72DC976B07202028B2E9E0BF3EF88F5E /* Build configuration list for PBXNativeTarget "Pods-ZOBATests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF79116E3BED9329074C2B2CE1B04153 /* Debug */,
+				B59A7B9CE212AAFF9DD94C936C14A6D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E12EC04EF46D40D9304DA934CA464D13 /* Build configuration list for PBXNativeTarget "CBZSplashView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E6BBC42DF433A7C4B448725C07AF819E /* Debug */,
+				51492CD5E4C45CAB544D12D83F3488FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
