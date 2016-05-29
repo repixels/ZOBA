@@ -184,9 +184,9 @@
 				827827561CF837D600684CE5 /* AppDelegate.swift */,
 				827827581CF837D600684CE5 /* ViewController.swift */,
 				8278275A1CF837D600684CE5 /* Main.storyboard */,
+				827827651CF837D600684CE5 /* Info.plist */,
 				827827601CF837D600684CE5 /* Assets.xcassets */,
 				827827621CF837D600684CE5 /* LaunchScreen.storyboard */,
-				827827651CF837D600684CE5 /* Info.plist */,
 				8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */,
 			);
 			path = ZOBA;

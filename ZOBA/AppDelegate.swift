@@ -26,16 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-//            self.locationManager.delegate = self
-//            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//            self.locationManager.requestAlwaysAuthorization()
-//            NSLog("Yalla")
-//        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-//        if let window = window {
-//            window.backgroundColor = UIColor.whiteColor()
-//            window.rootViewController = generateOnBoardingWithImage()
-//            window.makeKeyAndVisible()
-//        }
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.requestAlwaysAuthorization()
+            NSLog("Yalla")
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        if let window = window {
+            window.backgroundColor = UIColor.whiteColor()
+            window.rootViewController = generateOnBoardingWithImage()
+            window.makeKeyAndVisible()
+        }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -197,8 +197,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         zobaPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 72.0)
         zobaPage.bodyLabel.font = UIFont(name: "Continuum Light" , size: 28.0)
         
+        let onBoardView = ViewController()
+        
         // Image
-        let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "street"), contents: [trackingPage, autoTracking, servicesPage,tripsPage,serviceCentersPage,zobaPage])
+        let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "street"), contents: [trackingPage, autoTracking, servicesPage,tripsPage,serviceCentersPage,onBoardView])
         
         onboardingVC.shouldFadeTransitions = true
         

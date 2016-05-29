@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import Onboard
 import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
 
-class ViewController: UIViewController, FBSDKLoginButtonDelegate {
+class ViewController:OnboardingContentViewController ,FBSDKLoginButtonDelegate{
 
     let facebookReadPermissions = ["public_profile", "email", "user_friends"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -33,6 +35,7 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
             loginView.delegate = self
             
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +78,8 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("User Logged Out")
     }
+    
+    
 
 
 }
