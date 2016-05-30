@@ -7,6 +7,7 @@ target 'ZOBA' do
   pod 'FoldingTabBar', '~> 1.0.2'
   pod 'CBZSplashView', '~> 1.0.0'
   pod 'Onboard'
+  pod "TextFieldEffects"
 
   # Pods for ZOBA
 

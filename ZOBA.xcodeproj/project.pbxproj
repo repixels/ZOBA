@@ -17,6 +17,8 @@
 		827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 827827621CF837D600684CE5 /* LaunchScreen.storyboard */; };
 		8278276F1CF837D600684CE5 /* ZOBATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8278276E1CF837D600684CE5 /* ZOBATests.swift */; };
 		8278277A1CF837D600684CE5 /* ZOBAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827791CF837D600684CE5 /* ZOBAUITests.swift */; };
+		829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C43791CFBAC9500869E59 /* RegisterViewController.swift */; };
+		829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829C437B1CFBBA1E00869E59 /* Media.xcassets */; };
 		82F8B89F1CF8807400E46B05 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8981CF8807400E46B05 /* logo.png */; };
 		82F8B8A01CF8807400E46B05 /* rescue.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8991CF8807400E46B05 /* rescue.png */; };
 		82F8B8A11CF8807400E46B05 /* service-centers.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B89A1CF8807400E46B05 /* service-centers.png */; };
@@ -74,6 +76,8 @@
 		827827751CF837D600684CE5 /* ZOBAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZOBAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		827827791CF837D600684CE5 /* ZOBAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZOBAUITests.swift; sourceTree = "<group>"; };
 		8278277B1CF837D600684CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		829C43791CFBAC9500869E59 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		829C437B1CFBBA1E00869E59 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
 		82F8B8981CF8807400E46B05 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = images/logo.png; sourceTree = "<group>"; };
 		82F8B8991CF8807400E46B05 /* rescue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rescue.png; path = images/rescue.png; sourceTree = "<group>"; };
 		82F8B89A1CF8807400E46B05 /* service-centers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "service-centers.png"; path = "images/service-centers.png"; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 				827827601CF837D600684CE5 /* Assets.xcassets */,
 				827827621CF837D600684CE5 /* LaunchScreen.storyboard */,
 				8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */,
+				829C437B1CFBBA1E00869E59 /* Media.xcassets */,
+				829C43791CFBAC9500869E59 /* RegisterViewController.swift */,
 			);
 			path = ZOBA;
 			sourceTree = "<group>";
@@ -316,6 +322,11 @@
 					827827521CF837D600684CE5 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = B263Y9M649;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					827827691CF837D600684CE5 = {
 						CreatedOnToolsVersion = 7.3;
@@ -368,6 +379,7 @@
 				82F8B8A21CF8807400E46B05 /* statistics.png in Resources */,
 				82F8B8BD1CF8905B00E46B05 /* contl.ttf in Resources */,
 				8278275C1CF837D600684CE5 /* Main.storyboard in Resources */,
+				829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */,
 				82F8B8A01CF8807400E46B05 /* rescue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +531,7 @@
 				827827591CF837D600684CE5 /* ViewController.swift in Sources */,
 				8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */,
 				827827571CF837D600684CE5 /* AppDelegate.swift in Sources */,
+				829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,7 +674,7 @@
 			baseConfigurationReference = BD7787F9DCD77BFD9E47D307 /* Pods-ZOBA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ehab Ashraf (NM9ZY633SX)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -671,6 +684,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "24983ba7-73c5-487d-a99b-c2a85458b655";
 			};
 			name = Debug;
 		};
