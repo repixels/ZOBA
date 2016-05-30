@@ -19,10 +19,6 @@ SPEC CHECKSUMS:
   Onboard: c46261255c0bcbe26ab2823782764c96fca7a33e
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
 
-<<<<<<< HEAD
 PODFILE CHECKSUM: 93bf76cf4f5ac49c68be5b70d2167a759b9f4cb9
 
 COCOAPODS: 1.0.0.rc.2
-=======
-COCOAPODS: 0.39.0
->>>>>>> master
