@@ -2,6 +2,7 @@
 # platform :ios, '9.0'
 
 target 'ZOBA' do
+<<<<<<< HEAD
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   pod 'FoldingTabBar', '~> 1.0.2'
@@ -21,4 +22,24 @@ target 'ZOBA' do
     # Pods for testing
   end
 
+=======
+    # Comment this line if you're not using Swift and don't want to use dynamic frameworks
+    use_frameworks!
+    pod 'FoldingTabBar', '~> 1.0.2'
+    pod 'CBZSplashView', '~> 1.0.0'
+    pod 'Onboard'
+    pod 'ObjectMapper', '~> 1.2'
+    # Pods for ZOBA
+    
+    target 'ZOBATests' do
+       #inherit! :search_paths
+        # Pods for testing
+    end
+    
+    target 'ZOBAUITests' do
+        #inherit! :search_paths
+        # Pods for testing
+    end
+    
+>>>>>>> master
 end
