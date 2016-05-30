@@ -84,6 +84,18 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+<<<<<<< HEAD
+  install_framework "$BUILT_PRODUCTS_DIR/CBZSplashView/CBZSplashView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/FoldingTabBar/FoldingTabBar.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Onboard/Onboard.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TextFieldEffects/TextFieldEffects.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/CBZSplashView/CBZSplashView.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/FoldingTabBar/FoldingTabBar.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Onboard/Onboard.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TextFieldEffects/TextFieldEffects.framework"
+=======
   install_framework "Pods-ZOBA/CBZSplashView.framework"
   install_framework "Pods-ZOBA/FoldingTabBar.framework"
   install_framework "Pods-ZOBA/ObjectMapper.framework"
@@ -94,4 +106,5 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-ZOBA/FoldingTabBar.framework"
   install_framework "Pods-ZOBA/ObjectMapper.framework"
   install_framework "Pods-ZOBA/Onboard.framework"
+>>>>>>> master
 fi
