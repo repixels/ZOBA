@@ -33,6 +33,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        super.hideKeyboardWhenTappedAround()
         self.navigationController?.navigationBarHidden = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -86,7 +87,6 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                 self.lastNameTextField.text = String.init(format: "%@ %@", fullNameArr[1],fullNameArr[2])
                 
                 self.emailTextField.text = result.valueForKey("email") as? String
-                //etc...
             }
         })
     }

@@ -254,42 +254,6 @@
             </objects>
             <point key="canvasLocation" x="812" y="14"/>
         </scene>
-        <!--Forgot Password-->
-        <scene sceneID="9tJ-MO-T73">
-            <objects>
-                <viewController title="Forgot Password" id="XZ2-DV-H4e" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aBV-I2-vmc"/>
-                        <viewControllerLayoutGuide type="bottom" id="AQN-0U-Slx"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="StQ-r0-rpd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hbB-Vg-6BI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="280" y="1281"/>
-        </scene>
-        <!--Login Screen-->
-        <scene sceneID="SKT-FD-f1x">
-            <objects>
-                <viewController title="Login Screen" id="iJZ-Ei-n6v" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HeT-pn-ACs"/>
-                        <viewControllerLayoutGuide type="bottom" id="JAh-Qg-Ke8"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="J3D-xd-5Qp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Avw-zr-P4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="280" y="640"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ISn-mY-EwI">
             <objects>
