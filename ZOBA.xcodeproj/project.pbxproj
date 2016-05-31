@@ -39,6 +39,9 @@
 		D7E3809149A0ABDF4F894412 /* Pods_ZOBATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */; };
 		DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC401CFC33A400637977 /* DataValidations.swift */; };
 		DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */; };
+		DCFC30DF1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC30DD1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift */; };
+		DCFC30E01CFDDEB40018BBD3 /* MyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC30DE1CFDDEB40018BBD3 /* MyUser.swift */; };
+		DCFC30E31CFDDF4D0018BBD3 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +106,9 @@
 		D330313799DC0A970BE8E5C7 /* Pods_ZOBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE6DC401CFC33A400637977 /* DataValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidations.swift; sourceTree = "<group>"; };
 		DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		DCFC30DD1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DCFC30DE1CFDDEB40018BBD3 /* MyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUser.swift; sourceTree = "<group>"; };
+		DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,8 @@
 		8278274A1CF837D600684CE5 = {
 			isa = PBXGroup;
 			children = (
+				DCFC30E11CFDDF250018BBD3 /* DAO */,
+				DCFC30DA1CFDDE740018BBD3 /* poco */,
 				827827551CF837D600684CE5 /* ZOBA */,
 				8278276D1CF837D600684CE5 /* ZOBATests */,
 				827827781CF837D600684CE5 /* ZOBAUITests */,
@@ -249,6 +257,23 @@
 			);
 			name = fonts;
 			path = media/fonts;
+			sourceTree = "<group>";
+		};
+		DCFC30DA1CFDDE740018BBD3 /* poco */ = {
+			isa = PBXGroup;
+			children = (
+				DCFC30DD1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift */,
+				DCFC30DE1CFDDEB40018BBD3 /* MyUser.swift */,
+			);
+			name = poco;
+			sourceTree = "<group>";
+		};
+		DCFC30E11CFDDF250018BBD3 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */,
+			);
+			name = DAO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -538,6 +563,9 @@
 				8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
+				DCFC30E31CFDDF4D0018BBD3 /* UserDAO.swift in Sources */,
+				DCFC30E01CFDDEB40018BBD3 /* MyUser.swift in Sources */,
+				DCFC30DF1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift in Sources */,
 				827827571CF837D600684CE5 /* AppDelegate.swift in Sources */,
 				829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */,
 			);
