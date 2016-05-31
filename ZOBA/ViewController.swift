@@ -136,7 +136,6 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate{
         
     }
     
-    
     func configurationTextField(textField: UITextField!)
     {
         print("generating the TextField")
@@ -150,7 +149,10 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate{
         print("Cancel Button Clicked")
     }
     
-    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
     
 
 }

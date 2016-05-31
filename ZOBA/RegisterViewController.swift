@@ -124,5 +124,8 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         self.view.insertSubview(backgroundImageMask, atIndex: 1)
         
     }
-    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
 }
