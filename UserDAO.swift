@@ -23,7 +23,7 @@ class UserDAO {
         //   m = select()
         user.firstName = first
         user.email = email
-        user.userId = _id
+        user.userId = Int64(_id)
         //user.image = image
         user.lastName = last
         user.userName = userName
@@ -77,7 +77,7 @@ class UserDAO {
     func selectById(managedObjectContext : NSManagedObjectContext,Id _id :Int) -> MyUser{
         
         
-        let users =     selectBy(managedObjectContext, attribute: "userId", value: String(_id))
+        let users = selectBy(managedObjectContext, attribute: "userId", value: String(_id))
         var user :MyUser!
         
         if users.count > 0 {

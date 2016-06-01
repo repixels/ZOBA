@@ -11,9 +11,9 @@ import Alamofire
 
 class ContectionToWebService {
     
-    static  func connctionLogin(url: String , userName : String , password : String) -> String {
-        
-        Alamofire.request(.GET, url, parameters: [userName: password])
+      func connctionLogin(url: String , user : MyUser) -> MyUser {
+    
+        Alamofire.request(.GET, url, parameters:["pass" : user.password! , "user": user.userName!] )
             .validate()
             .responseJSON { response in
                 switch response.result {
@@ -24,13 +24,11 @@ class ContectionToWebService {
                     print(error)
                 }
         }
-        
-             return url
+             return user
     }
     
-    static  func connctionPassword(url: String , userName : String , email : String,password : String, firstName :String ,lastName : String ,phone : String ) -> String {
-        
-        Alamofire.request(.GET, url, parameters: [userName: password])
+      func connctionPassword(url: String , user : MyUser) -> MyUser {
+        Alamofire.request(.GET, url, parameters: ["username": user.userName! , "email" : user.email! , "password" : user.password! , "firstName" : user.firstName! , "lastName" : user.lastName! , "phone" : user.phone!])
             .validate()
             .responseJSON { response in
                 switch response.result {
@@ -42,7 +40,7 @@ class ContectionToWebService {
                 }
         }
         
-        return url
+        return user
     }
 
 }
