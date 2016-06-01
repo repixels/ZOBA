@@ -56,16 +56,16 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate{
         fbLoginButton.loginBehavior = FBSDKLoginBehavior.Native
         
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        self.managedObjectContext = appDel.managedObjectContext
-        
-        var client = UserDAO(managedObjectContext: self.managedObjectContext)
-//        client.save(managedObjectContext, userId: 2, Email: "omima@", UserName: "omima", firstName: "omima", LastName: "ibra", Phone: "222", ImageUrl: "image" , password: "123")
 //        
-        client.delete(managedObjectContext, Id: 2)
-     //print(client.selectById(managedObjectContext, Id: 2).firstName)
- print(client.selectAll(managedObjectContext).count)
-        
+//        self.managedObjectContext = appDel.managedObjectContext
+//        
+//        var client = UserDAO(managedObjectContext: self.managedObjectContext)
+////        client.save(managedObjectContext, userId: 2, Email: "omima@", UserName: "omima", firstName: "omima", LastName: "ibra", Phone: "222", ImageUrl: "image" , password: "123")
+//
+//        client.delete(managedObjectContext, Id: 2)
+//     //print(client.selectById(managedObjectContext, Id: 2).firstName)
+// print(client.selectAll(managedObjectContext).count)
+//        
     }
 
     override func didReceiveMemoryWarning() {
@@ -166,6 +166,8 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate{
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
+        
+       ContectionToWebService.connctionLogin("https://httpbin.org/get", userName: "foo", password: "bar")
     }
     
 
