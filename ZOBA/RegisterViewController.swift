@@ -12,6 +12,7 @@ import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
 import TextFieldEffects
+import Alamofire
 
 class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
@@ -128,4 +129,6 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
+
+   
 }
