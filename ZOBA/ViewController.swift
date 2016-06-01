@@ -55,19 +55,18 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate{
         fbLoginButton.delegate = self
         fbLoginButton.loginBehavior = FBSDKLoginBehavior.Native
         
-        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
+        //let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        self.managedObjectContext = appDel.managedObjectContext
+        //self.managedObjectContext = appDel.managedObjectContext
         
-        var client = UserDAO(managedObjectContext: self.managedObjectContext)
+//        var client = UserDAO(managedObjectContext: self.managedObjectContext)
 //        client.save(managedObjectContext, userId: 2, Email: "omima@", UserName: "omima", firstName: "omima", LastName: "ibra", Phone: "222", ImageUrl: "image" , password: "123")
-//        
-        client.delete(managedObjectContext, Id: 2)
+        
+        //client.delete(managedObjectContext, Id: 2)
      //print(client.selectById(managedObjectContext, Id: 2).firstName)
- print(client.selectAll(managedObjectContext).count)
+ //print(client.selectAll(managedObjectContext).count)
         
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

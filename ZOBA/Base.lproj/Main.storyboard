@@ -135,6 +135,9 @@
                                 <state key="normal" title="REGISTER">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="registerAction:" destination="R8G-2M-mrc" eventType="touchUpInside" id="n0s-N3-vha"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ImV-Ry-feh" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="165" y="97" width="135" height="48"/>

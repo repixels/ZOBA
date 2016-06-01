@@ -12,11 +12,14 @@ import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
 import TextFieldEffects
+import CoreData
 
 class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var facebookLoginButton: FBSDKLoginButton!
+    
+    var managedObjectContext : NSManagedObjectContext!
     
     /*
      * Text Fields
@@ -128,4 +131,31 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
+    
+    
+    @IBAction func registerAction(sender: AnyObject) {
+//        NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+//        NSString *trimmed = [rawString stringByTrimmingCharactersInSet:whitespace];
+//      
+       
+        
+       
+        let whitespace = NSCharacterSet.whitespaceCharacterSet()
+     //   var trim = emailTextField.text!.stringByTrimmingCharactersInSet(whitespace)
+
+        
+        if ((DataValidations.isValidEmail(emailTextField.text!)) && (emailTextField.text?.stringByTrimmingCharactersInSet(whitespace)) != ""){
+          print("mail is valid")
+        }
+        
+        
+        
+//        var userObj = MyUser()
+//        userObj.emailS
+//
+//        var client = UserDAO(managedObjectContext: self.managedObjectContext!)
+//        client.save(managedObjectContext!, userId: 2, Email: self.emailTextField.text!, UserName: userNameTextField.text!, firstName: firstNameTextField.text!, LastName: lastNameTextField.text!, Phone: , ImageUrl: "image" , password: "123")
+//        
+    }
+    
 }

@@ -23,7 +23,7 @@ class UserDAO {
         //   m = select()
         user.firstName = first
         user.email = email
-        user.userId = _id
+        user.userId = Int64(_id)
         //user.image = image
         user.lastName = last
         user.userName = userName
