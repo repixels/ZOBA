@@ -14,7 +14,7 @@ import FBSDKLoginKit
 import TextFieldEffects
 import CoreData
 
-class ViewController:UIViewController ,FBSDKLoginButtonDelegate{
+class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDelegate{
 
     //Buttons
     @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
@@ -31,6 +31,10 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate{
      */
     @IBOutlet weak var emailTextField: HoshiTextField!
     @IBOutlet weak var passwordTextField: HoshiTextField!
+    
+    //Validation Indicatiors
+    var isPasswordReady = false
+    var isEmailReady = true
     
     var resetPasswordAlertTextField: UITextField!
     
@@ -167,6 +171,119 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate{
         super.touchesBegan(touches, withEvent: event)
     }
     
+    /*
+     * Detect when text field gains focus
+    */
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        print("\(textField.text)")
+        return true
+    }
+    
+    @IBAction func emailEditingDidEnd(sender: AnyObject) {
+        
+        if(DataValidations.isValidEmail(emailTextField.text!))
+        {
+            showEmailValidMessage("Email")
+            isEmailReady = true
+        }
+        else
+        {
+            showEmailErrorMessage("Enter a valid Email")
+            isEmailReady = false
+        }
+        validateLoginBtn()
+        
+    }
+    
+    @IBAction func emailEditingDidBegin(sender: AnyObject)
+    {
+        if(DataValidations.isValidEmail(emailTextField.text!))
+        {
+            isEmailReady = true
+        }
+        else
+        {
+            isEmailReady = false
+        }
+        validateLoginBtn()
+    }
+    
+    @IBAction func emailEditingChanged(sender: AnyObject)
+    {
+        if(DataValidations.isValidEmail(emailTextField.text!))
+        {
+            isEmailReady = true
+        }
+        else
+        {
+            isEmailReady = false
+        }
+        validateLoginBtn()
+    }
+    
+    @IBAction func passwordEditingDidEnd(sender: AnyObject)
+    {
+        if(passwordTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(passwordTextField.text!))
+        {
+            isPasswordReady = true
+        }
+        else
+        {
+            isPasswordReady = false
+        }
+        
+        validateLoginBtn()
+        
+    }
+    
+    
+    
+    func validateLoginBtn()
+    {
+        if(isEmailReady && isPasswordReady)
+        {
+            enableLoginBTN()
+        }
+        else
+        {
+            disableLoginBTN()
+        }
+    }
+    
+    func enableLoginBTN()
+    {
+        loginButton.enabled = true
+        loginButton.alpha = 1.0
+    }
+    
+    func disableLoginBTN()
+    {
+        loginButton.enabled = false
+        loginButton.alpha = 0.7
+        
+    }
+    
+    func showEmailErrorMessage(message:String)
+    {
+        self.emailTextField.borderInactiveColor = UIColor.redColor()
+        self.emailTextField.borderActiveColor = UIColor.redColor()
+        self.emailTextField.placeholderColor = UIColor.redColor()
+        self.emailTextField.placeholderLabel.text = message
+        self.emailTextField.placeholderLabel.sizeToFit()
+        self.emailTextField.placeholderLabel.alpha = 1.0
+        
+    }
+    
+    func showEmailValidMessage(message:String)
+    {
+        self.emailTextField.borderInactiveColor = UIColor.greenColor()
+        self.emailTextField.borderActiveColor = UIColor.greenColor()
+        self.emailTextField.placeholderColor = UIColor.whiteColor()
+        self.emailTextField.placeholderLabel.text = message
+        enableLoginBTN()
+    }
 
 }
 
