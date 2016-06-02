@@ -11,7 +11,7 @@ import Alamofire
 
 class ContectionToWebService {
     
-      func connctionLogin(url: String , user : MyUser) -> MyUser {
+       func connctionLogin(url: String , user : MyUser) -> MyUser {
     
         Alamofire.request(.GET, url, parameters:["pass" : user.password! , "user": user.userName!] )
             .validate()
