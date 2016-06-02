@@ -11,6 +11,14 @@ import Alamofire
 
 class ContectionToWebService {
     
+    var userobj: MyUser!
+    
+    init( userobj : MyUser)
+    {
+        self.userobj = userobj
+        
+    }
+    
        func connctionLogin(url: String , user : MyUser) -> MyUser {
     
         Alamofire.request(.GET, url, parameters:["pass" : user.password! , "user": user.userName!] )
