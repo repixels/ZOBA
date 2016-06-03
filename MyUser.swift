@@ -14,4 +14,19 @@ class MyUser: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
+
+    var mangedObje : NSManagedObject!
+    
+    init(managedObjectContext : NSManagedObjectContext){
+       
+        let desc = NSEntityDescription.entityForName("MyUser", inManagedObjectContext: managedObjectContext)
+
+        super.init(entity: desc!,insertIntoManagedObjectContext:nil)
+    }
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
 }
+
+    
+

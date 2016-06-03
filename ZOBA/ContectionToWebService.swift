@@ -11,7 +11,17 @@ import Alamofire
 
 class ContectionToWebService {
     
+
+    var userobj: MyUser!
+    
+    init( userobj : MyUser)
+    {
+        self.userobj = userobj
+        
+    }
+    
       func connctionLogin(url: String , user : MyUser) -> MyUser {
+
     
         Alamofire.request(.GET, url, parameters:["pass" : user.password! , "user": user.userName!] )
             .validate()
@@ -36,7 +46,7 @@ class ContectionToWebService {
                     print("Validation Successful")
                     print("Response String: \(response.result.value)")
                 case .Failure(let error):
-                    print(error)
+                    print("not successful\(error)")
                 }
         }
         

@@ -22,5 +22,7 @@ extension MyUser {
     @NSManaged var phone: String?
     @NSManaged var userId: Int64
     @NSManaged var userName: String?
+    
+   
 
 }
