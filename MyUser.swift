@@ -14,6 +14,7 @@ class MyUser: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 
+
     var mangedObje : NSManagedObject!
     
     init(managedObjectContext : NSManagedObjectContext){
@@ -26,3 +27,6 @@ class MyUser: NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
 }
+
+    
+
