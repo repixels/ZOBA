@@ -17,7 +17,32 @@
 		827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 827827621CF837D600684CE5 /* LaunchScreen.storyboard */; };
 		8278276F1CF837D600684CE5 /* ZOBATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8278276E1CF837D600684CE5 /* ZOBATests.swift */; };
 		8278277A1CF837D600684CE5 /* ZOBAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827791CF837D600684CE5 /* ZOBAUITests.swift */; };
+		829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C43791CFBAC9500869E59 /* RegisterViewController.swift */; };
+		829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829C437B1CFBBA1E00869E59 /* Media.xcassets */; };
+		82F8B89F1CF8807400E46B05 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8981CF8807400E46B05 /* logo.png */; };
+		82F8B8A01CF8807400E46B05 /* rescue.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8991CF8807400E46B05 /* rescue.png */; };
+		82F8B8A11CF8807400E46B05 /* service-centers.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B89A1CF8807400E46B05 /* service-centers.png */; };
+		82F8B8A21CF8807400E46B05 /* statistics.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B89B1CF8807400E46B05 /* statistics.png */; };
+		82F8B8A31CF8807400E46B05 /* street.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B89C1CF8807400E46B05 /* street.png */; };
+		82F8B8A41CF8807400E46B05 /* tips.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B89D1CF8807400E46B05 /* tips.png */; };
+		82F8B8A51CF8807400E46B05 /* tracking.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B89E1CF8807400E46B05 /* tracking.png */; };
+		82F8B8BC1CF8905B00E46B05 /* contb.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8B71CF8905B00E46B05 /* contb.ttf */; };
+		82F8B8BD1CF8905B00E46B05 /* contl.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8B81CF8905B00E46B05 /* contl.ttf */; };
+		82F8B8BE1CF8905B00E46B05 /* contm.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8B91CF8905B00E46B05 /* contm.ttf */; };
+		82F8B8BF1CF8905B00E46B05 /* nasalization rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8BA1CF8905B00E46B05 /* nasalization rg.ttf */; };
+		82F8B8C01CF8905B00E46B05 /* sf-outer-limits.upright.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8BB1CF8905B00E46B05 /* sf-outer-limits.upright.ttf */; };
+		82F8B8C31CF89A2500E46B05 /* splash-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8C11CF89A2500E46B05 /* splash-background.png */; };
+		82F8B8C41CF89A2500E46B05 /* splash-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8C21CF89A2500E46B05 /* splash-logo.png */; };
+		82F8B8C81CF8B52A00E46B05 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C51CF8B52A00E46B05 /* FBSDKCoreKit.framework */; };
+		82F8B8C91CF8B52A00E46B05 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */; };
+		82F8B8CA1CF8B52A00E46B05 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */; };
 		D7E3809149A0ABDF4F894412 /* Pods_ZOBATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */; };
+		DC04DA3C1CFE99D5008E4E64 /* ContectionToWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* ContectionToWebService.swift */; };
+		DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC401CFC33A400637977 /* DataValidations.swift */; };
+		DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */; };
+		DCFC30DF1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC30DD1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift */; };
+		DCFC30E01CFDDEB40018BBD3 /* MyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC30DE1CFDDEB40018BBD3 /* MyUser.swift */; };
+		DCFC30E31CFDDF4D0018BBD3 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,10 +82,35 @@
 		827827751CF837D600684CE5 /* ZOBAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZOBAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		827827791CF837D600684CE5 /* ZOBAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZOBAUITests.swift; sourceTree = "<group>"; };
 		8278277B1CF837D600684CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		829C43791CFBAC9500869E59 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		829C437B1CFBBA1E00869E59 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
+		82F8B8981CF8807400E46B05 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = images/logo.png; sourceTree = "<group>"; };
+		82F8B8991CF8807400E46B05 /* rescue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rescue.png; path = images/rescue.png; sourceTree = "<group>"; };
+		82F8B89A1CF8807400E46B05 /* service-centers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "service-centers.png"; path = "images/service-centers.png"; sourceTree = "<group>"; };
+		82F8B89B1CF8807400E46B05 /* statistics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = statistics.png; path = images/statistics.png; sourceTree = "<group>"; };
+		82F8B89C1CF8807400E46B05 /* street.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = street.png; path = images/street.png; sourceTree = "<group>"; };
+		82F8B89D1CF8807400E46B05 /* tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tips.png; path = images/tips.png; sourceTree = "<group>"; };
+		82F8B89E1CF8807400E46B05 /* tracking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tracking.png; path = images/tracking.png; sourceTree = "<group>"; };
+		82F8B8B71CF8905B00E46B05 /* contb.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = contb.ttf; sourceTree = "<group>"; };
+		82F8B8B81CF8905B00E46B05 /* contl.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = contl.ttf; sourceTree = "<group>"; };
+		82F8B8B91CF8905B00E46B05 /* contm.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = contm.ttf; sourceTree = "<group>"; };
+		82F8B8BA1CF8905B00E46B05 /* nasalization rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "nasalization rg.ttf"; sourceTree = "<group>"; };
+		82F8B8BB1CF8905B00E46B05 /* sf-outer-limits.upright.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-outer-limits.upright.ttf"; sourceTree = "<group>"; };
+		82F8B8C11CF89A2500E46B05 /* splash-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-background.png"; path = "images/splash-background.png"; sourceTree = "<group>"; };
+		82F8B8C21CF89A2500E46B05 /* splash-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash-logo.png"; path = "images/splash-logo.png"; sourceTree = "<group>"; };
+		82F8B8C51CF8B52A00E46B05 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		B7974B3E65B33BEAC6D00F69 /* Pods-ZOBAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBAUITests/Pods-ZOBAUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BD7787F9DCD77BFD9E47D307 /* Pods-ZOBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA.debug.xcconfig"; sourceTree = "<group>"; };
 		C8594A3E0A7DBD3B1374B0E8 /* Pods-ZOBATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBATests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBATests/Pods-ZOBATests.debug.xcconfig"; sourceTree = "<group>"; };
 		D330313799DC0A970BE8E5C7 /* Pods_ZOBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC04DA3B1CFE99D5008E4E64 /* ContectionToWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContectionToWebService.swift; sourceTree = "<group>"; };
+		DCE6DC401CFC33A400637977 /* DataValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidations.swift; sourceTree = "<group>"; };
+		DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		DCFC30DD1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		DCFC30DE1CFDDEB40018BBD3 /* MyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUser.swift; sourceTree = "<group>"; };
+		DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +118,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82F8B8CA1CF8B52A00E46B05 /* FBSDKShareKit.framework in Frameworks */,
 				39A2F33710BE64FC9853582A /* Pods_ZOBA.framework in Frameworks */,
+				82F8B8C81CF8B52A00E46B05 /* FBSDKCoreKit.framework in Frameworks */,
+				82F8B8C91CF8B52A00E46B05 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +147,9 @@
 		6037E86AF3BD9C2CD7E578F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82F8B8C51CF8B52A00E46B05 /* FBSDKCoreKit.framework */,
+				82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */,
+				82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */,
 				D330313799DC0A970BE8E5C7 /* Pods_ZOBA.framework */,
 				15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */,
 				3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */,
@@ -117,11 +173,15 @@
 		8278274A1CF837D600684CE5 = {
 			isa = PBXGroup;
 			children = (
+				DCFC30E11CFDDF250018BBD3 /* DAO */,
+				DCFC30DA1CFDDE740018BBD3 /* poco */,
 				827827551CF837D600684CE5 /* ZOBA */,
 				8278276D1CF837D600684CE5 /* ZOBATests */,
 				827827781CF837D600684CE5 /* ZOBAUITests */,
 				827827541CF837D600684CE5 /* Products */,
 				6DCF5273F16362EE7F67C66D /* Pods */,
+				82F8B8B61CF8905B00E46B05 /* fonts */,
+				82F8B8891CF87C3500E46B05 /* media */,
 				6037E86AF3BD9C2CD7E578F4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -142,10 +202,15 @@
 				827827561CF837D600684CE5 /* AppDelegate.swift */,
 				827827581CF837D600684CE5 /* ViewController.swift */,
 				8278275A1CF837D600684CE5 /* Main.storyboard */,
+				827827651CF837D600684CE5 /* Info.plist */,
 				827827601CF837D600684CE5 /* Assets.xcassets */,
 				827827621CF837D600684CE5 /* LaunchScreen.storyboard */,
-				827827651CF837D600684CE5 /* Info.plist */,
 				8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */,
+				829C437B1CFBBA1E00869E59 /* Media.xcassets */,
+				829C43791CFBAC9500869E59 /* RegisterViewController.swift */,
+				DCE6DC401CFC33A400637977 /* DataValidations.swift */,
+				DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */,
+				DC04DA3B1CFE99D5008E4E64 /* ContectionToWebService.swift */,
 			);
 			path = ZOBA;
 			sourceTree = "<group>";
@@ -166,6 +231,52 @@
 				8278277B1CF837D600684CE5 /* Info.plist */,
 			);
 			path = ZOBAUITests;
+			sourceTree = "<group>";
+		};
+		82F8B8891CF87C3500E46B05 /* media */ = {
+			isa = PBXGroup;
+			children = (
+				82F8B8C11CF89A2500E46B05 /* splash-background.png */,
+				82F8B8C21CF89A2500E46B05 /* splash-logo.png */,
+				82F8B8981CF8807400E46B05 /* logo.png */,
+				82F8B8991CF8807400E46B05 /* rescue.png */,
+				82F8B89A1CF8807400E46B05 /* service-centers.png */,
+				82F8B89B1CF8807400E46B05 /* statistics.png */,
+				82F8B89C1CF8807400E46B05 /* street.png */,
+				82F8B89D1CF8807400E46B05 /* tips.png */,
+				82F8B89E1CF8807400E46B05 /* tracking.png */,
+			);
+			path = media;
+			sourceTree = "<group>";
+		};
+		82F8B8B61CF8905B00E46B05 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				82F8B8B71CF8905B00E46B05 /* contb.ttf */,
+				82F8B8B81CF8905B00E46B05 /* contl.ttf */,
+				82F8B8B91CF8905B00E46B05 /* contm.ttf */,
+				82F8B8BA1CF8905B00E46B05 /* nasalization rg.ttf */,
+				82F8B8BB1CF8905B00E46B05 /* sf-outer-limits.upright.ttf */,
+			);
+			name = fonts;
+			path = media/fonts;
+			sourceTree = "<group>";
+		};
+		DCFC30DA1CFDDE740018BBD3 /* poco */ = {
+			isa = PBXGroup;
+			children = (
+				DCFC30DD1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift */,
+				DCFC30DE1CFDDEB40018BBD3 /* MyUser.swift */,
+			);
+			name = poco;
+			sourceTree = "<group>";
+		};
+		DCFC30E11CFDDF250018BBD3 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */,
+			);
+			name = DAO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +355,12 @@
 				TargetAttributes = {
 					827827521CF837D600684CE5 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = B263Y9M649;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					827827691CF837D600684CE5 = {
 						CreatedOnToolsVersion = 7.3;
@@ -280,9 +397,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82F8B8C31CF89A2500E46B05 /* splash-background.png in Resources */,
+				82F8B8BE1CF8905B00E46B05 /* contm.ttf in Resources */,
+				82F8B8BF1CF8905B00E46B05 /* nasalization rg.ttf in Resources */,
+				82F8B8A11CF8807400E46B05 /* service-centers.png in Resources */,
+				82F8B89F1CF8807400E46B05 /* logo.png in Resources */,
+				82F8B8A41CF8807400E46B05 /* tips.png in Resources */,
 				827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */,
+				82F8B8C41CF89A2500E46B05 /* splash-logo.png in Resources */,
 				827827611CF837D600684CE5 /* Assets.xcassets in Resources */,
+				82F8B8C01CF8905B00E46B05 /* sf-outer-limits.upright.ttf in Resources */,
+				82F8B8A31CF8807400E46B05 /* street.png in Resources */,
+				82F8B8BC1CF8905B00E46B05 /* contb.ttf in Resources */,
+				82F8B8A51CF8807400E46B05 /* tracking.png in Resources */,
+				82F8B8A21CF8807400E46B05 /* statistics.png in Resources */,
+				82F8B8BD1CF8905B00E46B05 /* contl.ttf in Resources */,
 				8278275C1CF837D600684CE5 /* Main.storyboard in Resources */,
+				829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */,
+				82F8B8A01CF8807400E46B05 /* rescue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +564,14 @@
 			files = (
 				827827591CF837D600684CE5 /* ViewController.swift in Sources */,
 				8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */,
+				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
+				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
+				DCFC30E31CFDDF4D0018BBD3 /* UserDAO.swift in Sources */,
+				DCFC30E01CFDDEB40018BBD3 /* MyUser.swift in Sources */,
+				DCFC30DF1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift in Sources */,
 				827827571CF837D600684CE5 /* AppDelegate.swift in Sources */,
+				829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */,
+				DC04DA3C1CFE99D5008E4E64 /* ContectionToWebService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,11 +714,18 @@
 			baseConfigurationReference = BD7787F9DCD77BFD9E47D307 /* Pods-ZOBA.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ZOBA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -588,11 +734,18 @@
 			baseConfigurationReference = 3C4DC4794BB8782CEF3EBF4B /* Pods-ZOBA.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ZOBA/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -8,68 +8,115 @@
 
 /* Begin PBXBuildFile section */
 		00C7F014C727DDAC7C80C2B55888C022 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
-		00D9A6BF682C495BE80D2D4C8AEC2B63 /* YALAnimatingTabBarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = DC70E5021601520838C4CD6AFBF382D8 /* YALAnimatingTabBarConstants.m */; };
+		00D9A6BF682C495BE80D2D4C8AEC2B63 /* YALAnimatingTabBarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FF6C8FA776B822FC4DCA2E8F4B86D3E4 /* YALAnimatingTabBarConstants.m */; };
 		0406ADDCA97CC68BCE486B607F508C03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
-		06192BEF4786E7971FE2F52F2389E17D /* YALSpringAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A7FE3A08A74545FEE72DBA89D24D6A0E /* YALSpringAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0CE5B65177B4BC135AED6D8A06C5DC51 /* FoldingTabBar-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1FFF8CF144C13F4D66B6F6170D1CC7 /* FoldingTabBar-dummy.m */; };
+		06192BEF4786E7971FE2F52F2389E17D /* YALSpringAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 32696CF6D9F18E070D99383A19219907 /* YALSpringAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		095406039B4D371E48D08B38A2975AC8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB4F51DA265430A8B6F2C1A890467DC /* Error.swift */; };
+		0CE5B65177B4BC135AED6D8A06C5DC51 /* FoldingTabBar-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CE4B992DC5858D6C8DAAD8046DF6F68 /* FoldingTabBar-dummy.m */; };
 		14F33AE84F3EAE897A9CFC66FA5B998C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
 		15A07BC13D7BE762CA9792B5C9F97595 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23016F69B2480F44D0BB5526B39192FA /* QuartzCore.framework */; };
 		15D55433E48625EE2286C379780A6086 /* Pods-ZOBAUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EB206EED20C0C02479804F4CEBCED02E /* Pods-ZOBAUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1A5A60CA5EC729FD5AF0993FDDF648E5 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FD060FEDB88D0F7649DC20021D5637 /* OnboardingViewController.m */; };
+		16102E4E35FAA0FC4161282FECE56469 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4686EC6E2F29671C9EE2621123A8E2AB /* Timeline.swift */; };
+		19B64FF9E2364F361EE5E605983F8296 /* Pods-ZOBA-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BB4E5CFF50E2FCB9B0431DBF5CF1600E /* Pods-ZOBA-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A5A60CA5EC729FD5AF0993FDDF648E5 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F43B52142D598E0A408E3AB77E773B82 /* OnboardingViewController.m */; };
 		1E6527EA104754E499013D3BACDF3D3D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
-		210EE58B313AD35CD32535374996D833 /* Pods-ZOBA-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A553D9544FB66A6CF7A356C32B8E656 /* Pods-ZOBA-dummy.m */; };
-		25DEF719A61C37E5CB10C799A01DFE42 /* YALTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C5678E6218A5A146C506A29DC40405 /* YALTabBarItem.m */; };
+		25DEF719A61C37E5CB10C799A01DFE42 /* YALTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 37175C22977627FDF1926A39B8BE9843 /* YALTabBarItem.m */; };
 		275F0B807ADF1163898114F3C35B4689 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
-		2C9B7EAB72202D40809359524E271462 /* CBZSplashView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BB293921B22489CEDC2F71221866CAC /* CBZSplashView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2E6622CA82364E5E9D4FA5BE73BE1689 /* CBZRasterSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF41B0A197A9914AB808234B39DD2CB /* CBZRasterSplashView.m */; };
-		375D5687696A3D2F77580F4E13F447DC /* YALFoldingTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 203A03C9782647DB929ABF580B8DC454 /* YALFoldingTabBarController.m */; };
-		3D0991035361CFCB57C542B089600B91 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F354696B7347EF37E863F41101646BA6 /* OnboardingContentViewController.m */; };
-		3E22999CB405CBBC0B1172D29CFC8F0C /* CBZVectorSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C69DEA2680447E440C882EF4E27667 /* CBZVectorSplashView.m */; };
-		45B28CDACD362CEF2CA6012BA0015DB6 /* OnboardingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C6F4A7E46287185362D1F772D66914B /* OnboardingViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		473915DFCF0BE86A8570AD80A5381E49 /* CAAnimation+YALTabBarViewAnimations.h in Headers */ = {isa = PBXBuildFile; fileRef = D109122A30A52D4002EDCA48EA930933 /* CAAnimation+YALTabBarViewAnimations.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		59EE9732B9336C6450E3224869BCA715 /* CBZVectorSplashView.h in Headers */ = {isa = PBXBuildFile; fileRef = DC113CBF82699C2AB103D87BDCAED4EE /* CBZVectorSplashView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C9B7EAB72202D40809359524E271462 /* CBZSplashView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 931D8B5281ABB7C430A489D5068E0B07 /* CBZSplashView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2D3405986FC586FA6C0A5E0B6BA7E64E /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C09627E856170133F40D9140939C47E /* Validation.swift */; };
+		2E6622CA82364E5E9D4FA5BE73BE1689 /* CBZRasterSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = BD5A82C267B6EBF5E713CB683910E417 /* CBZRasterSplashView.m */; };
+		34CCDCA848A701466256BC2927DA8856 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB962AF5E450C7390DBA6084F172BEE /* NetworkReachabilityManager.swift */; };
+		375D5687696A3D2F77580F4E13F447DC /* YALFoldingTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F01DC2A01C0FA18333474F9035B39C /* YALFoldingTabBarController.m */; };
+		3D0991035361CFCB57C542B089600B91 /* OnboardingContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B81AD9DF71B10CFCC45E454C0FCC51C /* OnboardingContentViewController.m */; };
+		3E22999CB405CBBC0B1172D29CFC8F0C /* CBZVectorSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 872FCBF8DC9D201872AA4E75B9676982 /* CBZVectorSplashView.m */; };
+		3EA8F215C9C1432D74E5CCA4834AA8C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755180BCF1D0943FEDBEBF061C2A925A /* ResponseSerialization.swift */; };
+		3F00F297A29C9FE2098C8F4EADB1872D /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D743F94831C972AD9BF78AEEF85982F /* HoshiTextField.swift */; };
+		4081EA628AF0B73AC51FFB9D7AB3B89E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926F161442216BF743BF212EC067D078 /* Manager.swift */; };
+		45B28CDACD362CEF2CA6012BA0015DB6 /* OnboardingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3E35978241C9C8D462A2F6FFF1A40678 /* OnboardingViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		473915DFCF0BE86A8570AD80A5381E49 /* CAAnimation+YALTabBarViewAnimations.h in Headers */ = {isa = PBXBuildFile; fileRef = E33E522302DD2D90F07ED34AC8E108E7 /* CAAnimation+YALTabBarViewAnimations.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4DAB493294EB4F72CF8D7C086AD7A389 /* TextFieldEffects-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CD5CA2F5D8C8838F8BA084EDEA5CE0E /* TextFieldEffects-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		59EE9732B9336C6450E3224869BCA715 /* CBZVectorSplashView.h in Headers */ = {isa = PBXBuildFile; fileRef = 77AB4CFF3E5BCFF2246AAD4B3A0F8FA8 /* CBZVectorSplashView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5B020F114D388505FE63D8197941C9D4 /* Pods-ZOBAUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6836BF88A5C654509AFE4FC954910F6C /* Pods-ZOBAUITests-dummy.m */; };
-		5EECB665352F33357612F51630336021 /* YALFoldingTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 13383278BF98C86FEFF427DF0537D128 /* YALFoldingTabBar.m */; };
+		5BC19E6E0F199276003F0AF96838BCE5 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240A0B5B8D306BEB803BFBA1AE4870D1 /* Upload.swift */; };
+		5CB05FBCB32D21E194B5ECF680CB6AE0 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F0C58DFEA508D2476CA7BBC20F3351 /* Download.swift */; };
+		5DC1E1317EDE876BBF85DE2D619AB776 /* MadokaTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BD9B09C84A12E4E7D964B22E9A015D /* MadokaTextField.swift */; };
+		5EECB665352F33357612F51630336021 /* YALFoldingTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D999ECF2E638AD9EC6DC1CD3AF2B87CE /* YALFoldingTabBar.m */; };
 		5FFDA3142014F88B93ADB3FDCF3546C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 091D54A73E1E8BB182C9D7D245AF1C2F /* UIKit.framework */; };
-		64165A4763C4D32CE8EC3AA8160359D9 /* YALSpringAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0420B83960FD069AAA2F8AD664B489CE /* YALSpringAnimation.m */; };
-		7106B361CA57148640756546450E0F74 /* CATransaction+TransactionWithAnimationsAndCompletion.h in Headers */ = {isa = PBXBuildFile; fileRef = A69FA8BB6970175CC033DBF5F3FC2858 /* CATransaction+TransactionWithAnimationsAndCompletion.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		793E668D463AC163A68D630943FCEE7E /* Onboard-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91CC588896D08FDC3C35950713515BE8 /* Onboard-dummy.m */; };
+		62E8346F03C03E7F4D631361F325689E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC7B85D5F26752B065824FA49702B8 /* Response.swift */; };
+		64165A4763C4D32CE8EC3AA8160359D9 /* YALSpringAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F38E6083BB7BFEC4AEC26704D6E16350 /* YALSpringAnimation.m */; };
+		656CF0E33BD367AF7BA97BB1E5A11641 /* IsaoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1472D44AEA21DDF842267C8CD8EB574A /* IsaoTextField.swift */; };
+		68C2E4EF0614330F6AEB210EC38CF5D7 /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF08E1C94EE9F007A4299055FC3BF75D /* YokoTextField.swift */; };
+		7106B361CA57148640756546450E0F74 /* CATransaction+TransactionWithAnimationsAndCompletion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A1905A4DB09DE543A4909E826329FEE /* CATransaction+TransactionWithAnimationsAndCompletion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		793E668D463AC163A68D630943FCEE7E /* Onboard-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB528834C8F86FA4C9CCD85F8844E36 /* Onboard-dummy.m */; };
+		7B48852C4D848FA2DA416A98F6425869 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4B2F3822606F31110718958BF8F7DF /* ServerTrustPolicy.swift */; };
 		83BC00F4435C0D529B1B94522E2CF482 /* Pods-ZOBATests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FE7E0936834C84989CC5F68928712A /* Pods-ZOBATests-dummy.m */; };
-		87631FDF036E1324FBEB9B881A28589C /* Pods-ZOBA-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BB4E5CFF50E2FCB9B0431DBF5CF1600E /* Pods-ZOBA-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8E55107B59A92876B44B690F74B121E7 /* Onboard-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D2E2000D9D2422329CAFC598AD5E414D /* Onboard-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		94F6B95FD263B8271100E4B9A40A68D9 /* CAAnimation+YALTabBarViewAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B682C40DD9A63545C7834E6D2BAA31E /* CAAnimation+YALTabBarViewAnimations.m */; };
-		96E9F673A40C2E3C5FE99E592144CC72 /* CBZRasterSplashView.h in Headers */ = {isa = PBXBuildFile; fileRef = 72C2AEC321356D3CD4C9C561CC4A76D2 /* CBZRasterSplashView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8CCAB463C54B3D00AA4CD2FA8DE7A091 /* TextFieldEffects-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 29638298AFC7EF5743D820BA499075F8 /* TextFieldEffects-dummy.m */; };
+		8DF7065FED6256B11F120D41700273AE /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4DE366348AD59F42D2BBA58A32AF6E /* TextFieldsEffects.swift */; };
+		8E55107B59A92876B44B690F74B121E7 /* Onboard-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D5719A06F4F57FBF19B8D7B9137D5752 /* Onboard-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8EB11202167FCDDF1257AAAB1D1FB244 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C246C39CBE768B538B3EB6DBABCF619 /* Alamofire.swift */; };
+		91C09AC2A52ED69A27C8D923139A006F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		9440D08D2C3A96F723E0AB0F5601B91C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		9469DF81ECB494E84675969B5E13374C /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C9DC57D3F0E651B9F9116DFAFDD1C8A9 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		94F6B95FD263B8271100E4B9A40A68D9 /* CAAnimation+YALTabBarViewAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AE72E2EEC66E54A8622138C2D0D857 /* CAAnimation+YALTabBarViewAnimations.m */; };
+		96E9F673A40C2E3C5FE99E592144CC72 /* CBZRasterSplashView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DC6D7B4FCD7EE56C26467CC3B0EEAE1 /* CBZRasterSplashView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D429E755B6507ED5E501B1F4878776F /* KaedeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D65520CBC75DCA02024A4EB86BB639 /* KaedeTextField.swift */; };
+		A1661F370BE2D40F6DF057AD5614F6B7 /* JiroTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8567253D2BA2575F9284159BF2606279 /* JiroTextField.swift */; };
 		A62D772340E1ECB7C35053CB0E594111 /* Pods-ZOBATests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C5058AD0A258EFAA938DFD7966633A6 /* Pods-ZOBATests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B1BEB83EC5283E8D8BE842FE0262B502 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
-		B33149BB6AFF371AC9E5D779FD552DD0 /* YALTabBarInteracting.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D6C764583CC7ED5B55ADCED0E525BE2 /* YALTabBarInteracting.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B947C061CA65FFD5F18D92A880569C1C /* CBZSplashView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCAB48A035EA3DA3CFA0E17957BD0A3 /* CBZSplashView-dummy.m */; };
-		C189A4A418ED4CFEAC1C63F7FFE0FAD8 /* YALTabBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DE677107590335A0F16AD09FBB3288A /* YALTabBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C2D1986F363E54A9162F8718AB6B8F75 /* YALAnimatingTabBarConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = D6A2B47AD03F25567A231EE8FF1BBA95 /* YALAnimatingTabBarConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA9B2A21A886487DD89DBB8DDCCFEF99 /* FoldingTabBar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 34E331F08826EE9AF9F992D0908243CB /* FoldingTabBar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D8BE45A7B0621551DF48DAB76858E1D1 /* YALFoldingTabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = B5DD394AE9024F5F2B00B24C55DCF568 /* YALFoldingTabBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E363B284842076CA4770DF76611050C5 /* CBZSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F32964A70D1FF6A5AD51D81A3B9AFA /* CBZSplashView.m */; };
-		ED16DDA04FD591F4FEE094BA7E04B3FB /* CATransaction+TransactionWithAnimationsAndCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A5546A6AD046E7F57B075928074AD6 /* CATransaction+TransactionWithAnimationsAndCompletion.m */; };
-		ED2872BAF722C070583309D2A4E808AA /* CBZSplashView.h in Headers */ = {isa = PBXBuildFile; fileRef = F9D660A5FCCCBB67E57C80186D615508 /* CBZSplashView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EF4066B0EEC6CF4D847A4C6810886BDA /* OnboardingContentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F59FC573F642AD77DB137A1E30FF20FC /* OnboardingContentViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FABB6CAC4FDDB99E3C3B4FA04FA4EB50 /* YALFoldingTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DC7D5F62782652AA14493D5E17A356E /* YALFoldingTabBarController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934885355E2AD37ED1E72E2B89AEAD47 /* Result.swift */; };
+		ADF19C953CE2A7D0B72EC93A81FCCC26 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B2A836B139B1908E2B6B941FB59499DC /* Alamofire-dummy.m */; };
+		AE4CF87C02C042DF13ED5B21C4FDC1E0 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7333D8BBF5EF8CCFF20A23AAA82FD5 /* Stream.swift */; };
+		B33149BB6AFF371AC9E5D779FD552DD0 /* YALTabBarInteracting.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E6E6657CFF8983D0E707E0C6948AC54 /* YALTabBarInteracting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B4FFE81862BE4B3102E7434204C1D04F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */; };
+		B829390FD80588A212C93889499B78DC /* Pods-ZOBA-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A553D9544FB66A6CF7A356C32B8E656 /* Pods-ZOBA-dummy.m */; };
+		B947C061CA65FFD5F18D92A880569C1C /* CBZSplashView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F9B94B67B4AEB6B5F2C1B1F0FF5EF2C /* CBZSplashView-dummy.m */; };
+		BE41196F6A3903E59C3306FE3F8B43FE /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5A1A51C49FAAD2601F3CD97F4034B3 /* Notifications.swift */; };
+		C0DB70AB368765DC64BFB5FEA75E0696 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4327D1252497E8EFFD7B06D905E713 /* ParameterEncoding.swift */; };
+		C189A4A418ED4CFEAC1C63F7FFE0FAD8 /* YALTabBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3677FA85AB0ADCCCACCF01F6FFB8A2B1 /* YALTabBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2D1986F363E54A9162F8718AB6B8F75 /* YALAnimatingTabBarConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D60C4F70C21F7F5657EE8541684E283 /* YALAnimatingTabBarConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C7B6DD7C0456C50289A2C381DFE9FA3F /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05D466527C22D8765168221ACE35B46 /* MultipartFormData.swift */; };
+		CA9B2A21A886487DD89DBB8DDCCFEF99 /* FoldingTabBar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4205C1F61C222252FC3DFDFF6F3A469B /* FoldingTabBar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CFC3CE1946E6C1A5851685E606E7FFA8 /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639D0D6AE8472A43C8833CED7C476CBD /* AkiraTextField.swift */; };
+		D8BE45A7B0621551DF48DAB76858E1D1 /* YALFoldingTabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FC59EA596E6664B7CA9EC2B3A2D7722 /* YALFoldingTabBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D9C5C0D6935EA00303E279C01328D324 /* MinoruTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E9F2E31FD478FD11A57B8E7F1D046 /* MinoruTextField.swift */; };
+		E363B284842076CA4770DF76611050C5 /* CBZSplashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B001B45C0D4D7AD19535BBED99F8180 /* CBZSplashView.m */; };
+		ED16DDA04FD591F4FEE094BA7E04B3FB /* CATransaction+TransactionWithAnimationsAndCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 40DDCB82A170105187817A579933BED5 /* CATransaction+TransactionWithAnimationsAndCompletion.m */; };
+		ED2872BAF722C070583309D2A4E808AA /* CBZSplashView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C9A8808F9AF4EFCFDF3156D3410FD1E /* CBZSplashView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF4066B0EEC6CF4D847A4C6810886BDA /* OnboardingContentViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C6287E71D182C9BC5C71EA7693D55F /* OnboardingContentViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFE92E8D3813DD26E78E93EEAF6D7E7E /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B01E2F5B30804A5BEB1DE9D13E36F4 /* Request.swift */; };
+		FABB6CAC4FDDB99E3C3B4FA04FA4EB50 /* YALFoldingTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = 71A41DECE1F83B0E99E3E025B2BC5E18 /* YALFoldingTabBarController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FF18476CE21A0D50F3D934B30BEC50F1 /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4D80672389C5E45ADA55B5AA507813 /* YoshikoTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		139075D619CD103E8AF639AD68EB417C /* PBXContainerItemProxy */ = {
+		4A49EC662884E241CF89A5879CEFD3E2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D7FF48F3092783E4E42B336F0DEF2D1A;
 			remoteInfo = Onboard;
 		};
-		3C4378B3F5C414522385EFE9C369A1EF /* PBXContainerItemProxy */ = {
+		591A25DB521D78BD284A816CC9848C10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79C040AFDDCE1BCBF6D8B5EB0B85887F;
+			remoteInfo = Alamofire;
+		};
+		7AA178A8A0A6DA69FFB0517D412B6E79 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 0F52284BB73D7CF6A946B01B92E4E07F;
 			remoteInfo = FoldingTabBar;
 		};
-		6CD1518808B9179791008863A77305CF /* PBXContainerItemProxy */ = {
+		87D9C6479FDFC61B5BF4E480CA1B7683 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 173D4DA76684A572BCA5C9A7BCBB18F4;
+			remoteInfo = TextFieldEffects;
+		};
+		8D8EE132FB589AC667C02D6E07D743B0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
@@ -80,96 +127,153 @@
 
 /* Begin PBXFileReference section */
 		002C019CF770379D718EF67EE5ED447D /* Pods-ZOBAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBAUITests.release.xcconfig"; sourceTree = "<group>"; };
-		0420B83960FD069AAA2F8AD664B489CE /* YALSpringAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALSpringAnimation.m; path = FoldingTabBar/Animation/YALSpringAnimation/YALSpringAnimation.m; sourceTree = "<group>"; };
 		0904EF71D12DDB3227246228128CDF5B /* Pods-ZOBATests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBATests-resources.sh"; sourceTree = "<group>"; };
 		091D54A73E1E8BB182C9D7D245AF1C2F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		13383278BF98C86FEFF427DF0537D128 /* YALFoldingTabBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALFoldingTabBar.m; path = FoldingTabBar/View/FoldingTabBar/YALFoldingTabBar.m; sourceTree = "<group>"; };
-		14A5546A6AD046E7F57B075928074AD6 /* CATransaction+TransactionWithAnimationsAndCompletion.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CATransaction+TransactionWithAnimationsAndCompletion.m"; path = "FoldingTabBar/Category/CATransaction/CATransaction+TransactionWithAnimationsAndCompletion/CATransaction+TransactionWithAnimationsAndCompletion.m"; sourceTree = "<group>"; };
+		0C09627E856170133F40D9140939C47E /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		0FC59EA596E6664B7CA9EC2B3A2D7722 /* YALFoldingTabBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALFoldingTabBar.h; path = FoldingTabBar/View/FoldingTabBar/YALFoldingTabBar.h; sourceTree = "<group>"; };
+		1472D44AEA21DDF842267C8CD8EB574A /* IsaoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IsaoTextField.swift; path = TextFieldEffects/TextFieldEffects/IsaoTextField.swift; sourceTree = "<group>"; };
+		1483C1E8C3D6FAB9D2908B9459B5E378 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15437541BF933674A5C7656CFE1E0FE2 /* Pods-ZOBATests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ZOBATests.modulemap"; sourceTree = "<group>"; };
+		1976B7A4AE689C50F7B3D54629B5BAB1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		197A1F610075CA673446EAA97386FDD7 /* Pods-ZOBATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBATests.debug.xcconfig"; sourceTree = "<group>"; };
-		1B811F9EB4DCEF6AE25B18E9E2E79AF6 /* Pods_ZOBAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C6F4A7E46287185362D1F772D66914B /* OnboardingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OnboardingViewController.h; path = Source/OnboardingViewController.h; sourceTree = "<group>"; };
-		203A03C9782647DB929ABF580B8DC454 /* YALFoldingTabBarController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALFoldingTabBarController.m; path = FoldingTabBar/Controller/FoldingTabBarController/YALFoldingTabBarController.m; sourceTree = "<group>"; };
 		21E61F1C3C62543FEE22DF30ECF5371F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		229E26F29E2EC685C4521FBDCE462727 /* Onboard-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Onboard-prefix.pch"; sourceTree = "<group>"; };
 		23016F69B2480F44D0BB5526B39192FA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		24C69DEA2680447E440C882EF4E27667 /* CBZVectorSplashView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CBZVectorSplashView.m; path = Pod/Classes/CBZVectorSplashView.m; sourceTree = "<group>"; };
-		2BB293921B22489CEDC2F71221866CAC /* CBZSplashView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CBZSplashView-umbrella.h"; sourceTree = "<group>"; };
-		2D09AF14B83F4A777AB7A09D119BE21F /* CBZSplashView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CBZSplashView-prefix.pch"; sourceTree = "<group>"; };
+		240A0B5B8D306BEB803BFBA1AE4870D1 /* Upload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Upload.swift; path = Source/Upload.swift; sourceTree = "<group>"; };
+		27C6287E71D182C9BC5C71EA7693D55F /* OnboardingContentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OnboardingContentViewController.h; path = Source/OnboardingContentViewController.h; sourceTree = "<group>"; };
+		29638298AFC7EF5743D820BA499075F8 /* TextFieldEffects-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TextFieldEffects-dummy.m"; sourceTree = "<group>"; };
+		2A1905A4DB09DE543A4909E826329FEE /* CATransaction+TransactionWithAnimationsAndCompletion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CATransaction+TransactionWithAnimationsAndCompletion.h"; path = "FoldingTabBar/Category/CATransaction/CATransaction+TransactionWithAnimationsAndCompletion/CATransaction+TransactionWithAnimationsAndCompletion.h"; sourceTree = "<group>"; };
+		2A5A1A51C49FAAD2601F3CD97F4034B3 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
+		2D743F94831C972AD9BF78AEEF85982F /* HoshiTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HoshiTextField.swift; path = TextFieldEffects/TextFieldEffects/HoshiTextField.swift; sourceTree = "<group>"; };
 		2DBC2B40702BDEBA760EC7BBE6B4B60B /* Pods-ZOBAUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ZOBAUITests.modulemap"; sourceTree = "<group>"; };
-		34E331F08826EE9AF9F992D0908243CB /* FoldingTabBar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FoldingTabBar-umbrella.h"; sourceTree = "<group>"; };
-		38C5678E6218A5A146C506A29DC40405 /* YALTabBarItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALTabBarItem.m; path = FoldingTabBar/Model/TabBarItem/YALTabBarItem.m; sourceTree = "<group>"; };
+		2DC6D7B4FCD7EE56C26467CC3B0EEAE1 /* CBZRasterSplashView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBZRasterSplashView.h; path = Pod/Classes/CBZRasterSplashView.h; sourceTree = "<group>"; };
+		2FAB172EEC5AA24B59E44FEEA3EB8A39 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		323E9F2E31FD478FD11A57B8E7F1D046 /* MinoruTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MinoruTextField.swift; path = TextFieldEffects/TextFieldEffects/MinoruTextField.swift; sourceTree = "<group>"; };
+		32696CF6D9F18E070D99383A19219907 /* YALSpringAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALSpringAnimation.h; path = FoldingTabBar/Animation/YALSpringAnimation/YALSpringAnimation.h; sourceTree = "<group>"; };
+		3677FA85AB0ADCCCACCF01F6FFB8A2B1 /* YALTabBarItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALTabBarItem.h; path = FoldingTabBar/Model/TabBarItem/YALTabBarItem.h; sourceTree = "<group>"; };
+		37175C22977627FDF1926A39B8BE9843 /* YALTabBarItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALTabBarItem.m; path = FoldingTabBar/Model/TabBarItem/YALTabBarItem.m; sourceTree = "<group>"; };
+		37AE72E2EEC66E54A8622138C2D0D857 /* CAAnimation+YALTabBarViewAnimations.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CAAnimation+YALTabBarViewAnimations.m"; path = "FoldingTabBar/Category/CAAnimation/CAAnimation+YALTabBarViewAnimations/CAAnimation+YALTabBarViewAnimations.m"; sourceTree = "<group>"; };
+		3AA4D0DFA894735C82C3EF4CE76AE990 /* CBZSplashView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CBZSplashView.xcconfig; sourceTree = "<group>"; };
 		3C5058AD0A258EFAA938DFD7966633A6 /* Pods-ZOBATests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZOBATests-umbrella.h"; sourceTree = "<group>"; };
-		3DC7D5F62782652AA14493D5E17A356E /* YALFoldingTabBarController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALFoldingTabBarController.h; path = FoldingTabBar/Controller/FoldingTabBarController/YALFoldingTabBarController.h; sourceTree = "<group>"; };
+		3C9A8808F9AF4EFCFDF3156D3410FD1E /* CBZSplashView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBZSplashView.h; path = Pod/Classes/CBZSplashView.h; sourceTree = "<group>"; };
+		3CD5CA2F5D8C8838F8BA084EDEA5CE0E /* TextFieldEffects-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldEffects-umbrella.h"; sourceTree = "<group>"; };
+		3E35978241C9C8D462A2F6FFF1A40678 /* OnboardingViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OnboardingViewController.h; path = Source/OnboardingViewController.h; sourceTree = "<group>"; };
+		3E7333D8BBF5EF8CCFF20A23AAA82FD5 /* Stream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Source/Stream.swift; sourceTree = "<group>"; };
+		3F259B2B8865F98DB664F55616F77E4D /* Pods_ZOBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F9B94B67B4AEB6B5F2C1B1F0FF5EF2C /* CBZSplashView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CBZSplashView-dummy.m"; sourceTree = "<group>"; };
+		3FB4F51DA265430A8B6F2C1A890467DC /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Source/Error.swift; sourceTree = "<group>"; };
 		404D8AA344BD73E6CB444100581FFE6B /* Pods-ZOBATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBATests.release.xcconfig"; sourceTree = "<group>"; };
-		40ADAE16EC9DE28D730646CBB0454A41 /* Onboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Onboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		40DDCB82A170105187817A579933BED5 /* CATransaction+TransactionWithAnimationsAndCompletion.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CATransaction+TransactionWithAnimationsAndCompletion.m"; path = "FoldingTabBar/Category/CATransaction/CATransaction+TransactionWithAnimationsAndCompletion/CATransaction+TransactionWithAnimationsAndCompletion.m"; sourceTree = "<group>"; };
+		4205C1F61C222252FC3DFDFF6F3A469B /* FoldingTabBar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FoldingTabBar-umbrella.h"; sourceTree = "<group>"; };
+		4686EC6E2F29671C9EE2621123A8E2AB /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		4AEC7B85D5F26752B065824FA49702B8 /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		4C4DE366348AD59F42D2BBA58A32AF6E /* TextFieldsEffects.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextFieldsEffects.swift; path = TextFieldEffects/TextFieldEffects/TextFieldsEffects.swift; sourceTree = "<group>"; };
 		4D04DEBCEDC13D49A707EF59EB3BFAAB /* Pods-ZOBAUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZOBAUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4D60C4F70C21F7F5657EE8541684E283 /* YALAnimatingTabBarConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALAnimatingTabBarConstants.h; path = FoldingTabBar/Constants/YALAnimatingTabBarConstants.h; sourceTree = "<group>"; };
 		5114C896F8FFDB9D0D853F79F292EAA7 /* Pods-ZOBA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBA.release.xcconfig"; sourceTree = "<group>"; };
 		52DA2E6265B984B04E90039E19E56D5F /* Pods-ZOBAUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZOBAUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		5849C6A55AA7470C7E978D829032FCE7 /* Onboard.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Onboard.xcconfig; sourceTree = "<group>"; };
 		5A553D9544FB66A6CF7A356C32B8E656 /* Pods-ZOBA-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZOBA-dummy.m"; sourceTree = "<group>"; };
+		5AB962AF5E450C7390DBA6084F172BEE /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		5C4B2F3822606F31110718958BF8F7DF /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		5CEF901DA4C20E501FC69CAF43ACB96A /* Pods-ZOBAUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBAUITests-frameworks.sh"; sourceTree = "<group>"; };
+		6024C7AEAF90338077842201532CBB84 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		639D0D6AE8472A43C8833CED7C476CBD /* AkiraTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AkiraTextField.swift; path = TextFieldEffects/TextFieldEffects/AkiraTextField.swift; sourceTree = "<group>"; };
 		646B89BF3334C50693B6604A06E3D1C5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6526BE6A0E1E52C55DD1F1B6A306154D /* CBZSplashView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CBZSplashView.xcconfig; sourceTree = "<group>"; };
 		6836BF88A5C654509AFE4FC954910F6C /* Pods-ZOBAUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZOBAUITests-dummy.m"; sourceTree = "<group>"; };
-		6B682C40DD9A63545C7834E6D2BAA31E /* CAAnimation+YALTabBarViewAnimations.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CAAnimation+YALTabBarViewAnimations.m"; path = "FoldingTabBar/Category/CAAnimation/CAAnimation+YALTabBarViewAnimations/CAAnimation+YALTabBarViewAnimations.m"; sourceTree = "<group>"; };
-		6C6BBB3211F11D8ECEC106BF01FC98C0 /* CBZSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBZSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6D872C04A3450C185B8E1DCA422A2F38 /* CBZSplashView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CBZSplashView.modulemap; sourceTree = "<group>"; };
-		6DE677107590335A0F16AD09FBB3288A /* YALTabBarItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALTabBarItem.h; path = FoldingTabBar/Model/TabBarItem/YALTabBarItem.h; sourceTree = "<group>"; };
+		684B54E1F70EDFAFC1686AAB9DB17E1A /* TextFieldEffects.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TextFieldEffects.xcconfig; sourceTree = "<group>"; };
+		6B81AD9DF71B10CFCC45E454C0FCC51C /* OnboardingContentViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OnboardingContentViewController.m; path = Source/OnboardingContentViewController.m; sourceTree = "<group>"; };
+		6CE4B992DC5858D6C8DAAD8046DF6F68 /* FoldingTabBar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FoldingTabBar-dummy.m"; sourceTree = "<group>"; };
 		70149AE23DF4E3E34E5E380C9DAFDB8D /* Pods-ZOBATests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBATests-frameworks.sh"; sourceTree = "<group>"; };
-		72C2AEC321356D3CD4C9C561CC4A76D2 /* CBZRasterSplashView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBZRasterSplashView.h; path = Pod/Classes/CBZRasterSplashView.h; sourceTree = "<group>"; };
+		71A41DECE1F83B0E99E3E025B2BC5E18 /* YALFoldingTabBarController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALFoldingTabBarController.h; path = FoldingTabBar/Controller/FoldingTabBarController/YALFoldingTabBarController.h; sourceTree = "<group>"; };
+		74F01DC2A01C0FA18333474F9035B39C /* YALFoldingTabBarController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALFoldingTabBarController.m; path = FoldingTabBar/Controller/FoldingTabBarController/YALFoldingTabBarController.m; sourceTree = "<group>"; };
+		755180BCF1D0943FEDBEBF061C2A925A /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		75FE7E0936834C84989CC5F68928712A /* Pods-ZOBATests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ZOBATests-dummy.m"; sourceTree = "<group>"; };
 		76C4FE7B803A85AFE6E3C7D17B1080B8 /* Pods-ZOBAUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBAUITests-resources.sh"; sourceTree = "<group>"; };
-		79932FB55873BF1806CEF7885D9317D8 /* FoldingTabBar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FoldingTabBar.xcconfig; sourceTree = "<group>"; };
-		8640B7A0AA2BBF6879FCE7CCE092737D /* Pods_ZOBATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8C1FFF8CF144C13F4D66B6F6170D1CC7 /* FoldingTabBar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FoldingTabBar-dummy.m"; sourceTree = "<group>"; };
-		8D6C764583CC7ED5B55ADCED0E525BE2 /* YALTabBarInteracting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALTabBarInteracting.h; path = FoldingTabBar/Protocol/TabBarInteracting/YALTabBarInteracting.h; sourceTree = "<group>"; };
-		91CC588896D08FDC3C35950713515BE8 /* Onboard-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Onboard-dummy.m"; sourceTree = "<group>"; };
+		77AB4CFF3E5BCFF2246AAD4B3A0F8FA8 /* CBZVectorSplashView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBZVectorSplashView.h; path = Pod/Classes/CBZVectorSplashView.h; sourceTree = "<group>"; };
+		77BD9B09C84A12E4E7D964B22E9A015D /* MadokaTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MadokaTextField.swift; path = TextFieldEffects/TextFieldEffects/MadokaTextField.swift; sourceTree = "<group>"; };
+		7BF086E3FA5297E973A4A19B79475649 /* Onboard.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Onboard.xcconfig; sourceTree = "<group>"; };
+		7C4D80672389C5E45ADA55B5AA507813 /* YoshikoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YoshikoTextField.swift; path = TextFieldEffects/TextFieldEffects/YoshikoTextField.swift; sourceTree = "<group>"; };
+		7EF6DED66791FD00BF4AA5A1E8C9E9A3 /* Onboard-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Onboard-prefix.pch"; sourceTree = "<group>"; };
+		83AF36FBC6CFF2E9A5CFCB7FA8D2203B /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		8567253D2BA2575F9284159BF2606279 /* JiroTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JiroTextField.swift; path = TextFieldEffects/TextFieldEffects/JiroTextField.swift; sourceTree = "<group>"; };
+		872FCBF8DC9D201872AA4E75B9676982 /* CBZVectorSplashView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CBZVectorSplashView.m; path = Pod/Classes/CBZVectorSplashView.m; sourceTree = "<group>"; };
+		8C246C39CBE768B538B3EB6DBABCF619 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
+		8E6E6657CFF8983D0E707E0C6948AC54 /* YALTabBarInteracting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALTabBarInteracting.h; path = FoldingTabBar/Protocol/TabBarInteracting/YALTabBarInteracting.h; sourceTree = "<group>"; };
+		926F161442216BF743BF212EC067D078 /* Manager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Source/Manager.swift; sourceTree = "<group>"; };
+		92B01E2F5B30804A5BEB1DE9D13E36F4 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		931D8B5281ABB7C430A489D5068E0B07 /* CBZSplashView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CBZSplashView-umbrella.h"; sourceTree = "<group>"; };
+		934885355E2AD37ED1E72E2B89AEAD47 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		93E91CAA70F8EA5B14F6E2C5BBF34D38 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A69FA8BB6970175CC033DBF5F3FC2858 /* CATransaction+TransactionWithAnimationsAndCompletion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CATransaction+TransactionWithAnimationsAndCompletion.h"; path = "FoldingTabBar/Category/CATransaction/CATransaction+TransactionWithAnimationsAndCompletion/CATransaction+TransactionWithAnimationsAndCompletion.h"; sourceTree = "<group>"; };
-		A7FE3A08A74545FEE72DBA89D24D6A0E /* YALSpringAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALSpringAnimation.h; path = FoldingTabBar/Animation/YALSpringAnimation/YALSpringAnimation.h; sourceTree = "<group>"; };
+		98B1A9C9A7641F1CE71BA6A905B56D37 /* CBZSplashView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBZSplashView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B001B45C0D4D7AD19535BBED99F8180 /* CBZSplashView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CBZSplashView.m; path = Pod/Classes/CBZSplashView.m; sourceTree = "<group>"; };
+		9F4327D1252497E8EFFD7B06D905E713 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		A5F7A4B820A1E0E4E9E3C6A88F02135B /* FoldingTabBar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FoldingTabBar.xcconfig; sourceTree = "<group>"; };
 		A817CAE99C81EE68006DC1E60E295C0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		ACCAB48A035EA3DA3CFA0E17957BD0A3 /* CBZSplashView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CBZSplashView-dummy.m"; sourceTree = "<group>"; };
-		ADAF3CDCCE4E6FDD3A92C71DDCE3F674 /* Pods_ZOBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A94F1A84B972A4E90355A0369788648D /* Onboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Onboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA6CE5E24FA0373E65DE30360D8A1B37 /* TextFieldEffects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TextFieldEffects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADF69B2275396FE65D250A3A38F87088 /* Pods-ZOBAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBAUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		B2D889B826BB366B0FEB3B7B0626D4B6 /* FoldingTabBar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FoldingTabBar-prefix.pch"; sourceTree = "<group>"; };
-		B549EF3F86CA40436568EF7AE92F4DAD /* Onboard.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Onboard.modulemap; sourceTree = "<group>"; };
-		B5DD394AE9024F5F2B00B24C55DCF568 /* YALFoldingTabBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALFoldingTabBar.h; path = FoldingTabBar/View/FoldingTabBar/YALFoldingTabBar.h; sourceTree = "<group>"; };
-		B661A6BAC7F05FA6B32FDBC6B3F00A9E /* FoldingTabBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoldingTabBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2A836B139B1908E2B6B941FB59499DC /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		B9A4138B6AC9ACA27F380BF6EADAFB54 /* Pods-ZOBA-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZOBA-acknowledgements.plist"; sourceTree = "<group>"; };
+		B9D65520CBC75DCA02024A4EB86BB639 /* KaedeTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KaedeTextField.swift; path = TextFieldEffects/TextFieldEffects/KaedeTextField.swift; sourceTree = "<group>"; };
 		BB4E5CFF50E2FCB9B0431DBF5CF1600E /* Pods-ZOBA-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZOBA-umbrella.h"; sourceTree = "<group>"; };
+		BD5A82C267B6EBF5E713CB683910E417 /* CBZRasterSplashView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CBZRasterSplashView.m; path = Pod/Classes/CBZRasterSplashView.m; sourceTree = "<group>"; };
 		BDA220EA7485BCCB98D280BF9872BAB7 /* Pods-ZOBA.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ZOBA.modulemap"; sourceTree = "<group>"; };
+		BF1FEEE2658C16761C816C75E3D0F1A1 /* CBZSplashView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = CBZSplashView.modulemap; sourceTree = "<group>"; };
+		C05D466527C22D8765168221ACE35B46 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
+		C2872BAC42FE953B2B8517F32CF83A37 /* FoldingTabBar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FoldingTabBar-prefix.pch"; sourceTree = "<group>"; };
+		C4863147D9EE794FF75E512C53B41EDF /* TextFieldEffects.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TextFieldEffects.modulemap; sourceTree = "<group>"; };
 		C5FD0C54DFAC7F12210B44D79E4B0E61 /* Pods-ZOBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ZOBA.debug.xcconfig"; sourceTree = "<group>"; };
-		CF2AC22C997023946D7AB00FFC794886 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D109122A30A52D4002EDCA48EA930933 /* CAAnimation+YALTabBarViewAnimations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CAAnimation+YALTabBarViewAnimations.h"; path = "FoldingTabBar/Category/CAAnimation/CAAnimation+YALTabBarViewAnimations/CAAnimation+YALTabBarViewAnimations.h"; sourceTree = "<group>"; };
-		D2E2000D9D2422329CAFC598AD5E414D /* Onboard-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Onboard-umbrella.h"; sourceTree = "<group>"; };
-		D6A2B47AD03F25567A231EE8FF1BBA95 /* YALAnimatingTabBarConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YALAnimatingTabBarConstants.h; path = FoldingTabBar/Constants/YALAnimatingTabBarConstants.h; sourceTree = "<group>"; };
-		D7F32964A70D1FF6A5AD51D81A3B9AFA /* CBZSplashView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CBZSplashView.m; path = Pod/Classes/CBZSplashView.m; sourceTree = "<group>"; };
-		D7FD060FEDB88D0F7649DC20021D5637 /* OnboardingViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OnboardingViewController.m; path = Source/OnboardingViewController.m; sourceTree = "<group>"; };
-		DC113CBF82699C2AB103D87BDCAED4EE /* CBZVectorSplashView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBZVectorSplashView.h; path = Pod/Classes/CBZVectorSplashView.h; sourceTree = "<group>"; };
-		DC70E5021601520838C4CD6AFBF382D8 /* YALAnimatingTabBarConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALAnimatingTabBarConstants.m; path = FoldingTabBar/Constants/YALAnimatingTabBarConstants.m; sourceTree = "<group>"; };
-		DEF41B0A197A9914AB808234B39DD2CB /* CBZRasterSplashView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CBZRasterSplashView.m; path = Pod/Classes/CBZRasterSplashView.m; sourceTree = "<group>"; };
+		C9DC57D3F0E651B9F9116DFAFDD1C8A9 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		CAB528834C8F86FA4C9CCD85F8844E36 /* Onboard-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Onboard-dummy.m"; sourceTree = "<group>"; };
+		CB16F5A1E09DAF6ADF84142013132965 /* FoldingTabBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FoldingTabBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB500E5310D9239D86031E390108D320 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5719A06F4F57FBF19B8D7B9137D5752 /* Onboard-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Onboard-umbrella.h"; sourceTree = "<group>"; };
+		D6DB6416E9CD8914595604D8E68EA129 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7FCAB9758649EF84991610E6B869091 /* FoldingTabBar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FoldingTabBar.modulemap; sourceTree = "<group>"; };
+		D999ECF2E638AD9EC6DC1CD3AF2B87CE /* YALFoldingTabBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALFoldingTabBar.m; path = FoldingTabBar/View/FoldingTabBar/YALFoldingTabBar.m; sourceTree = "<group>"; };
+		DE5E4EB2BA1226E070B952439D904374 /* CBZSplashView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CBZSplashView-prefix.pch"; sourceTree = "<group>"; };
+		E27B8C5B4565DE29BD613A1D1550ECAC /* Pods_ZOBATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2A8982DB77CDB5822758A80F8E253D4 /* TextFieldEffects-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TextFieldEffects-prefix.pch"; sourceTree = "<group>"; };
 		E2DBFF46EED999EBA4CA2D8733986DB4 /* Pods-ZOBATests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZOBATests-acknowledgements.plist"; sourceTree = "<group>"; };
+		E33E522302DD2D90F07ED34AC8E108E7 /* CAAnimation+YALTabBarViewAnimations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CAAnimation+YALTabBarViewAnimations.h"; path = "FoldingTabBar/Category/CAAnimation/CAAnimation+YALTabBarViewAnimations/CAAnimation+YALTabBarViewAnimations.h"; sourceTree = "<group>"; };
+		E374308CAF3092B9BE4A12FAF7E789F5 /* Pods_ZOBAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4685289B69FAE4750650F4B0FE436E6 /* Pods-ZOBA-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBA-frameworks.sh"; sourceTree = "<group>"; };
 		E9E8B2ACBA30AC5E6B888DB7CB60FBF1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EACEF3BD583F42F846161515F41F8212 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB206EED20C0C02479804F4CEBCED02E /* Pods-ZOBAUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ZOBAUITests-umbrella.h"; sourceTree = "<group>"; };
-		F354696B7347EF37E863F41101646BA6 /* OnboardingContentViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OnboardingContentViewController.m; path = Source/OnboardingContentViewController.m; sourceTree = "<group>"; };
-		F59FC573F642AD77DB137A1E30FF20FC /* OnboardingContentViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OnboardingContentViewController.h; path = Source/OnboardingContentViewController.h; sourceTree = "<group>"; };
+		EF08E1C94EE9F007A4299055FC3BF75D /* YokoTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YokoTextField.swift; path = TextFieldEffects/TextFieldEffects/YokoTextField.swift; sourceTree = "<group>"; };
+		F20519254D267F97A7EE445378BBF226 /* Onboard.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Onboard.modulemap; sourceTree = "<group>"; };
+		F2F03FCBDEB8FA9528EDC51F0BC1C0E7 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		F31CE9832315302CAA7B408C7A5C5921 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		F38E6083BB7BFEC4AEC26704D6E16350 /* YALSpringAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALSpringAnimation.m; path = FoldingTabBar/Animation/YALSpringAnimation/YALSpringAnimation.m; sourceTree = "<group>"; };
+		F43B52142D598E0A408E3AB77E773B82 /* OnboardingViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OnboardingViewController.m; path = Source/OnboardingViewController.m; sourceTree = "<group>"; };
 		F5B9CB791719D58E10FB1C938176CE96 /* Pods-ZOBA-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZOBA-acknowledgements.markdown"; sourceTree = "<group>"; };
-		F80CDED8F636C52AA56D6A0A541A820C /* FoldingTabBar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FoldingTabBar.modulemap; sourceTree = "<group>"; };
+		F7F0C58DFEA508D2476CA7BBC20F3351 /* Download.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Download.swift; path = Source/Download.swift; sourceTree = "<group>"; };
 		F99D59C2CBF0639E1508634A6ADA64A5 /* Pods-ZOBA-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ZOBA-resources.sh"; sourceTree = "<group>"; };
-		F9D660A5FCCCBB67E57C80186D615508 /* CBZSplashView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CBZSplashView.h; path = Pod/Classes/CBZSplashView.h; sourceTree = "<group>"; };
 		FB307244E5AB9AB5BBE4ACC47C6B1A1A /* Pods-ZOBATests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ZOBATests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FF6C8FA776B822FC4DCA2E8F4B86D3E4 /* YALAnimatingTabBarConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YALAnimatingTabBarConstants.m; path = FoldingTabBar/Constants/YALAnimatingTabBarConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		064BBBF39F4D617947934DC7BCA42CBB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9440D08D2C3A96F723E0AB0F5601B91C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		12164504F510B8F45CADA4778A794CB6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				00C7F014C727DDAC7C80C2B55888C022 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2466361C662F616286870D59CDA761D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B4FFE81862BE4B3102E7434204C1D04F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,11 +311,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EBAD7A157970E84DE0ED03F2B3CBDE86 /* Frameworks */ = {
+		B1729F851F648EC60EE93CDB3C8BAEAD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1BEB83EC5283E8D8BE842FE0262B502 /* Foundation.framework in Frameworks */,
+				91C09AC2A52ED69A27C8D923139A006F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,33 +328,6 @@
 				DFDE779C6E5D3445E0CB8CCB8D424449 /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1FE15251A81DCA3CB5B4A595B936F78C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6C6BBB3211F11D8ECEC106BF01FC98C0 /* CBZSplashView.framework */,
-				B661A6BAC7F05FA6B32FDBC6B3F00A9E /* FoldingTabBar.framework */,
-				40ADAE16EC9DE28D730646CBB0454A41 /* Onboard.framework */,
-				ADAF3CDCCE4E6FDD3A92C71DDCE3F674 /* Pods_ZOBA.framework */,
-				8640B7A0AA2BBF6879FCE7CCE092737D /* Pods_ZOBATests.framework */,
-				1B811F9EB4DCEF6AE25B18E9E2E79AF6 /* Pods_ZOBAUITests.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		21E83F44C41185CE4CE29DA68D4A61C8 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				93E91CAA70F8EA5B14F6E2C5BBF34D38 /* Info.plist */,
-				B549EF3F86CA40436568EF7AE92F4DAD /* Onboard.modulemap */,
-				5849C6A55AA7470C7E978D829032FCE7 /* Onboard.xcconfig */,
-				91CC588896D08FDC3C35950713515BE8 /* Onboard-dummy.m */,
-				229E26F29E2EC685C4521FBDCE462727 /* Onboard-prefix.pch */,
-				D2E2000D9D2422329CAFC598AD5E414D /* Onboard-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Onboard";
 			sourceTree = "<group>";
 		};
 		4111331D483243050146098D3E5A98FA /* Pods-ZOBATests */ = {
@@ -271,18 +348,46 @@
 			path = "Target Support Files/Pods-ZOBATests";
 			sourceTree = "<group>";
 		};
-		47AE21CAEA63056FDE3C89278158F9CB /* CBZSplashView */ = {
+		4B4FAE2183F3D98FE97D9EFA940D6D59 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				72C2AEC321356D3CD4C9C561CC4A76D2 /* CBZRasterSplashView.h */,
-				DEF41B0A197A9914AB808234B39DD2CB /* CBZRasterSplashView.m */,
-				F9D660A5FCCCBB67E57C80186D615508 /* CBZSplashView.h */,
-				D7F32964A70D1FF6A5AD51D81A3B9AFA /* CBZSplashView.m */,
-				DC113CBF82699C2AB103D87BDCAED4EE /* CBZVectorSplashView.h */,
-				24C69DEA2680447E440C882EF4E27667 /* CBZVectorSplashView.m */,
-				72BF805BBFF093C86FFC66D4A17643EE /* Support Files */,
+				CB500E5310D9239D86031E390108D320 /* Info.plist */,
+				F20519254D267F97A7EE445378BBF226 /* Onboard.modulemap */,
+				7BF086E3FA5297E973A4A19B79475649 /* Onboard.xcconfig */,
+				CAB528834C8F86FA4C9CCD85F8844E36 /* Onboard-dummy.m */,
+				7EF6DED66791FD00BF4AA5A1E8C9E9A3 /* Onboard-prefix.pch */,
+				D5719A06F4F57FBF19B8D7B9137D5752 /* Onboard-umbrella.h */,
 			);
-			path = CBZSplashView;
+			name = "Support Files";
+			path = "../Target Support Files/Onboard";
+			sourceTree = "<group>";
+		};
+		53DB4A18273208B75109B54180D5F6B8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F2F03FCBDEB8FA9528EDC51F0BC1C0E7 /* Alamofire.modulemap */,
+				F31CE9832315302CAA7B408C7A5C5921 /* Alamofire.xcconfig */,
+				B2A836B139B1908E2B6B941FB59499DC /* Alamofire-dummy.m */,
+				83AF36FBC6CFF2E9A5CFCB7FA8D2203B /* Alamofire-prefix.pch */,
+				C9DC57D3F0E651B9F9116DFAFDD1C8A9 /* Alamofire-umbrella.h */,
+				1976B7A4AE689C50F7B3D54629B5BAB1 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Alamofire";
+			sourceTree = "<group>";
+		};
+		63CF717F6377F20E5C297D5BC52E0763 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2FAB172EEC5AA24B59E44FEEA3EB8A39 /* Info.plist */,
+				C4863147D9EE794FF75E512C53B41EDF /* TextFieldEffects.modulemap */,
+				684B54E1F70EDFAFC1686AAB9DB17E1A /* TextFieldEffects.xcconfig */,
+				29638298AFC7EF5743D820BA499075F8 /* TextFieldEffects-dummy.m */,
+				E2A8982DB77CDB5822758A80F8E253D4 /* TextFieldEffects-prefix.pch */,
+				3CD5CA2F5D8C8838F8BA084EDEA5CE0E /* TextFieldEffects-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TextFieldEffects";
 			sourceTree = "<group>";
 		};
 		65D47A88689A976CBAFFACB77190C223 /* Pods-ZOBA */ = {
@@ -303,53 +408,52 @@
 			path = "Target Support Files/Pods-ZOBA";
 			sourceTree = "<group>";
 		};
-		72BF805BBFF093C86FFC66D4A17643EE /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				6D872C04A3450C185B8E1DCA422A2F38 /* CBZSplashView.modulemap */,
-				6526BE6A0E1E52C55DD1F1B6A306154D /* CBZSplashView.xcconfig */,
-				ACCAB48A035EA3DA3CFA0E17957BD0A3 /* CBZSplashView-dummy.m */,
-				2D09AF14B83F4A777AB7A09D119BE21F /* CBZSplashView-prefix.pch */,
-				2BB293921B22489CEDC2F71221866CAC /* CBZSplashView-umbrella.h */,
-				CF2AC22C997023946D7AB00FFC794886 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/CBZSplashView";
-			sourceTree = "<group>";
-		};
-		7459B39AEAD4E3DC74EB610B29F48276 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				F80CDED8F636C52AA56D6A0A541A820C /* FoldingTabBar.modulemap */,
-				79932FB55873BF1806CEF7885D9317D8 /* FoldingTabBar.xcconfig */,
-				8C1FFF8CF144C13F4D66B6F6170D1CC7 /* FoldingTabBar-dummy.m */,
-				B2D889B826BB366B0FEB3B7B0626D4B6 /* FoldingTabBar-prefix.pch */,
-				34E331F08826EE9AF9F992D0908243CB /* FoldingTabBar-umbrella.h */,
-				EACEF3BD583F42F846161515F41F8212 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FoldingTabBar";
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
-				972D2DD93E952E273D4FC4F9937CD20A /* Pods */,
-				1FE15251A81DCA3CB5B4A595B936F78C /* Products */,
+				A0C9A1924FF0F1AF1A69D8F4FA63DA38 /* Pods */,
+				BFE3295A76B6A3816C8A2778713E43B5 /* Products */,
 				EF53116A33AF00D1DF5F0CDE42D26F3E /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		972D2DD93E952E273D4FC4F9937CD20A /* Pods */ = {
+		849F3248D84C8BF51EF6FD8AA8523DEA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				47AE21CAEA63056FDE3C89278158F9CB /* CBZSplashView */,
-				D2CD59808E5BAD1C7296C42801A31B98 /* FoldingTabBar */,
-				E27DDA189CBC7D5483F366A148D0A702 /* Onboard */,
+				BF1FEEE2658C16761C816C75E3D0F1A1 /* CBZSplashView.modulemap */,
+				3AA4D0DFA894735C82C3EF4CE76AE990 /* CBZSplashView.xcconfig */,
+				3F9B94B67B4AEB6B5F2C1B1F0FF5EF2C /* CBZSplashView-dummy.m */,
+				DE5E4EB2BA1226E070B952439D904374 /* CBZSplashView-prefix.pch */,
+				931D8B5281ABB7C430A489D5068E0B07 /* CBZSplashView-umbrella.h */,
+				1483C1E8C3D6FAB9D2908B9459B5E378 /* Info.plist */,
 			);
-			name = Pods;
+			name = "Support Files";
+			path = "../Target Support Files/CBZSplashView";
+			sourceTree = "<group>";
+		};
+		91465A1DC89B5E14DE8E2CAAE3465EBE /* FoldingTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				E33E522302DD2D90F07ED34AC8E108E7 /* CAAnimation+YALTabBarViewAnimations.h */,
+				37AE72E2EEC66E54A8622138C2D0D857 /* CAAnimation+YALTabBarViewAnimations.m */,
+				2A1905A4DB09DE543A4909E826329FEE /* CATransaction+TransactionWithAnimationsAndCompletion.h */,
+				40DDCB82A170105187817A579933BED5 /* CATransaction+TransactionWithAnimationsAndCompletion.m */,
+				4D60C4F70C21F7F5657EE8541684E283 /* YALAnimatingTabBarConstants.h */,
+				FF6C8FA776B822FC4DCA2E8F4B86D3E4 /* YALAnimatingTabBarConstants.m */,
+				0FC59EA596E6664B7CA9EC2B3A2D7722 /* YALFoldingTabBar.h */,
+				D999ECF2E638AD9EC6DC1CD3AF2B87CE /* YALFoldingTabBar.m */,
+				71A41DECE1F83B0E99E3E025B2BC5E18 /* YALFoldingTabBarController.h */,
+				74F01DC2A01C0FA18333474F9035B39C /* YALFoldingTabBarController.m */,
+				32696CF6D9F18E070D99383A19219907 /* YALSpringAnimation.h */,
+				F38E6083BB7BFEC4AEC26704D6E16350 /* YALSpringAnimation.m */,
+				8E6E6657CFF8983D0E707E0C6948AC54 /* YALTabBarInteracting.h */,
+				3677FA85AB0ADCCCACCF01F6FFB8A2B1 /* YALTabBarItem.h */,
+				37175C22977627FDF1926A39B8BE9843 /* YALTabBarItem.m */,
+				E1870271920D36B877675AFE8213B5C1 /* Support Files */,
+			);
+			path = FoldingTabBar;
 			sourceTree = "<group>";
 		};
 		A038B0DC3E0EB252B7651DE446F5FD46 /* Pods-ZOBAUITests */ = {
@@ -370,27 +474,100 @@
 			path = "Target Support Files/Pods-ZOBAUITests";
 			sourceTree = "<group>";
 		};
-		D2CD59808E5BAD1C7296C42801A31B98 /* FoldingTabBar */ = {
+		A0C9A1924FF0F1AF1A69D8F4FA63DA38 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D109122A30A52D4002EDCA48EA930933 /* CAAnimation+YALTabBarViewAnimations.h */,
-				6B682C40DD9A63545C7834E6D2BAA31E /* CAAnimation+YALTabBarViewAnimations.m */,
-				A69FA8BB6970175CC033DBF5F3FC2858 /* CATransaction+TransactionWithAnimationsAndCompletion.h */,
-				14A5546A6AD046E7F57B075928074AD6 /* CATransaction+TransactionWithAnimationsAndCompletion.m */,
-				D6A2B47AD03F25567A231EE8FF1BBA95 /* YALAnimatingTabBarConstants.h */,
-				DC70E5021601520838C4CD6AFBF382D8 /* YALAnimatingTabBarConstants.m */,
-				B5DD394AE9024F5F2B00B24C55DCF568 /* YALFoldingTabBar.h */,
-				13383278BF98C86FEFF427DF0537D128 /* YALFoldingTabBar.m */,
-				3DC7D5F62782652AA14493D5E17A356E /* YALFoldingTabBarController.h */,
-				203A03C9782647DB929ABF580B8DC454 /* YALFoldingTabBarController.m */,
-				A7FE3A08A74545FEE72DBA89D24D6A0E /* YALSpringAnimation.h */,
-				0420B83960FD069AAA2F8AD664B489CE /* YALSpringAnimation.m */,
-				8D6C764583CC7ED5B55ADCED0E525BE2 /* YALTabBarInteracting.h */,
-				6DE677107590335A0F16AD09FBB3288A /* YALTabBarItem.h */,
-				38C5678E6218A5A146C506A29DC40405 /* YALTabBarItem.m */,
-				7459B39AEAD4E3DC74EB610B29F48276 /* Support Files */,
+				C70BA15A8DD6D526766363AA3D9FC15F /* Alamofire */,
+				CA342009AB19EC267869295502F483A3 /* CBZSplashView */,
+				91465A1DC89B5E14DE8E2CAAE3465EBE /* FoldingTabBar */,
+				DD04C9ACA9ECD3A073F362D2042B735B /* Onboard */,
+				B0B4C531BB43E827A9D80B0BB964A547 /* TextFieldEffects */,
 			);
-			path = FoldingTabBar;
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B0B4C531BB43E827A9D80B0BB964A547 /* TextFieldEffects */ = {
+			isa = PBXGroup;
+			children = (
+				639D0D6AE8472A43C8833CED7C476CBD /* AkiraTextField.swift */,
+				2D743F94831C972AD9BF78AEEF85982F /* HoshiTextField.swift */,
+				1472D44AEA21DDF842267C8CD8EB574A /* IsaoTextField.swift */,
+				8567253D2BA2575F9284159BF2606279 /* JiroTextField.swift */,
+				B9D65520CBC75DCA02024A4EB86BB639 /* KaedeTextField.swift */,
+				77BD9B09C84A12E4E7D964B22E9A015D /* MadokaTextField.swift */,
+				323E9F2E31FD478FD11A57B8E7F1D046 /* MinoruTextField.swift */,
+				4C4DE366348AD59F42D2BBA58A32AF6E /* TextFieldsEffects.swift */,
+				EF08E1C94EE9F007A4299055FC3BF75D /* YokoTextField.swift */,
+				7C4D80672389C5E45ADA55B5AA507813 /* YoshikoTextField.swift */,
+				63CF717F6377F20E5C297D5BC52E0763 /* Support Files */,
+			);
+			path = TextFieldEffects;
+			sourceTree = "<group>";
+		};
+		BFE3295A76B6A3816C8A2778713E43B5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6024C7AEAF90338077842201532CBB84 /* Alamofire.framework */,
+				98B1A9C9A7641F1CE71BA6A905B56D37 /* CBZSplashView.framework */,
+				CB16F5A1E09DAF6ADF84142013132965 /* FoldingTabBar.framework */,
+				A94F1A84B972A4E90355A0369788648D /* Onboard.framework */,
+				3F259B2B8865F98DB664F55616F77E4D /* Pods_ZOBA.framework */,
+				E27B8C5B4565DE29BD613A1D1550ECAC /* Pods_ZOBATests.framework */,
+				E374308CAF3092B9BE4A12FAF7E789F5 /* Pods_ZOBAUITests.framework */,
+				AA6CE5E24FA0373E65DE30360D8A1B37 /* TextFieldEffects.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C70BA15A8DD6D526766363AA3D9FC15F /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				8C246C39CBE768B538B3EB6DBABCF619 /* Alamofire.swift */,
+				F7F0C58DFEA508D2476CA7BBC20F3351 /* Download.swift */,
+				3FB4F51DA265430A8B6F2C1A890467DC /* Error.swift */,
+				926F161442216BF743BF212EC067D078 /* Manager.swift */,
+				C05D466527C22D8765168221ACE35B46 /* MultipartFormData.swift */,
+				5AB962AF5E450C7390DBA6084F172BEE /* NetworkReachabilityManager.swift */,
+				2A5A1A51C49FAAD2601F3CD97F4034B3 /* Notifications.swift */,
+				9F4327D1252497E8EFFD7B06D905E713 /* ParameterEncoding.swift */,
+				92B01E2F5B30804A5BEB1DE9D13E36F4 /* Request.swift */,
+				4AEC7B85D5F26752B065824FA49702B8 /* Response.swift */,
+				755180BCF1D0943FEDBEBF061C2A925A /* ResponseSerialization.swift */,
+				934885355E2AD37ED1E72E2B89AEAD47 /* Result.swift */,
+				5C4B2F3822606F31110718958BF8F7DF /* ServerTrustPolicy.swift */,
+				3E7333D8BBF5EF8CCFF20A23AAA82FD5 /* Stream.swift */,
+				4686EC6E2F29671C9EE2621123A8E2AB /* Timeline.swift */,
+				240A0B5B8D306BEB803BFBA1AE4870D1 /* Upload.swift */,
+				0C09627E856170133F40D9140939C47E /* Validation.swift */,
+				53DB4A18273208B75109B54180D5F6B8 /* Support Files */,
+			);
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
+		CA342009AB19EC267869295502F483A3 /* CBZSplashView */ = {
+			isa = PBXGroup;
+			children = (
+				2DC6D7B4FCD7EE56C26467CC3B0EEAE1 /* CBZRasterSplashView.h */,
+				BD5A82C267B6EBF5E713CB683910E417 /* CBZRasterSplashView.m */,
+				3C9A8808F9AF4EFCFDF3156D3410FD1E /* CBZSplashView.h */,
+				9B001B45C0D4D7AD19535BBED99F8180 /* CBZSplashView.m */,
+				77AB4CFF3E5BCFF2246AAD4B3A0F8FA8 /* CBZVectorSplashView.h */,
+				872FCBF8DC9D201872AA4E75B9676982 /* CBZVectorSplashView.m */,
+				849F3248D84C8BF51EF6FD8AA8523DEA /* Support Files */,
+			);
+			path = CBZSplashView;
+			sourceTree = "<group>";
+		};
+		DD04C9ACA9ECD3A073F362D2042B735B /* Onboard */ = {
+			isa = PBXGroup;
+			children = (
+				27C6287E71D182C9BC5C71EA7693D55F /* OnboardingContentViewController.h */,
+				6B81AD9DF71B10CFCC45E454C0FCC51C /* OnboardingContentViewController.m */,
+				3E35978241C9C8D462A2F6FFF1A40678 /* OnboardingViewController.h */,
+				F43B52142D598E0A408E3AB77E773B82 /* OnboardingViewController.m */,
+				4B4FAE2183F3D98FE97D9EFA940D6D59 /* Support Files */,
+			);
+			path = Onboard;
 			sourceTree = "<group>";
 		};
 		DFDE779C6E5D3445E0CB8CCB8D424449 /* iOS */ = {
@@ -403,16 +580,18 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		E27DDA189CBC7D5483F366A148D0A702 /* Onboard */ = {
+		E1870271920D36B877675AFE8213B5C1 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				F59FC573F642AD77DB137A1E30FF20FC /* OnboardingContentViewController.h */,
-				F354696B7347EF37E863F41101646BA6 /* OnboardingContentViewController.m */,
-				1C6F4A7E46287185362D1F772D66914B /* OnboardingViewController.h */,
-				D7FD060FEDB88D0F7649DC20021D5637 /* OnboardingViewController.m */,
-				21E83F44C41185CE4CE29DA68D4A61C8 /* Support Files */,
+				D7FCAB9758649EF84991610E6B869091 /* FoldingTabBar.modulemap */,
+				A5F7A4B820A1E0E4E9E3C6A88F02135B /* FoldingTabBar.xcconfig */,
+				6CE4B992DC5858D6C8DAAD8046DF6F68 /* FoldingTabBar-dummy.m */,
+				C2872BAC42FE953B2B8517F32CF83A37 /* FoldingTabBar-prefix.pch */,
+				4205C1F61C222252FC3DFDFF6F3A469B /* FoldingTabBar-umbrella.h */,
+				D6DB6416E9CD8914595604D8E68EA129 /* Info.plist */,
 			);
-			path = Onboard;
+			name = "Support Files";
+			path = "../Target Support Files/FoldingTabBar";
 			sourceTree = "<group>";
 		};
 		EF53116A33AF00D1DF5F0CDE42D26F3E /* Targets Support Files */ = {
@@ -436,19 +615,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		454C4518B70D6991C7C9EF13DDA1701D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				87631FDF036E1324FBEB9B881A28589C /* Pods-ZOBA-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7EC6D175408D70C0757CE5CA3AB171AA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A62D772340E1ECB7C35053CB0E594111 /* Pods-ZOBATests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1F4CC163CA4B5B3DB8D614C150BE0C8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DAB493294EB4F72CF8D7C086AD7A389 /* TextFieldEffects-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D51CA3AAC070CCD0BFB1E176C476A4F0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19B64FF9E2364F361EE5E605983F8296 /* Pods-ZOBA-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +657,14 @@
 				2C9B7EAB72202D40809359524E271462 /* CBZSplashView-umbrella.h in Headers */,
 				ED2872BAF722C070583309D2A4E808AA /* CBZSplashView.h in Headers */,
 				59EE9732B9336C6450E3224869BCA715 /* CBZVectorSplashView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EFDF3B631BBB965A372347705CA14854 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9469DF81ECB494E84675969B5E13374C /* Alamofire-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,7 +701,24 @@
 			);
 			name = FoldingTabBar;
 			productName = FoldingTabBar;
-			productReference = B661A6BAC7F05FA6B32FDBC6B3F00A9E /* FoldingTabBar.framework */;
+			productReference = CB16F5A1E09DAF6ADF84142013132965 /* FoldingTabBar.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		173D4DA76684A572BCA5C9A7BCBB18F4 /* TextFieldEffects */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 980BCB6501D990657234524F5664DB83 /* Build configuration list for PBXNativeTarget "TextFieldEffects" */;
+			buildPhases = (
+				E48923C6BA89910FB7ED53C818743599 /* Sources */,
+				064BBBF39F4D617947934DC7BCA42CBB /* Frameworks */,
+				B1F4CC163CA4B5B3DB8D614C150BE0C8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TextFieldEffects;
+			productName = TextFieldEffects;
+			productReference = AA6CE5E24FA0373E65DE30360D8A1B37 /* TextFieldEffects.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		4F5E891BB114FD7D0CEE62EA8B4D0AF4 /* CBZSplashView */ = {
@@ -523,27 +735,24 @@
 			);
 			name = CBZSplashView;
 			productName = CBZSplashView;
-			productReference = 6C6BBB3211F11D8ECEC106BF01FC98C0 /* CBZSplashView.framework */;
+			productReference = 98B1A9C9A7641F1CE71BA6A905B56D37 /* CBZSplashView.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		56268DEBA95C46C3599D34EE7A6EF867 /* Pods-ZOBA */ = {
+		79C040AFDDCE1BCBF6D8B5EB0B85887F /* Alamofire */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 76ADF841902CB1C24303E50C19761F50 /* Build configuration list for PBXNativeTarget "Pods-ZOBA" */;
+			buildConfigurationList = 3CFB42910790CF0BDBCCEBAACD6B9367 /* Build configuration list for PBXNativeTarget "Alamofire" */;
 			buildPhases = (
-				58754C1317AE20AF7C58BA6C925F7C86 /* Sources */,
-				EBAD7A157970E84DE0ED03F2B3CBDE86 /* Frameworks */,
-				454C4518B70D6991C7C9EF13DDA1701D /* Headers */,
+				95CC2C7E06DC188A05DAAEE9CAA555A3 /* Sources */,
+				B1729F851F648EC60EE93CDB3C8BAEAD /* Frameworks */,
+				EFDF3B631BBB965A372347705CA14854 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				71041A93751309197804D030A14308CA /* PBXTargetDependency */,
-				9E6870A07977A46C11FF462FF83D37DA /* PBXTargetDependency */,
-				1172832CE1B8A4BF8A47D10D560CE46D /* PBXTargetDependency */,
 			);
-			name = "Pods-ZOBA";
-			productName = "Pods-ZOBA";
-			productReference = ADAF3CDCCE4E6FDD3A92C71DDCE3F674 /* Pods_ZOBA.framework */;
+			name = Alamofire;
+			productName = Alamofire;
+			productReference = 6024C7AEAF90338077842201532CBB84 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8F27B52EBEFF2510D6502A1653FD3173 /* Pods-ZOBAUITests */ = {
@@ -560,7 +769,7 @@
 			);
 			name = "Pods-ZOBAUITests";
 			productName = "Pods-ZOBAUITests";
-			productReference = 1B811F9EB4DCEF6AE25B18E9E2E79AF6 /* Pods_ZOBAUITests.framework */;
+			productReference = E374308CAF3092B9BE4A12FAF7E789F5 /* Pods_ZOBAUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		97FD3ACB626FD2371A571E09E9DEE60B /* Pods-ZOBATests */ = {
@@ -577,7 +786,29 @@
 			);
 			name = "Pods-ZOBATests";
 			productName = "Pods-ZOBATests";
-			productReference = 8640B7A0AA2BBF6879FCE7CCE092737D /* Pods_ZOBATests.framework */;
+			productReference = E27B8C5B4565DE29BD613A1D1550ECAC /* Pods_ZOBATests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C0B40F3A6D5C881D9D799707E4CFBFCF /* Pods-ZOBA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C154C411FF9010608AC078F81775434B /* Build configuration list for PBXNativeTarget "Pods-ZOBA" */;
+			buildPhases = (
+				3DF3FAAEE731A02FBB68EAE763630699 /* Sources */,
+				2466361C662F616286870D59CDA761D4 /* Frameworks */,
+				D51CA3AAC070CCD0BFB1E176C476A4F0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C51B33B3CC0A8A059C7EC37F3523613F /* PBXTargetDependency */,
+				C3925A2C63E799BECA0351EA05B0210C /* PBXTargetDependency */,
+				D5B6AA23D5CA53B1195EB711F54358DE /* PBXTargetDependency */,
+				FB28FD71A0E4378D35E12440486D1698 /* PBXTargetDependency */,
+				6F30DF46DDCDDED1AD4CC2B7653B7FDE /* PBXTargetDependency */,
+			);
+			name = "Pods-ZOBA";
+			productName = "Pods-ZOBA";
+			productReference = 3F259B2B8865F98DB664F55616F77E4D /* Pods_ZOBA.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D7FF48F3092783E4E42B336F0DEF2D1A /* Onboard */ = {
@@ -594,7 +825,7 @@
 			);
 			name = Onboard;
 			productName = Onboard;
-			productReference = 40ADAE16EC9DE28D730646CBB0454A41 /* Onboard.framework */;
+			productReference = A94F1A84B972A4E90355A0369788648D /* Onboard.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -614,16 +845,18 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 1FE15251A81DCA3CB5B4A595B936F78C /* Products */;
+			productRefGroup = BFE3295A76B6A3816C8A2778713E43B5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				79C040AFDDCE1BCBF6D8B5EB0B85887F /* Alamofire */,
 				4F5E891BB114FD7D0CEE62EA8B4D0AF4 /* CBZSplashView */,
 				0F52284BB73D7CF6A946B01B92E4E07F /* FoldingTabBar */,
 				D7FF48F3092783E4E42B336F0DEF2D1A /* Onboard */,
-				56268DEBA95C46C3599D34EE7A6EF867 /* Pods-ZOBA */,
+				C0B40F3A6D5C881D9D799707E4CFBFCF /* Pods-ZOBA */,
 				97FD3ACB626FD2371A571E09E9DEE60B /* Pods-ZOBATests */,
 				8F27B52EBEFF2510D6502A1653FD3173 /* Pods-ZOBAUITests */,
+				173D4DA76684A572BCA5C9A7BCBB18F4 /* TextFieldEffects */,
 			);
 		};
 /* End PBXProject section */
@@ -634,6 +867,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				83BC00F4435C0D529B1B94522E2CF482 /* Pods-ZOBATests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3DF3FAAEE731A02FBB68EAE763630699 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B829390FD80588A212C93889499B78DC /* Pods-ZOBA-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,14 +890,6 @@
 				375D5687696A3D2F77580F4E13F447DC /* YALFoldingTabBarController.m in Sources */,
 				64165A4763C4D32CE8EC3AA8160359D9 /* YALSpringAnimation.m in Sources */,
 				25DEF719A61C37E5CB10C799A01DFE42 /* YALTabBarItem.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		58754C1317AE20AF7C58BA6C925F7C86 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				210EE58B313AD35CD32535374996D833 /* Pods-ZOBA-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +912,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		95CC2C7E06DC188A05DAAEE9CAA555A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADF19C953CE2A7D0B72EC93A81FCCC26 /* Alamofire-dummy.m in Sources */,
+				8EB11202167FCDDF1257AAAB1D1FB244 /* Alamofire.swift in Sources */,
+				5CB05FBCB32D21E194B5ECF680CB6AE0 /* Download.swift in Sources */,
+				095406039B4D371E48D08B38A2975AC8 /* Error.swift in Sources */,
+				4081EA628AF0B73AC51FFB9D7AB3B89E /* Manager.swift in Sources */,
+				C7B6DD7C0456C50289A2C381DFE9FA3F /* MultipartFormData.swift in Sources */,
+				34CCDCA848A701466256BC2927DA8856 /* NetworkReachabilityManager.swift in Sources */,
+				BE41196F6A3903E59C3306FE3F8B43FE /* Notifications.swift in Sources */,
+				C0DB70AB368765DC64BFB5FEA75E0696 /* ParameterEncoding.swift in Sources */,
+				EFE92E8D3813DD26E78E93EEAF6D7E7E /* Request.swift in Sources */,
+				62E8346F03C03E7F4D631361F325689E /* Response.swift in Sources */,
+				3EA8F215C9C1432D74E5CCA4834AA8C0 /* ResponseSerialization.swift in Sources */,
+				AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */,
+				7B48852C4D848FA2DA416A98F6425869 /* ServerTrustPolicy.swift in Sources */,
+				AE4CF87C02C042DF13ED5B21C4FDC1E0 /* Stream.swift in Sources */,
+				16102E4E35FAA0FC4161282FECE56469 /* Timeline.swift in Sources */,
+				5BC19E6E0F199276003F0AF96838BCE5 /* Upload.swift in Sources */,
+				2D3405986FC586FA6C0A5E0B6BA7E64E /* Validation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9F9AF9AA0E87E62E908016497AB1BFCD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -689,33 +947,63 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E48923C6BA89910FB7ED53C818743599 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFC3CE1946E6C1A5851685E606E7FFA8 /* AkiraTextField.swift in Sources */,
+				3F00F297A29C9FE2098C8F4EADB1872D /* HoshiTextField.swift in Sources */,
+				656CF0E33BD367AF7BA97BB1E5A11641 /* IsaoTextField.swift in Sources */,
+				A1661F370BE2D40F6DF057AD5614F6B7 /* JiroTextField.swift in Sources */,
+				9D429E755B6507ED5E501B1F4878776F /* KaedeTextField.swift in Sources */,
+				5DC1E1317EDE876BBF85DE2D619AB776 /* MadokaTextField.swift in Sources */,
+				D9C5C0D6935EA00303E279C01328D324 /* MinoruTextField.swift in Sources */,
+				8CCAB463C54B3D00AA4CD2FA8DE7A091 /* TextFieldEffects-dummy.m in Sources */,
+				8DF7065FED6256B11F120D41700273AE /* TextFieldsEffects.swift in Sources */,
+				68C2E4EF0614330F6AEB210EC38CF5D7 /* YokoTextField.swift in Sources */,
+				FF18476CE21A0D50F3D934B30BEC50F1 /* YoshikoTextField.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1172832CE1B8A4BF8A47D10D560CE46D /* PBXTargetDependency */ = {
+		6F30DF46DDCDDED1AD4CC2B7653B7FDE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Onboard;
-			target = D7FF48F3092783E4E42B336F0DEF2D1A /* Onboard */;
-			targetProxy = 139075D619CD103E8AF639AD68EB417C /* PBXContainerItemProxy */;
+			name = TextFieldEffects;
+			target = 173D4DA76684A572BCA5C9A7BCBB18F4 /* TextFieldEffects */;
+			targetProxy = 87D9C6479FDFC61B5BF4E480CA1B7683 /* PBXContainerItemProxy */;
 		};
-		71041A93751309197804D030A14308CA /* PBXTargetDependency */ = {
+		C3925A2C63E799BECA0351EA05B0210C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CBZSplashView;
 			target = 4F5E891BB114FD7D0CEE62EA8B4D0AF4 /* CBZSplashView */;
-			targetProxy = 6CD1518808B9179791008863A77305CF /* PBXContainerItemProxy */;
+			targetProxy = 8D8EE132FB589AC667C02D6E07D743B0 /* PBXContainerItemProxy */;
 		};
-		9E6870A07977A46C11FF462FF83D37DA /* PBXTargetDependency */ = {
+		C51B33B3CC0A8A059C7EC37F3523613F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = 79C040AFDDCE1BCBF6D8B5EB0B85887F /* Alamofire */;
+			targetProxy = 591A25DB521D78BD284A816CC9848C10 /* PBXContainerItemProxy */;
+		};
+		D5B6AA23D5CA53B1195EB711F54358DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FoldingTabBar;
 			target = 0F52284BB73D7CF6A946B01B92E4E07F /* FoldingTabBar */;
-			targetProxy = 3C4378B3F5C414522385EFE9C369A1EF /* PBXContainerItemProxy */;
+			targetProxy = 7AA178A8A0A6DA69FFB0517D412B6E79 /* PBXContainerItemProxy */;
+		};
+		FB28FD71A0E4378D35E12440486D1698 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Onboard;
+			target = D7FF48F3092783E4E42B336F0DEF2D1A /* Onboard */;
+			targetProxy = 4A49EC662884E241CF89A5879CEFD3E2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		016A26F9134ACFEF60D9DF08A8D77EFC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5849C6A55AA7470C7E978D829032FCE7 /* Onboard.xcconfig */;
+			baseConfigurationReference = 7BF086E3FA5297E973A4A19B79475649 /* Onboard.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -808,9 +1096,9 @@
 			};
 			name = Debug;
 		};
-		2DD224E9F8F05C57E0507D53928F9BBC /* Release */ = {
+		32AD5F8918CA8B349E4671410FA624C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5114C896F8FFDB9D0D853F79F292EAA7 /* Pods-ZOBA.release.xcconfig */;
+			baseConfigurationReference = F31CE9832315302CAA7B408C7A5C5921 /* Alamofire.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -821,18 +1109,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-ZOBA/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ZOBA/Pods-ZOBA.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_ZOBA;
+				PRODUCT_NAME = Alamofire;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -881,7 +1165,7 @@
 		};
 		51492CD5E4C45CAB544D12D83F3488FC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6526BE6A0E1E52C55DD1F1B6A306154D /* CBZSplashView.xcconfig */;
+			baseConfigurationReference = 3AA4D0DFA894735C82C3EF4CE76AE990 /* CBZSplashView.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -907,39 +1191,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		55524F598043C832BDD52E462462825D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C5FD0C54DFAC7F12210B44D79E4B0E61 /* Pods-ZOBA.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-ZOBA/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-ZOBA/Pods-ZOBA.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_ZOBA;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -983,9 +1234,39 @@
 			};
 			name = Debug;
 		};
+		75218111E718FACE36F771E8ABECDB62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F31CE9832315302CAA7B408C7A5C5921 /* Alamofire.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Alamofire/Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Alamofire/Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		79B74B4028D363C52A7313BA1DEE40B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79932FB55873BF1806CEF7885D9317D8 /* FoldingTabBar.xcconfig */;
+			baseConfigurationReference = A5F7A4B820A1E0E4E9E3C6A88F02135B /* FoldingTabBar.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1012,9 +1293,43 @@
 			};
 			name = Debug;
 		};
+		8FB39EC9CD08064AF8178671FDFCF926 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5FD0C54DFAC7F12210B44D79E4B0E61 /* Pods-ZOBA.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ZOBA/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ZOBA/Pods-ZOBA.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ZOBA;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		A71FF6ED3BA37FCEF019D1C5B75BFCFD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5849C6A55AA7470C7E978D829032FCE7 /* Onboard.xcconfig */;
+			baseConfigurationReference = 7BF086E3FA5297E973A4A19B79475649 /* Onboard.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1074,9 +1389,101 @@
 			};
 			name = Release;
 		};
+		B8F849D3A60527B6FBE765C4AE40D2DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 684B54E1F70EDFAFC1686AAB9DB17E1A /* TextFieldEffects.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldEffects/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TextFieldEffects/TextFieldEffects.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TextFieldEffects;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C6DD6C6B583EE1943F6F1DADAEFAA4E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 684B54E1F70EDFAFC1686AAB9DB17E1A /* TextFieldEffects.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TextFieldEffects/TextFieldEffects-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TextFieldEffects/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TextFieldEffects/TextFieldEffects.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TextFieldEffects;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E5F0122EDE5721B2B31D5F57518B6F66 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5114C896F8FFDB9D0D853F79F292EAA7 /* Pods-ZOBA.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-ZOBA/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ZOBA/Pods-ZOBA.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_ZOBA;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		E6BBC42DF433A7C4B448725C07AF819E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6526BE6A0E1E52C55DD1F1B6A306154D /* CBZSplashView.xcconfig */;
+			baseConfigurationReference = 3AA4D0DFA894735C82C3EF4CE76AE990 /* CBZSplashView.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1105,7 +1512,7 @@
 		};
 		E8E37485A4F79D78FA93135511C73A50 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79932FB55873BF1806CEF7885D9317D8 /* FoldingTabBar.xcconfig */;
+			baseConfigurationReference = A5F7A4B820A1E0E4E9E3C6A88F02135B /* FoldingTabBar.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1204,6 +1611,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		3CFB42910790CF0BDBCCEBAACD6B9367 /* Build configuration list for PBXNativeTarget "Alamofire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				75218111E718FACE36F771E8ABECDB62 /* Debug */,
+				32AD5F8918CA8B349E4671410FA624C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		72DC976B07202028B2E9E0BF3EF88F5E /* Build configuration list for PBXNativeTarget "Pods-ZOBATests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1213,11 +1629,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		76ADF841902CB1C24303E50C19761F50 /* Build configuration list for PBXNativeTarget "Pods-ZOBA" */ = {
+		980BCB6501D990657234524F5664DB83 /* Build configuration list for PBXNativeTarget "TextFieldEffects" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				55524F598043C832BDD52E462462825D /* Debug */,
-				2DD224E9F8F05C57E0507D53928F9BBC /* Release */,
+				B8F849D3A60527B6FBE765C4AE40D2DB /* Debug */,
+				C6DD6C6B583EE1943F6F1DADAEFAA4E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C154C411FF9010608AC078F81775434B /* Build configuration list for PBXNativeTarget "Pods-ZOBA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FB39EC9CD08064AF8178671FDFCF926 /* Debug */,
+				E5F0122EDE5721B2B31D5F57518B6F66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

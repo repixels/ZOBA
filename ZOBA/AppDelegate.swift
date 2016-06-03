@@ -8,16 +8,53 @@
 
 import UIKit
 import CoreData
+import Onboard
+import CoreLocation
+import FBSDKCoreKit
+import FBSDKShareKit
+import FBSDKLoginKit
+
+let isFirstTime = "isFirstTime"
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
+    var locationManager = CLLocationManager()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         // Override point for customization after application launch.
-        return true
+        
+        self.locationManager.delegate = self
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager.requestAlwaysAuthorization()
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        if let window = window
+        {
+            window.backgroundColor = UIColor.whiteColor()
+            window.rootViewController = generateOnBoardingWithImage()
+            window.makeKeyAndVisible()
+        }
+        
+        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
+        let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+        application.registerUserNotificationSettings(pushNotificationSettings)
+        application.registerForRemoteNotifications()
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func application(application: UIApplication,
+                     openURL url: NSURL,
+                             sourceApplication: String?,
+                             annotation: AnyObject) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(
+            application,
+            openURL: url,
+            sourceApplication: sourceApplication,
+            annotation: annotation)
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -36,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -105,6 +143,122 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 abort()
             }
         }
+    }
+    
+    func generateOnBoardingWithImage() -> OnboardingViewController
+    {
+        let trackingPage = OnboardingContentViewController(title: "Auto Trip Tracking", body: "ZOBA Auto Tracks your Trips with your permission to collect data about your vehicle", image: UIImage(named: "tracking"), buttonText: "Enable Location") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedAlways
+            {
+                self.locationManager.delegate = self
+                self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                self.locationManager.requestAlwaysAuthorization()
+            }
+        }
+        
+        trackingPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        trackingPage.bodyLabel.font = UIFont(name: "Continuum Light" , size: 28.0)
+        
+        
+        
+        let autoTracking = OnboardingContentViewController(title: "Track your Consumption", body: "Are you a road runner with alot of busy days? No Worries we will keep you UpToDate with your vehicle consumption", image: UIImage(named: "statistics"), buttonText: "") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            
+        }
+        
+        autoTracking.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        autoTracking.bodyLabel.font = UIFont(name: "Continuum Light" , size: 28.0)
+        
+        let servicesPage = OnboardingContentViewController(title: "Push To Rescue", body: "Need a Quick Gas Fill Up or and Emergency Car Towing ? We are here for you", image: UIImage(named: "rescue"), buttonText: "") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            NSLog("Services Page")
+        }
+        
+        servicesPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        servicesPage.bodyLabel.font = UIFont(name: "Continuum Light" , size: 28.0)
+        
+        let tipsPage = OnboardingContentViewController(title: "Smart Tips", body: "Dont' know the ideal tire pressure for your vehicle? We are here for you", image: UIImage(named: "tips"), buttonText: "Enable Push Notifications") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            NSLog("Tips Page")
+            
+        }
+        
+        tipsPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        tipsPage.bodyLabel.font = UIFont(name: "Continuum Light" , size: 28.0)
+        
+        let serviceCentersPage = OnboardingContentViewController(title: "Service Centers", body: "View the nearest Service Centers to you From their location to their working hours and the offered services", image: UIImage(named: "service-centers"), buttonText: "") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            NSLog("Tracking Page")
+        }
+        
+        serviceCentersPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
+        serviceCentersPage.bodyLabel.font = UIFont(name: "Continuum Light" , size: 28.0)
+        
+        let zobaPage = OnboardingContentViewController(title: "Zoba", body: "Your Car Pal", image: UIImage(named: "logo"), buttonText: "Lets Get Started") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+            NSLog("Tracking Page")
+            self.handleOnboardingCompletion()
+        }
+        
+        zobaPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 72.0)
+        zobaPage.bodyLabel.font = UIFont(name: "Continuum Light" , size: 28.0)
+        zobaPage.actionButton.tintColor = UIColor.blueColor()
+        zobaPage.actionButton.setTitleColor(UIColor(red: 0.0, green: 122.0/255.0, blue: 1.0, alpha: 1.0), forState: UIControlState.Normal)
+        
+        
+        // Image
+        let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "street"), contents: [trackingPage, autoTracking, servicesPage,tipsPage,serviceCentersPage,zobaPage])
+        
+        onboardingVC.shouldFadeTransitions = true
+        onboardingVC.allowSkipping = true
+        onboardingVC.fadeSkipButtonOnLastPage = true
+        onboardingVC.skipHandler = {
+            self.handleOnboardingCompletion()
+        };
+        
+        
+        return onboardingVC
+    }
+    
+    func handleOnboardingCompletion() {
+        // Now that we are done onboarding, we can set in our NSUserDefaults that we've onboarded now, so in the
+        // future when we launch the application we won't see the onboarding again.
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: isFirstTime)
+        
+        // Setup the normal root view controller of the application, and set that we want to do it animated so that
+        // the transition looks nice from onboarding to normal app.
+        setupNormalRootVC(true)
+    }
+    
+    func setupNormalRootVC(animated : Bool) {
+        // Here I'm just creating a generic view controller to represent the root of my application.
+        let loginViewController = UIViewController()
+        
+        // If we want to animate it, animate the transition - in this case we're fading, but you can do it
+        // however you want.
+        if animated {
+            UIView.transitionWithView(self.window!, duration: 0.5, options:.TransitionCrossDissolve, animations: { () -> Void in
+                let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let initialViewControlleripad : UIViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier("mainStoryBoard") as UIViewController
+                let loginNavigationController = UINavigationController()
+                loginNavigationController.addChildViewController(initialViewControlleripad)
+                self.window!.rootViewController = loginNavigationController
+                }, completion:nil)
+        }
+            
+            // Otherwise we just want to set the root view controller normally.
+        else {
+            self.window?.rootViewController = loginViewController;
+        }
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        print("DEVICE TOKEN = \(deviceToken)")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print(userInfo)
     }
 
 }

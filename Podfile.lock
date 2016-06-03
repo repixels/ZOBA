@@ -1,18 +1,24 @@
 PODS:
+  - Alamofire (3.4.0)
   - CBZSplashView (1.0.0)
   - FoldingTabBar (1.0.2)
   - Onboard (2.2.0)
+  - TextFieldEffects (1.2.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 3.4)
   - CBZSplashView (~> 1.0.0)
   - FoldingTabBar (~> 1.0.2)
   - Onboard
+  - TextFieldEffects
 
 SPEC CHECKSUMS:
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   CBZSplashView: 9ce4cba22024476ff4a97d6433e7347da6376016
   FoldingTabBar: 79df76dfd5a84c0a369beaa378a31c07aa53b6b2
   Onboard: c46261255c0bcbe26ab2823782764c96fca7a33e
+  TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
 
-PODFILE CHECKSUM: 4304af5ab6a4417c9a27c23280fd9d8300955f9f
+PODFILE CHECKSUM: 3dcb6c525624e7335323eec8b38df29e073e763e
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.0.0.rc.2
