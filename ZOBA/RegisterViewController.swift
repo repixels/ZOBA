@@ -152,11 +152,74 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         if(DataValidations.isValidEmail(emailTextField.text!))
         {
             hideErrorMessage("Email", textField: emailTextField)
+            isEmailValid = true
         }
         else
         {
-            
+            showErrorMessage("Enter a valid Email", textField: emailTextField)
+            isEmailValid = false
         }
+        validateRegisterButton()
+    }
+    
+    @IBAction func validateFirstName(sender: AnyObject)
+    {
+        if(firstNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(firstNameTextField.text!))
+        {
+            hideErrorMessage("First Name", textField: firstNameTextField)
+            isFirstNameValid = true
+        }
+        else
+        {
+            isFirstNameValid = false
+            showErrorMessage("Enter First Name", textField: firstNameTextField)
+        }
+        validateRegisterButton()
+    }
+    
+    @IBAction func validateLastName(sender: AnyObject)
+    {
+        if(lastNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(lastNameTextField.text!))
+        {
+            hideErrorMessage("Last Name", textField: lastNameTextField)
+            isLastNameValid = true
+        }
+        else
+        {
+            showErrorMessage("Enter Last Name", textField: lastNameTextField)
+            isLastNameValid = false
+        }
+        validateRegisterButton()
+    }
+    
+    @IBAction func validateUserName(sender: AnyObject)
+    {
+        if(userNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(userNameTextField.text!))
+        {
+            hideErrorMessage("User Name", textField: userNameTextField)
+            isUserNameValid = true
+        }
+        else
+        {
+            showErrorMessage("Enter a valid user name", textField: userNameTextField)
+            isUserNameValid = false
+        }
+        validateRegisterButton()
+    }
+    
+    @IBAction func validatePassword(sender: AnyObject)
+    {
+        if(passwordTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(passwordTextField.text!))
+        {
+            hideErrorMessage("Password", textField: passwordTextField)
+            isPasswordValid = true
+        }
+        else
+        {
+            showErrorMessage("Enter a valid password", textField: passwordTextField)
+            isPasswordValid = false
+        }
+        validateRegisterButton()
     }
     
     func validateRegisterButton()

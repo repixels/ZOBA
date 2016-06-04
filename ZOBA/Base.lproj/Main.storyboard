@@ -173,6 +173,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="validateLastName:" destination="R8G-2M-mrc" eventType="editingDidBegin" id="7r2-EO-bG6"/>
+                                    <action selector="validateLastName:" destination="R8G-2M-mrc" eventType="editingChanged" id="pRW-aT-FTu"/>
+                                    <action selector="validateLastName:" destination="R8G-2M-mrc" eventType="editingDidEnd" id="xSQ-7K-KV0"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wW2-zZ-QaO" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="168" width="280" height="48"/>
@@ -193,6 +198,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="validateUserEmail:" destination="R8G-2M-mrc" eventType="editingDidEnd" id="53g-iU-FMz"/>
+                                    <action selector="validateUserEmail:" destination="R8G-2M-mrc" eventType="editingDidBegin" id="hWg-pP-81U"/>
+                                    <action selector="validateUserEmail:" destination="R8G-2M-mrc" eventType="editingChanged" id="mZr-Df-kq9"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="User Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3cP-vu-l3Y" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="237" width="280" height="48"/>
@@ -213,6 +223,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="validateUserName:" destination="R8G-2M-mrc" eventType="editingDidBegin" id="PGq-Ou-IDP"/>
+                                    <action selector="validateUserName:" destination="R8G-2M-mrc" eventType="editingChanged" id="RUP-dD-8ZU"/>
+                                    <action selector="validateUserName:" destination="R8G-2M-mrc" eventType="editingDidEnd" id="rJh-tU-O8n"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KkZ-29-TFJ" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="307" width="280" height="48"/>
@@ -233,6 +248,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="validatePassword:" destination="R8G-2M-mrc" eventType="editingDidEnd" id="CA9-EN-6uE"/>
+                                    <action selector="validatePassword:" destination="R8G-2M-mrc" eventType="editingChanged" id="RpO-AR-PNs"/>
+                                    <action selector="validatePassword:" destination="R8G-2M-mrc" eventType="editingDidBegin" id="ySZ-4D-Efz"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YAE-EK-uB7" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="97" width="132" height="48"/>
@@ -253,6 +273,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="validateFirstName:" destination="R8G-2M-mrc" eventType="editingDidBegin" id="lfE-1e-HXp"/>
+                                    <action selector="validateFirstName:" destination="R8G-2M-mrc" eventType="editingChanged" id="nTP-Sa-M7E"/>
+                                    <action selector="validateFirstName:" destination="R8G-2M-mrc" eventType="editingDidEnd" id="utj-7Y-OVQ"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
