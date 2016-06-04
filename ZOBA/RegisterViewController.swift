@@ -12,12 +12,15 @@ import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
 import TextFieldEffects
+import CoreData
 import Alamofire
 
 class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var facebookLoginButton: FBSDKLoginButton!
+    
+    var managedObjectContext : NSManagedObjectContext!
     
     /*
      * Text Fields
@@ -29,6 +32,15 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     @IBOutlet weak var emailTextField: HoshiTextField!
     @IBOutlet weak var userNameTextField: HoshiTextField!
     @IBOutlet weak var passwordTextField: HoshiTextField!
+    
+    //Validation Indicatiors
+    
+    var isFirstNameValid = false
+    var isLastNameValid = false
+    var isEmailValid = false
+    var isPasswordValid = false
+    var isUserNameValid = false
+    
     
     let facebookReadPermissions = ["public_profile", "email", "user_friends"]
     
@@ -109,7 +121,6 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         self.lastNameTextField.borderActiveColor = UIColor.redColor()
         self.lastNameTextField.placeholderColor = UIColor.redColor()
         
-        print("User Logged Out")
     }
     
     func setViewBackgroundImage(imageName:String)
@@ -129,6 +140,130 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
-
-   
+    
+    @IBAction func registerButtonClicked(sender: AnyObject)
+    {
+        
+    }
+    
+    
+    @IBAction func validateUserEmail(sender: AnyObject)
+    {
+        if(DataValidations.isValidEmail(emailTextField.text!))
+        {
+            hideErrorMessage("Email", textField: emailTextField)
+            isEmailValid = true
+        }
+        else
+        {
+            showErrorMessage("Enter a valid Email", textField: emailTextField)
+            isEmailValid = false
+        }
+        validateRegisterButton()
+    }
+    
+    @IBAction func validateFirstName(sender: AnyObject)
+    {
+        if(firstNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(firstNameTextField.text!))
+        {
+            hideErrorMessage("First Name", textField: firstNameTextField)
+            isFirstNameValid = true
+        }
+        else
+        {
+            isFirstNameValid = false
+            showErrorMessage("Enter First Name", textField: firstNameTextField)
+        }
+        validateRegisterButton()
+    }
+    
+    @IBAction func validateLastName(sender: AnyObject)
+    {
+        if(lastNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(lastNameTextField.text!))
+        {
+            hideErrorMessage("Last Name", textField: lastNameTextField)
+            isLastNameValid = true
+        }
+        else
+        {
+            showErrorMessage("Enter Last Name", textField: lastNameTextField)
+            isLastNameValid = false
+        }
+        validateRegisterButton()
+    }
+    
+    @IBAction func validateUserName(sender: AnyObject)
+    {
+        if(userNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(userNameTextField.text!))
+        {
+            hideErrorMessage("User Name", textField: userNameTextField)
+            isUserNameValid = true
+        }
+        else
+        {
+            showErrorMessage("Enter a valid user name", textField: userNameTextField)
+            isUserNameValid = false
+        }
+        validateRegisterButton()
+    }
+    
+    @IBAction func validatePassword(sender: AnyObject)
+    {
+        if(passwordTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(passwordTextField.text!))
+        {
+            hideErrorMessage("Password", textField: passwordTextField)
+            isPasswordValid = true
+        }
+        else
+        {
+            showErrorMessage("Enter a valid password", textField: passwordTextField)
+            isPasswordValid = false
+        }
+        validateRegisterButton()
+    }
+    
+    func validateRegisterButton()
+    {
+        if (isEmailValid && isLastNameValid && isPasswordValid && isFirstNameValid && isUserNameValid)
+        {
+            enableRegisterButton()
+        }
+        else
+        {
+            disableRegisterButton()
+        }
+    }
+    
+    func enableRegisterButton()
+    {
+        registerButton.enabled = true
+        registerButton.alpha = 1.0
+    }
+    
+    func disableRegisterButton()
+    {
+        registerButton.enabled = false
+        registerButton.alpha = 0.7
+    }
+    
+    
+    
+    func showErrorMessage(message:String , textField:HoshiTextField)
+    {
+        textField.borderInactiveColor = UIColor.redColor()
+        textField.borderActiveColor = UIColor.redColor()
+        textField.placeholderColor = UIColor.redColor()
+        textField.placeholderLabel.text = message
+        textField.placeholderLabel.sizeToFit()
+        textField.placeholderLabel.alpha = 1.0
+    }
+    
+    func hideErrorMessage(message : String , textField: HoshiTextField)
+    {
+        textField.borderInactiveColor = UIColor.greenColor()
+        textField.borderActiveColor = UIColor.greenColor()
+        textField.placeholderColor = UIColor.whiteColor()
+        textField.placeholderLabel.text = message
+    }
+    
 }
