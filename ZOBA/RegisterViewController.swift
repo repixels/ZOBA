@@ -33,6 +33,15 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     @IBOutlet weak var userNameTextField: HoshiTextField!
     @IBOutlet weak var passwordTextField: HoshiTextField!
     
+    //Validation Indicatiors
+    
+    var isFirstNameValid = false
+    var isLastNameValid = false
+    var isEmailValid = false
+    var isPasswordValid = false
+    var isUserNameValid = false
+    
+    
     let facebookReadPermissions = ["public_profile", "email", "user_friends"]
     
     override func viewDidLoad() {
@@ -112,7 +121,6 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         self.lastNameTextField.borderActiveColor = UIColor.redColor()
         self.lastNameTextField.placeholderColor = UIColor.redColor()
         
-        print("User Logged Out")
     }
     
     func setViewBackgroundImage(imageName:String)
@@ -133,30 +141,66 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         super.touchesBegan(touches, withEvent: event)
     }
     
+    @IBAction func registerButtonClicked(sender: AnyObject)
+    {
+        
+    }
     
-    @IBAction func registerAction(sender: AnyObject) {
-//        NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-//        NSString *trimmed = [rawString stringByTrimmingCharactersInSet:whitespace];
-//      
-       
-        
-       
-        let whitespace = NSCharacterSet.whitespaceCharacterSet()
-     //   var trim = emailTextField.text!.stringByTrimmingCharactersInSet(whitespace)
-
-        
-        if ((DataValidations.isValidEmail(emailTextField.text!)) && (emailTextField.text?.stringByTrimmingCharactersInSet(whitespace)) != ""){
-          print("mail is valid")
+    
+    @IBAction func validateUserEmail(sender: AnyObject)
+    {
+        if(DataValidations.isValidEmail(emailTextField.text!))
+        {
+            hideErrorMessage("Email", textField: emailTextField)
         }
-        
-        
-        
-//        var userObj = MyUser()
-//        userObj.emailS
-//
-//        var client = UserDAO(managedObjectContext: self.managedObjectContext!)
-//        client.save(managedObjectContext!, userId: 2, Email: self.emailTextField.text!, UserName: userNameTextField.text!, firstName: firstNameTextField.text!, LastName: lastNameTextField.text!, Phone: , ImageUrl: "image" , password: "123")
-//        
+        else
+        {
+            
+        }
+    }
+    
+    func validateRegisterButton()
+    {
+        if (isEmailValid && isLastNameValid && isPasswordValid && isFirstNameValid && isUserNameValid)
+        {
+            enableRegisterButton()
+        }
+        else
+        {
+            disableRegisterButton()
+        }
+    }
+    
+    func enableRegisterButton()
+    {
+        registerButton.enabled = true
+        registerButton.alpha = 1.0
+    }
+    
+    func disableRegisterButton()
+    {
+        registerButton.enabled = false
+        registerButton.alpha = 0.7
+    }
+    
+    
+    
+    func showErrorMessage(message:String , textField:HoshiTextField)
+    {
+        textField.borderInactiveColor = UIColor.redColor()
+        textField.borderActiveColor = UIColor.redColor()
+        textField.placeholderColor = UIColor.redColor()
+        textField.placeholderLabel.text = message
+        textField.placeholderLabel.sizeToFit()
+        textField.placeholderLabel.alpha = 1.0
+    }
+    
+    func hideErrorMessage(message : String , textField: HoshiTextField)
+    {
+        textField.borderInactiveColor = UIColor.greenColor()
+        textField.borderActiveColor = UIColor.greenColor()
+        textField.placeholderColor = UIColor.whiteColor()
+        textField.placeholderLabel.text = message
     }
     
 }

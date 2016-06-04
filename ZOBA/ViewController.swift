@@ -59,17 +59,6 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
         fbLoginButton.delegate = self
         fbLoginButton.loginBehavior = FBSDKLoginBehavior.Native
         
-        //let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        //self.managedObjectContext = appDel.managedObjectContext
-        
-//        var client = UserDAO(managedObjectContext: self.managedObjectContext)
-//        client.save(managedObjectContext, userId: 2, Email: "omima@", UserName: "omima", firstName: "omima", LastName: "ibra", Phone: "222", ImageUrl: "image" , password: "123")
-        
-        //client.delete(managedObjectContext, Id: 2)
-     //print(client.selectById(managedObjectContext, Id: 2).firstName)
- //print(client.selectAll(managedObjectContext).count)
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -169,11 +158,7 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
-               
-        
     }
-  
-    
     
     /*
      * Detect when text field gains focus
