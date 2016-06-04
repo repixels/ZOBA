@@ -20,6 +20,7 @@ class WebServiceConnection {
         self.userobj = userobj
     }
     
+
     func LoginWithUserName(url: String , user : MyUser , result: (returnedUser : MyUser?)->Void) {
       
         Alamofire.request(.GET, url ,parameters: ["pass" : user.password! , "user": user.userName!])
@@ -34,8 +35,10 @@ class WebServiceConnection {
                 user.lastName=json?.lastName
                 
                 result(returnedUser: user)
-          }
+                
+        }
     }
+    
     
     func LoginWithEmail(url: String , user : MyUser , result: (returnedUser : MyUser?)->Void) {
         
@@ -58,7 +61,7 @@ class WebServiceConnection {
       func registration(url: String , user : MyUser ,result: (returnedUser : MyUser?)->Void) {
         Alamofire.request(.GET, url, parameters: ["username": user.userName! , "email" : user.email! , "password" : user.password! , "firstName" : user.firstName! , "lastName" : user.lastName! , "phone" : user.phone!])
             .validate().responseObject {  (response: Response<MyUser, NSError>) in
-    
+                
                 let json = response.result.value
                 
                 user.userName = json?.userName
@@ -66,10 +69,10 @@ class WebServiceConnection {
                 user.email=json?.email
                 user.firstName=json?.firstName
                 user.lastName=json?.lastName
-    
+                
                 result(returnedUser: user)
         }
-    
+        
     }
     
     

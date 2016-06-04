@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="TgE-3r-3Qv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="TgE-3r-3Qv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -36,6 +36,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="emailEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="Uug-U5-xOp"/>
+                                    <action selector="emailEditingDidBegin:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="F2p-Gw-OaK"/>
+                                    <action selector="emailEditingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="WuL-FS-dgr"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RdT-HJ-rbx" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="290" width="280" height="48"/>
@@ -56,6 +61,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="passwordEditingDidEnd:" destination="BYZ-38-t0r" eventType="editingChanged" id="B3v-ot-XQ4"/>
+                                    <action selector="passwordEditingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="Okw-rQ-zyf"/>
+                                    <action selector="passwordEditingDidEnd:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="bE2-ea-ApB"/>
+                                </connections>
                             </textField>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="4UO-9a-O1g">
                                 <rect key="frame" x="96" y="28" width="128" height="157"/>
@@ -63,6 +73,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Daw-8I-mzA">
                                 <rect key="frame" x="160" y="391" width="140" height="47"/>
                                 <color key="backgroundColor" red="0.19215686274509805" green="0.80392156862745101" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="REGISTER">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -70,12 +81,15 @@
                                     <segue destination="R8G-2M-mrc" kind="push" id="0OQ-Er-OwQ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6m-lB-Ogk">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6m-lB-Ogk">
                                 <rect key="frame" x="20" y="391" width="140" height="47"/>
                                 <color key="backgroundColor" red="0.19215686274509805" green="0.5607843137254902" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="LOG IN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tU0-2g-bDu">
@@ -121,20 +135,24 @@
                     <view key="view" contentMode="scaleToFill" id="R0H-X9-TTe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <userGuides>
-                            <userLayoutGuide location="160" affinity="minX"/>
-                        </userGuides>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pw-xu-74M" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="20" y="492" width="280" height="45"/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgH-6c-kdP">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgH-6c-kdP">
                                 <rect key="frame" x="20" y="391" width="280" height="47"/>
                                 <color key="backgroundColor" red="0.19215686269999999" green="0.80392156859999997" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="REGISTER">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="registerButtonClicked:" destination="R8G-2M-mrc" eventType="touchUpInside" id="dqC-5V-msi"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ImV-Ry-feh" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="165" y="97" width="135" height="48"/>
@@ -155,6 +173,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="validateLastName:" destination="R8G-2M-mrc" eventType="editingDidBegin" id="7r2-EO-bG6"/>
+                                    <action selector="validateLastName:" destination="R8G-2M-mrc" eventType="editingChanged" id="pRW-aT-FTu"/>
+                                    <action selector="validateLastName:" destination="R8G-2M-mrc" eventType="editingDidEnd" id="xSQ-7K-KV0"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wW2-zZ-QaO" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="168" width="280" height="48"/>
@@ -175,6 +198,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="validateUserEmail:" destination="R8G-2M-mrc" eventType="editingDidEnd" id="53g-iU-FMz"/>
+                                    <action selector="validateUserEmail:" destination="R8G-2M-mrc" eventType="editingDidBegin" id="hWg-pP-81U"/>
+                                    <action selector="validateUserEmail:" destination="R8G-2M-mrc" eventType="editingChanged" id="mZr-Df-kq9"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="User Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3cP-vu-l3Y" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="237" width="280" height="48"/>
@@ -195,6 +223,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="validateUserName:" destination="R8G-2M-mrc" eventType="editingDidBegin" id="PGq-Ou-IDP"/>
+                                    <action selector="validateUserName:" destination="R8G-2M-mrc" eventType="editingChanged" id="RUP-dD-8ZU"/>
+                                    <action selector="validateUserName:" destination="R8G-2M-mrc" eventType="editingDidEnd" id="rJh-tU-O8n"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KkZ-29-TFJ" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="307" width="280" height="48"/>
@@ -215,6 +248,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="validatePassword:" destination="R8G-2M-mrc" eventType="editingDidEnd" id="CA9-EN-6uE"/>
+                                    <action selector="validatePassword:" destination="R8G-2M-mrc" eventType="editingChanged" id="RpO-AR-PNs"/>
+                                    <action selector="validatePassword:" destination="R8G-2M-mrc" eventType="editingDidBegin" id="ySZ-4D-Efz"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YAE-EK-uB7" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="97" width="132" height="48"/>
@@ -235,6 +273,11 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="validateFirstName:" destination="R8G-2M-mrc" eventType="editingDidBegin" id="lfE-1e-HXp"/>
+                                    <action selector="validateFirstName:" destination="R8G-2M-mrc" eventType="editingChanged" id="nTP-Sa-M7E"/>
+                                    <action selector="validateFirstName:" destination="R8G-2M-mrc" eventType="editingDidEnd" id="utj-7Y-OVQ"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

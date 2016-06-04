@@ -1,6 +1,6 @@
 //
 //  MyUser+CoreDataProperties.swift
-//  
+//
 //
 //  Created by ZOBA on 6/1/16.
 //
@@ -22,7 +22,5 @@ extension MyUser {
     @NSManaged var phone: String?
     @NSManaged var userId: Int64
     @NSManaged var userName: String?
-    
-   
 
 }
