@@ -9,6 +9,8 @@ target 'ZOBA' do
   pod 'Onboard'
   pod "TextFieldEffects"
   pod 'Alamofire', '~> 3.4'
+  pod 'AlamofireObjectMapper', '~> 3.0'
+  pod 'ObjectMapper', '~> 1.3'
 
   # Pods for ZOBA
 
