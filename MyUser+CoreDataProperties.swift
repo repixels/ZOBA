@@ -1,8 +1,8 @@
 //
 //  MyUser+CoreDataProperties.swift
-//  
 //
-//  Created by ZOBA on 5/31/16.
+//
+//  Created by ZOBA on 6/1/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

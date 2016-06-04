@@ -77,7 +77,7 @@ class UserDAO {
     func selectById(managedObjectContext : NSManagedObjectContext,Id _id :Int) -> MyUser{
         
         
-        let users =     selectBy(managedObjectContext, attribute: "userId", value: String(_id))
+        let users = selectBy(managedObjectContext, attribute: "userId", value: String(_id))
         var user :MyUser!
         
         if users.count > 0 {

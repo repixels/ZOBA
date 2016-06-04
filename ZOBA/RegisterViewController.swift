@@ -13,6 +13,7 @@ import FBSDKShareKit
 import FBSDKLoginKit
 import TextFieldEffects
 import CoreData
+import Alamofire
 
 class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
