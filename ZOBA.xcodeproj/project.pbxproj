@@ -37,7 +37,7 @@
 		82F8B8C91CF8B52A00E46B05 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */; };
 		82F8B8CA1CF8B52A00E46B05 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */; };
 		D7E3809149A0ABDF4F894412 /* Pods_ZOBATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */; };
-		DC04DA3C1CFE99D5008E4E64 /* connectionToWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* connectionToWebService.swift */; };
+		DC04DA3C1CFE99D5008E4E64 /* WebServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */; };
 		DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC401CFC33A400637977 /* DataValidations.swift */; };
 		DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */; };
 		DCFC30DF1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC30DD1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift */; };
@@ -105,7 +105,7 @@
 		BD7787F9DCD77BFD9E47D307 /* Pods-ZOBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA.debug.xcconfig"; sourceTree = "<group>"; };
 		C8594A3E0A7DBD3B1374B0E8 /* Pods-ZOBATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBATests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBATests/Pods-ZOBATests.debug.xcconfig"; sourceTree = "<group>"; };
 		D330313799DC0A970BE8E5C7 /* Pods_ZOBA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC04DA3B1CFE99D5008E4E64 /* connectionToWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = connectionToWebService.swift; sourceTree = "<group>"; };
+		DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceConnection.swift; sourceTree = "<group>"; };
 		DCE6DC401CFC33A400637977 /* DataValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidations.swift; sourceTree = "<group>"; };
 		DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		DCFC30DD1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 				829C43791CFBAC9500869E59 /* RegisterViewController.swift */,
 				DCE6DC401CFC33A400637977 /* DataValidations.swift */,
 				DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */,
-				DC04DA3B1CFE99D5008E4E64 /* connectionToWebService.swift */,
+				DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */,
 			);
 			path = ZOBA;
 			sourceTree = "<group>";
@@ -571,7 +571,7 @@
 				DCFC30DF1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift in Sources */,
 				827827571CF837D600684CE5 /* AppDelegate.swift in Sources */,
 				829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */,
-				DC04DA3C1CFE99D5008E4E64 /* connectionToWebService.swift in Sources */,
+				DC04DA3C1CFE99D5008E4E64 /* WebServiceConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
