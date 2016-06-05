@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		39A2F33710BE64FC9853582A /* Pods_ZOBA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D330313799DC0A970BE8E5C7 /* Pods_ZOBA.framework */; };
 		72BCD1798DE0A8E58F71CC74 /* Pods_ZOBAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */; };
+		8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */; };
+		8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E19B1D0426430044C2CB /* HomeViewController.swift */; };
 		827827571CF837D600684CE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827561CF837D600684CE5 /* AppDelegate.swift */; };
 		827827591CF837D600684CE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* ViewController.swift */; };
 		8278275C1CF837D600684CE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8278275A1CF837D600684CE5 /* Main.storyboard */; };
@@ -68,6 +70,8 @@
 		15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4DC4794BB8782CEF3EBF4B /* Pods-ZOBA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBA.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA.release.xcconfig"; sourceTree = "<group>"; };
 		3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryBoard.storyboard; sourceTree = "<group>"; };
+		8255E19B1D0426430044C2CB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		827827531CF837D600684CE5 /* ZOBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZOBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		827827561CF837D600684CE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		827827581CF837D600684CE5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 				DCE6DC401CFC33A400637977 /* DataValidations.swift */,
 				DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */,
 				DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */,
+				8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */,
+				8255E19B1D0426430044C2CB /* HomeViewController.swift */,
 			);
 			path = ZOBA;
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 				82F8B8BE1CF8905B00E46B05 /* contm.ttf in Resources */,
 				82F8B8BF1CF8905B00E46B05 /* nasalization rg.ttf in Resources */,
 				82F8B8A11CF8807400E46B05 /* service-centers.png in Resources */,
+				8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */,
 				82F8B89F1CF8807400E46B05 /* logo.png in Resources */,
 				82F8B8A41CF8807400E46B05 /* tips.png in Resources */,
 				827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */,
@@ -569,6 +576,7 @@
 				DCFC30E31CFDDF4D0018BBD3 /* UserDAO.swift in Sources */,
 				DCFC30E01CFDDEB40018BBD3 /* MyUser.swift in Sources */,
 				DCFC30DF1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift in Sources */,
+				8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */,
 				827827571CF837D600684CE5 /* AppDelegate.swift in Sources */,
 				829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */,
 				DC04DA3C1CFE99D5008E4E64 /* WebServiceConnection.swift in Sources */,
