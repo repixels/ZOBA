@@ -12,11 +12,12 @@ import FoldingTabBar
 class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YALTabBarInteracting {
 
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarView.delegate = self
         prepareTabBar()
-        
+        UINavigationBar.appearance().setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
 
         // Do any additional setup after loading the view.
     }
