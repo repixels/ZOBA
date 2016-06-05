@@ -1,9 +1,9 @@
 //
 //  MyUser.swift
-//  ZOBA
+//  
 //
-//  Created by ZOBA on 5/31/16.
-//  Copyright © 2016 RE Pixels. All rights reserved.
+//  Created by me on 6/4/16.
+//
 //
 
 import Foundation
@@ -15,6 +15,7 @@ import AlamofireObjectMapper
 class MyUser : NSManagedObject , Mappable {
 
 // Insert code here to add functionality to your managed object subclass
+
 
     
     var mangedObje : NSManagedObject!
@@ -48,7 +49,5 @@ class MyUser : NSManagedObject , Mappable {
         lastName   <- map["username"]
         email   <- map["email"]
     }
+
 }
-
-    
-
