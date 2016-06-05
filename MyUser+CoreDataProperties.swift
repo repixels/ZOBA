@@ -1,6 +1,6 @@
 //
 //  MyUser+CoreDataProperties.swift
-//  
+//
 //
 //  Created by me on 6/4/16.
 //
