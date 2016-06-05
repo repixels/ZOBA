@@ -20,6 +20,7 @@ extension NSManagedObject{
     
     static func getPrivateContext() -> NSManagedObjectContext
     {
+    
         privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         privateContext.persistentStoreCoordinator = delegate.persistentStoreCoordinator
@@ -29,36 +30,45 @@ extension NSManagedObject{
     convenience init( backGroundEntity :String) {
         
         let privateContext =  NSManagedObject.getPrivateContext()
-        //        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        //        privateContext.persistentStoreCoordinator = delegate.persistentStoreCoordinator
-        let desc = NSEntityDescription.entityForName(backGroundEntity, inManagedObjectContext: privateContext)
-        
-        self.init(entity: desc!,insertIntoManagedObjectContext:privateContext)
+        self.init(managedObjectContext: privateContext , entityName: backGroundEntity)
     }
     
     convenience init(unmanagedEntity : String){
-        //        let privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        //        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        //        privateContext.persistentStoreCoordinator = delegate.persistentStoreCoordinator
+        
         let privateContext =  NSManagedObject.getPrivateContext()
         let desc = NSEntityDescription.entityForName(unmanagedEntity, inManagedObjectContext: privateContext)
         self.init(entity: desc!,insertIntoManagedObjectContext:nil)
     }
     
+    convenience init(managedObjectContext moc: NSManagedObjectContext , entityName entity: String){
     
-    func save(managedObjectContext moc : NSManagedObjectContext) -> (Bool){
-        var saved = false
+        let desc = NSEntityDescription.entityForName(entity, inManagedObjectContext: moc)
+        self.init(entity: desc!,insertIntoManagedObjectContext:moc)
+    }
+    
+    
+    func save(){
+        let moc = self.managedObjectContext
+        
         do {
-            try moc.save()
-            saved = true
+            try moc!.save()
+            
             
         }
         catch let error {
-            print(error)
+            print("save error :  \(error)")
         }
         
-        return saved
+        
     }
     
+    
+    func delete(){
+    
+        let moc = self.managedObjectContext
+        moc?.deleteObject(self)
+        save()
+    
+    }
 }
 

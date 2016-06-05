@@ -36,6 +36,7 @@
 		82F8B8C81CF8B52A00E46B05 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C51CF8B52A00E46B05 /* FBSDKCoreKit.framework */; };
 		82F8B8C91CF8B52A00E46B05 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */; };
 		82F8B8CA1CF8B52A00E46B05 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */; };
+		83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC89F1D048766006CC257 /* AbstractDao.swift */; };
 		8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */; };
 		8C9E42AA1D03289900DB1E56 /* MyUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E42A61D03289900DB1E56 /* MyUser+CoreDataProperties.swift */; };
 		8C9E42AB1D03289900DB1E56 /* MyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E42A71D03289900DB1E56 /* MyUser.swift */; };
@@ -103,6 +104,7 @@
 		82F8B8C51CF8B52A00E46B05 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		83BAC89F1D048766006CC257 /* AbstractDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDao.swift; sourceTree = "<group>"; };
 		8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = managedObjectExtension.swift; sourceTree = "<group>"; };
 		8C9E42A61D03289900DB1E56 /* MyUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8C9E42A71D03289900DB1E56 /* MyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUser.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			children = (
 				DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */,
 				8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */,
+				83BAC89F1D048766006CC257 /* AbstractDao.swift */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				8C9E42AC1D03289900DB1E56 /* Vehicle+CoreDataProperties.swift in Sources */,
 				829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */,
 				8C9E42AB1D03289900DB1E56 /* MyUser.swift in Sources */,
+				83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
