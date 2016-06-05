@@ -59,7 +59,7 @@ class WebServiceConnection {
     }
     
       func registration(url: String , user : MyUser ,result: (returnedUser : MyUser?)->Void) {
-        Alamofire.request(.GET, url, parameters: ["username": user.userName! , "email" : user.email! , "password" : user.password! , "firstName" : user.firstName! , "lastName" : user.lastName! , "phone" : user.phone!])
+        Alamofire.request(.GET, url, parameters: ["username": user.userName! , "email" : user.email! , "password" : user.password! , "firstName" : user.firstName! , "lastName" : user.lastName! ])
             .validate().responseObject {  (response: Response<MyUser, NSError>) in
                 
                 let json = response.result.value

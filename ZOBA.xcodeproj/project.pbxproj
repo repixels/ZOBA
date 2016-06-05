@@ -42,6 +42,7 @@
 		8C9E42AC1D03289900DB1E56 /* Vehicle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E42A81D03289900DB1E56 /* Vehicle+CoreDataProperties.swift */; };
 		8C9E42AD1D03289900DB1E56 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E42A91D03289900DB1E56 /* Vehicle.swift */; };
 		D7E3809149A0ABDF4F894412 /* Pods_ZOBATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */; };
+		DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */; };
 		DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC401CFC33A400637977 /* DataValidations.swift */; };
 		DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */; };
 		DCFC30E31CFDDF4D0018BBD3 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */; };
@@ -570,6 +571,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */,
 				8C9E42AD1D03289900DB1E56 /* Vehicle.swift in Sources */,
 				8C9E42AA1D03289900DB1E56 /* MyUser+CoreDataProperties.swift in Sources */,
 				827827591CF837D600684CE5 /* ViewController.swift in Sources */,

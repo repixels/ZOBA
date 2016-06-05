@@ -23,6 +23,7 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
     @IBOutlet weak var registerButton: UIButton!
     
     
+    
     var managedObjectContext :NSManagedObjectContext!
     /*
      * Text Fields
@@ -265,6 +266,23 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
         
     }
     
+    
+    @IBAction func loginWebSer(sender: AnyObject) {
+       
+        let user = MyUser(unmanagedEntity: "MyUser")
+        
+        let conn  = WebServiceConnection(userobj: user)
+
+        user.email = emailTextField.text
+        user.password = passwordTextField.text
+        
+        conn.LoginWithEmail("http://localhost:8080/WebServiceProject/login", user: user){
+            (user:MyUser?) -> Void in
+            
+        }
+        
+        
+    }
     func showEmailValidMessage(message:String)
     {
         self.emailTextField.borderInactiveColor = UIColor.greenColor()
