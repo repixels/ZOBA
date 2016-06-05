@@ -2,7 +2,7 @@
 //  MyUser+CoreDataProperties.swift
 //  
 //
-//  Created by ZOBA on 6/1/16.
+//  Created by me on 6/4/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -22,7 +22,6 @@ extension MyUser {
     @NSManaged var phone: String?
     @NSManaged var userId: Int64
     @NSManaged var userName: String?
-    
-   
+    @NSManaged var vehicle: NSSet?
 
 }
