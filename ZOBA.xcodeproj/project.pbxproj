@@ -16,7 +16,8 @@
 		82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7F1D0490E400BC80DD /* AddTripViewController.swift */; };
 		8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */; };
 		8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E19B1D0426430044C2CB /* HomeViewController.swift */; };
-		827827571CF837D600684CE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827561CF837D600684CE5 /* AppDelegate.swift */; };
+		8265E7F01D0583560039D0AF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C43791CFBAC9500869E59 /* RegisterViewController.swift */; };
+		8265E7F11D0583780039D0AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827561CF837D600684CE5 /* AppDelegate.swift */; };
 		827827591CF837D600684CE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* ViewController.swift */; };
 		8278275C1CF837D600684CE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8278275A1CF837D600684CE5 /* Main.storyboard */; };
 		8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */; };
@@ -24,7 +25,6 @@
 		827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 827827621CF837D600684CE5 /* LaunchScreen.storyboard */; };
 		8278276F1CF837D600684CE5 /* ZOBATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8278276E1CF837D600684CE5 /* ZOBATests.swift */; };
 		8278277A1CF837D600684CE5 /* ZOBAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827791CF837D600684CE5 /* ZOBAUITests.swift */; };
-		829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C43791CFBAC9500869E59 /* RegisterViewController.swift */; };
 		829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829C437B1CFBBA1E00869E59 /* Media.xcassets */; };
 		82EF3BE01D056E3F00AC103C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */; };
 		82EF3BE31D056E3F00AC103C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF3BE21D056E3F00AC103C /* TodayViewController.swift */; };
@@ -780,6 +780,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8265E7F11D0583780039D0AF /* AppDelegate.swift in Sources */,
+				8265E7F01D0583560039D0AF /* RegisterViewController.swift in Sources */,
 				DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */,
 				8C9E42AD1D03289900DB1E56 /* Vehicle.swift in Sources */,
 				8C9E42AA1D03289900DB1E56 /* MyUser+CoreDataProperties.swift in Sources */,
@@ -790,19 +792,12 @@
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
 				8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */,
 				DCFC30E31CFDDF4D0018BBD3 /* UserDAO.swift in Sources */,
-				DCFC30E01CFDDEB40018BBD3 /* MyUser.swift in Sources */,
-				DCFC30DF1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift in Sources */,
 				8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */,
-				827827571CF837D600684CE5 /* AppDelegate.swift in Sources */,
 				82057F791D048FDA00BC80DD /* AddOilViewController.swift in Sources */,
 				82057F741D048C1700BC80DD /* AddVehicleViewController.swift in Sources */,
-				829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */,
 				82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */,
-				DC04DA3C1CFE99D5008E4E64 /* WebServiceConnection.swift in Sources */,
 				82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */,
-				827827571CF837D600684CE5 /* AppDelegate.swift in Sources */,
 				8C9E42AC1D03289900DB1E56 /* Vehicle+CoreDataProperties.swift in Sources */,
-				829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */,
 				8C9E42AB1D03289900DB1E56 /* MyUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1126,6 +1121,7 @@
 				82EF3BEC1D056E3F00AC103C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
