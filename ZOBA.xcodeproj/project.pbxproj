@@ -14,6 +14,21 @@
 		82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */; };
 		82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7D1D0490D600BC80DD /* TimelineViewController.swift */; };
 		82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7F1D0490E400BC80DD /* AddTripViewController.swift */; };
+		82501A751D05A9A3008272CB /* add-fuel.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A661D05A9A3008272CB /* add-fuel.png */; };
+		82501A761D05A9A3008272CB /* add-oil.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A671D05A9A3008272CB /* add-oil.png */; };
+		82501A771D05A9A3008272CB /* add-trip.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A681D05A9A3008272CB /* add-trip.png */; };
+		82501A781D05A9A3008272CB /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A691D05A9A3008272CB /* calendar.png */; };
+		82501A791D05A9A3008272CB /* flag.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A6A1D05A9A3008272CB /* flag.png */; };
+		82501A7A1D05A9A3008272CB /* gas-level.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A6B1D05A9A3008272CB /* gas-level.png */; };
+		82501A7B1D05A9A3008272CB /* hexa.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A6C1D05A9A3008272CB /* hexa.png */; };
+		82501A7C1D05A9A3008272CB /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A6D1D05A9A3008272CB /* line.png */; };
+		82501A7D1D05A9A3008272CB /* Odometer.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A6E1D05A9A3008272CB /* Odometer.png */; };
+		82501A7E1D05A9A3008272CB /* oil-level.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A6F1D05A9A3008272CB /* oil-level.png */; };
+		82501A7F1D05A9A3008272CB /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A701D05A9A3008272CB /* placeholder.png */; };
+		82501A801D05A9A3008272CB /* rainbow.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A711D05A9A3008272CB /* rainbow.png */; };
+		82501A811D05A9A3008272CB /* route.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A721D05A9A3008272CB /* route.png */; };
+		82501A821D05A9A3008272CB /* service-car.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A731D05A9A3008272CB /* service-car.png */; };
+		82501A831D05A9A3008272CB /* timeline-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A741D05A9A3008272CB /* timeline-circle.png */; };
 		8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */; };
 		8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E19B1D0426430044C2CB /* HomeViewController.swift */; };
 		8265E7F01D0583560039D0AF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C43791CFBAC9500869E59 /* RegisterViewController.swift */; };
@@ -108,6 +123,21 @@
 		82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFuelViewController.swift; sourceTree = "<group>"; };
 		82057F7D1D0490D600BC80DD /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		82057F7F1D0490E400BC80DD /* AddTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
+		82501A661D05A9A3008272CB /* add-fuel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-fuel.png"; sourceTree = "<group>"; };
+		82501A671D05A9A3008272CB /* add-oil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-oil.png"; sourceTree = "<group>"; };
+		82501A681D05A9A3008272CB /* add-trip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-trip.png"; sourceTree = "<group>"; };
+		82501A691D05A9A3008272CB /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
+		82501A6A1D05A9A3008272CB /* flag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flag.png; sourceTree = "<group>"; };
+		82501A6B1D05A9A3008272CB /* gas-level.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gas-level.png"; sourceTree = "<group>"; };
+		82501A6C1D05A9A3008272CB /* hexa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hexa.png; sourceTree = "<group>"; };
+		82501A6D1D05A9A3008272CB /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		82501A6E1D05A9A3008272CB /* Odometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Odometer.png; sourceTree = "<group>"; };
+		82501A6F1D05A9A3008272CB /* oil-level.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oil-level.png"; sourceTree = "<group>"; };
+		82501A701D05A9A3008272CB /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		82501A711D05A9A3008272CB /* rainbow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rainbow.png; sourceTree = "<group>"; };
+		82501A721D05A9A3008272CB /* route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = route.png; sourceTree = "<group>"; };
+		82501A731D05A9A3008272CB /* service-car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "service-car.png"; sourceTree = "<group>"; };
+		82501A741D05A9A3008272CB /* timeline-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline-circle.png"; sourceTree = "<group>"; };
 		8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryBoard.storyboard; sourceTree = "<group>"; };
 		8255E19B1D0426430044C2CB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		827827531CF837D600684CE5 /* ZOBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZOBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -427,6 +457,21 @@
 				82F8B89C1CF8807400E46B05 /* street.png */,
 				82F8B89D1CF8807400E46B05 /* tips.png */,
 				82F8B89E1CF8807400E46B05 /* tracking.png */,
+				82501A661D05A9A3008272CB /* add-fuel.png */,
+				82501A671D05A9A3008272CB /* add-oil.png */,
+				82501A681D05A9A3008272CB /* add-trip.png */,
+				82501A691D05A9A3008272CB /* calendar.png */,
+				82501A6A1D05A9A3008272CB /* flag.png */,
+				82501A6B1D05A9A3008272CB /* gas-level.png */,
+				82501A6C1D05A9A3008272CB /* hexa.png */,
+				82501A6D1D05A9A3008272CB /* line.png */,
+				82501A6E1D05A9A3008272CB /* Odometer.png */,
+				82501A6F1D05A9A3008272CB /* oil-level.png */,
+				82501A701D05A9A3008272CB /* placeholder.png */,
+				82501A711D05A9A3008272CB /* rainbow.png */,
+				82501A721D05A9A3008272CB /* route.png */,
+				82501A731D05A9A3008272CB /* service-car.png */,
+				82501A741D05A9A3008272CB /* timeline-circle.png */,
 			);
 			path = media;
 			sourceTree = "<group>";
@@ -606,25 +651,40 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82501A7A1D05A9A3008272CB /* gas-level.png in Resources */,
+				82501A7E1D05A9A3008272CB /* oil-level.png in Resources */,
+				82501A781D05A9A3008272CB /* calendar.png in Resources */,
+				82501A821D05A9A3008272CB /* service-car.png in Resources */,
+				82501A7C1D05A9A3008272CB /* line.png in Resources */,
 				82F8B8C31CF89A2500E46B05 /* splash-background.png in Resources */,
 				82F8B8BE1CF8905B00E46B05 /* contm.ttf in Resources */,
 				82F8B8BF1CF8905B00E46B05 /* nasalization rg.ttf in Resources */,
 				82F8B8A11CF8807400E46B05 /* service-centers.png in Resources */,
+				82501A791D05A9A3008272CB /* flag.png in Resources */,
+				82501A801D05A9A3008272CB /* rainbow.png in Resources */,
+				82501A771D05A9A3008272CB /* add-trip.png in Resources */,
+				82501A811D05A9A3008272CB /* route.png in Resources */,
 				8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */,
 				82F8B89F1CF8807400E46B05 /* logo.png in Resources */,
 				82F8B8A41CF8807400E46B05 /* tips.png in Resources */,
+				82501A7F1D05A9A3008272CB /* placeholder.png in Resources */,
+				82501A761D05A9A3008272CB /* add-oil.png in Resources */,
 				827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */,
 				82F8B8C41CF89A2500E46B05 /* splash-logo.png in Resources */,
+				82501A751D05A9A3008272CB /* add-fuel.png in Resources */,
 				827827611CF837D600684CE5 /* Assets.xcassets in Resources */,
 				82F8B8C01CF8905B00E46B05 /* sf-outer-limits.upright.ttf in Resources */,
 				82F8B8A31CF8807400E46B05 /* street.png in Resources */,
 				82F8B8BC1CF8905B00E46B05 /* contb.ttf in Resources */,
 				82F8B8A51CF8807400E46B05 /* tracking.png in Resources */,
 				82F8B8A21CF8807400E46B05 /* statistics.png in Resources */,
+				82501A7D1D05A9A3008272CB /* Odometer.png in Resources */,
 				82F8B8BD1CF8905B00E46B05 /* contl.ttf in Resources */,
 				8278275C1CF837D600684CE5 /* Main.storyboard in Resources */,
+				82501A831D05A9A3008272CB /* timeline-circle.png in Resources */,
 				829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */,
 				82F8B8A01CF8807400E46B05 /* rescue.png in Resources */,
+				82501A7B1D05A9A3008272CB /* hexa.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

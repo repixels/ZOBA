@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController {
+class TimelineViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +16,10 @@ class TimelineViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSForegroundColorAttributeName: UIColor.whiteColor(),
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
+        self.edgesForExtendedLayout = UIRectEdge.None
+        self.extendedLayoutIncludesOpaqueBars = false
+        self.automaticallyAdjustsScrollViewInsets = false
 
         // Do any additional setup after loading the view.
     }
