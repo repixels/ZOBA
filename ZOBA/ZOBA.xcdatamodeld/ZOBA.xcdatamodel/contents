@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15A284" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Automatic">
     <entity name="MyUser" representedClassName=".MyUser" syncable="YES">
         <attribute name="email" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -9,8 +9,19 @@
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="userName" attributeType="String" syncable="YES"/>
+        <relationship name="vehicle" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Vehicle" inverseName="user" inverseEntity="Vehicle" syncable="YES"/>
+    </entity>
+    <entity name="Vehicle" representedClassName=".Vehicle" syncable="YES">
+        <attribute name="currentOdemeter" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="initialOdemeter" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="isOwnedByThisUser" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="licensePlate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vehicleId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="user" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="MyUser" inverseName="vehicle" inverseEntity="MyUser" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MyUser" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="MyUser" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Vehicle" positionX="-63" positionY="45" width="128" height="150"/>
     </elements>
 </model>

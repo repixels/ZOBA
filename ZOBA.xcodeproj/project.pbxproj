@@ -47,12 +47,15 @@
 		82F8B8C81CF8B52A00E46B05 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C51CF8B52A00E46B05 /* FBSDKCoreKit.framework */; };
 		82F8B8C91CF8B52A00E46B05 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */; };
 		82F8B8CA1CF8B52A00E46B05 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */; };
+		8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */; };
+		8C9E42AA1D03289900DB1E56 /* MyUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E42A61D03289900DB1E56 /* MyUser+CoreDataProperties.swift */; };
+		8C9E42AB1D03289900DB1E56 /* MyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E42A71D03289900DB1E56 /* MyUser.swift */; };
+		8C9E42AC1D03289900DB1E56 /* Vehicle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E42A81D03289900DB1E56 /* Vehicle+CoreDataProperties.swift */; };
+		8C9E42AD1D03289900DB1E56 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E42A91D03289900DB1E56 /* Vehicle.swift */; };
 		D7E3809149A0ABDF4F894412 /* Pods_ZOBATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */; };
-		DC04DA3C1CFE99D5008E4E64 /* WebServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */; };
+		DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */; };
 		DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC401CFC33A400637977 /* DataValidations.swift */; };
 		DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */; };
-		DCFC30DF1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC30DD1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift */; };
-		DCFC30E01CFDDEB40018BBD3 /* MyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC30DE1CFDDEB40018BBD3 /* MyUser.swift */; };
 		DCFC30E31CFDDF4D0018BBD3 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +148,11 @@
 		82F8B8C51CF8B52A00E46B05 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = managedObjectExtension.swift; sourceTree = "<group>"; };
+		8C9E42A61D03289900DB1E56 /* MyUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8C9E42A71D03289900DB1E56 /* MyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUser.swift; sourceTree = "<group>"; };
+		8C9E42A81D03289900DB1E56 /* Vehicle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vehicle+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8C9E42A91D03289900DB1E56 /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		B7974B3E65B33BEAC6D00F69 /* Pods-ZOBAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBAUITests/Pods-ZOBAUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BD7787F9DCD77BFD9E47D307 /* Pods-ZOBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA.debug.xcconfig"; sourceTree = "<group>"; };
 		C8594A3E0A7DBD3B1374B0E8 /* Pods-ZOBATests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBATests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBATests/Pods-ZOBATests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,8 +160,6 @@
 		DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceConnection.swift; sourceTree = "<group>"; };
 		DCE6DC401CFC33A400637977 /* DataValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidations.swift; sourceTree = "<group>"; };
 		DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		DCFC30DD1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MyUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		DCFC30DE1CFDDEB40018BBD3 /* MyUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUser.swift; sourceTree = "<group>"; };
 		DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -441,8 +447,10 @@
 		DCFC30DA1CFDDE740018BBD3 /* poco */ = {
 			isa = PBXGroup;
 			children = (
-				DCFC30DD1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift */,
-				DCFC30DE1CFDDEB40018BBD3 /* MyUser.swift */,
+				8C9E42A61D03289900DB1E56 /* MyUser+CoreDataProperties.swift */,
+				8C9E42A71D03289900DB1E56 /* MyUser.swift */,
+				8C9E42A81D03289900DB1E56 /* Vehicle+CoreDataProperties.swift */,
+				8C9E42A91D03289900DB1E56 /* Vehicle.swift */,
 			);
 			name = poco;
 			sourceTree = "<group>";
@@ -451,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */,
+				8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -771,11 +780,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */,
+				8C9E42AD1D03289900DB1E56 /* Vehicle.swift in Sources */,
+				8C9E42AA1D03289900DB1E56 /* MyUser+CoreDataProperties.swift in Sources */,
 				827827591CF837D600684CE5 /* ViewController.swift in Sources */,
 				8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */,
 				82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
+				8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */,
 				DCFC30E31CFDDF4D0018BBD3 /* UserDAO.swift in Sources */,
 				DCFC30E01CFDDEB40018BBD3 /* MyUser.swift in Sources */,
 				DCFC30DF1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift in Sources */,
@@ -787,6 +800,10 @@
 				82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */,
 				DC04DA3C1CFE99D5008E4E64 /* WebServiceConnection.swift in Sources */,
 				82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */,
+				827827571CF837D600684CE5 /* AppDelegate.swift in Sources */,
+				8C9E42AC1D03289900DB1E56 /* Vehicle+CoreDataProperties.swift in Sources */,
+				829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */,
+				8C9E42AB1D03289900DB1E56 /* MyUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
