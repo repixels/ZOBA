@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ZOBA Quick Access.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
 		<key>ZOBA.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>827827741CF837D600684CE5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>82EF3BDD1D056E3F00AC103C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

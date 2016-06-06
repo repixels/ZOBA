@@ -41,21 +41,24 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
     func prepareTabBar()
     {
         
-        let item1 = YALTabBarItem(itemImage: UIImage(named: "nearby_icon"), leftItemImage: UIImage(named: "nearby_icon"), rightItemImage: UIImage(named: "nearby_icon"))
-        let item2 = YALTabBarItem(itemImage: UIImage(named: "edit_icon"), leftItemImage: UIImage(named: "nearby_icon"), rightItemImage: UIImage(named: "nearby_icon"))
-        let item3 = YALTabBarItem(itemImage: UIImage(named: "search_icon"), leftItemImage: UIImage(named: "nearby_icon"), rightItemImage: UIImage(named: "nearby_icon"))
-        let item4 = YALTabBarItem(itemImage: UIImage(named: "new_chat_icon"), leftItemImage: UIImage(named: "nearby_icon"), rightItemImage: UIImage(named: "nearby_icon"))
+        let item1 = YALTabBarItem(itemImage: UIImage(named: "home-icon"), leftItemImage: UIImage(named: "add-vehicle"), rightItemImage: UIImage(named: "auto-report"))
+        
+        let item2 = YALTabBarItem(itemImage: UIImage(named: "add-trip"), leftItemImage:nil, rightItemImage: nil)
+        
+        let item3 = YALTabBarItem(itemImage: UIImage(named: "add-fuel"), leftItemImage: nil, rightItemImage: nil)
+        
+        let item4 = YALTabBarItem(itemImage: UIImage(named: "add-oil"), leftItemImage: nil, rightItemImage: nil)
         
         self.tabBarView.offsetForExtraTabBarItems = YALForExtraTabBarItemsDefaultOffset
         self.leftBarItems = [item1, item2]
         self.rightBarItems = [item3, item4]
         self.centerButtonImage = UIImage(named: "plus_icon")
-        self.tabBarViewHeight = 80.0
-        self.tabBarView.backgroundColor = UIColor.init(red: 94.0/255.0, green: 91.0/255.0 , blue: 178.0/255.0, alpha: 1.0)
+        self.tabBarViewHeight = 70.0
+//        self.tabBarView.backgroundColor = UIColor.init(red: 94.0/255.0, green: 91.0/255.0 , blue: 178.0/255.0, alpha: 1.0)
         
         self.tabBarView.tabBarColor = UIColor.init(red: 72.0/255.0, green: 211.0/255.0 , blue: 178.0/255.0, alpha: 1.0)
         
-        self.tabBarView.extraTabBarItemHeight = 60.0
+        self.tabBarView.extraTabBarItemHeight = 50.0
         self.tabBarView.tabBarViewEdgeInsets = YALTabBarViewHDefaultEdgeInsets
         self.tabBarView.tabBarItemsEdgeInsets = YALTabBarViewItemsDefaultEdgeInsets
         
@@ -63,8 +66,15 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
     
     func tabBarViewDidExpand(tabBarView: YALFoldingTabBar!) {
         print("Hello")
-        
-    }    
+    }
+    
+    func extraLeftItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
+        print("Extra Left Item Pressed")
+    }
+    
+    func extraRightItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
+        print("Extra Right Item Pressed")
+    }
     
 
 }

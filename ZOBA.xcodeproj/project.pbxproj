@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		39A2F33710BE64FC9853582A /* Pods_ZOBA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D330313799DC0A970BE8E5C7 /* Pods_ZOBA.framework */; };
 		72BCD1798DE0A8E58F71CC74 /* Pods_ZOBAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */; };
+		82057F741D048C1700BC80DD /* AddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F731D048C1700BC80DD /* AddVehicleViewController.swift */; };
+		82057F791D048FDA00BC80DD /* AddOilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F781D048FDA00BC80DD /* AddOilViewController.swift */; };
+		82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */; };
+		82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7D1D0490D600BC80DD /* TimelineViewController.swift */; };
+		82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7F1D0490E400BC80DD /* AddTripViewController.swift */; };
 		8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */; };
 		8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E19B1D0426430044C2CB /* HomeViewController.swift */; };
 		827827571CF837D600684CE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827561CF837D600684CE5 /* AppDelegate.swift */; };
@@ -21,6 +26,10 @@
 		8278277A1CF837D600684CE5 /* ZOBAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827791CF837D600684CE5 /* ZOBAUITests.swift */; };
 		829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C43791CFBAC9500869E59 /* RegisterViewController.swift */; };
 		829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829C437B1CFBBA1E00869E59 /* Media.xcassets */; };
+		82EF3BE01D056E3F00AC103C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */; };
+		82EF3BE31D056E3F00AC103C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF3BE21D056E3F00AC103C /* TodayViewController.swift */; };
+		82EF3BE61D056E3F00AC103C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82EF3BE41D056E3F00AC103C /* MainInterface.storyboard */; };
+		82EF3BEA1D056E3F00AC103C /* ZOBA Quick Access.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 82EF3BDE1D056E3F00AC103C /* ZOBA Quick Access.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		82F8B89F1CF8807400E46B05 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8981CF8807400E46B05 /* logo.png */; };
 		82F8B8A01CF8807400E46B05 /* rescue.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B8991CF8807400E46B05 /* rescue.png */; };
 		82F8B8A11CF8807400E46B05 /* service-centers.png in Resources */ = {isa = PBXBuildFile; fileRef = 82F8B89A1CF8807400E46B05 /* service-centers.png */; };
@@ -62,7 +71,28 @@
 			remoteGlobalIDString = 827827521CF837D600684CE5;
 			remoteInfo = ZOBA;
 		};
+		82EF3BE81D056E3F00AC103C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8278274B1CF837D600684CE5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 82EF3BDD1D056E3F00AC103C;
+			remoteInfo = "ZOBA Quick Access";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		82EF3BEE1D056E3F00AC103C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				82EF3BEA1D056E3F00AC103C /* ZOBA Quick Access.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		05E06D0C7F575767E06BD287 /* Pods-ZOBATests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBATests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBATests/Pods-ZOBATests.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,6 +100,11 @@
 		15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4DC4794BB8782CEF3EBF4B /* Pods-ZOBA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBA.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA.release.xcconfig"; sourceTree = "<group>"; };
 		3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82057F731D048C1700BC80DD /* AddVehicleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVehicleViewController.swift; sourceTree = "<group>"; };
+		82057F781D048FDA00BC80DD /* AddOilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOilViewController.swift; sourceTree = "<group>"; };
+		82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFuelViewController.swift; sourceTree = "<group>"; };
+		82057F7D1D0490D600BC80DD /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		82057F7F1D0490E400BC80DD /* AddTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
 		8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryBoard.storyboard; sourceTree = "<group>"; };
 		8255E19B1D0426430044C2CB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		827827531CF837D600684CE5 /* ZOBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZOBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +123,11 @@
 		8278277B1CF837D600684CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		829C43791CFBAC9500869E59 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		829C437B1CFBBA1E00869E59 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
+		82EF3BDE1D056E3F00AC103C /* ZOBA Quick Access.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ZOBA Quick Access.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		82EF3BE21D056E3F00AC103C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		82EF3BE51D056E3F00AC103C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		82EF3BE71D056E3F00AC103C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82F8B8981CF8807400E46B05 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = images/logo.png; sourceTree = "<group>"; };
 		82F8B8991CF8807400E46B05 /* rescue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rescue.png; path = images/rescue.png; sourceTree = "<group>"; };
 		82F8B89A1CF8807400E46B05 /* service-centers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "service-centers.png"; path = "images/service-centers.png"; sourceTree = "<group>"; };
@@ -145,6 +185,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82EF3BDB1D056E3F00AC103C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82EF3BE01D056E3F00AC103C /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -157,6 +205,7 @@
 				D330313799DC0A970BE8E5C7 /* Pods_ZOBA.framework */,
 				15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */,
 				3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */,
+				82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,6 +223,46 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		82057F721D048BF200BC80DD /* User Vehicles */ = {
+			isa = PBXGroup;
+			children = (
+				82057F731D048C1700BC80DD /* AddVehicleViewController.swift */,
+			);
+			name = "User Vehicles";
+			sourceTree = "<group>";
+		};
+		82057F751D048E5900BC80DD /* Fuel Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */,
+			);
+			name = "Fuel Tracking";
+			sourceTree = "<group>";
+		};
+		82057F761D048E6200BC80DD /* Trip Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				82057F7F1D0490E400BC80DD /* AddTripViewController.swift */,
+			);
+			name = "Trip Tracking";
+			sourceTree = "<group>";
+		};
+		82057F771D048E6B00BC80DD /* Oil Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				82057F781D048FDA00BC80DD /* AddOilViewController.swift */,
+			);
+			name = "Oil Tracking";
+			sourceTree = "<group>";
+		};
+		82057F7C1D0490C700BC80DD /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				82057F7D1D0490D600BC80DD /* TimelineViewController.swift */,
+			);
+			name = Timeline;
+			sourceTree = "<group>";
+		};
 		8278274A1CF837D600684CE5 = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +271,7 @@
 				827827551CF837D600684CE5 /* ZOBA */,
 				8278276D1CF837D600684CE5 /* ZOBATests */,
 				827827781CF837D600684CE5 /* ZOBAUITests */,
+				82EF3BE11D056E3F00AC103C /* ZOBA Quick Access */,
 				827827541CF837D600684CE5 /* Products */,
 				6DCF5273F16362EE7F67C66D /* Pods */,
 				82F8B8B61CF8905B00E46B05 /* fonts */,
@@ -196,6 +286,7 @@
 				827827531CF837D600684CE5 /* ZOBA.app */,
 				8278276A1CF837D600684CE5 /* ZOBATests.xctest */,
 				827827751CF837D600684CE5 /* ZOBAUITests.xctest */,
+				82EF3BDE1D056E3F00AC103C /* ZOBA Quick Access.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -203,20 +294,19 @@
 		827827551CF837D600684CE5 /* ZOBA */ = {
 			isa = PBXGroup;
 			children = (
-				827827561CF837D600684CE5 /* AppDelegate.swift */,
-				827827581CF837D600684CE5 /* ViewController.swift */,
-				8278275A1CF837D600684CE5 /* Main.storyboard */,
-				827827651CF837D600684CE5 /* Info.plist */,
-				827827601CF837D600684CE5 /* Assets.xcassets */,
-				827827621CF837D600684CE5 /* LaunchScreen.storyboard */,
-				8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */,
-				829C437B1CFBBA1E00869E59 /* Media.xcassets */,
-				829C43791CFBAC9500869E59 /* RegisterViewController.swift */,
-				DCE6DC401CFC33A400637977 /* DataValidations.swift */,
-				DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */,
-				DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */,
-				8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */,
-				8255E19B1D0426430044C2CB /* HomeViewController.swift */,
+				82057F7C1D0490C700BC80DD /* Timeline */,
+				82057F771D048E6B00BC80DD /* Oil Tracking */,
+				82057F761D048E6200BC80DD /* Trip Tracking */,
+				82057F751D048E5900BC80DD /* Fuel Tracking */,
+				82057F721D048BF200BC80DD /* User Vehicles */,
+				82EF3BF61D05745B00AC103C /* Application Files */,
+				82EF3BF11D0573DC00AC103C /* Login and Register */,
+				82EF3BF01D0573B100AC103C /* Storyboards */,
+				82EF3BF51D05743C00AC103C /* Assets */,
+				82EF3BF41D05742C00AC103C /* Validation */,
+				82EF3BEF1D0572CA00AC103C /* ZOBA Quick Access Extension */,
+				82EF3BF31D05741600AC103C /* Folding TabBar Controller */,
+				82EF3BF21D0573FB00AC103C /* Webservice Communication */,
 			);
 			path = ZOBA;
 			sourceTree = "<group>";
@@ -237,6 +327,86 @@
 				8278277B1CF837D600684CE5 /* Info.plist */,
 			);
 			path = ZOBAUITests;
+			sourceTree = "<group>";
+		};
+		82EF3BE11D056E3F00AC103C /* ZOBA Quick Access */ = {
+			isa = PBXGroup;
+			children = (
+				82EF3BE21D056E3F00AC103C /* TodayViewController.swift */,
+				82EF3BE41D056E3F00AC103C /* MainInterface.storyboard */,
+				82EF3BE71D056E3F00AC103C /* Info.plist */,
+			);
+			path = "ZOBA Quick Access";
+			sourceTree = "<group>";
+		};
+		82EF3BEF1D0572CA00AC103C /* ZOBA Quick Access Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */,
+			);
+			name = "ZOBA Quick Access Extension";
+			sourceTree = "<group>";
+		};
+		82EF3BF01D0573B100AC103C /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				827827621CF837D600684CE5 /* LaunchScreen.storyboard */,
+				8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */,
+				8278275A1CF837D600684CE5 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		82EF3BF11D0573DC00AC103C /* Login and Register */ = {
+			isa = PBXGroup;
+			children = (
+				827827581CF837D600684CE5 /* ViewController.swift */,
+				829C43791CFBAC9500869E59 /* RegisterViewController.swift */,
+			);
+			name = "Login and Register";
+			sourceTree = "<group>";
+		};
+		82EF3BF21D0573FB00AC103C /* Webservice Communication */ = {
+			isa = PBXGroup;
+			children = (
+				DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */,
+			);
+			name = "Webservice Communication";
+			sourceTree = "<group>";
+		};
+		82EF3BF31D05741600AC103C /* Folding TabBar Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8255E19B1D0426430044C2CB /* HomeViewController.swift */,
+			);
+			name = "Folding TabBar Controller";
+			sourceTree = "<group>";
+		};
+		82EF3BF41D05742C00AC103C /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				DCE6DC401CFC33A400637977 /* DataValidations.swift */,
+			);
+			name = Validation;
+			sourceTree = "<group>";
+		};
+		82EF3BF51D05743C00AC103C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				829C437B1CFBBA1E00869E59 /* Media.xcassets */,
+				827827601CF837D600684CE5 /* Assets.xcassets */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		82EF3BF61D05745B00AC103C /* Application Files */ = {
+			isa = PBXGroup;
+			children = (
+				827827561CF837D600684CE5 /* AppDelegate.swift */,
+				827827651CF837D600684CE5 /* Info.plist */,
+				8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */,
+			);
+			name = "Application Files";
 			sourceTree = "<group>";
 		};
 		82F8B8891CF87C3500E46B05 /* media */ = {
@@ -292,16 +462,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8278277E1CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBA" */;
 			buildPhases = (
-				BC6AB6838CF825B6FCF1C696 /* 📦 Check Pods Manifest.lock */,
+				BC6AB6838CF825B6FCF1C696 /* [CP] Check Pods Manifest.lock */,
 				8278274F1CF837D600684CE5 /* Sources */,
 				827827501CF837D600684CE5 /* Frameworks */,
 				827827511CF837D600684CE5 /* Resources */,
-				913C8D0E44712453084AA5C5 /* 📦 Embed Pods Frameworks */,
-				D8C70AD28D2074D735BE96A1 /* 📦 Copy Pods Resources */,
+				913C8D0E44712453084AA5C5 /* [CP] Embed Pods Frameworks */,
+				D8C70AD28D2074D735BE96A1 /* [CP] Copy Pods Resources */,
+				82EF3BEE1D056E3F00AC103C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				82EF3BE91D056E3F00AC103C /* PBXTargetDependency */,
 			);
 			name = ZOBA;
 			productName = ZOBA;
@@ -312,12 +484,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 827827811CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBATests" */;
 			buildPhases = (
-				3B04073713425CEBC571F285 /* 📦 Check Pods Manifest.lock */,
+				3B04073713425CEBC571F285 /* [CP] Check Pods Manifest.lock */,
 				827827661CF837D600684CE5 /* Sources */,
 				827827671CF837D600684CE5 /* Frameworks */,
 				827827681CF837D600684CE5 /* Resources */,
-				611E24917CC261420B066CBC /* 📦 Embed Pods Frameworks */,
-				5764E96F0AF56FE33D0D0166 /* 📦 Copy Pods Resources */,
+				611E24917CC261420B066CBC /* [CP] Embed Pods Frameworks */,
+				5764E96F0AF56FE33D0D0166 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -333,11 +505,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 827827841CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBAUITests" */;
 			buildPhases = (
-				EC708C73D3D50BDE278DB3C8 /* 📦 Check Pods Manifest.lock */,
+				EC708C73D3D50BDE278DB3C8 /* [CP] Check Pods Manifest.lock */,
 				827827711CF837D600684CE5 /* Sources */,
 				827827721CF837D600684CE5 /* Frameworks */,
 				827827731CF837D600684CE5 /* Resources */,
-				907F6ED4AB25A244D87C8468 /* 📦 Copy Pods Resources */,
+				907F6ED4AB25A244D87C8468 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -348,6 +520,23 @@
 			productName = ZOBAUITests;
 			productReference = 827827751CF837D600684CE5 /* ZOBAUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		82EF3BDD1D056E3F00AC103C /* ZOBA Quick Access */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82EF3BED1D056E3F00AC103C /* Build configuration list for PBXNativeTarget "ZOBA Quick Access" */;
+			buildPhases = (
+				82EF3BDA1D056E3F00AC103C /* Sources */,
+				82EF3BDB1D056E3F00AC103C /* Frameworks */,
+				82EF3BDC1D056E3F00AC103C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ZOBA Quick Access";
+			productName = "ZOBA Quick Access";
+			productReference = 82EF3BDE1D056E3F00AC103C /* ZOBA Quick Access.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -376,6 +565,10 @@
 						CreatedOnToolsVersion = 7.3;
 						TestTargetID = 827827521CF837D600684CE5;
 					};
+					82EF3BDD1D056E3F00AC103C = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = B263Y9M649;
+					};
 				};
 			};
 			buildConfigurationList = 8278274E1CF837D600684CE5 /* Build configuration list for PBXProject "ZOBA" */;
@@ -394,6 +587,7 @@
 				827827521CF837D600684CE5 /* ZOBA */,
 				827827691CF837D600684CE5 /* ZOBATests */,
 				827827741CF837D600684CE5 /* ZOBAUITests */,
+				82EF3BDD1D056E3F00AC103C /* ZOBA Quick Access */,
 			);
 		};
 /* End PBXProject section */
@@ -439,17 +633,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82EF3BDC1D056E3F00AC103C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82EF3BE61D056E3F00AC103C /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3B04073713425CEBC571F285 /* 📦 Check Pods Manifest.lock */ = {
+		3B04073713425CEBC571F285 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,14 +659,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		5764E96F0AF56FE33D0D0166 /* 📦 Copy Pods Resources */ = {
+		5764E96F0AF56FE33D0D0166 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,14 +674,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBATests/Pods-ZOBATests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		611E24917CC261420B066CBC /* 📦 Embed Pods Frameworks */ = {
+		611E24917CC261420B066CBC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -487,14 +689,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBATests/Pods-ZOBATests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		907F6ED4AB25A244D87C8468 /* 📦 Copy Pods Resources */ = {
+		907F6ED4AB25A244D87C8468 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,14 +704,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBAUITests/Pods-ZOBAUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		913C8D0E44712453084AA5C5 /* 📦 Embed Pods Frameworks */ = {
+		913C8D0E44712453084AA5C5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,14 +719,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BC6AB6838CF825B6FCF1C696 /* 📦 Check Pods Manifest.lock */ = {
+		BC6AB6838CF825B6FCF1C696 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,14 +734,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D8C70AD28D2074D735BE96A1 /* 📦 Copy Pods Resources */ = {
+		D8C70AD28D2074D735BE96A1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -547,14 +749,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EC708C73D3D50BDE278DB3C8 /* 📦 Check Pods Manifest.lock */ = {
+		EC708C73D3D50BDE278DB3C8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,6 +773,7 @@
 			files = (
 				827827591CF837D600684CE5 /* ViewController.swift in Sources */,
 				8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */,
+				82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
 				DCFC30E31CFDDF4D0018BBD3 /* UserDAO.swift in Sources */,
@@ -578,8 +781,12 @@
 				DCFC30DF1CFDDEB40018BBD3 /* MyUser+CoreDataProperties.swift in Sources */,
 				8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */,
 				827827571CF837D600684CE5 /* AppDelegate.swift in Sources */,
+				82057F791D048FDA00BC80DD /* AddOilViewController.swift in Sources */,
+				82057F741D048C1700BC80DD /* AddVehicleViewController.swift in Sources */,
 				829C437A1CFBAC9500869E59 /* RegisterViewController.swift in Sources */,
+				82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */,
 				DC04DA3C1CFE99D5008E4E64 /* WebServiceConnection.swift in Sources */,
+				82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,6 +806,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82EF3BDA1D056E3F00AC103C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82EF3BE31D056E3F00AC103C /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -611,6 +826,11 @@
 			isa = PBXTargetDependency;
 			target = 827827521CF837D600684CE5 /* ZOBA */;
 			targetProxy = 827827761CF837D600684CE5 /* PBXContainerItemProxy */;
+		};
+		82EF3BE91D056E3F00AC103C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 82EF3BDD1D056E3F00AC103C /* ZOBA Quick Access */;
+			targetProxy = 82EF3BE81D056E3F00AC103C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -629,6 +849,14 @@
 				827827631CF837D600684CE5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		82EF3BE41D056E3F00AC103C /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				82EF3BE51D056E3F00AC103C /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -724,6 +952,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -744,6 +973,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -807,6 +1037,32 @@
 			};
 			name = Release;
 		};
+		82EF3BEB1D056E3F00AC103C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "ZOBA Quick Access/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "RE.ZOBA.ZOBA-Quick-Access";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		82EF3BEC1D056E3F00AC103C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "ZOBA Quick Access/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "RE.ZOBA.ZOBA-Quick-Access";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -845,6 +1101,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		82EF3BED1D056E3F00AC103C /* Build configuration list for PBXNativeTarget "ZOBA Quick Access" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82EF3BEB1D056E3F00AC103C /* Debug */,
+				82EF3BEC1D056E3F00AC103C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
