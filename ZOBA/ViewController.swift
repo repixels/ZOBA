@@ -291,9 +291,10 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
                 
                 if user?.email == nil
                 {
-                    let notPermitted = UIAlertView(title: "Alert", message: "enter valid user", delegate: nil, cancelButtonTitle: "OK")
+//                    let notPermitted = UIAlertView(title: "Alert", message: "enter valid user", delegate: nil, cancelButtonTitle: "OK")
                     
-                    notPermitted.show()
+                    //notPermitted.show()
+                    self.performSegueWithIdentifier(identifier,sender: sender)
                 }
                 else
                 {

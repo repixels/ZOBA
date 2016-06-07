@@ -12,32 +12,21 @@ import ChameleonFramework
 
 
 class TimelineViewController: UITableViewController {
-
-<<<<<<< HEAD
-    let arr = ["date","oil","fuel","trip"]
+    var menuView: BTNavigationDropdownMenu!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Welcome To ZOBA"
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
-             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+       
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
         self.edgesForExtendedLayout = UIRectEdge.None
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false
-=======
-      var menuView: BTNavigationDropdownMenu!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       // Do any additional setup after loading the view.
+        
+
         
         let items = ["Car one","car two","car two","car two" ,"Add Vehicles"]
 
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.whiteColor() ]
-        
-        
-        self.navigationItem.titleView = menuView
         
         menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: items[0], items: items)
         menuView.cellHeight = 40
@@ -59,14 +48,12 @@ class TimelineViewController: UITableViewController {
         
         menuView.checkMarkImage = UIImage(named: "plus_icon")
         
-        
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             print("Did select item at index: \(indexPath)")
             
             let itemCount = items.count - 1
             
             if indexPath == itemCount {
->>>>>>> master
 
                 let AddFuelViewController = self.storyboard!.instantiateViewControllerWithIdentifier("home") as UIViewController
                 
@@ -76,7 +63,10 @@ class TimelineViewController: UITableViewController {
             //self.selectedCellLabel.text = items[indexPath]
         }
         
+        menuView.toggle()
+        
         self.navigationItem.titleView = menuView
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,7 +82,7 @@ class TimelineViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9;
+        return 0;
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
        
