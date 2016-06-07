@@ -23,6 +23,7 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
     @IBOutlet weak var registerButton: UIButton!
     
     
+    
     var managedObjectContext :NSManagedObjectContext!
     /*
      * Text Fields
@@ -85,7 +86,6 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
     
     func returnUserData()
     {
-        
         
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,interested_in,gender,birthday,email,age_range,name,picture.width(480).height(480)"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
@@ -234,6 +234,7 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
         if(isEmailReady && isPasswordReady)
         {
             enableLoginBTN()
+            
         }
         else
         {
@@ -264,7 +265,7 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
         self.emailTextField.placeholderLabel.alpha = 1.0
         
     }
-    
+
     func showEmailValidMessage(message:String)
     {
         self.emailTextField.borderInactiveColor = UIColor.greenColor()
@@ -273,6 +274,43 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
         self.emailTextField.placeholderLabel.text = message
         enableLoginBTN()
     }
+
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    
+        if identifier == "loginSegue"
+        {
+            let user = MyUser(unmanagedEntity: "MyUser")
+            
+            user.email = emailTextField.text
+            user.password = passwordTextField.text
+            let conn  = WebServiceConnection(userobj: user)
+            
+            conn.LoginWithEmail("http://localhost:8080/WebServiceProject/login/email", user: user){
+                (user:MyUser?) -> Void in
+                
+                if user?.email == nil
+                {
+//                    let notPermitted = UIAlertView(title: "Alert", message: "enter valid user", delegate: nil, cancelButtonTitle: "OK")
+                    
+                    //notPermitted.show()
+                    self.performSegueWithIdentifier(identifier,sender: sender)
+                }
+                else
+                {
+                    print(user)
+                    
+                    
+                    
+                    
+                    self.performSegueWithIdentifier(identifier,sender: sender)
+                }
+            }
+        }
+        
+        return false
+    }
+
 
 }
 

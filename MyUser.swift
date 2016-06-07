@@ -16,7 +16,6 @@ class MyUser : NSManagedObject , Mappable {
 
 // Insert code here to add functionality to your managed object subclass
 
-
     
     var mangedObje : NSManagedObject!
     

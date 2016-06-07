@@ -97,7 +97,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                 var fullNameArr = fullName!.characters.split{$0 == " "}.map(String.init)
                 
                 self.firstNameTextField.text = fullNameArr[0]
-                self.lastNameTextField.text = String.init(format: "%@ %@", fullNameArr[1],fullNameArr[2])
+                self.lastNameTextField.text = String.init(format: "%@ %@", fullNameArr[0],fullNameArr[1])
                 
                 self.emailTextField.text = result.valueForKey("email") as? String
             }
@@ -141,10 +141,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         super.touchesBegan(touches, withEvent: event)
     }
     
-    @IBAction func registerButtonClicked(sender: AnyObject)
-    {
-        
-    }
+ 
     
     
     @IBAction func validateUserEmail(sender: AnyObject)
@@ -266,4 +263,22 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         textField.placeholderLabel.text = message
     }
     
+    @IBAction func registerWebService(sender: AnyObject) {
+    
+        let user = MyUser(unmanagedEntity: "MyUser")
+        
+        let conn  = WebServiceConnection(userobj: user)
+        
+        user.email = emailTextField.text
+        user.password = passwordTextField.text
+        user.firstName = firstNameTextField.text
+        user.lastName = lastNameTextField.text
+        user.userName = userNameTextField.text
+        
+        conn.registration("http://localhost:8080/WebServiceProject/register", user: user){
+            (user:MyUser?) -> Void in
+            
+        }
+
+    }
 }
