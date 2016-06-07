@@ -11,20 +11,22 @@ import BTNavigationDropdownMenu
 import ChameleonFramework
 
 
-class TimelineViewController: UIViewController {
-
-      var menuView: BTNavigationDropdownMenu!
+class TimelineViewController: UITableViewController {
+    var menuView: BTNavigationDropdownMenu!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // Do any additional setup after loading the view.
+       
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
+        self.edgesForExtendedLayout = UIRectEdge.None
+        self.extendedLayoutIncludesOpaqueBars = false
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+
         
         let items = ["Car one","car two","car two","car two" ,"Add Vehicles"]
 
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.whiteColor() ]
-        
-        
-        self.navigationItem.titleView = menuView
         
         menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: items[0], items: items)
         menuView.cellHeight = 40
@@ -46,7 +48,6 @@ class TimelineViewController: UIViewController {
         
         menuView.checkMarkImage = UIImage(named: "plus_icon")
         
-        
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             print("Did select item at index: \(indexPath)")
             
@@ -62,7 +63,10 @@ class TimelineViewController: UIViewController {
             //self.selectedCellLabel.text = items[indexPath]
         }
         
+        menuView.toggle()
+        
         self.navigationItem.titleView = menuView
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +74,42 @@ class TimelineViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 200 ;
+    }
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1;
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0;
+    }
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+       
+        if (indexPath.row % 2 == 0 ){
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier, forIndexPath: indexPath) as! DaySummaryCell
+        
+            cell.currentOdemeter?.text = "1000 "
+            cell.date!.text = "9"
+            return cell
+        }
+        else if (indexPath.row % 3 == 0 ){
+            let cell = tableView.dequeueReusableCellWithIdentifier(TripCell.identifier, forIndexPath: indexPath) as! TripCell
+            
+            cell.initialOdemeter!.text = "1000 "
+            cell.distanceCovered!.text = "20 km"
+            return cell
+        }
+        else{
+            let cell = tableView.dequeueReusableCellWithIdentifier(FuelCell.identifier, forIndexPath: indexPath) as! FuelCell
+            cell.fuelAmount!.text = "50 Litters"
+            cell.serviceProvider?.text = "fuel service"
+           return cell
+        
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
