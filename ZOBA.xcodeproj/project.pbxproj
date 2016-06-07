@@ -62,6 +62,7 @@
 		82F8B8C81CF8B52A00E46B05 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C51CF8B52A00E46B05 /* FBSDKCoreKit.framework */; };
 		82F8B8C91CF8B52A00E46B05 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */; };
 		82F8B8CA1CF8B52A00E46B05 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */; };
+		83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC89F1D048766006CC257 /* AbstractDao.swift */; };
 		8301381C1D060D0B00A1EE21 /* DaySummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8301381B1D060D0B00A1EE21 /* DaySummaryCell.swift */; };
 		831B12CD1D0641D000D10CBA /* FuelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CC1D0641CF00D10CBA /* FuelCell.swift */; };
 		831B12CF1D0643A200D10CBA /* OilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CE1D0643A200D10CBA /* OilCell.swift */; };
@@ -182,6 +183,7 @@
 		82F8B8C51CF8B52A00E46B05 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		83BAC89F1D048766006CC257 /* AbstractDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDao.swift; sourceTree = "<group>"; };
 		8301381B1D060D0B00A1EE21 /* DaySummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DaySummaryCell.swift; path = timeLine/DaySummaryCell.swift; sourceTree = "<group>"; };
 		831B12CC1D0641CF00D10CBA /* FuelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FuelCell.swift; path = timeLine/FuelCell.swift; sourceTree = "<group>"; };
 		831B12CE1D0643A200D10CBA /* OilCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OilCell.swift; path = timeLine/OilCell.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 			children = (
 				DCFC30E21CFDDF4D0018BBD3 /* UserDAO.swift */,
 				8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */,
+				83BAC89F1D048766006CC257 /* AbstractDao.swift */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -1003,6 +1006,7 @@
 				82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */,
 				8C9E42AC1D03289900DB1E56 /* Vehicle+CoreDataProperties.swift in Sources */,
 				8C9E42AB1D03289900DB1E56 /* MyUser.swift in Sources */,
+				83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

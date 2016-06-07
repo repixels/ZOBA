@@ -111,7 +111,7 @@ class UserDAO {
         vehicles.addObject(vehicle)
         user.vehicle = vehicles
         
-        user.save(managedObjectContext: moc)
+        user.save()
         
         
         
