@@ -92,8 +92,7 @@
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginWebSer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nzj-4u-Q2S"/>
-                                    <segue destination="0x5-Ih-IsW" kind="modal" id="Fxn-AU-5ER"/>
+                                    <segue destination="0x5-Ih-IsW" kind="modal" identifier="loginSegue" id="Fxn-AU-5ER"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tU0-2g-bDu">
