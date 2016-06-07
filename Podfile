@@ -11,6 +11,8 @@ target 'ZOBA' do
   pod 'Alamofire', '~> 3.4'
   pod 'AlamofireObjectMapper', '~> 3.0'
   pod 'ObjectMapper', '~> 1.3'
+  pod 'ChameleonFramework/Swift'
+  pod 'BTNavigationDropdownMenu'
 
   # Pods for ZOBA
 

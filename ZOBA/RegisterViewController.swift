@@ -141,10 +141,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         super.touchesBegan(touches, withEvent: event)
     }
     
-    @IBAction func registerButtonClicked(sender: AnyObject)
-    {
-        
-    }
+ 
     
     
     @IBAction func validateUserEmail(sender: AnyObject)
