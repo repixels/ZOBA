@@ -265,25 +265,7 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
         self.emailTextField.placeholderLabel.alpha = 1.0
         
     }
-    
-//    
-//    @IBAction func loginWebSer(sender: AnyObject) {
-//       
-//        let user = MyUser(unmanagedEntity: "MyUser")
-//        
-//     
-//        user.email = emailTextField.text
-//        user.password = passwordTextField.text
-//        let conn  = WebServiceConnection(userobj: user)
-//
-//        
-//        conn.LoginWithEmail("http://localhost:8080/WebServiceProject/login", user: user){
-//            (user:MyUser?) -> Void in
-//            
-//        }
-//        
-//        
-//    }
+
     func showEmailValidMessage(message:String)
     {
         self.emailTextField.borderInactiveColor = UIColor.greenColor()
@@ -292,9 +274,8 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
         self.emailTextField.placeholderLabel.text = message
         enableLoginBTN()
     }
-    
 
-//    
+    
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
     
         if identifier == "loginSegue"
@@ -305,33 +286,26 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
             user.password = passwordTextField.text
             let conn  = WebServiceConnection(userobj: user)
             
-            
             conn.LoginWithEmail("http://localhost:8080/WebServiceProject/login/email", user: user){
                 (user:MyUser?) -> Void in
                 
                 if user?.email == nil
                 {
-                   
-                    print("enter valid user")
-                    
                     let notPermitted = UIAlertView(title: "Alert", message: "enter valid user", delegate: nil, cancelButtonTitle: "OK")
                     
-                    
                     notPermitted.show()
-                    
                 }
                 else
                 {
                     print(user)
                     
-                    self.performSegueWithIdentifier(identifier,sender: sender)
                     
+                    
+                    
+                    self.performSegueWithIdentifier(identifier,sender: sender)
                 }
-                
             }
-            
         }
-        
         
         return false
     }
