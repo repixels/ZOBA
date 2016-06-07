@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import BTNavigationDropdownMenu
+import ChameleonFramework
+
 
 class TimelineViewController: UITableViewController {
 
+<<<<<<< HEAD
     let arr = ["date","oil","fuel","trip"]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +25,58 @@ class TimelineViewController: UITableViewController {
         self.edgesForExtendedLayout = UIRectEdge.None
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false
+=======
+      var menuView: BTNavigationDropdownMenu!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+       // Do any additional setup after loading the view.
+        
+        let items = ["Car one","car two","car two","car two" ,"Add Vehicles"]
 
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.whiteColor() ]
+        
+        
+        self.navigationItem.titleView = menuView
+        
+        menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: items[0], items: items)
+        menuView.cellHeight = 40
+        menuView.cellBackgroundColor = UIColor.flatWhiteColor()
+        menuView.cellSelectionColor = UIColor.flatSandColor()
+        menuView.keepSelectedCellColor = true
+        menuView.cellTextLabelColor = UIColor.flatWatermelonColor()
+        menuView.cellTextLabelFont = UIFont(name: "Continuum Medium", size: 20)
+        
+        
+        menuView.cellTextLabelAlignment = .Center // .Center // .Right // .Left
+        
+        menuView.arrowPadding = 10
+        
+        menuView.animationDuration = 0.5
+        menuView.maskBackgroundColor = UIColor.blackColor()
+        menuView.maskBackgroundOpacity = 0.3
+        menuView.checkMarkImage = nil
+        
+        menuView.checkMarkImage = UIImage(named: "plus_icon")
+        
+        
+        menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+            print("Did select item at index: \(indexPath)")
+            
+            let itemCount = items.count - 1
+            
+            if indexPath == itemCount {
+>>>>>>> master
+
+                let AddFuelViewController = self.storyboard!.instantiateViewControllerWithIdentifier("home") as UIViewController
+                
+                self.navigationController!.pushViewController(AddFuelViewController, animated: true)
+            }else{
+                print(" out ")}
+            //self.selectedCellLabel.text = items[indexPath]
+        }
+        
+        self.navigationItem.titleView = menuView
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,7 +127,11 @@ class TimelineViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+//        
+//        if condition {
+//            <#code#>
+//        }
     }
-    */
+ */
 
 }

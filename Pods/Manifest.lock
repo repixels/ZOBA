@@ -3,6 +3,7 @@ PODS:
   - AlamofireObjectMapper (3.0.0):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
+  - BTNavigationDropdownMenu (0.3)
   - CBZSplashView (1.0.0)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
@@ -15,6 +16,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 3.4)
   - AlamofireObjectMapper (~> 3.0)
+  - BTNavigationDropdownMenu
   - CBZSplashView (~> 1.0.0)
   - ChameleonFramework/Swift
   - FoldingTabBar (~> 1.0.2)
@@ -25,6 +27,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
+  BTNavigationDropdownMenu: c36d20785253699046fdd295698c24b1d1c18f53
   CBZSplashView: 9ce4cba22024476ff4a97d6433e7347da6376016
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FoldingTabBar: 79df76dfd5a84c0a369beaa378a31c07aa53b6b2
@@ -32,6 +35,6 @@ SPEC CHECKSUMS:
   Onboard: c46261255c0bcbe26ab2823782764c96fca7a33e
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
 
-PODFILE CHECKSUM: ecbff8d93d626855b22a9a2b1a00aaf47d3b47c2
+PODFILE CHECKSUM: 4b08c69dca3df354a3003ab3eab9093f253a8eab
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.0.0.rc.2
