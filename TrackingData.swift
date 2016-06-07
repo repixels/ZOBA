@@ -1,5 +1,5 @@
 //
-//  Vehicle.swift
+//  TrackingData.swift
 //  ZOBA
 //
 //  Created by ZOBA on 6/7/16.
@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class Vehicle: NSManagedObject {
+class TrackingData: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
 

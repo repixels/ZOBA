@@ -275,10 +275,10 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         user.lastName = lastNameTextField.text
         user.userName = userNameTextField.text
         
-        conn.registration("http://localhost:8080/WebServiceProject/register", user: user){
-            (user:MyUser?) -> Void in
-            
-        }
+//        conn.registration("http://localhost:8080/WebServiceProject/register", user: user){
+//            (user:MyUser?) -> Void in
+//            
+//        }
 
     }
 }

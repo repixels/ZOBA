@@ -1,9 +1,9 @@
 //
 //  MyUser+CoreDataProperties.swift
+//  ZOBA
 //
-//
-//  Created by me on 6/4/16.
-//
+//  Created by ZOBA on 6/7/16.
+//  Copyright © 2016 RE Pixels. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -14,6 +14,7 @@ import CoreData
 
 extension MyUser {
 
+    @NSManaged var deviceToken: String?
     @NSManaged var email: String?
     @NSManaged var firstName: String?
     @NSManaged var image: NSData?

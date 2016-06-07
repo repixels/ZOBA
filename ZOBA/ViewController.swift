@@ -286,26 +286,26 @@ class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDel
             user.password = passwordTextField.text
             let conn  = WebServiceConnection(userobj: user)
             
-            conn.LoginWithEmail("http://localhost:8080/WebServiceProject/login/email", user: user){
-                (user:MyUser?) -> Void in
-                
-                if user?.email == nil
-                {
-//                    let notPermitted = UIAlertView(title: "Alert", message: "enter valid user", delegate: nil, cancelButtonTitle: "OK")
-                    
-                    //notPermitted.show()
-                    self.performSegueWithIdentifier(identifier,sender: sender)
-                }
-                else
-                {
-                    print(user)
-                    
-                    
-                    
-                    
-                    self.performSegueWithIdentifier(identifier,sender: sender)
-                }
-            }
+//            conn.LoginWithEmail("http://localhost:8080/WebServiceProject/login/email", user: user){
+//                (user:MyUser?) -> Void in
+//                
+//                if user?.email == nil
+//                {
+////                    let notPermitted = UIAlertView(title: "Alert", message: "enter valid user", delegate: nil, cancelButtonTitle: "OK")
+//                    
+//                    //notPermitted.show()
+//                    self.performSegueWithIdentifier(identifier,sender: sender)
+//                }
+//                else
+//                {
+//                    print(user)
+//                    
+//                    
+//                    
+//                    
+//                    self.performSegueWithIdentifier(identifier,sender: sender)
+//                }
+//            }
         }
         
         return false
