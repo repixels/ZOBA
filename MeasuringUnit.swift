@@ -8,10 +8,44 @@
 
 import Foundation
 import CoreData
+import ObjectMapper
 
 
-class MeasuringUnit: NSManagedObject {
+class MeasuringUnit: NSManagedObject , Mappable {
 
 // Insert code here to add functionality to your managed object subclass
-
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    required init?(_ map: Map) {
+        
+        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appdelegate.managedObjectContext
+        let entity = NSEntityDescription.entityForName("MeasuringUnit", inManagedObjectContext: managedContext)
+        
+        super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        mapping(map)
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        var trackingTypesArray : [TrackingType]?
+        
+        self.name <- map[""]
+        self.suffix <- map[""]
+        self.unitId <- map[""]
+        trackingTypesArray <- map[""]
+        
+        if trackingTypesArray != nil
+        {
+            self.trackingType = NSSet(array: trackingTypesArray!)
+        }
+        else
+        {
+            self.trackingType = nil
+        }
+    }
 }
