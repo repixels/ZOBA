@@ -266,6 +266,16 @@
                             <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="DateAndTimeTextField" destination="rR6-zP-56j" id="VHn-pJ-iFn"/>
+                        <outlet property="OdometerImage" destination="HE2-Vj-a3k" id="xVu-M1-Re9"/>
+                        <outlet property="currentOdometerTextField" destination="bw7-Gg-ges" id="012-XY-jHK"/>
+                        <outlet property="dateAndTimeImage" destination="iI5-P2-hXq" id="Cmb-un-a8F"/>
+                        <outlet property="fuelAmountImage" destination="yYd-Es-RWm" id="OO0-E0-mTJ"/>
+                        <outlet property="fuelAmountTextField" destination="iW0-ij-cbh" id="iGE-Bn-Baf"/>
+                        <outlet property="serviceProviderImage" destination="Ch5-9v-KYi" id="J4k-mK-Vwb"/>
+                        <outlet property="serviceProviderTextField" destination="hqq-d0-CBB" id="n4e-cD-pXQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qsh-DR-ViU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -675,7 +685,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klt-ae-Vvb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="60" y="-1358"/>
+            <point key="canvasLocation" x="63" y="-1523"/>
         </scene>
         <!--Trips-->
         <scene sceneID="AZf-BS-pAN">
