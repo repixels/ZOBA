@@ -8,10 +8,106 @@
 
 import Foundation
 import CoreData
+import ObjectMapper
 
 
-class ServiceProvider: NSManagedObject {
+class ServiceProvider: NSManagedObject , Mappable {
 
 // Insert code here to add functionality to your managed object subclass
-
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    required init?(_ map: Map) {
+        
+        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appdelegate.managedObjectContext
+        let entity = NSEntityDescription.entityForName("ServiceProvider", inManagedObjectContext: managedContext)
+        
+        super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        mapping(map)
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        var branchesArray : [ServiceProvider]?
+        var phonesArray : [ServiceProviderPhone]?
+        var calendarsArray : [ServiceProviderCalender]?
+        var makesArray : [Make]?
+        var phoneArray : [ServiceProviderPhone]?
+        var serviceProviderServicesArray : [ServiceProviderServices]?
+        
+        
+        self.email <- map[""]
+        self.name <- map[""]
+        self.serviceProviderId <- map[""]
+        self.webSite <- map[""]
+        self.address <- map[""]
+        self.headQuarter <- map[""]
+        branchesArray <- map[""]
+        phonesArray <- map[""]
+        calendarsArray <- map[""]
+        makesArray <- map[""]
+        phoneArray <- map[""]
+        serviceProviderServicesArray <- map[""]
+        
+        if branchesArray != nil
+        {
+            self.branch = NSSet(array: branchesArray!)
+        }
+        else
+        {
+            self.branch = nil
+        }
+        
+        if phonesArray != nil
+        {
+            self.phone = NSSet(array: phonesArray!)
+        }
+        else
+        {
+            self.phone = nil
+        }
+        
+        if calendarsArray != nil
+        {
+            self.calender = NSSet(array: calendarsArray!)
+        }
+        else
+        {
+            self.calender = nil
+        }
+        
+        if makesArray != nil
+        {
+            self.make = NSSet(array: makesArray!)
+        }
+        else
+        {
+            self.make = nil
+        }
+        
+        if phoneArray != nil
+        {
+            self.phone = NSSet(array: phoneArray!)
+        }
+        else
+        {
+            self.phone = nil
+        }
+        
+        if serviceProviderServicesArray != nil
+        {
+            self.serviceProviderService = NSSet(array: serviceProviderServicesArray!)
+        }
+        else
+        {
+            self.serviceProviderService = nil
+        }
+        
+        
+        
+    }
 }
