@@ -69,6 +69,7 @@
 		83548F241D09D2080013E67F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83548F231D09D2080013E67F /* MapKit.framework */; };
 		83548F261D09EB040013E67F /* mapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83548F251D09EB040013E67F /* mapController.swift */; };
 		83548F281D0A1CD30013E67F /* AllTripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */; };
+		838918461D0AE30C001F0060 /* TripDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838918451D0AE30C001F0060 /* TripDetailController.swift */; };
 		83AEBCF21D075B8800B334FE /* userProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83AEBCF11D075B8800B334FE /* userProfile.storyboard */; };
 		83AEBCF51D0767F100B334FE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEBCF41D0767F100B334FE /* UserProfileViewController.swift */; };
 		83AEBCF71D08244400B334FE /* UserProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEBCF61D08244300B334FE /* UserProfileEditController.swift */; };
@@ -233,6 +234,7 @@
 		83548F231D09D2080013E67F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		83548F251D09EB040013E67F /* mapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mapController.swift; sourceTree = "<group>"; };
 		83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTripTableViewController.swift; sourceTree = "<group>"; };
+		838918451D0AE30C001F0060 /* TripDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailController.swift; sourceTree = "<group>"; };
 		83AEBCF11D075B8800B334FE /* userProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = userProfile.storyboard; sourceTree = "<group>"; };
 		83AEBCF41D0767F100B334FE /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		83AEBCF61D08244300B334FE /* UserProfileEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileEditController.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				82057F7F1D0490E400BC80DD /* AddTripViewController.swift */,
 				83548F251D09EB040013E67F /* mapController.swift */,
 				83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */,
+				838918451D0AE30C001F0060 /* TripDetailController.swift */,
 			);
 			name = "Trip Tracking";
 			sourceTree = "<group>";
@@ -1177,6 +1180,7 @@
 				DC00957B1D075660000856FC /* TripCoordinate+CoreDataProperties.swift in Sources */,
 				DC0095791D075660000856FC /* MeasuringUnit+CoreDataProperties.swift in Sources */,
 				DC0095811D075660000856FC /* Model+CoreDataProperties.swift in Sources */,
+				838918461D0AE30C001F0060 /* TripDetailController.swift in Sources */,
 				DC0095731D075660000856FC /* ServiceProviderPhone+CoreDataProperties.swift in Sources */,
 				83AEBCF51D0767F100B334FE /* UserProfileViewController.swift in Sources */,
 				DC0095971D075660000856FC /* Vehicle+CoreDataProperties.swift in Sources */,

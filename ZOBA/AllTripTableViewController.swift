@@ -62,6 +62,22 @@ class AllTripTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("display trip details")
+        let trip = trips[indexPath.row]
+        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("tripDetails") as! TripDetailController
+        let tripCoordinate = TripCoordinate(unmanagedEntity: "TripCoordinate")
+        tripCoordinate.latitude = 29.9792
+        tripCoordinate.longtitude = 31.1342
+        
+        let tripCoordinate2 = TripCoordinate(unmanagedEntity: "TripCoordinate")
+        tripCoordinate2.latitude = 29.9791
+        tripCoordinate2.longtitude = 31.1352
+        
+        trip.coordinates = NSSet(array: [tripCoordinate , tripCoordinate2])
+        
+        
+        controller.trip = trip
+        
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -145,14 +161,9 @@ class AllTripTableViewController: UITableViewController {
      }
      */
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    // MARK: - Navigation
+    
+    
     
 }
