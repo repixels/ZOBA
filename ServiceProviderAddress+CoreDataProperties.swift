@@ -14,7 +14,7 @@ import CoreData
 
 extension ServiceProviderAddress {
 
-    @NSManaged var addressId: Int32
+    @NSManaged var addressId: NSNumber
     @NSManaged var city: String?
     @NSManaged var country: String?
     @NSManaged var landMark: String?

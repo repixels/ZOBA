@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class mapController: UIViewController , CLLocationManagerDelegate{
+class MapController: UIViewController , CLLocationManagerDelegate{
     
     let locationmgr : CLLocationManager! = CLLocationManager()
     
@@ -24,7 +24,7 @@ class mapController: UIViewController , CLLocationManagerDelegate{
         super.viewDidLoad()
         locationmgr.delegate = self
         locationmgr.requestWhenInUseAuthorization()
-        longPressGesture.addTarget(self, action: #selector(mapController.action(_:)))
+        longPressGesture.addTarget(self, action: #selector(MapController.action(_:)))
         // Do any additional setup after loading the view.
     }
     

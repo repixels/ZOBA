@@ -14,7 +14,7 @@ import CoreData
 
 extension TripCoordinate {
 
-    @NSManaged var coordinateId: Int32
+    @NSManaged var coordinateId: NSNumber
     @NSManaged var latitude: NSDecimalNumber?
     @NSManaged var longtitude: NSDecimalNumber?
     @NSManaged var trip: Trip?

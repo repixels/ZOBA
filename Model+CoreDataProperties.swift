@@ -14,7 +14,7 @@ import CoreData
 
 extension Model {
 
-    @NSManaged var modelId: Int32
+    @NSManaged var modelId: NSNumber
     @NSManaged var name: String?
     @NSManaged var niceName: String?
     @NSManaged var make: Make?

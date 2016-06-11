@@ -53,20 +53,18 @@ class TripDetailController: UIViewController {
         date.text = "10/10/2020"
         initialOdemter.text = String(trip.initialOdemeter)
         coveredKm.text = String(trip.coveredKm)
-        currentOdemeter.text = String ( trip.initialOdemeter + trip.coveredKm)
+        currentOdemeter.text = String ( Int(trip.initialOdemeter) + Int(trip.coveredKm))
         let cordinates = trip.coordinates
         
         let coordinates = cordinates?.allObjects as! [TripCoordinate]
-        
-        getLocation(coordinates.first!,label: startLocationLbl,item: sourceItem)
-        getLocation(coordinates.last!,label: lastLocationLbl,item: destinationItem)
-        
-        
+    
+        getLocation(coordinates.first!,label: startLocationLbl)
+        getLocation(coordinates.last!,label: lastLocationLbl)
         setRegion(coordinates.first! , lastCoordinate: coordinates.last!)
         
     }
     
-    func getLocation(coordinate : TripCoordinate,label : UILabel,var item : MKMapItem){
+    func getLocation(coordinate : TripCoordinate,label : UILabel){
         
         let location = CLLocation(latitude: CLLocationDegrees(coordinate.latitude!), longitude: CLLocationDegrees(coordinate.longtitude!))
         location.coordinate
@@ -74,12 +72,6 @@ class TripDetailController: UIViewController {
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
             dispatch_async(dispatch_get_main_queue(), {
                 label.text = places!.first?.name
-                let placemark = MKPlacemark(placemark: places![0])
-                
-                item =  MKMapItem(placemark: placemark)
-                self.fetchRoute()
-                
-                
             })
             
             

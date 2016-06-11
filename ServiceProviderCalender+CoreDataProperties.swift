@@ -14,7 +14,7 @@ import CoreData
 
 extension ServiceProviderCalender {
 
-    @NSManaged var calenderId: Int32
+    @NSManaged var calenderId: NSNumber
     @NSManaged var endingHour: Double
     @NSManaged var startingHour: Double
     @NSManaged var day: Days?

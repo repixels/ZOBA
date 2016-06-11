@@ -16,8 +16,8 @@ extension TrackingData {
 
     @NSManaged var dateAdded: NSTimeInterval
     @NSManaged var dateModified: NSTimeInterval
-    @NSManaged var initialOdemeter: Int64
-    @NSManaged var trackingId: Int32
+    @NSManaged var initialOdemeter: NSNumber
+    @NSManaged var trackingId: NSNumber
     @NSManaged var value: String?
     @NSManaged var trackingType: TrackingType?
     @NSManaged var vehicle: Vehicle?

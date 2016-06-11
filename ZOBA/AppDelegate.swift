@@ -13,6 +13,7 @@ import CoreLocation
 import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
+import SwiftyUserDefaults
 
 let isFirstTime = "isFirstTime"
 
@@ -25,23 +26,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        //Set Managed Context
+        SessionObjects.currentManageContext = self.managedObjectContext
+        
         // Override point for customization after application launch.
         
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestAlwaysAuthorization()
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        if let window = window
+        if(Defaults[.isLoggedIn] == false)
         {
-            window.backgroundColor = UIColor.whiteColor()
-            window.rootViewController = generateOnBoardingWithImage()
-            window.makeKeyAndVisible()
-        }
+            window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            if let window = window
+            {
+                window.backgroundColor = UIColor.whiteColor()
+                window.rootViewController = generateOnBoardingWithImage()
+                window.makeKeyAndVisible()
+            }
         
-        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
-        let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
-        application.registerUserNotificationSettings(pushNotificationSettings)
-        application.registerForRemoteNotifications()
+            let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
+            let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+            application.registerUserNotificationSettings(pushNotificationSettings)
+            application.registerForRemoteNotifications()
+        }
+        else
+        {
+            let abstractDAO = AbstractDao(managedObjectContext: managedObjectContext)
+            SessionObjects.currentUser = abstractDAO.selectAll(entityName: "MyUser")[0] as! MyUser
+        }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -240,7 +249,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if animated {
             UIView.transitionWithView(self.window!, duration: 0.5, options:.TransitionCrossDissolve, animations: { () -> Void in
                 let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let initialViewControlleripad : ViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier("mainStoryBoard") as! ViewController
+                let initialViewControlleripad : LoginViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier("mainStoryBoard") as! LoginViewController
                 initialViewControlleripad.managedObjectContext = self.managedObjectContext
                 let loginNavigationController = UINavigationController()
                 loginNavigationController.addChildViewController(initialViewControlleripad)

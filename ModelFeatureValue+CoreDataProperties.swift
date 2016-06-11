@@ -15,7 +15,7 @@ import CoreData
 extension ModelFeatureValue {
 
     @NSManaged var value: String?
-    @NSManaged var valueId: Int32
+    @NSManaged var valueId: NSNumber
     @NSManaged var carFeature: CarFeature?
     @NSManaged var vehicleModels: NSSet?
 

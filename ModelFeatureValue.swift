@@ -8,10 +8,45 @@
 
 import Foundation
 import CoreData
+import ObjectMapper
 
 
-class ModelFeatureValue: NSManagedObject {
+class ModelFeatureValue: NSManagedObject , Mappable {
 
 // Insert code here to add functionality to your managed object subclass
-
+    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    required init?(_ map: Map) {
+        
+        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appdelegate.managedObjectContext
+        let entity = NSEntityDescription.entityForName("ModelFeatureValue", inManagedObjectContext: managedContext)
+        
+        super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        mapping(map)
+        
+    }
+    
+    func mapping(map: Map) {
+        
+        var vehicleModelsArray : [VehicleModel]?
+        
+        self.value <- map[""]
+        self.valueId <- map[""]
+        self.carFeature <- map[""]
+        vehicleModelsArray <- map[""]
+        
+        if vehicleModelsArray != nil
+        {
+            self.vehicleModels = NSSet(array: vehicleModelsArray!)
+        }
+        else
+        {
+            self.vehicleModels = nil
+        }
+        
+    }
 }

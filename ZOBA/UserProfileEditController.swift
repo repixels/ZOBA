@@ -24,8 +24,6 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     //navigation button
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
-    //managed object of user
-    var user : MyUser!
     
     //flags
     var userEmailValid = true
@@ -42,16 +40,13 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("========================")
-        print(user.email)
-        
         //update fieldswith user data
-        phoneTextField.text = (user.phone != nil) ? user.phone : ""
-        firstNameTextField.text = (user.firstName != nil) ? user.firstName : ""
-        lastNameTextField.text = (user.lastName != nil) ? user.lastName : ""
-        emailTextField.text = (user.email != nil) ? user.email : ""
-        userNameTextField.text = (user.userName != nil) ? user.userName : ""
-        passwordTextField.text = (user.password != nil) ? user.password : ""
+        phoneTextField.text = (SessionObjects.currentUser.phone != nil) ? SessionObjects.currentUser.phone : ""
+        firstNameTextField.text = (SessionObjects.currentUser.firstName != nil) ? SessionObjects.currentUser.firstName : ""
+        lastNameTextField.text = (SessionObjects.currentUser.lastName != nil) ? SessionObjects.currentUser.lastName : ""
+        emailTextField.text = (SessionObjects.currentUser.email != nil) ? SessionObjects.currentUser.email : ""
+        userNameTextField.text = (SessionObjects.currentUser.userName != nil) ? SessionObjects.currentUser.userName : ""
+        passwordTextField.text = (SessionObjects.currentUser.password != nil) ? SessionObjects.currentUser.password : ""
         
         
         // disable button
@@ -92,7 +87,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     
     func keyboardWillHide(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let keyboardSize: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+            if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
                 let contentInset = UIEdgeInsetsZero;
                 
                 self.scrollView.contentInset = contentInset
@@ -239,16 +234,14 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     @IBAction func save(sender: AnyObject) {
         
         
-        user.phone = phoneTextField.text != nil ? phoneTextField.text  : nil
-        user.firstName = firstNameTextField.text != nil ? firstNameTextField.text  : nil
-        user.lastName = lastNameTextField.text != nil ? lastNameTextField.text  : nil
-        user.email = emailTextField.text != nil ? emailTextField.text  : nil
-        user.userName = userNameTextField.text != nil ? userNameTextField.text  : nil
-        user.password = passwordTextField.text != nil ? passwordTextField.text  : nil
+        SessionObjects.currentUser.phone = phoneTextField.text != nil ? phoneTextField.text  : nil
+        SessionObjects.currentUser.firstName = firstNameTextField.text != nil ? firstNameTextField.text  : nil
+        SessionObjects.currentUser.lastName = lastNameTextField.text != nil ? lastNameTextField.text  : nil
+        SessionObjects.currentUser.email = emailTextField.text != nil ? emailTextField.text  : nil
+        SessionObjects.currentUser.userName = userNameTextField.text != nil ? userNameTextField.text  : nil
+        SessionObjects.currentUser.password = passwordTextField.text != nil ? passwordTextField.text  : nil
         
-        user.save()
-        print(user.email)
-        print(" you should save user data ")
+        SessionObjects.currentUser.save()
         self.navigationController?.popViewControllerAnimated(true)
         
     }

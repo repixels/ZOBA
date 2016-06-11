@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15A284" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Automatic">
     <entity name="CarFeature" representedClassName=".CarFeature" syncable="YES">
         <attribute name="carFeatureId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="featureValue" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="ModelFeatureValue" inverseName="carFeature" inverseEntity="ModelFeatureValue" syncable="YES"/>
+        <relationship name="featureValue" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ModelFeatureValue" inverseName="carFeature" inverseEntity="ModelFeatureValue" syncable="YES"/>
     </entity>
     <entity name="Days" representedClassName=".Days" syncable="YES">
         <attribute name="dayId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -15,8 +15,8 @@
         <attribute name="makeId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="niceName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="model" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Model" inverseName="make" inverseEntity="Model" syncable="YES"/>
-        <relationship name="serviceProvider" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ServiceProvider" inverseName="make" inverseEntity="ServiceProvider" syncable="YES"/>
+        <relationship name="model" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Model" inverseName="make" inverseEntity="Model" syncable="YES"/>
+        <relationship name="serviceProvider" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ServiceProvider" inverseName="make" inverseEntity="ServiceProvider" syncable="YES"/>
     </entity>
     <entity name="MeasuringUnit" representedClassName=".MeasuringUnit" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,14 +28,14 @@
         <attribute name="modelId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="niceName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="make" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Make" inverseName="model" inverseEntity="Make" syncable="YES"/>
-        <relationship name="vehicleModel" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="VehicleModel" inverseName="model" inverseEntity="VehicleModel" syncable="YES"/>
+        <relationship name="make" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Make" inverseName="model" inverseEntity="Make" syncable="YES"/>
+        <relationship name="vehicleModel" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="VehicleModel" inverseName="model" inverseEntity="VehicleModel" syncable="YES"/>
     </entity>
     <entity name="ModelFeatureValue" representedClassName=".ModelFeatureValue" syncable="YES">
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="valueId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="carFeature" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="CarFeature" inverseName="featureValue" inverseEntity="CarFeature" syncable="YES"/>
-        <relationship name="vehicleModels" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="VehicleModel" inverseName="featuresValue" inverseEntity="VehicleModel" syncable="YES"/>
+        <relationship name="carFeature" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="CarFeature" inverseName="featureValue" inverseEntity="CarFeature" syncable="YES"/>
+        <relationship name="vehicleModels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VehicleModel" inverseName="featuresValue" inverseEntity="VehicleModel" syncable="YES"/>
     </entity>
     <entity name="MyUser" representedClassName=".MyUser" syncable="YES">
         <attribute name="deviceToken" optional="YES" attributeType="String" syncable="YES"/>
@@ -47,7 +47,7 @@
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="userName" attributeType="String" syncable="YES"/>
-        <relationship name="vehicle" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Vehicle" inverseName="user" inverseEntity="Vehicle" syncable="YES"/>
+        <relationship name="vehicle" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Vehicle" inverseName="user" inverseEntity="Vehicle" syncable="YES"/>
     </entity>
     <entity name="Service" representedClassName=".Service" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -60,13 +60,13 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="serviceProviderId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="webSite" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="address" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ServiceProviderAddress" inverseName="serviceProvider" inverseEntity="ServiceProviderAddress" syncable="YES"/>
+        <relationship name="address" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ServiceProviderAddress" inverseName="serviceProvider" inverseEntity="ServiceProviderAddress" syncable="YES"/>
         <relationship name="branch" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ServiceProvider" inverseName="headQuarter" inverseEntity="ServiceProvider" syncable="YES"/>
-        <relationship name="calender" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ServiceProviderCalender" inverseName="serviceProvider" inverseEntity="ServiceProviderCalender" syncable="YES"/>
-        <relationship name="headQuarter" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ServiceProvider" inverseName="branch" inverseEntity="ServiceProvider" syncable="YES"/>
+        <relationship name="calender" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ServiceProviderCalender" inverseName="serviceProvider" inverseEntity="ServiceProviderCalender" syncable="YES"/>
+        <relationship name="headQuarter" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ServiceProvider" inverseName="branch" inverseEntity="ServiceProvider" syncable="YES"/>
         <relationship name="make" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Make" inverseName="serviceProvider" inverseEntity="Make" syncable="YES"/>
-        <relationship name="phone" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ServiceProviderPhone" inverseName="serviceProvider" inverseEntity="ServiceProviderPhone" syncable="YES"/>
-        <relationship name="serviceProviderService" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ServiceProviderServices" inverseName="serviceProvider" inverseEntity="ServiceProviderServices" syncable="YES"/>
+        <relationship name="phone" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ServiceProviderPhone" inverseName="serviceProvider" inverseEntity="ServiceProviderPhone" syncable="YES"/>
+        <relationship name="serviceProviderService" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ServiceProviderServices" inverseName="serviceProvider" inverseEntity="ServiceProviderServices" syncable="YES"/>
     </entity>
     <entity name="ServiceProviderAddress" representedClassName=".ServiceProviderAddress" syncable="YES">
         <attribute name="addressId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -109,16 +109,16 @@
         <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="traclingData" inverseEntity="Vehicle" syncable="YES"/>
     </entity>
     <entity name="TrackingType" representedClassName=".TrackingType" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="measuringUnit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MeasuringUnit" inverseName="trackingType" inverseEntity="MeasuringUnit" syncable="YES"/>
         <relationship name="service" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Service" inverseName="trackingType" inverseEntity="Service" syncable="YES"/>
-        <relationship name="trackingData" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TrackingData" inverseName="trackingType" inverseEntity="TrackingData" syncable="YES"/>
+        <relationship name="trackingData" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TrackingData" inverseName="trackingType" inverseEntity="TrackingData" syncable="YES"/>
     </entity>
     <entity name="Trim" representedClassName=".Trim" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trimId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="vehicleModel" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="VehicleModel" inverseName="trim" inverseEntity="VehicleModel" syncable="YES"/>
+        <relationship name="vehicleModel" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VehicleModel" inverseName="trim" inverseEntity="VehicleModel" syncable="YES"/>
     </entity>
     <entity name="Trip" representedClassName=".Trip" syncable="YES">
         <attribute name="coveredKm" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -126,7 +126,7 @@
         <attribute name="initialOdemeter" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="tripId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="coordinates" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TripCoordinate" inverseName="trip" inverseEntity="TripCoordinate" syncable="YES"/>
-        <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Vehicle" inverseName="trip" inverseEntity="Vehicle" syncable="YES"/>
+        <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="trip" inverseEntity="Vehicle" syncable="YES"/>
     </entity>
     <entity name="TripCoordinate" representedClassName=".TripCoordinate" syncable="YES">
         <attribute name="coordinateId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -143,43 +143,43 @@
         <attribute name="vehicleId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="traclingData" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TrackingData" inverseName="vehicle" inverseEntity="TrackingData" syncable="YES"/>
         <relationship name="trip" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Trip" inverseName="vehicle" inverseEntity="Trip" syncable="YES"/>
-        <relationship name="user" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="MyUser" inverseName="vehicle" inverseEntity="MyUser" syncable="YES"/>
-        <relationship name="vehicleModel" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="VehicleModel" inverseName="vehicle" inverseEntity="VehicleModel" syncable="YES"/>
+        <relationship name="user" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MyUser" inverseName="vehicle" inverseEntity="MyUser" syncable="YES"/>
+        <relationship name="vehicleModel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VehicleModel" inverseName="vehicle" inverseEntity="VehicleModel" syncable="YES"/>
     </entity>
     <entity name="VehicleModel" representedClassName=".VehicleModel" syncable="YES">
         <attribute name="vehicleModelId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="featuresValue" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="ModelFeatureValue" inverseName="vehicleModels" inverseEntity="ModelFeatureValue" syncable="YES"/>
-        <relationship name="model" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Model" inverseName="vehicleModel" inverseEntity="Model" syncable="YES"/>
-        <relationship name="trim" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Trim" inverseName="vehicleModel" inverseEntity="Trim" syncable="YES"/>
-        <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Vehicle" inverseName="vehicleModel" inverseEntity="Vehicle" syncable="YES"/>
-        <relationship name="year" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Year" inverseName="vehicleModel" inverseEntity="Year" syncable="YES"/>
+        <relationship name="featuresValue" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ModelFeatureValue" inverseName="vehicleModels" inverseEntity="ModelFeatureValue" syncable="YES"/>
+        <relationship name="model" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Model" inverseName="vehicleModel" inverseEntity="Model" syncable="YES"/>
+        <relationship name="trim" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trim" inverseName="vehicleModel" inverseEntity="Trim" syncable="YES"/>
+        <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="vehicleModel" inverseEntity="Vehicle" syncable="YES"/>
+        <relationship name="year" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Year" inverseName="vehicleModel" inverseEntity="Year" syncable="YES"/>
     </entity>
     <entity name="Year" representedClassName=".Year" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="yearId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="vehicleModel" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="VehicleModel" inverseName="year" inverseEntity="VehicleModel" syncable="YES"/>
+        <relationship name="vehicleModel" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="VehicleModel" inverseName="year" inverseEntity="VehicleModel" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MyUser" positionX="-927" positionY="-171" width="128" height="193"/>
-        <element name="Trim" positionX="-29" positionY="-243" width="128" height="88"/>
         <element name="CarFeature" positionX="277" positionY="-171" width="128" height="88"/>
-        <element name="Year" positionX="-18" positionY="27" width="128" height="88"/>
-        <element name="ModelFeatureValue" positionX="0" positionY="45" width="128" height="103"/>
-        <element name="VehicleModel" positionX="18" positionY="63" width="128" height="133"/>
-        <element name="Model" positionX="36" positionY="81" width="128" height="118"/>
-        <element name="Vehicle" positionX="-9" positionY="36" width="128" height="193"/>
-        <element name="Make" positionX="-306" positionY="-105" width="128" height="133"/>
-        <element name="Trip" positionX="-63" positionY="-18" width="128" height="133"/>
-        <element name="TripCoordinate" positionX="-63" positionY="-9" width="128" height="103"/>
-        <element name="TrackingData" positionX="-54" positionY="0" width="128" height="148"/>
-        <element name="TrackingType" positionX="-171" positionY="-285" width="128" height="118"/>
-        <element name="MeasuringUnit" positionX="-324" positionY="93" width="128" height="103"/>
-        <element name="Service" positionX="-36" positionY="-153" width="128" height="103"/>
-        <element name="ServiceProviderServices" positionX="142" positionY="-45" width="128" height="118"/>
-        <element name="ServiceProvider" positionX="-549" positionY="-333" width="128" height="208"/>
-        <element name="ServiceProviderAddress" positionX="90" positionY="-54" width="128" height="193"/>
-        <element name="ServiceProviderPhone" positionX="90" positionY="-243" width="128" height="88"/>
         <element name="Days" positionX="297" positionY="-351" width="128" height="88"/>
+        <element name="Make" positionX="-306" positionY="-141" width="128" height="135"/>
+        <element name="MeasuringUnit" positionX="-324" positionY="57" width="128" height="103"/>
+        <element name="Model" positionX="277" positionY="72" width="128" height="118"/>
+        <element name="ModelFeatureValue" positionX="0" positionY="45" width="128" height="103"/>
+        <element name="MyUser" positionX="-927" positionY="-171" width="128" height="193"/>
+        <element name="Service" positionX="-36" positionY="-153" width="128" height="103"/>
+        <element name="ServiceProvider" positionX="-549" positionY="-369" width="128" height="208"/>
+        <element name="ServiceProviderAddress" positionX="90" positionY="-90" width="128" height="193"/>
         <element name="ServiceProviderCalender" positionX="36" positionY="-396" width="128" height="118"/>
+        <element name="ServiceProviderPhone" positionX="90" positionY="-243" width="128" height="88"/>
+        <element name="ServiceProviderServices" positionX="142" positionY="-81" width="128" height="118"/>
+        <element name="TrackingData" positionX="106" positionY="126" width="128" height="148"/>
+        <element name="TrackingType" positionX="-171" positionY="-321" width="128" height="118"/>
+        <element name="Trim" positionX="-29" positionY="-243" width="128" height="88"/>
+        <element name="Trip" positionX="-135" positionY="245" width="128" height="133"/>
+        <element name="TripCoordinate" positionX="-243" positionY="230" width="128" height="103"/>
+        <element name="Vehicle" positionX="-387" positionY="252" width="128" height="193"/>
+        <element name="VehicleModel" positionX="322" positionY="290" width="128" height="133"/>
+        <element name="Year" positionX="-11" positionY="81" width="128" height="88"/>
     </elements>
 </model>
