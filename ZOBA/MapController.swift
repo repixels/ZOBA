@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 
-class mapController: UIViewController , CLLocationManagerDelegate{
+class MapController: UIViewController , CLLocationManagerDelegate{
     
     let locationmgr : CLLocationManager! = CLLocationManager()
     
@@ -24,14 +24,14 @@ class mapController: UIViewController , CLLocationManagerDelegate{
         super.viewDidLoad()
         locationmgr.delegate = self
         locationmgr.requestWhenInUseAuthorization()
-        longPressGesture.addTarget(self, action: #selector(mapController.action(_:)))
+        longPressGesture.addTarget(self, action: #selector(MapController.action(_:)))
         // Do any additional setup after loading the view.
     }
     
     
     func action(gestureRecognizer:UIGestureRecognizer){
-        var touchPoint = gestureRecognizer.locationInView(map)
-        var newCoordinates = map.convertPoint(touchPoint, toCoordinateFromView: map)
+        let touchPoint = gestureRecognizer.locationInView(map)
+        let newCoordinates = map.convertPoint(touchPoint, toCoordinateFromView: map)
         let annotation = MKPointAnnotation()
         annotation.coordinate = newCoordinates
        // print(annotation.coordinate)

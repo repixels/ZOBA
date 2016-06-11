@@ -48,7 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         else
         {
-            
+            let abstractDAO = AbstractDao(managedObjectContext: managedObjectContext)
+            SessionObjects.currentUser = abstractDAO.selectAll(entityName: "MyUser")[0] as! MyUser
         }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

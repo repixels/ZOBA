@@ -66,30 +66,20 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         saveBtn.enabled = false
         saveBtn.tintColor = UIColor.grayColor()
         
-        let moc = ( UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        
-        let vehicle = Vehicle(managedObjectContext: moc, entityName: "Vehicle")
+        let vehicle = Vehicle(managedObjectContext: SessionObjects.currentManageContext , entityName: "Vehicle")
         vehicle.name = "vehicle"
         vehicle.currentOdemeter = 30000
         vehicle.initialOdemeter = 20000
         
         vehicle.save()
         
-        let dao  = AbstractDao(managedObjectContext: moc)
+        let dao  = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
         
         
-        let user = MyUser(managedObjectContext: moc, entityName: "MyUser")
-        user.email = "email"
-        user.userName = "mas"
-        user.email = "email@mail.com"
-        user.firstName = "first"
-        user.password = "password"
-        user.save()
-        
         initialOdemeter.text = String(100000)
         
-        var pickerView = UIPickerView()
+        let pickerView = UIPickerView()
         
         pickerView.delegate = self
         
@@ -104,23 +94,20 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         //save Trip
         
-        
-        let moc = ( UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        
-        let firstCoordinate = TripCoordinate(managedObjectContext: moc, entityName: "TripCoordinate")
+        let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
         firstCoordinate.latitude = NSDecimalNumber(double: startCoordinate.latitude)
         firstCoordinate.longtitude = NSDecimalNumber(double:startCoordinate.longitude)
         firstCoordinate.save()
         
-        let secondCoordinate = TripCoordinate(managedObjectContext: moc, entityName: "TripCoordinate")
+        let secondCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
         secondCoordinate.latitude = NSDecimalNumber(double:destinationCoordinate.latitude)
         secondCoordinate.longtitude = NSDecimalNumber(double:destinationCoordinate.longitude)
         secondCoordinate.save()
         
         
-        let trip = Trip(managedObjectContext: moc, entityName: "Trip")
-        trip.coveredKm = Int64(self.coveredKm.text!)!
-        trip.initialOdemeter = Int64(self.initialOdemeter.text!)!
+        let trip = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+        trip.coveredKm = Int(self.coveredKm.text!)!
+        trip.initialOdemeter = Int(self.initialOdemeter.text!)!
         
         
         trip.coordinates = NSSet(array: [firstCoordinate,secondCoordinate])
@@ -264,7 +251,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     func presentMap(){
         
-        let mapViewController: mapController = self.storyboard!.instantiateViewControllerWithIdentifier("MapView") as! mapController
+        let mapViewController: MapController = self.storyboard!.instantiateViewControllerWithIdentifier("MapView") as! MapController
         mapViewController.modalPresentationStyle = .Popover
         mapViewController.preferredContentSize = CGSizeMake(50, 200)
         mapViewController.delegate = self
@@ -360,7 +347,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         print(user.email)
         print(user.firstName)
         print(user.password)
-        controller.user = user
+        
         
         self.navigationController?.pushViewController(controller, animated: true)
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uDc-jR-5he">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uDc-jR-5he">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -181,7 +181,7 @@
                     <navigationItem key="navigationItem" id="gGY-zM-epR">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="eer-1u-dLb">
                             <connections>
-                                <segue destination="gBm-b7-MPW" kind="push" identifier="userProfileEdit" id="Hoc-O0-rwG"/>
+                                <segue destination="gBm-b7-MPW" kind="show" identifier="userProfileEdit" id="Hoc-O0-rwG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -537,12 +537,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ya0-Ek-dUD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1404" y="1144"/>
+            <point key="canvasLocation" x="1372" y="1053"/>
         </scene>
         <!--Map Controller-->
         <scene sceneID="jec-9K-ILu">
             <objects>
-                <viewController storyboardIdentifier="MapView" id="796-sm-0XE" customClass="mapController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapView" id="796-sm-0XE" customClass="MapController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qxg-3I-irz"/>
                         <viewControllerLayoutGuide type="bottom" id="fhW-lO-0lb"/>
@@ -766,18 +766,18 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J4r-x3-zrg" id="MMJ-y3-9Fe">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1ot-QC-Uwj">
-                                            <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vEN-Ub-aOr">
-                                            <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -942,7 +942,7 @@
                                     </barButtonItem>
                                     <barButtonItem title="all trips" id="wFq-ic-erV">
                                         <connections>
-                                            <segue destination="cw4-m5-6Iz" kind="push" id="n7p-oS-oL6"/>
+                                            <segue destination="cw4-m5-6Iz" kind="show" id="n7p-oS-oL6"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="user Profile" id="4uu-J5-cL8">
@@ -981,7 +981,7 @@
                             </barButtonItem>
                             <barButtonItem title="all Trips" id="6Qu-LA-szm">
                                 <connections>
-                                    <segue destination="cw4-m5-6Iz" kind="push" id="R3i-3m-KBZ"/>
+                                    <segue destination="cw4-m5-6Iz" kind="show" id="R3i-3m-KBZ"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
