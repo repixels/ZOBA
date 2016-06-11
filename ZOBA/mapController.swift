@@ -30,8 +30,8 @@ class mapController: UIViewController , CLLocationManagerDelegate{
     
     
     func action(gestureRecognizer:UIGestureRecognizer){
-        var touchPoint = gestureRecognizer.locationInView(map)
-        var newCoordinates = map.convertPoint(touchPoint, toCoordinateFromView: map)
+        let touchPoint = gestureRecognizer.locationInView(map)
+        let newCoordinates = map.convertPoint(touchPoint, toCoordinateFromView: map)
         let annotation = MKPointAnnotation()
         annotation.coordinate = newCoordinates
        // print(annotation.coordinate)

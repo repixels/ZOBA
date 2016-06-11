@@ -9,7 +9,7 @@
 import UIKit
 import TextFieldEffects
 
-class UserProfileEditController: UIViewController,UIPopoverPresentationControllerDelegate {
+class UserProfileEditController: UIViewController,UIPopoverPresentationControllerDelegate ,UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
     
     //tex field outlets
     @IBOutlet weak var firstNameTextField: HoshiTextField!
@@ -19,6 +19,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     @IBOutlet weak var lastNameTextField: HoshiTextField!
     @IBOutlet weak var passwordTextField: HoshiTextField!
     
+    @IBOutlet weak var imageView: UIImageView!
     
     //navigation button
     @IBOutlet weak var saveBtn: UIBarButtonItem!
@@ -36,6 +37,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet var imagelongPressGesture: UILongPressGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,9 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         let notCenter = NSNotificationCenter.defaultCenter()
         notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
         notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+        
+        
+        imagelongPressGesture.addTarget(self.imageView, action: #selector(UserProfileEditController.selectUserImage(_:)))
         
     }
     
@@ -246,6 +251,64 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         print(" you should save user data ")
         self.navigationController?.popViewControllerAnimated(true)
         
+    }
+    
+    @IBAction func selectUserImage(sender: AnyObject) {
+        
+        print("selecting image")
+        
+        let actionSheet = UIAlertController(title: "New Photo", message: nil, preferredStyle: .ActionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { action in
+            self.showCamera()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Album", style: .Default, handler: { action in
+            self.showAlbum()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        
+        
+        self.presentViewController(actionSheet, animated: true, completion: nil)
+    }
+    
+    
+    func showCamera() {
+        let cameraPicker = UIImagePickerController()
+        cameraPicker.delegate = self
+        cameraPicker.sourceType = .Camera
+        
+        presentViewController(cameraPicker, animated: true, completion: nil)
+        //  originalImage=imageView.image
+        
+    }
+    
+    func showAlbum() {
+        let cameraPicker = UIImagePickerController()
+        cameraPicker.delegate = self
+        cameraPicker.sourceType = .PhotoLibrary
+        
+        presentViewController(cameraPicker, animated: true, completion: nil)
+        //    originalImage=imageView.image
+        
+    }
+    
+    // MARK: UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        dismissViewControllerAnimated(true, completion: nil)
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageView.image = image
+        }
+        info.forEach { (value) in
+            print("\(value.0)  :  \(value.1)")
+            print("-------------------------")
+        }
+        print("==========================")
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     

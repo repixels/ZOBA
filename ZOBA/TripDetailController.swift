@@ -42,14 +42,22 @@ class TripDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         vehicleLbl.text = trip.vehicle?.name
         date.text = "10/10/2020"
         initialOdemter.text = String(trip.initialOdemeter)
         coveredKm.text = String(trip.coveredKm)
         currentOdemeter.text = String ( trip.initialOdemeter + trip.coveredKm)
         let cordinates = trip.coordinates
+        
         let coordinates = cordinates?.allObjects as! [TripCoordinate]
-    
+        
         getLocation(coordinates.first!,label: startLocationLbl,item: sourceItem)
         getLocation(coordinates.last!,label: lastLocationLbl,item: destinationItem)
         
@@ -66,10 +74,10 @@ class TripDetailController: UIViewController {
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
             dispatch_async(dispatch_get_main_queue(), {
                 label.text = places!.first?.name
-                 let placemark = MKPlacemark(placemark: places![0])
+                let placemark = MKPlacemark(placemark: places![0])
                 
-                    item =  MKMapItem(placemark: placemark)
-                    self.fetchRoute()
+                item =  MKMapItem(placemark: placemark)
+                self.fetchRoute()
                 
                 
             })
@@ -106,59 +114,65 @@ class TripDetailController: UIViewController {
     }
     
     func fetchRoute(){
-     
+        
         print("fetching ")
         
         if (sourceItem != nil && destinationItem != nil)
         {
-        let request:MKDirectionsRequest = MKDirectionsRequest()
-        
-        // source and destination are the relevant MKMapItems
-        request.source = self.sourceItem
-        request.destination = destinationItem
-        
-        // Specify the transportation type
-        request.transportType = MKDirectionsTransportType.Automobile;
-        
-        // If you're open to getting more than one route,
-        // requestsAlternateRoutes = true; else requestsAlternateRoutes = false;
-        request.requestsAlternateRoutes = true
-        
-        let directions = MKDirections(request: request)
-        
+            let request:MKDirectionsRequest = MKDirectionsRequest()
+            
+            // source and destination are the relevant MKMapItems
+            request.source = self.sourceItem
+            request.destination = destinationItem
+            
+            // Specify the transportation type
+            request.transportType = MKDirectionsTransportType.Automobile;
+            
+            // If you're open to getting more than one route,
+            // requestsAlternateRoutes = true; else requestsAlternateRoutes = false;
+            request.requestsAlternateRoutes = true
+            
+            let directions = MKDirections(request: request)
+            
             print(" try to calculate route")
             
-        directions.calculateDirectionsWithCompletionHandler ({
-            (response: MKDirectionsResponse?, error: NSError?) in
-            print("=============================")
-              print(response?.routes)
-            print(error)
-            print("=============================")
-            if error == nil {
-//                self.directionsResponse = response
-                // Get whichever currentRoute you'd like, ex. 0
-                let route = response!.routes[0] as MKRoute
-                self.map.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
-                print("calculate route")
-            }
-            else{print("error in calculating route")
-              
-            }
-        })
-    
+            directions.calculateDirectionsWithCompletionHandler ({
+                (response: MKDirectionsResponse?, error: NSError?) in
+                print("=============================")
+                print(response?.routes)
+                print(error)
+                print("=============================")
+                if error == nil {
+                    //                self.directionsResponse = response
+                    // Get whichever currentRoute you'd like, ex. 0
+                    let route = response!.routes[0] as MKRoute
+                    self.map.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
+                    print("calculate route")
+                }
+                else{print("error in calculating route")
+                    
+                }
+            })
+            
+        }
     }
+    
+    
+    
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier! == "editTrip" {
+            
+            let controller = segue.destinationViewController as! AddTripViewController
+            controller.trip = self.trip
+            controller.isEditingTrip = true
+        }
+        
+        
     }
     
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

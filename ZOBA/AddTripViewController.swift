@@ -42,7 +42,8 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     var vehicles : [Vehicle]!
     
     var isSecondPoint = false
-    
+    var trip : Trip!
+    var isEditingTrip = false
     
     var startCoordinate : CLLocationCoordinate2D!
     var destinationCoordinate : CLLocationCoordinate2D!
@@ -68,28 +69,17 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         let moc = ( UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
-        let vehicle = Vehicle(managedObjectContext: moc, entityName: "Vehicle")
-        vehicle.name = "vehicle"
-        vehicle.currentOdemeter = 30000
-        vehicle.initialOdemeter = 20000
-        
-        vehicle.save()
         
         let dao  = AbstractDao(managedObjectContext: moc)
         vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
         
         
-        let user = MyUser(managedObjectContext: moc, entityName: "MyUser")
-        user.email = "email"
-        user.userName = "mas"
-        user.email = "email@mail.com"
-        user.firstName = "first"
-        user.password = "password"
-        user.save()
         
-        initialOdemeter.text = String(100000)
         
-        var pickerView = UIPickerView()
+        
+        initialOdemeter.text = String(vehicles[0].currentOdemeter)
+        
+        let pickerView = UIPickerView()
         
         pickerView.delegate = self
         
@@ -98,7 +88,35 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
     }
     
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        if(isEditingTrip && trip != nil)
+        {
+            self.isDateValid = true
+            self.isVehicleValid = true
+            self.isCoveredKmValid = true
+            self.isCurrentOdemeterValid = true
+            self.isFirstCoordinateValid = true
+            self.isDestinationCoordinateValid = true
+            
+            initialOdemeter.text = String(trip.initialOdemeter)
+            coveredKm.text = String(trip.coveredKm)
+            currentOdemeter.text = String(trip.initialOdemeter + trip.coveredKm)
+            vehicleTextField.text = trip.vehicle?.name
+            let coordinates = trip.coordinates?.allObjects as! [TripCoordinate]
+            
+            self.startCoordinate = CLLocationCoordinate2D(latitude: Double((coordinates.first?.latitude)!), longitude: Double((coordinates.first?.longtitude)!))
+            self.destinationCoordinate = CLLocationCoordinate2D(latitude: Double((coordinates.last?.latitude)!), longitude:Double(( coordinates.last?.longtitude)!))
+            getLocation(self.startCoordinate, label: startLocationLbl)
+            getLocation(self.destinationCoordinate , label: destinationLocationLbl)
+            
+            saveBtn.enabled = true
+            saveBtn.tintColor = UIColor.blueColor()
+        }
+        
+    }
     
     @IBAction func saveTrip(sender: AnyObject) {
         
@@ -117,8 +135,11 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         secondCoordinate.longtitude = NSDecimalNumber(double:destinationCoordinate.longitude)
         secondCoordinate.save()
         
+        if(isEditingTrip && trip != nil){}
+        else{
+            trip = Trip(managedObjectContext: moc, entityName: "Trip")
+        }
         
-        let trip = Trip(managedObjectContext: moc, entityName: "Trip")
         trip.coveredKm = Int64(self.coveredKm.text!)!
         trip.initialOdemeter = Int64(self.initialOdemeter.text!)!
         
@@ -126,6 +147,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         trip.coordinates = NSSet(array: [firstCoordinate,secondCoordinate])
         
         trip.vehicle = selectedVehicle
+        trip.save()
         
         self.navigationController?.popViewControllerAnimated(true)
     }
