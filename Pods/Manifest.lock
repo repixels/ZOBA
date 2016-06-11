@@ -1,5 +1,9 @@
 PODS:
   - Alamofire (3.4.0)
+  - AlamofireImage (2.4.0):
+    - Alamofire (~> 3.3)
+  - AlamofireNetworkActivityIndicator (1.0.1):
+    - Alamofire (~> 3.3)
   - AlamofireObjectMapper (3.0.0):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
@@ -16,6 +20,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
+  - AlamofireImage (~> 2.0)
+  - AlamofireNetworkActivityIndicator (~> 1.0)
   - AlamofireObjectMapper (~> 3.0)
   - BTNavigationDropdownMenu
   - CBZSplashView (~> 1.0.0)
@@ -28,6 +34,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
+  AlamofireNetworkActivityIndicator: 49a6e39afb947136f7b1872bae2d684957c26697
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
   BTNavigationDropdownMenu: c36d20785253699046fdd295698c24b1d1c18f53
   CBZSplashView: 9ce4cba22024476ff4a97d6433e7347da6376016
@@ -38,6 +46,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
 
-PODFILE CHECKSUM: ea10474eb6b2b86cd32182122d3910a1ec7ef9df
+PODFILE CHECKSUM: 9027f1091dce81a9cccbc8712c1499c5d2f6cf36
 
 COCOAPODS: 1.0.1

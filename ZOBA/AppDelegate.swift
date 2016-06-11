@@ -13,6 +13,7 @@ import CoreLocation
 import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
+import SwiftyUserDefaults
 
 let isFirstTime = "isFirstTime"
 
@@ -25,23 +26,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        //Set Managed Context
+        SessionObjects.currentManageContext = self.managedObjectContext
+        
         // Override point for customization after application launch.
         
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestAlwaysAuthorization()
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        if let window = window
+        if(Defaults[.isLoggedIn] == false)
         {
-            window.backgroundColor = UIColor.whiteColor()
-            window.rootViewController = generateOnBoardingWithImage()
-            window.makeKeyAndVisible()
-        }
+            window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            if let window = window
+            {
+                window.backgroundColor = UIColor.whiteColor()
+                window.rootViewController = generateOnBoardingWithImage()
+                window.makeKeyAndVisible()
+            }
         
-        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
-        let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
-        application.registerUserNotificationSettings(pushNotificationSettings)
-        application.registerForRemoteNotifications()
+            let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
+            let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+            application.registerUserNotificationSettings(pushNotificationSettings)
+            application.registerForRemoteNotifications()
+        }
+        else
+        {
+            
+        }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

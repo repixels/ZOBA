@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		39A2F33710BE64FC9853582A /* Pods_ZOBA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D330313799DC0A970BE8E5C7 /* Pods_ZOBA.framework */; };
 		72BCD1798DE0A8E58F71CC74 /* Pods_ZOBAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */; };
+		8200B8591D0C5CF0007AB057 /* UserDefaultsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */; };
 		82057F741D048C1700BC80DD /* AddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F731D048C1700BC80DD /* AddVehicleViewController.swift */; };
 		82057F791D048FDA00BC80DD /* AddOilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F781D048FDA00BC80DD /* AddOilViewController.swift */; };
 		82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */; };
@@ -31,6 +32,9 @@
 		82501A831D05A9A3008272CB /* timeline-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A741D05A9A3008272CB /* timeline-circle.png */; };
 		8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */; };
 		8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E19B1D0426430044C2CB /* HomeViewController.swift */; };
+		825BB0041D0C0EBB00F44EA3 /* UserWebservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BB0031D0C0EBB00F44EA3 /* UserWebservices.swift */; };
+		825BB0061D0C266D00F44EA3 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BB0051D0C266D00F44EA3 /* StringConstants.swift */; };
+		825BB0081D0C39AB00F44EA3 /* SessionObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */; };
 		8265E7F01D0583560039D0AF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C43791CFBAC9500869E59 /* RegisterViewController.swift */; };
 		8265E7F11D0583780039D0AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827561CF837D600684CE5 /* AppDelegate.swift */; };
 		827827591CF837D600684CE5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* LoginViewController.swift */; };
@@ -160,6 +164,7 @@
 		15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4DC4794BB8782CEF3EBF4B /* Pods-ZOBA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBA.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA.release.xcconfig"; sourceTree = "<group>"; };
 		3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsMapping.swift; sourceTree = "<group>"; };
 		82057F731D048C1700BC80DD /* AddVehicleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVehicleViewController.swift; sourceTree = "<group>"; };
 		82057F781D048FDA00BC80DD /* AddOilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOilViewController.swift; sourceTree = "<group>"; };
 		82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFuelViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +187,9 @@
 		82501A741D05A9A3008272CB /* timeline-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline-circle.png"; sourceTree = "<group>"; };
 		8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryBoard.storyboard; sourceTree = "<group>"; };
 		8255E19B1D0426430044C2CB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		825BB0031D0C0EBB00F44EA3 /* UserWebservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserWebservices.swift; sourceTree = "<group>"; };
+		825BB0051D0C266D00F44EA3 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
+		825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionObjects.swift; sourceTree = "<group>"; };
 		827827531CF837D600684CE5 /* ZOBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZOBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		827827561CF837D600684CE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		827827581CF837D600684CE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -387,11 +395,12 @@
 			name = Timeline;
 			sourceTree = "<group>";
 		};
-		825BB0021D0C0C8900F44EA3 /* User Webservices */ = {
+		825BB0021D0C0C8900F44EA3 /* Webservice Integeration */ = {
 			isa = PBXGroup;
 			children = (
+				825BB0031D0C0EBB00F44EA3 /* UserWebservices.swift */,
 			);
-			name = "User Webservices";
+			name = "Webservice Integeration";
 			sourceTree = "<group>";
 		};
 		8278274A1CF837D600684CE5 = {
@@ -425,7 +434,7 @@
 		827827551CF837D600684CE5 /* ZOBA */ = {
 			isa = PBXGroup;
 			children = (
-				825BB0021D0C0C8900F44EA3 /* User Webservices */,
+				825BB0021D0C0C8900F44EA3 /* Webservice Integeration */,
 				82057F7C1D0490C700BC80DD /* Timeline */,
 				82057F771D048E6B00BC80DD /* Oil Tracking */,
 				82057F761D048E6200BC80DD /* Trip Tracking */,
@@ -537,6 +546,9 @@
 				827827561CF837D600684CE5 /* AppDelegate.swift */,
 				827827651CF837D600684CE5 /* Info.plist */,
 				8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */,
+				825BB0051D0C266D00F44EA3 /* StringConstants.swift */,
+				825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */,
+				8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */,
 			);
 			name = "Application Files";
 			sourceTree = "<group>";
@@ -1107,6 +1119,7 @@
 				DC0095741D075660000856FC /* ServiceProviderPhone.swift in Sources */,
 				8265E7F01D0583560039D0AF /* RegisterViewController.swift in Sources */,
 				DC0095901D075660000856FC /* ServiceProviderAddress.swift in Sources */,
+				825BB0041D0C0EBB00F44EA3 /* UserWebservices.swift in Sources */,
 				831B12CD1D0641D000D10CBA /* FuelCell.swift in Sources */,
 				DC0095991D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift in Sources */,
 				DC0095801D075660000856FC /* Trip.swift in Sources */,
@@ -1130,15 +1143,18 @@
 				DC00957C1D075660000856FC /* TripCoordinate.swift in Sources */,
 				DC0095771D075660000856FC /* Days+CoreDataProperties.swift in Sources */,
 				DC0095941D075660000856FC /* ServiceProviderServices.swift in Sources */,
+				825BB0081D0C39AB00F44EA3 /* SessionObjects.swift in Sources */,
 				82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */,
 				DC00958E1D075660000856FC /* TrackingData.swift in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
+				8200B8591D0C5CF0007AB057 /* UserDefaultsMapping.swift in Sources */,
 				DC0095961D075660000856FC /* Service.swift in Sources */,
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
 				DC00957D1D075660000856FC /* Trim+CoreDataProperties.swift in Sources */,
 				8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */,
 				DC0095761D075660000856FC /* ServiceProviderCalender.swift in Sources */,
 				DC0095711D075660000856FC /* Year+CoreDataProperties.swift in Sources */,
+				825BB0061D0C266D00F44EA3 /* StringConstants.swift in Sources */,
 				DC0095921D075660000856FC /* VehicleModel.swift in Sources */,
 				DC0095981D075660000856FC /* Vehicle.swift in Sources */,
 				DC0095721D075660000856FC /* Year.swift in Sources */,

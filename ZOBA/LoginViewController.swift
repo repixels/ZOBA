@@ -13,6 +13,7 @@ import FBSDKShareKit
 import FBSDKLoginKit
 import TextFieldEffects
 import CoreData
+import SwiftyUserDefaults
 
 class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDelegate{
 
@@ -70,7 +71,6 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if ((error) != nil)
         {
-            // Process error
             let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
@@ -78,7 +78,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
             //handle error
         } else {
             loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-            loginButton.loginBehavior = FBSDKLoginBehavior.Native
+            loginButton.loginBehavior = FBSDKLoginBehavior.SystemAccount
             loginButton.delegate = self
             returnUserData()
         }
@@ -86,31 +86,33 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     
     func returnUserData()
     {
-        
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,interested_in,gender,birthday,email,age_range,name,picture.width(480).height(480)"])
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,first_name,last_name,email,age_range,name,picture.width(480).height(480)"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
             if ((error) != nil)
             {
+                // Process error
                 let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.Alert)
                 alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
-                // Process error
                 print("Error: \(error)")
             }
             else
             {
+                _ = result.valueForKey("first_name") as? String
+                _ = result.valueForKey("last_name") as? String
+                let userEmail = (result.valueForKey("email") as? String)!
+                _ = userEmail.componentsSeparatedByString("@")[0]
+                
                 self.emailTextField.text = result.valueForKey("email") as? String
+                self.passwordTextField.text = self.randomAlphaNumericString(6)
+                print(self.passwordTextField.text)
+                self.fbLoginButton.hidden = true
             }
         })
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        self.emailTextField.text = ""
-        self.emailTextField.borderInactiveColor = UIColor.redColor()
-        self.emailTextField.borderActiveColor = UIColor.redColor()
-        self.emailTextField.placeholderColor = UIColor.redColor()
-        print("User Logged Out")
     }
     
     func setViewBackgroundImage(imageName:String)
@@ -280,35 +282,63 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     
         if identifier == "loginSegue"
         {
-            let user = MyUser(unmanagedEntity: "MyUser")
+            let managedUser = MyUser(managedObjectContext: SessionObjects.currentManageContext , entityName: "MyUser")
             
-            user.email = emailTextField.text
-            user.password = passwordTextField.text
-            let conn  = WebServiceConnection(userobj: user)
+            managedUser.email = emailTextField.text
+            managedUser.password = passwordTextField.text
             
-//            conn.LoginWithEmail("http://localhost:8080/WebServiceProject/login/email", user: user){
-//                (user:MyUser?) -> Void in
-//                
-//                if user?.email == nil
-//                {
-////                    let notPermitted = UIAlertView(title: "Alert", message: "enter valid user", delegate: nil, cancelButtonTitle: "OK")
-//                    
-//                    //notPermitted.show()
-//                    self.performSegueWithIdentifier(identifier,sender: sender)
-//                }
-//                else
-//                {
-//                    print(user)
-//                    
-//                    
-//                    
-//                    
-//                    self.performSegueWithIdentifier(identifier,sender: sender)
-//                }
-//            }
+            let userWebservice = UserWebservice(currentUser: managedUser)
+            userWebservice.loginUser({ (user, code) in
+                switch code
+                {
+                case "success":
+                    SessionObjects.currentUser = user!
+                    SessionObjects.currentUser.save()
+                    Defaults[.isLoggedIn] = true
+                    Defaults[.useremail] = user!.email
+                    Defaults[.launchCount] += 1
+                    self.performSegueWithIdentifier(identifier,sender: sender)
+                    break;
+                default:
+                    self.generateErrorAlert(code)
+                    break;
+                    
+                }
+                
+            })
+        }
+        else
+        {
+            return true
         }
         
         return false
+    }
+    
+    func generateErrorAlert(errorMessage: String?)
+    {
+        if errorMessage != nil
+        {
+            let alert = UIAlertController(title: "Login Failed", message: errorMessage!, preferredStyle: UIAlertControllerStyle.Alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alert.addAction(defaultAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func randomAlphaNumericString(length: Int) -> String {
+        
+        let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let allowedCharsCount = UInt32(allowedChars.characters.count)
+        var randomString = ""
+        
+        for _ in (0..<length) {
+            let randomNum = Int(arc4random_uniform(allowedCharsCount))
+            let newCharacter = allowedChars[allowedChars.startIndex.advancedBy(randomNum)]
+            randomString += String(newCharacter)
+        }
+        
+        return randomString
     }
 
 

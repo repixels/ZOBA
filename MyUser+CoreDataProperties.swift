@@ -21,7 +21,7 @@ extension MyUser {
     @NSManaged var lastName: String?
     @NSManaged var password: String?
     @NSManaged var phone: String?
-    @NSManaged var userId: Int64
+    @NSManaged var userId: NSNumber
     @NSManaged var userName: String?
     @NSManaged var vehicle: NSSet?
 
