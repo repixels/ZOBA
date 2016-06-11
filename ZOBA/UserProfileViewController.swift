@@ -28,21 +28,24 @@ class UserProfileViewController: UIViewController {
         
         self.navigationController?.title = user.userName! + " profile"
         
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
         phone.enabled = false
         firstName.enabled = false
         lastName.enabled = false
         email.enabled = false
         userName.enabled = false
-        
+        print("========================")
+        print(user.email)
         phone.text = (user.phone != nil) ? user.phone : ""
         firstName.text = (user.firstName != nil) ? user.firstName : ""
         lastName.text = (user.lastName != nil) ? user.lastName : ""
         email.text = (user.email != nil) ? user.email : ""
         userName.text = (user.userName != nil) ? user.userName : ""
-        
     }
-    
-    
     
     // MARK: - Navigation
     
@@ -53,6 +56,8 @@ class UserProfileViewController: UIViewController {
         {
             let editView = segue.destinationViewController as! UserProfileEditController
             editView.user = user
+            print("========================")
+            print(user.email)
         }
     }
     

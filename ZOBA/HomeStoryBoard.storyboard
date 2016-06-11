@@ -720,11 +720,12 @@
         <scene sceneID="RHd-NX-5QQ">
             <objects>
                 <viewControllerPlaceholder storyboardName="userProfile" referencedIdentifier="addTrip" id="qay-JZ-e3m" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Yl2-cl-FlH"/>
                     <navigationItem key="navigationItem" id="n3O-Ve-ClX"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bo5-vX-pOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-236.5" y="-675"/>
+            <point key="canvasLocation" x="-864" y="-290"/>
         </scene>
         <!--Fuel Navigation-->
         <scene sceneID="M4f-fy-Q6b">

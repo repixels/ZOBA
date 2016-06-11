@@ -13,27 +13,11 @@ class AllTripTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let t1 = Trip(unmanagedEntity: "Trip")
-        t1.coveredKm = 10000
-        t1.initialOdemeter = 1000
-        let t2 = Trip(unmanagedEntity: "Trip")
-        t2.coveredKm = 14000
-        t2.initialOdemeter = 1000
-        let t3 = Trip(unmanagedEntity: "Trip")
-        t3.coveredKm = 99000
-        t3.initialOdemeter = 1000
-        let t4 = Trip(unmanagedEntity: "Trip")
-        t4.coveredKm = 12000
-        t4.initialOdemeter = 1000
-        let t5 = Trip(unmanagedEntity: "Trip")
-        t5.coveredKm = 70000
-        t5.initialOdemeter = 1000
-        trips = [Trip]()
-        trips.append(t1)
-        trips.append(t2)
-        trips.append(t3)
-        trips.append(t4)
-        trips.append(t5)
+        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let dao = AbstractDao(managedObjectContext: moc)
+        
+        trips = dao.selectAll(entityName: "Trip") as! [Trip]
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -64,16 +48,16 @@ class AllTripTableViewController: UITableViewController {
         print("display trip details")
         let trip = trips[indexPath.row]
         let controller = self.storyboard?.instantiateViewControllerWithIdentifier("tripDetails") as! TripDetailController
-        let tripCoordinate = TripCoordinate(unmanagedEntity: "TripCoordinate")
-        tripCoordinate.latitude = 29.9792
-        tripCoordinate.longtitude = 31.1342
-        
-        let tripCoordinate2 = TripCoordinate(unmanagedEntity: "TripCoordinate")
-        tripCoordinate2.latitude = 29.9791
-        tripCoordinate2.longtitude = 31.1352
-        
-        trip.coordinates = NSSet(array: [tripCoordinate , tripCoordinate2])
-        
+//        let tripCoordinate = TripCoordinate(unmanagedEntity: "TripCoordinate")
+//        tripCoordinate.latitude = 29.9792
+//        tripCoordinate.longtitude = 31.1342
+//        
+//        let tripCoordinate2 = TripCoordinate(unmanagedEntity: "TripCoordinate")
+//        tripCoordinate2.latitude = 29.9791
+//        tripCoordinate2.longtitude = 31.1352
+//        
+//        trip.coordinates = NSSet(array: [tripCoordinate , tripCoordinate2])
+//        
         
         controller.trip = trip
         
@@ -122,8 +106,14 @@ class AllTripTableViewController: UITableViewController {
         let deleteAction = UIAlertAction(title: "delete ", style: .Destructive, handler: { (action) in
             
             self.tableView.beginUpdates()
-            self.trips.removeAtIndex(indexPath.row)
+            let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+            let dao = AbstractDao(managedObjectContext: moc)
             
+            
+      //      self.trips.removeAtIndex(indexPath.row)
+            self.trips[indexPath.row].delete()
+            self.trips[indexPath.row].release(moc)
+            self.trips = dao.selectAll(entityName: "Trip") as! [Trip]
             
             //remove object from data base
             //trips[indexPath.row].delete()

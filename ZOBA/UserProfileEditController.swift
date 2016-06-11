@@ -40,7 +40,8 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        print("========================")
+        print(user.email)
         
         //update fieldswith user data
         phoneTextField.text = (user.phone != nil) ? user.phone : ""
@@ -231,7 +232,17 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     
     
     @IBAction func save(sender: AnyObject) {
-        //user.save()
+        
+        
+        user.phone = phoneTextField.text != nil ? phoneTextField.text  : nil
+        user.firstName = firstNameTextField.text != nil ? firstNameTextField.text  : nil
+        user.lastName = lastNameTextField.text != nil ? lastNameTextField.text  : nil
+        user.email = emailTextField.text != nil ? emailTextField.text  : nil
+        user.userName = userNameTextField.text != nil ? userNameTextField.text  : nil
+        user.password = passwordTextField.text != nil ? passwordTextField.text  : nil
+        
+        user.save()
+        print(user.email)
         print(" you should save user data ")
         self.navigationController?.popViewControllerAnimated(true)
         

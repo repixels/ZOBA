@@ -15,11 +15,11 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     
     
-    @IBOutlet weak var datePicker: UIDatePicker!
+    
     @IBOutlet weak var currentOdemeter: HoshiTextField!
     
     @IBOutlet weak var initialOdemeter: HoshiTextField!
-    @IBOutlet weak var vehiclePicker: UIPickerView!
+    
     @IBOutlet weak var coveredKm: HoshiTextField!
     
     @IBOutlet weak var stratPointBtn: UIButton!
@@ -28,7 +28,32 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
+    @IBOutlet weak var startLocationLbl: UILabel!
+    @IBOutlet weak var destinationLocationLbl: UILabel!
+    
+    
+    @IBOutlet weak var vehicleTextField: HoshiTextField!
+    @IBOutlet weak var dateTextField: HoshiTextField!
+    
+    
+    
+    var selectedVehicle : Vehicle!
+    
+    var vehicles : [Vehicle]!
+    
     var isSecondPoint = false
+    
+    
+    var startCoordinate : CLLocationCoordinate2D!
+    var destinationCoordinate : CLLocationCoordinate2D!
+    
+    
+    var isDateValid = false
+    var isCoveredKmValid = false
+    var isCurrentOdemeterValid = false
+    var isVehicleValid = false
+    var isFirstCoordinateValid = false
+    var isDestinationCoordinateValid = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +63,37 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
         // Do any additional setup after loading the view.
         
+        saveBtn.enabled = false
+        saveBtn.tintColor = UIColor.grayColor()
+        
+        let moc = ( UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        
+        let vehicle = Vehicle(managedObjectContext: moc, entityName: "Vehicle")
+        vehicle.name = "vehicle"
+        vehicle.currentOdemeter = 30000
+        vehicle.initialOdemeter = 20000
+        
+        vehicle.save()
+        
+        let dao  = AbstractDao(managedObjectContext: moc)
+        vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
+        
+        
+        let user = MyUser(managedObjectContext: moc, entityName: "MyUser")
+        user.email = "email"
+        user.userName = "mas"
+        user.email = "email@mail.com"
+        user.firstName = "first"
+        user.password = "password"
+        user.save()
+        
         initialOdemeter.text = String(100000)
         
-        vehiclePicker.dataSource = self
-        vehiclePicker.delegate = self
+        var pickerView = UIPickerView()
+        
+        pickerView.delegate = self
+        
+        vehicleTextField.inputView = pickerView
         
         
     }
@@ -52,12 +104,38 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         //save Trip
         
+        
+        let moc = ( UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        
+        let firstCoordinate = TripCoordinate(managedObjectContext: moc, entityName: "TripCoordinate")
+        firstCoordinate.latitude = NSDecimalNumber(double: startCoordinate.latitude)
+        firstCoordinate.longtitude = NSDecimalNumber(double:startCoordinate.longitude)
+        firstCoordinate.save()
+        
+        let secondCoordinate = TripCoordinate(managedObjectContext: moc, entityName: "TripCoordinate")
+        secondCoordinate.latitude = NSDecimalNumber(double:destinationCoordinate.latitude)
+        secondCoordinate.longtitude = NSDecimalNumber(double:destinationCoordinate.longitude)
+        secondCoordinate.save()
+        
+        
+        let trip = Trip(managedObjectContext: moc, entityName: "Trip")
+        trip.coveredKm = Int64(self.coveredKm.text!)!
+        trip.initialOdemeter = Int64(self.initialOdemeter.text!)!
+        
+        
+        trip.coordinates = NSSet(array: [firstCoordinate,secondCoordinate])
+        
+        trip.vehicle = selectedVehicle
+        
         self.navigationController?.popViewControllerAnimated(true)
     }
     
     
-    //should be real vehicles data from database
-    let vehicles = ["vehicle 1 ","vehicle 2" , "vehicle 3","vehicle 4" , "vehicle 5"]
+    
+    
+    
+    
+    // MARK:vehicle picker methods
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -67,57 +145,171 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return vehicles[row]
+        return vehicles[row].name
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         //should set trip vehicle value here
         print(vehicles[row])
+        vehicleTextField.text = vehicles[row].name
+        selectedVehicle = vehicles[row]
+        vehicleTextField.resignFirstResponder()
+        
+        isVehicleValid = true
+        validateSave()
+    }
+    
+    //MARK: date picker
+    @IBAction func dateEditingBegin(sender: HoshiTextField) {
+        let datePickerView:UIDatePicker = UIDatePicker()
+        
+        datePickerView.datePickerMode = UIDatePickerMode.Date
+        
+        sender.inputView = datePickerView
+        
+        datePickerView.addTarget(self, action: #selector(self.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
         
     }
     
+    func datePickerValueChanged(sender:UIDatePicker) {
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        
+        dateTextField.text = dateFormatter.stringFromDate(sender.date)
+        
+        isDateValid = true
+        validateSave()
+    }
     
+    
+    
+    @IBAction func vehicleEditingBegin(sender: HoshiTextField) {
+    }
+    
+    
+    //MARK: Odemeter textField editing
     @IBAction func currentOdemeterEdited(sender:AnyObject) {
         
-        let dif : Int = Int(self.currentOdemeter.text!)! - Int(self.initialOdemeter.text!)!
-        if( dif > 0){
-            self.coveredKm.text = String(dif)
-            hideErrorMessage("current Odemeter", textField: self.currentOdemeter)
+        if ( self.currentOdemeter.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(self.currentOdemeter.text!)){
+            let dif : Int = Int(self.currentOdemeter.text!)! - Int(self.initialOdemeter.text!)!
+            if( dif > 0){
+                self.coveredKm.text = String(dif)
+                hideErrorMessage("current Odemeter", textField: self.currentOdemeter)
+                isCurrentOdemeterValid = true
+                validateSave()
+            }
+            else{
+                showErrorMessage("enter a valid odemeter value", textField: self.currentOdemeter)
+                isCurrentOdemeterValid = false
+                validateSave()
+            }
         }
         else{
             showErrorMessage("enter a valid odemeter value", textField: self.currentOdemeter)
+            isCurrentOdemeterValid = false
+            validateSave()
         }
     }
     
     @IBAction func coveredKmEdited(sender: AnyObject){
         
-        let km = Int(self.coveredKm.text!)!
-        
-        if(km>0){
-            let distance : Int = km + Int(self.initialOdemeter.text!)!
+        if ( self.coveredKm.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(self.coveredKm.text!)){
+            let km = Int(self.coveredKm.text!)!
             
-            self.currentOdemeter.text = String(distance)
-            hideErrorMessage("covered Km", textField: self.coveredKm)
+            if(km>0){
+                let distance : Int = km + Int(self.initialOdemeter.text!)!
+                
+                self.currentOdemeter.text = String(distance)
+                hideErrorMessage("covered Km", textField: self.coveredKm)
+                isCoveredKmValid = true
+                validateSave()
+            }
+            else{
+                showErrorMessage("entered a valid value", textField: self.coveredKm)
+                isCoveredKmValid = false
+                validateSave()
+            }
         }
         else{
             showErrorMessage("entered a valid value", textField: self.coveredKm)
+            isCoveredKmValid = false
+            validateSave()
         }
+        
     }
     
+    
+    
+    //MARK: get user Location
     @IBAction func getStartPoint(sender : AnyObject){
         
         isSecondPoint = false
         presentMap()
+        isFirstCoordinateValid = true
+        validateSave()
+        
     }
     
     @IBAction func getEndPoint(sender : AnyObject){
         isSecondPoint = true
         presentMap()
+        isDestinationCoordinateValid = true
+        validateSave()
+    }
+    
+    func presentMap(){
+        
+        let mapViewController: mapController = self.storyboard!.instantiateViewControllerWithIdentifier("MapView") as! mapController
+        mapViewController.modalPresentationStyle = .Popover
+        mapViewController.preferredContentSize = CGSizeMake(50, 200)
+        mapViewController.delegate = self
+        let popoverMenuViewController = mapViewController.popoverPresentationController
+        popoverMenuViewController?.permittedArrowDirections = .Any
+        popoverMenuViewController?.delegate = self
+        
+        presentViewController(mapViewController,animated: true,completion: nil)
+        
+    }
+    
+    func getuserSelectedCoordinate(coordinate: CLLocationCoordinate2D) {
+        
+        //should set coordinate value here
+        if(!isSecondPoint){
+            print("first point at : \(coordinate)")
+            getLocation(coordinate, label: self.startLocationLbl)
+            startCoordinate = coordinate
+        }
+        else{
+            print("second point at : \(coordinate)")
+            getLocation(coordinate, label: self.destinationLocationLbl)
+            destinationCoordinate = coordinate
+        }
+    }
+    
+    func getLocation(coordinate : CLLocationCoordinate2D,label : UILabel){
+        
+        let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        
+        
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
+            dispatch_async(dispatch_get_main_queue(), {
+                label.text = places!.first?.name
+                
+            })
+            
+            
+        })
+        
     }
     
     
     
+    //MARK:  text field error message
     func showErrorMessage(message:String , textField:HoshiTextField)
     {
         textField.borderInactiveColor = UIColor.redColor()
@@ -137,35 +329,39 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         textField.placeholderLabel.alpha = 1.0
     }
     
-  
-    
-    func presentMap(){
-        let storyboard : UIStoryboard = UIStoryboard(
-            name: "HomeStoryBoard",
-            bundle: nil)
-        let mapViewController: mapController = storyboard.instantiateViewControllerWithIdentifier("MapView") as! mapController
-        mapViewController.modalPresentationStyle = .Popover
-        mapViewController.preferredContentSize = CGSizeMake(50, 200)
-        mapViewController.delegate = self
-        let popoverMenuViewController = mapViewController.popoverPresentationController
-        popoverMenuViewController?.permittedArrowDirections = .Any
-        popoverMenuViewController?.delegate = self
+    func validateSave(){
         
-        presentViewController(mapViewController,animated: true,completion: nil)
         
-    }
-    
-    func getuserSelectedCoordinate(coordinate: CLLocationCoordinate2D) {
-        
-        //should set coordinate value here
-        if(!isSecondPoint){
-            print("first point at : \(coordinate)")
+        let valid = isDateValid && isCoveredKmValid && isCurrentOdemeterValid && isVehicleValid && isFirstCoordinateValid && isDestinationCoordinateValid
+        if (valid){
+            self.saveBtn.enabled = true
+            self.saveBtn.tintColor = UIColor.blueColor()
             
         }
         else{
-            print("second point at : \(coordinate)")
+            
+            self.saveBtn.enabled = false
+            self.saveBtn.tintColor = UIColor.grayColor()
+            
         }
+        
+        
     }
     
     
+    @IBAction func showUserProfile(sender: UIBarButtonItem) {
+        
+        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("userProfile") as! UserProfileViewController
+        
+        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        let dao = AbstractDao(managedObjectContext: moc)
+        let user = dao.selectAll(entityName: "MyUser")[0] as! MyUser
+        print(user.userName)
+        print(user.email)
+        print(user.firstName)
+        print(user.password)
+        controller.user = user
+        
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
