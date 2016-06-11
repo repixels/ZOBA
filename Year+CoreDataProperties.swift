@@ -15,7 +15,7 @@ import CoreData
 extension Year {
 
     @NSManaged var name: String?
-    @NSManaged var yearId: Int32
+    @NSManaged var yearId: NSNumber
     @NSManaged var vehicleModel: NSSet?
 
 }

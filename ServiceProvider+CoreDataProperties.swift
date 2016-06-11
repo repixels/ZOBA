@@ -16,7 +16,7 @@ extension ServiceProvider {
 
     @NSManaged var email: String?
     @NSManaged var name: String?
-    @NSManaged var serviceProviderId: Int32
+    @NSManaged var serviceProviderId: NSNumber
     @NSManaged var webSite: String?
     @NSManaged var address: ServiceProviderAddress?
     @NSManaged var branch: NSSet?

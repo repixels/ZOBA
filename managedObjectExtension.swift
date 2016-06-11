@@ -48,7 +48,7 @@ extension NSManagedObject{
     
     
     func save(){
-        let moc = self.managedObjectContext
+        let moc = SessionObjects.currentManageContext
         
         do {
             try moc!.save()

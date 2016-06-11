@@ -15,7 +15,7 @@ import CoreData
 extension Service {
 
     @NSManaged var name: String?
-    @NSManaged var serviceId: Int32
+    @NSManaged var serviceId: NSNumber
     @NSManaged var serviceProvderService: NSSet?
     @NSManaged var trackingType: NSSet?
 
