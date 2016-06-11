@@ -13,6 +13,9 @@ target 'ZOBA' do
   pod 'ObjectMapper', '~> 1.3'
   pod 'ChameleonFramework/Swift'
   pod 'BTNavigationDropdownMenu'
+  pod 'SwiftyUserDefaults'
+  pod 'AlamofireImage', '~> 2.0'
+  pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
 
   # Pods for ZOBA
 

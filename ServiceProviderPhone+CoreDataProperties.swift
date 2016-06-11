@@ -15,7 +15,7 @@ import CoreData
 extension ServiceProviderPhone {
 
     @NSManaged var phone: String?
-    @NSManaged var phoneId: Int32
+    @NSManaged var phoneId: NSNumber
     @NSManaged var serviceProvider: ServiceProvider?
 
 }

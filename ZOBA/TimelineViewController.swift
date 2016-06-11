@@ -63,7 +63,6 @@ class TimelineViewController: UITableViewController {
             //self.selectedCellLabel.text = items[indexPath]
         }
         
-        menuView.toggle()
         
         self.navigationItem.titleView = menuView
         

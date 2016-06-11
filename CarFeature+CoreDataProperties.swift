@@ -14,7 +14,7 @@ import CoreData
 
 extension CarFeature {
 
-    @NSManaged var carFeatureId: Int32
+    @NSManaged var carFeatureId: NSNumber
     @NSManaged var name: String?
     @NSManaged var featureValue: NSSet?
 

@@ -16,7 +16,7 @@ extension MeasuringUnit {
 
     @NSManaged var name: String?
     @NSManaged var suffix: String?
-    @NSManaged var unitId: Int32
+    @NSManaged var unitId: NSNumber
     @NSManaged var trackingType: NSSet?
 
 }

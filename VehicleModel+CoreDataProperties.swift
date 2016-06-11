@@ -14,7 +14,7 @@ import CoreData
 
 extension VehicleModel {
 
-    @NSManaged var vehicleModelId: Int32
+    @NSManaged var vehicleModelId: NSNumber
     @NSManaged var featuresValue: NSSet?
     @NSManaged var model: Model?
     @NSManaged var trim: Trim?
