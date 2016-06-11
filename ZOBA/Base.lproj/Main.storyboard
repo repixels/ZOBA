@@ -8,7 +8,7 @@
         <!--Landing Page-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="mainStoryBoard" title="Landing Page" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainStoryBoard" title="Landing Page" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1f9-HB-lap"/>
                         <viewControllerLayoutGuide type="bottom" id="juc-rI-RHY"/>

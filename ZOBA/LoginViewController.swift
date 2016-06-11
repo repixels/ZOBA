@@ -14,7 +14,7 @@ import FBSDKLoginKit
 import TextFieldEffects
 import CoreData
 
-class ViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDelegate{
+class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDelegate{
 
     //Buttons
     @IBOutlet weak var fbLoginButton: FBSDKLoginButton!

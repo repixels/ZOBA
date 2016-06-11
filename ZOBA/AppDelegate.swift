@@ -240,7 +240,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         if animated {
             UIView.transitionWithView(self.window!, duration: 0.5, options:.TransitionCrossDissolve, animations: { () -> Void in
                 let mainStoryboardIpad : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let initialViewControlleripad : ViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier("mainStoryBoard") as! ViewController
+                let initialViewControlleripad : LoginViewController = mainStoryboardIpad.instantiateViewControllerWithIdentifier("mainStoryBoard") as! LoginViewController
                 initialViewControlleripad.managedObjectContext = self.managedObjectContext
                 let loginNavigationController = UINavigationController()
                 loginNavigationController.addChildViewController(initialViewControlleripad)

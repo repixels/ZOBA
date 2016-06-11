@@ -11,6 +11,7 @@ PODS:
   - FoldingTabBar (1.0.2)
   - ObjectMapper (1.3.0)
   - Onboard (2.2.0)
+  - SwiftyUserDefaults (2.2.0)
   - TextFieldEffects (1.2.0)
 
 DEPENDENCIES:
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - FoldingTabBar (~> 1.0.2)
   - ObjectMapper (~> 1.3)
   - Onboard
+  - SwiftyUserDefaults
   - TextFieldEffects
 
 SPEC CHECKSUMS:
@@ -33,8 +35,9 @@ SPEC CHECKSUMS:
   FoldingTabBar: 79df76dfd5a84c0a369beaa378a31c07aa53b6b2
   ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
   Onboard: c46261255c0bcbe26ab2823782764c96fca7a33e
+  SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
   TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
 
-PODFILE CHECKSUM: 4b08c69dca3df354a3003ab3eab9093f253a8eab
+PODFILE CHECKSUM: ea10474eb6b2b86cd32182122d3910a1ec7ef9df
 
-COCOAPODS: 1.0.0.rc.2
+COCOAPODS: 1.0.1
