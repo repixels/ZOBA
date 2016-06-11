@@ -97,10 +97,10 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
     
         let typeObj = TrackingType(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingType")
         
-        typeObj.trackingData = NSSet(array: [trackingDataObj])
+       // typeObj.trackingData = NSSet(array: [trackingDataObj])
         
         typeObj.mutableSetValueForKey("trackingData").addObject(trackingDataObj)
-        typeObj.
+        //typeObj.
         
         let serobj = Service(managedObjectContext:appDel.managedObjectContext , entityName: "Service")
        
