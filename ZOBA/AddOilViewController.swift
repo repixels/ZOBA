@@ -7,19 +7,58 @@
 //
 
 import UIKit
+import TextFieldEffects
 
-class AddOilViewController: UIViewController {
+class AddOilViewController: UIViewController ,UIPickerViewDelegate {
+    
+    
+    @IBOutlet weak var currentOdoMeterTextField: HoshiTextField!
+    
+    @IBAction func dateApperance(sender: HoshiTextField) {
+        
+        let datePickerView  : UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.Date
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(AddOilViewController.handleDatePicker(_:)), forControlEvents: UIControlEvents.ValueChanged)
 
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    }
+    @IBOutlet weak var dateTextField: HoshiTextField!
+
+    func handleDatePicker(sender: UIDatePicker) {
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        
+        dateTextField.text = dateFormatter.stringFromDate(sender.date)
+    }
+
+
+    @IBOutlet weak var serviceProviderTextField: HoshiTextField!
+    
+    
+    @IBOutlet weak var oilAmountTextField: HoshiTextField!
+    
+    var pickOption = ["one", "two" , "three" , "four"]
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        
+              super.viewDidLoad()
         self.title = "Add Oil"
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSForegroundColorAttributeName: UIColor.whiteColor(),
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
 
         // Do any additional setup after loading the view.
+        
+        
+        let pickerView = UIPickerView()
+        
+        pickerView.delegate = self
+        
+        serviceProviderTextField.inputView = pickerView
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,5 +79,57 @@ class AddOilViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func saveOilData(sender: AnyObject) {
+        
+        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let trackingDataObj = TrackingData(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingData")
+        
+        trackingDataObj.initialOdemeter = Int64(currentOdoMeterTextField.text!)!
+        
+       // let time =  NSTimeInterval(dateTextField.text!)
+        //print(time)
+       // trackingDataObj.dateModified =  Double(dateTextField.text!)!
+        trackingDataObj.value = oilAmountTextField.text!
+        
+        trackingDataObj.save()
+    
+        let typeObj = TrackingType(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingType")
+        
+        typeObj.trackingData = NSSet(array: [trackingDataObj])
+        
+        typeObj.mutableSetValueForKey("trackingData").addObject(trackingDataObj)
+        typeObj.
+        
+        let serobj = Service(managedObjectContext:appDel.managedObjectContext , entityName: "Service")
+       
+        serobj.name = "Oil"
+        serobj.save()
+        serobj.mutableSetValueForKey("trackingType").addObject(typeObj)
+        
+        let measuringUnitObj = MeasuringUnit(managedObjectContext: appDel.managedObjectContext, entityName: "MeasuringUnit")
+        measuringUnitObj.name = "liters"
+        measuringUnitObj.suffix = "L"
+        
+        typeObj.mutableSetValueForKey("measuringUnit").addObject(measuringUnitObj)
+        
+        
+    }
+    
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickOption[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        serviceProviderTextField.text = pickOption[row]
+    }
 
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickOption.count
+    }
 }

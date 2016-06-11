@@ -34,15 +34,15 @@ class MyUser: NSManagedObject , Mappable {
         
         var vehicle : [Vehicle]?
         
-        self.deviceToken <- map[""]
-        self.email <- map[""]
-        self.firstName <- map[""]
+        self.deviceToken <- map["devices"]
+        self.email <- map["email"]
+        self.firstName <- map["firstName"]
         self.lastName <- map[""]
-        self.password <- map[""]
-        self.phone <- map[""]
-        self.userId <- map[""]
-        self.userName <- map[""]
-        vehicle <- map[""]
+        self.password <- map["password"]
+        self.phone <- map["phone"]
+        self.userId <- map["id"]
+        self.userName <- map["username"]
+        vehicle <- map["vehicles"]
         
         if vehicle != nil
         {
