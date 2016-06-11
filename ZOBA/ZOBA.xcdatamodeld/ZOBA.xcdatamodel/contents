@@ -109,11 +109,11 @@
         <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="traclingData" inverseEntity="Vehicle" syncable="YES"/>
     </entity>
     <entity name="TrackingType" representedClassName=".TrackingType" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="measuringUnit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MeasuringUnit" inverseName="trackingType" inverseEntity="MeasuringUnit" syncable="YES"/>
         <relationship name="service" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Service" inverseName="trackingType" inverseEntity="Service" syncable="YES"/>
-        <relationship name="trackingData" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="TrackingData" inverseName="trackingType" inverseEntity="TrackingData" syncable="YES"/>
+        <relationship name="trackingData" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="TrackingData" inverseName="trackingType" inverseEntity="TrackingData" syncable="YES"/>
     </entity>
     <entity name="Trim" representedClassName=".Trim" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
