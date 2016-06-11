@@ -67,13 +67,6 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         saveBtn.enabled = false
         saveBtn.tintColor = UIColor.grayColor()
         
-        let vehicle = Vehicle(managedObjectContext: SessionObjects.currentManageContext , entityName: "Vehicle")
-        vehicle.name = "vehicle"
-        vehicle.currentOdemeter = 30000
-        vehicle.initialOdemeter = 20000
-        
-        vehicle.save()
-        
         
         let dao  = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
@@ -134,12 +127,11 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         secondCoordinate.longtitude = NSDecimalNumber(double:destinationCoordinate.longitude)
         secondCoordinate.save()
         
-        if(isEditingTrip && self.trip != nil){}
-        else{
+        if !isEditingTrip || self.trip == nil
+        {
             self.trip = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
         }
         
-        let trip = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
         trip.coveredKm = Int(self.coveredKm.text!)!
         trip.initialOdemeter = Int(self.initialOdemeter.text!)!
         
@@ -375,15 +367,6 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     @IBAction func showUserProfile(sender: UIBarButtonItem) {
         
         let controller = self.storyboard?.instantiateViewControllerWithIdentifier("userProfile") as! UserProfileViewController
-        
-        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        let dao = AbstractDao(managedObjectContext: moc)
-        let user = dao.selectAll(entityName: "MyUser")[0] as! MyUser
-        print(user.userName)
-        print(user.email)
-        print(user.firstName)
-        print(user.password)
-        
         
         self.navigationController?.pushViewController(controller, animated: true)
     }

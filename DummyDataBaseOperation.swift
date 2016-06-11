@@ -11,7 +11,7 @@ import CoreData
 
 class DummyDataBaseOperation {
     
-    func saveUser( managedObjectContext moc : NSManagedObjectContext){
+    static func saveUser( managedObjectContext moc : NSManagedObjectContext){
         
         
         let user = MyUser(managedObjectContext: moc, entityName: "MyUser")
@@ -24,7 +24,7 @@ class DummyDataBaseOperation {
     }
     
     
-    func saveVehicle(managedObjectContext moc : NSManagedObjectContext){
+    static func saveVehicle(managedObjectContext moc : NSManagedObjectContext){
         let vehicle = Vehicle(managedObjectContext: moc, entityName: "Vehicle")
         vehicle.name = "vehicle"
         vehicle.currentOdemeter = 30000

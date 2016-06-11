@@ -27,8 +27,7 @@ class AllTripTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let moc = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        let dao = AbstractDao(managedObjectContext: moc)
+        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
         trips = dao.selectAll(entityName: "Trip") as! [Trip]
         
