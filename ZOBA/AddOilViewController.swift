@@ -20,10 +20,10 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
         datePickerView.datePickerMode = UIDatePickerMode.Date
         sender.inputView = datePickerView
         datePickerView.addTarget(self, action: #selector(AddOilViewController.handleDatePicker(_:)), forControlEvents: UIControlEvents.ValueChanged)
-
+        
     }
     @IBOutlet weak var dateTextField: HoshiTextField!
-
+    
     func handleDatePicker(sender: UIDatePicker) {
         
         let dateFormatter = NSDateFormatter()
@@ -34,8 +34,8 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
         
         dateTextField.text = dateFormatter.stringFromDate(sender.date)
     }
-
-
+    
+    
     @IBOutlet weak var serviceProviderTextField: HoshiTextField!
     
     
@@ -45,12 +45,12 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
     
     override func viewDidLoad() {
         
-              super.viewDidLoad()
+        super.viewDidLoad()
         self.title = "Add Oil"
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSForegroundColorAttributeName: UIColor.whiteColor(),
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-
+        
         // Do any additional setup after loading the view.
         
         
@@ -60,7 +60,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
         
         serviceProviderTextField.inputView = pickerView
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -71,14 +71,14 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     @IBAction func saveOilData(sender: AnyObject) {
         
@@ -88,32 +88,49 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
         
         trackingDataObj.initialOdemeter = Int64(currentOdoMeterTextField.text!)!
         
-       // let time =  NSTimeInterval(dateTextField.text!)
-        //print(time)
-       // trackingDataObj.dateModified =  Double(dateTextField.text!)!
         trackingDataObj.value = oilAmountTextField.text!
         
         trackingDataObj.save()
-    
-        let typeObj = TrackingType(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingType")
         
-       // typeObj.trackingData = NSSet(array: [trackingDataObj])
+        let typeObj = TrackingType(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingType")
+        typeObj.name = "oil"
+        
+        typeObj.save()
         
         typeObj.mutableSetValueForKey("trackingData").addObject(trackingDataObj)
-        //typeObj.
         
-        let serobj = Service(managedObjectContext:appDel.managedObjectContext , entityName: "Service")
-       
-        serobj.name = "Oil"
-        serobj.save()
-        serobj.mutableSetValueForKey("trackingType").addObject(typeObj)
-        
+    
         let measuringUnitObj = MeasuringUnit(managedObjectContext: appDel.managedObjectContext, entityName: "MeasuringUnit")
         measuringUnitObj.name = "liters"
         measuringUnitObj.suffix = "L"
         
-        typeObj.mutableSetValueForKey("measuringUnit").addObject(measuringUnitObj)
+        measuringUnitObj.mutableSetValueForKey("trackingType").addObject(typeObj)
+        measuringUnitObj.save()
+                
+                let serobj = Service(managedObjectContext:appDel.managedObjectContext , entityName: "Service")
         
+                serobj.name = "fuel"
+        
+                serobj.mutableSetValueForKey("trackingType").addObject(typeObj)
+
+        serobj.save()
+        
+       let VehicleObj = Vehicle(managedObjectContext: appDel.managedObjectContext, entityName: "Vehicle")
+
+        
+        VehicleObj.mutableSetValueForKey("trackingData").addObject(trackingDataObj)
+        
+        
+        VehicleObj.save()
+        
+        do{
+            try appDel.managedObjectContext.save()
+        }
+        catch let error
+        {
+            print(error)
+            
+        }
         
     }
     
@@ -128,8 +145,11 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         serviceProviderTextField.text = pickOption[row]
     }
-
+    
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickOption.count
     }
+    
+    
+    
 }

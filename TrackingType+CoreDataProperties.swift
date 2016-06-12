@@ -14,7 +14,7 @@ import CoreData
 
 extension TrackingType {
 
-    @NSManaged var name: Int32
+    @NSManaged var name: String
     @NSManaged var typeId: Int32
     @NSManaged var measuringUnit: MeasuringUnit?
     @NSManaged var service: NSSet?
