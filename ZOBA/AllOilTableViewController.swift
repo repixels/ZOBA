@@ -27,7 +27,7 @@ class AllOilTableViewController: UITableViewController {
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         
          dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
-        data = dao.selectAll(entityName: "TrackingData") as! [TrackingData]
+       // data = dao.selectAll(entityName: "TrackingData") as! [TrackingData]
         data = dao.selectByString(entityName: "TrackingData", AttributeName: "trackingType.name", value: "oil") as![TrackingData]
         
         self.tableView.reloadData()

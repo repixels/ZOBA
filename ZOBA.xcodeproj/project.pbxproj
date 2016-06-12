@@ -111,6 +111,9 @@
 		DC0095991D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00956F1D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift */; };
 		DC00959A1D075660000856FC /* ModelFeatureValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0095701D075660000856FC /* ModelFeatureValue.swift */; };
 		DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */; };
+		DC778F271D0D6FB600F43AE8 /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */; };
+		DC778F291D0D708600F43AE8 /* Fuel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F281D0D708600F43AE8 /* Fuel.storyboard */; };
+		DC778F2B1D0D7B3600F43AE8 /* oil.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */; };
 		DCB398111D0D538900845B19 /* FuelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB398101D0D538900845B19 /* FuelTableViewController.swift */; };
 		DCC01D0F1D0C4FE0009E66C3 /* AllOilTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC01D0E1D0C4FE0009E66C3 /* AllOilTableViewController.swift */; };
 		DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC401CFC33A400637977 /* DataValidations.swift */; };
@@ -273,6 +276,9 @@
 		DC00956F1D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModelFeatureValue+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DC0095701D075660000856FC /* ModelFeatureValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFeatureValue.swift; sourceTree = "<group>"; };
 		DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceConnection.swift; sourceTree = "<group>"; };
+		DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryBoard.storyboard; sourceTree = "<group>"; };
+		DC778F281D0D708600F43AE8 /* Fuel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Fuel.storyboard; path = ../Fuel.storyboard; sourceTree = "<group>"; };
+		DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = oil.storyboard; sourceTree = "<group>"; };
 		DCB398101D0D538900845B19 /* FuelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTableViewController.swift; sourceTree = "<group>"; };
 		DCC01D0E1D0C4FE0009E66C3 /* AllOilTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllOilTableViewController.swift; sourceTree = "<group>"; };
 		DCE6DC401CFC33A400637977 /* DataValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidations.swift; sourceTree = "<group>"; };
@@ -479,7 +485,10 @@
 			isa = PBXGroup;
 			children = (
 				827827621CF837D600684CE5 /* LaunchScreen.storyboard */,
+				DC778F281D0D708600F43AE8 /* Fuel.storyboard */,
+				DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */,
 				8278275A1CF837D600684CE5 /* Main.storyboard */,
+				DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -795,7 +804,9 @@
 				82501A7C1D05A9A3008272CB /* line.png in Resources */,
 				82F8B8C31CF89A2500E46B05 /* splash-background.png in Resources */,
 				82F8B8BE1CF8905B00E46B05 /* contm.ttf in Resources */,
+				DC778F291D0D708600F43AE8 /* Fuel.storyboard in Resources */,
 				82F8B8BF1CF8905B00E46B05 /* nasalization rg.ttf in Resources */,
+				DC778F2B1D0D7B3600F43AE8 /* oil.storyboard in Resources */,
 				82F8B8A11CF8807400E46B05 /* service-centers.png in Resources */,
 				82501A791D05A9A3008272CB /* flag.png in Resources */,
 				82501A801D05A9A3008272CB /* rainbow.png in Resources */,
@@ -816,6 +827,7 @@
 				82F8B8A21CF8807400E46B05 /* statistics.png in Resources */,
 				82501A7D1D05A9A3008272CB /* Odometer.png in Resources */,
 				82F8B8BD1CF8905B00E46B05 /* contl.ttf in Resources */,
+				DC778F271D0D6FB600F43AE8 /* HomeStoryBoard.storyboard in Resources */,
 				8278275C1CF837D600684CE5 /* Main.storyboard in Resources */,
 				82501A831D05A9A3008272CB /* timeline-circle.png in Resources */,
 				829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */,

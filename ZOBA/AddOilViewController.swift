@@ -35,7 +35,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
         dateTextField.text = dateFormatter.stringFromDate(sender.date)
     }
     
-    
     @IBOutlet weak var serviceProviderTextField: HoshiTextField!
     
     
@@ -70,16 +69,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
         self.tabBarController?.selectedIndex = 1
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
     @IBAction func saveOilData(sender: AnyObject) {
         
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -90,50 +79,24 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
         
         trackingDataObj.value = oilAmountTextField.text!
         
+       let dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
+        
+        let typeObj = dao.selectByString(entityName: "TrackingType", AttributeName: "name", value: "oil") as![TrackingType]
+        
+        trackingDataObj.trackingType = typeObj[0]
+
+        let vehicleObjDAO = dao.selectByString(entityName: "Vehicle", AttributeName: "name", value: "car1") as!  [Vehicle]
+    
+        
+        print(vehicleObjDAO[0])
+        trackingDataObj.vehicle = vehicleObjDAO[0]
+        
+        
         trackingDataObj.save()
-        
-        let typeObj = TrackingType(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingType")
-        typeObj.name = "oil"
-        
-        typeObj.save()
-        
-        typeObj.mutableSetValueForKey("trackingData").addObject(trackingDataObj)
-        
-    
-        let measuringUnitObj = MeasuringUnit(managedObjectContext: appDel.managedObjectContext, entityName: "MeasuringUnit")
-        measuringUnitObj.name = "liters"
-        measuringUnitObj.suffix = "L"
-        
-        measuringUnitObj.mutableSetValueForKey("trackingType").addObject(typeObj)
-        measuringUnitObj.save()
-                
-                let serobj = Service(managedObjectContext:appDel.managedObjectContext , entityName: "Service")
-        
-                serobj.name = "fuel"
-        
-                serobj.mutableSetValueForKey("trackingType").addObject(typeObj)
+        performSegueWithIdentifier("oilsegue", sender: self)
 
-        serobj.save()
-        
-       let VehicleObj = Vehicle(managedObjectContext: appDel.managedObjectContext, entityName: "Vehicle")
-
-        
-        VehicleObj.mutableSetValueForKey("trackingData").addObject(trackingDataObj)
-        
-        
-        VehicleObj.save()
-        
-        do{
-            try appDel.managedObjectContext.save()
-        }
-        catch let error
-        {
-            print(error)
-            
-        }
-        
+        //trackingDataObj.release(appDel.managedObjectContext)
     }
-    
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -149,6 +112,23 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickOption.count
     }
+    
+    
+//     // MARK: - Navigation
+//     
+//     // In a storyboard-based application, you will often want to do a little preparation before navigation
+//     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//     // Get the new view controller using segue.destinationViewController.
+//     // Pass the selected object to the new view controller.
+//        
+//        
+//        if segue.identifier == "oilSegue" {
+//         
+//            let des = segue.destinationViewController as! AllOilTableViewController
+//            
+//        }
+//     }
+// 
     
     
     

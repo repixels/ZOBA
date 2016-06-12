@@ -39,12 +39,8 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     @IBOutlet weak var OdometerImage: UIImageView!
     
     @IBOutlet weak var fuelAmountImage: UIImageView!
-    
-  
    
     @IBOutlet weak var serviceProviderImage: UIImageView!
-   
-    
     
     func disableBtn()  {
         
@@ -57,9 +53,6 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         saveBtn.enabled = true
         saveBtn.tintColor = UIColor.blueColor()
     }
-    
-    
-
     
     func handleDatePicker(sender: UIDatePicker) {
         
@@ -104,6 +97,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         pickerView.delegate = self
         
         serviceProviderTextFeild.inputView = pickerView
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,70 +112,54 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
         let trackingDataObj = TrackingData(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingData")
         
-        let text  = currentOdometerTextField.text!
-        trackingDataObj.initialOdemeter = Int64(text)!
+        trackingDataObj.initialOdemeter = Int64(currentOdometerTextField.text!)!
         
         trackingDataObj.value = fuelAmountTextField.text!
         
+        let dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
+        
+        let typeObj = dao.selectByString(entityName: "TrackingType", AttributeName: "name", value: "fuel") as![TrackingType]
+        
+        trackingDataObj.trackingType = typeObj[0]
+        
+        let vehicleObjDAO = dao.selectByString(entityName: "Vehicle", AttributeName: "name", value: "car1") as!  [Vehicle]
+        
+        trackingDataObj.vehicle = vehicleObjDAO[0]
+      //  VehicleObjDAO.first!.mutableSetValueForKey("traclingData").addObject(trackingDataObj)
+        
         trackingDataObj.save()
         
-        let typeObj = TrackingType(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingType")
-        
-        typeObj.mutableSetValueForKey("trackingData").addObject(trackingDataObj)
-        
-        typeObj.name = "fuel"
-        typeObj.save()
-        
-        
-        let VehicleObj = Vehicle(managedObjectContext: appDel.managedObjectContext, entityName: "Vehicle")
-        
-        VehicleObj.mutableSetValueForKey("traclingData").addObject(trackingDataObj)
-        
-        
-                let serobj = Service(managedObjectContext:appDel.managedObjectContext , entityName: "Service")
-        
-                serobj.name = "fuel"
-                serobj.save()
-                serobj.mutableSetValueForKey("trackingType").addObject(typeObj)
-        
-                let measuringUnitObj = MeasuringUnit(managedObjectContext: appDel.managedObjectContext, entityName: "MeasuringUnit")
-                measuringUnitObj.name = "liters"
-                measuringUnitObj.suffix = "L"
-        
-                measuringUnitObj.mutableSetValueForKey("trackingType").addObject(typeObj)
-                
-                measuringUnitObj.save()
-        
-        
-        do{
-            try appDel.managedObjectContext.save()
-        }
-        catch let error
-        {
-            print(error)
-            
-        }
+        performSegueWithIdentifier("fuelSegue", sender: self)
 
-        
+        //self.navigationController?.p
+//        do{
+//            try appDel.managedObjectContext.save()
+//        }
+//        catch let error
+//        {
+//            print(error)
+//            
+ //       }
     }
-
+/*
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+     //In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
+ 
         
         if segue.identifier == "fuelSegue" {
-            //var des =  segue.destinationViewController as! FuelTableViewController
+            
+            let des = segue.destinationViewController as! FuelTableViewController
 
         }
     }
- 
+ */
    
-    
-    
+ 
+
 
 }

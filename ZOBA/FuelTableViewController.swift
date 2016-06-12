@@ -9,7 +9,6 @@
 import UIKit
 
 class FuelTableViewController: UITableViewController {
-
     
     var dao : AbstractDao!
     
@@ -27,9 +26,11 @@ class FuelTableViewController: UITableViewController {
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         
         dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
-        //data = dao.selectAll(entityName: "TrackingData") as! [TrackingData]
         
        data = dao.selectByString(entityName: "TrackingData", AttributeName: "trackingType.name", value: "fuel") as![TrackingData]
+        
+        
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,12 +42,12 @@ class FuelTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return data.count
     }
 
     
