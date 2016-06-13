@@ -55,7 +55,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     var isDateValid = false
     var isCoveredKmValid = false
     var isCurrentOdemeterValid = false
-    var isVehicleValid = false
+    var isVehicleValid = true
     var isFirstCoordinateValid = false
     var isDestinationCoordinateValid = false
     
@@ -76,12 +76,10 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
         
         initialOdemeter.text = String(vehicles[0].currentOdemeter)
-        let pickerView = UIPickerView()
-        
-        pickerView.delegate = self
         
         
-        self.vehiclesPickerView = pickerView
+        self.vehiclesPickerView.delegate = self
+    
         
         
     }

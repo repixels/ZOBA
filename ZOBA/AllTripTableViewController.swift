@@ -25,9 +25,13 @@ class AllTripTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool)
+    {
         super.viewWillAppear(animated)
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        
+        self.navigationController?.title = "Trips"
+        self.navigationController?.navigationBar.userInteractionEnabled = true
         
         trips = dao.selectAll(entityName: "Trip") as! [Trip]
         
@@ -61,7 +65,8 @@ class AllTripTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("tripDetail", forIndexPath: indexPath) as! TripTableViewCell
+      
+        let cell = tableView.dequeueReusableCellWithIdentifier("Trip Cell", forIndexPath: indexPath) as! TripTableViewCell
         
         cell.coveredMilageLabel.text = trips[indexPath.row].coveredKm.stringValue
         
