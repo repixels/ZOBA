@@ -248,8 +248,6 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     
     @IBAction func selectUserImage(sender: AnyObject) {
         
-        print("selecting image")
-        
         let actionSheet = UIAlertController(title: "New Photo", message: nil, preferredStyle: .ActionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { action in

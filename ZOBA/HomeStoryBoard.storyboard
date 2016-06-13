@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Bsm-7X-oUo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Bsm-7X-oUo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -281,7 +281,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateCell" rowHeight="142" id="sue-dj-pTP" customClass="DaySummaryCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="142"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="142"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sue-dj-pTP" id="QMA-oz-aRW">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
@@ -349,7 +349,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="FuelData" rowHeight="194" id="wo8-JU-xmz" customClass="FuelCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="170" width="320" height="194"/>
+                                <rect key="frame" x="0.0" y="234" width="320" height="194"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wo8-JU-xmz" id="OfQ-5k-9Lw">
                                     <rect key="frame" x="0.0" y="0.0" width="281" height="194"/>
@@ -454,7 +454,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="top" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="TripData" rowHeight="194" id="qFz-5w-2xk" customClass="TripCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="364" width="320" height="194"/>
+                                <rect key="frame" x="0.0" y="428" width="320" height="194"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qFz-5w-2xk" id="5Ds-zY-VzC">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="194"/>
@@ -560,7 +560,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OilData" rowHeight="194" id="xR1-2u-7gK" customClass="OilCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="558" width="320" height="194"/>
+                                <rect key="frame" x="0.0" y="622" width="320" height="194"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xR1-2u-7gK" id="M3B-Cp-TfU">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="194"/>
@@ -719,7 +719,7 @@
         <!--addTrip-->
         <scene sceneID="RHd-NX-5QQ">
             <objects>
-                <viewControllerPlaceholder storyboardName="userProfile" referencedIdentifier="addTrip" id="qay-JZ-e3m" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="user-Profile" referencedIdentifier="addTrip" id="qay-JZ-e3m" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Yl2-cl-FlH"/>
                     <navigationItem key="navigationItem" id="n3O-Ve-ClX"/>
                 </viewControllerPlaceholder>
