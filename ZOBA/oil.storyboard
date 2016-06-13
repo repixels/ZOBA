@@ -8,7 +8,6 @@
         <!--Oil-->
         <scene sceneID="rzz-bd-Dg4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="78R-0V-2rN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Oil" id="BCb-ec-kAh" customClass="AddOilViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s1e-5n-gKu"/>
@@ -28,26 +27,6 @@
                                 <color key="backgroundColor" red="0.25005361440000001" green="0.30566063519999997" blue="0.58369332549999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSR-2Q-zGr" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="74" y="83" width="226" height="41"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="0.80000000000000004"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chats_icon" translatesAutoresizingMaskIntoConstraints="NO" id="tMi-kY-eTp">
                                 <rect key="frame" x="20" y="211" width="36" height="36"/>
                                 <color key="backgroundColor" red="0.25005361440000001" green="0.30566063519999997" blue="0.58369332549999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,14 +51,13 @@
                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="oilMountEditingChange:" destination="BCb-ec-kAh" eventType="editingChanged" id="cmf-EJ-Nyf"/>
+                                    <action selector="oilMountEditingDidEnd:" destination="BCb-ec-kAh" eventType="editingDidEnd" id="g4K-hU-Bcs"/>
+                                </connections>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chats_icon" translatesAutoresizingMaskIntoConstraints="NO" id="B02-se-wlG">
-                                <rect key="frame" x="20" y="272" width="36" height="36"/>
-                                <color key="backgroundColor" red="0.25005361440000001" green="0.30566063519999997" blue="0.58369332549999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tkw-Cd-KYt" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="74" y="143" width="226" height="41"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSR-2Q-zGr" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="74" y="83" width="226" height="41"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -98,11 +76,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="dateApperance:" destination="BCb-ec-kAh" eventType="editingDidEnd" id="XTN-kq-rUl"/>
+                                    <action selector="currentEditingDidEnd:" destination="BCb-ec-kAh" eventType="editingDidEnd" id="Vay-ne-XNy"/>
+                                    <action selector="currentOdeEditingChang:" destination="BCb-ec-kAh" eventType="editingChanged" id="8lc-mf-Otr"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Service Provider" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ubs-4Y-qVa" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="74" y="267" width="226" height="41"/>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zRB-mc-Ljv">
+                                <rect key="frame" x="20" y="236" width="280" height="154"/>
+                            </pickerView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tkw-Cd-KYt" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="74" y="145" width="226" height="41"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -120,7 +102,22 @@
                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="DateTouchUpInsid:" destination="BCb-ec-kAh" eventType="touchDown" id="f98-lk-nQQ"/>
+                                </connections>
                             </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IQ6-F5-7LP">
+                                <rect key="frame" x="33" y="398" width="255" height="156"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="2S0-PC-pzC">
+                                        <rect key="frame" x="1" y="8" width="255" height="140"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="487542263.38744098">
+                                            <!--2016-06-13 20:24:23 +0000-->
+                                        </date>
+                                    </datePicker>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -140,12 +137,14 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="currentOdoMeterTextField" destination="TSR-2Q-zGr" id="3H2-eV-IHF"/>
-                        <outlet property="dateTextField" destination="Tkw-Cd-KYt" id="3jn-HQ-Crq"/>
+                        <outlet property="dateTextField" destination="Tkw-Cd-KYt" id="C5M-aa-vdY"/>
                         <outlet property="oilAmountTextField" destination="405-Hc-VIe" id="MHc-JJ-c6K"/>
-                        <outlet property="serviceProviderTextField" destination="ubs-4Y-qVa" id="P8y-ck-FJO"/>
+                        <outlet property="pickerView" destination="zRB-mc-Ljv" id="lZb-HF-6aZ"/>
+                        <outlet property="saveBtn" destination="d8r-mg-1Bo" id="M6Y-Ac-7bX"/>
                         <segue destination="W64-4G-YfM" kind="push" identifier="oilsegue" id="gL9-ZF-O77"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="78R-0V-2rN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1597" y="484"/>
         </scene>
