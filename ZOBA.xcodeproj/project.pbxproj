@@ -116,6 +116,9 @@
 		DC0095991D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00956F1D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift */; };
 		DC00959A1D075660000856FC /* ModelFeatureValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0095701D075660000856FC /* ModelFeatureValue.swift */; };
 		DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */; };
+		DCD0F1A61D0ED61B0067B2DA /* vehicle2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCD0F1A51D0ED61B0067B2DA /* vehicle2.storyboard */; };
+		DCD0F1A91D0ED6D10067B2DA /* VehicleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD0F1A81D0ED6D10067B2DA /* VehicleTableViewController.swift */; };
+		DCD0F1AB1D0EDA320067B2DA /* vehicleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD0F1AA1D0EDA320067B2DA /* vehicleDetailsViewController.swift */; };
 		DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC401CFC33A400637977 /* DataValidations.swift */; };
 		DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
@@ -281,6 +284,9 @@
 		DC00956F1D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModelFeatureValue+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DC0095701D075660000856FC /* ModelFeatureValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFeatureValue.swift; sourceTree = "<group>"; };
 		DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceConnection.swift; sourceTree = "<group>"; };
+		DCD0F1A51D0ED61B0067B2DA /* vehicle2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = vehicle2.storyboard; sourceTree = "<group>"; };
+		DCD0F1A81D0ED6D10067B2DA /* VehicleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleTableViewController.swift; sourceTree = "<group>"; };
+		DCD0F1AA1D0EDA320067B2DA /* vehicleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = vehicleDetailsViewController.swift; sourceTree = "<group>"; };
 		DCE6DC401CFC33A400637977 /* DataValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidations.swift; sourceTree = "<group>"; };
 		DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -434,6 +440,7 @@
 		827827551CF837D600684CE5 /* ZOBA */ = {
 			isa = PBXGroup;
 			children = (
+				DCD0F1A71D0ED67C0067B2DA /* vehicle */,
 				825BB0021D0C0C8900F44EA3 /* Webservice Integeration */,
 				82057F7C1D0490C700BC80DD /* Timeline */,
 				82057F771D048E6B00BC80DD /* Oil Tracking */,
@@ -494,6 +501,7 @@
 				827827621CF837D600684CE5 /* LaunchScreen.storyboard */,
 				8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */,
 				8278275A1CF837D600684CE5 /* Main.storyboard */,
+				DCD0F1A51D0ED61B0067B2DA /* vehicle2.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -595,6 +603,15 @@
 			);
 			name = fonts;
 			path = media/fonts;
+			sourceTree = "<group>";
+		};
+		DCD0F1A71D0ED67C0067B2DA /* vehicle */ = {
+			isa = PBXGroup;
+			children = (
+				DCD0F1A81D0ED6D10067B2DA /* VehicleTableViewController.swift */,
+				DCD0F1AA1D0EDA320067B2DA /* vehicleDetailsViewController.swift */,
+			);
+			name = vehicle;
 			sourceTree = "<group>";
 		};
 		DCFC30DA1CFDDE740018BBD3 /* poco */ = {
@@ -821,6 +838,7 @@
 				8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */,
 				82F8B89F1CF8807400E46B05 /* logo.png in Resources */,
 				82F8B8A41CF8807400E46B05 /* tips.png in Resources */,
+				DCD0F1A61D0ED61B0067B2DA /* vehicle2.storyboard in Resources */,
 				82501A7F1D05A9A3008272CB /* placeholder.png in Resources */,
 				82501A761D05A9A3008272CB /* add-oil.png in Resources */,
 				827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */,
@@ -1153,6 +1171,7 @@
 				DC00957D1D075660000856FC /* Trim+CoreDataProperties.swift in Sources */,
 				8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */,
 				DC0095761D075660000856FC /* ServiceProviderCalender.swift in Sources */,
+				DCD0F1AB1D0EDA320067B2DA /* vehicleDetailsViewController.swift in Sources */,
 				DC0095711D075660000856FC /* Year+CoreDataProperties.swift in Sources */,
 				825BB0061D0C266D00F44EA3 /* StringConstants.swift in Sources */,
 				DC0095921D075660000856FC /* VehicleModel.swift in Sources */,
@@ -1166,6 +1185,7 @@
 				8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */,
 				82057F791D048FDA00BC80DD /* AddOilViewController.swift in Sources */,
 				82057F741D048C1700BC80DD /* AddVehicleViewController.swift in Sources */,
+				DCD0F1A91D0ED6D10067B2DA /* VehicleTableViewController.swift in Sources */,
 				82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */,
 				DC00957B1D075660000856FC /* TripCoordinate+CoreDataProperties.swift in Sources */,
 				DC0095791D075660000856FC /* MeasuringUnit+CoreDataProperties.swift in Sources */,
