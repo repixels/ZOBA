@@ -38,6 +38,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     @IBOutlet weak var startingPointTextField: HoshiTextField!
     @IBOutlet weak var endingPointTextField: HoshiTextField!
     
+    @IBOutlet weak var vehiclesPickerView: UIPickerView!
     
     var selectedVehicle : Vehicle!
     
@@ -59,28 +60,28 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     var isDestinationCoordinateValid = false
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         self.title = "Add Trip"
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSForegroundColorAttributeName: UIColor.whiteColor(),
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
         
         saveBtn.enabled = false
         saveBtn.tintColor = UIColor.grayColor()
         
-        
         let dao  = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
-        
-        
         
         initialOdemeter.text = String(vehicles[0].currentOdemeter)
         let pickerView = UIPickerView()
         
         pickerView.delegate = self
         
-        vehicleTextField.inputView = pickerView
+        
+        self.vehiclesPickerView = pickerView
         
         
     }
@@ -106,8 +107,8 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
             
             self.startCoordinate = CLLocationCoordinate2D(latitude: Double((coordinates.first?.latitude)!), longitude: Double((coordinates.first?.longtitude)!))
             self.destinationCoordinate = CLLocationCoordinate2D(latitude: Double((coordinates.last?.latitude)!), longitude:Double(( coordinates.last?.longtitude)!))
-            getLocation(self.startCoordinate, label: startLocationLbl)
-            getLocation(self.destinationCoordinate , label: destinationLocationLbl)
+            getLocation(self.startCoordinate, sender: self.startingPointTextField)
+            getLocation(self.destinationCoordinate , sender: self.endingPointTextField)
             
             saveBtn.enabled = true
             saveBtn.tintColor = UIColor.blueColor()
@@ -297,25 +298,23 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         //should set coordinate value here
         if(!isSecondPoint){
-            print("first point at : \(coordinate)")
-            getLocation(coordinate, label: self.startLocationLbl)
+            getLocation(coordinate, sender: self.startingPointTextField)
             startCoordinate = coordinate
         }
         else{
-            print("second point at : \(coordinate)")
-            getLocation(coordinate, label: self.destinationLocationLbl)
+            getLocation(coordinate, sender: self.endingPointTextField)
             destinationCoordinate = coordinate
         }
     }
     
-    func getLocation(coordinate : CLLocationCoordinate2D,label : UILabel){
+    func getLocation(coordinate : CLLocationCoordinate2D,sender : HoshiTextField){
         
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
             dispatch_async(dispatch_get_main_queue(), {
-                label.text = places!.first?.name
+                sender.text = places!.first?.name
                 
             })
             
@@ -323,7 +322,6 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         })
         
     }
-    
     
     
     //MARK:  text field error message

@@ -8,25 +8,26 @@
 
 import UIKit
 import MapKit
+import TextFieldEffects
 
 class TripDetailController: UIViewController {
     
     
     @IBOutlet weak var map: MKMapView!
     
-    @IBOutlet weak var vehicleLbl: UILabel!
+    @IBOutlet weak var vehicleNameTextField: HoshiTextField!
     
-    @IBOutlet weak var startLocationLbl: UILabel!
+    @IBOutlet weak var startPointTextField: HoshiTextField!
     
-    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var dateTextField: HoshiTextField!
     
-    @IBOutlet weak var initialOdemter: UILabel!
+    @IBOutlet weak var initialOdemeterTextField: HoshiTextField!
     
-    @IBOutlet weak var lastLocationLbl: UILabel!
+    @IBOutlet weak var endPointTextField: HoshiTextField!
     
-    @IBOutlet weak var coveredKm: UILabel!
+    @IBOutlet weak var coveredMilageTextField: HoshiTextField!
     
-    @IBOutlet weak var currentOdemeter: UILabel!
+    @IBOutlet weak var currentOdemeterTextField: HoshiTextField!
     
     
     
@@ -49,29 +50,29 @@ class TripDetailController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        vehicleLbl.text = trip.vehicle?.name
-        date.text = "10/10/2020"
-        initialOdemter.text = String(trip.initialOdemeter)
-        coveredKm.text = String(trip.coveredKm)
-        currentOdemeter.text = String ( Int(trip.initialOdemeter) + Int(trip.coveredKm))
+        vehicleNameTextField.text = trip.vehicle?.name
+        dateTextField.text = "10/10/2020"
+        initialOdemeterTextField.text = String(trip.initialOdemeter)
+        coveredMilageTextField.text = String(trip.coveredKm)
+        currentOdemeterTextField.text = String ( Int(trip.initialOdemeter) + Int(trip.coveredKm))
         let cordinates = trip.coordinates
         
         let coordinates = cordinates?.allObjects as! [TripCoordinate]
     
-        getLocation(coordinates.first!,label: startLocationLbl)
-        getLocation(coordinates.last!,label: lastLocationLbl)
+        getLocation(coordinates.first!,sender: startPointTextField)
+        getLocation(coordinates.last!,sender: endPointTextField)
         setRegion(coordinates.first! , lastCoordinate: coordinates.last!)
         
     }
     
-    func getLocation(coordinate : TripCoordinate,label : UILabel){
+    func getLocation(coordinate : TripCoordinate,sender : HoshiTextField){
         
         let location = CLLocation(latitude: CLLocationDegrees(coordinate.latitude!), longitude: CLLocationDegrees(coordinate.longtitude!))
         location.coordinate
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
             dispatch_async(dispatch_get_main_queue(), {
-                label.text = places!.first?.name
+                sender.text = places!.first?.name
             })
             
             

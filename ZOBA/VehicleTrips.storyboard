@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="lbZ-jR-Smo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -119,21 +119,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Selected Vehicle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJ6-Vo-jOd">
-                                <rect key="frame" x="96" y="72" width="128" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Car Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7Q-vt-gtl">
-                                <rect key="frame" x="50" y="101" width="220" height="34"/>
-                                <color key="backgroundColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Covered Milage" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3t-hm-MhY" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="255" width="132" height="48"/>
+                                <rect key="frame" x="20" y="370" width="132" height="48"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -151,9 +138,12 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="coveredKmEdited:" destination="1xC-7H-O8v" eventType="editingDidBegin" id="D1S-Mg-Svd"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Initial Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-tY-v3V" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="199" width="280" height="48"/>
+                                <rect key="frame" x="20" y="314" width="280" height="48"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -172,8 +162,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Starting Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Ot-Eu-K1K" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="311" width="280" height="48"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ending Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dph-wZ-h08" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="482" width="280" height="48"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -191,9 +181,12 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="getEndPoint:" destination="1xC-7H-O8v" eventType="touchDown" id="vGI-fO-e9X"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6dU-3B-rJP" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="143" width="280" height="48"/>
+                                <rect key="frame" x="20" y="258" width="280" height="48"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -211,9 +204,12 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dateEditingBegin:" destination="1xC-7H-O8v" eventType="editingDidBegin" id="9R4-Dy-rqF"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qIL-H5-pxI" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="168" y="255" width="132" height="48"/>
+                                <rect key="frame" x="168" y="370" width="132" height="48"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -231,9 +227,12 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="currentOdemeterEdited:" destination="1xC-7H-O8v" eventType="editingDidBegin" id="Hif-G4-DOp"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ending Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dph-wZ-h08" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="367" width="280" height="48"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Starting Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Ot-Eu-K1K" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="426" width="280" height="48"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -251,7 +250,13 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="getStartPoint:" destination="1xC-7H-O8v" eventType="touchDown" id="uKK-7S-B30"/>
+                                </connections>
                             </textField>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oOf-7t-jVf">
+                                <rect key="frame" x="0.0" y="88" width="320" height="162"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -264,7 +269,9 @@
                         <outlet property="dateTextField" destination="6dU-3B-rJP" id="xwZ-l4-hy1"/>
                         <outlet property="endingPointTextField" destination="dph-wZ-h08" id="KwH-KE-1w7"/>
                         <outlet property="initialOdemeter" destination="xPw-tY-v3V" id="Wjy-WJ-fzh"/>
+                        <outlet property="saveBtn" destination="JkI-FT-rSr" id="4cT-S4-Jyw"/>
                         <outlet property="startingPointTextField" destination="8Ot-Eu-K1K" id="EvF-jl-qW9"/>
+                        <outlet property="vehiclesPickerView" destination="oOf-7t-jVf" id="z7v-qx-4j4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tIh-56-MJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -345,9 +352,6 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="PUP-gm-uUy" kind="push" id="E74-6H-mrN"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ending Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Pq-rO-7un" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="490" width="280" height="48"/>
@@ -368,9 +372,6 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="PUP-gm-uUy" kind="push" id="Rs8-YL-KJU"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x2G-bK-yAf" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="168" y="266" width="132" height="48"/>
@@ -436,15 +437,25 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="thn-3s-tKS"/>
+                    <connections>
+                        <outlet property="coveredMilageTextField" destination="ASP-ch-5Fg" id="09V-Ym-uE9"/>
+                        <outlet property="currentOdemeterTextField" destination="iUZ-CR-r6g" id="YbD-Wm-8aG"/>
+                        <outlet property="dateTextField" destination="x2G-bK-yAf" id="QDn-me-ssS"/>
+                        <outlet property="endPointTextField" destination="0Pq-rO-7un" id="zKd-Ck-F8B"/>
+                        <outlet property="initialOdemeterTextField" destination="xLP-CE-u63" id="DDQ-B9-Ley"/>
+                        <outlet property="map" destination="WzL-Sp-SaU" id="XIz-cQ-dCM"/>
+                        <outlet property="startPointTextField" destination="PmB-Ka-bXA" id="U13-Ym-bGz"/>
+                        <outlet property="vehicleNameTextField" destination="Myy-ZO-deo" id="5oK-YK-HR5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNN-lQ-4Jg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="318" y="961"/>
         </scene>
-        <!--View Controller-->
+        <!--Map Controller-->
         <scene sceneID="fPD-ks-Zpd">
             <objects>
-                <viewController id="PUP-gm-uUy" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapView" id="PUP-gm-uUy" customClass="MapController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="guu-6r-rsO"/>
                         <viewControllerLayoutGuide type="bottom" id="egc-d1-qJg"/>
@@ -454,16 +465,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Ai3-cz-xbh">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="sIB-WW-5Ns" appends="YES" id="KCy-lO-um4"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Qi4-oP-Gnt"/>
+                    <connections>
+                        <outlet property="longPressGesture" destination="sIB-WW-5Ns" id="hZH-xj-vDM"/>
+                        <outlet property="map" destination="Ai3-cz-xbh" id="Ppv-ie-In9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJs-ir-pzR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="sIB-WW-5Ns"/>
             </objects>
-            <point key="canvasLocation" x="737" y="961"/>
+            <point key="canvasLocation" x="730" y="961"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RCq-pp-k0B">
@@ -486,7 +506,4 @@
         <image name="situation-pin" width="530" height="827"/>
         <image name="timeline-circle.png" width="350" height="350"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Rs8-YL-KJU"/>
-    </inferredMetricsTieBreakers>
 </document>
