@@ -79,6 +79,10 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         
         self.vehiclesPickerView.delegate = self
+        
+        self.hideKeyboardWhenTappedAround()
+        
+        selectedVehicle = vehicles[vehiclesPickerView.selectedRowInComponent(0)]
     
         
         
@@ -166,11 +170,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        //should set trip vehicle value here
-        print(vehicles[row])
-        vehicleTextField.text = vehicles[row].name
         selectedVehicle = vehicles[row]
-        vehicleTextField.resignFirstResponder()
         
         isVehicleValid = true
         validateSave()

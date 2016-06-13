@@ -34,6 +34,8 @@ class AllTripTableViewController: UITableViewController {
         self.navigationController?.navigationBar.userInteractionEnabled = true
         
         trips = dao.selectAll(entityName: "Trip") as! [Trip]
+        print("I Appeared")
+        tableView.reloadData()
         
     }
     override func didReceiveMemoryWarning() {

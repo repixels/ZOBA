@@ -299,7 +299,13 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     Defaults[.launchCount] += 1
                     
                     //To be removed
-                    DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext)
+                    DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Lancer")
+                    
+                    DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Swift")
+                    
+                    DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Huyndai")
+                    
+                    DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Ferarri")
                     
                     self.performSegueWithIdentifier(identifier,sender: sender)
                     break;

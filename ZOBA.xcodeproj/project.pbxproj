@@ -49,6 +49,7 @@
 		8298256A1D0EBA6F00FCC4C8 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */; };
 		829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829C437B1CFBBA1E00869E59 /* Media.xcassets */; };
 		82D6D2011D0CA308005C1AA6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* LoginViewController.swift */; };
+		82DEC9931D0F659A003E1154 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEC9921D0F659A003E1154 /* UIViewExtension.swift */; };
 		82EF3BE01D056E3F00AC103C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */; };
 		82EF3BE31D056E3F00AC103C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF3BE21D056E3F00AC103C /* TodayViewController.swift */; };
 		82EF3BE61D056E3F00AC103C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82EF3BE41D056E3F00AC103C /* MainInterface.storyboard */; };
@@ -222,6 +223,7 @@
 		829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		829C43791CFBAC9500869E59 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		829C437B1CFBBA1E00869E59 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
+		82DEC9921D0F659A003E1154 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		82EF3BDE1D056E3F00AC103C /* ZOBA Quick Access.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ZOBA Quick Access.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		82EF3BE21D056E3F00AC103C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 				825BB0051D0C266D00F44EA3 /* StringConstants.swift */,
 				825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */,
 				8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */,
+				82DEC9921D0F659A003E1154 /* UIViewExtension.swift */,
 			);
 			name = "Application Files";
 			sourceTree = "<group>";
@@ -1201,6 +1204,7 @@
 				82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */,
 				DC00958E1D075660000856FC /* TrackingData.swift in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
+				82DEC9931D0F659A003E1154 /* UIViewExtension.swift in Sources */,
 				8200B8591D0C5CF0007AB057 /* UserDefaultsMapping.swift in Sources */,
 				DC0095961D075660000856FC /* Service.swift in Sources */,
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
