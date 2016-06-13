@@ -16,11 +16,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     
     
-    @IBOutlet weak var currentOdemeter: HoshiTextField!
     
-    @IBOutlet weak var initialOdemeter: HoshiTextField!
-    
-    @IBOutlet weak var coveredKm: HoshiTextField!
     
     @IBOutlet weak var stratPointBtn: UIButton!
     
@@ -31,10 +27,16 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     @IBOutlet weak var startLocationLbl: UILabel!
     @IBOutlet weak var destinationLocationLbl: UILabel!
     
+    @IBOutlet weak var currentOdemeter: HoshiTextField!
     
+    @IBOutlet weak var initialOdemeter: HoshiTextField!
+    
+    @IBOutlet weak var coveredKm: HoshiTextField!
     @IBOutlet weak var vehicleTextField: HoshiTextField!
     @IBOutlet weak var dateTextField: HoshiTextField!
     
+    @IBOutlet weak var startingPointTextField: HoshiTextField!
+    @IBOutlet weak var endingPointTextField: HoshiTextField!
     
     
     var selectedVehicle : Vehicle!

@@ -14,13 +14,13 @@
         <!--Title-->
         <scene sceneID="uBI-kd-CWF">
             <objects>
-                <tableViewController id="1Zg-ZW-m3c" sceneMemberID="viewController">
+                <tableViewController id="1Zg-ZW-m3c" customClass="AllTripTableViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8tY-g7-7Ff">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Trip Cell" rowHeight="90" id="UVQ-zh-PxW">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Trip Cell" rowHeight="90" id="UVQ-zh-PxW" customClass="TripTableViewCell" customModule="ZOBA" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UVQ-zh-PxW" id="hhN-zu-4lj">
@@ -81,6 +81,11 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="coveredMilageLabel" destination="adt-ex-axn" id="MNe-Kq-93B"/>
+                                    <outlet property="dateLabel" destination="5M7-lK-FwA" id="mYY-Ca-pFD"/>
+                                    <outlet property="endingLocationLabel" destination="BU6-9y-LEQ" id="wMS-Xz-XsH"/>
+                                    <outlet property="measuringUnitLabel" destination="7fg-ah-UVo" id="bYu-cE-Ik1"/>
+                                    <outlet property="startingLocationLabel" destination="auE-V4-j70" id="7NI-HK-TB1"/>
                                     <segue destination="DQN-wR-48G" kind="push" trigger="accessoryAction" id="HVr-Yj-sUU"/>
                                 </connections>
                             </tableViewCell>
@@ -102,10 +107,10 @@
             </objects>
             <point key="canvasLocation" x="318" y="294"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Trip View Controller-->
         <scene sceneID="Gdw-SL-CEL">
             <objects>
-                <viewController id="1xC-7H-O8v" sceneMemberID="viewController">
+                <viewController id="1xC-7H-O8v" customClass="AddTripViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x0j-Ps-SPU"/>
                         <viewControllerLayoutGuide type="bottom" id="b7Z-pk-bl0"/>
@@ -167,7 +172,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Starting Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Ot-Eu-K1K" customClass="HoshiTextField" customModule="TextFieldEffects">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Starting Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Ot-Eu-K1K" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="311" width="280" height="48"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -227,7 +232,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ending Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dph-wZ-h08" customClass="HoshiTextField" customModule="TextFieldEffects">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ending Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dph-wZ-h08" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="367" width="280" height="48"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -253,15 +258,23 @@
                     <navigationItem key="navigationItem" id="l7R-XE-HJp">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="JkI-FT-rSr"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="coveredKm" destination="r3t-hm-MhY" id="PMC-Jb-ScV"/>
+                        <outlet property="currentOdemeter" destination="qIL-H5-pxI" id="A84-Gd-Wbw"/>
+                        <outlet property="dateTextField" destination="6dU-3B-rJP" id="xwZ-l4-hy1"/>
+                        <outlet property="endingPointTextField" destination="dph-wZ-h08" id="KwH-KE-1w7"/>
+                        <outlet property="initialOdemeter" destination="xPw-tY-v3V" id="Wjy-WJ-fzh"/>
+                        <outlet property="startingPointTextField" destination="8Ot-Eu-K1K" id="EvF-jl-qW9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tIh-56-MJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="730" y="294"/>
         </scene>
-        <!--View Controller-->
+        <!--Trip Detail Controller-->
         <scene sceneID="cPm-92-omA">
             <objects>
-                <viewController id="DQN-wR-48G" sceneMemberID="viewController">
+                <viewController id="DQN-wR-48G" customClass="TripDetailController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="nU0-DU-tSZ"/>
                         <viewControllerLayoutGuide type="bottom" id="hlu-it-tza"/>

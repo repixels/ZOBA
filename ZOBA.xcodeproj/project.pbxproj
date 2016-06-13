@@ -46,6 +46,7 @@
 		829825641D0D538600FCC4C8 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829825631D0D538600FCC4C8 /* UserProfile.storyboard */; };
 		829825661D0D718F00FCC4C8 /* VehicleTrips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829825651D0D718F00FCC4C8 /* VehicleTrips.storyboard */; };
 		829825681D0D816D00FCC4C8 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829825671D0D816D00FCC4C8 /* EditPasswordViewController.swift */; };
+		8298256A1D0EBA6F00FCC4C8 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */; };
 		829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829C437B1CFBBA1E00869E59 /* Media.xcassets */; };
 		82D6D2011D0CA308005C1AA6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* LoginViewController.swift */; };
 		82EF3BE01D056E3F00AC103C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */; };
@@ -218,6 +219,7 @@
 		829825631D0D538600FCC4C8 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		829825651D0D718F00FCC4C8 /* VehicleTrips.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VehicleTrips.storyboard; sourceTree = "<group>"; };
 		829825671D0D816D00FCC4C8 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPasswordViewController.swift; sourceTree = "<group>"; };
+		829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		829C43791CFBAC9500869E59 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		829C437B1CFBBA1E00869E59 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
 		82EF3BDE1D056E3F00AC103C /* ZOBA Quick Access.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ZOBA Quick Access.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -398,6 +400,7 @@
 				83548F251D09EB040013E67F /* MapController.swift */,
 				83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */,
 				838918451D0AE30C001F0060 /* TripDetailController.swift */,
+				829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */,
 			);
 			name = "Trip Tracking";
 			sourceTree = "<group>";
@@ -1207,6 +1210,7 @@
 				DC0095921D075660000856FC /* VehicleModel.swift in Sources */,
 				DC0095981D075660000856FC /* Vehicle.swift in Sources */,
 				DC0095721D075660000856FC /* Year.swift in Sources */,
+				8298256A1D0EBA6F00FCC4C8 /* TripTableViewCell.swift in Sources */,
 				831B12CF1D0643A200D10CBA /* OilCell.swift in Sources */,
 				DC00958B1D075660000856FC /* ServiceProvider+CoreDataProperties.swift in Sources */,
 				DC00957A1D075660000856FC /* MeasuringUnit.swift in Sources */,

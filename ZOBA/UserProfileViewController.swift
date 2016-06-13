@@ -28,14 +28,30 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     @IBOutlet var editImageButton: UIButton!
     
     @IBOutlet var initialsLabel: UILabel!
+
+    @IBOutlet var scrollView: UIScrollView!
     
     var isEditMode : Bool = false
     
-    @IBOutlet var scrollView: UIScrollView!
+    override func viewWillAppear(animated: Bool) {
+        self.changeFieldsStatus()
+        
+        self.loadUserImage()
+        
+        phone.text = (SessionObjects.currentUser.phone != nil) ? SessionObjects.currentUser.phone : " "
+        firstName.text = (SessionObjects.currentUser.firstName != nil) ? SessionObjects.currentUser.firstName : " "
+        lastName.text = (SessionObjects.currentUser.lastName != nil) ? SessionObjects.currentUser.lastName : " "
+        email.text = (SessionObjects.currentUser.email != nil) ? SessionObjects.currentUser.email : " "
+        userName.text = (SessionObjects.currentUser.userName != nil) ? SessionObjects.currentUser.userName : " "
+        
+        //register keyboard notification
+        let notCenter = NSNotificationCenter.defaultCenter()
+        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
+        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.title = SessionObjects.currentUser.userName! + " profile"
         
         imageView.layer.borderWidth = 0.5
         imageView.layer.masksToBounds = false
@@ -62,25 +78,11 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.changeFieldsStatus()
-        
-        self.loadUserImage()
-        
-        phone.text = (SessionObjects.currentUser.phone != nil) ? SessionObjects.currentUser.phone : " "
-        firstName.text = (SessionObjects.currentUser.firstName != nil) ? SessionObjects.currentUser.firstName : " "
-        lastName.text = (SessionObjects.currentUser.lastName != nil) ? SessionObjects.currentUser.lastName : " "
-        email.text = (SessionObjects.currentUser.email != nil) ? SessionObjects.currentUser.email : " "
-        userName.text = (SessionObjects.currentUser.userName != nil) ? SessionObjects.currentUser.userName : " "
-        
-        //register keyboard notification
-        let notCenter = NSNotificationCenter.defaultCenter()
-        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
-        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
-    }
+    
     
     //MARK: - keyboard
     func keyBoardWillAppear(notification : NSNotification){
+        print("Keyboard will Appear")
         
         if let userInfo = notification.userInfo {
             if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
@@ -120,7 +122,6 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     
     func loadUserImage()
     {
-        print("Loading Image")
         if (SessionObjects.currentUser.image != nil)
         {
             imageView.image = UIImage(data: SessionObjects.currentUser.image!)

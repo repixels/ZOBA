@@ -61,10 +61,15 @@ class AllTripTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("tripDetail", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("tripDetail", forIndexPath: indexPath) as! TripTableViewCell
         
-        cell.textLabel!.text = "initial Odemeter \( trips[indexPath.row].initialOdemeter)"
-        cell.detailTextLabel?.text = "covered km  \( trips[indexPath.row].coveredKm)"
+//        cell.textLabel!.text = "initial Odemeter \( trips[indexPath.row].initialOdemeter)"
+//        cell.detailTextLabel?.text = "covered km  \( trips[indexPath.row].coveredKm)"
+        
+        cell.startingLocationLabel.text = 
+        cell.endingLocationLabel.text =
+        cell.dateLabel.text =
+        cell.coveredMilageLabel.text =
         return cell
     }
     
