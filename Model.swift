@@ -12,8 +12,8 @@ import ObjectMapper
 
 
 class Model: NSManagedObject , Mappable {
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -34,9 +34,9 @@ class Model: NSManagedObject , Mappable {
         
         var vehicleModelsArray : [VehicleModel]?
         
-        self.modelId <- map[""]
-        self.name <- map[""]
-        self.niceName <- map[""]
+        self.modelId <- map["id"]
+        self.name <- map["name"]
+        self.niceName <- map["niceName"]
         self.make <- map[""]
         vehicleModelsArray <- map[""]
         

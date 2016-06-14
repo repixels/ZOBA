@@ -14,6 +14,7 @@ import FBSDKCoreKit
 import FBSDKShareKit
 import FBSDKLoginKit
 import SwiftyUserDefaults
+import AlamofireNetworkActivityIndicator
 
 let isFirstTime = "isFirstTime"
 
@@ -28,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         //Set Managed Context
         SessionObjects.currentManageContext = self.managedObjectContext
+        
+        //AlamoFire Network Indicator
+        NetworkActivityIndicatorManager.sharedManager.isEnabled = true
+        NetworkActivityIndicatorManager.sharedManager.startDelay = 0
+        NetworkActivityIndicatorManager.sharedManager.completionDelay = 0.5
         
         // Override point for customization after application launch.
         
@@ -48,7 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         }
         else
         {
-            
+            let abstractDAO = AbstractDao(managedObjectContext: managedObjectContext)
+            SessionObjects.currentUser = abstractDAO.selectAll(entityName: "MyUser")[0] as! MyUser
         }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
