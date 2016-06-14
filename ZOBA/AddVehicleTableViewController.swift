@@ -352,6 +352,8 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         vehicle.currentOdemeter = Int (initialOdemeterTextField.text!)!
         vehicle.licensePlate = licensePlateTextField.text
         vehicle.vehicleModel = vehicleModel
+        vehicle.mutableSetValueForKey("user").addObject(SessionObjects.currentUser)
+        
         vehicle.save()
         
         self.navigationController?.popViewControllerAnimated(true)

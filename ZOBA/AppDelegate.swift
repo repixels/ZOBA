@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-      //  Defaults[.curentVehicleName] = "vehicle"
+        //  Defaults[.curentVehicleName] = "vehicle"
         //Set Managed Context
         SessionObjects.currentManageContext = self.managedObjectContext
         
@@ -58,8 +58,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             SessionObjects.currentUser = abstractDAO.selectAll(entityName: "MyUser")[0] as! MyUser
             
             let vehicleName = Defaults[.curentVehicleName]
-            
-            SessionObjects.currentVehicle = abstractDAO.selectByString(entityName: "Vehicle", AttributeName: "name", value: vehicleName!)[0] as! Vehicle
+            let vehicles = abstractDAO.selectByString(entityName: "Vehicle", AttributeName: "name", value: vehicleName!) as! [Vehicle]
+            if(vehicles.count > 0){
+                SessionObjects.currentVehicle = vehicles.first
+            }
+            else{
+                print("no car selected")
+            }
         }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

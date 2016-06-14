@@ -10,6 +10,9 @@ import UIKit
 
 class AllTripTableViewController: UITableViewController {
     var trips : [Trip]!
+    
+    @IBOutlet weak var addBtn: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.titleTextAttributes =
@@ -17,10 +20,9 @@ class AllTripTableViewController: UITableViewController {
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
         
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
-//        trips = dao.selectAll(entityName: "Trip") as! [Trip]
-        trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: SessionObjects.currentVehicle.name!) as! [Trip]
+        
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -37,10 +39,18 @@ class AllTripTableViewController: UITableViewController {
         self.navigationController?.title = "Trips"
         self.navigationController?.navigationBar.userInteractionEnabled = true
         
-//        trips = dao.selectAll(entityName: "Trip") as! [Trip]
-        trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: SessionObjects.currentVehicle.name!) as! [Trip]
+        //        trips = dao.selectAll(entityName: "Trip") as! [Trip]
+        var vehicleName = ""
+        if SessionObjects.currentVehicle != nil {
+            vehicleName =  SessionObjects.currentVehicle.name!
+        }
+        else{
+            addBtn.enabled = false
+            addBtn.tintColor = UIColor.grayColor()
+        }
+        trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: vehicleName) as! [Trip]
         
-        print("I Appeared")
+        
         tableView.reloadData()
         
     }
@@ -124,7 +134,7 @@ class AllTripTableViewController: UITableViewController {
             //      self.trips.removeAtIndex(indexPath.row)
             self.trips[indexPath.row].delete()
             self.trips[indexPath.row].release(SessionObjects.currentManageContext)
-            self.trips = dao.selectAll(entityName: "Trip") as! [Trip]
+            self.trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: SessionObjects.currentVehicle.name!) as! [Trip]
             
             //remove object from data base
             //trips[indexPath.row].delete()

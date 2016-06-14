@@ -38,12 +38,21 @@ class TimelineViewController: UITableViewController {
         vehicles.forEach { (vehicle) in
             items.append(vehicle.name!)
         }
+        
+        
+        var menuTitle : String = "Add vehicle"
+        if SessionObjects.currentVehicle != nil{
+            let selectedVehicle : Vehicle =   SessionObjects.currentVehicle
+            menuTitle = selectedVehicle.name!
+            
+        }else {
+            //            items.append(menuTitle)
+            
+            print("no car selected in time lline")
+        }
         items.append("Add vehicle")
         
-        let selectedVehicle : Vehicle = SessionObjects.currentVehicle
-        
-        
-        menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: selectedVehicle.name!, items: items)
+        menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: menuTitle, items: items)
         menuView.cellHeight = 40
         menuView.cellBackgroundColor = UIColor.flatWhiteColor()
         menuView.cellSelectionColor = UIColor.flatSandColor()
@@ -148,3 +157,8 @@ class TimelineViewController: UITableViewController {
      */
     
 }
+//        cell.checkmarkIcon.hidden = (indexPath.row == selectedIndexPath) ? false : true
+//if self.configuration.keepSelectedCellColor == true {
+//    cell.contentView.backgroundColor = (selectedIndexPath != nil && indexPath.row == selectedIndexPath) ? self.configuration.cellSelectionColor : self.configuration.cellBackgroundColor
+//}
+//
