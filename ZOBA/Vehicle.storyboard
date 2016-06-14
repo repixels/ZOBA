@@ -8,7 +8,7 @@
         <!--Vehicle Table View Controller-->
         <scene sceneID="jxV-UH-JXX">
             <objects>
-                <tableViewController id="ZOr-Ns-eMR" customClass="VehicleTableViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="vehicleTable" id="ZOr-Ns-eMR" customClass="VehicleTableViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="74i-10-EIm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

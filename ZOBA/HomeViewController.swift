@@ -10,7 +10,7 @@ import UIKit
 import FoldingTabBar
 
 class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YALTabBarInteracting {
-
+    
     
     
     override func viewDidLoad() {
@@ -18,25 +18,25 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
         self.tabBarView.delegate = self
         prepareTabBar()
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     func prepareTabBar()
     {
@@ -70,11 +70,17 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
     
     func extraLeftItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
         print("Extra Left Item Pressed")
+        let storyBoard = UIStoryboard.init(name: "Vehicle", bundle: nil)
+        let controller = storyBoard.instantiateViewControllerWithIdentifier("vehicleTable") as! VehicleTableViewController
+        let navigation = UINavigationController(rootViewController: controller)
+        self.presentViewController(navigation, animated: true, completion: nil)
+        
+        
     }
     
     func extraRightItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
         print("Extra Right Item Pressed")
     }
     
-
+    
 }

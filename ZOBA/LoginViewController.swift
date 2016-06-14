@@ -16,7 +16,7 @@ import CoreData
 import SwiftyUserDefaults
 
 class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDelegate{
-
+    
     //Buttons
     @IBOutlet weak var fbLoginButton: FBSDKLoginButton!
     @IBOutlet weak var loginButton: UIButton!
@@ -126,7 +126,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         
         self.view.insertSubview(backgroundImageView, atIndex: 0)
         self.view.insertSubview(backgroundImageMask, atIndex: 1)
-
+        
     }
     
     @IBAction func forgotPasswordClicked(sender: AnyObject) {
@@ -164,7 +164,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     
     /*
      * Detect when text field gains focus
-    */
+     */
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -267,7 +267,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         self.emailTextField.placeholderLabel.alpha = 1.0
         
     }
-
+    
     func showEmailValidMessage(message:String)
     {
         self.emailTextField.borderInactiveColor = UIColor.greenColor()
@@ -276,10 +276,10 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         self.emailTextField.placeholderLabel.text = message
         enableLoginBTN()
     }
-
+    
     
     override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-    
+        
         if identifier == "loginSegue"
         {
             let managedUser = MyUser(managedObjectContext: SessionObjects.currentManageContext , entityName: "MyUser")
@@ -299,8 +299,9 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     Defaults[.launchCount] += 1
                     
                     //To be removed
-                    DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext)
-                    
+                    let vehicle =   DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext)
+                    Defaults[.curentVehicleName] = vehicle.name
+                    SessionObjects.currentVehicle = vehicle
                     self.performSegueWithIdentifier(identifier,sender: sender)
                     break;
                 default:
@@ -344,7 +345,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         
         return randomString
     }
-
-
+    
+    
 }
 

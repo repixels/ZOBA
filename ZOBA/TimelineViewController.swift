@@ -9,6 +9,7 @@
 import UIKit
 import BTNavigationDropdownMenu
 import ChameleonFramework
+import SwiftyUserDefaults
 
 
 class TimelineViewController: UITableViewController {
@@ -16,19 +17,24 @@ class TimelineViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
         self.edgesForExtendedLayout = UIRectEdge.None
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false
         
-
+        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        let vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
         
-        let items = ["Car one","car two","car two","car two" ,"Add Vehicles"]
-
+        var items :[String] = [String]()//= ["Car one","car two","car two","car two" ,"Add Vehicles"]
+        vehicles.forEach { (vehicle) in
+            items.append(vehicle.name!)
+        }
+        let selectedVehicle : Vehicle = SessionObjects.currentVehicle
+        
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.whiteColor() ]
         
-        menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: items[0], items: items)
+        menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: selectedVehicle.name!, items: items)
         menuView.cellHeight = 40
         menuView.cellBackgroundColor = UIColor.flatWhiteColor()
         menuView.cellSelectionColor = UIColor.flatSandColor()
@@ -51,10 +57,12 @@ class TimelineViewController: UITableViewController {
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             print("Did select item at index: \(indexPath)")
             
+            SessionObjects.currentVehicle = vehicles[indexPath]
+            Defaults[.curentVehicleName] = SessionObjects.currentVehicle.name
             let itemCount = items.count - 1
             
             if indexPath == itemCount {
-
+                
                 let AddFuelViewController = self.storyboard!.instantiateViewControllerWithIdentifier("home") as UIViewController
                 
                 self.navigationController!.pushViewController(AddFuelViewController, animated: true)
@@ -67,7 +75,7 @@ class TimelineViewController: UITableViewController {
         self.navigationItem.titleView = menuView
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -84,11 +92,11 @@ class TimelineViewController: UITableViewController {
         return 0;
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-       
+        
         if (indexPath.row % 2 == 0 ){
             
             let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier, forIndexPath: indexPath) as! DaySummaryCell
-        
+            
             cell.currentOdemeter?.text = "1000 "
             cell.date!.text = "9"
             return cell
@@ -104,23 +112,23 @@ class TimelineViewController: UITableViewController {
             let cell = tableView.dequeueReusableCellWithIdentifier(FuelCell.identifier, forIndexPath: indexPath) as! FuelCell
             cell.fuelAmount!.text = "50 Litters"
             cell.serviceProvider?.text = "fuel service"
-           return cell
-        
+            return cell
+            
         }
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-//        
-//        if condition {
-//            <#code#>
-//        }
-    }
- */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     //        
+     //        if condition {
+     //            <#code#>
+     //        }
+     }
+     */
+    
 }

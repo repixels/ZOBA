@@ -14,4 +14,5 @@ extension DefaultsKeys {
     static let launchCount = DefaultsKey<Int>("launchCount")
     static let isLoggedIn = DefaultsKey<Bool>("isloggedin")
     static let isFBLogin = DefaultsKey<Bool>("fblogin")
+    static let curentVehicleName = DefaultsKey<String?>("vehicleName")
 }

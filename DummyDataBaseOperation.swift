@@ -27,7 +27,7 @@ class DummyDataBaseOperation {
     }
     
     
-    static func saveVehicle(managedObjectContext moc : NSManagedObjectContext){
+    static func saveVehicle(managedObjectContext moc : NSManagedObjectContext) -> Vehicle{
         let vehicle = Vehicle(managedObjectContext: moc, entityName: "Vehicle")
         vehicle.name = "vehicle"
         vehicle.currentOdemeter = 30000
@@ -35,7 +35,7 @@ class DummyDataBaseOperation {
         
         vehicle.save()
         
-        
+        return vehicle
     }
     
     
