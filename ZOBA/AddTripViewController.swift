@@ -66,7 +66,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         let dao  = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
         
-        currentOdemeter.text = String(vehicles[0].currentOdemeter)
+        
         
         
         let DateToolBar = UIToolbar()
@@ -90,8 +90,15 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         self.hideKeyboardWhenTappedAround()
         
-        selectedVehicle = vehicles[vehiclesPickerView.selectedRowInComponent(0)]
+        // set selected vehicle in picker to current vehicle
+        let index = getCurrentVehicleIndex()
+        if index >= 0 {
+            vehiclesPickerView.selectRow(index, inComponent: 0, animated: false)
+        }
         
+        
+        selectedVehicle = vehicles[vehiclesPickerView.selectedRowInComponent(0)]
+        currentOdemeter.text = String(selectedVehicle.currentOdemeter)
         
         
     }
@@ -179,6 +186,10 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         selectedVehicle = vehicles[row]
+        currentOdemeter.text = String( selectedVehicle.currentOdemeter)
+        
+        coveredKm.text = ""
+        finalOdemeter.text = ""
         
         isVehicleValid = true
         validateSave()
@@ -221,7 +232,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         if ( self.finalOdemeter.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(self.finalOdemeter.text!)){
             let dif : Int = Int(self.finalOdemeter.text!)! - Int(self.currentOdemeter.text!)!
-            if( dif > 0){
+            if( dif > 0 && (String(dif)).characters.count < self.coveredKm.maxLength){
                 self.coveredKm.text = String(dif)
                 hideErrorMessage("current Odemeter", textField: self.finalOdemeter)
                 isfinalOdemeterValid = true
@@ -234,6 +245,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
                 isCoveredKmValid = false
                 validateSave()
             }
+            
         }
         else{
             showErrorMessage("enter a valid odemeter value", textField: self.finalOdemeter)
@@ -245,11 +257,12 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     @IBAction func coveredKmEdited(sender: AnyObject){
         
-        if ( self.coveredKm.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(self.coveredKm.text!)){
+        if ( self.coveredKm.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(self.coveredKm.text!) && Int(self.coveredKm.text!)! > 0 ){
             let km = Int(self.coveredKm.text!)!
+            let distance : Int = km + Int(self.currentOdemeter.text!)!
             
-            if(km>0){
-                let distance : Int = km + Int(self.currentOdemeter.text!)!
+            if((String(distance)).characters.count < self.finalOdemeter.maxLength){
+                
                 
                 self.finalOdemeter.text = String(distance)
                 hideErrorMessage("covered Km", textField: self.coveredKm)
@@ -398,5 +411,25 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         dateTextField.resignFirstResponder()
     }
     
+    
+    func getCurrentVehicleIndex() -> Int{
+        
+        var index = -1
+        let vehicle = SessionObjects.currentVehicle
+        for i in 0..<vehicles.count
+        {
+            if vehicles[i] == vehicle {
+                index = i
+                print("selected vehicle is \(vehicles[i].name)")
+            }
+            
+        }
+        
+        if index < 0{
+            print("couldn't find car")
+        }
+        
+        return index
+    }
     
 }

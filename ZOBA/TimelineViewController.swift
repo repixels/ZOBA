@@ -23,6 +23,14 @@ class TimelineViewController: UITableViewController {
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false
         
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.whiteColor() ]
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         let vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
         
@@ -30,9 +38,10 @@ class TimelineViewController: UITableViewController {
         vehicles.forEach { (vehicle) in
             items.append(vehicle.name!)
         }
+        items.append("Add vehicle")
+        
         let selectedVehicle : Vehicle = SessionObjects.currentVehicle
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.whiteColor() ]
         
         menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: selectedVehicle.name!, items: items)
         menuView.cellHeight = 40
@@ -57,24 +66,31 @@ class TimelineViewController: UITableViewController {
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             print("Did select item at index: \(indexPath)")
             
-            SessionObjects.currentVehicle = vehicles[indexPath]
-            Defaults[.curentVehicleName] = SessionObjects.currentVehicle.name
             let itemCount = items.count - 1
             
             if indexPath == itemCount {
                 
-                let AddFuelViewController = self.storyboard!.instantiateViewControllerWithIdentifier("home") as UIViewController
+                let story = UIStoryboard.init(name: "Vehicle", bundle: nil)
+                let controller = story.instantiateViewControllerWithIdentifier("addVehicle") as! AddVehicleTableViewController
                 
-                self.navigationController!.pushViewController(AddFuelViewController, animated: true)
+                self.navigationController!.pushViewController(controller, animated: true)
             }else{
-                print(" out ")}
+                print(" out ")
+                
+                SessionObjects.currentVehicle = vehicles[indexPath]
+                Defaults[.curentVehicleName] = SessionObjects.currentVehicle.name
+                
+                
+            }
             //self.selectedCellLabel.text = items[indexPath]
         }
         
         
         self.navigationItem.titleView = menuView
         
+        
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -20,6 +20,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     var modelPicker : UIPickerView! = UIPickerView()
     
     
+    @IBOutlet weak var saveBtn: UIBarButtonItem!
     
     var makes : [Make]!
     var models : [Model]!
@@ -29,6 +30,14 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     @IBOutlet weak var licensePlateTextField: HoshiTextField!
     @IBOutlet weak var makeTextField: HoshiTextField!
     @IBOutlet weak var modelTextField: HoshiTextField!
+    @IBOutlet weak var yearTextField: HoshiTextField!
+    @IBOutlet weak var trimTextField: HoshiTextField!
+    
+    
+    var isNameValid = false
+    var isInitialOdemeterValid = false
+    var isLicenseValid = false
+    
     
     @IBOutlet weak var vehicleNameTextField: HoshiTextField!
     
@@ -74,12 +83,16 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
         //        makePicker.addSubview(toolBar)
         
-        modelTextField.inputView = modelPicker
-        makeTextField.inputView = makePicker
         
+        makeTextField.inputView = makePicker
+        modelTextField.inputView = modelPicker
+        yearTextField.inputView = modelPicker
+        trimTextField.inputView = modelPicker
         
         makeTextField.inputAccessoryView = toolBar
         modelTextField.inputAccessoryView = modelToolBar
+        yearTextField.inputAccessoryView = modelToolBar
+        trimTextField.inputAccessoryView = modelToolBar
         
         
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
@@ -214,6 +227,8 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
     }
     
+    
+    
     //    let makeUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/makes"
     //    let modelUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/models?make=m1"
     //    let yearUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/year?model=bte5a"
@@ -281,27 +296,49 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     }
     
     func donePicker(){
-        print("done")
+        
+        let mak = makePicker.selectedRowInComponent(0)
+        selectedMake = makes[mak]
+        makeTextField.text = selectedMake.name
+        makeTextField.resignFirstResponder()
     }
     
     
     func cancelPicker(){
-        print("cancel")
+        makeTextField.resignFirstResponder()
     }
     
     
     func modelDonePicker(){
-        print("done")
+        let mod = modelPicker.selectedRowInComponent(0)
+        selectedModel = models[mod]
+        let y = modelPicker.selectedRowInComponent(1)
+        selectedYear = years[y]
+        let t = modelPicker.selectedRowInComponent(2)
+        selectedTrim = trims[t]
+        
+        modelTextField.text = selectedModel.name!
+        yearTextField.text = selectedYear.name!
+        trimTextField.text = selectedTrim.name!
+        
+        modelTextField.resignFirstResponder()
+        yearTextField.resignFirstResponder()
+        trimTextField.resignFirstResponder()
+        
     }
     
     
     func modelCancelPicker(){
-        print("cancel")
+        modelTextField.resignFirstResponder()
+        yearTextField.resignFirstResponder()
+        trimTextField.resignFirstResponder()
+        
     }
     
     @IBAction func saveVehiclePresses(sender: UIBarButtonItem) {
         
         let vehicleModel = VehicleModel(managedObjectContext: SessionObjects.currentManageContext ,entityName: "VehicleModel")
+        selectedModel.make = selectedMake
         vehicleModel.model = selectedModel
         vehicleModel.year = selectedYear
         vehicleModel.trim = selectedTrim
@@ -311,20 +348,52 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
         vehicle.name = vehicleNameTextField.text
         vehicle.initialOdemeter = Int (initialOdemeterTextField.text!)!
+        vehicle.currentOdemeter = Int (initialOdemeterTextField.text!)!
         vehicle.licensePlate = licensePlateTextField.text
         vehicle.vehicleModel = vehicleModel
         vehicle.save()
         
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    
+    
+    @IBAction func nameIsChanging(sender: UITextField) {
+        
+        if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(sender.text!)
+        {
+            isNameValid = true
+        }
+        else{
+            isNameValid = false
+        }
+        
+    }
+    
+    @IBAction func  intialOdemeterIsChanging(sender: UITextField) {
+        
+        if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(sender.text!)
+        {
+            isInitialOdemeterValid = true
+        }
+        else{
+            isInitialOdemeterValid = false
+        }
+    }
+    
+    @IBAction func licensPlateIsChanging(sender: UITextField) {
+        
+        if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(sender.text!)
+        {
+            isLicenseValid = true
+        }
+        else{
+            isLicenseValid = false
+        }
+    }
+    
+    func validateSaveBtn()
+    {
+        
+    }
     
     
 }

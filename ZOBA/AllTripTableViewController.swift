@@ -19,8 +19,8 @@ class AllTripTableViewController: UITableViewController {
         
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
-        trips = dao.selectAll(entityName: "Trip") as! [Trip]
-        
+//        trips = dao.selectAll(entityName: "Trip") as! [Trip]
+        trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: SessionObjects.currentVehicle.name!) as! [Trip]
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -37,7 +37,9 @@ class AllTripTableViewController: UITableViewController {
         self.navigationController?.title = "Trips"
         self.navigationController?.navigationBar.userInteractionEnabled = true
         
-        trips = dao.selectAll(entityName: "Trip") as! [Trip]
+//        trips = dao.selectAll(entityName: "Trip") as! [Trip]
+        trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: SessionObjects.currentVehicle.name!) as! [Trip]
+        
         print("I Appeared")
         tableView.reloadData()
         
@@ -75,6 +77,11 @@ class AllTripTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Trip Cell", forIndexPath: indexPath) as! TripTableViewCell
         
         cell.coveredMilageLabel.text = trips[indexPath.row].coveredKm.stringValue
+        let coordinates = trips[indexPath.row].coordinates!.allObjects as![TripCoordinate]
+        let first = coordinates.first //as! TripCoordinate
+        print(first!.latitude)
+        cell.endingLocationLabel.text = String(coordinates.last?.latitude!)
+        cell.startingLocationLabel.text = String(coordinates.first?.latitude!)
         
         return cell
     }
