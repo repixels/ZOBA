@@ -9,10 +9,12 @@
 import UIKit
 import BTNavigationDropdownMenu
 import ChameleonFramework
-
+import CoreLocation
+import SwiftyUserDefaults
 
 class TimelineViewController: UITableViewController {
     var menuView: BTNavigationDropdownMenu!
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +51,6 @@ class TimelineViewController: UITableViewController {
         menuView.checkMarkImage = UIImage(named: "plus_icon")
         
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
-            print("Did select item at index: \(indexPath)")
             
             let itemCount = items.count - 1
             
@@ -65,6 +66,9 @@ class TimelineViewController: UITableViewController {
         
         
         self.navigationItem.titleView = menuView
+        
+        isLocationEnabled()
+        isNotificationsEnabled()
         
     }
 
@@ -108,6 +112,38 @@ class TimelineViewController: UITableViewController {
         
         }
     }
+    
+    
+    func isLocationEnabled()
+    {
+        if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
+            
+            
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+        }
+    }
+    
+    func isNotificationsEnabled()
+    {
+        let application = UIApplication.sharedApplication()
+        
+        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
+        
+        if(application.isRegisteredForRemoteNotifications() == false)
+        {
+            let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+            application.registerUserNotificationSettings(pushNotificationSettings)
+            application.registerForRemoteNotifications()
+            if((Defaults[.deviceToken]) != nil)
+            {
+                SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+            }
+        }
+    }
+    
+    
+    
     
     /*
     // MARK: - Navigation
