@@ -48,8 +48,9 @@
 		829825681D0D816D00FCC4C8 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829825671D0D816D00FCC4C8 /* EditPasswordViewController.swift */; };
 		8298256A1D0EBA6F00FCC4C8 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */; };
 		829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829C437B1CFBBA1E00869E59 /* Media.xcassets */; };
+		82B980161D10164100B0658A /* Device Webservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B980151D10164100B0658A /* Device Webservices.swift */; };
 		82D6D2011D0CA308005C1AA6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* LoginViewController.swift */; };
-		82DEC9931D0F659A003E1154 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEC9921D0F659A003E1154 /* UIViewExtension.swift */; };
+		82DEC9961D0F93A4003E1154 /* TrackingOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */; };
 		82EF3BE01D056E3F00AC103C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */; };
 		82EF3BE31D056E3F00AC103C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF3BE21D056E3F00AC103C /* TodayViewController.swift */; };
 		82EF3BE61D056E3F00AC103C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82EF3BE41D056E3F00AC103C /* MainInterface.storyboard */; };
@@ -223,7 +224,8 @@
 		829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		829C43791CFBAC9500869E59 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		829C437B1CFBBA1E00869E59 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
-		82DEC9921D0F659A003E1154 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		82B980151D10164100B0658A /* Device Webservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Device Webservices.swift"; sourceTree = "<group>"; };
+		82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingOnboardViewController.swift; sourceTree = "<group>"; };
 		82EF3BDE1D056E3F00AC103C /* ZOBA Quick Access.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ZOBA Quick Access.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		82EF3BE21D056E3F00AC103C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				825BB0031D0C0EBB00F44EA3 /* UserWebservices.swift */,
+				82B980151D10164100B0658A /* Device Webservices.swift */,
 			);
 			name = "Webservice Integeration";
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 		827827551CF837D600684CE5 /* ZOBA */ = {
 			isa = PBXGroup;
 			children = (
+				82DEC9941D0F936A003E1154 /* Onboard View Controllers */,
 				83AEBCF31D0767B600B334FE /* User Profile */,
 				825BB0021D0C0C8900F44EA3 /* Webservice Integeration */,
 				82057F7C1D0490C700BC80DD /* Timeline */,
@@ -501,6 +505,14 @@
 				8278277B1CF837D600684CE5 /* Info.plist */,
 			);
 			path = ZOBAUITests;
+			sourceTree = "<group>";
+		};
+		82DEC9941D0F936A003E1154 /* Onboard View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */,
+			);
+			name = "Onboard View Controllers";
 			sourceTree = "<group>";
 		};
 		82EF3BE11D056E3F00AC103C /* ZOBA Quick Access */ = {
@@ -585,7 +597,6 @@
 				825BB0051D0C266D00F44EA3 /* StringConstants.swift */,
 				825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */,
 				8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */,
-				82DEC9921D0F659A003E1154 /* UIViewExtension.swift */,
 			);
 			name = "Application Files";
 			sourceTree = "<group>";
@@ -1184,6 +1195,7 @@
 				DC00958D1D075660000856FC /* TrackingData+CoreDataProperties.swift in Sources */,
 				831B12D11D06448200D10CBA /* TripCell.swift in Sources */,
 				DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */,
+				82DEC9961D0F93A4003E1154 /* TrackingOnboardViewController.swift in Sources */,
 				DC0095851D075660000856FC /* TrackingType+CoreDataProperties.swift in Sources */,
 				DC0095951D075660000856FC /* Service+CoreDataProperties.swift in Sources */,
 				83548F261D09EB040013E67F /* MapController.swift in Sources */,
@@ -1192,6 +1204,7 @@
 				DC0095841D075660000856FC /* Make.swift in Sources */,
 				83548F281D0A1CD30013E67F /* AllTripTableViewController.swift in Sources */,
 				DC0095911D075660000856FC /* VehicleModel+CoreDataProperties.swift in Sources */,
+				82B980161D10164100B0658A /* Device Webservices.swift in Sources */,
 				8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */,
 				DC0095891D075660000856FC /* MyUser+CoreDataProperties.swift in Sources */,
 				DC00958F1D075660000856FC /* ServiceProviderAddress+CoreDataProperties.swift in Sources */,
@@ -1204,7 +1217,6 @@
 				82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */,
 				DC00958E1D075660000856FC /* TrackingData.swift in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
-				82DEC9931D0F659A003E1154 /* UIViewExtension.swift in Sources */,
 				8200B8591D0C5CF0007AB057 /* UserDefaultsMapping.swift in Sources */,
 				DC0095961D075660000856FC /* Service.swift in Sources */,
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,

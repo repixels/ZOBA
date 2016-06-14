@@ -14,6 +14,7 @@ import FBSDKLoginKit
 import TextFieldEffects
 import CoreData
 import Alamofire
+import SwiftyUserDefaults
 
 class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
@@ -273,6 +274,10 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                 {
                 case "success":
                     SessionObjects.currentUser = user!
+                    if((Defaults[.deviceToken]) != nil)
+                    {
+                        SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+                    }
                     SessionObjects.currentUser.save()
                     self.performSegueWithIdentifier(identifier,sender: sender)
                     break;

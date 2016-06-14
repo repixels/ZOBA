@@ -23,12 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     var window: UIWindow?
     var locationManager = CLLocationManager()
+    var application : UIApplication?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         //Set Managed Context
         SessionObjects.currentManageContext = self.managedObjectContext
+        self.application = application
         
         //AlamoFire Network Indicator
         NetworkActivityIndicatorManager.sharedManager.isEnabled = true
@@ -46,11 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 window.rootViewController = generateOnBoardingWithImage()
                 window.makeKeyAndVisible()
             }
-        
-            let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
-            let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
-            application.registerUserNotificationSettings(pushNotificationSettings)
-            application.registerForRemoteNotifications()
         }
         else
         {
@@ -196,9 +193,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         let tipsPage = OnboardingContentViewController(title: "Smart Tips", body: "Dont' know the ideal tire pressure for your vehicle? We are here for you", image: UIImage(named: "tips"), buttonText: "Enable Push Notifications") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
             NSLog("Tips Page")
+            let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
+            let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+            self.application!.registerUserNotificationSettings(pushNotificationSettings)
+            self.application!.registerForRemoteNotifications()
             
         }
-        
         tipsPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
         tipsPage.bodyLabel.font = UIFont(name: "Continuum Light" , size: 28.0)
         
@@ -231,6 +231,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         onboardingVC.skipHandler = {
             self.handleOnboardingCompletion()
         };
+        
         
         
         return onboardingVC
@@ -270,12 +271,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        print("DEVICE TOKEN = \(deviceToken)")
+        
+        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+        var tokenString = ""
+        
+        for i in 0..<deviceToken.length {
+            tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
+        }
+        
+        Defaults[.deviceToken] = tokenString
+        print("tokenString: \(tokenString)")
+        print("Device Token is : \(deviceToken)")
     }
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print(userInfo)
-    }
 
 }
 
