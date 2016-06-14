@@ -10,7 +10,7 @@ import UIKit
 import BTNavigationDropdownMenu
 import ChameleonFramework
 import CoreLocation
-
+import SwiftyUserDefaults
 
 class TimelineViewController: UITableViewController {
     var menuView: BTNavigationDropdownMenu!
@@ -135,6 +135,10 @@ class TimelineViewController: UITableViewController {
             let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
             application.registerUserNotificationSettings(pushNotificationSettings)
             application.registerForRemoteNotifications()
+            if((Defaults[.deviceToken]) != nil)
+            {
+                SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+            }
         }
     }
     

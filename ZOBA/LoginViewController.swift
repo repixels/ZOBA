@@ -293,6 +293,14 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                 {
                 case "success":
                     SessionObjects.currentUser = user!
+                    if((Defaults[.deviceToken]) != nil)
+                    {
+                        SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+                    }
+//
+//                    let deviceWebService = DeviceWebservice(deviceToken: Defaults[.deviceToken]!,currentUser: SessionObjects.currentUser)
+//                    deviceWebService.registerUserDevice()
+//                    
                     SessionObjects.currentUser.save()
                     Defaults[.isLoggedIn] = true
                     Defaults[.useremail] = user!.email
