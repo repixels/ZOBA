@@ -32,7 +32,7 @@ class FuelTableViewController: UITableViewController {
         
         self.tableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -57,11 +57,21 @@ class FuelTableViewController: UITableViewController {
         // Configure the cell...
 
         cell.textLabel?.text = String(data[indexPath.row].initialOdemeter)
-        cell.detailTextLabel?.text = data[indexPath.row].value
+        cell.detailTextLabel?.text = String(NSDate(timeIntervalSince1970:data[indexPath.row].dateAdded))
         return cell
     }
  
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+       
+        let detailsView = self.storyboard?.instantiateViewControllerWithIdentifier("details") as! FuelDetailViewController
+        
+        detailsView.data = data[indexPath.row]
+        
+        self.navigationController?.pushViewController(detailsView, animated: true)
+
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

@@ -57,13 +57,33 @@ class AllOilTableViewController: UITableViewController {
         
         // Configure the cell...
         
+         //  let formatter = NSDateFormatter()
         
         cell.textLabel?.text = String(data[indexPath.row].initialOdemeter)
-        cell.detailTextLabel?.text = data[indexPath.row].value
+        
+      //  cell.detailTextLabel?.text = String(NSDate(timeIntervalSince1970: 487675991))
+        
+      
+      cell.detailTextLabel?.text = String(NSDate(timeIntervalSince1970: data[indexPath.row].dateAdded))
+     
+        print(data[indexPath.row].dateAdded)
+
+       // print(formatter.stringFromDate(data[indexPath.row].dateAdded))
+
         
         return cell
     }
     
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+     
+        let detailsView = self.storyboard?.instantiateViewControllerWithIdentifier("details") as! OilDetailsViewController
+
+         detailsView.data = data[indexPath.row]
+        
+        self.navigationController?.pushViewController(detailsView, animated: true)
+
+    }
     
     /*
      // Override to support conditional editing of the table view.

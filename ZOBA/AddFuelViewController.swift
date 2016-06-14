@@ -13,19 +13,18 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
 
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
+    @IBOutlet weak var pickerViewBackGround: UIView!
     
-    @IBAction func dateApperance(sender: HoshiTextField) {
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
+    @IBAction func doneBtn(sender: AnyObject) {
         
-        let datePickerView  : UIDatePicker = UIDatePicker()
+      let date = formatter.stringFromDate(self.datePicker.date)
         
-        datePickerView.datePickerMode = UIDatePickerMode.Date
-       
-        
-        sender.inputView = datePickerView
-        
-        datePickerView.addTarget(self, action: #selector(AddFuelViewController.handleDatePicker(_:)), forControlEvents: UIControlEvents.ValueChanged)
-
+        self.dateTextField.text = date
     }
+    
    
     @IBOutlet weak var dateTextField: HoshiTextField!
 
@@ -42,6 +41,121 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
    
     @IBOutlet weak var serviceProviderImage: UIImageView!
     
+    
+    
+    @IBAction func fuelAmountEditingDidEnd(sender: AnyObject) {
+        
+        
+        if (fuelAmountTextField.text?.isNotEmpty ==  true && DataValidations.hasNoWhiteSpaces(fuelAmountTextField.text!)) {
+            isFuelMountReady = true
+        }
+        else
+        {
+            isFuelMountReady = false
+            
+        }
+        
+    }
+    
+    @IBAction func fuelAmountEditingChang(sender: AnyObject) {
+        
+        if (Int(fuelAmountTextField.text!)! < 90) {
+            
+            showAmountValidMessage("fuel Amount")
+            isFuelMountReady = true
+        }
+        else
+        {
+            showAmountErrorMessage("Enter Valid fuel Amount")
+            isFuelMountReady = false
+        }
+    }
+    
+    @IBAction func currentOdemterEditingDidEnd(sender: AnyObject) {
+        
+        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
+        let vehicleObj = Vehicle(managedObjectContext: appDel.managedObjectContext, entityName: "Vehicle")
+        
+        
+        if (Int64(currentOdometerTextField.text!) > vehicleObj.currentOdemeter ) {
+            
+            showAmountValidMessage("Current Odemeter")
+            isCurrentOdeReady = true
+        }
+        else
+        {
+            showAmountErrorMessage("Enter valid Odemeter")
+            isCurrentOdeReady = false
+        }
+        validateSaveBtn()
+
+        
+    }
+    
+    
+    @IBAction func currentOdemeterEditingChang(sender: AnyObject) {
+        
+        if (currentOdometerTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(currentOdometerTextField.text!)) {
+            
+            isCurrentOdeReady = true
+        }
+        else
+        {
+            isCurrentOdeReady = false
+        }
+        
+    }
+    
+    func validateSaveBtn() {
+        if (isFuelMountReady && isCurrentOdeReady) {
+            enablBtn()
+        }
+        else
+        {
+            disableBtn()
+        }
+    }
+    
+    func showOdemeterErrorMessage(message:String)
+    {
+        self.currentOdometerTextField.borderInactiveColor = UIColor.redColor()
+        self.currentOdometerTextField.borderActiveColor = UIColor.redColor()
+        self.currentOdometerTextField.placeholderColor = UIColor.redColor()
+        self.currentOdometerTextField.placeholderLabel.text = message
+        self.currentOdometerTextField.placeholderLabel.sizeToFit()
+        self.currentOdometerTextField.placeholderLabel.alpha = 1.0
+    }
+    
+    func showOdemeterValidMessage(message:String)
+    {
+        self.currentOdometerTextField.borderInactiveColor = UIColor.greenColor()
+        self.currentOdometerTextField.borderActiveColor = UIColor.greenColor()
+        self.currentOdometerTextField.placeholderColor = UIColor.whiteColor()
+        self.currentOdometerTextField.placeholderLabel.text = message
+            enablBtn()
+    }
+    
+    
+    func showAmountErrorMessage(message:String)
+    {
+        self.fuelAmountTextField.borderInactiveColor = UIColor.redColor()
+        self.fuelAmountTextField.borderActiveColor = UIColor.redColor()
+        self.fuelAmountTextField.placeholderColor = UIColor.redColor()
+        self.fuelAmountTextField.placeholderLabel.text = message
+        self.fuelAmountTextField.placeholderLabel.sizeToFit()
+        self.fuelAmountTextField.placeholderLabel.alpha = 1.0
+    }
+    
+    func showAmountValidMessage(message:String)
+    {
+        self.fuelAmountTextField.borderInactiveColor = UIColor.greenColor()
+        self.fuelAmountTextField.borderActiveColor = UIColor.greenColor()
+        self.fuelAmountTextField.placeholderColor = UIColor.whiteColor()
+        self.fuelAmountTextField.placeholderLabel.text = message
+        enablBtn()
+    }
+    
+    
     func disableBtn()  {
         
         saveBtn.enabled = false
@@ -49,22 +163,35 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     }
     
     func enablBtn()  {
-        
         saveBtn.enabled = true
         saveBtn.tintColor = UIColor.blueColor()
     }
     
-    func handleDatePicker(sender: UIDatePicker) {
-        
-        let dateFormatter = NSDateFormatter()
-        
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        
-        dateTextField.text = dateFormatter.stringFromDate(sender.date)
-        
+    //Validation Indicatiors
+    
+    var isCurrentOdeReady = false
+    var isFuelMountReady = false
+
+    
+    func initializeTextFieldInputView(){
+        self.datePicker.backgroundColor = UIColor.whiteColor()
+        self.datePicker.datePickerMode = UIDatePickerMode.Date
+        self.dateTextField.inputView = self.pickerViewBackGround
+        self.pickerViewBackGround.removeFromSuperview()
     }
+    
+
+    var formatter = NSDateFormatter()
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        if (textField == self.dateTextField){
+            self.datePicker.hidden = false
+        }else{
+            self.datePicker.hidden = true
+        }
+        return true
+    }
+
     
     var pickOption = ["one", "two" , "three" , "four"]
 
@@ -92,12 +219,18 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
         // Do any additional setup after loading the view.
         
+          formatter.dateFormat = "MMM dd,yyyy"
+        
         let pickerView = UIPickerView()
         
         pickerView.delegate = self
         
         serviceProviderTextFeild.inputView = pickerView
 
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        self.initializeTextFieldInputView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -115,6 +248,31 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         trackingDataObj.initialOdemeter = Int64(currentOdometerTextField.text!)!
         
         trackingDataObj.value = fuelAmountTextField.text!
+        trackingDataObj.dateAdded = datePicker.date.timeIntervalSince1970
+        
+        
+        
+        let trackingType = TrackingType(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingType")
+        
+        trackingType.name = "fuel"
+        
+        trackingType.save()
+        
+        
+        let measuringUnitObj = MeasuringUnit(managedObjectContext: appDel.managedObjectContext, entityName: "MeasuringUnit")
+        measuringUnitObj.name = "liters"
+        measuringUnitObj.suffix = "L"
+        
+        measuringUnitObj.mutableSetValueForKey("trackingType").addObject(trackingType)
+        
+        measuringUnitObj.save()
+        
+        
+        let serobj = Service(managedObjectContext:appDel.managedObjectContext , entityName: "Service")
+        
+        serobj.name = "fuel"
+        serobj.save()
+        serobj.mutableSetValueForKey("trackingType").addObject(trackingType)
         
         let dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
         
@@ -128,18 +286,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
       //  VehicleObjDAO.first!.mutableSetValueForKey("traclingData").addObject(trackingDataObj)
         
         trackingDataObj.save()
-        
         performSegueWithIdentifier("fuelSegue", sender: self)
-
-        //self.navigationController?.p
-//        do{
-//            try appDel.managedObjectContext.save()
-//        }
-//        catch let error
-//        {
-//            print(error)
-//            
- //       }
     }
 /*
     

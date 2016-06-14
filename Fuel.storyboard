@@ -56,8 +56,12 @@
                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="currentOdemeterEditingChang:" destination="HOi-QX-8aN" eventType="editingChanged" id="xxh-ab-VbG"/>
+                                    <action selector="currentOdemterEditingDidEnd:" destination="HOi-QX-8aN" eventType="editingDidEnd" id="XIy-0J-oY1"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3yZ-KL-FWV" customClass="HoshiTextField" customModule="TextFieldEffects">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3yZ-KL-FWV" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="74" y="95" width="226" height="41"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -76,9 +80,6 @@
                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="dateApperance:" destination="HOi-QX-8aN" eventType="editingDidEnd" id="i7h-1q-s4D"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Service Provider" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khV-B2-X9p" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="74" y="272" width="226" height="41"/>
@@ -119,7 +120,30 @@
                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="fuelAmountEditingChang:" destination="HOi-QX-8aN" eventType="editingChanged" id="iVx-aW-bWm"/>
+                                    <action selector="fuelAmountEditingDidEnd:" destination="HOi-QX-8aN" eventType="editingDidEnd" id="BrZ-2P-vpF"/>
+                                </connections>
                             </textField>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B8l-Ih-R1W">
+                                <rect key="frame" x="20" y="340" width="280" height="208"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="blh-yH-bwU">
+                                        <rect key="frame" x="0.0" y="38" width="278" height="162"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="487542263.38744098">
+                                            <!--2016-06-13 20:24:23 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSy-MS-G5B">
+                                        <rect key="frame" x="11" y="0.0" width="255" height="30"/>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="doneBtn:" destination="HOi-QX-8aN" eventType="touchUpInside" id="JzE-EL-5fJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -136,9 +160,11 @@
                         <outlet property="OdometerImage" destination="XKz-FQ-8Gb" id="Ae6-7P-bhI"/>
                         <outlet property="currentOdometerTextField" destination="4bX-ob-9rO" id="czq-7B-Y1w"/>
                         <outlet property="dateAndTimeImage" destination="m9T-eQ-TJv" id="qHo-r1-7qn"/>
+                        <outlet property="datePicker" destination="blh-yH-bwU" id="HRa-hl-3pG"/>
                         <outlet property="dateTextField" destination="3yZ-KL-FWV" id="sPk-1a-ch1"/>
                         <outlet property="fuelAmountImage" destination="U4g-SW-Y95" id="MpQ-Tz-ais"/>
                         <outlet property="fuelAmountTextField" destination="RRf-dY-trr" id="C9b-7g-r1N"/>
+                        <outlet property="pickerViewBackGround" destination="B8l-Ih-R1W" id="0tq-XN-mfu"/>
                         <outlet property="saveBtn" destination="WIy-fz-pbu" id="kq3-oP-7MC"/>
                         <outlet property="serviceProviderImage" destination="DBo-Ul-cwV" id="M17-KX-e8Y"/>
                         <outlet property="serviceProviderTextFeild" destination="khV-B2-X9p" id="gsr-FC-2uY"/>
@@ -158,12 +184,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="iFx-HT-Wk2">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="2Zn-jG-Kfw" detailTextLabel="MWQ-42-lVl" style="IBUITableViewCellStyleSubtitle" id="iFx-HT-Wk2">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iFx-HT-Wk2" id="lii-FI-SoD">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Zn-jG-Kfw">
+                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MWQ-42-lVl">
+                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -178,6 +220,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZS-Qa-XDS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1115" y="-450"/>
+        </scene>
+        <!--Fuel Detail View Controller-->
+        <scene sceneID="Zz7-RH-xHd">
+            <objects>
+                <viewController storyboardIdentifier="details" id="AB4-L3-7Bf" customClass="FuelDetailViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iBB-1P-TPn"/>
+                        <viewControllerLayoutGuide type="bottom" id="oh4-QR-dKF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZG5-jD-Ad6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chats_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Jvw-Av-5Et">
+                                <rect key="frame" x="20" y="122" width="36" height="36"/>
+                                <color key="backgroundColor" red="0.25005361440000001" green="0.30566063519999997" blue="0.58369332549999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chats_icon" translatesAutoresizingMaskIntoConstraints="NO" id="LlW-bt-5Gt">
+                                <rect key="frame" x="20" y="178" width="36" height="36"/>
+                                <color key="backgroundColor" red="0.25005361440000001" green="0.30566063519999997" blue="0.58369332549999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chats_icon" translatesAutoresizingMaskIntoConstraints="NO" id="GVh-TX-Icv">
+                                <rect key="frame" x="20" y="242" width="36" height="36"/>
+                                <color key="backgroundColor" red="0.25005361440000001" green="0.30566063519999997" blue="0.58369332549999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chats_icon" translatesAutoresizingMaskIntoConstraints="NO" id="KI0-BH-9id">
+                                <rect key="frame" x="20" y="307" width="36" height="36"/>
+                                <color key="backgroundColor" red="0.25005361440000001" green="0.30566063519999997" blue="0.58369332549999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14y-os-ytu">
+                                <rect key="frame" x="82" y="119" width="184" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pA-eh-b08">
+                                <rect key="frame" x="82" y="175" width="184" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gr3-Wa-4Fy">
+                                <rect key="frame" x="82" y="239" width="184" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7R-D3-IS6">
+                                <rect key="frame" x="82" y="304" width="184" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="currentOdemetr" destination="gr3-Wa-4Fy" id="BZl-Q4-D4V"/>
+                        <outlet property="dateAded" destination="14y-os-ytu" id="bzx-5D-Rzn"/>
+                        <outlet property="fuelAmount" destination="9pA-eh-b08" id="Lcb-Dx-LXh"/>
+                        <outlet property="serviceProvider" destination="T7R-D3-IS6" id="4pM-et-lha"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v1h-36-tOo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1121" y="216"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="goe-zK-G1n">

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VTW-c6-r66">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DI3-Sy-lwz">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Oil-->
         <scene sceneID="rzz-bd-Dg4">
             <objects>
-                <viewController title="Oil" id="BCb-ec-kAh" customClass="AddOilViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Oil" id="BCb-ec-kAh" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s1e-5n-gKu"/>
                         <viewControllerLayoutGuide type="bottom" id="HXf-Kz-uxH"/>
@@ -51,34 +52,6 @@
                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="oilMountEditingChange:" destination="BCb-ec-kAh" eventType="editingChanged" id="cmf-EJ-Nyf"/>
-                                    <action selector="oilMountEditingDidEnd:" destination="BCb-ec-kAh" eventType="editingDidEnd" id="g4K-hU-Bcs"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSR-2Q-zGr" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="74" y="83" width="226" height="41"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="0.80000000000000004"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="currentEditingDidEnd:" destination="BCb-ec-kAh" eventType="editingDidEnd" id="Vay-ne-XNy"/>
-                                    <action selector="currentOdeEditingChang:" destination="BCb-ec-kAh" eventType="editingChanged" id="8lc-mf-Otr"/>
-                                </connections>
                             </textField>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zRB-mc-Ljv">
                                 <rect key="frame" x="20" y="236" width="280" height="154"/>
@@ -102,51 +75,272 @@
                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="DateTouchUpInsid:" destination="BCb-ec-kAh" eventType="touchDown" id="f98-lk-nQQ"/>
-                                </connections>
                             </textField>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IQ6-F5-7LP">
-                                <rect key="frame" x="33" y="398" width="255" height="156"/>
+                                <rect key="frame" x="20" y="352" width="280" height="208"/>
                                 <subviews>
                                     <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="2S0-PC-pzC">
-                                        <rect key="frame" x="1" y="8" width="255" height="140"/>
+                                        <rect key="frame" x="0.0" y="38" width="278" height="162"/>
                                         <date key="date" timeIntervalSinceReferenceDate="487542263.38744098">
                                             <!--2016-06-13 20:24:23 +0000-->
                                         </date>
                                     </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7lV-Jr-Cix">
+                                        <rect key="frame" x="11" y="0.0" width="255" height="30"/>
+                                        <state key="normal" title="Done"/>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSR-2Q-zGr" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="74" y="83" width="226" height="41"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="0.80000000000000004"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="yXR-7U-3zb">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="LDA-fr-9Pe">
-                            <connections>
-                                <action selector="cancelButtonClicked:" destination="BCb-ec-kAh" id="yaH-10-AAd"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="LDA-fr-9Pe"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="d8r-mg-1Bo">
                             <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
-                            <connections>
-                                <action selector="saveOilData:" destination="BCb-ec-kAh" id="Vcs-fW-Lfv"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="currentOdoMeterTextField" destination="TSR-2Q-zGr" id="3H2-eV-IHF"/>
-                        <outlet property="dateTextField" destination="Tkw-Cd-KYt" id="C5M-aa-vdY"/>
-                        <outlet property="oilAmountTextField" destination="405-Hc-VIe" id="MHc-JJ-c6K"/>
-                        <outlet property="pickerView" destination="zRB-mc-Ljv" id="lZb-HF-6aZ"/>
-                        <outlet property="saveBtn" destination="d8r-mg-1Bo" id="M6Y-Ac-7bX"/>
-                        <segue destination="W64-4G-YfM" kind="push" identifier="oilsegue" id="gL9-ZF-O77"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78R-0V-2rN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1597" y="484"/>
+            <point key="canvasLocation" x="1247" y="438"/>
+        </scene>
+        <!--Add Oil View Controller-->
+        <scene sceneID="dey-bA-cgh">
+            <objects>
+                <viewController id="4nM-ic-chT" customClass="AddOilViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u34-Bc-2Bz"/>
+                        <viewControllerLayoutGuide type="bottom" id="T01-zk-pP3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Z3d-ZD-Ign">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <userGuides>
+                            <userLayoutGuide location="160" affinity="minX"/>
+                        </userGuides>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i07-hH-Lnd">
+                                <rect key="frame" x="0.0" y="52" width="320" height="892"/>
+                                <subviews>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gta-rC-07x">
+                                        <rect key="frame" x="0.0" y="8" width="320" height="198"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="198" id="OGn-ON-TeM"/>
+                                        </constraints>
+                                    </pickerView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Oil Amount (L)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gf-6M-QDp" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="326" width="135" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="rV3-ew-z9H"/>
+                                            <constraint firstAttribute="width" constant="135" id="xuA-DK-Rzy"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="oilMountEditingChange:" destination="4nM-ic-chT" eventType="editingDidEnd" id="xES-6J-Qyv"/>
+                                            <action selector="oilMountEditingDidEnd:" destination="4nM-ic-chT" eventType="editingDidEnd" id="Z4A-aa-mAs"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dx6-7T-rvU" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="165" y="338" width="135" height="29"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="currentEditingDidEnd:" destination="4nM-ic-chT" eventType="editingDidEnd" id="NRb-If-rtI"/>
+                                            <action selector="currentOdeEditingChang:" destination="4nM-ic-chT" eventType="editingDidEnd" id="P27-8s-LZF"/>
+                                        </connections>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lBe-Ew-wQ5">
+                                        <rect key="frame" x="20" y="380" width="280" height="46"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select a Service Provider" placeholder="Service Provider" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y9P-1S-YEk" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                <rect key="frame" x="0.0" y="3" width="280" height="41"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                        <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHw-ft-xhw">
+                                                <rect key="frame" x="-8" y="-6" width="296" height="57"/>
+                                                <connections>
+                                                    <action selector="pickerView:" destination="4nM-ic-chT" eventType="touchUpInside" id="zXe-pD-AIr"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="Mig-rf-8a4"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Initial Odemeter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sZ1-pc-Rjo" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="277" width="280" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="OG9-zG-X1v"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4JV-mP-tpT" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="226" width="280" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="dHK-qk-Y3P"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GRF-Ds-AgD">
+                                        <rect key="frame" x="20" y="236" width="280" height="33"/>
+                                        <connections>
+                                            <action selector="dateSelectBtn:" destination="4nM-ic-chT" eventType="touchUpInside" id="qw9-TB-Dbi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="sZ1-pc-Rjo" firstAttribute="top" secondItem="4JV-mP-tpT" secondAttribute="bottom" constant="10" id="0Td-nA-9DF"/>
+                                    <constraint firstItem="lBe-Ew-wQ5" firstAttribute="top" secondItem="3gf-6M-QDp" secondAttribute="bottom" constant="13" id="1ie-3H-6wm"/>
+                                    <constraint firstItem="3gf-6M-QDp" firstAttribute="leading" secondItem="lBe-Ew-wQ5" secondAttribute="leading" id="40V-T0-xti"/>
+                                    <constraint firstItem="3gf-6M-QDp" firstAttribute="baseline" secondItem="dx6-7T-rvU" secondAttribute="baseline" id="BfV-uH-zmZ"/>
+                                    <constraint firstItem="Gta-rC-07x" firstAttribute="top" secondItem="i07-hH-Lnd" secondAttribute="top" constant="8" id="Iqf-fg-ino"/>
+                                    <constraint firstItem="4JV-mP-tpT" firstAttribute="trailing" secondItem="sZ1-pc-Rjo" secondAttribute="trailing" id="QjY-go-nJh"/>
+                                    <constraint firstItem="Gta-rC-07x" firstAttribute="centerX" secondItem="4JV-mP-tpT" secondAttribute="centerX" id="Szi-OQ-JXV"/>
+                                    <constraint firstAttribute="bottom" secondItem="lBe-Ew-wQ5" secondAttribute="bottom" constant="466" id="UX5-LZ-mR0"/>
+                                    <constraint firstItem="4JV-mP-tpT" firstAttribute="leading" secondItem="i07-hH-Lnd" secondAttribute="leading" constant="20" id="WGg-Ia-woh"/>
+                                    <constraint firstItem="dx6-7T-rvU" firstAttribute="trailing" secondItem="lBe-Ew-wQ5" secondAttribute="trailing" id="X2v-CO-ucs"/>
+                                    <constraint firstItem="Gta-rC-07x" firstAttribute="leading" secondItem="i07-hH-Lnd" secondAttribute="leading" id="bJT-27-Xe1"/>
+                                    <constraint firstItem="4JV-mP-tpT" firstAttribute="top" secondItem="Gta-rC-07x" secondAttribute="bottom" constant="20" id="bXy-J0-Wty"/>
+                                    <constraint firstItem="4JV-mP-tpT" firstAttribute="leading" secondItem="sZ1-pc-Rjo" secondAttribute="leading" id="nOY-kF-H8b"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gta-rC-07x" secondAttribute="trailing" id="nPj-oh-aey"/>
+                                    <constraint firstItem="dx6-7T-rvU" firstAttribute="leading" secondItem="3gf-6M-QDp" secondAttribute="trailing" constant="10" id="oHd-yh-G0C"/>
+                                    <constraint firstItem="sZ1-pc-Rjo" firstAttribute="trailing" secondItem="dx6-7T-rvU" secondAttribute="trailing" id="tGs-F7-tfa"/>
+                                    <constraint firstItem="sZ1-pc-Rjo" firstAttribute="leading" secondItem="3gf-6M-QDp" secondAttribute="leading" id="tJz-UP-u3b"/>
+                                    <constraint firstItem="3gf-6M-QDp" firstAttribute="bottom" secondItem="dx6-7T-rvU" secondAttribute="bottom" id="uh7-lD-2zO"/>
+                                    <constraint firstItem="3gf-6M-QDp" firstAttribute="top" secondItem="sZ1-pc-Rjo" secondAttribute="bottom" constant="8" symbolic="YES" id="zcA-n8-IZ5"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="i07-hH-Lnd" secondAttribute="trailing" id="4G7-ob-B4E"/>
+                            <constraint firstItem="i07-hH-Lnd" firstAttribute="top" secondItem="Z3d-ZD-Ign" secondAttribute="topMargin" constant="52" id="BGD-Rq-7Pt"/>
+                            <constraint firstItem="i07-hH-Lnd" firstAttribute="leading" secondItem="Z3d-ZD-Ign" secondAttribute="leading" id="GWS-nf-aFD"/>
+                            <constraint firstAttribute="bottom" secondItem="i07-hH-Lnd" secondAttribute="bottom" constant="-376" id="P6J-5D-ZVj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nzc-UP-6Wl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="yx9-F9-Ub9">
+                            <connections>
+                                <action selector="saveOilData:" destination="4nM-ic-chT" id="lSC-Ge-To4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="currentOdoMeterTextField" destination="dx6-7T-rvU" id="uOd-cb-hXz"/>
+                        <outlet property="dateTextField" destination="4JV-mP-tpT" id="3I5-CD-U1t"/>
+                        <outlet property="initialOdemeter" destination="sZ1-pc-Rjo" id="ACx-Lq-J3w"/>
+                        <outlet property="oilAmountTextField" destination="3gf-6M-QDp" id="0XL-Cx-hE3"/>
+                        <outlet property="pickerViewTextField" destination="Y9P-1S-YEk" id="wcB-Jb-4Mw"/>
+                        <outlet property="saveBtn" destination="yx9-F9-Ub9" id="iEv-nA-kAc"/>
+                        <segue destination="W64-4G-YfM" kind="push" identifier="oilSegue" id="lwx-Mb-BFz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xjU-W5-ufE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1877" y="1081"/>
         </scene>
         <!--All Oil Table View Controller-->
         <scene sceneID="ZLD-da-y0G">
@@ -157,12 +351,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="g9j-QT-MKF">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="gsk-QW-BsD" detailTextLabel="0v9-Ti-Sch" style="IBUITableViewCellStyleSubtitle" id="g9j-QT-MKF">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g9j-QT-MKF" id="T6F-Uf-q4o">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gsk-QW-BsD">
+                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0v9-Ti-Sch">
+                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -171,34 +381,157 @@
                             <outlet property="delegate" destination="W64-4G-YfM" id="2ZO-Vl-cpu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="zvU-ec-bl7"/>
+                    <navigationItem key="navigationItem" id="zvU-ec-bl7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iEY-nG-wMf">
+                            <connections>
+                                <segue destination="4nM-ic-chT" kind="push" id="87Y-tq-33H"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6lx-JC-XdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1965" y="484"/>
+            <point key="canvasLocation" x="1266" y="1170"/>
+        </scene>
+        <!--Oil Details View Controller-->
+        <scene sceneID="HNz-Hw-Min">
+            <objects>
+                <viewController storyboardIdentifier="details" id="2DN-Ex-em2" customClass="OilDetailsViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L7l-qa-oKn"/>
+                        <viewControllerLayoutGuide type="bottom" id="UQz-eN-vf2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HbT-9q-0eu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dqv-Ag-uFM" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="156" width="280" height="41"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Oil Amount (L)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y1e-uV-XM1" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="226" width="280" height="41"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="oilMountEditingChange:" destination="4nM-ic-chT" eventType="editingDidEnd" id="Y4I-YE-hn2"/>
+                                    <action selector="oilMountEditingDidEnd:" destination="4nM-ic-chT" eventType="editingDidEnd" id="dCK-5A-nfN"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nIf-hw-B0c" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="102" width="280" height="41"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Service Provider" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MIK-iJ-rju" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="302" width="280" height="41"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="oilMountEditingChange:" destination="4nM-ic-chT" eventType="editingDidEnd" id="AUZ-t9-zgW"/>
+                                    <action selector="oilMountEditingDidEnd:" destination="4nM-ic-chT" eventType="editingDidEnd" id="ggu-21-Ksc"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="currentOdemeter" destination="Dqv-Ag-uFM" id="hXf-xg-TKX"/>
+                        <outlet property="dateAdedd" destination="nIf-hw-B0c" id="V9a-nN-A0L"/>
+                        <outlet property="oilAmount" destination="y1e-uV-XM1" id="Eoy-Pi-wpg"/>
+                        <outlet property="serviceProvider" destination="MIK-iJ-rju" id="Hjv-Dt-NCq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nF9-Zi-KqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1266" y="1801"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="cZM-aV-Bwt">
+        <scene sceneID="cnj-BJ-uhg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="VTW-c6-r66" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DI3-Sy-lwz" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="X8l-yr-bQp">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4qu-RM-XH9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BCb-ec-kAh" kind="relationship" relationship="rootViewController" id="KBA-Md-dsd"/>
+                        <segue destination="W64-4G-YfM" kind="relationship" relationship="rootViewController" id="Lov-D1-u3B"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FJc-ea-ag6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="txX-gZ-pzR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1112" y="484"/>
+            <point key="canvasLocation" x="734" y="1170"/>
         </scene>
     </scenes>
     <resources>
         <image name="chats_icon" width="20" height="22"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lwx-Mb-BFz"/>
+    </inferredMetricsTieBreakers>
 </document>

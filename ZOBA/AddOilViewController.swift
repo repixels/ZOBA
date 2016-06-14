@@ -9,82 +9,87 @@
 import UIKit
 import TextFieldEffects
 
-class AddOilViewController: UIViewController ,UIPickerViewDelegate  , UIPickerViewDataSource{
+class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerViewDataSource{
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
     @IBOutlet weak var currentOdoMeterTextField: HoshiTextField!
     
-    @IBAction func DateTouchUpInsid(sender: HoshiTextField) {
-        
-        let datePickerView  : UIDatePicker = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePickerMode.Date
-        sender.inputAccessoryView = datePickerView
-        
-        datePickerView.addTarget(self, action: #selector(AddOilViewController.handleDatePicker(_:)), forControlEvents: UIControlEvents.ValueChanged)
-       
-    }
- 
-    @IBOutlet weak var dateTextField: HoshiTextField!
-    
-    
-    @IBOutlet weak var pickerView: UIPickerView!
-    
-    func handleDatePicker(sender: UIDatePicker) {
-        
-        let dateFormatter = NSDateFormatter()
-        
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        
-        dateTextField.text = dateFormatter.stringFromDate(sender.date)
-        
-        dateTextField.resignFirstResponder()
-
-    }
-    
-
     @IBOutlet weak var oilAmountTextField: HoshiTextField!
     
-    var pickOption = ["one", "two" , "three" , "four", "five" , "six"  ]
-    
+   
     
     //Validation Indicatiors
     
     var isCurrentOdeReady = false
     var isOilMountReady = false
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        self.title = "Add Oil"
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
-             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        
-        // Do any additional setup after loading the view.
-        
-        pickerView.delegate = self
-
-        pickerView.dataSource = self
-       
-    }
+    // date picker
+     var formatter = NSDateFormatter()
+//    
+//    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+//        if (textField == self.dateTextField){
+//            self.datePicker.hidden = false
+//        }else{
+//            self.datePicker.hidden = true
+//        }
+//        return true
+//    }
+ 
+    var date : String!
     
+//     func doneDateBtn(sender: AnyObject) {
+//        
+//         date = formatter.stringFromDate(self.datePicker.date)
+//        
+//        self.dateTextField.text = date
+//    }
+    
+    @IBAction func dateSelectBtn(sender: AnyObject) {
+        
+     let datePickerView:UIDatePicker = UIDatePicker()
+
+      datePickerView.datePickerMode = UIDatePickerMode.Date
+        
+        dateTextField.inputView = datePickerView
+        
+        dateTextField.becomeFirstResponder()
+        datePickerView.addTarget(self, action: #selector(AddOilViewController.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
+
+    }
+    func datePickerValueChanged(sender:UIDatePicker) {
+        
+      //  let dateFormatter = NSDateFormatter()
+        
+        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        
+        formatter.timeStyle = NSDateFormatterStyle.NoStyle
+        
+        date = formatter.stringFromDate(sender.date)
+        
+        dateTextField.text = date
+        
+    }
+   
+    @IBOutlet weak var pickerViewTextField: HoshiTextField!
+    
+    
+    @IBOutlet weak var dateTextField: HoshiTextField!
+    
+    
+  //pickerView Options
+    var pickOption = ["one", "two" , "three" , "four", "five" , "six" ]
+
     @IBAction func currentOdeEditingChang(sender: AnyObject) {
         
         if (currentOdoMeterTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(currentOdoMeterTextField.text!)) {
-            
            
             isCurrentOdeReady = true
         }
         else
         {
-            
             isCurrentOdeReady = false
         }
-        
-        
     }
     
     func showErrorMessage(message:String)
@@ -95,7 +100,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate  , UIPickerVi
         self.currentOdoMeterTextField.placeholderLabel.text = message
         self.currentOdoMeterTextField.placeholderLabel.sizeToFit()
         self.currentOdoMeterTextField.placeholderLabel.alpha = 1.0
-        
     }
     
     func showValidMessage(message:String)
@@ -106,14 +110,12 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate  , UIPickerVi
         self.currentOdoMeterTextField.placeholderLabel.text = message
         enableSaveBtn()
     }
-
-   
     
     @IBAction func currentEditingDidEnd(sender: AnyObject) {
         
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         let vehicleObj = Vehicle(managedObjectContext: appDel.managedObjectContext, entityName: "Vehicle")
-        vehicleObj.currentOdemeter = 234
+        
         
         if (Int64(currentOdoMeterTextField.text!) > vehicleObj.currentOdemeter ) {
             
@@ -125,9 +127,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate  , UIPickerVi
             showErrorMessage("Enter valid Odemeter")
             isCurrentOdeReady = false
         }
-            
             validateSaveBtn()
-        
     }
     
     func validateSaveBtn() {
@@ -148,24 +148,22 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate  , UIPickerVi
         saveBtn.enabled = false
     }
     
-    
     @IBAction func oilMountEditingChange(sender: AnyObject) {
     
-//        if (Int(oilAmountTextField.text!)! > 10 | Int(oilAmountTextField.text!)! < 10000) {
-//        
-//            showValidMessage("Oil Amount")
-//            isOilMountReady = true
-//        }
-//        else
-//        {
-//            showErrorMessage("Enter Valid Oil Amount")
-//            isOilMountReady = false
-//        }
+        if (Int(oilAmountTextField.text!)! < 1000) {
         
+            showValidMessage("Oil Amount")
+            isOilMountReady = true
+        }
+        else
+        {
+            showErrorMessage("Enter Valid Oil Amount")
+            isOilMountReady = false
+        }
     }
     @IBAction func oilMountEditingDidEnd(sender: AnyObject) {
         
-        if (currentOdoMeterTextField.text?.isNotEmpty ==  true && DataValidations.hasNoWhiteSpaces(currentOdoMeterTextField.text!)) {
+        if (oilAmountTextField.text?.isNotEmpty ==  true && DataValidations.hasNoWhiteSpaces(oilAmountTextField.text!)) {
             isOilMountReady = true
         }
         else
@@ -174,25 +172,95 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate  , UIPickerVi
             
         }
     }
-   
+    
+    @IBOutlet weak var initialOdemeter: HoshiTextField!
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+       // self.initializeTextFieldInputView()
+        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
+        let vehicleObj = Vehicle(managedObjectContext: appDel.managedObjectContext, entityName: "Vehicle")
+        initialOdemeter.text = String(vehicleObj.initialOdemeter)
+        
+        disableSaveBtn()
+    }
+    
+    var pickerView : UIPickerView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Add Oil"
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        
+        // Do any additional setup after loading the view.
+        
+        formatter.dateFormat = "MMM dd,yyyy"
+        
+        
+        //picker View
+        
+        pickerView = UIPickerView()
+        pickerView.delegate = self
+        
+        pickerView.dataSource = self
+        
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.Default
+        toolBar.translucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddOilViewController.donePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddOilViewController.donePicker))
+        
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.userInteractionEnabled = true
+        
+        pickerViewTextField.inputAccessoryView = toolBar
+        
+        dateTextField.inputAccessoryView = toolBar
+    }
+    
+    
+    func donePicker() {
+        // pickerViewTextField.text = pickerView.d
+        view.endEditing(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancelButtonClicked(sender: AnyObject) {
-        self.tabBarController?.selectedIndex = 1
+ 
+    @IBAction func pickerView(sender: AnyObject) {
+        
+        pickerViewTextField.inputView = pickerView
+
+    
+        pickerViewTextField.becomeFirstResponder()
+
     }
+    
     
     @IBAction func saveOilData(sender: AnyObject) {
         
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
+        
         
         let trackingDataObj = TrackingData(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingData")
         
         trackingDataObj.initialOdemeter = Int64(currentOdoMeterTextField.text!)!
         
         trackingDataObj.value = oilAmountTextField.text!
+        
+        
+      //  trackingDataObj.dateAdded = datePicker.date.timeIntervalSince1970
+
         
        let dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
         
@@ -208,7 +276,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate  , UIPickerVi
         
         
         trackingDataObj.save()
-        performSegueWithIdentifier("oilsegue", sender: self)
+        performSegueWithIdentifier("oilSegue", sender: self)
 
         //trackingDataObj.release(appDel.managedObjectContext)
     }
@@ -219,43 +287,20 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate  , UIPickerVi
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return pickOption[row]
     }
-//    
-//    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//       // serviceProviderTextField.text = pickOption[row]
-//    }
-//
+
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return pickOption.count
     }
     
-    
-//    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        incidentPickerTextField.text = pickOption[row]
-//        //hides the pickview
-//        TextField.resignFirstResponder()
-//    }
-    
-//     // MARK: - Navigation
-//     
-//     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//     // Get the new view controller using segue.destinationViewController.
-//     // Pass the selected object to the new view controller.
-//        
-//        
-//        if segue.identifier == "oilSegue" {
-//         
-//            let des = segue.destinationViewController as! AllOilTableViewController
-//            
-//        }
-//     }
-// 
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickerViewTextField.text = pickOption[row]
+    }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
         
-        dateTextField.resignFirstResponder()
+        //dateTextField.resignFirstResponder()
     }
     
     

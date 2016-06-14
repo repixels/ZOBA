@@ -110,6 +110,8 @@
 		DC0095981D075660000856FC /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00956E1D075660000856FC /* Vehicle.swift */; };
 		DC0095991D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00956F1D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift */; };
 		DC00959A1D075660000856FC /* ModelFeatureValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0095701D075660000856FC /* ModelFeatureValue.swift */; };
+		DC562BB61D1036680066B8A8 /* OilDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC562BB51D1036680066B8A8 /* OilDetailsViewController.swift */; };
+		DC562BB81D103E540066B8A8 /* FuelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC562BB71D103E540066B8A8 /* FuelDetailViewController.swift */; };
 		DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */; };
 		DC778F271D0D6FB600F43AE8 /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */; };
 		DC778F291D0D708600F43AE8 /* Fuel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F281D0D708600F43AE8 /* Fuel.storyboard */; };
@@ -276,6 +278,8 @@
 		DC00956F1D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModelFeatureValue+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DC0095701D075660000856FC /* ModelFeatureValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFeatureValue.swift; sourceTree = "<group>"; };
 		DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceConnection.swift; sourceTree = "<group>"; };
+		DC562BB51D1036680066B8A8 /* OilDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OilDetailsViewController.swift; sourceTree = "<group>"; };
+		DC562BB71D103E540066B8A8 /* FuelDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelDetailViewController.swift; sourceTree = "<group>"; };
 		DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryBoard.storyboard; sourceTree = "<group>"; };
 		DC778F281D0D708600F43AE8 /* Fuel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Fuel.storyboard; path = ../Fuel.storyboard; sourceTree = "<group>"; };
 		DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = oil.storyboard; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 			children = (
 				82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */,
 				DCB398101D0D538900845B19 /* FuelTableViewController.swift */,
+				DC562BB71D103E540066B8A8 /* FuelDetailViewController.swift */,
 			);
 			name = "Fuel Tracking";
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 			children = (
 				82057F781D048FDA00BC80DD /* AddOilViewController.swift */,
 				DCC01D0E1D0C4FE0009E66C3 /* AllOilTableViewController.swift */,
+				DC562BB51D1036680066B8A8 /* OilDetailsViewController.swift */,
 			);
 			name = "Oil Tracking";
 			sourceTree = "<group>";
@@ -1108,6 +1114,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC562BB81D103E540066B8A8 /* FuelDetailViewController.swift in Sources */,
 				DC0095751D075660000856FC /* ServiceProviderCalender+CoreDataProperties.swift in Sources */,
 				8265E7F11D0583780039D0AF /* AppDelegate.swift in Sources */,
 				DC0095741D075660000856FC /* ServiceProviderPhone.swift in Sources */,
@@ -1142,6 +1149,7 @@
 				DC00958E1D075660000856FC /* TrackingData.swift in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
 				DC0095961D075660000856FC /* Service.swift in Sources */,
+				DC562BB61D1036680066B8A8 /* OilDetailsViewController.swift in Sources */,
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
 				DC00957D1D075660000856FC /* Trim+CoreDataProperties.swift in Sources */,
 				8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */,
