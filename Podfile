@@ -16,7 +16,6 @@ target 'ZOBA' do
   pod 'SwiftyUserDefaults'
   pod 'AlamofireImage', '~> 2.0'
   pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
-  pod 'PermissionScope'
 
   # Pods for ZOBA
 
