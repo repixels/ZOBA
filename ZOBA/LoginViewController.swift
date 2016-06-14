@@ -297,6 +297,16 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     Defaults[.isLoggedIn] = true
                     Defaults[.useremail] = user!.email
                     Defaults[.launchCount] += 1
+                    
+                    //To be removed
+                    DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Lancer")
+                    
+                    DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Swift")
+                    
+                    DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Huyndai")
+                    
+                    DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Ferarri")
+                    
                     self.performSegueWithIdentifier(identifier,sender: sender)
                     break;
                 default:
