@@ -13,26 +13,13 @@ import MapKit
 class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentationControllerDelegate
 ,UIPickerViewDataSource , UIPickerViewDelegate {
     
-    
-    
-    
-    
-    
-    @IBOutlet weak var stratPointBtn: UIButton!
-    
-    @IBOutlet weak var endPointBtn: UIButton!
-    
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
-    @IBOutlet weak var startLocationLbl: UILabel!
-    @IBOutlet weak var destinationLocationLbl: UILabel!
+    @IBOutlet weak var finalOdemeter: HoshiTextField!
     
     @IBOutlet weak var currentOdemeter: HoshiTextField!
     
-    @IBOutlet weak var initialOdemeter: HoshiTextField!
-    
     @IBOutlet weak var coveredKm: HoshiTextField!
-    @IBOutlet weak var vehicleTextField: HoshiTextField!
     @IBOutlet weak var dateTextField: HoshiTextField!
     
     @IBOutlet weak var startingPointTextField: HoshiTextField!
@@ -54,10 +41,13 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     var isDateValid = false
     var isCoveredKmValid = false
-    var isCurrentOdemeterValid = false
+    var isfinalOdemeterValid = false
     var isVehicleValid = true
     var isFirstCoordinateValid = false
     var isDestinationCoordinateValid = false
+    
+    
+    let datePickerView:UIDatePicker = UIDatePicker()
     
     override func viewDidLoad() {
         
@@ -68,6 +58,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
             [NSForegroundColorAttributeName: UIColor.whiteColor(),
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
         
         saveBtn.enabled = false
         saveBtn.tintColor = UIColor.grayColor()
@@ -75,7 +66,24 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         let dao  = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
         
-        initialOdemeter.text = String(vehicles[0].currentOdemeter)
+        currentOdemeter.text = String(vehicles[0].currentOdemeter)
+        
+        
+        let DateToolBar = UIToolbar()
+        DateToolBar.barStyle = UIBarStyle.Default
+        DateToolBar.translucent = true
+        DateToolBar.tintColor = UIColor.redColor()
+        DateToolBar.sizeToFit()
+        
+        let modelDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddTripViewController.dateDonePicker))
+        let modelSpaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let modelCancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddTripViewController.dateCancelPicker))
+        
+        DateToolBar.setItems([modelCancelButton, modelSpaceButton, modelDoneButton], animated: false)
+        DateToolBar.userInteractionEnabled = true
+        
+        
+        dateTextField.inputAccessoryView = DateToolBar
         
         
         self.vehiclesPickerView.delegate = self
@@ -83,7 +91,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         self.hideKeyboardWhenTappedAround()
         
         selectedVehicle = vehicles[vehiclesPickerView.selectedRowInComponent(0)]
-    
+        
         
         
     }
@@ -97,14 +105,13 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
             self.isDateValid = true
             self.isVehicleValid = true
             self.isCoveredKmValid = true
-            self.isCurrentOdemeterValid = true
+            self.isfinalOdemeterValid = true
             self.isFirstCoordinateValid = true
             self.isDestinationCoordinateValid = true
             
-            initialOdemeter.text = String(trip.initialOdemeter)
+            currentOdemeter.text = String(trip.initialOdemeter)
             coveredKm.text = String(trip.coveredKm)
-            currentOdemeter.text = String(Int(trip.initialOdemeter) + Int(trip.coveredKm))
-            vehicleTextField.text = trip.vehicle?.name
+            finalOdemeter.text = String(Int(trip.initialOdemeter) + Int(trip.coveredKm))
             let coordinates = trip.coordinates?.allObjects as! [TripCoordinate]
             
             self.startCoordinate = CLLocationCoordinate2D(latitude: Double((coordinates.first?.latitude)!), longitude: Double((coordinates.first?.longtitude)!))
@@ -138,13 +145,14 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         }
         
         trip.coveredKm = Int(self.coveredKm.text!)!
-        trip.initialOdemeter = Int(self.initialOdemeter.text!)!
+        trip.initialOdemeter = Int(self.currentOdemeter.text!)!
         
         
         
         trip.coordinates = NSSet(array: [firstCoordinate,secondCoordinate])
         
         trip.vehicle = selectedVehicle
+        trip.vehicle?.currentOdemeter = Int(trip.initialOdemeter) + Int(trip.coveredKm)
         trip.save()
         
         self.navigationController?.popViewControllerAnimated(true)
@@ -178,7 +186,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     //MARK: date picker
     @IBAction func dateEditingBegin(sender: HoshiTextField) {
-        let datePickerView:UIDatePicker = UIDatePicker()
+        
         
         datePickerView.datePickerMode = UIDatePickerMode.Date
         
@@ -209,25 +217,28 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     
     //MARK: Odemeter textField editing
-    @IBAction func currentOdemeterEdited(sender:AnyObject) {
+    @IBAction func finalOdemeterEdited(sender:AnyObject) {
         
-        if ( self.currentOdemeter.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(self.currentOdemeter.text!)){
-            let dif : Int = Int(self.currentOdemeter.text!)! - Int(self.initialOdemeter.text!)!
+        if ( self.finalOdemeter.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(self.finalOdemeter.text!)){
+            let dif : Int = Int(self.finalOdemeter.text!)! - Int(self.currentOdemeter.text!)!
             if( dif > 0){
                 self.coveredKm.text = String(dif)
-                hideErrorMessage("current Odemeter", textField: self.currentOdemeter)
-                isCurrentOdemeterValid = true
+                hideErrorMessage("current Odemeter", textField: self.finalOdemeter)
+                isfinalOdemeterValid = true
+                isCoveredKmValid = true
                 validateSave()
             }
             else{
-                showErrorMessage("enter a valid odemeter value", textField: self.currentOdemeter)
-                isCurrentOdemeterValid = false
+                showErrorMessage("enter a valid odemeter value", textField: self.finalOdemeter)
+                isfinalOdemeterValid = false
+                isCoveredKmValid = false
                 validateSave()
             }
         }
         else{
-            showErrorMessage("enter a valid odemeter value", textField: self.currentOdemeter)
-            isCurrentOdemeterValid = false
+            showErrorMessage("enter a valid odemeter value", textField: self.finalOdemeter)
+            isfinalOdemeterValid = false
+            isCoveredKmValid = false
             validateSave()
         }
     }
@@ -238,22 +249,25 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
             let km = Int(self.coveredKm.text!)!
             
             if(km>0){
-                let distance : Int = km + Int(self.initialOdemeter.text!)!
+                let distance : Int = km + Int(self.currentOdemeter.text!)!
                 
-                self.currentOdemeter.text = String(distance)
+                self.finalOdemeter.text = String(distance)
                 hideErrorMessage("covered Km", textField: self.coveredKm)
                 isCoveredKmValid = true
+                isfinalOdemeterValid = true
                 validateSave()
             }
             else{
                 showErrorMessage("entered a valid value", textField: self.coveredKm)
                 isCoveredKmValid = false
+                isfinalOdemeterValid = false
                 validateSave()
             }
         }
         else{
             showErrorMessage("entered a valid value", textField: self.coveredKm)
             isCoveredKmValid = false
+            isfinalOdemeterValid = false
             validateSave()
         }
         
@@ -281,14 +295,9 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     func presentMap(){
         
         let mapViewController: MapController = self.storyboard!.instantiateViewControllerWithIdentifier("MapView") as! MapController
-        mapViewController.modalPresentationStyle = .Popover
-        mapViewController.preferredContentSize = CGSizeMake(50, 200)
         mapViewController.delegate = self
-        let popoverMenuViewController = mapViewController.popoverPresentationController
-        popoverMenuViewController?.permittedArrowDirections = .Any
-        popoverMenuViewController?.delegate = self
-        
-        presentViewController(mapViewController,animated: true,completion: nil)
+        mapViewController.delegate = self
+        self.navigationController?.pushViewController(mapViewController, animated: true)
         
     }
     
@@ -345,10 +354,10 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     func validateSave(){
         
         
-        let valid = isDateValid && isCoveredKmValid && isCurrentOdemeterValid && isVehicleValid && isFirstCoordinateValid && isDestinationCoordinateValid
+        let valid = isDateValid && isCoveredKmValid && isfinalOdemeterValid && isVehicleValid && isFirstCoordinateValid && isDestinationCoordinateValid
         if (valid){
             self.saveBtn.enabled = true
-            self.saveBtn.tintColor = UIColor.blueColor()
+            self.saveBtn.tintColor = UIColor.whiteColor()
             
         }
         else{
@@ -368,4 +377,26 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         self.navigationController?.pushViewController(controller, animated: true)
     }
+    
+    func dateDonePicker(){
+        
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        
+        dateTextField.text = dateFormatter.stringFromDate(datePickerView.date)
+        dateTextField.resignFirstResponder()
+        isDateValid = true
+        validateSave()
+        
+    }
+    func dateCancelPicker(){
+        
+        dateTextField.resignFirstResponder()
+    }
+    
+    
 }

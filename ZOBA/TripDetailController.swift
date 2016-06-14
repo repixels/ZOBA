@@ -42,8 +42,7 @@ class TripDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
     }
     
     
@@ -62,6 +61,7 @@ class TripDetailController: UIViewController {
         getLocation(coordinates.first!,sender: startPointTextField)
         getLocation(coordinates.last!,sender: endPointTextField)
         setRegion(coordinates.first! , lastCoordinate: coordinates.last!)
+        
         
     }
     
@@ -131,19 +131,14 @@ class TripDetailController: UIViewController {
             
             directions.calculateDirectionsWithCompletionHandler ({
                 (response: MKDirectionsResponse?, error: NSError?) in
-                print("=============================")
-                print(response?.routes)
-                print(error)
-                print("=============================")
                 if error == nil {
-                    //                self.directionsResponse = response
-                    // Get whichever currentRoute you'd like, ex. 0
                     let route = response!.routes[0] as MKRoute
                     self.map.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
                     print("calculate route")
                 }
-                else{print("error in calculating route")
-                    
+                else
+                {
+                    print("error in calculating route")
                 }
             })
             

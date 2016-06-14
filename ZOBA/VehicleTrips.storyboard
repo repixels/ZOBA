@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="92" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UVQ-zh-PxW" id="hhN-zu-4lj">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="uq3-NB-K5r">
@@ -35,7 +35,7 @@
                                                 <constraint firstAttribute="width" secondItem="uq3-NB-K5r" secondAttribute="height" multiplier="1:1" id="4K1-wh-EN6"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adt-ex-axn">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adt-ex-axn">
                                             <rect key="frame" x="27" y="27" width="45" height="27"/>
                                             <fontDescription key="fontDescription" name="ContinuumMedium" family="Continuum Medium" pointSize="22"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -168,7 +168,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Covered Milage" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3t-hm-MhY" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="370" width="132" height="48"/>
+                                        <rect key="frame" x="20" y="360" width="132" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="0Ju-Kw-mzx"/>
                                             <constraint firstAttribute="width" constant="132" id="UR4-in-Rtc"/>
@@ -191,37 +191,58 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="coveredKmEdited:" destination="1xC-7H-O8v" eventType="editingDidBegin" id="D1S-Mg-Svd"/>
+                                            <action selector="coveredKmEdited:" destination="1xC-7H-O8v" eventType="editingChanged" id="F6v-83-03a"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ending Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dph-wZ-h08" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="482" width="280" height="48"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gxx-JU-Kzj">
+                                        <rect key="frame" x="8" y="484" width="304" height="48"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select a End Point for the Trip" placeholder="Ending Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dph-wZ-h08" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                <rect key="frame" x="12" y="0.0" width="280" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="EhS-xi-EkA"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="getEndPoint:" destination="1xC-7H-O8v" eventType="editingDidBegin" id="mML-ek-bt3"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S57-6P-80a">
+                                                <rect key="frame" x="12" y="0.0" width="280" height="48"/>
+                                                <connections>
+                                                    <action selector="getEndPoint:" destination="1xC-7H-O8v" eventType="touchUpInside" id="NU9-wC-eIJ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="EhS-xi-EkA"/>
+                                            <constraint firstItem="dph-wZ-h08" firstAttribute="leading" secondItem="S57-6P-80a" secondAttribute="leading" id="0My-l6-dCX"/>
+                                            <constraint firstAttribute="bottom" secondItem="S57-6P-80a" secondAttribute="bottom" id="5cP-vl-S1I"/>
+                                            <constraint firstItem="dph-wZ-h08" firstAttribute="trailing" secondItem="S57-6P-80a" secondAttribute="trailing" id="LIh-Bi-WJy"/>
+                                            <constraint firstItem="dph-wZ-h08" firstAttribute="top" secondItem="Gxx-JU-Kzj" secondAttribute="top" id="SWp-YQ-XpQ"/>
+                                            <constraint firstItem="dph-wZ-h08" firstAttribute="bottom" secondItem="S57-6P-80a" secondAttribute="bottom" id="g3B-5K-L7r"/>
+                                            <constraint firstItem="dph-wZ-h08" firstAttribute="leading" secondItem="Gxx-JU-Kzj" secondAttribute="leading" constant="12" id="pJy-KT-kdX"/>
+                                            <constraint firstItem="dph-wZ-h08" firstAttribute="centerX" secondItem="Gxx-JU-Kzj" secondAttribute="centerX" id="uPT-Kg-nh0"/>
+                                            <constraint firstItem="dph-wZ-h08" firstAttribute="top" secondItem="S57-6P-80a" secondAttribute="top" id="zmP-8W-8nH"/>
                                         </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="getEndPoint:" destination="1xC-7H-O8v" eventType="editingDidBegin" id="mML-ek-bt3"/>
-                                        </connections>
-                                    </textField>
+                                    </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6dU-3B-rJP" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="258" width="280" height="48"/>
+                                        <rect key="frame" x="20" y="248" width="280" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="TGN-db-vp1"/>
                                         </constraints>
@@ -246,8 +267,8 @@
                                             <action selector="dateEditingBegin:" destination="1xC-7H-O8v" eventType="editingDidBegin" id="9R4-Dy-rqF"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qIL-H5-pxI" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="168" y="370" width="132" height="48"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Final Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qIL-H5-pxI" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="168" y="360" width="132" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="qIL-H5-pxI" secondAttribute="height" multiplier="11:4" id="Asm-ah-YRV"/>
                                         </constraints>
@@ -269,43 +290,63 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="currentOdemeterEdited:" destination="1xC-7H-O8v" eventType="editingDidBegin" id="Hif-G4-DOp"/>
+                                            <action selector="finalOdemeterEdited:" destination="1xC-7H-O8v" eventType="editingChanged" id="QGl-m9-5kn"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Starting Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Ot-Eu-K1K" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="426" width="280" height="48"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nsj-GG-QpK">
+                                        <rect key="frame" x="8" y="416" width="304" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select a Start Point for the Trip" placeholder="Starting Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Ot-Eu-K1K" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                <rect key="frame" x="12" y="9" width="280" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="yS4-fV-Gvg"/>
+                                                </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="getStartPoint:" destination="1xC-7H-O8v" eventType="editingDidBegin" id="8QO-9R-6mk"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lQ-5X-yE1">
+                                                <rect key="frame" x="12" y="9" width="280" height="48"/>
+                                                <connections>
+                                                    <action selector="getStartPoint:" destination="1xC-7H-O8v" eventType="touchUpInside" id="0mm-aX-2uH"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="yS4-fV-Gvg"/>
+                                            <constraint firstItem="8Ot-Eu-K1K" firstAttribute="centerX" secondItem="Nsj-GG-QpK" secondAttribute="centerX" id="NDG-Dd-4wY"/>
+                                            <constraint firstItem="8Ot-Eu-K1K" firstAttribute="top" secondItem="Nsj-GG-QpK" secondAttribute="top" constant="9" id="Pv2-20-D0O"/>
+                                            <constraint firstItem="8Ot-Eu-K1K" firstAttribute="leading" secondItem="9lQ-5X-yE1" secondAttribute="leading" id="Q1B-C4-6oL"/>
+                                            <constraint firstItem="8Ot-Eu-K1K" firstAttribute="leading" secondItem="Nsj-GG-QpK" secondAttribute="leading" constant="12" id="Qkz-zu-jbZ"/>
+                                            <constraint firstItem="8Ot-Eu-K1K" firstAttribute="bottom" secondItem="9lQ-5X-yE1" secondAttribute="bottom" id="UVp-LT-woY"/>
+                                            <constraint firstItem="8Ot-Eu-K1K" firstAttribute="top" secondItem="9lQ-5X-yE1" secondAttribute="top" id="a7h-i1-Vl7"/>
+                                            <constraint firstItem="8Ot-Eu-K1K" firstAttribute="trailing" secondItem="9lQ-5X-yE1" secondAttribute="trailing" id="pcF-y1-HLt"/>
                                         </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="getStartPoint:" destination="1xC-7H-O8v" eventType="editingDidBegin" id="8QO-9R-6mk"/>
-                                        </connections>
-                                    </textField>
+                                    </view>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOf-7t-jVf">
                                         <rect key="frame" x="0.0" y="88" width="320" height="162"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="162" id="aXS-5d-Zml"/>
                                         </constraints>
                                     </pickerView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Initial Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-tY-v3V" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="314" width="280" height="48"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-tY-v3V" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="304" width="280" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="2Jt-Lh-BiR"/>
                                         </constraints>
@@ -329,32 +370,33 @@
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="8Ot-Eu-K1K" firstAttribute="top" secondItem="qIL-H5-pxI" secondAttribute="bottom" constant="8" symbolic="YES" id="08b-np-6dG"/>
-                                    <constraint firstItem="8Ot-Eu-K1K" firstAttribute="top" secondItem="r3t-hm-MhY" secondAttribute="bottom" constant="8" symbolic="YES" id="0rj-n2-TpR"/>
                                     <constraint firstItem="qIL-H5-pxI" firstAttribute="leading" secondItem="r3t-hm-MhY" secondAttribute="trailing" constant="16" id="6gF-T0-mqc"/>
                                     <constraint firstItem="oOf-7t-jVf" firstAttribute="leading" secondItem="M2d-EV-6za" secondAttribute="leading" id="6rH-OP-Hog"/>
-                                    <constraint firstItem="r3t-hm-MhY" firstAttribute="leading" secondItem="8Ot-Eu-K1K" secondAttribute="leading" id="7uu-12-73T"/>
                                     <constraint firstItem="6dU-3B-rJP" firstAttribute="trailing" secondItem="xPw-tY-v3V" secondAttribute="trailing" id="89U-Lk-OyC"/>
                                     <constraint firstItem="oOf-7t-jVf" firstAttribute="centerX" secondItem="6dU-3B-rJP" secondAttribute="centerX" id="9ed-tj-aXV"/>
-                                    <constraint firstItem="6dU-3B-rJP" firstAttribute="top" secondItem="oOf-7t-jVf" secondAttribute="bottom" constant="8" symbolic="YES" id="Fn8-yl-KO5"/>
+                                    <constraint firstItem="Gxx-JU-Kzj" firstAttribute="centerX" secondItem="xPw-tY-v3V" secondAttribute="centerX" id="AZf-qE-1MP"/>
+                                    <constraint firstItem="Gxx-JU-Kzj" firstAttribute="trailing" secondItem="Nsj-GG-QpK" secondAttribute="trailing" id="DKd-Pc-Ue1"/>
+                                    <constraint firstItem="6dU-3B-rJP" firstAttribute="top" secondItem="oOf-7t-jVf" secondAttribute="bottom" constant="-2" id="Fn8-yl-KO5"/>
+                                    <constraint firstItem="Gxx-JU-Kzj" firstAttribute="leading" secondItem="M2d-EV-6za" secondAttribute="leadingMargin" id="GXV-8Z-edZ"/>
                                     <constraint firstItem="xPw-tY-v3V" firstAttribute="leading" secondItem="r3t-hm-MhY" secondAttribute="leading" id="JKy-Di-d3U"/>
-                                    <constraint firstItem="8Ot-Eu-K1K" firstAttribute="trailing" secondItem="dph-wZ-h08" secondAttribute="trailing" id="LD6-8q-gCO"/>
-                                    <constraint firstItem="dph-wZ-h08" firstAttribute="top" secondItem="8Ot-Eu-K1K" secondAttribute="bottom" constant="8" symbolic="YES" id="Quw-71-3n1"/>
+                                    <constraint firstItem="Gxx-JU-Kzj" firstAttribute="top" secondItem="Nsj-GG-QpK" secondAttribute="bottom" constant="8" id="ONk-3W-MJq"/>
+                                    <constraint firstItem="Nsj-GG-QpK" firstAttribute="top" secondItem="r3t-hm-MhY" secondAttribute="bottom" constant="8" symbolic="YES" id="OfB-uI-she"/>
                                     <constraint firstItem="oOf-7t-jVf" firstAttribute="top" secondItem="M2d-EV-6za" secondAttribute="top" constant="88" id="SJ5-qk-AZe"/>
                                     <constraint firstItem="xPw-tY-v3V" firstAttribute="trailing" secondItem="qIL-H5-pxI" secondAttribute="trailing" id="U4a-cT-zat"/>
                                     <constraint firstItem="6dU-3B-rJP" firstAttribute="leading" secondItem="xPw-tY-v3V" secondAttribute="leading" id="e6M-KY-jpf"/>
-                                    <constraint firstAttribute="bottom" secondItem="dph-wZ-h08" secondAttribute="bottom" constant="170" id="eEL-V3-n6x"/>
-                                    <constraint firstItem="qIL-H5-pxI" firstAttribute="trailing" secondItem="8Ot-Eu-K1K" secondAttribute="trailing" id="hbY-H5-XQz"/>
                                     <constraint firstItem="xPw-tY-v3V" firstAttribute="top" secondItem="6dU-3B-rJP" secondAttribute="bottom" constant="8" symbolic="YES" id="hzv-wG-xH8"/>
                                     <constraint firstAttribute="trailing" secondItem="oOf-7t-jVf" secondAttribute="trailing" id="jfB-S2-HTM"/>
+                                    <constraint firstItem="Gxx-JU-Kzj" firstAttribute="top" secondItem="Nsj-GG-QpK" secondAttribute="bottom" constant="8" symbolic="YES" id="l4j-ZS-Chr"/>
+                                    <constraint firstItem="Gxx-JU-Kzj" firstAttribute="leading" secondItem="Nsj-GG-QpK" secondAttribute="leading" id="m9c-pk-owf"/>
+                                    <constraint firstItem="Gxx-JU-Kzj" firstAttribute="top" secondItem="M2d-EV-6za" secondAttribute="top" constant="484" id="vex-Dj-Ldf"/>
                                     <constraint firstItem="r3t-hm-MhY" firstAttribute="baseline" secondItem="qIL-H5-pxI" secondAttribute="baseline" id="wLP-yi-e4N"/>
                                     <constraint firstItem="r3t-hm-MhY" firstAttribute="top" secondItem="xPw-tY-v3V" secondAttribute="bottom" constant="8" symbolic="YES" id="wWO-jk-AN6"/>
-                                    <constraint firstItem="8Ot-Eu-K1K" firstAttribute="leading" secondItem="dph-wZ-h08" secondAttribute="leading" id="x9N-dQ-YsW"/>
+                                    <constraint firstAttribute="bottom" secondItem="Gxx-JU-Kzj" secondAttribute="bottom" constant="168" id="y0X-oL-7i1"/>
                                     <constraint firstItem="6dU-3B-rJP" firstAttribute="leading" secondItem="M2d-EV-6za" secondAttribute="leading" constant="20" id="yvT-TT-5pL"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.19376453760000001" green="0.50850099329999998" blue="0.85232251879999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="M2d-EV-6za" secondAttribute="trailing" id="8v2-xR-tbD"/>
                             <constraint firstAttribute="bottom" secondItem="M2d-EV-6za" secondAttribute="bottom" constant="-132" id="SVI-Lg-Mwm"/>
@@ -371,10 +413,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="coveredKm" destination="r3t-hm-MhY" id="PMC-Jb-ScV"/>
-                        <outlet property="currentOdemeter" destination="qIL-H5-pxI" id="A84-Gd-Wbw"/>
+                        <outlet property="currentOdemeter" destination="xPw-tY-v3V" id="BYC-Wl-Eka"/>
                         <outlet property="dateTextField" destination="6dU-3B-rJP" id="xwZ-l4-hy1"/>
                         <outlet property="endingPointTextField" destination="dph-wZ-h08" id="KwH-KE-1w7"/>
-                        <outlet property="initialOdemeter" destination="xPw-tY-v3V" id="Wjy-WJ-fzh"/>
+                        <outlet property="finalOdemeter" destination="qIL-H5-pxI" id="ynO-Gq-2e8"/>
                         <outlet property="saveBtn" destination="JkI-FT-rSr" id="4cT-S4-Jyw"/>
                         <outlet property="startingPointTextField" destination="8Ot-Eu-K1K" id="EvF-jl-qW9"/>
                         <outlet property="vehiclesPickerView" destination="oOf-7t-jVf" id="z7v-qx-4j4"/>
@@ -422,7 +464,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Initial Odemeter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-CE-u63" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Initial Odemeter Before Trip" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-CE-u63" customClass="HoshiTextField" customModule="TextFieldEffects">
                                         <rect key="frame" x="20" y="61" width="280" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="xLP-CE-u63" secondAttribute="height" multiplier="35:6" id="SaY-zh-6la"/>
@@ -594,7 +636,7 @@
                                 </constraints>
                             </mapView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="WzL-Sp-SaU" firstAttribute="top" secondItem="nU0-DU-tSZ" secondAttribute="bottom" id="44B-SY-2fi"/>
                             <constraint firstItem="hlu-it-tza" firstAttribute="top" secondItem="WzL-Sp-SaU" secondAttribute="bottom" constant="301" id="HRR-zs-FRH"/>
