@@ -12,8 +12,8 @@ import ObjectMapper
 
 
 class Trim: NSManagedObject , Mappable {
-    
-    // Insert code here to add functionality to your managed object subclass
+
+// Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -34,8 +34,8 @@ class Trim: NSManagedObject , Mappable {
     {
         var vehicleModelsArray : [VehicleModel]?
         
-        self.name <- map["name"]
-        self.trimId <- map["id"]
+        self.name <- map[""]
+        self.trimId <- map[""]
         vehicleModelsArray <- map[""]
         
         if vehicleModelsArray != nil
