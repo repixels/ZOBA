@@ -70,6 +70,8 @@
 		8314DC811D0C767600601B45 /* DummyDataBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC801D0C767600601B45 /* DummyDataBaseOperation.swift */; };
 		8314DC881D0D4B5500601B45 /* Vehicle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8314DC871D0D4B5500601B45 /* Vehicle.storyboard */; };
 		8314DC8C1D0DE6FF00601B45 /* AddVehicleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */; };
+		8314DC901D0F9AAD00601B45 /* VehicleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC8F1D0F9AAD00601B45 /* VehicleTableViewController.swift */; };
+		8314DC921D0F9AFA00601B45 /* vehicleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC911D0F9AFA00601B45 /* vehicleDetailsViewController.swift */; };
 		831B12CD1D0641D000D10CBA /* FuelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CC1D0641CF00D10CBA /* FuelCell.swift */; };
 		831B12CF1D0643A200D10CBA /* OilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CE1D0643A200D10CBA /* OilCell.swift */; };
 		831B12D11D06448200D10CBA /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12D01D06448200D10CBA /* TripCell.swift */; };
@@ -242,6 +244,8 @@
 		8314DC801D0C767600601B45 /* DummyDataBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyDataBaseOperation.swift; sourceTree = "<group>"; };
 		8314DC871D0D4B5500601B45 /* Vehicle.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Vehicle.storyboard; sourceTree = "<group>"; };
 		8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVehicleTableViewController.swift; sourceTree = "<group>"; };
+		8314DC8F1D0F9AAD00601B45 /* VehicleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleTableViewController.swift; sourceTree = "<group>"; };
+		8314DC911D0F9AFA00601B45 /* vehicleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = vehicleDetailsViewController.swift; sourceTree = "<group>"; };
 		831B12CC1D0641CF00D10CBA /* FuelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FuelCell.swift; path = timeLine/FuelCell.swift; sourceTree = "<group>"; };
 		831B12CE1D0643A200D10CBA /* OilCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OilCell.swift; path = timeLine/OilCell.swift; sourceTree = "<group>"; };
 		831B12D01D06448200D10CBA /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripCell.swift; path = timeLine/TripCell.swift; sourceTree = "<group>"; };
@@ -630,6 +634,8 @@
 			isa = PBXGroup;
 			children = (
 				8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */,
+				8314DC8F1D0F9AAD00601B45 /* VehicleTableViewController.swift */,
+				8314DC911D0F9AFA00601B45 /* vehicleDetailsViewController.swift */,
 			);
 			name = Vehicle;
 			sourceTree = "<group>";
@@ -1181,6 +1187,7 @@
 				DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */,
 				DC0095851D075660000856FC /* TrackingType+CoreDataProperties.swift in Sources */,
 				DC0095951D075660000856FC /* Service+CoreDataProperties.swift in Sources */,
+				8314DC921D0F9AFA00601B45 /* vehicleDetailsViewController.swift in Sources */,
 				83548F261D09EB040013E67F /* MapController.swift in Sources */,
 				8301381C1D060D0B00A1EE21 /* DaySummaryCell.swift in Sources */,
 				DC00959A1D075660000856FC /* ModelFeatureValue.swift in Sources */,
@@ -1210,6 +1217,7 @@
 				825BB0061D0C266D00F44EA3 /* StringConstants.swift in Sources */,
 				DC0095921D075660000856FC /* VehicleModel.swift in Sources */,
 				DC0095981D075660000856FC /* Vehicle.swift in Sources */,
+				8314DC901D0F9AAD00601B45 /* VehicleTableViewController.swift in Sources */,
 				8314DC8C1D0DE6FF00601B45 /* AddVehicleTableViewController.swift in Sources */,
 				DC0095721D075660000856FC /* Year.swift in Sources */,
 				831B12CF1D0643A200D10CBA /* OilCell.swift in Sources */,
