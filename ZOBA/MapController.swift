@@ -25,7 +25,6 @@ class MapController: UIViewController , CLLocationManagerDelegate{
         locationmgr.delegate = self
         locationmgr.requestWhenInUseAuthorization()
         longPressGesture.addTarget(self, action: #selector(MapController.action(_:)))
-        // Do any additional setup after loading the view.
     }
     
     
@@ -34,24 +33,11 @@ class MapController: UIViewController , CLLocationManagerDelegate{
         let newCoordinates = map.convertPoint(touchPoint, toCoordinateFromView: map)
         let annotation = MKPointAnnotation()
         annotation.coordinate = newCoordinates
-       // print(annotation.coordinate)
         map.addAnnotation(annotation)
-        
-        
-        self.dismissViewControllerAnimated(true) { 
-            print("map dismissed")
-            self.delegate?.getuserSelectedCoordinate(annotation.coordinate)
-        }
-//        
-//        let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
-//        
-//        
-//        CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
-//            places?.forEach({ (place) in
-//                print(place.addressDictionary)
-//            })
-//        })
+        self.delegate?.getuserSelectedCoordinate(annotation.coordinate)
+        self.navigationController?.popViewControllerAnimated(true)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

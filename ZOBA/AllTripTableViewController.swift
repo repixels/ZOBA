@@ -12,6 +12,10 @@ class AllTripTableViewController: UITableViewController {
     var trips : [Trip]!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
         
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
@@ -25,11 +29,17 @@ class AllTripTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool)
+    {
         super.viewWillAppear(animated)
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
+        self.navigationController?.title = "Trips"
+        self.navigationController?.navigationBar.userInteractionEnabled = true
+        
         trips = dao.selectAll(entityName: "Trip") as! [Trip]
+        print("I Appeared")
+        tableView.reloadData()
         
     }
     override func didReceiveMemoryWarning() {
@@ -61,10 +71,11 @@ class AllTripTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("tripDetail", forIndexPath: indexPath)
         
-        cell.textLabel!.text = "initial Odemeter \( trips[indexPath.row].initialOdemeter)"
-        cell.detailTextLabel?.text = "covered km  \( trips[indexPath.row].coveredKm)"
+        let cell = tableView.dequeueReusableCellWithIdentifier("Trip Cell", forIndexPath: indexPath) as! TripTableViewCell
+        
+        cell.coveredMilageLabel.text = trips[indexPath.row].coveredKm.stringValue
+        
         return cell
     }
     
@@ -88,12 +99,10 @@ class AllTripTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
-            
             deleteAlert(indexPath)
-            
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     
     func deleteAlert(indexPath : NSIndexPath){

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Bsm-7X-oUo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Bsm-7X-oUo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -281,7 +281,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DateCell" rowHeight="142" id="sue-dj-pTP" customClass="DaySummaryCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="142"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="142"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sue-dj-pTP" id="QMA-oz-aRW">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
@@ -349,7 +349,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="FuelData" rowHeight="194" id="wo8-JU-xmz" customClass="FuelCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="170" width="320" height="194"/>
+                                <rect key="frame" x="0.0" y="234" width="320" height="194"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wo8-JU-xmz" id="OfQ-5k-9Lw">
                                     <rect key="frame" x="0.0" y="0.0" width="281" height="194"/>
@@ -454,7 +454,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="top" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="TripData" rowHeight="194" id="qFz-5w-2xk" customClass="TripCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="364" width="320" height="194"/>
+                                <rect key="frame" x="0.0" y="428" width="320" height="194"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qFz-5w-2xk" id="5Ds-zY-VzC">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="194"/>
@@ -560,7 +560,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OilData" rowHeight="194" id="xR1-2u-7gK" customClass="OilCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="558" width="320" height="194"/>
+                                <rect key="frame" x="0.0" y="622" width="320" height="194"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xR1-2u-7gK" id="M3B-Cp-TfU">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="194"/>
@@ -687,45 +687,26 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="fgU-MI-soC" kind="relationship" relationship="viewControllers" id="Kga-vF-Hlv"/>
-                        <segue destination="n6e-y6-fCk" kind="relationship" relationship="viewControllers" id="d1m-c8-rKh"/>
-                        <segue destination="Rtg-Um-jp5" kind="relationship" relationship="viewControllers" id="WyO-pO-nDK"/>
-                        <segue destination="Qdf-W2-K38" kind="relationship" relationship="viewControllers" id="25Q-jA-SJH"/>
+                        <segue destination="fgU-MI-soC" kind="relationship" relationship="viewControllers" id="5BT-kS-6ss"/>
+                        <segue destination="qay-JZ-e3m" kind="relationship" relationship="viewControllers" id="dnA-9a-WOX"/>
+                        <segue destination="Rtg-Um-jp5" kind="relationship" relationship="viewControllers" id="iTl-CT-n1f"/>
+                        <segue destination="Qdf-W2-K38" kind="relationship" relationship="viewControllers" id="kiK-Dp-zQf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhD-uO-dUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2054" y="-367"/>
         </scene>
-        <!--Trips Navigation-->
-        <scene sceneID="Vd7-za-BLu">
-            <objects>
-                <navigationController title="Trips Navigation" automaticallyAdjustsScrollViewInsets="NO" id="n6e-y6-fCk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="NKZ-bX-rMw"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XjJ-23-nUe">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="qay-JZ-e3m" kind="relationship" relationship="rootViewController" id="hoA-w5-Wx2"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AE6-pM-zwW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-548" y="-581"/>
-        </scene>
-        <!--addTrip-->
+        <!--Trips-->
         <scene sceneID="RHd-NX-5QQ">
             <objects>
-                <viewControllerPlaceholder storyboardName="userProfile" referencedIdentifier="addTrip" id="qay-JZ-e3m" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="VehicleTrips" referencedIdentifier="Trips" id="qay-JZ-e3m" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Yl2-cl-FlH"/>
                     <navigationItem key="navigationItem" id="n3O-Ve-ClX"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bo5-vX-pOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-864" y="-290"/>
+            <point key="canvasLocation" x="96.5" y="-421"/>
         </scene>
         <!--Fuel Navigation-->
         <scene sceneID="M4f-fy-Q6b">
