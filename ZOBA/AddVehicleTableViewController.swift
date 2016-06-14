@@ -100,10 +100,11 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         trims =  dao.selectAll(entityName: "Trim") as!  [Trim]
         years =  dao.selectAll(entityName: "Year") as!  [Year]
         models =  dao.selectAll(entityName: "Model") as!  [Model]
-        //        getAllMakes()
-        //        getAllTrims()
-        //        getAllYears()
-        //        getAllModels()
+        
+        
+        saveBtn.enabled = false
+        saveBtn.tintColor = UIColor.grayColor()
+        
     }
     
     
@@ -353,6 +354,8 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         vehicle.vehicleModel = vehicleModel
         vehicle.save()
         
+        self.navigationController?.popViewControllerAnimated(true)
+        
     }
     
     
@@ -361,9 +364,11 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(sender.text!)
         {
             isNameValid = true
+            validateSaveBtn()
         }
         else{
             isNameValid = false
+            validateSaveBtn()
         }
         
     }
@@ -373,9 +378,11 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(sender.text!)
         {
             isInitialOdemeterValid = true
+            validateSaveBtn()
         }
         else{
             isInitialOdemeterValid = false
+            validateSaveBtn()
         }
     }
     
@@ -384,14 +391,30 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(sender.text!)
         {
             isLicenseValid = true
+            validateSaveBtn()
         }
         else{
             isLicenseValid = false
+            validateSaveBtn()
         }
     }
     
     func validateSaveBtn()
     {
+        let isMakeValid = makeTextField.text!.isNotEmpty
+        let isModelValid = modelTextField.text!.isNotEmpty && yearTextField.text!.isNotEmpty && trimTextField.text!.isNotEmpty
+        
+        if isMakeValid && isModelValid && isNameValid && isLicenseValid && isInitialOdemeterValid {
+            
+            saveBtn.enabled = true
+            saveBtn.tintColor = UIColor.whiteColor()
+        }
+        else{
+            
+            saveBtn.enabled = false
+            saveBtn.tintColor = UIColor.grayColor()
+            
+        }
         
     }
     

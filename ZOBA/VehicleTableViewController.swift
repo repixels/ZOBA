@@ -14,12 +14,16 @@ class VehicleTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let dao = AbstractDao(managedObjectContext: delegate.managedObjectContext)
-        vehicles = dao.selectAll(entityName: "Vehicle") as![Vehicle]
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        vehicles = dao.selectAll(entityName: "Vehicle") as![Vehicle]
+        self.tableView.reloadData()
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
