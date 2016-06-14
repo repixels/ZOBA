@@ -9,6 +9,7 @@
 import UIKit
 import BTNavigationDropdownMenu
 import ChameleonFramework
+import CoreLocation
 
 
 class TimelineViewController: UITableViewController {
@@ -66,6 +67,8 @@ class TimelineViewController: UITableViewController {
         
         self.navigationItem.titleView = menuView
         
+        //isLocationEnabled()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -108,6 +111,18 @@ class TimelineViewController: UITableViewController {
         
         }
     }
+    
+    
+    func isLocationEnabled()
+    {
+        if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
+            let locationManager = CLLocationManager()
+            
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+        }
+    }
+    
     
     /*
     // MARK: - Navigation

@@ -50,6 +50,7 @@
 		829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829C437B1CFBBA1E00869E59 /* Media.xcassets */; };
 		82D6D2011D0CA308005C1AA6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* LoginViewController.swift */; };
 		82DEC9931D0F659A003E1154 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEC9921D0F659A003E1154 /* UIViewExtension.swift */; };
+		82DEC9961D0F93A4003E1154 /* TrackingOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */; };
 		82EF3BE01D056E3F00AC103C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */; };
 		82EF3BE31D056E3F00AC103C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF3BE21D056E3F00AC103C /* TodayViewController.swift */; };
 		82EF3BE61D056E3F00AC103C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82EF3BE41D056E3F00AC103C /* MainInterface.storyboard */; };
@@ -224,6 +225,7 @@
 		829C43791CFBAC9500869E59 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		829C437B1CFBBA1E00869E59 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
 		82DEC9921D0F659A003E1154 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingOnboardViewController.swift; sourceTree = "<group>"; };
 		82EF3BDE1D056E3F00AC103C /* ZOBA Quick Access.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ZOBA Quick Access.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		82EF3BE21D056E3F00AC103C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 		827827551CF837D600684CE5 /* ZOBA */ = {
 			isa = PBXGroup;
 			children = (
+				82DEC9941D0F936A003E1154 /* Onboard View Controllers */,
 				83AEBCF31D0767B600B334FE /* User Profile */,
 				825BB0021D0C0C8900F44EA3 /* Webservice Integeration */,
 				82057F7C1D0490C700BC80DD /* Timeline */,
@@ -501,6 +504,14 @@
 				8278277B1CF837D600684CE5 /* Info.plist */,
 			);
 			path = ZOBAUITests;
+			sourceTree = "<group>";
+		};
+		82DEC9941D0F936A003E1154 /* Onboard View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */,
+			);
+			name = "Onboard View Controllers";
 			sourceTree = "<group>";
 		};
 		82EF3BE11D056E3F00AC103C /* ZOBA Quick Access */ = {
@@ -1184,6 +1195,7 @@
 				DC00958D1D075660000856FC /* TrackingData+CoreDataProperties.swift in Sources */,
 				831B12D11D06448200D10CBA /* TripCell.swift in Sources */,
 				DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */,
+				82DEC9961D0F93A4003E1154 /* TrackingOnboardViewController.swift in Sources */,
 				DC0095851D075660000856FC /* TrackingType+CoreDataProperties.swift in Sources */,
 				DC0095951D075660000856FC /* Service+CoreDataProperties.swift in Sources */,
 				83548F261D09EB040013E67F /* MapController.swift in Sources */,
