@@ -77,9 +77,6 @@
                                                     <rect key="frame" x="20" y="7" width="280" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="makeEditBegin:" destination="5DJ-yq-jk9" eventType="editingDidBegin" id="y7t-rE-PQQ"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -95,9 +92,6 @@
                                                     <rect key="frame" x="20" y="7" width="280" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <action selector="modelEditBegin:" destination="5DJ-yq-jk9" eventType="editingDidBegin" id="vSm-aR-yEz"/>
-                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -158,56 +152,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KZD-nr-r5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="537" y="306"/>
-        </scene>
-        <!--Add Vehicle Controller-->
-        <scene sceneID="c8c-yw-whP">
-            <objects>
-                <viewController id="5DJ-yq-jk9" customClass="AddVehicleController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="C7h-8y-vYY"/>
-                        <viewControllerLayoutGuide type="bottom" id="yyN-Wm-hbm"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="IGA-Sa-6fF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="initial odemeter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W7N-go-fz6" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="248" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="model" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mV8-BH-Oc0" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="196" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="modelEditBegin:" destination="5DJ-yq-jk9" eventType="editingDidBegin" id="bQO-GC-9aD"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Gu-Gz-Oor" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="112" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="make" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X2l-wV-dlj" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="150" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="makeEditBegin:" destination="5DJ-yq-jk9" eventType="editingDidBegin" id="qP7-Rh-U6E"/>
-                                </connections>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="cTg-K5-sA4"/>
-                    <connections>
-                        <outlet property="makeTextField" destination="X2l-wV-dlj" id="niJ-1j-XUq"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0YA-yu-PoJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="877" y="306"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tgU-uN-jTZ">
