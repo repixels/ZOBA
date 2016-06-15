@@ -110,12 +110,14 @@
 		DC0095981D075660000856FC /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00956E1D075660000856FC /* Vehicle.swift */; };
 		DC0095991D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00956F1D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift */; };
 		DC00959A1D075660000856FC /* ModelFeatureValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0095701D075660000856FC /* ModelFeatureValue.swift */; };
+		DC0D49151D116AC700F5D9DC /* OilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D49141D116AC700F5D9DC /* OilTableViewCell.swift */; };
 		DC562BB61D1036680066B8A8 /* OilDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC562BB51D1036680066B8A8 /* OilDetailsViewController.swift */; };
 		DC562BB81D103E540066B8A8 /* FuelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC562BB71D103E540066B8A8 /* FuelDetailViewController.swift */; };
 		DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */; };
 		DC778F271D0D6FB600F43AE8 /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */; };
 		DC778F291D0D708600F43AE8 /* Fuel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F281D0D708600F43AE8 /* Fuel.storyboard */; };
 		DC778F2B1D0D7B3600F43AE8 /* oil.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */; };
+		DC9A805F1D1166B30081C832 /* FuelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9A805E1D1166B30081C832 /* FuelTableViewCell.swift */; };
 		DCB398111D0D538900845B19 /* FuelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB398101D0D538900845B19 /* FuelTableViewController.swift */; };
 		DCC01D0F1D0C4FE0009E66C3 /* AllOilTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC01D0E1D0C4FE0009E66C3 /* AllOilTableViewController.swift */; };
 		DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC401CFC33A400637977 /* DataValidations.swift */; };
@@ -278,11 +280,13 @@
 		DC00956F1D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModelFeatureValue+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DC0095701D075660000856FC /* ModelFeatureValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFeatureValue.swift; sourceTree = "<group>"; };
 		DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceConnection.swift; sourceTree = "<group>"; };
+		DC0D49141D116AC700F5D9DC /* OilTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OilTableViewCell.swift; sourceTree = "<group>"; };
 		DC562BB51D1036680066B8A8 /* OilDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OilDetailsViewController.swift; sourceTree = "<group>"; };
 		DC562BB71D103E540066B8A8 /* FuelDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelDetailViewController.swift; sourceTree = "<group>"; };
 		DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryBoard.storyboard; sourceTree = "<group>"; };
 		DC778F281D0D708600F43AE8 /* Fuel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Fuel.storyboard; path = ../Fuel.storyboard; sourceTree = "<group>"; };
 		DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = oil.storyboard; sourceTree = "<group>"; };
+		DC9A805E1D1166B30081C832 /* FuelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTableViewCell.swift; sourceTree = "<group>"; };
 		DCB398101D0D538900845B19 /* FuelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTableViewController.swift; sourceTree = "<group>"; };
 		DCC01D0E1D0C4FE0009E66C3 /* AllOilTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllOilTableViewController.swift; sourceTree = "<group>"; };
 		DCE6DC401CFC33A400637977 /* DataValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidations.swift; sourceTree = "<group>"; };
@@ -369,6 +373,7 @@
 				82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */,
 				DCB398101D0D538900845B19 /* FuelTableViewController.swift */,
 				DC562BB71D103E540066B8A8 /* FuelDetailViewController.swift */,
+				DC9A805E1D1166B30081C832 /* FuelTableViewCell.swift */,
 			);
 			name = "Fuel Tracking";
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				82057F781D048FDA00BC80DD /* AddOilViewController.swift */,
 				DCC01D0E1D0C4FE0009E66C3 /* AllOilTableViewController.swift */,
 				DC562BB51D1036680066B8A8 /* OilDetailsViewController.swift */,
+				DC0D49141D116AC700F5D9DC /* OilTableViewCell.swift */,
 			);
 			name = "Oil Tracking";
 			sourceTree = "<group>";
@@ -1134,6 +1140,7 @@
 				8301381C1D060D0B00A1EE21 /* DaySummaryCell.swift in Sources */,
 				DC00959A1D075660000856FC /* ModelFeatureValue.swift in Sources */,
 				DC0095841D075660000856FC /* Make.swift in Sources */,
+				DC0D49151D116AC700F5D9DC /* OilTableViewCell.swift in Sources */,
 				827827591CF837D600684CE5 /* ViewController.swift in Sources */,
 				DC0095911D075660000856FC /* VehicleModel+CoreDataProperties.swift in Sources */,
 				8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */,
@@ -1149,6 +1156,7 @@
 				DC00958E1D075660000856FC /* TrackingData.swift in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
 				DC0095961D075660000856FC /* Service.swift in Sources */,
+				DC9A805F1D1166B30081C832 /* FuelTableViewCell.swift in Sources */,
 				DC562BB61D1036680066B8A8 /* OilDetailsViewController.swift in Sources */,
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
 				DC00957D1D075660000856FC /* Trim+CoreDataProperties.swift in Sources */,

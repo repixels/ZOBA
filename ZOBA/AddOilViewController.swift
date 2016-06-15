@@ -17,7 +17,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     @IBOutlet weak var oilAmountTextField: HoshiTextField!
     
-   
     
     //Validation Indicatiors
     
@@ -26,28 +25,15 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     // date picker
      var formatter = NSDateFormatter()
-//    
-//    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-//        if (textField == self.dateTextField){
-//            self.datePicker.hidden = false
-//        }else{
-//            self.datePicker.hidden = true
-//        }
-//        return true
-//    }
- 
+
     var date : String!
     
-//     func doneDateBtn(sender: AnyObject) {
-//        
-//         date = formatter.stringFromDate(self.datePicker.date)
-//        
-//        self.dateTextField.text = date
-//    }
+    
+     var datePickerView : UIDatePicker!
     
     @IBAction func dateSelectBtn(sender: AnyObject) {
         
-     let datePickerView:UIDatePicker = UIDatePicker()
+         datePickerView = UIDatePicker()
 
       datePickerView.datePickerMode = UIDatePickerMode.Date
         
@@ -78,7 +64,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     
   //pickerView Options
-    var pickOption = ["one", "two" , "three" , "four", "five" , "six" ]
+    var pickOption : [ServiceProvider]!  //= ["one", "two" , "three" , "four", "five" , "six" ]
 
     @IBAction func currentOdeEditingChang(sender: AnyObject) {
         
@@ -177,10 +163,16 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-       // self.initializeTextFieldInputView()
+       
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         let vehicleObj = Vehicle(managedObjectContext: appDel.managedObjectContext, entityName: "Vehicle")
         initialOdemeter.text = String(vehicleObj.initialOdemeter)
+        
+        let dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
+        
+        let serviceProviderDAO = dao.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
+        
+        pickOption = serviceProviderDAO
         
         disableSaveBtn()
     }
@@ -227,7 +219,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     
     func donePicker() {
-        // pickerViewTextField.text = pickerView.d
         view.endEditing(true)
     }
     
@@ -246,7 +237,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
 
     }
     
-    
     @IBAction func saveOilData(sender: AnyObject) {
         
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -259,8 +249,8 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         trackingDataObj.value = oilAmountTextField.text!
         
         
-      //  trackingDataObj.dateAdded = datePicker.date.timeIntervalSince1970
-
+        trackingDataObj.dateAdded = datePickerView.date.timeIntervalSince1970
+       
         
        let dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
         
@@ -278,14 +268,14 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         trackingDataObj.save()
         performSegueWithIdentifier("oilSegue", sender: self)
 
-        //trackingDataObj.release(appDel.managedObjectContext)
+        
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickOption[row]
+        return pickOption[row].name
     }
 
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -293,15 +283,14 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickerViewTextField.text = pickOption[row]
+        pickerViewTextField.text = pickOption[row].name
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
         
-        //dateTextField.resignFirstResponder()
-    }
+           }
     
     
 }

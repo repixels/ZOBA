@@ -53,22 +53,27 @@ class AllOilTableViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("oilCell", forIndexPath: indexPath) as! OilTableViewCell
         
         // Configure the cell...
         
          //  let formatter = NSDateFormatter()
         
-        cell.textLabel?.text = String(data[indexPath.row].initialOdemeter)
+//        cell.textLabel?.text = String(data[indexPath.row].initialOdemeter)
         
       //  cell.detailTextLabel?.text = String(NSDate(timeIntervalSince1970: 487675991))
         
       
-      cell.detailTextLabel?.text = String(NSDate(timeIntervalSince1970: data[indexPath.row].dateAdded))
+//      cell.detailTextLabel?.text = String(NSDate(timeIntervalSince1970: data[indexPath.row].dateAdded))
      
-        print(data[indexPath.row].dateAdded)
+//        print(data[indexPath.row].dateAdded)
 
        // print(formatter.stringFromDate(data[indexPath.row].dateAdded))
+        
+        cell.dateLabel.text = String(NSDate(timeIntervalSince1970: data[indexPath.row].dateAdded))
+        cell.oilAmountLabel.text = data[indexPath.row].value
+        cell.oilMesuringUnitLabel.text = "Liters"
+        cell.startingOdemeterLabel.text = String(data[indexPath.row].initialOdemeter)
 
         
         return cell

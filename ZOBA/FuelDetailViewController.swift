@@ -7,18 +7,18 @@
 //
 
 import UIKit
-
+import TextFieldEffects
 class FuelDetailViewController: UIViewController {
 
-  
-    @IBOutlet weak var dateAded: UILabel!
     
+    @IBOutlet weak var dateAded: HoshiTextField!
     
-    @IBOutlet weak var fuelAmount: UILabel!
+    @IBOutlet weak var fuelAmount: HoshiTextField!
     
-    @IBOutlet weak var currentOdemetr: UILabel!
+    @IBOutlet weak var currentOdemetr: HoshiTextField!
     
-    @IBOutlet weak var serviceProvider: UILabel!
+    @IBOutlet weak var serviceProvider: HoshiTextField!
+    
     var data: TrackingData!
     
     override func viewDidLoad() {
@@ -27,7 +27,6 @@ class FuelDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    
     override func viewWillAppear(animated: Bool) {
         
         dateAded.text = String(NSDate(timeIntervalSince1970: data.dateAdded))
@@ -38,7 +37,6 @@ class FuelDetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
