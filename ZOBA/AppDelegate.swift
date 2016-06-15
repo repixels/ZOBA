@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //  Defaults[.curentVehicleName] = "vehicle"
         //Set Managed Context
         SessionObjects.currentManageContext = self.managedObjectContext
         self.application = application
@@ -48,11 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 window.rootViewController = generateOnBoardingWithImage()
                 window.makeKeyAndVisible()
             }
-            
-            let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
-            let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
-            application.registerUserNotificationSettings(pushNotificationSettings)
-            application.registerForRemoteNotifications()
         }
         else
         {

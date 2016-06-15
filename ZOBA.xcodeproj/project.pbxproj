@@ -84,7 +84,6 @@
 		83548F281D0A1CD30013E67F /* AllTripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */; };
 		8373C6A91D102C9C00E2C865 /* textFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C6A81D102C9C00E2C865 /* textFieldExtension.swift */; };
 		838918461D0AE30C001F0060 /* TripDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838918451D0AE30C001F0060 /* TripDetailController.swift */; };
-		83AEBCF21D075B8800B334FE /* user-Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83AEBCF11D075B8800B334FE /* user-Profile.storyboard */; };
 		83AEBCF51D0767F100B334FE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEBCF41D0767F100B334FE /* UserProfileViewController.swift */; };
 		83AEBCF71D08244400B334FE /* UserProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEBCF61D08244300B334FE /* UserProfileEditController.swift */; };
 		83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC89F1D048766006CC257 /* AbstractDao.swift */; };
@@ -273,7 +272,6 @@
 		83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTripTableViewController.swift; sourceTree = "<group>"; };
 		8373C6A81D102C9C00E2C865 /* textFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFieldExtension.swift; sourceTree = "<group>"; };
 		838918451D0AE30C001F0060 /* TripDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailController.swift; sourceTree = "<group>"; };
-		83AEBCF11D075B8800B334FE /* user-Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "user-Profile.storyboard"; sourceTree = "<group>"; };
 		83AEBCF41D0767F100B334FE /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		83AEBCF61D08244300B334FE /* UserProfileEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileEditController.swift; sourceTree = "<group>"; };
 		83BAC89F1D048766006CC257 /* AbstractDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDao.swift; sourceTree = "<group>"; };
@@ -575,7 +573,6 @@
 				8278275A1CF837D600684CE5 /* Main.storyboard */,
 				8314DC871D0D4B5500601B45 /* Vehicle.storyboard */,
 				DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */,
-				83AEBCF11D075B8800B334FE /* user-Profile.storyboard */,
 				829825631D0D538600FCC4C8 /* UserProfile.storyboard */,
 				829825651D0D718F00FCC4C8 /* VehicleTrips.storyboard */,
 			);
@@ -937,8 +934,6 @@
 				82501A771D05A9A3008272CB /* add-trip.png in Resources */,
 				82501A811D05A9A3008272CB /* route.png in Resources */,
 				8314DC881D0D4B5500601B45 /* Vehicle.storyboard in Resources */,
-				83AEBCF21D075B8800B334FE /* user-Profile.storyboard in Resources */,
-				8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */,
 				82F8B89F1CF8807400E46B05 /* logo.png in Resources */,
 				829825661D0D718F00FCC4C8 /* VehicleTrips.storyboard in Resources */,
 				82F8B8A41CF8807400E46B05 /* tips.png in Resources */,
@@ -1263,7 +1258,6 @@
 				DC00959A1D075660000856FC /* ModelFeatureValue.swift in Sources */,
 				DC0095841D075660000856FC /* Make.swift in Sources */,
 				DC0D49151D116AC700F5D9DC /* OilTableViewCell.swift in Sources */,
-				827827591CF837D600684CE5 /* ViewController.swift in Sources */,
 				83548F281D0A1CD30013E67F /* AllTripTableViewController.swift in Sources */,
 				DC0095911D075660000856FC /* VehicleModel+CoreDataProperties.swift in Sources */,
 				82B980161D10164100B0658A /* Device Webservices.swift in Sources */,
