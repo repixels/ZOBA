@@ -162,7 +162,7 @@
                             <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="saveFuel:" destination="HOi-QX-8aN" id="umL-Nz-bNH"/>
-                                <segue destination="qf5-uh-oX7" kind="push" id="Zdy-MY-Jca"/>
+                                <segue destination="qf5-uh-oX7" kind="show" id="Zdy-MY-Jca"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -268,7 +268,7 @@
                     <navigationItem key="navigationItem" id="EMY-g9-hqT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lEW-ya-1H4">
                             <connections>
-                                <segue destination="HOi-QX-8aN" kind="push" id="VkI-Yu-GKY"/>
+                                <segue destination="HOi-QX-8aN" kind="show" id="VkI-Yu-GKY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

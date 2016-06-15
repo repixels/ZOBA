@@ -103,7 +103,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         let vehicleObj = Vehicle(managedObjectContext: appDel.managedObjectContext, entityName: "Vehicle")
         
         
-        if (Int64(currentOdoMeterTextField.text!) > vehicleObj.currentOdemeter ) {
+        if (NSNumber(integer: Int(currentOdoMeterTextField.text!)!).integerValue > vehicleObj.currentOdemeter.integerValue ) {
             
              showValidMessage("Current Odemeter")
             isCurrentOdeReady = true
@@ -244,7 +244,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         let trackingDataObj = TrackingData(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingData")
         
-        trackingDataObj.initialOdemeter = Int64(currentOdoMeterTextField.text!)!
+        trackingDataObj.initialOdemeter = NSNumber (integer: Int(currentOdoMeterTextField.text!)!)
         
         trackingDataObj.value = oilAmountTextField.text!
         

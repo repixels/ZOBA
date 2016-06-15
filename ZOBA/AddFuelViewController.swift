@@ -61,7 +61,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         let vehicleObj = Vehicle(managedObjectContext: appDel.managedObjectContext, entityName: "Vehicle")
         
-        if (Int64(currentOdometerTextField.text!) > vehicleObj.currentOdemeter ) {
+        if (NSNumber(integer: Int(currentOdometerTextField.text!)!).integerValue > vehicleObj.currentOdemeter.integerValue ) {
             
             showAmountValidMessage("Current Odemeter")
             isCurrentOdeReady = true
@@ -242,7 +242,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
         let trackingDataObj = TrackingData(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingData")
         
-        trackingDataObj.initialOdemeter = Int64(currentOdometerTextField.text!)!
+        trackingDataObj.initialOdemeter = NSNumber(integer : Int(currentOdometerTextField.text!)!)
         
         trackingDataObj.value = fuelAmountTextField.text!
         

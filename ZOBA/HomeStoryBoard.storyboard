@@ -5,27 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Fuel-->
-        <scene sceneID="bsg-Kf-znK">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Fuel" id="RBx-1Y-v7w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="j4w-hs-TYH"/>
-                    <navigationItem key="navigationItem" id="6v9-OD-Qmo"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Pe-SY-Y5o" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1045.5" y="-53"/>
-        </scene>
-        <!--oil-->
-        <scene sceneID="a0S-hU-3E1">
-            <objects>
-                <viewControllerPlaceholder storyboardName="oil" id="4PJ-BA-zfq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="096-7f-10C"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sIq-QB-jFY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1045.5" y="191"/>
-        </scene>
         <!--Timeline View Controller-->
         <scene sceneID="VAS-Xl-VBW">
             <objects>
@@ -426,38 +405,47 @@
                             <outlet property="delegate" destination="I2C-IC-YEg" id="GTL-bd-ULB"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="I0e-bH-vug"/>
+                    <navigationItem key="navigationItem" id="I0e-bH-vug">
+                        <barButtonItem key="leftBarButtonItem" systemItem="pause" id="b3E-09-oyA">
+                            <color key="tintColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="menuButtonClicked:" destination="I2C-IC-YEg" id="GBN-Ls-iDl"/>
+                                <segue destination="1it-Y9-pUd" kind="modal" id="H5B-wD-47d"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klt-ae-Vvb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="63" y="-1523"/>
+            <point key="canvasLocation" x="113" y="-1358"/>
+        </scene>
+        <!--SideMenu-->
+        <scene sceneID="HLI-8P-Htr">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SideMenuNavigation" storyboardName="SideMenu" id="1it-Y9-pUd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JUL-Ls-ztD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="423" y="-1366"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="xdp-DQ-QeS">
             <objects>
-                <tabBarController hidesBottomBarWhenPushed="YES" id="Bsm-7X-oUo" customClass="HomeViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="Bsm-7X-oUo" customClass="HomeViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="cKk-VT-02O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-<<<<<<< HEAD
-                        <segue destination="fgU-MI-soC" kind="relationship" relationship="viewControllers" id="Kga-vF-Hlv"/>
-                        <segue destination="n6e-y6-fCk" kind="relationship" relationship="viewControllers" id="d1m-c8-rKh"/>
-                        <segue destination="RBx-1Y-v7w" kind="relationship" relationship="viewControllers" id="5HG-Qy-wBs"/>
-                        <segue destination="4PJ-BA-zfq" kind="relationship" relationship="viewControllers" id="ETM-05-F5U"/>
-=======
                         <segue destination="fgU-MI-soC" kind="relationship" relationship="viewControllers" id="5BT-kS-6ss"/>
                         <segue destination="qay-JZ-e3m" kind="relationship" relationship="viewControllers" id="dnA-9a-WOX"/>
-                        <segue destination="Rtg-Um-jp5" kind="relationship" relationship="viewControllers" id="iTl-CT-n1f"/>
-                        <segue destination="Qdf-W2-K38" kind="relationship" relationship="viewControllers" id="kiK-Dp-zQf"/>
->>>>>>> master
+                        <segue destination="3HQ-vn-n6j" kind="relationship" relationship="viewControllers" id="PEY-6b-vdP"/>
+                        <segue destination="HM2-tb-EGk" kind="relationship" relationship="viewControllers" id="K78-Yj-pDI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhD-uO-dUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1578" y="-307"/>
+            <point key="canvasLocation" x="-2054" y="-367"/>
         </scene>
         <!--Trips-->
         <scene sceneID="RHd-NX-5QQ">
@@ -468,49 +456,27 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bo5-vX-pOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
-            <point key="canvasLocation" x="-540" y="-569"/>
-=======
             <point key="canvasLocation" x="96.5" y="-421"/>
         </scene>
-        <!--Fuel Navigation-->
-        <scene sceneID="M4f-fy-Q6b">
+        <!--Fuel-->
+        <scene sceneID="UNW-a4-KeQ">
             <objects>
-                <navigationController title="Fuel Navigation" automaticallyAdjustsScrollViewInsets="NO" id="Rtg-Um-jp5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="bsR-c4-5mv"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Iwa-ov-45F">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Z8t-w3-4El" kind="relationship" relationship="rootViewController" id="GLu-YQ-VWM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fp1-lX-780" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Fuel" id="3HQ-vn-n6j" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Klt-iH-mtQ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7A1-qP-dwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-540" y="391"/>
+            <point key="canvasLocation" x="-627.5" y="-196"/>
         </scene>
-        <!--Oil Navigation-->
-        <scene sceneID="k8F-XS-zcZ">
+        <!--oil-->
+        <scene sceneID="SIK-NY-ljq">
             <objects>
-                <navigationController title="Oil Navigation" automaticallyAdjustsScrollViewInsets="NO" id="Qdf-W2-K38" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="d5p-eC-N9D"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MrA-f7-JAV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="oxI-uy-H9T" kind="relationship" relationship="rootViewController" id="53O-uv-QgM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1s1-AS-dWf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="oil" id="HM2-tb-EGk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="69N-vb-c4K"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0IP-VG-3es" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-556" y="1210"/>
->>>>>>> master
+            <point key="canvasLocation" x="-587.5" y="628"/>
         </scene>
         <!--Time Line Navigation-->
         <scene sceneID="Jan-4d-pLy">
@@ -543,7 +509,6 @@
         <image name="add-oil.png" width="104" height="104"/>
         <image name="add-trip.png" width="104" height="104"/>
         <image name="calendar.png" width="2230" height="2318"/>
-        <image name="chats_icon" width="20" height="22"/>
         <image name="flag.png" width="1984" height="2480"/>
         <image name="gas-level.png" width="1434" height="1434"/>
         <image name="hexa.png" width="388" height="447"/>

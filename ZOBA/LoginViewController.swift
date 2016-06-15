@@ -359,7 +359,6 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         
         return randomString
     }
->>>>>>> master:ZOBA/LoginViewController.swift
 
 
 }
