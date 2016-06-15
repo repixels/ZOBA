@@ -14,7 +14,7 @@ import CoreData
 
 extension Days {
 
-    @NSManaged var dayId: Int32
+    @NSManaged var dayId: NSNumber
     @NSManaged var name: String?
     @NSManaged var calender: NSSet?
 

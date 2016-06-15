@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		39A2F33710BE64FC9853582A /* Pods_ZOBA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D330313799DC0A970BE8E5C7 /* Pods_ZOBA.framework */; };
 		72BCD1798DE0A8E58F71CC74 /* Pods_ZOBAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */; };
+		8200B8591D0C5CF0007AB057 /* UserDefaultsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */; };
 		82057F741D048C1700BC80DD /* AddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F731D048C1700BC80DD /* AddVehicleViewController.swift */; };
 		82057F791D048FDA00BC80DD /* AddOilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F781D048FDA00BC80DD /* AddOilViewController.swift */; };
 		82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */; };
@@ -30,16 +31,25 @@
 		82501A821D05A9A3008272CB /* service-car.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A731D05A9A3008272CB /* service-car.png */; };
 		82501A831D05A9A3008272CB /* timeline-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A741D05A9A3008272CB /* timeline-circle.png */; };
 		8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E19B1D0426430044C2CB /* HomeViewController.swift */; };
+		825BB0041D0C0EBB00F44EA3 /* UserWebservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BB0031D0C0EBB00F44EA3 /* UserWebservices.swift */; };
+		825BB0061D0C266D00F44EA3 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BB0051D0C266D00F44EA3 /* StringConstants.swift */; };
+		825BB0081D0C39AB00F44EA3 /* SessionObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */; };
 		8265E7F01D0583560039D0AF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829C43791CFBAC9500869E59 /* RegisterViewController.swift */; };
 		8265E7F11D0583780039D0AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827561CF837D600684CE5 /* AppDelegate.swift */; };
-		827827591CF837D600684CE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* ViewController.swift */; };
 		8278275C1CF837D600684CE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8278275A1CF837D600684CE5 /* Main.storyboard */; };
 		8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */; };
 		827827611CF837D600684CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 827827601CF837D600684CE5 /* Assets.xcassets */; };
 		827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 827827621CF837D600684CE5 /* LaunchScreen.storyboard */; };
 		8278276F1CF837D600684CE5 /* ZOBATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8278276E1CF837D600684CE5 /* ZOBATests.swift */; };
 		8278277A1CF837D600684CE5 /* ZOBAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827791CF837D600684CE5 /* ZOBAUITests.swift */; };
+		829825641D0D538600FCC4C8 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829825631D0D538600FCC4C8 /* UserProfile.storyboard */; };
+		829825661D0D718F00FCC4C8 /* VehicleTrips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829825651D0D718F00FCC4C8 /* VehicleTrips.storyboard */; };
+		829825681D0D816D00FCC4C8 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829825671D0D816D00FCC4C8 /* EditPasswordViewController.swift */; };
+		8298256A1D0EBA6F00FCC4C8 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */; };
 		829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829C437B1CFBBA1E00869E59 /* Media.xcassets */; };
+		82B980161D10164100B0658A /* Device Webservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B980151D10164100B0658A /* Device Webservices.swift */; };
+		82D6D2011D0CA308005C1AA6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* LoginViewController.swift */; };
+		82DEC9961D0F93A4003E1154 /* TrackingOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */; };
 		82EF3BE01D056E3F00AC103C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */; };
 		82EF3BE31D056E3F00AC103C /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82EF3BE21D056E3F00AC103C /* TodayViewController.swift */; };
 		82EF3BE61D056E3F00AC103C /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82EF3BE41D056E3F00AC103C /* MainInterface.storyboard */; };
@@ -62,9 +72,17 @@
 		82F8B8C91CF8B52A00E46B05 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */; };
 		82F8B8CA1CF8B52A00E46B05 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */; };
 		8301381C1D060D0B00A1EE21 /* DaySummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8301381B1D060D0B00A1EE21 /* DaySummaryCell.swift */; };
+		8314DC811D0C767600601B45 /* DummyDataBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC801D0C767600601B45 /* DummyDataBaseOperation.swift */; };
 		831B12CD1D0641D000D10CBA /* FuelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CC1D0641CF00D10CBA /* FuelCell.swift */; };
 		831B12CF1D0643A200D10CBA /* OilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CE1D0643A200D10CBA /* OilCell.swift */; };
 		831B12D11D06448200D10CBA /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12D01D06448200D10CBA /* TripCell.swift */; };
+		83548F241D09D2080013E67F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83548F231D09D2080013E67F /* MapKit.framework */; };
+		83548F261D09EB040013E67F /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83548F251D09EB040013E67F /* MapController.swift */; };
+		83548F281D0A1CD30013E67F /* AllTripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */; };
+		838918461D0AE30C001F0060 /* TripDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838918451D0AE30C001F0060 /* TripDetailController.swift */; };
+		83AEBCF21D075B8800B334FE /* user-Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83AEBCF11D075B8800B334FE /* user-Profile.storyboard */; };
+		83AEBCF51D0767F100B334FE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEBCF41D0767F100B334FE /* UserProfileViewController.swift */; };
+		83AEBCF71D08244400B334FE /* UserProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEBCF61D08244300B334FE /* UserProfileEditController.swift */; };
 		83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC89F1D048766006CC257 /* AbstractDao.swift */; };
 		8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */; };
 		D7E3809149A0ABDF4F894412 /* Pods_ZOBATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */; };
@@ -168,6 +186,7 @@
 		15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBATests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4DC4794BB8782CEF3EBF4B /* Pods-ZOBA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBA.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA.release.xcconfig"; sourceTree = "<group>"; };
 		3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsMapping.swift; sourceTree = "<group>"; };
 		82057F731D048C1700BC80DD /* AddVehicleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVehicleViewController.swift; sourceTree = "<group>"; };
 		82057F781D048FDA00BC80DD /* AddOilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOilViewController.swift; sourceTree = "<group>"; };
 		82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFuelViewController.swift; sourceTree = "<group>"; };
@@ -189,9 +208,12 @@
 		82501A731D05A9A3008272CB /* service-car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "service-car.png"; sourceTree = "<group>"; };
 		82501A741D05A9A3008272CB /* timeline-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline-circle.png"; sourceTree = "<group>"; };
 		8255E19B1D0426430044C2CB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		825BB0031D0C0EBB00F44EA3 /* UserWebservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserWebservices.swift; sourceTree = "<group>"; };
+		825BB0051D0C266D00F44EA3 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
+		825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionObjects.swift; sourceTree = "<group>"; };
 		827827531CF837D600684CE5 /* ZOBA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZOBA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		827827561CF837D600684CE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		827827581CF837D600684CE5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		827827581CF837D600684CE5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8278275B1CF837D600684CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8278275E1CF837D600684CE5 /* ZOBA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ZOBA.xcdatamodel; sourceTree = "<group>"; };
 		827827601CF837D600684CE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -203,8 +225,14 @@
 		827827751CF837D600684CE5 /* ZOBAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZOBAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		827827791CF837D600684CE5 /* ZOBAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZOBAUITests.swift; sourceTree = "<group>"; };
 		8278277B1CF837D600684CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		829825631D0D538600FCC4C8 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		829825651D0D718F00FCC4C8 /* VehicleTrips.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = VehicleTrips.storyboard; sourceTree = "<group>"; };
+		829825671D0D816D00FCC4C8 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPasswordViewController.swift; sourceTree = "<group>"; };
+		829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		829C43791CFBAC9500869E59 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		829C437B1CFBBA1E00869E59 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
+		82B980151D10164100B0658A /* Device Webservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Device Webservices.swift"; sourceTree = "<group>"; };
+		82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingOnboardViewController.swift; sourceTree = "<group>"; };
 		82EF3BDE1D056E3F00AC103C /* ZOBA Quick Access.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ZOBA Quick Access.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		82EF3BE21D056E3F00AC103C /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -228,9 +256,17 @@
 		82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		8301381B1D060D0B00A1EE21 /* DaySummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DaySummaryCell.swift; path = timeLine/DaySummaryCell.swift; sourceTree = "<group>"; };
+		8314DC801D0C767600601B45 /* DummyDataBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyDataBaseOperation.swift; sourceTree = "<group>"; };
 		831B12CC1D0641CF00D10CBA /* FuelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FuelCell.swift; path = timeLine/FuelCell.swift; sourceTree = "<group>"; };
 		831B12CE1D0643A200D10CBA /* OilCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OilCell.swift; path = timeLine/OilCell.swift; sourceTree = "<group>"; };
 		831B12D01D06448200D10CBA /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripCell.swift; path = timeLine/TripCell.swift; sourceTree = "<group>"; };
+		83548F231D09D2080013E67F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		83548F251D09EB040013E67F /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTripTableViewController.swift; sourceTree = "<group>"; };
+		838918451D0AE30C001F0060 /* TripDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailController.swift; sourceTree = "<group>"; };
+		83AEBCF11D075B8800B334FE /* user-Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "user-Profile.storyboard"; sourceTree = "<group>"; };
+		83AEBCF41D0767F100B334FE /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		83AEBCF61D08244300B334FE /* UserProfileEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileEditController.swift; sourceTree = "<group>"; };
 		83BAC89F1D048766006CC257 /* AbstractDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDao.swift; sourceTree = "<group>"; };
 		8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = managedObjectExtension.swift; sourceTree = "<group>"; };
 		B7974B3E65B33BEAC6D00F69 /* Pods-ZOBAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBAUITests/Pods-ZOBAUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -298,6 +334,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83548F241D09D2080013E67F /* MapKit.framework in Frameworks */,
 				82F8B8CA1CF8B52A00E46B05 /* FBSDKShareKit.framework in Frameworks */,
 				39A2F33710BE64FC9853582A /* Pods_ZOBA.framework in Frameworks */,
 				82F8B8C81CF8B52A00E46B05 /* FBSDKCoreKit.framework in Frameworks */,
@@ -335,6 +372,7 @@
 		6037E86AF3BD9C2CD7E578F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83548F231D09D2080013E67F /* MapKit.framework */,
 				82F8B8C51CF8B52A00E46B05 /* FBSDKCoreKit.framework */,
 				82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */,
 				82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */,
@@ -382,6 +420,10 @@
 			isa = PBXGroup;
 			children = (
 				82057F7F1D0490E400BC80DD /* AddTripViewController.swift */,
+				83548F251D09EB040013E67F /* MapController.swift */,
+				83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */,
+				838918451D0AE30C001F0060 /* TripDetailController.swift */,
+				829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */,
 			);
 			name = "Trip Tracking";
 			sourceTree = "<group>";
@@ -407,6 +449,15 @@
 				831B12D01D06448200D10CBA /* TripCell.swift */,
 			);
 			name = Timeline;
+			sourceTree = "<group>";
+		};
+		825BB0021D0C0C8900F44EA3 /* Webservice Integeration */ = {
+			isa = PBXGroup;
+			children = (
+				825BB0031D0C0EBB00F44EA3 /* UserWebservices.swift */,
+				82B980151D10164100B0658A /* Device Webservices.swift */,
+			);
+			name = "Webservice Integeration";
 			sourceTree = "<group>";
 		};
 		8278274A1CF837D600684CE5 = {
@@ -440,6 +491,9 @@
 		827827551CF837D600684CE5 /* ZOBA */ = {
 			isa = PBXGroup;
 			children = (
+				82DEC9941D0F936A003E1154 /* Onboard View Controllers */,
+				83AEBCF31D0767B600B334FE /* User Profile */,
+				825BB0021D0C0C8900F44EA3 /* Webservice Integeration */,
 				82057F7C1D0490C700BC80DD /* Timeline */,
 				82057F771D048E6B00BC80DD /* Oil Tracking */,
 				82057F761D048E6200BC80DD /* Trip Tracking */,
@@ -475,6 +529,14 @@
 			path = ZOBAUITests;
 			sourceTree = "<group>";
 		};
+		82DEC9941D0F936A003E1154 /* Onboard View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */,
+			);
+			name = "Onboard View Controllers";
+			sourceTree = "<group>";
+		};
 		82EF3BE11D056E3F00AC103C /* ZOBA Quick Access */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,6 +563,9 @@
 				DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */,
 				8278275A1CF837D600684CE5 /* Main.storyboard */,
 				DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */,
+				83AEBCF11D075B8800B334FE /* user-Profile.storyboard */,
+				829825631D0D538600FCC4C8 /* UserProfile.storyboard */,
+				829825651D0D718F00FCC4C8 /* VehicleTrips.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -508,7 +573,7 @@
 		82EF3BF11D0573DC00AC103C /* Login and Register */ = {
 			isa = PBXGroup;
 			children = (
-				827827581CF837D600684CE5 /* ViewController.swift */,
+				827827581CF837D600684CE5 /* LoginViewController.swift */,
 				829C43791CFBAC9500869E59 /* RegisterViewController.swift */,
 			);
 			name = "Login and Register";
@@ -553,6 +618,9 @@
 				827827561CF837D600684CE5 /* AppDelegate.swift */,
 				827827651CF837D600684CE5 /* Info.plist */,
 				8278275D1CF837D600684CE5 /* ZOBA.xcdatamodeld */,
+				825BB0051D0C266D00F44EA3 /* StringConstants.swift */,
+				825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */,
+				8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */,
 			);
 			name = "Application Files";
 			sourceTree = "<group>";
@@ -599,6 +667,16 @@
 			);
 			name = fonts;
 			path = media/fonts;
+			sourceTree = "<group>";
+		};
+		83AEBCF31D0767B600B334FE /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				83AEBCF41D0767F100B334FE /* UserProfileViewController.swift */,
+				83AEBCF61D08244300B334FE /* UserProfileEditController.swift */,
+				829825671D0D816D00FCC4C8 /* EditPasswordViewController.swift */,
+			);
+			name = "User Profile";
 			sourceTree = "<group>";
 		};
 		DCFC30DA1CFDDE740018BBD3 /* poco */ = {
@@ -655,6 +733,7 @@
 			children = (
 				8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */,
 				83BAC89F1D048766006CC257 /* AbstractDao.swift */,
+				8314DC801D0C767600601B45 /* DummyDataBaseOperation.swift */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -666,7 +745,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8278277E1CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBA" */;
 			buildPhases = (
-				EC940CFFF9A48F95D36CAB9B /* 📦 Check Pods Manifest.lock */,
+				EC940CFFF9A48F95D36CAB9B /* [CP] Check Pods Manifest.lock */,
 				BC6AB6838CF825B6FCF1C696 /* [CP] Check Pods Manifest.lock */,
 				8278274F1CF837D600684CE5 /* Sources */,
 				827827501CF837D600684CE5 /* Frameworks */,
@@ -691,7 +770,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 827827811CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBATests" */;
 			buildPhases = (
-				0B31482077938DEA81894FD4 /* 📦 Check Pods Manifest.lock */,
+				0B31482077938DEA81894FD4 /* [CP] Check Pods Manifest.lock */,
 				3B04073713425CEBC571F285 /* [CP] Check Pods Manifest.lock */,
 				827827661CF837D600684CE5 /* Sources */,
 				827827671CF837D600684CE5 /* Frameworks */,
@@ -715,7 +794,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 827827841CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBAUITests" */;
 			buildPhases = (
-				32EC0646C54416C2BC13C26E /* 📦 Check Pods Manifest.lock */,
+				32EC0646C54416C2BC13C26E /* [CP] Check Pods Manifest.lock */,
 				EC708C73D3D50BDE278DB3C8 /* [CP] Check Pods Manifest.lock */,
 				827827711CF837D600684CE5 /* Sources */,
 				827827721CF837D600684CE5 /* Frameworks */,
@@ -764,6 +843,9 @@
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = B263Y9M649;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -824,12 +906,16 @@
 				82501A801D05A9A3008272CB /* rainbow.png in Resources */,
 				82501A771D05A9A3008272CB /* add-trip.png in Resources */,
 				82501A811D05A9A3008272CB /* route.png in Resources */,
+				83AEBCF21D075B8800B334FE /* user-Profile.storyboard in Resources */,
+				8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */,
 				82F8B89F1CF8807400E46B05 /* logo.png in Resources */,
+				829825661D0D718F00FCC4C8 /* VehicleTrips.storyboard in Resources */,
 				82F8B8A41CF8807400E46B05 /* tips.png in Resources */,
 				82501A7F1D05A9A3008272CB /* placeholder.png in Resources */,
 				82501A761D05A9A3008272CB /* add-oil.png in Resources */,
 				827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */,
 				82F8B8C41CF89A2500E46B05 /* splash-logo.png in Resources */,
+				829825641D0D538600FCC4C8 /* UserProfile.storyboard in Resources */,
 				82501A751D05A9A3008272CB /* add-fuel.png in Resources */,
 				827827611CF837D600684CE5 /* Assets.xcassets in Resources */,
 				82F8B8C01CF8905B00E46B05 /* sf-outer-limits.upright.ttf in Resources */,
@@ -873,14 +959,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B31482077938DEA81894FD4 /* 📦 Check Pods Manifest.lock */ = {
+		0B31482077938DEA81894FD4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -903,14 +989,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBAUITests/Pods-ZOBAUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		32EC0646C54416C2BC13C26E /* 📦 Check Pods Manifest.lock */ = {
+		32EC0646C54416C2BC13C26E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1098,14 +1184,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		EC940CFFF9A48F95D36CAB9B /* 📦 Check Pods Manifest.lock */ = {
+		EC940CFFF9A48F95D36CAB9B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1121,11 +1207,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC562BB81D103E540066B8A8 /* FuelDetailViewController.swift in Sources */,
+				82D6D2011D0CA308005C1AA6 /* LoginViewController.swift in Sources */,
 				DC0095751D075660000856FC /* ServiceProviderCalender+CoreDataProperties.swift in Sources */,
 				8265E7F11D0583780039D0AF /* AppDelegate.swift in Sources */,
 				DC0095741D075660000856FC /* ServiceProviderPhone.swift in Sources */,
 				8265E7F01D0583560039D0AF /* RegisterViewController.swift in Sources */,
 				DC0095901D075660000856FC /* ServiceProviderAddress.swift in Sources */,
+				825BB0041D0C0EBB00F44EA3 /* UserWebservices.swift in Sources */,
 				831B12CD1D0641D000D10CBA /* FuelCell.swift in Sources */,
 				DC0095991D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift in Sources */,
 				DC0095801D075660000856FC /* Trip.swift in Sources */,
@@ -1135,14 +1223,18 @@
 				DC00958D1D075660000856FC /* TrackingData+CoreDataProperties.swift in Sources */,
 				831B12D11D06448200D10CBA /* TripCell.swift in Sources */,
 				DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */,
+				82DEC9961D0F93A4003E1154 /* TrackingOnboardViewController.swift in Sources */,
 				DC0095851D075660000856FC /* TrackingType+CoreDataProperties.swift in Sources */,
 				DC0095951D075660000856FC /* Service+CoreDataProperties.swift in Sources */,
+				83548F261D09EB040013E67F /* MapController.swift in Sources */,
 				8301381C1D060D0B00A1EE21 /* DaySummaryCell.swift in Sources */,
 				DC00959A1D075660000856FC /* ModelFeatureValue.swift in Sources */,
 				DC0095841D075660000856FC /* Make.swift in Sources */,
 				DC0D49151D116AC700F5D9DC /* OilTableViewCell.swift in Sources */,
 				827827591CF837D600684CE5 /* ViewController.swift in Sources */,
+				83548F281D0A1CD30013E67F /* AllTripTableViewController.swift in Sources */,
 				DC0095911D075660000856FC /* VehicleModel+CoreDataProperties.swift in Sources */,
+				82B980161D10164100B0658A /* Device Webservices.swift in Sources */,
 				8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */,
 				DCC01D0F1D0C4FE0009E66C3 /* AllOilTableViewController.swift in Sources */,
 				DCB398111D0D538900845B19 /* FuelTableViewController.swift in Sources */,
@@ -1151,21 +1243,27 @@
 				DC0095821D075660000856FC /* Model.swift in Sources */,
 				DC00957C1D075660000856FC /* TripCoordinate.swift in Sources */,
 				DC0095771D075660000856FC /* Days+CoreDataProperties.swift in Sources */,
+				83AEBCF71D08244400B334FE /* UserProfileEditController.swift in Sources */,
 				DC0095941D075660000856FC /* ServiceProviderServices.swift in Sources */,
+				825BB0081D0C39AB00F44EA3 /* SessionObjects.swift in Sources */,
 				82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */,
 				DC00958E1D075660000856FC /* TrackingData.swift in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
+				8200B8591D0C5CF0007AB057 /* UserDefaultsMapping.swift in Sources */,
 				DC0095961D075660000856FC /* Service.swift in Sources */,
 				DC9A805F1D1166B30081C832 /* FuelTableViewCell.swift in Sources */,
 				DC562BB61D1036680066B8A8 /* OilDetailsViewController.swift in Sources */,
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
+				8314DC811D0C767600601B45 /* DummyDataBaseOperation.swift in Sources */,
 				DC00957D1D075660000856FC /* Trim+CoreDataProperties.swift in Sources */,
 				8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */,
 				DC0095761D075660000856FC /* ServiceProviderCalender.swift in Sources */,
 				DC0095711D075660000856FC /* Year+CoreDataProperties.swift in Sources */,
+				825BB0061D0C266D00F44EA3 /* StringConstants.swift in Sources */,
 				DC0095921D075660000856FC /* VehicleModel.swift in Sources */,
 				DC0095981D075660000856FC /* Vehicle.swift in Sources */,
 				DC0095721D075660000856FC /* Year.swift in Sources */,
+				8298256A1D0EBA6F00FCC4C8 /* TripTableViewCell.swift in Sources */,
 				831B12CF1D0643A200D10CBA /* OilCell.swift in Sources */,
 				DC00958B1D075660000856FC /* ServiceProvider+CoreDataProperties.swift in Sources */,
 				DC00957A1D075660000856FC /* MeasuringUnit.swift in Sources */,
@@ -1178,7 +1276,9 @@
 				DC00957B1D075660000856FC /* TripCoordinate+CoreDataProperties.swift in Sources */,
 				DC0095791D075660000856FC /* MeasuringUnit+CoreDataProperties.swift in Sources */,
 				DC0095811D075660000856FC /* Model+CoreDataProperties.swift in Sources */,
+				838918461D0AE30C001F0060 /* TripDetailController.swift in Sources */,
 				DC0095731D075660000856FC /* ServiceProviderPhone+CoreDataProperties.swift in Sources */,
+				83AEBCF51D0767F100B334FE /* UserProfileViewController.swift in Sources */,
 				DC0095971D075660000856FC /* Vehicle+CoreDataProperties.swift in Sources */,
 				82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */,
 				DC00957E1D075660000856FC /* Trim.swift in Sources */,
@@ -1186,6 +1286,7 @@
 				DC0095881D075660000856FC /* CarFeature.swift in Sources */,
 				DC0095831D075660000856FC /* Make+CoreDataProperties.swift in Sources */,
 				DC00957F1D075660000856FC /* Trip+CoreDataProperties.swift in Sources */,
+				829825681D0D816D00FCC4C8 /* EditPasswordViewController.swift in Sources */,
 				83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

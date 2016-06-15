@@ -15,7 +15,7 @@ import CoreData
 extension ServiceProviderServices {
 
     @NSManaged var endingHour: Double
-    @NSManaged var servicePSId: Int32
+    @NSManaged var servicePSId: NSNumber
     @NSManaged var startingHour: Double
     @NSManaged var service: Service?
     @NSManaged var serviceProvider: ServiceProvider?

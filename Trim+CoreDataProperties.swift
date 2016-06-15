@@ -15,7 +15,7 @@ import CoreData
 extension Trim {
 
     @NSManaged var name: String?
-    @NSManaged var trimId: Int32
+    @NSManaged var trimId: NSNumber
     @NSManaged var vehicleModel: NSSet?
 
 }

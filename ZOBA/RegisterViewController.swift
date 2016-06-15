@@ -14,6 +14,7 @@ import FBSDKLoginKit
 import TextFieldEffects
 import CoreData
 import Alamofire
+import SwiftyUserDefaults
 
 class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
@@ -80,7 +81,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     func returnUserData()
     {
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,interested_in,gender,birthday,email,age_range,name,picture.width(480).height(480)"])
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,first_name,last_name,email,age_range,name,picture.width(480).height(480)"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
             if ((error) != nil)
@@ -93,34 +94,23 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
             }
             else
             {
-                let fullName = result.valueForKey("name") as? String
-                var fullNameArr = fullName!.characters.split{$0 == " "}.map(String.init)
+                let firstName = result.valueForKey("first_name") as? String
+                let lastName = result.valueForKey("last_name") as? String
+                let userEmail = (result.valueForKey("email") as? String)!
+                let userName = userEmail.componentsSeparatedByString("@")[0]
                 
-                self.firstNameTextField.text = fullNameArr[0]
-                self.lastNameTextField.text = String.init(format: "%@ %@", fullNameArr[0],fullNameArr[1])
-                
+                self.firstNameTextField.text = firstName
+                self.lastNameTextField.text = lastName
                 self.emailTextField.text = result.valueForKey("email") as? String
+                self.userNameTextField.text = userName
+                self.passwordTextField.text = self.randomAlphaNumericString(6)
+                print(self.passwordTextField.text)
+                self.facebookLoginButton.hidden = true
             }
         })
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        
-        self.emailTextField.text = ""
-        self.emailTextField.borderInactiveColor = UIColor.redColor()
-        self.emailTextField.borderActiveColor = UIColor.redColor()
-        self.emailTextField.placeholderColor = UIColor.redColor()
-        
-        self.firstNameTextField.text = ""
-        self.firstNameTextField.borderInactiveColor = UIColor.redColor()
-        self.firstNameTextField.borderActiveColor = UIColor.redColor()
-        self.firstNameTextField.placeholderColor = UIColor.redColor()
-        
-        self.lastNameTextField.text = ""
-        self.lastNameTextField.borderInactiveColor = UIColor.redColor()
-        self.lastNameTextField.borderActiveColor = UIColor.redColor()
-        self.lastNameTextField.placeholderColor = UIColor.redColor()
-        
     }
     
     func setViewBackgroundImage(imageName:String)
@@ -263,22 +253,72 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         textField.placeholderLabel.text = message
     }
     
-    @IBAction func registerWebService(sender: AnyObject) {
     
-        let user = MyUser(unmanagedEntity: "MyUser")
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        switch identifier {
+        case "Register To Main":
+            
+            let managedUser = MyUser(managedObjectContext: SessionObjects.currentManageContext , entityName:"MyUser")
+            let userWebservice = UserWebservice(currentUser: managedUser)
+            
+            
+            managedUser.email = emailTextField.text
+            managedUser.password = passwordTextField.text
+            managedUser.firstName = firstNameTextField.text
+            managedUser.lastName = lastNameTextField.text
+            managedUser.userName = userNameTextField.text
+            
+            userWebservice.registerUser({ (user, code) in
+                
+                switch code
+                {
+                case "success":
+                    SessionObjects.currentUser = user!
+                    if((Defaults[.deviceToken]) != nil)
+                    {
+                        SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+                    }
+                    SessionObjects.currentUser.save()
+                    self.performSegueWithIdentifier(identifier,sender: sender)
+                    break;
+                default:
+                    self.generateErrorAlert(code)
+                    break;
+                }
+            })
+            break;
+        default:
+            self.generateErrorAlert("None")
+            break;
+            
+        }
+        return false
+    }
+    
+    func generateErrorAlert(errorMessage: String?)
+    {
+        if errorMessage != nil
+        {
+            let alert = UIAlertController(title: "Registeration Failed", message: errorMessage!, preferredStyle: UIAlertControllerStyle.Alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alert.addAction(defaultAction)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    
+    func randomAlphaNumericString(length: Int) -> String {
         
-        let conn  = WebServiceConnection(userobj: user)
+        let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let allowedCharsCount = UInt32(allowedChars.characters.count)
+        var randomString = ""
         
-        user.email = emailTextField.text
-        user.password = passwordTextField.text
-        user.firstName = firstNameTextField.text
-        user.lastName = lastNameTextField.text
-        user.userName = userNameTextField.text
+        for _ in (0..<length) {
+            let randomNum = Int(arc4random_uniform(allowedCharsCount))
+            let newCharacter = allowedChars[allowedChars.startIndex.advancedBy(randomNum)]
+            randomString += String(newCharacter)
+        }
         
-//        conn.registration("http://localhost:8080/WebServiceProject/register", user: user){
-//            (user:MyUser?) -> Void in
-//            
-//        }
-
+        return randomString
     }
 }

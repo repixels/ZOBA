@@ -14,12 +14,12 @@ import CoreData
 
 extension Vehicle {
 
-    @NSManaged var currentOdemeter: Int64
-    @NSManaged var initialOdemeter: Int64
+    @NSManaged var currentOdemeter: NSNumber
+    @NSManaged var initialOdemeter: NSNumber
     @NSManaged var isOwnedByThisUser: Bool
     @NSManaged var licensePlate: String?
     @NSManaged var name: String?
-    @NSManaged var vehicleId: Int16
+    @NSManaged var vehicleId: NSNumber
     @NSManaged var traclingData: NSSet?
     @NSManaged var trip: NSSet?
     @NSManaged var user: NSSet?

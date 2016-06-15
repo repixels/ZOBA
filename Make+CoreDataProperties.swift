@@ -15,7 +15,7 @@ import CoreData
 extension Make {
 
     @NSManaged var image: NSData?
-    @NSManaged var makeId: Int32
+    @NSManaged var makeId: NSNumber
     @NSManaged var name: String?
     @NSManaged var niceName: String?
     @NSManaged var model: NSSet?

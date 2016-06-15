@@ -14,10 +14,10 @@ import CoreData
 
 extension Trip {
 
-    @NSManaged var coveredKm: Int64
+    @NSManaged var coveredKm: NSNumber
     @NSManaged var image: NSData?
-    @NSManaged var initialOdemeter: Int64
-    @NSManaged var tripId: Int32
+    @NSManaged var initialOdemeter: NSNumber
+    @NSManaged var tripId: NSNumber
     @NSManaged var coordinates: NSSet?
     @NSManaged var vehicle: Vehicle?
 

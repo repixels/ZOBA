@@ -37,7 +37,7 @@ class MyUser: NSManagedObject , Mappable {
         self.deviceToken <- map["devices"]
         self.email <- map["email"]
         self.firstName <- map["firstName"]
-        self.lastName <- map[""]
+        self.lastName <- map["lastName"]
         self.password <- map["password"]
         self.phone <- map["phone"]
         self.userId <- map["id"]
