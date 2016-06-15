@@ -11,7 +11,6 @@ import BTNavigationDropdownMenu
 import ChameleonFramework
 import CoreLocation
 import SwiftyUserDefaults
-import SideMenu
 
 class TimelineViewController: UITableViewController {
     

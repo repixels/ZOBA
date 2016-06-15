@@ -13,16 +13,6 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--SideMenu-->
-        <scene sceneID="sMN-wC-Ks9">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SideMenu" id="HnF-GE-Lji" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="aO0-AK-Tad"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g1b-EX-Jo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="318" y="-87"/>
-        </scene>
         <!--Title-->
         <scene sceneID="uBI-kd-CWF">
             <objects>
@@ -153,9 +143,6 @@
                     <navigationItem key="navigationItem" title="Title" id="FFa-ix-wQ3">
                         <barButtonItem key="leftBarButtonItem" systemItem="pause" id="IiA-fF-jw8">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="HnF-GE-Lji" kind="push" id="dex-Ic-zFd"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="c5Q-oX-LDT">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

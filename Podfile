@@ -16,7 +16,7 @@ target 'ZOBA' do
   pod 'SwiftyUserDefaults'
   pod 'AlamofireImage', '~> 2.0'
   pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
-  pod 'SideMenu'
+  pod 'SlideMenuControllerSwift'
 
   # Pods for ZOBA
 

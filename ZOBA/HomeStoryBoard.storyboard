@@ -677,7 +677,6 @@
                             <color key="tintColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonClicked:" destination="I2C-IC-YEg" id="GBN-Ls-iDl"/>
-                                <segue destination="1it-Y9-pUd" kind="modal" id="t9k-c2-Hff"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -686,20 +685,10 @@
             </objects>
             <point key="canvasLocation" x="113" y="-1358"/>
         </scene>
-        <!--SideMenu-->
-        <scene sceneID="HLI-8P-Htr">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SideMenuNavigation" storyboardName="SideMenu" id="1it-Y9-pUd" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="04L-QC-p9g"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JUL-Ls-ztD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="423" y="-1366"/>
-        </scene>
         <!--Home View Controller-->
         <scene sceneID="xdp-DQ-QeS">
             <objects>
-                <tabBarController id="Bsm-7X-oUo" customClass="HomeViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeTabController" id="Bsm-7X-oUo" customClass="HomeViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="cKk-VT-02O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -9,7 +9,10 @@
 import UIKit
 
 class AllTripTableViewController: UITableViewController {
+    
     var trips : [Trip]!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.titleTextAttributes =
@@ -20,14 +23,7 @@ class AllTripTableViewController: UITableViewController {
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
         trips = dao.selectAll(entityName: "Trip") as! [Trip]
-        
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+
     }
     
     override func viewWillAppear(animated: Bool)
