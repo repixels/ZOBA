@@ -48,4 +48,18 @@ class DataValidations
         let result = noWhiteSpaceTest.evaluateWithObject(str)
         return result
     }
+    static func isValidDate(str:String) -> Bool
+    {
+        let datePattern = "^([1-9]\\d{0,2}(,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$"
+        let datePatternTest = NSPredicate(format:"SELF MATCHES %@" , datePattern)
+        let result = datePatternTest.evaluateWithObject(str)
+        return result
+    }
+    static func isValidFloatNumber(str:String) -> Bool
+    {
+        let floatNumber = "^[0-9]*\\.?[0-9]*$"
+        let floatNumberTest = NSPredicate(format:"SELF MATCHES %@" , floatNumber)
+        let result = floatNumberTest.evaluateWithObject(str)
+        return result
+    }
 }
