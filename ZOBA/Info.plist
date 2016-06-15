@@ -93,5 +93,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>ZOBA uses your location to automatically collect your trip data to acquire accurate details about your trip. Yet none of this occurs without your permission.</string>
 </dict>
 </plist>

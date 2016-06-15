@@ -166,10 +166,6 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     }
     
     
-    
-    
-    
-    
     // MARK:vehicle picker methods
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1

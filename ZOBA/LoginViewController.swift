@@ -160,6 +160,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
+        
     }
     
     /*
@@ -293,6 +294,14 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                 {
                 case "success":
                     SessionObjects.currentUser = user!
+                    if((Defaults[.deviceToken]) != nil)
+                    {
+                        SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+                    }
+//
+//                    let deviceWebService = DeviceWebservice(deviceToken: Defaults[.deviceToken]!,currentUser: SessionObjects.currentUser)
+//                    deviceWebService.registerUserDevice()
+//                    
                     SessionObjects.currentUser.save()
                     Defaults[.isLoggedIn] = true
                     Defaults[.useremail] = user!.email
@@ -311,6 +320,13 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     
                     DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Ferarri")
                     
+                    DummyDataBaseOperation.saveTrackingType(managedObjectContext: SessionObjects.currentManageContext, name: "oil")
+                    DummyDataBaseOperation.saveTrackingType(managedObjectContext: SessionObjects.currentManageContext, name: "fuel")
+                    DummyDataBaseOperation.saveServiceProvider(managedObjectContext: SessionObjects.currentManageContext, name: "Lancer Ser")
+                    
+                     DummyDataBaseOperation.saveServiceProvider(managedObjectContext: SessionObjects.currentManageContext, name: "Swift Ser")
+                    
+                     DummyDataBaseOperation.saveServiceProvider(managedObjectContext: SessionObjects.currentManageContext, name: "Huyndai Ser")
                     self.performSegueWithIdentifier(identifier,sender: sender)
                     break;
                 default:

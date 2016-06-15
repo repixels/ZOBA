@@ -33,6 +33,7 @@ class MyUser: NSManagedObject , Mappable {
     func mapping(map: Map) {
         
         var vehicle : [Vehicle]?
+        
         self.deviceToken <- map["devices"]
         self.email <- map["email"]
         self.firstName <- map["firstName"]
