@@ -8,6 +8,9 @@
 
 import Foundation
 import CoreData
+import UIKit
+import Alamofire
+import AlamofireImage
 
 class DummyDataBaseOperation {
     
@@ -24,7 +27,7 @@ class DummyDataBaseOperation {
     }
     
     
-    static func saveVehicle(managedObjectContext moc : NSManagedObjectContext , name: String?){
+    static func saveVehicle(managedObjectContext moc : NSManagedObjectContext , name: String?) -> Vehicle{
         let vehicle = Vehicle(managedObjectContext: moc, entityName: "Vehicle")
         vehicle.name = name!
         vehicle.currentOdemeter = 30000
@@ -32,6 +35,30 @@ class DummyDataBaseOperation {
         
         vehicle.save()
         
+        return vehicle
+    }
+    
+    
+    func submit(){
+        
+        
+        let image = UIImage(named: "add-trip")
+        
+        let data = UIImagePNGRepresentation(image!)
+        // print(data)
+        //
+        
+        let url = "http://10.118.48.143:8080/WebServiceProject/rest/img/mas"
+        
+        
+        let fileURL = NSBundle.mainBundle().URLForResource("add-trip", withExtension: "png")
+        
+        
+        let base64String = data!.base64EncodedStringWithOptions([])
+        
+        Alamofire.request(.POST, url , parameters: ["image":base64String,"userId":1,"fileExt":"png"]).response { (req, res, data, error) in
+            print(res)
+        }
         
     }
 

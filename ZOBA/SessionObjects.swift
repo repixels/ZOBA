@@ -13,4 +13,5 @@ class SessionObjects
 {
     static var currentManageContext : NSManagedObjectContext!
     static var currentUser : MyUser!
+    static var currentVehicle: Vehicle!
 }
