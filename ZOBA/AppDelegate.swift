@@ -15,6 +15,7 @@ import FBSDKShareKit
 import FBSDKLoginKit
 import SwiftyUserDefaults
 import AlamofireNetworkActivityIndicator
+import SideMenu
 
 let isFirstTime = "isFirstTime"
 
@@ -53,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         {
             let abstractDAO = AbstractDao(managedObjectContext: managedObjectContext)
             SessionObjects.currentUser = abstractDAO.selectAll(entityName: "MyUser")[0] as! MyUser
+            setupSideMenu()
         }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -282,6 +284,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Defaults[.deviceToken] = tokenString
         print("tokenString: \(tokenString)")
         print("Device Token is : \(deviceToken)")
+    }
+    
+    func setupSideMenu()
+    {
+        let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
+        SideMenuManager.menuLeftNavigationController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("SideMenuNavigation") as? UISideMenuNavigationController
+        
+        // Enable gestures. The left and/or right menus must be set up above for these to work.
+        // Note that these continue to work on the Navigation Controller independent of the View Controller it displays!
+        //SideMenuManager.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        //SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        SideMenuManager.menuPresentMode = .ViewSlideInOut
+        SideMenuManager.menuParallaxStrength = 5
+        
+        
+        // Set up a cool background image for demo purposes
+        SideMenuManager.menuAnimationBackgroundColor = UIColor(patternImage: UIImage(named: "splash-background")!)
     }
     
 

@@ -11,8 +11,10 @@ import BTNavigationDropdownMenu
 import ChameleonFramework
 import CoreLocation
 import SwiftyUserDefaults
+import SideMenu
 
 class TimelineViewController: UITableViewController {
+    
     var menuView: BTNavigationDropdownMenu!
     let locationManager = CLLocationManager()
     
@@ -143,6 +145,11 @@ class TimelineViewController: UITableViewController {
     }
     
     
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        
+    }
+    
+    
     
     
     /*
@@ -160,3 +167,4 @@ class TimelineViewController: UITableViewController {
  */
 
 }
+

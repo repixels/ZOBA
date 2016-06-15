@@ -13,10 +13,20 @@
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--SideMenu-->
+        <scene sceneID="sMN-wC-Ks9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SideMenu" id="HnF-GE-Lji" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="aO0-AK-Tad"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g1b-EX-Jo8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="318" y="-87"/>
+        </scene>
         <!--Title-->
         <scene sceneID="uBI-kd-CWF">
             <objects>
-                <tableViewController id="1Zg-ZW-m3c" customClass="AllTripTableViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ViewTripsScene" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Zg-ZW-m3c" customClass="AllTripTableViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="8tY-g7-7Ff">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -141,7 +151,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="FFa-ix-wQ3">
+                        <barButtonItem key="leftBarButtonItem" systemItem="pause" id="IiA-fF-jw8">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="HnF-GE-Lji" kind="push" id="dex-Ic-zFd"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="c5Q-oX-LDT">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="1xC-7H-O8v" kind="push" id="TKs-so-BoF"/>
                             </connections>
@@ -424,7 +441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tIh-56-MJU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="730" y="294"/>
+            <point key="canvasLocation" x="760" y="294"/>
         </scene>
         <!--Trip Detail Controller-->
         <scene sceneID="cPm-92-omA">
@@ -698,10 +715,10 @@
             </objects>
             <point key="canvasLocation" x="730" y="961"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Side Menu Navigation Controller-->
         <scene sceneID="RCq-pp-k0B">
             <objects>
-                <navigationController storyboardIdentifier="Trips" id="lbZ-jR-Smo" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Trips" id="lbZ-jR-Smo" customClass="UISideMenuNavigationController" customModule="SideMenu" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KJ5-pZ-OXq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

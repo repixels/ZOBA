@@ -8,7 +8,6 @@
 
 import UIKit
 import TextFieldEffects
-
 class UserProfileViewController: UIViewController , UIPopoverPresentationControllerDelegate,  UIImagePickerControllerDelegate , UINavigationControllerDelegate {
     
     
@@ -48,6 +47,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         let notCenter = NSNotificationCenter.defaultCenter()
         notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
         notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+//           rsetupSideMenu()
     }
     
     override func viewDidLoad() {
@@ -60,7 +60,9 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         imageView.clipsToBounds = true
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
+     
     }
+    
     @IBAction func rightBarButtonClicked(sender: UIBarButtonItem) {
         
         if !isEditMode

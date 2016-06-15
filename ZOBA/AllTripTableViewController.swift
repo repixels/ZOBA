@@ -22,6 +22,7 @@ class AllTripTableViewController: UITableViewController {
         trips = dao.selectAll(entityName: "Trip") as! [Trip]
         
         
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
