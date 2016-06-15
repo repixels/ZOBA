@@ -224,6 +224,7 @@
                         <outlet property="oilAmountTextField" destination="3gf-6M-QDp" id="0XL-Cx-hE3"/>
                         <outlet property="pickerViewTextField" destination="Y9P-1S-YEk" id="wcB-Jb-4Mw"/>
                         <outlet property="saveBtn" destination="yx9-F9-Ub9" id="iEv-nA-kAc"/>
+                        <outlet property="vehiclesPickerView" destination="Gta-rC-07x" id="i1F-MQ-3DA"/>
                         <segue destination="W64-4G-YfM" kind="push" identifier="oilSegue" id="lwx-Mb-BFz"/>
                     </connections>
                 </viewController>

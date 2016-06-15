@@ -418,14 +418,6 @@
             </objects>
             <point key="canvasLocation" x="113" y="-1358"/>
         </scene>
-        <!--SideMenu-->
-        <scene sceneID="HLI-8P-Htr">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SideMenuNavigation" storyboardName="SideMenu" id="1it-Y9-pUd" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JUL-Ls-ztD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="423" y="-1366"/>
-        </scene>
         <!--Home View Controller-->
         <scene sceneID="xdp-DQ-QeS">
             <objects>

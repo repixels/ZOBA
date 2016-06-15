@@ -34,4 +34,39 @@ class DummyDataBaseOperation {
         
         
     }
+
+    static func saveTrackingType(managedObjectContext moc : NSManagedObjectContext , name: String?)
+    {
+        let trackingType = TrackingType(managedObjectContext: moc, entityName: "TrackingType")
+        
+        trackingType.name = name!
+        
+        trackingType.save()
+        
+        let measuringUnitObj = MeasuringUnit(managedObjectContext: moc, entityName: "MeasuringUnit")
+        
+        measuringUnitObj.name = "liters"
+        measuringUnitObj.suffix = "L"
+        
+        measuringUnitObj.mutableSetValueForKey("trackingType").addObject(trackingType)
+        
+        measuringUnitObj.save()
+        
+        let serobj = Service(managedObjectContext:moc , entityName: "Service")
+        
+        serobj.name = name!
+        serobj.save()
+        serobj.mutableSetValueForKey("trackingType").addObject(trackingType)
+                
+    }
+    
+    static func saveServiceProvider(managedObjectContext moc : NSManagedObjectContext , name: String?)
+    {
+        let serviceProvider = ServiceProvider(managedObjectContext: moc, entityName: "ServiceProvider")
+      
+        serviceProvider.name = name!
+        
+        serviceProvider.save()
+        
+       }
 }

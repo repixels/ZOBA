@@ -17,19 +17,75 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     @IBOutlet weak var oilAmountTextField: HoshiTextField!
     
-    
-    //Validation Indicatiors
-    
     var isCurrentOdeReady = false
     var isOilMountReady = false
-    
-    // date picker
-     var formatter = NSDateFormatter()
-
+    var formatter = NSDateFormatter()
     var date : String!
+    var pickerView : UIPickerView!
+    var datePickerView : UIDatePicker!
+    var pickOption : [ServiceProvider]!
+    var selectedVehicle : Vehicle!
+    var vehicles : [Vehicle]!
+    
+    @IBOutlet weak var initialOdemeter: HoshiTextField!
+    
+    @IBOutlet weak var vehiclesPickerView: UIPickerView!
+    
+    @IBOutlet weak var pickerViewTextField: HoshiTextField!
     
     
-     var datePickerView : UIDatePicker!
+    @IBOutlet weak var dateTextField: HoshiTextField!
+    
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Add Oil"
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        
+        // Do any additional setup after loading the view.
+        
+        formatter.dateFormat = "MMM dd,yyyy"
+        
+        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        
+        vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
+        
+        
+        //picker View
+        
+        pickerView = UIPickerView()
+        pickerView.delegate = self
+        
+        pickerView.dataSource = self
+        
+        
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.Default
+        toolBar.translucent = true
+        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddOilViewController.donePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddOilViewController.donePicker))
+        
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.userInteractionEnabled = true
+        
+        pickerViewTextField.inputAccessoryView = toolBar
+        
+        dateTextField.inputAccessoryView = toolBar
+        
+        vehiclesPickerView.delegate = self
+        
+        selectedVehicle = vehicles[vehiclesPickerView.selectedRowInComponent(0)]
+    }
+    
+    
+    
     
     @IBAction func dateSelectBtn(sender: AnyObject) {
         
@@ -53,15 +109,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         dateTextField.text = date
     }
-   
-    @IBOutlet weak var pickerViewTextField: HoshiTextField!
-    
-    
-    @IBOutlet weak var dateTextField: HoshiTextField!
-    
-    
-  //pickerView Options
-    var pickOption : [ServiceProvider]!  //= ["one", "two" , "three" , "four", "five" , "six" ]
+ 
 
     @IBAction func currentOdeEditingChang(sender: AnyObject) {
         
@@ -75,39 +123,38 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         }
     }
     
-    func showErrorMessage(message:String)
+    func showErrorMessage(message:String , textField : HoshiTextField)
     {
-        self.currentOdoMeterTextField.borderInactiveColor = UIColor.redColor()
-        self.currentOdoMeterTextField.borderActiveColor = UIColor.redColor()
-        self.currentOdoMeterTextField.placeholderColor = UIColor.redColor()
-        self.currentOdoMeterTextField.placeholderLabel.text = message
-        self.currentOdoMeterTextField.placeholderLabel.sizeToFit()
-        self.currentOdoMeterTextField.placeholderLabel.alpha = 1.0
+        textField.borderInactiveColor = UIColor.redColor()
+        textField.borderActiveColor = UIColor.redColor()
+       textField.placeholderColor = UIColor.redColor()
+       textField.placeholderLabel.text = message
+        textField.placeholderLabel.sizeToFit()
+        textField.placeholderLabel.alpha = 1.0
     }
     
-    func showValidMessage(message:String)
+    func showValidMessage(message:String , textField : HoshiTextField )
     {
-        self.currentOdoMeterTextField.borderInactiveColor = UIColor.greenColor()
-        self.currentOdoMeterTextField.borderActiveColor = UIColor.greenColor()
-        self.currentOdoMeterTextField.placeholderColor = UIColor.whiteColor()
-        self.currentOdoMeterTextField.placeholderLabel.text = message
+        textField.borderInactiveColor = UIColor.greenColor()
+        textField.borderActiveColor = UIColor.greenColor()
+        textField.placeholderColor = UIColor.whiteColor()
+       textField.placeholderLabel.text = message
         enableSaveBtn()
     }
     
     @IBAction func currentEditingDidEnd(sender: AnyObject) {
         
-        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
-        let vehicleObj = Vehicle(managedObjectContext: appDel.managedObjectContext, entityName: "Vehicle")
+        let vehicleObj = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
         
         
         if (NSNumber(integer: Int(currentOdoMeterTextField.text!)!).integerValue > vehicleObj.currentOdemeter.integerValue ) {
             
-             showValidMessage("Current Odemeter")
+             showValidMessage("Current Odemeter" , textField: currentOdoMeterTextField)
             isCurrentOdeReady = true
         }
         else
         {
-            showErrorMessage("Enter valid Odemeter")
+            showErrorMessage("Enter valid Odemeter" , textField: currentOdoMeterTextField)
             isCurrentOdeReady = false
         }
             validateSaveBtn()
@@ -135,12 +182,12 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
         if (Int(oilAmountTextField.text!)! < 1000) {
         
-            showValidMessage("Oil Amount")
+            showValidMessage("Oil Amount" , textField: oilAmountTextField)
             isOilMountReady = true
         }
         else
         {
-            showErrorMessage("Enter Valid Oil Amount")
+            showErrorMessage("Enter Valid Oil Amount" , textField: oilAmountTextField)
             isOilMountReady = false
         }
     }
@@ -155,17 +202,16 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
             
         }
     }
-    
-    @IBOutlet weak var initialOdemeter: HoshiTextField!
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
        
-        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
-        let vehicleObj = Vehicle(managedObjectContext: appDel.managedObjectContext, entityName: "Vehicle")
-        initialOdemeter.text = String(vehicleObj.initialOdemeter)
-        
-        let dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
+         initialOdemeter.text = String(selectedVehicle.initialOdemeter)
+//        
+//        let vehicleObj = Vehicle(managedObjectContext:SessionObjects.currentManageContext, entityName: "Vehicle")
+//        
+//        initialOdemeter.text = String(vehicleObj.initialOdemeter)
+//        
+        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
         let serviceProviderDAO = dao.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
         
@@ -173,45 +219,9 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         disableSaveBtn()
     }
+
     
-    var pickerView : UIPickerView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "Add Oil"
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
-             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        
-        // Do any additional setup after loading the view.
-        
-        formatter.dateFormat = "MMM dd,yyyy"
-        
-        //picker View
-        
-        pickerView = UIPickerView()
-        pickerView.delegate = self
-        
-        pickerView.dataSource = self
-        
-        
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
-        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        toolBar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddOilViewController.donePicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddOilViewController.donePicker))
-        
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.userInteractionEnabled = true
-        
-        pickerViewTextField.inputAccessoryView = toolBar
-        
-        dateTextField.inputAccessoryView = toolBar
-    }
     
     
     func donePicker() {
@@ -223,7 +233,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         // Dispose of any resources that can be recreated.
     }
     
- 
     @IBAction func pickerView(sender: AnyObject) {
         
         pickerViewTextField.inputView = pickerView
@@ -234,9 +243,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     @IBAction func saveOilData(sender: AnyObject) {
         
-        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        let trackingDataObj = TrackingData(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingData")
+        let trackingDataObj = TrackingData(managedObjectContext:SessionObjects.currentManageContext, entityName: "TrackingData")
         
         trackingDataObj.initialOdemeter = NSNumber (integer: Int(currentOdoMeterTextField.text!)!)
         
@@ -244,22 +251,29 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         trackingDataObj.dateAdded = datePickerView.date.timeIntervalSince1970
         
-       let dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
+        
+        let trackingTypeObj = TrackingData(managedObjectContext:SessionObjects.currentManageContext, entityName: "TrackingData")
+        
+       trackingTypeObj.value = "oil"
+    
+       trackingTypeObj.save()
+        
+    
+        
+       let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
         let typeObj = dao.selectByString(entityName: "TrackingType", AttributeName: "name", value: "oil") as![TrackingType]
         
         trackingDataObj.trackingType = typeObj[0]
-
-        let vehicleObjDAO = dao.selectByString(entityName: "Vehicle", AttributeName: "name", value: "car1") as!  [Vehicle]
-    
         
-        print(vehicleObjDAO[0])
-        trackingDataObj.vehicle = vehicleObjDAO[0]
-        
+        trackingDataObj.vehicle = selectedVehicle
         
         trackingDataObj.save()
+        
+        
+        
+        
         performSegueWithIdentifier("oilSegue", sender: self)
-
         
     }
     
@@ -267,15 +281,43 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         return 1
     }
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickOption[row].name
+       
+        if pickerView == vehiclesPickerView {
+            
+            return vehicles[row].name
+        }
+        else
+        {
+            return pickOption[row].name
+        }
     }
 
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickOption.count
+        
+        
+        
+        if pickerView == vehiclesPickerView
+        {
+            return vehicles.count
+        }
+        else
+        {
+            return pickOption.count
+            
+        }
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickerViewTextField.text = pickOption[row].name
+        
+        if pickerView == vehiclesPickerView {
+            
+            selectedVehicle = vehicles[row]
+        }
+            
+        else
+        {
+            pickerViewTextField.text = pickOption[row].name
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
@@ -283,6 +325,5 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         super.touchesBegan(touches, withEvent: event)
         
            }
-    
     
 }
