@@ -410,7 +410,6 @@
                             <color key="tintColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="menuButtonClicked:" destination="I2C-IC-YEg" id="GBN-Ls-iDl"/>
-                                <segue destination="1it-Y9-pUd" kind="modal" id="H5B-wD-47d"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

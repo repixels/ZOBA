@@ -45,8 +45,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     }
     func datePickerValueChanged(sender:UIDatePicker) {
         
-      //  let dateFormatter = NSDateFormatter()
-        
         formatter.dateStyle = NSDateFormatterStyle.MediumStyle
         
         formatter.timeStyle = NSDateFormatterStyle.NoStyle
@@ -54,7 +52,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         date = formatter.stringFromDate(sender.date)
         
         dateTextField.text = date
-        
     }
    
     @IBOutlet weak var pickerViewTextField: HoshiTextField!
@@ -190,7 +187,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         formatter.dateFormat = "MMM dd,yyyy"
         
-        
         //picker View
         
         pickerView = UIPickerView()
@@ -231,7 +227,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     @IBAction func pickerView(sender: AnyObject) {
         
         pickerViewTextField.inputView = pickerView
-
     
         pickerViewTextField.becomeFirstResponder()
 
@@ -241,16 +236,13 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         
-        
         let trackingDataObj = TrackingData(managedObjectContext: appDel.managedObjectContext, entityName: "TrackingData")
         
         trackingDataObj.initialOdemeter = NSNumber (integer: Int(currentOdoMeterTextField.text!)!)
         
         trackingDataObj.value = oilAmountTextField.text!
         
-        
         trackingDataObj.dateAdded = datePickerView.date.timeIntervalSince1970
-       
         
        let dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
         
