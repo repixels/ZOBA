@@ -61,7 +61,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         pickerView.dataSource = self
         
-        
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.Default
         toolBar.translucent = true
@@ -84,9 +83,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         selectedVehicle = vehicles[vehiclesPickerView.selectedRowInComponent(0)]
     }
     
-    
-    
-    
     @IBAction func dateSelectBtn(sender: AnyObject) {
         
          datePickerView = UIDatePicker()
@@ -96,6 +92,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         dateTextField.inputView = datePickerView
         
         dateTextField.becomeFirstResponder()
+        
         datePickerView.addTarget(self, action: #selector(AddOilViewController.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
 
     }
@@ -144,10 +141,10 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     @IBAction func currentEditingDidEnd(sender: AnyObject) {
         
-        let vehicleObj = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
+       // let vehicleObj = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
         
         
-        if (NSNumber(integer: Int(currentOdoMeterTextField.text!)!).integerValue > vehicleObj.currentOdemeter.integerValue ) {
+        if (NSNumber(integer: Int(currentOdoMeterTextField.text!)!).integerValue > selectedVehicle.currentOdemeter.integerValue ) {
             
              showValidMessage("Current Odemeter" , textField: currentOdoMeterTextField)
             isCurrentOdeReady = true
@@ -206,11 +203,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         super.viewWillAppear(true)
        
          initialOdemeter.text = String(selectedVehicle.initialOdemeter)
-//        
-//        let vehicleObj = Vehicle(managedObjectContext:SessionObjects.currentManageContext, entityName: "Vehicle")
-//        
-//        initialOdemeter.text = String(vehicleObj.initialOdemeter)
-//        
+        
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
         let serviceProviderDAO = dao.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
@@ -220,9 +213,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         disableSaveBtn()
     }
 
-    
-    
-    
     
     func donePicker() {
         view.endEditing(true)
@@ -269,9 +259,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         trackingDataObj.vehicle = selectedVehicle
         
         trackingDataObj.save()
-        
-        
-        
         
         performSegueWithIdentifier("oilSegue", sender: self)
         

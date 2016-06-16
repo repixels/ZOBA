@@ -134,9 +134,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     
     @IBAction func currentOdemterEditingDidEnd(sender: AnyObject) {
         
-        let vehicleObj = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
-        
-        if (NSNumber(integer: Int(currentOdometerTextField.text!)!).integerValue > vehicleObj.currentOdemeter.integerValue ) {
+        if (NSNumber(integer: Int(currentOdometerTextField.text!)!).integerValue > selectedVehicle.currentOdemeter.integerValue ) {
             
             showValidMessage("Current Odemeter",textField: currentOdometerTextField)
             isCurrentOdeReady = true
@@ -151,7 +149,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     
     @IBAction func currentOdemeterEditingChang(sender: AnyObject) {
         
-        if (currentOdometerTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(currentOdometerTextField.text!)) {
+        if (currentOdometerTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(currentOdometerTextField.text!) ) {
             
             isCurrentOdeReady = true
         }
@@ -162,7 +160,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     }
     
     func validateSaveBtn() {
-        if (isFuelMountReady && isCurrentOdeReady) {
+        if (isFuelMountReady && isCurrentOdeReady && dateTextField.text?.isNotEmpty == true) {
             enablBtn()
         }
         else
@@ -247,7 +245,8 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     
         }
     }
-    
+ 
+  
     
     func donePicker() {
         view.endEditing(true)
@@ -266,7 +265,6 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
 
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
-               
         let typeObj = dao.selectByString(entityName: "TrackingType", AttributeName: "name", value: "fuel") as![TrackingType]
         
         trackingDataObj.trackingType = typeObj[0]
@@ -287,6 +285,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         dateTextField.inputView = datePickerView
         
         dateTextField.becomeFirstResponder()
+        
         datePickerView.addTarget(self, action: #selector(AddFuelViewController.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
 
      }
