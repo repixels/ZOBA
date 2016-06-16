@@ -15,6 +15,7 @@ import FBSDKShareKit
 import FBSDKLoginKit
 import SwiftyUserDefaults
 import AlamofireNetworkActivityIndicator
+import SlideMenuControllerSwift
 
 let isFirstTime = "isFirstTime"
 
@@ -61,6 +62,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             else{
                 print("no car selected")
             }
+            
+            
+            let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+            let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+            
+            let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
+            let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+            
+            
+            let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
+            slideMenuController.automaticallyAdjustsScrollViewInsets = true
+            self.window?.rootViewController = slideMenuController
+            self.window?.makeKeyAndVisible()
+
         }
         
         

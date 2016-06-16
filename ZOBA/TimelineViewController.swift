@@ -11,7 +11,6 @@ import BTNavigationDropdownMenu
 import ChameleonFramework
 import SwiftyUserDefaults
 import CoreLocation
-import SwiftyUserDefaults
 
 class TimelineViewController: UITableViewController {
     var menuView: BTNavigationDropdownMenu!

@@ -19,15 +19,15 @@ class LocationPlistManager {
         
         self.name = "CoordinateList"
         
-        var paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         let url = NSURL(string: paths)
         path = (url?.URLByAppendingPathComponent(name+".plist"))!
-        var fileManager = NSFileManager.defaultManager()
+        let fileManager = NSFileManager.defaultManager()
         if (!(fileManager.fileExistsAtPath((path.absoluteString))))
         {
             do {
                 //try fileManager.removeItemAtPath(path!.absoluteString)
-                var bundle : NSString = NSBundle.mainBundle().pathForResource(name, ofType: "plist")!
+                let bundle : NSString = NSBundle.mainBundle().pathForResource(name, ofType: "plist")!
                 try  fileManager.copyItemAtPath(bundle as String, toPath: path.absoluteString)
             }
                 

@@ -89,7 +89,7 @@ class VehicleTableViewController: UITableViewController , MapDetectionDelegate {
             
             
             self.tableView.beginUpdates()
-            let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+            _ = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
             let vehicleName = self.vehicles[indexPath.row].name
             
             //      self.trips.removeAtIndex(indexPath.row)

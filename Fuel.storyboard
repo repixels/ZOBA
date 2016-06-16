@@ -254,7 +254,7 @@
                         <outlet property="saveBtn" destination="WIy-fz-pbu" id="kq3-oP-7MC"/>
                         <outlet property="serviceProviderTextFeild" destination="khV-B2-X9p" id="gsr-FC-2uY"/>
                         <outlet property="vehiclePickerView" destination="vjy-Ex-5wA" id="n0c-9K-0Au"/>
-                        <segue destination="qf5-uh-oX7" kind="push" identifier="allData" id="GKa-I6-TWv"/>
+                        <segue destination="qf5-uh-oX7" kind="show" identifier="allData" id="GKa-I6-TWv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUk-HQ-zqI" userLabel="First Responder" sceneMemberID="firstResponder"/>

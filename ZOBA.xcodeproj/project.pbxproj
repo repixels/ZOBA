@@ -70,6 +70,7 @@
 		82AE18EE1D12C3CB00F4EED6 /* Vehicle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AE18D91D12C3CB00F4EED6 /* Vehicle+CoreDataProperties.swift */; };
 		82AE18EF1D12C73300F4EED6 /* AddVehicleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */; };
 		82B980161D10164100B0658A /* Device Webservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B980151D10164100B0658A /* Device Webservices.swift */; };
+		82CC7C901D12F57A004AECA1 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CC7C8F1D12F57A004AECA1 /* MenuTableViewController.swift */; };
 		82D6D2011D0CA308005C1AA6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* LoginViewController.swift */; };
 		82DEC9961D0F93A4003E1154 /* TrackingOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */; };
 		82EF3BE01D056E3F00AC103C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */; };
@@ -264,6 +265,7 @@
 		82AE18D81D12C3CB00F4EED6 /* ServiceProviderAddress+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServiceProviderAddress+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		82AE18D91D12C3CB00F4EED6 /* Vehicle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vehicle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		82B980151D10164100B0658A /* Device Webservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Device Webservices.swift"; sourceTree = "<group>"; };
+		82CC7C8F1D12F57A004AECA1 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingOnboardViewController.swift; sourceTree = "<group>"; };
 		82EF3BDE1D056E3F00AC103C /* ZOBA Quick Access.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ZOBA Quick Access.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -513,6 +515,7 @@
 		827827551CF837D600684CE5 /* ZOBA */ = {
 			isa = PBXGroup;
 			children = (
+				82CC7C8F1D12F57A004AECA1 /* MenuTableViewController.swift */,
 				8373C6AA1D103A5E00E2C865 /* TextFieldExtension */,
 				8314DC861D0D48F200601B45 /* Vehicle */,
 				82DEC9941D0F936A003E1154 /* Onboard View Controllers */,
@@ -801,7 +804,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8278277E1CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBA" */;
 			buildPhases = (
-				88AF5081DE364F21C0B42F53 /* 📦 Check Pods Manifest.lock */,
+				88AF5081DE364F21C0B42F53 /* [CP] Check Pods Manifest.lock */,
 				EC940CFFF9A48F95D36CAB9B /* [CP] Check Pods Manifest.lock */,
 				BC6AB6838CF825B6FCF1C696 /* [CP] Check Pods Manifest.lock */,
 				8278274F1CF837D600684CE5 /* Sources */,
@@ -827,7 +830,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 827827811CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBATests" */;
 			buildPhases = (
-				C7764838E272A81429FF7A4A /* 📦 Check Pods Manifest.lock */,
+				C7764838E272A81429FF7A4A /* [CP] Check Pods Manifest.lock */,
 				0B31482077938DEA81894FD4 /* [CP] Check Pods Manifest.lock */,
 				3B04073713425CEBC571F285 /* [CP] Check Pods Manifest.lock */,
 				827827661CF837D600684CE5 /* Sources */,
@@ -852,7 +855,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 827827841CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBAUITests" */;
 			buildPhases = (
-				D8D380FE560BB4DAA0EBECD2 /* 📦 Check Pods Manifest.lock */,
+				D8D380FE560BB4DAA0EBECD2 /* [CP] Check Pods Manifest.lock */,
 				32EC0646C54416C2BC13C26E /* [CP] Check Pods Manifest.lock */,
 				EC708C73D3D50BDE278DB3C8 /* [CP] Check Pods Manifest.lock */,
 				827827711CF837D600684CE5 /* Sources */,
@@ -1170,14 +1173,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		88AF5081DE364F21C0B42F53 /* 📦 Check Pods Manifest.lock */ = {
+		88AF5081DE364F21C0B42F53 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1230,14 +1233,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C7764838E272A81429FF7A4A /* 📦 Check Pods Manifest.lock */ = {
+		C7764838E272A81429FF7A4A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1260,14 +1263,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D8D380FE560BB4DAA0EBECD2 /* 📦 Check Pods Manifest.lock */ = {
+		D8D380FE560BB4DAA0EBECD2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1356,6 +1359,7 @@
 				82AE18DE1D12C3CB00F4EED6 /* Year+CoreDataProperties.swift in Sources */,
 				DC00957C1D075660000856FC /* TripCoordinate.swift in Sources */,
 				83AEBCF71D08244400B334FE /* UserProfileEditController.swift in Sources */,
+				82CC7C901D12F57A004AECA1 /* MenuTableViewController.swift in Sources */,
 				DC0095941D075660000856FC /* ServiceProviderServices.swift in Sources */,
 				82AE18EB1D12C3CB00F4EED6 /* Service+CoreDataProperties.swift in Sources */,
 				825BB0081D0C39AB00F44EA3 /* SessionObjects.swift in Sources */,

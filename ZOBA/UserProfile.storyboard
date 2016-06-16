@@ -294,7 +294,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Kr4-0a-lnb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fTT-d1-y3u" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="UserProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fTT-d1-y3u" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MVk-bt-Wnr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

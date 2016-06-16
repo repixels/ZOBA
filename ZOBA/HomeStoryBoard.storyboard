@@ -421,7 +421,7 @@
         <!--Home View Controller-->
         <scene sceneID="xdp-DQ-QeS">
             <objects>
-                <tabBarController id="Bsm-7X-oUo" customClass="HomeViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="HomeTabController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Bsm-7X-oUo" customClass="HomeViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="cKk-VT-02O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
