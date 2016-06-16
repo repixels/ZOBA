@@ -86,7 +86,7 @@ class AllTripTableViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("Trip Cell", forIndexPath: indexPath) as! TripTableViewCell
         
-        cell.coveredMilageLabel.text = trips[indexPath.row].coveredKm.stringValue
+        cell.coveredMilageLabel.text = trips[indexPath.row].coveredKm!.stringValue
         let coordinates = trips[indexPath.row].coordinates!.allObjects as![TripCoordinate]
         let first = coordinates.first //as! TripCoordinate
         print(first!.latitude)

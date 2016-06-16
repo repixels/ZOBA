@@ -53,7 +53,7 @@ class TripDetailController: UIViewController {
         dateTextField.text = "10/10/2020"
         initialOdemeterTextField.text = String(trip.initialOdemeter)
         coveredMilageTextField.text = String(trip.coveredKm)
-        currentOdemeterTextField.text = String ( Int(trip.initialOdemeter) + Int(trip.coveredKm))
+        currentOdemeterTextField.text = String ( Int(trip.initialOdemeter!) + Int(trip.coveredKm!))
         let cordinates = trip.coordinates
         
         let coordinates = cordinates?.allObjects as! [TripCoordinate]

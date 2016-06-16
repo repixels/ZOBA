@@ -100,11 +100,11 @@ class ServiceProvider: NSManagedObject , Mappable {
         
         if serviceProviderServicesArray != nil
         {
-            self.serviceProviderService = NSSet(array: serviceProviderServicesArray!)
+            self.serviceProviderServices = NSSet(array: serviceProviderServicesArray!)
         }
         else
         {
-            self.serviceProviderService = nil
+            self.serviceProviderServices = nil
         }
         
         

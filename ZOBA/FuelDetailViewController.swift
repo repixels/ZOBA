@@ -29,7 +29,7 @@ class FuelDetailViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         
-        dateAded.text = String(NSDate(timeIntervalSince1970: data.dateAdded))
+        dateAded.text = String(data.dateAdded)
         fuelAmount.text = data.value
         currentOdemetr.text = String(data.initialOdemeter)
         serviceProvider.text = "Shell"

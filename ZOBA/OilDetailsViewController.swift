@@ -30,8 +30,8 @@ class OilDetailsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         
-        currentOdemeter.text = String(data.initialOdemeter)
-        dateAdedd.text = String(NSDate(timeIntervalSince1970: data.dateAdded))
+        currentOdemeter.text = String(data.initialOdemeter!)
+        dateAdedd.text = String(data.dateAdded)
         oilAmount.text = data.value
         serviceProvider.text = "Shell"
     }

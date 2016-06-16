@@ -42,21 +42,23 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     @IBOutlet weak var vehicleNameTextField: HoshiTextField!
     
     @IBOutlet weak var initialOdemeterTextField: HoshiTextField!
+    
+
+        var selectedMake : Make!
+    var selectedModel : Model!
+    var selectedYear : Year!
+    var selectedTrim : Trim!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         
         makePicker.delegate = self
         modelPicker.delegate = self
         
-        
-        
         let modelToolBar = UIToolbar()
         modelToolBar.barStyle = UIBarStyle.Default
         modelToolBar.translucent = true
-        modelToolBar.tintColor = UIColor.redColor() //UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        modelToolBar.tintColor = UIColor.redColor()
         modelToolBar.sizeToFit()
         
         let modelDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddVehicleTableViewController.modelDonePicker))
@@ -152,41 +154,37 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         return count;
     }
     
+
+    
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        var title = ""
-        
-        switch pickerView {
-        case makePicker:
-            title = makes[row].name!
-        case modelPicker:
             
-            switch component {
-            case 0:
-                title = models[row].name!
-            case 1:
-                title = years[row].name!
-            case 2:
-                title = trims[row].name!
+            var title = ""
+            
+            switch pickerView {
+            case makePicker:
+                title = makes[row].name!
+            case modelPicker:
+                
+                switch component {
+                case 0:
+                    title = models[row].name!
+                case 1:
+                    title = String(years[row].name!)
+                case 2:
+                    title = trims[row].name!
+                    
+                default:
+                    title = ""
+                }
                 
             default:
                 title = ""
             }
+            //
             
-        default:
-            title = ""
+            return title
         }
-        
-        
-        return title
-        
-    }
-    
-    var selectedMake : Make!
-    var selectedModel : Model!
-    var selectedYear : Year!
-    var selectedTrim : Trim!
-    
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
@@ -196,21 +194,15 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         case makePicker:
             print( makes[row].name!)
             selectedMake = makes[row]
-            //            getAllModels(makes[row].name!)
-            //            getAllYears(models[0].name!)
-        //            getAllTrims(models[0].name!, year: Int(years[0].name!)!)
         case modelPicker:
             
             switch component {
             case 0:
                 print( models[row].name!)
                 selectedModel = models[row]
-                //                getAllYears(models[row].name!)
-            //                getAllTrims(models[row].name!, year: Int(years[0].name!)!)
             case 1:
                 print( years[row].name!)
                 selectedYear = years[row]
-            //                                getAllTrims(selectedModel.name!, year: Int(years[row].name!)!)
             case 2:
                 print( trims[row].name!)
                 selectedTrim = trims[row]
@@ -319,7 +311,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         selectedTrim = trims[t]
         
         modelTextField.text = selectedModel.name!
-        yearTextField.text = selectedYear.name!
+        yearTextField.text = String(selectedYear.name!)
         trimTextField.text = selectedTrim.name!
         
         modelTextField.resignFirstResponder()

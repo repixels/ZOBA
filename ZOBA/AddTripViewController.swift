@@ -118,7 +118,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
             
             currentOdemeter.text = String(trip.initialOdemeter)
             coveredKm.text = String(trip.coveredKm)
-            finalOdemeter.text = String(Int(trip.initialOdemeter) + Int(trip.coveredKm))
+            finalOdemeter.text = String(Int(trip.initialOdemeter!) + Int(trip.coveredKm!))
             let coordinates = trip.coordinates?.allObjects as! [TripCoordinate]
             
             self.startCoordinate = CLLocationCoordinate2D(latitude: Double((coordinates.first?.latitude)!), longitude: Double((coordinates.first?.longtitude)!))
@@ -159,7 +159,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         trip.coordinates = NSSet(array: [firstCoordinate,secondCoordinate])
         
         trip.vehicle = selectedVehicle
-        trip.vehicle?.currentOdemeter = Int(trip.initialOdemeter) + Int(trip.coveredKm)
+        trip.vehicle?.currentOdemeter = Int(trip.initialOdemeter!) + Int(trip.coveredKm!)
         trip.save()
         
         self.navigationController?.popViewControllerAnimated(true)

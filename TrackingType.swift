@@ -32,22 +32,12 @@ class TrackingType: NSManagedObject , Mappable{
     
     func mapping(map: Map) {
         
-        var servicesArray : [Service]?
         
         self.name <- map[""]
         self.typeId <- map[""]
         self.measuringUnit <- map[""]
         self.trackingData <- map[""]
-        servicesArray <- map[""]
-        
-        if servicesArray != nil
-        {
-            self.service = NSSet(array: servicesArray!)
-        }
-        else
-        {
-            self.service = nil
-        }
+        self.service <- map[""]
         
     }
 }

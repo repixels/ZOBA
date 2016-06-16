@@ -1,9 +1,9 @@
 //
 //  TrackingData+CoreDataProperties.swift
-//  ZOBA
+//  
 //
-//  Created by ZOBA on 6/7/16.
-//  Copyright © 2016 RE Pixels. All rights reserved.
+//  Created by RE Pixels on 6/16/16.
+//
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
@@ -14,11 +14,12 @@ import CoreData
 
 extension TrackingData {
 
-    @NSManaged var dateAdded: NSTimeInterval
-    @NSManaged var dateModified: NSTimeInterval
-    @NSManaged var initialOdemeter: NSNumber
-    @NSManaged var trackingId: NSNumber
+    @NSManaged var dateAdded: NSDate?
+    @NSManaged var dateModified: NSDate?
+    @NSManaged var initialOdemeter: NSNumber?
+    @NSManaged var trackingId: NSNumber?
     @NSManaged var value: String?
+    @NSManaged var serviceProviderName: String?
     @NSManaged var trackingType: TrackingType?
     @NSManaged var vehicle: Vehicle?
 

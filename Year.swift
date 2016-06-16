@@ -37,9 +37,11 @@ class Year: NSManagedObject , Mappable
         
         var vehicleModelsArrray : [VehicleModel]?
         var nameInt : Int = 0
+        
         nameInt <- map["name"]
-        self.name = String(nameInt)
+        self.name = NSNumber(integer: nameInt)
         self.yearId <- map["id"]
+        
         vehicleModelsArrray <- map[""]
         
         if vehicleModelsArrray != nil

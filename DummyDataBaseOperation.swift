@@ -124,7 +124,7 @@ class DummyDataBaseOperation {
         for i in 2000...2017
         {
             let year = Year(managedObjectContext: SessionObjects.currentManageContext, entityName: "Year")
-            year.name = String(i)
+            year.name = i
             year.yearId = i
             year.save()
             
@@ -250,7 +250,7 @@ class DummyDataBaseOperation {
         model.niceName = "lancer"
         
         let year = Year(managedObjectContext: SessionObjects.currentManageContext, entityName: "Year")
-        year.name = "2014"
+        year.name = 2014
         
         let trim = Trim(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trim")
         trim.name = "LX"

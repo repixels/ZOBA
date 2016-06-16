@@ -144,7 +144,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
        // let vehicleObj = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
         
         
-        if (NSNumber(integer: Int(currentOdoMeterTextField.text!)!).integerValue > selectedVehicle.currentOdemeter.integerValue ) {
+        if (NSNumber(integer: Int(currentOdoMeterTextField.text!)!).integerValue > selectedVehicle.currentOdemeter!.integerValue ) {
             
              showValidMessage("Current Odemeter" , textField: currentOdoMeterTextField)
             isCurrentOdeReady = true
@@ -210,7 +210,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         if trackingData.count == 0
         {
-            initialOdemeter.text = String(selectedVehicle.initialOdemeter)
+            initialOdemeter.text = String(selectedVehicle.initialOdemeter!)
         }
         else
         {
@@ -252,7 +252,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         trackingDataObj.value = oilAmountTextField.text!
         
-        trackingDataObj.dateAdded = datePickerView.date.timeIntervalSince1970
+        trackingDataObj.dateAdded = datePickerView.date
         
         
         let trackingTypeObj = TrackingData(managedObjectContext:SessionObjects.currentManageContext, entityName: "TrackingData")

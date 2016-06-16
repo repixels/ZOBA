@@ -33,18 +33,17 @@ class Vehicle: NSManagedObject , Mappable{
         
         var trackingDataArray : [TrackingData]?
         var tripsArray : [Trip]?
-        var userArray: [MyUser]?
         
         
         self.currentOdemeter <- map[""]
         self.initialOdemeter <- map[""]
-        self.isOwnedByThisUser <- map[""]
+        self.isAdmin <- map[""]
         self.licensePlate <- map[""]
         self.name <- map[""]
         self.vehicleModel <- map[""]
+        self.user <- map[""]
         trackingDataArray <- map[""]
         tripsArray <- map[""]
-        userArray <- map[""]
         
         if trackingDataArray != nil
         {
@@ -64,13 +63,5 @@ class Vehicle: NSManagedObject , Mappable{
             self.trip = nil
         }
         
-        if userArray != nil
-        {
-            self.user = NSSet(array: userArray!)
-        }
-        else
-        {
-            self.user = nil
-        }
     }
 }

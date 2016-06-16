@@ -46,7 +46,7 @@ class vehicleDetailsViewController: UITableViewController {
         self.vehicleNameTextField.text = vehicle.name
         self.makeTextField.text = vehicle.vehicleModel?.model?.make?.name
         self.modelTextField.text = vehicle.vehicleModel?.model?.name
-        self.yearTextField.text = vehicle.vehicleModel?.year!.name
+        self.yearTextField.text = String(vehicle.vehicleModel?.year!.name)
         self.trimTextField.text = vehicle.vehicleModel?.trim?.name
         self.initialOdemterTextField.text = String(vehicle.initialOdemeter)
         

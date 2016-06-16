@@ -149,7 +149,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     
     @IBAction func currentOdemterEditingDidEnd(sender: AnyObject) {
         
-        if (NSNumber(integer: Int(currentOdometerTextField.text!)!).integerValue > selectedVehicle.currentOdemeter.integerValue ) {
+        if (NSNumber(integer: Int(currentOdometerTextField.text!)!).integerValue > selectedVehicle.currentOdemeter!.integerValue ) {
             
             showValidMessage("Current Odemeter",textField: currentOdometerTextField)
             isCurrentOdeReady = true
@@ -273,7 +273,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
         trackingDataObj.value = fuelAmountTextField.text!
         
-        trackingDataObj.dateAdded = datePickerView.date.timeIntervalSince1970
+        trackingDataObj.dateAdded = datePickerView.date
     
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
