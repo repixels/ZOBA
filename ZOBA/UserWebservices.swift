@@ -9,13 +9,14 @@
 import Foundation
 import Alamofire
 import ObjectMapper
-
+import SwiftyUserDefaults
 class UserWebservice
 {
     var user: MyUser?
     
     var registerURL : String
     var loginURL : String
+    var registerDeviceURL : String
     var registerImageURL : String
     
     init(currentUser user:MyUser)
@@ -24,6 +25,7 @@ class UserWebservice
         self.registerURL = ""
         self.loginURL = ""
         self.registerImageURL = ""
+        self.registerDeviceURL = ""
     }
     
     private func buildRegisterURL()
@@ -64,6 +66,7 @@ class UserWebservice
     
     
     
+    
     func registerUser (result : (user:MyUser? , code:String)->Void)
     {
         self.buildRegisterURL()
@@ -80,6 +83,12 @@ class UserWebservice
                     if let userJSON = _data["result"] as? NSDictionary
                     {
                         let mappedUser = Mapper<MyUser>().map(userJSON)
+                        
+                        if(Defaults[.deviceToken] != nil)
+                        {
+                            mappedUser?.deviceToken = Defaults[.deviceToken]
+                        }
+                        
                         result(user: mappedUser,code: connectionStatus)
                     }
                     
