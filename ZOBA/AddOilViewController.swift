@@ -202,9 +202,22 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
        
-         initialOdemeter.text = String(selectedVehicle.initialOdemeter)
+        // initialOdemeter.text = String(selectedVehicle.initialOdemeter)
         
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        
+        let trackingData = dao.selectAll(entityName: "TrackingData")
+        
+        if trackingData.count == 0
+        {
+            initialOdemeter.text = String(selectedVehicle.initialOdemeter)
+        }
+        else
+        {
+            let lastObj = trackingData.last as! TrackingData
+            
+            initialOdemeter.text = String(lastObj.initialOdemeter)
+        }
         
         let serviceProviderDAO = dao.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
         

@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import Foundation
 
 class AllOilTableViewController: UITableViewController {
     
     var dao : AbstractDao!
     
     var data: [TrackingData]!
+    
+    var ArraysortedByDate : [TrackingData]!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,8 @@ class AllOilTableViewController: UITableViewController {
         
          dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
         data = dao.selectByString(entityName: "TrackingData", AttributeName: "trackingType.name", value: "oil") as![TrackingData]
+        
+
         
         self.tableView.reloadData()
         
@@ -56,6 +62,7 @@ class AllOilTableViewController: UITableViewController {
         
         // Configure the cell...
         
+       // compare()NSComparisonResult.OrderedAscending
         
         cell.dateLabel.text = String(NSDate(timeIntervalSince1970: data[indexPath.row].dateAdded))
         cell.oilAmountLabel.text = data[indexPath.row].value
