@@ -15,8 +15,9 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarView.delegate = self
         prepareTabBar()
+        self.tabBarView.delegate = self
+        
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
         
         // Do any additional setup after loading the view.
@@ -64,19 +65,15 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
         
     }
     
-    func tabBarViewDidExpand(tabBarView: YALFoldingTabBar!) {
-        print("Hello")
-    }
     
-    func extraLeftItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
-        print("Extra Left Item Pressed")
-        let storyBoard = UIStoryboard.init(name: "Vehicle", bundle: nil)
-        let controller = storyBoard.instantiateViewControllerWithIdentifier("vehicleTable") as! VehicleTableViewController
-        let navigation = UINavigationController(rootViewController: controller)
-        self.presentViewController(navigation, animated: true, completion: nil)
-        
-        
-    }
+//    func extraLeftItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
+////        let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
+////        let vehicleNavigationController =
+////            vehiclesStoryBoard.instantiateViewControllerWithIdentifier("VehicleNavigation")
+////        vehicleNavigationController.tabBarController?.view = self.tabBarView
+////        self.showViewController(vehicleNavigationController, sender: self)
+//        performSegueWithIdentifier("Vehicle Segue", sender: self)
+//    }
     
     func extraRightItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
         print("Extra Right Item Pressed")

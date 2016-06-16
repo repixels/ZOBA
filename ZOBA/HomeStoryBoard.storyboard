@@ -187,11 +187,11 @@
                                     <outlet property="serviceProvider" destination="o2M-qb-SYD" id="dlc-IU-gQG"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="top" selectionStyle="none" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="TripData" rowHeight="194" id="qFz-5w-2xk" customClass="TripCell" customModule="ZOBA" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="top" selectionStyle="none" showsReorderControl="YES" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TripData" rowHeight="194" id="qFz-5w-2xk" customClass="TripCell" customModule="ZOBA" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="428" width="320" height="194"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qFz-5w-2xk" id="5Ds-zY-VzC">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="194"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="194"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" id="sTU-ud-rMf">
@@ -291,6 +291,7 @@
                                     <outlet property="tripInfoBtn" destination="g7n-Kl-tI0" id="Ogg-kN-PbE"/>
                                     <outlet property="tripSummary" destination="ef3-83-Blr" id="UjT-Ie-cJe"/>
                                     <outlet property="tripTitle" destination="DAs-f4-e8D" id="ogs-gj-XNp"/>
+                                    <segue destination="b32-uE-2m3" kind="push" identifier="Vehicle Segue" id="Xvy-PC-0Pp"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OilData" rowHeight="194" id="xR1-2u-7gK" customClass="OilCell" customModule="ZOBA" customModuleProvider="target">
@@ -406,10 +407,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="I0e-bH-vug">
-                        <barButtonItem key="leftBarButtonItem" systemItem="pause" id="b3E-09-oyA">
-                            <color key="tintColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
+                        <barButtonItem key="leftBarButtonItem" image="menu" style="plain" id="b3E-09-oyA">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="menuButtonClicked:" destination="I2C-IC-YEg" id="GBN-Ls-iDl"/>
+                                <action selector="menuButtonClicked:" destination="I2C-IC-YEg" id="0FC-d9-vVv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -438,16 +439,27 @@
             </objects>
             <point key="canvasLocation" x="-990" y="-511"/>
         </scene>
-        <!--Trips-->
+        <!--Vehicle-->
+        <scene sceneID="sFa-cG-KzZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Vehicle" id="b32-uE-2m3" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="m8Y-F6-zgl"/>
+                    <navigationItem key="navigationItem" id="qA7-AD-WyI"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LNJ-IV-2ZU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="29.5" y="-96"/>
+        </scene>
+        <!--VehicleTrips-->
         <scene sceneID="RHd-NX-5QQ">
             <objects>
-                <viewControllerPlaceholder storyboardName="VehicleTrips" referencedIdentifier="Trips" id="qay-JZ-e3m" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="VehicleTrips" id="qay-JZ-e3m" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Yl2-cl-FlH"/>
                     <navigationItem key="navigationItem" id="n3O-Ve-ClX"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bo5-vX-pOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1032.5" y="-96"/>
+            <point key="canvasLocation" x="-1074" y="-96"/>
         </scene>
         <!--Fuel-->
         <scene sceneID="UNW-a4-KeQ">
@@ -472,7 +484,7 @@
         <!--Time Line Navigation-->
         <scene sceneID="Jan-4d-pLy">
             <objects>
-                <navigationController title="Time Line Navigation" automaticallyAdjustsScrollViewInsets="NO" id="fgU-MI-soC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TimeLineView" title="Time Line Navigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fgU-MI-soC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="xU9-3K-9VB"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="khc-yc-SRj"/>
@@ -504,6 +516,7 @@
         <image name="gas-level.png" width="1434" height="1434"/>
         <image name="hexa.png" width="388" height="447"/>
         <image name="line.png" width="32" height="3284"/>
+        <image name="menu" width="22" height="22"/>
         <image name="oil-level.png" width="1434" height="1434"/>
         <image name="placeholder.png" width="1734" height="2480"/>
         <image name="rainbow.png" width="542" height="542"/>

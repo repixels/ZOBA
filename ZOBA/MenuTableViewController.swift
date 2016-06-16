@@ -11,6 +11,13 @@ import SlideMenuControllerSwift
 
 class MenuTableViewController: UITableViewController {
     
+    var homeStoryBoard : UIStoryboard?
+    var userProfileStoryBoard : UIStoryboard?
+    var fuelStoryBoard: UIStoryboard?
+    var oilStoryBoard: UIStoryboard?
+    var vehiclesStoryBoard: UIStoryboard?
+    var tripsStoryBoard: UIStoryboard?
+    
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
@@ -24,6 +31,13 @@ class MenuTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.homeStoryBoard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+        self.userProfileStoryBoard =  UIStoryboard(name: "UserProfile", bundle: nil)
+        self.fuelStoryBoard =  UIStoryboard(name: "Fuel", bundle: nil)
+        self.oilStoryBoard =  UIStoryboard(name: "oil", bundle: nil)
+        self.vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
+        self.tripsStoryBoard =  UIStoryboard(name: "VehicleTrips", bundle: nil)
+        
         
     }
 
@@ -38,44 +52,66 @@ class MenuTableViewController: UITableViewController {
             switch indexPath.row
             {
             case 0:
-                let userProfileStoryBoard : UIStoryboard = UIStoryboard(name: "UserProfile", bundle: nil)
-                let userViewController = userProfileStoryBoard.instantiateViewControllerWithIdentifier("UserProfileNavigationController")
                 
-                
-                let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
-                let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
-                
-                
-                let slideMenuController = SlideMenuController(mainViewController: userViewController, leftMenuViewController: sideMenuController)
-                self.presentViewController(slideMenuController, animated: true, completion: nil)
-                
+                let homeViewController = self.homeStoryBoard!.instantiateViewControllerWithIdentifier("HomeTabController")
+                self.slideMenuController()?.changeMainViewController(homeViewController, close: true)
                 break;
             default:
-                break;
+                self.slideMenuController()?.closeLeft()
             }
         case 2:
             switch indexPath.row
             {
             case 0:
-                break
+                let userProfileNavigationController = self.userProfileStoryBoard!.instantiateViewControllerWithIdentifier("UserProfileNavigation")
+                self.slideMenuController()?.changeMainViewController(userProfileNavigationController, close: true)
+                break;
             case 1:
+                let vehicleNavigationController = self.vehiclesStoryBoard?.instantiateViewControllerWithIdentifier("VehicleNavigation")
+                self.slideMenuController()?.changeMainViewController(vehicleNavigationController!, close: true)
+                break;
+            default:
+                self.slideMenuController()?.closeLeft()
+                break;
+            }
+        case 3:
+            switch indexPath.row
+            {
+            case 0:
+                let homeTabBarController = self.homeStoryBoard?.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                homeTabBarController.selectedIndex = 1
+                self.slideMenuController()?.changeMainViewController(homeTabBarController
+                    , close: true)
+            case 1:
+                let homeTabBarController = self.homeStoryBoard?.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                homeTabBarController.selectedIndex = 3
+                self.slideMenuController()?.changeMainViewController(homeTabBarController
+                    , close: true)
                 break
             case 2:
-                break
-            case 3:
+                let homeTabBarController = self.homeStoryBoard?.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                homeTabBarController.selectedIndex = 2
+                self.slideMenuController()?.changeMainViewController(homeTabBarController
+                    , close: true)
                 break
             default:
+                self.slideMenuController()?.closeLeft()
                 break
             }
+        case 4:
+            print("Logout Clicked")
+            break
         default:
+            self.closeLeft()
             break;
         }
     }
     
     // MARK: - Scroll View Events
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.contentOffset.x>0 {
-            scrollView.contentOffset.x = 0
+        if self.tableView == scrollView {
+            scrollView.alwaysBounceHorizontal = false
+            scrollView.alwaysBounceVertical = true
         }
     }
     
@@ -135,5 +171,9 @@ class MenuTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
 
 }
+
+

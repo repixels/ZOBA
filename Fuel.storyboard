@@ -271,7 +271,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="fuelCell" rowHeight="90" id="iFx-HT-Wk2" customClass="FuelTableViewCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="90"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iFx-HT-Wk2" id="lii-FI-SoD">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
@@ -485,7 +485,7 @@
         <!--Navigation Controller-->
         <scene sceneID="2Lr-NC-UHY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8t0-EV-TZW" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FuelNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8t0-EV-TZW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vJg-UG-8Pl">
@@ -510,6 +510,6 @@
         <image name="timeline-circle.png" width="350" height="350"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GKa-I6-TWv"/>
+        <segue reference="6F0-ws-vB2"/>
     </inferredMetricsTieBreakers>
 </document>

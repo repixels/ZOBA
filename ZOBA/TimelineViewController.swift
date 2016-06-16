@@ -11,8 +11,9 @@ import BTNavigationDropdownMenu
 import ChameleonFramework
 import SwiftyUserDefaults
 import CoreLocation
+import FoldingTabBar
 
-class TimelineViewController: UITableViewController {
+class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YALTabBarInteracting {
     var menuView: BTNavigationDropdownMenu!
     let locationManager = CLLocationManager()
     
@@ -26,6 +27,7 @@ class TimelineViewController: UITableViewController {
         
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.whiteColor() ]
+
         
     }
     
@@ -174,7 +176,29 @@ class TimelineViewController: UITableViewController {
     }
     
     
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        self.slideMenuController()?.openLeft()
+    }
     
+        func extraLeftItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
+    //        let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
+    //        let vehicleNavigationController =
+    //            vehiclesStoryBoard.instantiateViewControllerWithIdentifier("VehicleNavigation")
+    //        vehicleNavigationController.tabBarController?.view = self.tabBarView
+    //        self.showViewController(vehicleNavigationController, sender: self)
+//            performSegueWithIdentifier("Vehicle Segue", sender: self)
+            print("Pressed")
+        }
+
+    func extraRightItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
+        print("Yemeen")
+    }
+    func extraLeftItemDidPress() {
+//        performSegueWithIdentifier("Vehicle Segue", sender: self)
+        let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
+        let vehicleNavigationController = vehiclesStoryBoard.instantiateViewControllerWithIdentifier("vehicleTable")
+        self.navigationController?.pushViewController(vehicleNavigationController, animated: true)
+    }
     
     /*
      // MARK: - Navigation
