@@ -310,6 +310,8 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     //To be removed
 
                     let vehicle = DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Lancer")
+                    DummyDataBaseOperation.populateOnlyOnce()
+                    DummyDataBaseOperation.populateData()
                     
                     Defaults[.curentVehicleName] = vehicle.name
                     SessionObjects.currentVehicle = vehicle
