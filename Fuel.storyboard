@@ -55,7 +55,7 @@
                                             <action selector="fuelAmountEditingDidEnd:" destination="HOi-QX-8aN" eventType="editingDidEnd" id="BrZ-2P-vpF"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Initail Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xvE-I8-Lba" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Initail Odemeter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xvE-I8-Lba" customClass="HoshiTextField" customModule="TextFieldEffects">
                                         <rect key="frame" x="22" y="255" width="280" height="41"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -126,12 +126,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQg-Hu-9Eu">
                                         <rect key="frame" x="22" y="388" width="287" height="51"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sr8-Gs-30O">
-                                                <rect key="frame" x="8" y="5" width="272" height="40"/>
-                                                <connections>
-                                                    <action selector="servicePROVIDER:" destination="HOi-QX-8aN" eventType="touchUpInside" id="ffR-Dd-P8k"/>
-                                                </connections>
-                                            </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select Service Provider" placeholder="Service Provider" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khV-B2-X9p" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                 <rect key="frame" x="7" y="2" width="280" height="41"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -152,6 +146,12 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sr8-Gs-30O">
+                                                <rect key="frame" x="8" y="5" width="272" height="40"/>
+                                                <connections>
+                                                    <action selector="servicePROVIDER:" destination="HOi-QX-8aN" eventType="touchUpInside" id="ffR-Dd-P8k"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -242,7 +242,6 @@
                             <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                             <connections>
                                 <action selector="saveFuel:" destination="HOi-QX-8aN" id="umL-Nz-bNH"/>
-                                <segue destination="qf5-uh-oX7" kind="push" identifier="allData" id="FVZ-qT-Bat"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -255,6 +254,7 @@
                         <outlet property="saveBtn" destination="WIy-fz-pbu" id="kq3-oP-7MC"/>
                         <outlet property="serviceProviderTextFeild" destination="khV-B2-X9p" id="gsr-FC-2uY"/>
                         <outlet property="vehiclePickerView" destination="vjy-Ex-5wA" id="n0c-9K-0Au"/>
+                        <segue destination="qf5-uh-oX7" kind="push" identifier="allData" id="GKa-I6-TWv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUk-HQ-zqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -510,6 +510,6 @@
         <image name="timeline-circle.png" width="350" height="350"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FVZ-qT-Bat"/>
+        <segue reference="GKa-I6-TWv"/>
     </inferredMetricsTieBreakers>
 </document>
