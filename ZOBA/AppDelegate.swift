@@ -54,7 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let abstractDAO = AbstractDao(managedObjectContext: managedObjectContext)
             SessionObjects.currentUser = abstractDAO.selectAll(entityName: "MyUser")[0] as! MyUser
             
-<<<<<<< HEAD
             
             let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
             let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
@@ -67,7 +66,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             self.window?.rootViewController = slideMenuController
             self.window?.makeKeyAndVisible()
 
-=======
             let vehicleName = Defaults[.curentVehicleName]
             let vehicles = abstractDAO.selectByString(entityName: "Vehicle", AttributeName: "name", value: vehicleName!) as! [Vehicle]
             if(vehicles.count > 0){
@@ -76,7 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             else{
                 print("no car selected")
             }
->>>>>>> master
         }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

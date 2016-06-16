@@ -12,10 +12,7 @@ class AllTripTableViewController: UITableViewController {
     
     var trips : [Trip]!
     
-<<<<<<< HEAD
-=======
     @IBOutlet weak var addBtn: UIBarButtonItem!
->>>>>>> master
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +22,6 @@ class AllTripTableViewController: UITableViewController {
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
         
         
-<<<<<<< HEAD
-        trips = dao.selectAll(entityName: "Trip") as! [Trip]
-
-=======
-        
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -37,7 +29,6 @@ class AllTripTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
->>>>>>> master
     }
     
     override func viewWillAppear(animated: Bool)
