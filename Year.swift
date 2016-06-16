@@ -13,9 +13,9 @@ import ObjectMapper
 
 class Year: NSManagedObject , Mappable
 {
-
-// Insert code here to add functionality to your managed object subclass
-
+    
+    // Insert code here to add functionality to your managed object subclass
+    
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -36,9 +36,10 @@ class Year: NSManagedObject , Mappable
     func mapping(map: Map) {
         
         var vehicleModelsArrray : [VehicleModel]?
-        
-        self.name <- map[""]
-        self.yearId <- map[""]
+        var nameInt : Int = 0
+        nameInt <- map["name"]
+        self.name = String(nameInt)
+        self.yearId <- map["id"]
         vehicleModelsArrray <- map[""]
         
         if vehicleModelsArrray != nil

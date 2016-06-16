@@ -12,6 +12,10 @@ class AllTripTableViewController: UITableViewController {
     
     var trips : [Trip]!
     
+<<<<<<< HEAD
+=======
+    @IBOutlet weak var addBtn: UIBarButtonItem!
+>>>>>>> master
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +24,20 @@ class AllTripTableViewController: UITableViewController {
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
         
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
+<<<<<<< HEAD
         trips = dao.selectAll(entityName: "Trip") as! [Trip]
 
+=======
+        
+        
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+        
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+>>>>>>> master
     }
     
     override func viewWillAppear(animated: Bool)
@@ -34,8 +48,18 @@ class AllTripTableViewController: UITableViewController {
         self.navigationController?.title = "Trips"
         self.navigationController?.navigationBar.userInteractionEnabled = true
         
-        trips = dao.selectAll(entityName: "Trip") as! [Trip]
-        print("I Appeared")
+        //        trips = dao.selectAll(entityName: "Trip") as! [Trip]
+        var vehicleName = ""
+        if SessionObjects.currentVehicle != nil {
+            vehicleName =  SessionObjects.currentVehicle.name!
+        }
+        else{
+            addBtn.enabled = false
+            addBtn.tintColor = UIColor.grayColor()
+        }
+        trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: vehicleName) as! [Trip]
+        
+        
         tableView.reloadData()
         
     }
@@ -72,6 +96,11 @@ class AllTripTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Trip Cell", forIndexPath: indexPath) as! TripTableViewCell
         
         cell.coveredMilageLabel.text = trips[indexPath.row].coveredKm.stringValue
+        let coordinates = trips[indexPath.row].coordinates!.allObjects as![TripCoordinate]
+        let first = coordinates.first //as! TripCoordinate
+        print(first!.latitude)
+        cell.endingLocationLabel.text = String(coordinates.last?.latitude!)
+        cell.startingLocationLabel.text = String(coordinates.first?.latitude!)
         
         return cell
     }
@@ -114,7 +143,7 @@ class AllTripTableViewController: UITableViewController {
             //      self.trips.removeAtIndex(indexPath.row)
             self.trips[indexPath.row].delete()
             self.trips[indexPath.row].release(SessionObjects.currentManageContext)
-            self.trips = dao.selectAll(entityName: "Trip") as! [Trip]
+            self.trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: SessionObjects.currentVehicle.name!) as! [Trip]
             
             //remove object from data base
             //trips[indexPath.row].delete()

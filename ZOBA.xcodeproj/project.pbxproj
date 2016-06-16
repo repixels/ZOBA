@@ -10,7 +10,6 @@
 		39A2F33710BE64FC9853582A /* Pods_ZOBA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D330313799DC0A970BE8E5C7 /* Pods_ZOBA.framework */; };
 		72BCD1798DE0A8E58F71CC74 /* Pods_ZOBAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */; };
 		8200B8591D0C5CF0007AB057 /* UserDefaultsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */; };
-		82057F741D048C1700BC80DD /* AddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F731D048C1700BC80DD /* AddVehicleViewController.swift */; };
 		82057F791D048FDA00BC80DD /* AddOilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F781D048FDA00BC80DD /* AddOilViewController.swift */; };
 		82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */; };
 		82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7D1D0490D600BC80DD /* TimelineViewController.swift */; };
@@ -32,7 +31,6 @@
 		82501A811D05A9A3008272CB /* route.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A721D05A9A3008272CB /* route.png */; };
 		82501A821D05A9A3008272CB /* service-car.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A731D05A9A3008272CB /* service-car.png */; };
 		82501A831D05A9A3008272CB /* timeline-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A741D05A9A3008272CB /* timeline-circle.png */; };
-		8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */; };
 		8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8255E19B1D0426430044C2CB /* HomeViewController.swift */; };
 		825BB0041D0C0EBB00F44EA3 /* UserWebservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BB0031D0C0EBB00F44EA3 /* UserWebservices.swift */; };
 		825BB0061D0C266D00F44EA3 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BB0051D0C266D00F44EA3 /* StringConstants.swift */; };
@@ -75,14 +73,18 @@
 		82F8B8CA1CF8B52A00E46B05 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */; };
 		8301381C1D060D0B00A1EE21 /* DaySummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8301381B1D060D0B00A1EE21 /* DaySummaryCell.swift */; };
 		8314DC811D0C767600601B45 /* DummyDataBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC801D0C767600601B45 /* DummyDataBaseOperation.swift */; };
+		8314DC881D0D4B5500601B45 /* Vehicle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8314DC871D0D4B5500601B45 /* Vehicle.storyboard */; };
+		8314DC8C1D0DE6FF00601B45 /* AddVehicleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */; };
+		8314DC901D0F9AAD00601B45 /* VehicleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC8F1D0F9AAD00601B45 /* VehicleTableViewController.swift */; };
+		8314DC921D0F9AFA00601B45 /* vehicleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC911D0F9AFA00601B45 /* vehicleDetailsViewController.swift */; };
 		831B12CD1D0641D000D10CBA /* FuelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CC1D0641CF00D10CBA /* FuelCell.swift */; };
 		831B12CF1D0643A200D10CBA /* OilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CE1D0643A200D10CBA /* OilCell.swift */; };
 		831B12D11D06448200D10CBA /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12D01D06448200D10CBA /* TripCell.swift */; };
 		83548F241D09D2080013E67F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83548F231D09D2080013E67F /* MapKit.framework */; };
 		83548F261D09EB040013E67F /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83548F251D09EB040013E67F /* MapController.swift */; };
 		83548F281D0A1CD30013E67F /* AllTripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */; };
+		8373C6A91D102C9C00E2C865 /* textFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8373C6A81D102C9C00E2C865 /* textFieldExtension.swift */; };
 		838918461D0AE30C001F0060 /* TripDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838918451D0AE30C001F0060 /* TripDetailController.swift */; };
-		83AEBCF21D075B8800B334FE /* user-Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83AEBCF11D075B8800B334FE /* user-Profile.storyboard */; };
 		83AEBCF51D0767F100B334FE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEBCF41D0767F100B334FE /* UserProfileViewController.swift */; };
 		83AEBCF71D08244400B334FE /* UserProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEBCF61D08244300B334FE /* UserProfileEditController.swift */; };
 		83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC89F1D048766006CC257 /* AbstractDao.swift */; };
@@ -130,7 +132,16 @@
 		DC0095981D075660000856FC /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00956E1D075660000856FC /* Vehicle.swift */; };
 		DC0095991D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00956F1D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift */; };
 		DC00959A1D075660000856FC /* ModelFeatureValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0095701D075660000856FC /* ModelFeatureValue.swift */; };
+		DC0D49151D116AC700F5D9DC /* OilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D49141D116AC700F5D9DC /* OilTableViewCell.swift */; };
+		DC562BB61D1036680066B8A8 /* OilDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC562BB51D1036680066B8A8 /* OilDetailsViewController.swift */; };
+		DC562BB81D103E540066B8A8 /* FuelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC562BB71D103E540066B8A8 /* FuelDetailViewController.swift */; };
 		DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */; };
+		DC778F271D0D6FB600F43AE8 /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */; };
+		DC778F291D0D708600F43AE8 /* Fuel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F281D0D708600F43AE8 /* Fuel.storyboard */; };
+		DC778F2B1D0D7B3600F43AE8 /* oil.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */; };
+		DC9A805F1D1166B30081C832 /* FuelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9A805E1D1166B30081C832 /* FuelTableViewCell.swift */; };
+		DCB398111D0D538900845B19 /* FuelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB398101D0D538900845B19 /* FuelTableViewController.swift */; };
+		DCC01D0F1D0C4FE0009E66C3 /* AllOilTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC01D0E1D0C4FE0009E66C3 /* AllOilTableViewController.swift */; };
 		DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC401CFC33A400637977 /* DataValidations.swift */; };
 		DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
@@ -202,7 +213,6 @@
 		82501A721D05A9A3008272CB /* route.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = route.png; sourceTree = "<group>"; };
 		82501A731D05A9A3008272CB /* service-car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "service-car.png"; sourceTree = "<group>"; };
 		82501A741D05A9A3008272CB /* timeline-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline-circle.png"; sourceTree = "<group>"; };
-		8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryBoard.storyboard; sourceTree = "<group>"; };
 		8255E19B1D0426430044C2CB /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		825BB0031D0C0EBB00F44EA3 /* UserWebservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserWebservices.swift; sourceTree = "<group>"; };
 		825BB0051D0C266D00F44EA3 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
@@ -252,14 +262,18 @@
 		82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		8301381B1D060D0B00A1EE21 /* DaySummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DaySummaryCell.swift; path = timeLine/DaySummaryCell.swift; sourceTree = "<group>"; };
 		8314DC801D0C767600601B45 /* DummyDataBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyDataBaseOperation.swift; sourceTree = "<group>"; };
+		8314DC871D0D4B5500601B45 /* Vehicle.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Vehicle.storyboard; sourceTree = "<group>"; };
+		8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVehicleTableViewController.swift; sourceTree = "<group>"; };
+		8314DC8F1D0F9AAD00601B45 /* VehicleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleTableViewController.swift; sourceTree = "<group>"; };
+		8314DC911D0F9AFA00601B45 /* vehicleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = vehicleDetailsViewController.swift; sourceTree = "<group>"; };
 		831B12CC1D0641CF00D10CBA /* FuelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FuelCell.swift; path = timeLine/FuelCell.swift; sourceTree = "<group>"; };
 		831B12CE1D0643A200D10CBA /* OilCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OilCell.swift; path = timeLine/OilCell.swift; sourceTree = "<group>"; };
 		831B12D01D06448200D10CBA /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripCell.swift; path = timeLine/TripCell.swift; sourceTree = "<group>"; };
 		83548F231D09D2080013E67F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		83548F251D09EB040013E67F /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTripTableViewController.swift; sourceTree = "<group>"; };
+		8373C6A81D102C9C00E2C865 /* textFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = textFieldExtension.swift; sourceTree = "<group>"; };
 		838918451D0AE30C001F0060 /* TripDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailController.swift; sourceTree = "<group>"; };
-		83AEBCF11D075B8800B334FE /* user-Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "user-Profile.storyboard"; sourceTree = "<group>"; };
 		83AEBCF41D0767F100B334FE /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		83AEBCF61D08244300B334FE /* UserProfileEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileEditController.swift; sourceTree = "<group>"; };
 		83BAC89F1D048766006CC257 /* AbstractDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDao.swift; sourceTree = "<group>"; };
@@ -311,6 +325,15 @@
 		DC00956F1D075660000856FC /* ModelFeatureValue+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ModelFeatureValue+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		DC0095701D075660000856FC /* ModelFeatureValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFeatureValue.swift; sourceTree = "<group>"; };
 		DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceConnection.swift; sourceTree = "<group>"; };
+		DC0D49141D116AC700F5D9DC /* OilTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OilTableViewCell.swift; sourceTree = "<group>"; };
+		DC562BB51D1036680066B8A8 /* OilDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OilDetailsViewController.swift; sourceTree = "<group>"; };
+		DC562BB71D103E540066B8A8 /* FuelDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelDetailViewController.swift; sourceTree = "<group>"; };
+		DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryBoard.storyboard; sourceTree = "<group>"; };
+		DC778F281D0D708600F43AE8 /* Fuel.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Fuel.storyboard; path = ../Fuel.storyboard; sourceTree = "<group>"; };
+		DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = oil.storyboard; sourceTree = "<group>"; };
+		DC9A805E1D1166B30081C832 /* FuelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTableViewCell.swift; sourceTree = "<group>"; };
+		DCB398101D0D538900845B19 /* FuelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelTableViewController.swift; sourceTree = "<group>"; };
+		DCC01D0E1D0C4FE0009E66C3 /* AllOilTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllOilTableViewController.swift; sourceTree = "<group>"; };
 		DCE6DC401CFC33A400637977 /* DataValidations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValidations.swift; sourceTree = "<group>"; };
 		DCE6DC421CFC635D00637977 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -395,6 +418,9 @@
 			isa = PBXGroup;
 			children = (
 				82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */,
+				DCB398101D0D538900845B19 /* FuelTableViewController.swift */,
+				DC562BB71D103E540066B8A8 /* FuelDetailViewController.swift */,
+				DC9A805E1D1166B30081C832 /* FuelTableViewCell.swift */,
 			);
 			name = "Fuel Tracking";
 			sourceTree = "<group>";
@@ -415,6 +441,9 @@
 			isa = PBXGroup;
 			children = (
 				82057F781D048FDA00BC80DD /* AddOilViewController.swift */,
+				DCC01D0E1D0C4FE0009E66C3 /* AllOilTableViewController.swift */,
+				DC562BB51D1036680066B8A8 /* OilDetailsViewController.swift */,
+				DC0D49141D116AC700F5D9DC /* OilTableViewCell.swift */,
 			);
 			name = "Oil Tracking";
 			sourceTree = "<group>";
@@ -472,6 +501,9 @@
 			isa = PBXGroup;
 			children = (
 				82B2EFF41D103ED700EB171C /* Top Menu */,
+				8373C6AA1D103A5E00E2C865 /* TextFieldExtension */,
+				8314DC861D0D48F200601B45 /* Vehicle */,
+				82DEC9941D0F936A003E1154 /* Onboard View Controllers */,
 				83AEBCF31D0767B600B334FE /* User Profile */,
 				825BB0021D0C0C8900F44EA3 /* Webservice Integeration */,
 				82057F7C1D0490C700BC80DD /* Timeline */,
@@ -539,9 +571,11 @@
 			isa = PBXGroup;
 			children = (
 				827827621CF837D600684CE5 /* LaunchScreen.storyboard */,
-				8255E1991D0424450044C2CB /* HomeStoryBoard.storyboard */,
+				DC778F281D0D708600F43AE8 /* Fuel.storyboard */,
+				DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */,
 				8278275A1CF837D600684CE5 /* Main.storyboard */,
-				83AEBCF11D075B8800B334FE /* user-Profile.storyboard */,
+				8314DC871D0D4B5500601B45 /* Vehicle.storyboard */,
+				DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */,
 				829825631D0D538600FCC4C8 /* UserProfile.storyboard */,
 				829825651D0D718F00FCC4C8 /* VehicleTrips.storyboard */,
 				82278B1A1D10ECA3006B7A2A /* SideMenu.storyboard */,
@@ -646,6 +680,24 @@
 			);
 			name = fonts;
 			path = media/fonts;
+			sourceTree = "<group>";
+		};
+		8314DC861D0D48F200601B45 /* Vehicle */ = {
+			isa = PBXGroup;
+			children = (
+				8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */,
+				8314DC8F1D0F9AAD00601B45 /* VehicleTableViewController.swift */,
+				8314DC911D0F9AFA00601B45 /* vehicleDetailsViewController.swift */,
+			);
+			name = Vehicle;
+			sourceTree = "<group>";
+		};
+		8373C6AA1D103A5E00E2C865 /* TextFieldExtension */ = {
+			isa = PBXGroup;
+			children = (
+				8373C6A81D102C9C00E2C865 /* textFieldExtension.swift */,
+			);
+			name = TextFieldExtension;
 			sourceTree = "<group>";
 		};
 		83AEBCF31D0767B600B334FE /* User Profile */ = {
@@ -877,14 +929,15 @@
 				82501A7C1D05A9A3008272CB /* line.png in Resources */,
 				82F8B8C31CF89A2500E46B05 /* splash-background.png in Resources */,
 				82F8B8BE1CF8905B00E46B05 /* contm.ttf in Resources */,
+				DC778F291D0D708600F43AE8 /* Fuel.storyboard in Resources */,
 				82F8B8BF1CF8905B00E46B05 /* nasalization rg.ttf in Resources */,
+				DC778F2B1D0D7B3600F43AE8 /* oil.storyboard in Resources */,
 				82F8B8A11CF8807400E46B05 /* service-centers.png in Resources */,
 				82501A791D05A9A3008272CB /* flag.png in Resources */,
 				82501A801D05A9A3008272CB /* rainbow.png in Resources */,
 				82501A771D05A9A3008272CB /* add-trip.png in Resources */,
 				82501A811D05A9A3008272CB /* route.png in Resources */,
-				83AEBCF21D075B8800B334FE /* user-Profile.storyboard in Resources */,
-				8255E19A1D0424450044C2CB /* HomeStoryBoard.storyboard in Resources */,
+				8314DC881D0D4B5500601B45 /* Vehicle.storyboard in Resources */,
 				82F8B89F1CF8807400E46B05 /* logo.png in Resources */,
 				829825661D0D718F00FCC4C8 /* VehicleTrips.storyboard in Resources */,
 				82F8B8A41CF8807400E46B05 /* tips.png in Resources */,
@@ -903,6 +956,7 @@
 				82F8B8A21CF8807400E46B05 /* statistics.png in Resources */,
 				82501A7D1D05A9A3008272CB /* Odometer.png in Resources */,
 				82F8B8BD1CF8905B00E46B05 /* contl.ttf in Resources */,
+				DC778F271D0D6FB600F43AE8 /* HomeStoryBoard.storyboard in Resources */,
 				8278275C1CF837D600684CE5 /* Main.storyboard in Resources */,
 				82501A831D05A9A3008272CB /* timeline-circle.png in Resources */,
 				829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */,
@@ -1183,6 +1237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC562BB81D103E540066B8A8 /* FuelDetailViewController.swift in Sources */,
 				82D6D2011D0CA308005C1AA6 /* LoginViewController.swift in Sources */,
 				DC0095751D075660000856FC /* ServiceProviderCalender+CoreDataProperties.swift in Sources */,
 				8265E7F11D0583780039D0AF /* AppDelegate.swift in Sources */,
@@ -1201,14 +1256,18 @@
 				DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */,
 				DC0095851D075660000856FC /* TrackingType+CoreDataProperties.swift in Sources */,
 				DC0095951D075660000856FC /* Service+CoreDataProperties.swift in Sources */,
+				8314DC921D0F9AFA00601B45 /* vehicleDetailsViewController.swift in Sources */,
 				83548F261D09EB040013E67F /* MapController.swift in Sources */,
 				8301381C1D060D0B00A1EE21 /* DaySummaryCell.swift in Sources */,
 				DC00959A1D075660000856FC /* ModelFeatureValue.swift in Sources */,
 				DC0095841D075660000856FC /* Make.swift in Sources */,
+				DC0D49151D116AC700F5D9DC /* OilTableViewCell.swift in Sources */,
 				83548F281D0A1CD30013E67F /* AllTripTableViewController.swift in Sources */,
 				DC0095911D075660000856FC /* VehicleModel+CoreDataProperties.swift in Sources */,
 				82B980161D10164100B0658A /* Device Webservices.swift in Sources */,
 				8278275F1CF837D600684CE5 /* ZOBA.xcdatamodeld in Sources */,
+				DCC01D0F1D0C4FE0009E66C3 /* AllOilTableViewController.swift in Sources */,
+				DCB398111D0D538900845B19 /* FuelTableViewController.swift in Sources */,
 				DC0095891D075660000856FC /* MyUser+CoreDataProperties.swift in Sources */,
 				DC00958F1D075660000856FC /* ServiceProviderAddress+CoreDataProperties.swift in Sources */,
 				DC0095821D075660000856FC /* Model.swift in Sources */,
@@ -1222,6 +1281,9 @@
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
 				8200B8591D0C5CF0007AB057 /* UserDefaultsMapping.swift in Sources */,
 				DC0095961D075660000856FC /* Service.swift in Sources */,
+				8373C6A91D102C9C00E2C865 /* textFieldExtension.swift in Sources */,
+				DC9A805F1D1166B30081C832 /* FuelTableViewCell.swift in Sources */,
+				DC562BB61D1036680066B8A8 /* OilDetailsViewController.swift in Sources */,
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
 				8314DC811D0C767600601B45 /* DummyDataBaseOperation.swift in Sources */,
 				DC00957D1D075660000856FC /* Trim+CoreDataProperties.swift in Sources */,
@@ -1231,6 +1293,8 @@
 				825BB0061D0C266D00F44EA3 /* StringConstants.swift in Sources */,
 				DC0095921D075660000856FC /* VehicleModel.swift in Sources */,
 				DC0095981D075660000856FC /* Vehicle.swift in Sources */,
+				8314DC901D0F9AAD00601B45 /* VehicleTableViewController.swift in Sources */,
+				8314DC8C1D0DE6FF00601B45 /* AddVehicleTableViewController.swift in Sources */,
 				DC0095721D075660000856FC /* Year.swift in Sources */,
 				8298256A1D0EBA6F00FCC4C8 /* TripTableViewCell.swift in Sources */,
 				831B12CF1D0643A200D10CBA /* OilCell.swift in Sources */,
@@ -1240,7 +1304,6 @@
 				DC0095871D075660000856FC /* CarFeature+CoreDataProperties.swift in Sources */,
 				8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */,
 				82057F791D048FDA00BC80DD /* AddOilViewController.swift in Sources */,
-				82057F741D048C1700BC80DD /* AddVehicleViewController.swift in Sources */,
 				82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */,
 				82278B1D1D10ED1E006B7A2A /* MenuTableViewController.swift in Sources */,
 				DC00957B1D075660000856FC /* TripCoordinate+CoreDataProperties.swift in Sources */,

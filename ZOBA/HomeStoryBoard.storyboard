@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
+<<<<<<< HEAD
         <!--Oil-->
         <scene sceneID="4OB-aV-A4D">
             <objects>
@@ -272,6 +273,8 @@
             </objects>
             <point key="canvasLocation" x="-8" y="391"/>
         </scene>
+=======
+>>>>>>> master
         <!--Timeline View Controller-->
         <scene sceneID="VAS-Xl-VBW">
             <objects>
@@ -688,7 +691,11 @@
         <!--Home View Controller-->
         <scene sceneID="xdp-DQ-QeS">
             <objects>
+<<<<<<< HEAD
                 <tabBarController storyboardIdentifier="HomeTabController" id="Bsm-7X-oUo" customClass="HomeViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+=======
+                <tabBarController id="Bsm-7X-oUo" customClass="HomeViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+>>>>>>> master
                     <tabBar key="tabBar" contentMode="scaleToFill" id="cKk-VT-02O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -697,8 +704,8 @@
                     <connections>
                         <segue destination="fgU-MI-soC" kind="relationship" relationship="viewControllers" id="5BT-kS-6ss"/>
                         <segue destination="qay-JZ-e3m" kind="relationship" relationship="viewControllers" id="dnA-9a-WOX"/>
-                        <segue destination="Rtg-Um-jp5" kind="relationship" relationship="viewControllers" id="iTl-CT-n1f"/>
-                        <segue destination="Qdf-W2-K38" kind="relationship" relationship="viewControllers" id="kiK-Dp-zQf"/>
+                        <segue destination="3HQ-vn-n6j" kind="relationship" relationship="viewControllers" id="PEY-6b-vdP"/>
+                        <segue destination="HM2-tb-EGk" kind="relationship" relationship="viewControllers" id="K78-Yj-pDI"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhD-uO-dUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -716,43 +723,25 @@
             </objects>
             <point key="canvasLocation" x="96.5" y="-421"/>
         </scene>
-        <!--Fuel Navigation-->
-        <scene sceneID="M4f-fy-Q6b">
+        <!--Fuel-->
+        <scene sceneID="UNW-a4-KeQ">
             <objects>
-                <navigationController title="Fuel Navigation" automaticallyAdjustsScrollViewInsets="NO" id="Rtg-Um-jp5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="bsR-c4-5mv"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Iwa-ov-45F">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Z8t-w3-4El" kind="relationship" relationship="rootViewController" id="GLu-YQ-VWM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fp1-lX-780" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Fuel" id="3HQ-vn-n6j" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Klt-iH-mtQ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7A1-qP-dwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-540" y="391"/>
+            <point key="canvasLocation" x="-627.5" y="-196"/>
         </scene>
-        <!--Oil Navigation-->
-        <scene sceneID="k8F-XS-zcZ">
+        <!--oil-->
+        <scene sceneID="SIK-NY-ljq">
             <objects>
-                <navigationController title="Oil Navigation" automaticallyAdjustsScrollViewInsets="NO" id="Qdf-W2-K38" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="d5p-eC-N9D"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MrA-f7-JAV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="oxI-uy-H9T" kind="relationship" relationship="rootViewController" id="53O-uv-QgM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1s1-AS-dWf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="oil" id="HM2-tb-EGk" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="69N-vb-c4K"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0IP-VG-3es" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-556" y="1210"/>
+            <point key="canvasLocation" x="-587.5" y="628"/>
         </scene>
         <!--Time Line Navigation-->
         <scene sceneID="Jan-4d-pLy">
@@ -785,7 +774,6 @@
         <image name="add-oil.png" width="104" height="104"/>
         <image name="add-trip.png" width="104" height="104"/>
         <image name="calendar.png" width="2230" height="2318"/>
-        <image name="chats_icon" width="20" height="22"/>
         <image name="flag.png" width="1984" height="2480"/>
         <image name="gas-level.png" width="1434" height="1434"/>
         <image name="hexa.png" width="388" height="447"/>
