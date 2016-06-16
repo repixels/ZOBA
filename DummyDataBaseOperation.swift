@@ -41,7 +41,7 @@ class DummyDataBaseOperation {
     }
     
     
-    func submit(){
+    static func submit(){
         
         
         let image = UIImage(named: "add-trip")
@@ -63,11 +63,7 @@ class DummyDataBaseOperation {
         }
         
     }
-    
-    static func populateFirstTime()
-    {
-        self.populateYear()
-    }
+
 
     static func saveTrackingType(managedObjectContext moc : NSManagedObjectContext , name: String?)
     {
@@ -148,42 +144,43 @@ class DummyDataBaseOperation {
     
     static func populateDays()
     {
-        var days : [Days]?
         
-        days![0] = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
-        days![0].name = "Sunday"
-        days![0].dayId = 1
-        days![0].save()
         
-        days![1] = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
-        days![1].name = "Monday"
-        days![1].dayId = 2
-        days![1].save()
         
-        days![2] = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
-        days![2].name = "Tuesday"
-        days![2].dayId = 3
-        days![2].save()
+        let sunday = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
+        sunday.name = "Sunday"
+        sunday.dayId = 1
+        sunday.save()
         
-        days![3] = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
-        days![3].name = "Wednesday"
-        days![3].dayId = 4
-        days![3].save()
+        let monday = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
+        monday.name = "Monday"
+        monday.dayId = 2
+        monday.save()
         
-        days![4] = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
-        days![4].name = "Thursday"
-        days![4].dayId = 5
-        days![4].save()
+        let tuesday = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
+        tuesday.name = "Tuesday"
+        tuesday.dayId = 3
+        tuesday.save()
         
-        days![5] = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
-        days![5].name = "Friday"
-        days![5].dayId = 6
-        days![5].save()
+        let wednesday = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
+        wednesday.name = "Wednesday"
+        wednesday.dayId = 4
+        wednesday.save()
         
-        days![6] = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
-        days![6].name = "Saturday"
-        days![6].dayId = 7
-        days![6].save()
+        let thursday = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
+        thursday.name = "Thursday"
+        thursday.dayId = 5
+        thursday.save()
+        
+        let friday = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
+        friday.name = "Friday"
+        friday.dayId = 6
+        friday.save()
+        
+        let saturday = Days(managedObjectContext: SessionObjects.currentManageContext , entityName: "Days")
+        saturday.name = "Saturday"
+        saturday.dayId = 7
+        saturday.save()
         
         
     }
@@ -212,28 +209,36 @@ class DummyDataBaseOperation {
         serviceProviderPhone.phone = "19623"
         serviceProviderPhone.phoneId = 1
         
+        let service = Service(managedObjectContext: SessionObjects.currentManageContext , entityName: "Service")
+        service.name = "Fuel Service"
+        service.serviceId = 1
+        
+        let service2 = Service(managedObjectContext: SessionObjects.currentManageContext , entityName: "Service")
+        service2.name = "Oil Service"
+        service2.serviceId = 2
         
         let serviceTypes = TrackingType(managedObjectContext: SessionObjects.currentManageContext , entityName: "TrackingType")
         serviceTypes.name = "Vehicle Refuelling"
         serviceTypes.typeId = 1
+        serviceTypes.service = service
         
-        let service = Service(managedObjectContext: SessionObjects.currentManageContext , entityName: "Service")
-        service.name = "Fuel Service"
-        service.serviceId = 1
+        let serviceTypes2 = TrackingType(managedObjectContext: SessionObjects.currentManageContext , entityName: "TrackingType")
+        serviceTypes2.name = "Oil Change"
+        serviceTypes2.typeId = 2
+        serviceTypes2.service = service
         
         let serviceProviderServices = ServiceProviderServices(managedObjectContext: SessionObjects.currentManageContext , entityName: "ServiceProviderServices")
         serviceProviderServices.startingHour = 28800
         serviceProviderServices.endingHour = 64800
         serviceProviderServices.service = service
         
-        
-        
-        let serviceProvider = ServiceProvider(managedObjectContext: SessionObjects.currentManageContext, entityName: "ServicePro")
+        let serviceProvider = ServiceProvider(managedObjectContext: SessionObjects.currentManageContext, entityName: "ServiceProvider")
         serviceProvider.address = serviceProviderAddress
         serviceProvider.calender?.mutableSetValueForKey("calender").addObject(serviceProviderCalendar)
         serviceProvider.email = "info@total.eg"
         serviceProvider.webSite = "total.eg"
-        
+        serviceProvider.phone?.mutableSetValueForKey("phone").addObject(serviceProviderPhone)
+        serviceProvider.save()
         
         
     }
@@ -264,25 +269,7 @@ class DummyDataBaseOperation {
         
     }
     
-    
-    static func populateData()
-    {
-        DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Swift")
-        
-        DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Huyndai")
-        
-        DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Ferarri")
-        
-        DummyDataBaseOperation.saveTrackingType(managedObjectContext: SessionObjects.currentManageContext, name: "oil")
-        DummyDataBaseOperation.saveTrackingType(managedObjectContext: SessionObjects.currentManageContext, name: "fuel")
-        DummyDataBaseOperation.saveServiceProvider(managedObjectContext: SessionObjects.currentManageContext, name: "Lancer Ser")
-        
-        DummyDataBaseOperation.saveServiceProvider(managedObjectContext: SessionObjects.currentManageContext, name: "Swift Ser")
-        
-        DummyDataBaseOperation.saveServiceProvider(managedObjectContext: SessionObjects.currentManageContext, name: "Huyndai Ser")
-    }
-    
-    func populateMeasuringUnit()
+    static func populateMeasuringUnit()
     {
         let kilometer =  MeasuringUnit(managedObjectContext: SessionObjects.currentManageContext , entityName: "MeasuringUnit")
         kilometer.name = "Kilometer"
@@ -298,5 +285,19 @@ class DummyDataBaseOperation {
         liters.name = "Liters"
         liters.suffix = "L"
         liters.save()
+    }
+    
+    static func populateOnlyOnce()
+    {
+        DummyDataBaseOperation.populateMeasuringUnit()
+        DummyDataBaseOperation.populateDays()
+    }
+    
+    static func populateData()
+    {
+        DummyDataBaseOperation.populateMake()
+        DummyDataBaseOperation.populateYear()
+        DummyDataBaseOperation.populateModel()
+        DummyDataBaseOperation.populateServiceProvider()
     }
 }
