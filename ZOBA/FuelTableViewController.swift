@@ -60,13 +60,7 @@ class FuelTableViewController: UITableViewController {
         cell.startingOdemeterLabel.text = String(data[indexPath.row].initialOdemeter)
 
         // Configure the cell...
-        
-       // var cell = CustomTableViewCell
-        
-
-//        cell.textLabel?.text = String(data[indexPath.row].initialOdemeter)
-//        cell.detailTextLabel?.text = String(NSDate(timeIntervalSince1970:data[indexPath.row].dateAdded))
-        return cell
+            return cell
     }
  
 
