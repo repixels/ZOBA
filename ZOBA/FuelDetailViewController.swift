@@ -32,7 +32,7 @@ class FuelDetailViewController: UIViewController {
         dateAded.text = String(data.dateAdded)
         fuelAmount.text = data.value
         currentOdemetr.text = String(data.initialOdemeter)
-        serviceProvider.text = "Shell"
+        serviceProvider.text = data.serviceProviderName
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

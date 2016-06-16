@@ -27,7 +27,7 @@ class FuelTableViewController: UITableViewController {
         
         dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
         
-       data = dao.selectByString(entityName: "TrackingData", AttributeName: "trackingType.name", value: "fuel") as![TrackingData]
+       data = dao.selectByInt(entityName: "TrackingData", AttributeName: "trackingType.typeId", value: 1) as![TrackingData]
         
         
         self.tableView.reloadData()
@@ -56,7 +56,7 @@ class FuelTableViewController: UITableViewController {
         
         cell.fuelAmountLabel.text = data[indexPath.row].value
         cell.fuelUnitLabel.text = "Liters"
-        cell.serviceProviderNameLabel.text = "Shell Helix"
+        cell.serviceProviderNameLabel.text = data[indexPath.row].serviceProviderName
         cell.startingOdemeterLabel.text = String(data[indexPath.row].initialOdemeter)
 
         // Configure the cell...

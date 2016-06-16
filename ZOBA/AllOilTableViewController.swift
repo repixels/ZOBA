@@ -31,9 +31,8 @@ class AllOilTableViewController: UITableViewController {
         let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
         
          dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
-        data = dao.selectByString(entityName: "TrackingData", AttributeName: "trackingType.name", value: "oil") as![TrackingData]
+        data = dao.selectByInt(entityName: "TrackingData", AttributeName: "trackingType.typeId", value: 2) as![TrackingData]
         
-
         
         self.tableView.reloadData()
         
@@ -68,7 +67,8 @@ class AllOilTableViewController: UITableViewController {
         cell.oilAmountLabel.text = data[indexPath.row].value
         cell.oilMesuringUnitLabel.text = "Liters"
         cell.startingOdemeterLabel.text = String(data[indexPath.row].initialOdemeter)
-
+        cell.serviceProvideLabel.text = data[indexPath.row].serviceProviderName
+        
         
         return cell
     }

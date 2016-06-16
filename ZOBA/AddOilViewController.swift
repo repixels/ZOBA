@@ -238,17 +238,13 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         trackingDataObj.dateAdded = datePickerView.date
         
-        let trackingTypeObj = TrackingData(managedObjectContext:SessionObjects.currentManageContext, entityName: "TrackingData")
-        
-       trackingTypeObj.value = "oil"
-    
-       trackingTypeObj.save()
+        trackingDataObj.serviceProviderName = pickerViewTextField.text
         
        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
-        let typeObj = dao.selectByInt(entityName: "TrackingType", AttributeName: "name", value: 2) as![TrackingType]
+        let typeObj = dao.selectByInt(entityName: "TrackingType", AttributeName: "typeId", value: 2) as![TrackingType]
         
-        trackingDataObj.trackingType = typeObj[0]
+        trackingDataObj.trackingType = typeObj.first
         
         trackingDataObj.vehicle = selectedVehicle
         

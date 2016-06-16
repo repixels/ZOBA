@@ -260,10 +260,12 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         trackingDataObj.value = fuelAmountTextField.text!
         
         trackingDataObj.dateAdded = datePickerView.date
+        
+        trackingDataObj.serviceProviderName = serviceProviderTextFeild.text
     
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
-        let typeObj = dao.selectByInt(entityName: "TrackingType", AttributeName: "name", value: 1) as![TrackingType]
+        let typeObj = dao.selectByInt(entityName: "TrackingType", AttributeName: "typeId", value: 1) as![TrackingType]
         
         trackingDataObj.trackingType = typeObj[0]
         

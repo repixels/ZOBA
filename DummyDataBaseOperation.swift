@@ -243,6 +243,7 @@ class DummyDataBaseOperation {
         serviceProvider.email = "info@total.eg"
         serviceProvider.webSite = "total.eg"
         serviceProvider.phone?.mutableSetValueForKey("phone").addObject(serviceProviderPhone)
+        serviceProvider.name = "total"
         serviceProvider.save()
         
         
