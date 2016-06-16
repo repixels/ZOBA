@@ -8,13 +8,14 @@
 
 import UIKit
 
-class VehicleTableViewController: UITableViewController {
+class VehicleTableViewController: UITableViewController , MapDetectionDelegate {
     
     var vehicles : [Vehicle]!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        SessionObjects.motionMonitor = LocationMonitor(delegate: self)
+        SessionObjects.motionMonitor.stopTrip()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -117,27 +118,45 @@ class VehicleTableViewController: UITableViewController {
         
     }
     
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-     }
-     */
     
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
+    func showAlert(){
+        let alert = UIAlertController(title: "Zoba", message: "looks like you are moving  ", preferredStyle: .Alert)
+        
+        let activateAutoReport = UIAlertAction(title: "Auto report", style:.Default) { (action) in
+            print("auto reprt started")
+            SessionObjects.motionMonitor.startNewTrip()
+            //                        SessionObjects.motionMonitor.startDetection()
+            dispatch_async(dispatch_get_main_queue(), { 
+                
+                let story = UIStoryboard.init(name: "MotionDetection", bundle: nil)
+                let controller = story.instantiateInitialViewController()
+                
+                self.presentViewController(controller!, animated: true, completion: nil)
+                
+            })
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: nil)
+        
+        
+        alert.addAction(activateAutoReport)
+        alert.addAction(cancel)
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
-    /*
-     // MARK: - Navigation
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    func showStopAlert(){
+        let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .Alert)
+        
+        let activateAutoReport = UIAlertAction(title: "ok", style:.Default) { (action) in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        
+        
+        alert.addAction(activateAutoReport)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
 }

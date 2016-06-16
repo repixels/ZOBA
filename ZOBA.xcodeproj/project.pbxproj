@@ -71,6 +71,12 @@
 		82F8B8C91CF8B52A00E46B05 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */; };
 		82F8B8CA1CF8B52A00E46B05 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */; };
 		8301381C1D060D0B00A1EE21 /* DaySummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8301381B1D060D0B00A1EE21 /* DaySummaryCell.swift */; };
+		830ACD791D119B7F00AD457B /* CoordinateList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 830ACD761D119B7F00AD457B /* CoordinateList.plist */; };
+		830ACD7A1D119B7F00AD457B /* LocationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830ACD771D119B7F00AD457B /* LocationMonitor.swift */; };
+		830ACD7B1D119B7F00AD457B /* LocationPlistManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830ACD781D119B7F00AD457B /* LocationPlistManager.swift */; };
+		830ACD7D1D11A0BE00AD457B /* MotionDetection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 830ACD7C1D11A0BE00AD457B /* MotionDetection.storyboard */; };
+		830ACD7F1D11A20800AD457B /* MotionDetecionMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830ACD7E1D11A20800AD457B /* MotionDetecionMapController.swift */; };
+		830ACD811D11A47300AD457B /* MapDetectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830ACD801D11A47300AD457B /* MapDetectionDelegate.swift */; };
 		8314DC811D0C767600601B45 /* DummyDataBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC801D0C767600601B45 /* DummyDataBaseOperation.swift */; };
 		8314DC881D0D4B5500601B45 /* Vehicle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8314DC871D0D4B5500601B45 /* Vehicle.storyboard */; };
 		8314DC8C1D0DE6FF00601B45 /* AddVehicleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */; };
@@ -259,6 +265,12 @@
 		82F8B8C61CF8B52A00E46B05 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		82F8B8C71CF8B52A00E46B05 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		8301381B1D060D0B00A1EE21 /* DaySummaryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DaySummaryCell.swift; path = timeLine/DaySummaryCell.swift; sourceTree = "<group>"; };
+		830ACD761D119B7F00AD457B /* CoordinateList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CoordinateList.plist; sourceTree = "<group>"; };
+		830ACD771D119B7F00AD457B /* LocationMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationMonitor.swift; sourceTree = "<group>"; };
+		830ACD781D119B7F00AD457B /* LocationPlistManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPlistManager.swift; sourceTree = "<group>"; };
+		830ACD7C1D11A0BE00AD457B /* MotionDetection.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MotionDetection.storyboard; sourceTree = "<group>"; };
+		830ACD7E1D11A20800AD457B /* MotionDetecionMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionDetecionMapController.swift; sourceTree = "<group>"; };
+		830ACD801D11A47300AD457B /* MapDetectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDetectionDelegate.swift; sourceTree = "<group>"; };
 		8314DC801D0C767600601B45 /* DummyDataBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyDataBaseOperation.swift; sourceTree = "<group>"; };
 		8314DC871D0D4B5500601B45 /* Vehicle.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Vehicle.storyboard; sourceTree = "<group>"; };
 		8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVehicleTableViewController.swift; sourceTree = "<group>"; };
@@ -470,6 +482,7 @@
 		8278274A1CF837D600684CE5 = {
 			isa = PBXGroup;
 			children = (
+				830ACD6D1D119A5600AD457B /* Motion Detection */,
 				DCFC30E11CFDDF250018BBD3 /* DAO */,
 				DCFC30DA1CFDDE740018BBD3 /* poco */,
 				827827551CF837D600684CE5 /* ZOBA */,
@@ -567,6 +580,7 @@
 		82EF3BF01D0573B100AC103C /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				830ACD7C1D11A0BE00AD457B /* MotionDetection.storyboard */,
 				827827621CF837D600684CE5 /* LaunchScreen.storyboard */,
 				DC778F281D0D708600F43AE8 /* Fuel.storyboard */,
 				DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */,
@@ -678,6 +692,18 @@
 			path = media/fonts;
 			sourceTree = "<group>";
 		};
+		830ACD6D1D119A5600AD457B /* Motion Detection */ = {
+			isa = PBXGroup;
+			children = (
+				830ACD761D119B7F00AD457B /* CoordinateList.plist */,
+				830ACD771D119B7F00AD457B /* LocationMonitor.swift */,
+				830ACD781D119B7F00AD457B /* LocationPlistManager.swift */,
+				830ACD7E1D11A20800AD457B /* MotionDetecionMapController.swift */,
+				830ACD801D11A47300AD457B /* MapDetectionDelegate.swift */,
+			);
+			name = "Motion Detection";
+			sourceTree = "<group>";
+		};
 		8314DC861D0D48F200601B45 /* Vehicle */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,6 +798,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8278277E1CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBA" */;
 			buildPhases = (
+				88AF5081DE364F21C0B42F53 /* 📦 Check Pods Manifest.lock */,
 				EC940CFFF9A48F95D36CAB9B /* [CP] Check Pods Manifest.lock */,
 				BC6AB6838CF825B6FCF1C696 /* [CP] Check Pods Manifest.lock */,
 				8278274F1CF837D600684CE5 /* Sources */,
@@ -797,6 +824,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 827827811CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBATests" */;
 			buildPhases = (
+				C7764838E272A81429FF7A4A /* 📦 Check Pods Manifest.lock */,
 				0B31482077938DEA81894FD4 /* [CP] Check Pods Manifest.lock */,
 				3B04073713425CEBC571F285 /* [CP] Check Pods Manifest.lock */,
 				827827661CF837D600684CE5 /* Sources */,
@@ -821,6 +849,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 827827841CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBAUITests" */;
 			buildPhases = (
+				D8D380FE560BB4DAA0EBECD2 /* 📦 Check Pods Manifest.lock */,
 				32EC0646C54416C2BC13C26E /* [CP] Check Pods Manifest.lock */,
 				EC708C73D3D50BDE278DB3C8 /* [CP] Check Pods Manifest.lock */,
 				827827711CF837D600684CE5 /* Sources */,
@@ -944,9 +973,11 @@
 				829825641D0D538600FCC4C8 /* UserProfile.storyboard in Resources */,
 				82501A751D05A9A3008272CB /* add-fuel.png in Resources */,
 				827827611CF837D600684CE5 /* Assets.xcassets in Resources */,
+				830ACD791D119B7F00AD457B /* CoordinateList.plist in Resources */,
 				82F8B8C01CF8905B00E46B05 /* sf-outer-limits.upright.ttf in Resources */,
 				82F8B8A31CF8807400E46B05 /* street.png in Resources */,
 				82F8B8BC1CF8905B00E46B05 /* contb.ttf in Resources */,
+				830ACD7D1D11A0BE00AD457B /* MotionDetection.storyboard in Resources */,
 				82F8B8A51CF8807400E46B05 /* tracking.png in Resources */,
 				82F8B8A21CF8807400E46B05 /* statistics.png in Resources */,
 				82501A7D1D05A9A3008272CB /* Odometer.png in Resources */,
@@ -1135,6 +1166,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		88AF5081DE364F21C0B42F53 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		907F6ED4AB25A244D87C8468 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1180,6 +1226,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		C7764838E272A81429FF7A4A /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		D8C70AD28D2074D735BE96A1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1193,6 +1254,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8D380FE560BB4DAA0EBECD2 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		EC708C73D3D50BDE278DB3C8 /* [CP] Check Pods Manifest.lock */ = {
@@ -1246,6 +1322,7 @@
 				DC0095861D075660000856FC /* TrackingType.swift in Sources */,
 				DC0095931D075660000856FC /* ServiceProviderServices+CoreDataProperties.swift in Sources */,
 				DC00958A1D075660000856FC /* MyUser.swift in Sources */,
+				830ACD7F1D11A20800AD457B /* MotionDetecionMapController.swift in Sources */,
 				DC00958D1D075660000856FC /* TrackingData+CoreDataProperties.swift in Sources */,
 				831B12D11D06448200D10CBA /* TripCell.swift in Sources */,
 				DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */,
@@ -1287,6 +1364,7 @@
 				DC0095761D075660000856FC /* ServiceProviderCalender.swift in Sources */,
 				DC0095711D075660000856FC /* Year+CoreDataProperties.swift in Sources */,
 				825BB0061D0C266D00F44EA3 /* StringConstants.swift in Sources */,
+				830ACD811D11A47300AD457B /* MapDetectionDelegate.swift in Sources */,
 				DC0095921D075660000856FC /* VehicleModel.swift in Sources */,
 				DC0095981D075660000856FC /* Vehicle.swift in Sources */,
 				8314DC901D0F9AAD00601B45 /* VehicleTableViewController.swift in Sources */,
@@ -1299,6 +1377,7 @@
 				DC00958C1D075660000856FC /* ServiceProvider.swift in Sources */,
 				DC0095871D075660000856FC /* CarFeature+CoreDataProperties.swift in Sources */,
 				8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */,
+				830ACD7B1D119B7F00AD457B /* LocationPlistManager.swift in Sources */,
 				82057F791D048FDA00BC80DD /* AddOilViewController.swift in Sources */,
 				82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */,
 				DC00957B1D075660000856FC /* TripCoordinate+CoreDataProperties.swift in Sources */,
@@ -1310,6 +1389,7 @@
 				DC0095971D075660000856FC /* Vehicle+CoreDataProperties.swift in Sources */,
 				82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */,
 				DC00957E1D075660000856FC /* Trim.swift in Sources */,
+				830ACD7A1D119B7F00AD457B /* LocationMonitor.swift in Sources */,
 				DC0095781D075660000856FC /* Days.swift in Sources */,
 				DC0095881D075660000856FC /* CarFeature.swift in Sources */,
 				DC0095831D075660000856FC /* Make+CoreDataProperties.swift in Sources */,
