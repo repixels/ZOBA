@@ -98,7 +98,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         
         selectedVehicle = vehicles[vehiclesPickerView.selectedRowInComponent(0)]
-        currentOdemeter.text = String(selectedVehicle.currentOdemeter)
+        currentOdemeter.text = String(selectedVehicle.currentOdemeter!)
         
         
     }
@@ -116,7 +116,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
             self.isFirstCoordinateValid = true
             self.isDestinationCoordinateValid = true
             
-            currentOdemeter.text = String(trip.initialOdemeter)
+            currentOdemeter.text = String(trip.initialOdemeter!)
             coveredKm.text = String(trip.coveredKm)
             finalOdemeter.text = String(Int(trip.initialOdemeter!) + Int(trip.coveredKm!))
             let coordinates = trip.coordinates?.allObjects as! [TripCoordinate]
@@ -254,8 +254,8 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     @IBAction func coveredKmEdited(sender: AnyObject){
         
         if ( self.coveredKm.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(self.coveredKm.text!) && Int(self.coveredKm.text!)! > 0 ){
-            let km = Int(self.coveredKm.text!)!
-            let distance : Int = km + Int(self.currentOdemeter.text!)!
+            let km = Int(self.coveredKm.text!)
+            let distance : Int = km! + Int(self.currentOdemeter.text!)!
             
             if((String(distance)).characters.count < self.finalOdemeter.maxLength){
                 
