@@ -47,23 +47,9 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
         super.viewWillAppear(true)
         
-        //initialOdemeter.text = String(selectedVehicle.initialOdemeter)
+        initialOdemeter.text = String(selectedVehicle.currentOdemeter!)
         
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        
-       
-        let trackingData = dao.selectAll(entityName: "TrackingData")
-        
-        if trackingData.count == 0
-        {
-            initialOdemeter.text = String(selectedVehicle.initialOdemeter)
-        }
-        else
-        {
-            let lastObj = trackingData.last as! TrackingData
-            
-            initialOdemeter.text = String(lastObj.initialOdemeter)
-        }
 
         
         vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
@@ -283,6 +269,8 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
         trackingDataObj.vehicle =  selectedVehicle
         
+        selectedVehicle.currentOdemeter = trackingDataObj.initialOdemeter
+        
         trackingDataObj.save()
         
         performSegueWithIdentifier("allData", sender: self)
@@ -301,7 +289,6 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         datePickerView.addTarget(self, action: #selector(AddFuelViewController.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
 
      }
-    
     
     func datePickerValueChanged(sender:UIDatePicker) {
         

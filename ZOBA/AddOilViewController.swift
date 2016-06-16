@@ -141,9 +141,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     @IBAction func currentEditingDidEnd(sender: AnyObject) {
         
-       // let vehicleObj = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
-        
-        
         if (NSNumber(integer: Int(currentOdoMeterTextField.text!)!).integerValue > selectedVehicle.currentOdemeter!.integerValue ) {
             
              showValidMessage("Current Odemeter" , textField: currentOdoMeterTextField)
@@ -202,22 +199,9 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
        
-        // initialOdemeter.text = String(selectedVehicle.initialOdemeter)
+         initialOdemeter.text = String(selectedVehicle.currentOdemeter!)
         
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        
-        let trackingData = dao.selectAll(entityName: "TrackingData")
-        
-        if trackingData.count == 0
-        {
-            initialOdemeter.text = String(selectedVehicle.initialOdemeter!)
-        }
-        else
-        {
-            let lastObj = trackingData.last as! TrackingData
-            
-            initialOdemeter.text = String(lastObj.initialOdemeter)
-        }
         
         let serviceProviderDAO = dao.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
         
@@ -270,6 +254,8 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         trackingDataObj.trackingType = typeObj[0]
         
         trackingDataObj.vehicle = selectedVehicle
+        
+        selectedVehicle.currentOdemeter = trackingDataObj.initialOdemeter
         
         trackingDataObj.save()
         
