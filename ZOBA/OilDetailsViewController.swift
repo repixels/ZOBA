@@ -11,20 +11,6 @@ import TextFieldEffects
 
 class OilDetailsViewController: UIViewController {
 
-//    
-//    @IBOutlet weak var dateAdedd: UILabel!
-//  
-//    
-//    @IBOutlet weak var currentOdemeter: UILabel!
-//  
-//    
-//    @IBOutlet weak var serviceProvider: UILabel!
-//    
-//    
-//    @IBOutlet weak var oilAmount: UILabel!
-//    
-    
-    
     @IBOutlet weak var dateAdedd: HoshiTextField!
     
     @IBOutlet weak var currentOdemeter: HoshiTextField!
@@ -47,6 +33,7 @@ class OilDetailsViewController: UIViewController {
         currentOdemeter.text = String(data.initialOdemeter)
         dateAdedd.text = String(NSDate(timeIntervalSince1970: data.dateAdded))
         oilAmount.text = data.value
+        serviceProvider.text = "Shell"
     }
     
     override func didReceiveMemoryWarning() {
@@ -54,7 +41,6 @@ class OilDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     
     
     /*
