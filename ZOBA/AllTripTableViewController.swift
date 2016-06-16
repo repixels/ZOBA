@@ -90,8 +90,8 @@ class AllTripTableViewController: UITableViewController {
         let coordinates = trips[indexPath.row].coordinates!.allObjects as![TripCoordinate]
         let first = coordinates.first //as! TripCoordinate
         print(first!.latitude)
-        cell.endingLocationLabel.text = String(coordinates.last?.latitude!)
-        cell.startingLocationLabel.text = String(coordinates.first?.latitude!)
+        cell.endingLocationLabel.text = String(coordinates.last!.latitude!)
+        cell.startingLocationLabel.text = String(coordinates.first!.latitude!)
         
         return cell
     }
