@@ -209,28 +209,33 @@ class DummyDataBaseOperation {
         serviceProviderPhone.phone = "19623"
         serviceProviderPhone.phoneId = 1
         
-        let service = Service(managedObjectContext: SessionObjects.currentManageContext , entityName: "Service")
-        service.name = "Fuel Service"
-        service.serviceId = 1
+        let typeMeasuringUnit = (dao.selectByString(entityName: "MeasuringUnit", AttributeName: "suffix", value: "L") as! [MeasuringUnit])[0]
         
-        let service2 = Service(managedObjectContext: SessionObjects.currentManageContext , entityName: "Service")
-        service2.name = "Oil Service"
-        service2.serviceId = 2
+        let fuelService = Service(managedObjectContext: SessionObjects.currentManageContext , entityName: "Service")
+        fuelService.name = "Fuel Service"
+        fuelService.serviceId = 1
         
-        let serviceTypes = TrackingType(managedObjectContext: SessionObjects.currentManageContext , entityName: "TrackingType")
-        serviceTypes.name = "Vehicle Refuelling"
-        serviceTypes.typeId = 1
-        serviceTypes.service = service
         
-        let serviceTypes2 = TrackingType(managedObjectContext: SessionObjects.currentManageContext , entityName: "TrackingType")
-        serviceTypes2.name = "Oil Change"
-        serviceTypes2.typeId = 2
-        serviceTypes2.service = service
+        let oilService = Service(managedObjectContext: SessionObjects.currentManageContext , entityName: "Service")
+        oilService.name = "Oil Service"
+        oilService.serviceId = 2
+        
+        let fuelServiceTypes = TrackingType(managedObjectContext: SessionObjects.currentManageContext , entityName: "TrackingType")
+        fuelServiceTypes.name = "Vehicle Refuelling"
+        fuelServiceTypes.typeId = 1
+        fuelServiceTypes.service = fuelService
+        fuelServiceTypes.measuringUnit = typeMeasuringUnit
+        
+        let oilServiceTypes = TrackingType(managedObjectContext: SessionObjects.currentManageContext , entityName: "TrackingType")
+        oilServiceTypes.name = "Oil Change"
+        oilServiceTypes.typeId = 2
+        oilServiceTypes.service = oilService
+        oilServiceTypes.measuringUnit = typeMeasuringUnit
         
         let serviceProviderServices = ServiceProviderServices(managedObjectContext: SessionObjects.currentManageContext , entityName: "ServiceProviderServices")
         serviceProviderServices.startingHour = 28800
         serviceProviderServices.endingHour = 64800
-        serviceProviderServices.service = service
+        serviceProviderServices.service = oilService
         
         let serviceProvider = ServiceProvider(managedObjectContext: SessionObjects.currentManageContext, entityName: "ServiceProvider")
         serviceProvider.address = serviceProviderAddress
