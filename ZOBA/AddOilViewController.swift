@@ -238,18 +238,15 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         trackingDataObj.dateAdded = datePickerView.date
         
-        
         let trackingTypeObj = TrackingData(managedObjectContext:SessionObjects.currentManageContext, entityName: "TrackingData")
         
        trackingTypeObj.value = "oil"
     
        trackingTypeObj.save()
         
-    
-        
        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
-        let typeObj = dao.selectByString(entityName: "TrackingType", AttributeName: "name", value: "oil") as![TrackingType]
+        let typeObj = dao.selectByInt(entityName: "TrackingType", AttributeName: "name", value: 2) as![TrackingType]
         
         trackingDataObj.trackingType = typeObj[0]
         
@@ -279,8 +276,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     }
 
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
-        
         
         if pickerView == vehiclesPickerView
         {

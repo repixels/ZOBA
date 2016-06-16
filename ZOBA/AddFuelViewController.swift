@@ -263,7 +263,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
-        let typeObj = dao.selectByString(entityName: "TrackingType", AttributeName: "name", value: "fuel") as![TrackingType]
+        let typeObj = dao.selectByInt(entityName: "TrackingType", AttributeName: "name", value: 1) as![TrackingType]
         
         trackingDataObj.trackingType = typeObj[0]
         
