@@ -29,7 +29,8 @@ class FuelTableViewController: UITableViewController {
         
        data = dao.selectByInt(entityName: "TrackingData", AttributeName: "trackingType.typeId", value: 1) as![TrackingData]
         
-        
+        data.sortInPlace({$0.dateAdded!.compare($1.dateAdded!) == .OrderedDescending})
+
         self.tableView.reloadData()
     }
     
@@ -54,6 +55,7 @@ class FuelTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("fuelCell", forIndexPath: indexPath) as! FuelTableViewCell
         
+        cell.dateLabel.text = String(data[indexPath.row].dateAdded!)
         cell.fuelAmountLabel.text = data[indexPath.row].value
         cell.fuelUnitLabel.text = "Liters"
         cell.serviceProviderNameLabel.text = data[indexPath.row].serviceProviderName

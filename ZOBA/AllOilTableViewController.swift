@@ -33,10 +33,13 @@ class AllOilTableViewController: UITableViewController {
          dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
         data = dao.selectByInt(entityName: "TrackingData", AttributeName: "trackingType.typeId", value: 2) as![TrackingData]
         
+       // data.sort({$0.dateAdded > $1.dateAdded})
         
+       data.sortInPlace({$0.dateAdded!.compare($1.dateAdded!) == .OrderedDescending})
         self.tableView.reloadData()
         
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -63,7 +66,7 @@ class AllOilTableViewController: UITableViewController {
         
        // compare()NSComparisonResult.OrderedAscending
         
-        cell.dateLabel.text = String(data[indexPath.row].dateAdded)
+        cell.dateLabel.text = String(data[indexPath.row].dateAdded!)
         cell.oilAmountLabel.text = data[indexPath.row].value
         cell.oilMesuringUnitLabel.text = "Liters"
         cell.startingOdemeterLabel.text = String(data[indexPath.row].initialOdemeter)
