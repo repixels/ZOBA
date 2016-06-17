@@ -43,6 +43,7 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        map.delegate = self
     }
     
     
@@ -101,7 +102,7 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
         var coordinates = [firstlocation.coordinate,lastlocation.coordinate]
         let polyline = MKPolyline(coordinates: &coordinates , count: 2)
         
-        map.addOverlay(polyline, level: .AboveRoads)
+        map.addOverlay(polyline)
         
         let diff = lastlocation.distanceFromLocation(firstlocation)
         
@@ -151,8 +152,8 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = UIColor.brownColor()
-        renderer.lineWidth = 4.0
+        renderer.strokeColor = UIColor.blueColor()
+        renderer.lineWidth = 5.0
         
         
         return renderer
