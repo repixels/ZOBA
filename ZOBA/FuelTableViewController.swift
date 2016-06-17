@@ -56,7 +56,7 @@ class FuelTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("fuelCell", forIndexPath: indexPath) as! FuelTableViewCell
         
         cell.dateLabel.text = String(data[indexPath.row].dateAdded!)
-        cell.fuelAmountLabel.text = data[indexPath.row].value
+        cell.fuelAmountLabel.text = data[indexPath.row].value!
         cell.fuelUnitLabel.text = "Liters"
         cell.serviceProviderNameLabel.text = data[indexPath.row].serviceProviderName
         cell.startingOdemeterLabel.text = String(data[indexPath.row].initialOdemeter)

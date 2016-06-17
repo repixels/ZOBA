@@ -64,10 +64,8 @@ class AllOilTableViewController: UITableViewController {
         
         // Configure the cell...
         
-       // compare()NSComparisonResult.OrderedAscending
-        
         cell.dateLabel.text = String(data[indexPath.row].dateAdded!)
-        cell.oilAmountLabel.text = data[indexPath.row].value
+        cell.oilAmountLabel.text = data[indexPath.row].value!
         cell.oilMesuringUnitLabel.text = "Liters"
         cell.startingOdemeterLabel.text = String(data[indexPath.row].initialOdemeter)
         cell.serviceProvideLabel.text = data[indexPath.row].serviceProviderName
