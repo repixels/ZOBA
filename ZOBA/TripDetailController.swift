@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import TextFieldEffects
 
-class TripDetailController: UIViewController {
+class TripDetailController: UIViewController ,MKMapViewDelegate{
     
     
     @IBOutlet weak var map: MKMapView!
@@ -98,6 +98,10 @@ class TripDetailController: UIViewController {
         firstAnnotation = setAnnotation(firstlocation.coordinate, title: "first")
         
         secondAnnotation = setAnnotation(lastlocation.coordinate, title: "last")
+        var coordinates = [firstlocation.coordinate,lastlocation.coordinate]
+        let polyline = MKPolyline(coordinates: &coordinates , count: 2)
+        
+        map.addOverlay(polyline, level: .AboveRoads)
         
         let diff = lastlocation.distanceFromLocation(firstlocation)
         
@@ -145,6 +149,14 @@ class TripDetailController: UIViewController {
         }
     }
     
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.brownColor()
+        renderer.lineWidth = 4.0
+        
+        
+        return renderer
+    }
     
     
     
