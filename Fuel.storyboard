@@ -238,6 +238,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="ake-f2-H6Y">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="ALM-vL-kay"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="WIy-fz-pbu">
                             <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                             <connections>
@@ -254,7 +255,7 @@
                         <outlet property="saveBtn" destination="WIy-fz-pbu" id="kq3-oP-7MC"/>
                         <outlet property="serviceProviderTextFeild" destination="khV-B2-X9p" id="gsr-FC-2uY"/>
                         <outlet property="vehiclePickerView" destination="vjy-Ex-5wA" id="n0c-9K-0Au"/>
-                        <segue destination="qf5-uh-oX7" kind="push" identifier="allData" id="GKa-I6-TWv"/>
+                        <segue destination="qf5-uh-oX7" kind="show" identifier="allData" id="GKa-I6-TWv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VUk-HQ-zqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -271,7 +272,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="fuelCell" rowHeight="90" id="iFx-HT-Wk2" customClass="FuelTableViewCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="90"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iFx-HT-Wk2" id="lii-FI-SoD">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
@@ -346,7 +347,14 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="EMY-g9-hqT">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="f60-TJ-Xhf">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="menuButtonClicked:" destination="qf5-uh-oX7" id="r9l-79-EVm"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lEW-ya-1H4">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="HOi-QX-8aN" kind="show" id="VkI-Yu-GKY"/>
                             </connections>
@@ -357,7 +365,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZS-Qa-XDS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="825" y="-442"/>
+            <point key="canvasLocation" x="824" y="-450"/>
         </scene>
         <!--Fuel Detail View Controller-->
         <scene sceneID="Zz7-RH-xHd">
@@ -485,7 +493,7 @@
         <!--Navigation Controller-->
         <scene sceneID="2Lr-NC-UHY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8t0-EV-TZW" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FuelNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8t0-EV-TZW" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vJg-UG-8Pl">
@@ -506,10 +514,11 @@
         <image name="Odometer.png" width="2480" height="2480"/>
         <image name="calendar.png" width="2230" height="2318"/>
         <image name="gas-level.png" width="1434" height="1434"/>
+        <image name="menu" width="22" height="22"/>
         <image name="placeholder.png" width="1734" height="2480"/>
         <image name="timeline-circle.png" width="350" height="350"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GKa-I6-TWv"/>
+        <segue reference="6F0-ws-vB2"/>
     </inferredMetricsTieBreakers>
 </document>

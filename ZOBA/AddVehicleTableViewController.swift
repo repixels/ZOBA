@@ -169,8 +169,12 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
                 switch component {
                 case 0:
                     title = models[row].name!
+                    
                 case 1:
                     title = String(years[row].name!)
+                
+                    
+                    
                 case 2:
                     title = trims[row].name!
                     
@@ -194,15 +198,34 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         case makePicker:
             print( makes[row].name!)
             selectedMake = makes[row]
+            modelTextField.text?.removeAll()
+            trimTextField.text?.removeAll()
+            yearTextField.text?.removeAll()
+            
         case modelPicker:
             
             switch component {
             case 0:
                 print( models[row].name!)
                 selectedModel = models[row]
+                years.removeAll()
+                let vehicleModels = models[row].vehicleModel!.allObjects as! [VehicleModel]
+                vehicleModels.forEach({ (vehicleModel) in
+                    years.append( vehicleModel.year! )
+                })
+                modelPicker.reloadComponent(1)
+                
             case 1:
                 print( years[row].name!)
                 selectedYear = years[row]
+                
+                trims.removeAll()
+                let vehicleModels = years[row].vehicleModel!.allObjects as! [VehicleModel]
+                vehicleModels.forEach({ (vehicleModel) in
+                    trims.append( vehicleModel.trim! )
+                })
+                
+                modelPicker.reloadComponent(2)
             case 2:
                 print( trims[row].name!)
                 selectedTrim = trims[row]
@@ -292,6 +315,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
         let mak = makePicker.selectedRowInComponent(0)
         selectedMake = makes[mak]
+        models = selectedMake.model?.allObjects as! [Model]
         makeTextField.text = selectedMake.name
         makeTextField.resignFirstResponder()
     }
@@ -344,7 +368,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         vehicle.currentOdemeter = Int (initialOdemeterTextField.text!)!
         vehicle.licensePlate = licensePlateTextField.text
         vehicle.vehicleModel = vehicleModel
-        vehicle.mutableSetValueForKey("user").addObject(SessionObjects.currentUser)
+        vehicle.user = SessionObjects.currentUser
         
         vehicle.save()
         

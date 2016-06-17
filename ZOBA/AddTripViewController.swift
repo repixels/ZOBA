@@ -49,26 +49,17 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     let datePickerView:UIDatePicker = UIDatePicker()
     
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        self.title = "Add Trip"
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
-             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
-        
-        saveBtn.enabled = false
-        saveBtn.tintColor = UIColor.grayColor()
+
+        self.prepareNavigationBar("Add a New Trip")
         
         let dao  = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
-        
-        
-        
-        
+
         let DateToolBar = UIToolbar()
         DateToolBar.barStyle = UIBarStyle.Default
         DateToolBar.translucent = true
@@ -104,11 +95,12 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
+        super.viewWillAppear(animated)
         
         if(isEditingTrip && trip != nil)
         {
+            prepareNavigationBar("Edit Your Trip")
             self.isDateValid = true
             self.isVehicleValid = true
             self.isCoveredKmValid = true
@@ -129,6 +121,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
             saveBtn.enabled = true
             saveBtn.tintColor = UIColor.blueColor()
         }
+
         
     }
     
@@ -426,6 +419,20 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         }
         
         return index
+    }
+    
+    func prepareNavigationBar(title:String)
+    {
+        self.title = title
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        
+        saveBtn.enabled = false
+        saveBtn.tintColor = UIColor.grayColor()
+        
     }
     
 }

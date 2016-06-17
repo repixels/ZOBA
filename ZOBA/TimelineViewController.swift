@@ -11,9 +11,9 @@ import BTNavigationDropdownMenu
 import ChameleonFramework
 import SwiftyUserDefaults
 import CoreLocation
-import SwiftyUserDefaults
+import FoldingTabBar
 
-class TimelineViewController: UITableViewController {
+class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YALTabBarInteracting {
     var menuView: BTNavigationDropdownMenu!
     let locationManager = CLLocationManager()
     
@@ -27,6 +27,7 @@ class TimelineViewController: UITableViewController {
         
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.whiteColor() ]
+
         
     }
     
@@ -100,7 +101,6 @@ class TimelineViewController: UITableViewController {
         
         isLocationEnabled()
         isNotificationsEnabled()
-        
     }
     
     
@@ -175,7 +175,18 @@ class TimelineViewController: UITableViewController {
     }
     
     
-    
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        self.slideMenuController()?.openLeft()
+    }
+
+    func extraRightItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
+        print("Yemeen")
+    }
+    func extraLeftItemDidPress() {
+        let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
+        let vehicleNavigationController = vehiclesStoryBoard.instantiateViewControllerWithIdentifier("vehicleTable")
+        self.navigationController?.pushViewController(vehicleNavigationController, animated: true)
+    }
     
     /*
      // MARK: - Navigation
@@ -192,8 +203,3 @@ class TimelineViewController: UITableViewController {
      */
     
 }
-//        cell.checkmarkIcon.hidden = (indexPath.row == selectedIndexPath) ? false : true
-//if self.configuration.keepSelectedCellColor == true {
-//    cell.contentView.backgroundColor = (selectedIndexPath != nil && indexPath.row == selectedIndexPath) ? self.configuration.cellSelectionColor : self.configuration.cellBackgroundColor
-//}
-//

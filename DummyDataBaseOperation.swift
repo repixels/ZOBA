@@ -117,7 +117,7 @@ class DummyDataBaseOperation {
     static func populateYear()
     {
         
-        for i in 2000...2017
+        for i in 2000...2015
         {
             let year = Year(managedObjectContext: SessionObjects.currentManageContext, entityName: "Year")
             year.name = i
@@ -258,12 +258,15 @@ class DummyDataBaseOperation {
         model.make =  make
         model.name = "Lancer"
         model.niceName = "lancer"
+        model.modelId = 4
         
         let year = Year(managedObjectContext: SessionObjects.currentManageContext, entityName: "Year")
-        year.name = 2014
+        year.name = 2016
+        year.yearId  = 2016
         
         let trim = Trim(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trim")
         trim.name = "LX"
+        trim.trimId=4
         
         let vehicleModel = VehicleModel(managedObjectContext: SessionObjects.currentManageContext, entityName: "VehicleModel")
         vehicleModel.model = model
@@ -303,6 +306,7 @@ class DummyDataBaseOperation {
         DummyDataBaseOperation.populateMake()
         DummyDataBaseOperation.populateYear()
         DummyDataBaseOperation.populateModel()
+        saveVehicleModel()
         DummyDataBaseOperation.populateServiceProvider()
     }
 }

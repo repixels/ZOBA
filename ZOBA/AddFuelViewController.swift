@@ -84,6 +84,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSForegroundColorAttributeName: UIColor.whiteColor(),
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+
         // Do any additional setup after loading the view.
         
         formatter.dateFormat = "MMM dd,yyyy"

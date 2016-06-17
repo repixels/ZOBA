@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="lbZ-jR-Smo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="lbZ-jR-Smo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -13,7 +13,7 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Title-->
+        <!--All Trip Table View Controller-->
         <scene sceneID="uBI-kd-CWF">
             <objects>
                 <tableViewController id="1Zg-ZW-m3c" customClass="AllTripTableViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="92" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UVQ-zh-PxW" id="hhN-zu-4lj">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="89"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="uq3-NB-K5r">
@@ -35,7 +35,7 @@
                                                 <constraint firstAttribute="width" secondItem="uq3-NB-K5r" secondAttribute="height" multiplier="1:1" id="4K1-wh-EN6"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adt-ex-axn">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adt-ex-axn">
                                             <rect key="frame" x="27" y="27" width="45" height="27"/>
                                             <fontDescription key="fontDescription" name="ContinuumMedium" family="Continuum Medium" pointSize="22"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -140,8 +140,15 @@
                             <outlet property="delegate" destination="1Zg-ZW-m3c" id="0g7-Bl-iTa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="FFa-ix-wQ3">
+                    <navigationItem key="navigationItem" id="FFa-ix-wQ3">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="7m1-oY-0RW">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="menuButtonClicked:" destination="1Zg-ZW-m3c" id="Go3-3n-QIX"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="c5Q-oX-LDT">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="1xC-7H-O8v" kind="push" id="TKs-so-BoF"/>
                             </connections>
@@ -326,7 +333,7 @@
                                             <constraint firstAttribute="height" constant="162" id="aXS-5d-Zml"/>
                                         </constraints>
                                     </pickerView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-tY-v3V" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-tY-v3V" customClass="HoshiTextField" customModule="TextFieldEffects">
                                         <rect key="frame" x="20" y="304" width="280" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="2Jt-Lh-BiR"/>
@@ -712,7 +719,7 @@
         <!--Navigation Controller-->
         <scene sceneID="RCq-pp-k0B">
             <objects>
-                <navigationController storyboardIdentifier="Trips" id="lbZ-jR-Smo" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TripsNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lbZ-jR-Smo" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KJ5-pZ-OXq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -727,6 +734,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="menu" width="22" height="22"/>
         <image name="situation-pin" width="530" height="827"/>
         <image name="timeline-circle.png" width="350" height="350"/>
     </resources>

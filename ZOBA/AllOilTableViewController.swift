@@ -28,14 +28,18 @@ class AllOilTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         
-        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-         dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
-        data = dao.selectByString(entityName: "TrackingData", AttributeName: "trackingType.name", value: "oil") as![TrackingData]
-        
-
-        
-        self.tableView.reloadData()
+        if SessionObjects.currentVehicle != nil
+        {
+            let vehicleName = SessionObjects.currentVehicle.name != nil ? SessionObjects.currentVehicle.name!+" " : ""
+            self.prepareNavigationBar(vehicleName + "Oil")
+            dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+            data = dao.selectByString(entityName: "TrackingData", AttributeName: "trackingType.name", value: "oil") as![TrackingData]
+            self.tableView.reloadData()
+        }
+        else
+        {
+            self.prepareNavigationBar("No Car Selected")
+        }
         
     }
     
@@ -136,5 +140,19 @@ class AllOilTableViewController: UITableViewController {
         }
      }
  */
+    
+    func prepareNavigationBar(title: String)
+    {
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.title = title
+        self.navigationController?.navigationBar.userInteractionEnabled = true
+    }
+    
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        self.slideMenuController()?.openLeft()
+    }
     
 }

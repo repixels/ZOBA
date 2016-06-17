@@ -212,6 +212,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="nzc-UP-6Wl">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="yx9-F9-Ub9">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="saveOilData:" destination="4nM-ic-chT" id="lSC-Ge-To4"/>
                             </connections>
@@ -242,7 +243,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="oilCell" rowHeight="90" id="DDI-zy-VSR" customClass="OilTableViewCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="90"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DDI-zy-VSR" id="gWF-HF-frD">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
@@ -316,7 +317,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="zvU-ec-bl7">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="hLV-St-u6y">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="menuButtonClicked:" destination="W64-4G-YfM" id="kqm-z5-IcF"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iEY-nG-wMf">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="4nM-ic-chT" kind="push" id="87Y-tq-33H"/>
                             </connections>
@@ -458,7 +466,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cnj-BJ-uhg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DI3-Sy-lwz" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="OilNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DI3-Sy-lwz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4qu-RM-XH9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -477,11 +485,12 @@
     <resources>
         <image name="Odometer.png" width="2480" height="2480"/>
         <image name="calendar.png" width="2230" height="2318"/>
+        <image name="menu" width="22" height="22"/>
         <image name="oil-level.png" width="1434" height="1434"/>
         <image name="placeholder.png" width="1734" height="2480"/>
         <image name="timeline-circle.png" width="350" height="350"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lwx-Mb-BFz"/>
+        <segue reference="Lov-D1-u3B"/>
     </inferredMetricsTieBreakers>
 </document>
