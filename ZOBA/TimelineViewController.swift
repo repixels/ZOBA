@@ -101,7 +101,6 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         
         isLocationEnabled()
         isNotificationsEnabled()
-        
     }
     
     
@@ -179,22 +178,11 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     @IBAction func menuButtonClicked(sender: AnyObject) {
         self.slideMenuController()?.openLeft()
     }
-    
-        func extraLeftItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
-    //        let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
-    //        let vehicleNavigationController =
-    //            vehiclesStoryBoard.instantiateViewControllerWithIdentifier("VehicleNavigation")
-    //        vehicleNavigationController.tabBarController?.view = self.tabBarView
-    //        self.showViewController(vehicleNavigationController, sender: self)
-//            performSegueWithIdentifier("Vehicle Segue", sender: self)
-            print("Pressed")
-        }
 
     func extraRightItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
         print("Yemeen")
     }
     func extraLeftItemDidPress() {
-//        performSegueWithIdentifier("Vehicle Segue", sender: self)
         let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
         let vehicleNavigationController = vehiclesStoryBoard.instantiateViewControllerWithIdentifier("vehicleTable")
         self.navigationController?.pushViewController(vehicleNavigationController, animated: true)
@@ -215,8 +203,3 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
      */
     
 }
-//        cell.checkmarkIcon.hidden = (indexPath.row == selectedIndexPath) ? false : true
-//if self.configuration.keepSelectedCellColor == true {
-//    cell.contentView.backgroundColor = (selectedIndexPath != nil && indexPath.row == selectedIndexPath) ? self.configuration.cellSelectionColor : self.configuration.cellBackgroundColor
-//}
-//

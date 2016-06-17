@@ -13,7 +13,7 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Title-->
+        <!--All Trip Table View Controller-->
         <scene sceneID="uBI-kd-CWF">
             <objects>
                 <tableViewController id="1Zg-ZW-m3c" customClass="AllTripTableViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
@@ -140,8 +140,15 @@
                             <outlet property="delegate" destination="1Zg-ZW-m3c" id="0g7-Bl-iTa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="FFa-ix-wQ3">
+                    <navigationItem key="navigationItem" id="FFa-ix-wQ3">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="7m1-oY-0RW">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="menuButtonClicked:" destination="1Zg-ZW-m3c" id="Go3-3n-QIX"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="c5Q-oX-LDT">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="1xC-7H-O8v" kind="push" id="TKs-so-BoF"/>
                             </connections>
@@ -326,7 +333,7 @@
                                             <constraint firstAttribute="height" constant="162" id="aXS-5d-Zml"/>
                                         </constraints>
                                     </pickerView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-tY-v3V" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-tY-v3V" customClass="HoshiTextField" customModule="TextFieldEffects">
                                         <rect key="frame" x="20" y="304" width="280" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="2Jt-Lh-BiR"/>
@@ -727,6 +734,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="menu" width="22" height="22"/>
         <image name="situation-pin" width="530" height="827"/>
         <image name="timeline-circle.png" width="350" height="350"/>
     </resources>

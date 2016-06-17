@@ -17,6 +17,7 @@ class MenuTableViewController: UITableViewController {
     var oilStoryBoard: UIStoryboard?
     var vehiclesStoryBoard: UIStoryboard?
     var tripsStoryBoard: UIStoryboard?
+    var homeViewController : HomeViewController?
     
     
     override func viewWillAppear(animated: Bool) {
@@ -37,7 +38,7 @@ class MenuTableViewController: UITableViewController {
         self.oilStoryBoard =  UIStoryboard(name: "oil", bundle: nil)
         self.vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
         self.tripsStoryBoard =  UIStoryboard(name: "VehicleTrips", bundle: nil)
-        
+        self.homeViewController = self.homeStoryBoard!.instantiateViewControllerWithIdentifier("HomeTabController") as? HomeViewController
         
     }
 
@@ -53,8 +54,8 @@ class MenuTableViewController: UITableViewController {
             {
             case 0:
                 
-                let homeViewController = self.homeStoryBoard!.instantiateViewControllerWithIdentifier("HomeTabController")
-                self.slideMenuController()?.changeMainViewController(homeViewController, close: true)
+                self.homeViewController?.selectedIndex = 0
+                self.slideMenuController()?.changeMainViewController(self.homeViewController!, close: true)
                 break;
             default:
                 self.slideMenuController()?.closeLeft()
@@ -67,8 +68,20 @@ class MenuTableViewController: UITableViewController {
                 self.slideMenuController()?.changeMainViewController(userProfileNavigationController, close: true)
                 break;
             case 1:
-                let vehicleNavigationController = self.vehiclesStoryBoard?.instantiateViewControllerWithIdentifier("VehicleNavigation")
-                self.slideMenuController()?.changeMainViewController(vehicleNavigationController!, close: true)
+                let vehicleNavigationController = self.vehiclesStoryBoard?.instantiateViewControllerWithIdentifier("VehicleNavigation") as! UINavigationController
+                vehicleNavigationController.title = "Your Vehicles"
+             
+                
+                let vehicleTableVC = vehicleNavigationController.viewControllers[0] as! VehicleTableViewController
+                
+                let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MenuTableViewController.openSlideMenu) )
+                
+                menuButton.tintColor = UIColor.whiteColor()
+                    
+                vehicleTableVC.navigationItem.leftBarButtonItem = menuButton
+              
+                
+                self.slideMenuController()?.changeMainViewController(vehicleNavigationController, close: true)
                 break;
             default:
                 self.slideMenuController()?.closeLeft()
@@ -172,6 +185,10 @@ class MenuTableViewController: UITableViewController {
     }
     */
     
+    func openSlideMenu()
+    {
+        slideMenuController()?.openLeft()
+    }
     
 
 }

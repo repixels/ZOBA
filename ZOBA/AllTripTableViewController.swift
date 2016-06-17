@@ -15,43 +15,29 @@ class AllTripTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
-             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
-        
-        
-        
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        
-        self.navigationController?.title = "Trips"
-        self.navigationController?.navigationBar.userInteractionEnabled = true
-        
-        //        trips = dao.selectAll(entityName: "Trip") as! [Trip]
-        var vehicleName = ""
-        if SessionObjects.currentVehicle != nil {
+        if SessionObjects.currentVehicle != nil
+        {
+            let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+            
+            var vehicleName = ""
             vehicleName =  SessionObjects.currentVehicle.name!
+            self.prepareNavigationBar(vehicleName+" Trips")
+            trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: vehicleName) as! [Trip]
+            tableView.reloadData()
         }
-        else{
+        else
+        {
             addBtn.enabled = false
             addBtn.tintColor = UIColor.grayColor()
+            self.prepareNavigationBar("No Trips Available")
         }
-        trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: vehicleName) as! [Trip]
         
         
-        tableView.reloadData()
         
     }
     override func didReceiveMemoryWarning() {
@@ -174,7 +160,19 @@ class AllTripTableViewController: UITableViewController {
     
     
     // MARK: - Navigation
+    func prepareNavigationBar(title: String)
+    {
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.title = title
+        self.navigationController?.navigationBar.userInteractionEnabled = true
+    }
     
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        self.slideMenuController()?.openLeft()
+    }
     
     
 }

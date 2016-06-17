@@ -30,6 +30,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="knk-eZ-9ot">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="XIN-7I-DzR">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="LGx-ee-QcT" kind="push" id="qGn-8x-EpY"/>
                             </connections>
@@ -164,6 +165,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="BHw-Yv-r6Y">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="YBl-Wv-oF1">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="saveVehiclePresses:" destination="LGx-ee-QcT" id="wnB-2L-BHm"/>
                             </connections>

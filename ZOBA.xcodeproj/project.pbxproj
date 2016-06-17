@@ -644,11 +644,11 @@
 		82EF3BF61D05745B00AC103C /* Application Files */ = {
 			isa = PBXGroup;
 			children = (
+				825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */,
 				827827561CF837D600684CE5 /* AppDelegate.swift */,
 				827827651CF837D600684CE5 /* Info.plist */,
 				825BB0051D0C266D00F44EA3 /* StringConstants.swift */,
 				82AE18981D12C2EC00F4EED6 /* ZOBA.xcdatamodeld */,
-				825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */,
 				8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */,
 			);
 			name = "Application Files";

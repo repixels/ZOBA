@@ -162,6 +162,12 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="kl3-Q9-ZGS">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="2SP-ny-9o4">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="menuButtonClicked:" destination="0vu-fw-awE" id="Xij-fi-l8E"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="kfB-Ee-aNw">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -276,6 +282,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="CN5-6a-9CZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="IZp-an-NuG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="updateUserPassword:" destination="z6C-cG-59e" id="oot-Ur-i88"/>
                             </connections>
@@ -312,6 +319,7 @@
     </scenes>
     <resources>
         <image name="edit" width="76" height="76"/>
+        <image name="menu" width="22" height="22"/>
         <image name="next" width="171" height="171"/>
         <image name="timeline-circle.png" width="350" height="350"/>
     </resources>

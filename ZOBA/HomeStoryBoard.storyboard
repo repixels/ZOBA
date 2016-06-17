@@ -407,7 +407,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="I0e-bH-vug">
-                        <barButtonItem key="leftBarButtonItem" image="menu" style="plain" id="b3E-09-oyA">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="b3E-09-oyA">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="menuButtonClicked:" destination="I2C-IC-YEg" id="0FC-d9-vVv"/>
@@ -437,7 +437,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhD-uO-dUy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-990" y="-511"/>
+            <point key="canvasLocation" x="-915" y="-511"/>
         </scene>
         <!--Vehicle-->
         <scene sceneID="sFa-cG-KzZ">

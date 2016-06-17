@@ -19,6 +19,7 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
         self.tabBarView.delegate = self
         
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
         // Do any additional setup after loading the view.
     }
@@ -63,20 +64,6 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
         self.tabBarView.tabBarViewEdgeInsets = YALTabBarViewHDefaultEdgeInsets
         self.tabBarView.tabBarItemsEdgeInsets = YALTabBarViewItemsDefaultEdgeInsets
         
-    }
-    
-    
-//    func extraLeftItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
-////        let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
-////        let vehicleNavigationController =
-////            vehiclesStoryBoard.instantiateViewControllerWithIdentifier("VehicleNavigation")
-////        vehicleNavigationController.tabBarController?.view = self.tabBarView
-////        self.showViewController(vehicleNavigationController, sender: self)
-//        performSegueWithIdentifier("Vehicle Segue", sender: self)
-//    }
-    
-    func extraRightItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
-        print("Extra Right Item Pressed")
     }
     
     

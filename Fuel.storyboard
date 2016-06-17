@@ -238,6 +238,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="ake-f2-H6Y">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="ALM-vL-kay"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="WIy-fz-pbu">
                             <color key="tintColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                             <connections>
@@ -346,7 +347,14 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="EMY-g9-hqT">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="f60-TJ-Xhf">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="menuButtonClicked:" destination="qf5-uh-oX7" id="r9l-79-EVm"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lEW-ya-1H4">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="HOi-QX-8aN" kind="show" id="VkI-Yu-GKY"/>
                             </connections>
@@ -357,7 +365,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZS-Qa-XDS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="825" y="-442"/>
+            <point key="canvasLocation" x="824" y="-450"/>
         </scene>
         <!--Fuel Detail View Controller-->
         <scene sceneID="Zz7-RH-xHd">
@@ -506,6 +514,7 @@
         <image name="Odometer.png" width="2480" height="2480"/>
         <image name="calendar.png" width="2230" height="2318"/>
         <image name="gas-level.png" width="1434" height="1434"/>
+        <image name="menu" width="22" height="22"/>
         <image name="placeholder.png" width="1734" height="2480"/>
         <image name="timeline-circle.png" width="350" height="350"/>
     </resources>

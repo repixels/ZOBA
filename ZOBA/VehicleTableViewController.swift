@@ -26,6 +26,13 @@ class VehicleTableViewController: UITableViewController , MapDetectionDelegate {
         //                self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
         self.tableView.reloadData()
         
+        self.navigationController?.navigationBar.barTintColor = UIColor.blueColor()
+        self.navigationController?.navigationController?.navigationBar.tintColor = UIColor.blueColor()
+        self.navigationController?.navigationBar.backItem?.backBarButtonItem?.tintColor = UIColor.blueColor()
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.blueColor()
+        self.tabBarController?.moreNavigationController.navigationBar.tintColor = UIColor.brownColor()
+        
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -157,6 +164,12 @@ class VehicleTableViewController: UITableViewController , MapDetectionDelegate {
         alert.addAction(activateAutoReport)
         
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func openSideMenu()
+    {
+        self.slideMenuController()?.openLeft()
+        print("hello")
     }
     
 }
