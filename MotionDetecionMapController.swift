@@ -11,7 +11,7 @@ import MapKit
 import TextFieldEffects
 import SwiftyUserDefaults
 
-class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,MapDetectionDelegate{
+class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate {
     
     
     @IBOutlet weak var map: MKMapView!
@@ -42,7 +42,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         }
         
         SessionObjects.motionMonitor.updateLocationBlock = block
-        SessionObjects.motionMonitor.delegate = self
+        
     }
     let annotation = MKPointAnnotation()
     
