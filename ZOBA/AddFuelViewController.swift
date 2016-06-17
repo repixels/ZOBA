@@ -47,8 +47,13 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
         super.viewWillAppear(true)
         
+        if selectedVehicle.currentOdemeter == nil {
+           initialOdemeter.text = String(0)
+        }
+        else
+        {
         initialOdemeter.text = String(selectedVehicle.currentOdemeter!)
-        
+        }
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
 
         
@@ -97,6 +102,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
         dateTextField.inputAccessoryView = toolBar
         
+        
         selectedVehicle = vehicles[vehiclePickerView.selectedRowInComponent(0)]
     }
     
@@ -104,7 +110,6 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     @IBAction func fuelAmountEditingDidEnd(sender: AnyObject) {
         
@@ -121,7 +126,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     
     @IBAction func fuelAmountEditingChang(sender: AnyObject) {
         
-        if (Int(fuelAmountTextField.text!)! < 90) {
+        if  (NSNumber(integer: Int(fuelAmountTextField.text!)!).integerValue < 90) &&   (NSNumber(integer: Int(fuelAmountTextField.text!)!).integerValue > 0)  {
             
             showValidMessage("fuel Amount" , textField: fuelAmountTextField)
             isFuelMountReady = true
@@ -135,7 +140,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     
     @IBAction func currentOdemterEditingDidEnd(sender: AnyObject) {
         
-        if (NSNumber(integer: Int(currentOdometerTextField.text!)!).integerValue > selectedVehicle.currentOdemeter!.integerValue ) {
+        if (NSNumber(integer: Int(currentOdometerTextField.text!)!).integerValue >= selectedVehicle.currentOdemeter!.integerValue ) {
             
             showValidMessage("Current Odemeter",textField: currentOdometerTextField)
             isCurrentOdeReady = true
@@ -310,6 +315,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         serviceProviderTextFeild.becomeFirstResponder()
         
     }
+    
     /*
     // MARK: - Navigation
 

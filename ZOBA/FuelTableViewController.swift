@@ -59,7 +59,7 @@ class FuelTableViewController: UITableViewController {
         cell.fuelAmountLabel.text = data[indexPath.row].value!
         cell.fuelUnitLabel.text = "Liters"
         cell.serviceProviderNameLabel.text = data[indexPath.row].serviceProviderName
-        cell.startingOdemeterLabel.text = String(data[indexPath.row].initialOdemeter)
+        cell.startingOdemeterLabel.text = String(data[indexPath.row].initialOdemeter!)
 
         // Configure the cell...
             return cell

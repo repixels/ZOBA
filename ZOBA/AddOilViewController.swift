@@ -79,7 +79,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         dateTextField.inputAccessoryView = toolBar
         
         vehiclesPickerView.delegate = self
-        
+
         selectedVehicle = vehicles[vehiclesPickerView.selectedRowInComponent(0)]
     }
     
@@ -87,7 +87,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
          datePickerView = UIDatePicker()
 
-      datePickerView.datePickerMode = UIDatePickerMode.Date
+        datePickerView.datePickerMode = UIDatePickerMode.Date
         
         dateTextField.inputView = datePickerView
         
@@ -124,8 +124,8 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     {
         textField.borderInactiveColor = UIColor.redColor()
         textField.borderActiveColor = UIColor.redColor()
-       textField.placeholderColor = UIColor.redColor()
-       textField.placeholderLabel.text = message
+        textField.placeholderColor = UIColor.redColor()
+        textField.placeholderLabel.text = message
         textField.placeholderLabel.sizeToFit()
         textField.placeholderLabel.alpha = 1.0
     }
@@ -135,13 +135,13 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         textField.borderInactiveColor = UIColor.greenColor()
         textField.borderActiveColor = UIColor.greenColor()
         textField.placeholderColor = UIColor.whiteColor()
-       textField.placeholderLabel.text = message
+        textField.placeholderLabel.text = message
         enableSaveBtn()
     }
     
     @IBAction func currentEditingDidEnd(sender: AnyObject) {
         
-        if (NSNumber(integer: Int(currentOdoMeterTextField.text!)!).integerValue > selectedVehicle.currentOdemeter!.integerValue ) {
+        if (NSNumber(integer: Int(currentOdoMeterTextField.text!)!).integerValue >= selectedVehicle.currentOdemeter!.integerValue ) {
             
              showValidMessage("Current Odemeter" , textField: currentOdoMeterTextField)
             isCurrentOdeReady = true
@@ -174,7 +174,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     @IBAction func oilMountEditingChange(sender: AnyObject) {
     
-        if (Int(oilAmountTextField.text!)! < 1000) {
+        if (NSNumber(integer: Int(oilAmountTextField.text!)!).integerValue < 100) &&   (NSNumber(integer: Int(oilAmountTextField.text!)!).integerValue != 0 ){
         
             showValidMessage("Oil Amount" , textField: oilAmountTextField)
             isOilMountReady = true
@@ -201,13 +201,13 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
        
          initialOdemeter.text = String(selectedVehicle.currentOdemeter!)
         
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
-        let serviceProviderDAO = dao.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
+         let serviceProviderDAO = dao.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
         
-        pickOption = serviceProviderDAO
+         pickOption = serviceProviderDAO
         
-        disableSaveBtn()
+         disableSaveBtn()
     }
 
     
@@ -240,7 +240,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         trackingDataObj.serviceProviderName = pickerViewTextField.text
         
-       let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
         let typeObj = dao.selectByInt(entityName: "TrackingType", AttributeName: "typeId", value: 2) as![TrackingType]
         
@@ -248,8 +248,11 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         trackingDataObj.vehicle = selectedVehicle
         
-        selectedVehicle.currentOdemeter = trackingDataObj.initialOdemeter
+        //let cosumtionKM = Int(selectedVehicle.currentOdemeter!) - Int(trackingDataObj.initialOdemeter!)
         
+         selectedVehicle.currentOdemeter = trackingDataObj.initialOdemeter
+        
+     
         trackingDataObj.save()
         
         performSegueWithIdentifier("oilSegue", sender: self)
