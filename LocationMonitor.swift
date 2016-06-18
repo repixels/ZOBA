@@ -79,7 +79,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
         getMotionDetector().locationChangedBlock = { (location) in
             if Defaults[.isHavingTrip] {    
                 let timeDifference = location.timestamp.timeIntervalSinceDate(self.locationPlist.readLastLocation().date)
-                
+                 print(self.locationPlist.getLocationsDictionaryArray())
                 //if this is a new trip
                 if timeDifference > (60*10)
                 {
@@ -146,7 +146,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     func stopTrip(){
         Defaults[.isHavingTrip] = false
         isMoving = false
-        
+      
         
     }
     

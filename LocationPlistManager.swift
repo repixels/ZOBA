@@ -19,15 +19,15 @@ class LocationPlistManager {
         
         self.name = "CoordinateList"
         
-        var paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         let url = NSURL(string: paths)
         path = (url?.URLByAppendingPathComponent(name+".plist"))!
-        var fileManager = NSFileManager.defaultManager()
+        let fileManager = NSFileManager.defaultManager()
         if (!(fileManager.fileExistsAtPath((path.absoluteString))))
         {
             do {
                 //try fileManager.removeItemAtPath(path!.absoluteString)
-                var bundle : NSString = NSBundle.mainBundle().pathForResource(name, ofType: "plist")!
+                let bundle : NSString = NSBundle.mainBundle().pathForResource(name, ofType: "plist")!
                 try  fileManager.copyItemAtPath(bundle as String, toPath: path.absoluteString)
             }
                 
@@ -39,7 +39,6 @@ class LocationPlistManager {
     }
     
     func saveLocation( location :CLLocation ){
-        
         // if plist is empty then this is the first location to save then no distance to calc
         let locationsArray = self.getLocationsDictionaryArray()
         if(locationsArray.count>0){
@@ -56,6 +55,7 @@ class LocationPlistManager {
         let point = NSMutableDictionary()
         point.setValue(String(location.coordinate.latitude), forKey: "latitude")
         point.setValue(String(location.coordinate.longitude), forKey: "longitude")
+        point.setValue(String(location.speed), forKey: "speed")
         arr?.addObject(point)
         dict?.writeToFile(path.absoluteString, atomically: false)
     }
@@ -86,8 +86,28 @@ class LocationPlistManager {
         
         let lat = CLLocationDegrees.init(dictionary.valueForKey("latitude") as! String)
         let long = CLLocationDegrees.init(dictionary.valueForKey("longitude") as! String)
+        
         let location:CLLocation = CLLocation(latitude: lat!, longitude: long!)
+        
         return location
+    }
+    
+    func getSpeed(atIndex : Int)-> Double
+    {
+        let dictionary = getLocationDictionaryAt(atIndex)
+        let speed = dictionary.valueForKey("speed") as! Double
+        return speed
+    }
+    
+    func getCoordinatesArray() -> [CLLocationCoordinate2D]{
+        var coordinates = [CLLocationCoordinate2D]()
+        for i in 0 ..< self.getLocationsDictionaryArray().count {
+    let location = self.getLocationFromDictionary(self.getLocationDictionaryAt(i))
+            coordinates.append(location.coordinate)
+        
+        }
+    return coordinates
+    
     }
     
     func getDistanceInMetter() -> (Double){

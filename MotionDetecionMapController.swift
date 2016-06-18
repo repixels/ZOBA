@@ -29,6 +29,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     let manager  = CLLocationManager()
     var monitor : LocationMonitor! = nil
     var image : NSData?
+    var point = NSMutableDictionary()
 
     
     override func viewDidLoad() {
@@ -43,27 +44,48 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let block :(Double,Double)->() = {(speed,distance) in
             
             self.currentSpeed.text = String.localizedStringWithFormat("%.2f %@", speed, " Km/Hr")
-            self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", distance, " Km")
+            self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", distance,"Km")
             self.havingTripTextField.text = String(Defaults[.isHavingTrip])
         }
         
         SessionObjects.motionMonitor.updateLocationBlock = block
-        map.reloadInputViews()
         map.delegate = self
-        
     }
  
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         annotation.coordinate = (locations.first?.coordinate)!
         self.map.addAnnotation(annotation)
-        //self.map.centerCoordinate = annotation.coordinate
+        self.map.centerCoordinate = annotation.coordinate
         
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
         SessionObjects.motionMonitor.stopTrip()
         self.havingTripTextField.text = String(Defaults[.isHavingTrip])
         drawRoad()
+        
+//        let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+//        firstCoordinate.latitude = NSDecimalNumber ( double : lat!)
+//        firstCoordinate.longtitude = NSDecimalNumber ( double : long!)
+//        firstCoordinate.save()
+//        
+//        let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+//        
+//        
+//        lastCoordinate.latitude = NSDecimalNumber ( double : endlat!)
+//        lastCoordinate.longtitude = NSDecimalNumber ( double : endlong!)
+//        lastCoordinate.save()
+//        
+//        let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+//       
+//        print(totalDistance.text)
+//        
+//        let distance = locationPlist.getDistanceInKM()
+//
+//        tripObj.coveredKm  = distance
+//        tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
+//        
+//        tripObj.save()
     }
     
     @IBAction func cancelTapped(sender: AnyObject) {
@@ -78,6 +100,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             SessionObjects.motionMonitor.startNewTrip()
             self.havingTripTextField.text = String(Defaults[.isHavingTrip])
             alert.dismissViewControllerAnimated(true, completion: nil)
+            
+            
         }
         
         let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: nil)
@@ -111,77 +135,45 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     @IBAction func startDetection(sender: AnyObject) {
         
         SessionObjects.motionMonitor.startNewTrip()
-        
-        map.reloadInputViews()
     }
     
     
     func drawRoad()
     {
-        var point = NSMutableDictionary()
         
-        point = locationPlist.getLocationDictionaryAt(0)
-        
-        lat = (point.objectForKey("latitude") as! NSString).doubleValue
-        long = (point.objectForKey("longitude") as! NSString).doubleValue
-        
-        
-        point = locationPlist.getLocationDictionaryAt(4)
-        endlat = (point.objectForKey("latitude") as! NSString).doubleValue
-        endlong = (point.objectForKey("longitude") as! NSString).doubleValue
-        
-        let sourceLocation = CLLocationCoordinate2D(latitude: lat!,longitude: long!)
-        let destinationLocation = CLLocationCoordinate2D(latitude: endlat!, longitude: endlong!)
-        
-        // 3.
-        let sourcePlacemark = MKPlacemark(coordinate: sourceLocation, addressDictionary: nil)
-        let destinationPlacemark = MKPlacemark(coordinate: destinationLocation, addressDictionary: nil)
-        
-        // 4.
-        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
-        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
-        
-        // 7.
-        let directionRequest = MKDirectionsRequest()
-        directionRequest.source = sourceMapItem
-        directionRequest.destination = destinationMapItem
-        directionRequest.transportType = .Automobile
-        
-        // Calculate the direction
-        let directions = MKDirections(request: directionRequest)
-        
-        // 8.
-        directions.calculateDirectionsWithCompletionHandler {
-            (response, error) -> Void in
-            
-            guard let response = response else {
-                if let error = error {
-                    print("Error: \(error)")
-                }
-                return
-            }
-            let route = response.routes[0]
-            self.map.addOverlay((route.polyline), level: MKOverlayLevel.AboveRoads)
-            
-            let rect = route.polyline.boundingMapRect
-            self.map.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+        var ArrayOfpoint = locationPlist.getCoordinatesArray()
+    
+        var polyline : MKPolyline?
+        for i in 0 ..< ArrayOfpoint.count-1
+        {
+            let first = ArrayOfpoint[i]
+            let second = ArrayOfpoint[i+1]
+            var arr = [first,second]
+            polyline = MKPolyline(coordinates: &arr , count: arr.count)
+            self.map.addOverlay(polyline!)
+
         }
+        
+        let mapOvelay = map.overlays.last
+        map.addOverlay(mapOvelay!)
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = UIColor.redColor()
-        renderer.lineWidth = 4.0
         
-        requestSnapshotData(mapView) { (image, error) in
-            
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        
+        renderer.strokeColor = UIColor.greenColor()
+        renderer.lineWidth = 10
+        
+        requestSnapshotData(map) { (image, error) in
+        
             print("image save")
         }
         
         return renderer
     }
     
-    func requestSnapshotData(mapView: MKMapView, completion: (NSData?, NSError?) -> ()) {
+    func requestSnapshotData(mapView: MKMapView,  completion: (NSData?, NSError?) -> ()) {
         let options = MKMapSnapshotOptions()
         options.region = mapView.region
         options.size = mapView.frame.size
@@ -203,6 +195,15 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             
             completion(data, nil)
         }
+//
+//        UIGraphicsBeginImageContext(mapView.frame.size)
+//        mapView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+//        let image = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        
+//        //Save it to the camera roll
+//        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+//        print("CALLED")
     }
     func getDocumentsDirectory() -> NSString {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
