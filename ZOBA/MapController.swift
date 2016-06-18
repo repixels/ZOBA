@@ -13,6 +13,8 @@ import MapKit
 class MapController: UIViewController , CLLocationManagerDelegate{
     
     let locationmgr : CLLocationManager! = CLLocationManager()
+    var firstCoordinate : CLLocationCoordinate2D!
+    
     
     @IBOutlet var longPressGesture: UILongPressGestureRecognizer!
     
@@ -24,18 +26,60 @@ class MapController: UIViewController , CLLocationManagerDelegate{
         super.viewDidLoad()
         locationmgr.delegate = self
         locationmgr.requestWhenInUseAuthorization()
-        longPressGesture.addTarget(self, action: #selector(MapController.action(_:)))
+        longPressGesture.addTarget(self, action: #selector(MapController.getUserselectedCoordinate(_:)))
+        
+        locationmgr.requestLocation()
+        setAnnotation()
+        
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
+    }
+    
+    func setAnnotation(){
+        
+        if firstCoordinate != nil
+        {
+            
+            print("setting first annotation at : \(firstCoordinate.latitude)  &&&&  \( firstCoordinate.longitude)")
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = firstCoordinate
+            map.addAnnotation(annotation)
+        }
     }
     
     
-    func action(gestureRecognizer:UIGestureRecognizer){
-        let touchPoint = gestureRecognizer.locationInView(map)
-        let newCoordinates = map.convertPoint(touchPoint, toCoordinateFromView: map)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = newCoordinates
-        map.addAnnotation(annotation)
-        self.delegate?.getuserSelectedCoordinate(annotation.coordinate)
-        self.navigationController?.popViewControllerAnimated(true)
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        
+        var latDelta:CLLocationDegrees = 0.05
+        
+        var lonDelta:CLLocationDegrees = 0.05
+        
+        var span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+        
+        let region   = MKCoordinateRegion(center: (locations.first?.coordinate)!, span: span)
+        self.map.setRegion(region, animated: true)
+//        self.map.setCenterCoordinate(locations.first!.coordinate, animated: true)
+        
+    }
+    
+    func getUserselectedCoordinate(gestureRecognizer:UIGestureRecognizer){
+        
+        if gestureRecognizer.state == .Began{
+            let touchPoint = gestureRecognizer.locationInView(map)
+            let newCoordinates = map.convertPoint(touchPoint, toCoordinateFromView: map)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = newCoordinates
+            map.addAnnotation(annotation)
+            
+            
+            print("user select : \(newCoordinates.latitude)  &&&&  \( newCoordinates.longitude)")
+            
+            self.delegate?.getuserSelectedCoordinate(annotation.coordinate)
+            self.navigationController?.popViewControllerAnimated(true)
+        }
     }
     
     override func didReceiveMemoryWarning() {
