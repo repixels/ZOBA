@@ -18,7 +18,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     let locationManager = CLLocationManager()
     var timelinePopulater : TimelinePopulater?
     
-    var tableCells : [AnyObject]?
+    var tableCells : [TimeLineCell]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +33,8 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         
         timelinePopulater = TimelinePopulater(tableView: self.tableView)
         tableCells = timelinePopulater?.populateTableData()
+        
+//        initialDate = self.tableCells![0].timeLineDate
         self.tableView.reloadData()
     }
     
@@ -54,7 +56,9 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-     
+        
+        
+        
         if let cell = tableCells![indexPath.row] as? TripCell
         {
             return cell
@@ -68,11 +72,13 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
             
             return cell
         }
+        else if let cell = tableCells![indexPath.row] as? DaySummaryCell
+        {
+            return cell
+        }
         else
         {
             return UITableViewCell()
-            
-            
         }
         
     }

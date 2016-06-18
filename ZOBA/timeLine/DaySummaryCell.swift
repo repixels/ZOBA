@@ -10,8 +10,21 @@ import UIKit
 
 
 class TimeLineCell: UITableViewCell {
-
-    var timeLineDate:NSDate! = NSDate()
+    
+    var formattedDate = NSDate()
+    
+    var timeLineDate : NSDate{
+        get{
+            return self.formattedDate
+        }
+        set{
+            
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "E, d MMM yyyy"
+            self.formattedDate = formatter.dateFromString(formatter.stringFromDate(newValue))!
+        }
+    }
+    
 }
 class DaySummaryCell: TimeLineCell {
     static let identifier = "DateCell"

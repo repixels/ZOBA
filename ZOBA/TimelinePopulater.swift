@@ -23,6 +23,8 @@ class TimelinePopulater
     
     var tableCells : [TimeLineCell]
     
+    var timelineDate : NSDate?
+    
     init(tableView:UITableView)
     {
         selectedVehicle = SessionObjects.currentVehicle!
@@ -73,10 +75,10 @@ class TimelinePopulater
         for fuel in vehicleFuelTrackingData!{
         
             let fuelCell = tableView.dequeueReusableCellWithIdentifier(FuelCell.identifier) as! FuelCell
-            fuelCell.timeLineDate = fuel.dateAdded
+            fuelCell.timeLineDate = fuel.dateAdded!
             fuelCell.fuelAmount!.text = fuel.value!
             fuelCell.fuelTitle?.text = (fuel.vehicle!.name)! + " Fuel"
-            fuelCell.fuelDate?.text = String(fuel.dateAdded!)
+            fuelCell.fuelDate?.text = String(fuelCell.timeLineDate)
             fuelCell.initialOdemeter!.text = String(fuel.initialOdemeter!)
             fuelCell.serviceProvider!.text = fuel.serviceProviderName
             
@@ -94,10 +96,10 @@ class TimelinePopulater
         for oil in vehicleOilTrackingData!{
             
             let oilCell = tableView.dequeueReusableCellWithIdentifier(OilCell.identifier) as! OilCell
-            oilCell.timeLineDate = oil.dateAdded
+            oilCell.timeLineDate = oil.dateAdded!
             oilCell.oilAmount!.text = oil.value!
             oilCell.oilTitle?.text = (oil.vehicle!.name)! + " Oil"
-            oilCell.oilDate?.text = String(oil.dateAdded!)
+            oilCell.oilDate?.text = String(oilCell.timeLineDate)
             oilCell.initialOdemeter!.text = String(oil.initialOdemeter!)
             oilCell.serviceProvider!.text = oil.serviceProviderName
             
@@ -129,7 +131,7 @@ class TimelinePopulater
         })
     }
     
-    func populateTableData() -> [AnyObject]
+    func populateTableData() -> [TimeLineCell]
     {
         self.reloadSelectedVehicle()
         self.seperateTrackingData()
@@ -141,7 +143,32 @@ class TimelinePopulater
             return firstCell.timeLineDate.compare(secondCell.timeLineDate) == NSComparisonResult.OrderedDescending
         }
         
+        timelineDate = tableCells[0].timeLineDate
         
+        let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
+        cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter!.stringValue
+        cell.salutation?.text = contextAwareTitle()
+        tableCells.insert(cell, atIndex: 0)
+        
+
+        for i in 0 ..< tableCells.count
+        {
+            print("TableCell Date: \(tableCells[i].timeLineDate)")
+            print("TimeLine Date: \(timelineDate!)")
+            if tableCells[i].timeLineDate.compare(timelineDate!) == .OrderedAscending
+            {
+                print("True")
+                timelineDate = tableCells[i].timeLineDate
+                let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
+                cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter!.stringValue
+                cell.salutation?.text = contextAwareTitle()
+                tableCells.insert(cell, atIndex: i)
+            }
+            else
+            {
+                print("False")
+            }
+        }
         
         return self.tableCells
         
@@ -156,6 +183,24 @@ class TimelinePopulater
         vehicleTrackingData = selectedVehicle?.traclingData?.allObjects as! [TrackingData]!
         self.tableCells.removeAll()
         seperateTrackingData()
+    }
+    
+    func contextAwareTitle() -> String?
+    {
+        let now = NSDate()
+        let cal = NSCalendar.currentCalendar()
+        let comps = cal.component(NSCalendarUnit.Hour, fromDate: now)
+        
+        switch comps {
+        case 0 ... 12:
+            return "Good Morning"
+        case 13 ... 17:
+            return "Good Afternoon"
+        case 18 ... 23:
+            return "Good Evening"
+        default:
+            return "Welcome Back"
+        }
     }
     
 }
