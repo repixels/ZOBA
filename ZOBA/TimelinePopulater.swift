@@ -141,12 +141,8 @@ class TimelinePopulater
         
         //sort table cell
         tableCells.sortInPlace { (firstCell, secondCell) -> Bool in
-            
-            let cal = NSCalendar.currentCalendar()
-            let firstComps = cal.component(NSCalendarUnit.Day, fromDate: firstCell.timeLineDate)
-            let secondComps = cal.component(NSCalendarUnit.Day, fromDate: secondCell.timeLineDate)
-            return firstComps > secondComps
-            
+        
+            return firstCell.timeLineDate.compare(secondCell.timeLineDate) == NSComparisonResult.OrderedDescending
         }
         
         
