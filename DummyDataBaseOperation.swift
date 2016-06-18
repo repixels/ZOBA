@@ -243,6 +243,7 @@ class DummyDataBaseOperation {
         serviceProvider.calender?.mutableSetValueForKey("calender").addObject(serviceProviderCalendar)
         serviceProvider.email = "info@total.eg"
         serviceProvider.webSite = "total.eg"
+        serviceProvider.name = "Total Egypt"
         serviceProvider.phone?.mutableSetValueForKey("phone").addObject(serviceProviderPhone)
         serviceProvider.save()
         

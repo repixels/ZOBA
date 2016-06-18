@@ -272,7 +272,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="fuelCell" rowHeight="90" id="iFx-HT-Wk2" customClass="FuelTableViewCell" customModule="ZOBA" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="90"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iFx-HT-Wk2" id="lii-FI-SoD">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
@@ -321,7 +321,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Refuling From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="was-Lc-FfE">
-                                            <rect key="frame" x="122" y="51" width="89" height="17.5"/>
+                                            <rect key="frame" x="122" y="51" width="89" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.68888300660000001" green="0.71366006140000005" blue="0.73448425530000006" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -519,6 +519,6 @@
         <image name="timeline-circle.png" width="350" height="350"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6F0-ws-vB2"/>
+        <segue reference="GKa-I6-TWv"/>
     </inferredMetricsTieBreakers>
 </document>
