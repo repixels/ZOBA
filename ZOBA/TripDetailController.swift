@@ -51,7 +51,8 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
         super.viewWillAppear(animated)
         
         vehicleNameTextField.text = trip.vehicle?.name
-        dateTextField.text = "10/10/2020"
+        
+        dateTextField.text = String(NSDate(timeIntervalSince1970:Double(trip.dateAdded!)))
         initialOdemeterTextField.text = String(trip.initialOdemeter!)
         coveredMilageTextField.text = String(trip.coveredKm!)
         currentOdemeterTextField.text = String ( Int(trip.initialOdemeter!) + Int(trip.coveredKm!))

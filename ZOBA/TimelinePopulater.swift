@@ -52,7 +52,7 @@ class TimelinePopulater
             
             let tripCell = tableView.dequeueReusableCellWithIdentifier(TripCell.identifier) as! TripCell
             
-             let date = NSDate(timeIntervalSince1970:  Double(trip.dateAdded!))
+            let date = NSDate(timeIntervalSince1970:  Double(trip.dateAdded!))
             tripCell.timeLineDate = date
             tripCell.tripDate!.text = String(date)
             tripCell.tripTitle!.text = (trip.vehicle!.name)!+" Trip"
@@ -73,7 +73,7 @@ class TimelinePopulater
         var fuelCells = [FuelCell]()
         
         for fuel in vehicleFuelTrackingData!{
-        
+            
             let fuelCell = tableView.dequeueReusableCellWithIdentifier(FuelCell.identifier) as! FuelCell
             fuelCell.timeLineDate = fuel.dateAdded!
             fuelCell.fuelAmount!.text = fuel.value!
@@ -84,7 +84,7 @@ class TimelinePopulater
             
             fuelCells.append(fuelCell)
             self.tableCells.append(fuelCell)
-        
+            
         }
         return fuelCells
     }
@@ -139,38 +139,50 @@ class TimelinePopulater
         self.populateOilCells()
         self.populateTripsCells()
         
+        //sort table cell
         tableCells.sortInPlace { (firstCell, secondCell) -> Bool in
-            return firstCell.timeLineDate.compare(secondCell.timeLineDate) == NSComparisonResult.OrderedDescending
+            
+            let cal = NSCalendar.currentCalendar()
+            let firstComps = cal.component(NSCalendarUnit.Day, fromDate: firstCell.timeLineDate)
+            let secondComps = cal.component(NSCalendarUnit.Day, fromDate: secondCell.timeLineDate)
+            return firstComps > secondComps
+            
         }
         
-        timelineDate = tableCells[0].timeLineDate
+        
+        //insert day summery cell at the begining of each day
+        var sortedCells = [TimeLineCell]()
         
         let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
         cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter!.stringValue
         cell.salutation?.text = contextAwareTitle()
-        tableCells.insert(cell, atIndex: 0)
         
-
-        for i in 0 ..< tableCells.count
+        sortedCells.append(cell)
+        
+        
+        for i in 1 ..< tableCells.count - 1
         {
-            print("TableCell Date: \(tableCells[i].timeLineDate)")
-            print("TimeLine Date: \(timelineDate!)")
-            if tableCells[i].timeLineDate.compare(timelineDate!) == .OrderedAscending
+            sortedCells.append(tableCells[i])
+            
+            let cal = NSCalendar.currentCalendar()
+            let firstComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i].timeLineDate)
+            let secondComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i+1].timeLineDate)
+            if firstComps > secondComps
             {
-                print("True")
+                
                 timelineDate = tableCells[i].timeLineDate
                 let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
                 cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter!.stringValue
                 cell.salutation?.text = contextAwareTitle()
-                tableCells.insert(cell, atIndex: i)
+                sortedCells.append(cell)
             }
-            else
-            {
-                print("False")
-            }
+            
+            
         }
+        sortedCells.append(tableCells.last!)
         
-        return self.tableCells
+        
+        return sortedCells
         
     }
     

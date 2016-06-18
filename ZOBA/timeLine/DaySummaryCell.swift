@@ -13,17 +13,19 @@ class TimeLineCell: UITableViewCell {
     
     var formattedDate = NSDate()
     
-    var timeLineDate : NSDate{
-        get{
-            return self.formattedDate
-        }
-        set{
-            
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "E, d MMM yyyy"
-            self.formattedDate = formatter.dateFromString(formatter.stringFromDate(newValue))!
-        }
-    }
+    var timeLineDate = NSDate()
+//        
+//        {
+//        get{
+//            return self.formattedDate
+//        }
+//        set{
+//            
+//            let formatter = NSDateFormatter()
+//            formatter.dateFormat = "E, d MMM yyyy"
+//            self.formattedDate = formatter.dateFromString(formatter.stringFromDate(newValue))!
+//        }
+//    }
     
 }
 class DaySummaryCell: TimeLineCell {
