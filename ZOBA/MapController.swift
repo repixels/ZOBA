@@ -41,8 +41,6 @@ class MapController: UIViewController , CLLocationManagerDelegate{
         
         if firstCoordinate != nil
         {
-            
-            print("setting first annotation at : \(firstCoordinate.latitude)  &&&&  \( firstCoordinate.longitude)")
             let annotation = MKPointAnnotation()
             annotation.coordinate = firstCoordinate
             map.addAnnotation(annotation)
@@ -53,11 +51,11 @@ class MapController: UIViewController , CLLocationManagerDelegate{
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         
-        var latDelta:CLLocationDegrees = 0.05
+        let latDelta:CLLocationDegrees = 0.05
         
-        var lonDelta:CLLocationDegrees = 0.05
+        let lonDelta:CLLocationDegrees = 0.05
         
-        var span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, lonDelta)
         
         let region   = MKCoordinateRegion(center: (locations.first?.coordinate)!, span: span)
         self.map.setRegion(region, animated: true)
@@ -73,9 +71,6 @@ class MapController: UIViewController , CLLocationManagerDelegate{
             let annotation = MKPointAnnotation()
             annotation.coordinate = newCoordinates
             map.addAnnotation(annotation)
-            
-            
-            print("user select : \(newCoordinates.latitude)  &&&&  \( newCoordinates.longitude)")
             
             self.delegate?.getuserSelectedCoordinate(annotation.coordinate)
             self.navigationController?.popViewControllerAnimated(true)
