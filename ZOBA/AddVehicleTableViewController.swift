@@ -463,7 +463,6 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
         if Defaults[.curentVehicleName] == nil
         {
-            print("Nil was found")
             Defaults[.curentVehicleName] = vehicle.name
             SessionObjects.currentVehicle = vehicle
         }

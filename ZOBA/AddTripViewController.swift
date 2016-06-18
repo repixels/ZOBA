@@ -132,12 +132,12 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
         firstCoordinate.latitude = NSDecimalNumber(double: startCoordinate.latitude)
         firstCoordinate.longtitude = NSDecimalNumber(double:startCoordinate.longitude)
-        firstCoordinate.save()
+        firstCoordinate.address = startingPointTextField.text != nil ? startingPointTextField.text : ""
         
         let secondCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
         secondCoordinate.latitude = NSDecimalNumber(double:destinationCoordinate.latitude)
         secondCoordinate.longtitude = NSDecimalNumber(double:destinationCoordinate.longitude)
-        secondCoordinate.save()
+        secondCoordinate.address = endingPointTextField.text != nil ? endingPointTextField.text : ""
         
         if !isEditingTrip || self.trip == nil
         {
@@ -299,9 +299,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         let mapViewController: MapController = self.storyboard!.instantiateViewControllerWithIdentifier("MapView") as! MapController
         mapViewController.delegate = self
         if ( isSecondPoint ) {
-            
             mapViewController.firstCoordinate = self.startCoordinate
-            print("send first location : \(startCoordinate.latitude)  &&&&  \( startCoordinate.longitude)")
         }
         else {
             mapViewController.firstCoordinate = self.destinationCoordinate
@@ -331,7 +329,6 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
             dispatch_async(dispatch_get_main_queue(), {
                 sender.text = places!.first?.name
-                
             })
             
             
@@ -416,15 +413,8 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         {
             if vehicles[i] == vehicle {
                 index = i
-                print("selected vehicle is \(vehicles[i].name)")
             }
-            
         }
-        
-        if index < 0{
-            print("couldn't find car")
-        }
-        
         return index
     }
     

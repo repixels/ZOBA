@@ -18,10 +18,8 @@ class VehicleTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        //MARK: delete 
-        vehicles = dao.selectAll(entityName: "Vehicle") as![Vehicle]
-        //                self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
+
+        self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
         self.tableView.reloadData()
         
         self.navigationController?.navigationBar.barTintColor = UIColor.blueColor()
@@ -126,26 +124,22 @@ class VehicleTableViewController: UITableViewController {
     
     func deleteAlert(indexPath : NSIndexPath){
         
-        let alert  = UIAlertController(title: "Deleting A Trip", message: "Trips are your car memory, Are you sure you want to delete it?", preferredStyle: .Alert)
+        let vehicleName = self.vehicles[indexPath.row].name
+        let alert  = UIAlertController(title: "Deleting A Trip", message: "We love " + vehicleName! + ", Are you sure you want to delete it?", preferredStyle: .Alert)
+        
         let deleteAction = UIAlertAction(title: "Delete ", style: .Destructive, handler: { (action) in
             
             
             self.tableView.beginUpdates()
-            let vehicleName = self.vehicles[indexPath.row].name
-            
-            
-            
             self.vehicles[indexPath.row].delete()
             
             self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
 
             
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            print(SessionObjects.currentVehicle.name)
             
             if Defaults[.curentVehicleName] == vehicleName
             {
-                print(self.vehicles!.count)
                 if self.vehicles != nil && self.vehicles.count > 0
                 {
                     SessionObjects.currentVehicle = self.vehicles.first
@@ -162,30 +156,12 @@ class VehicleTableViewController: UITableViewController {
             
         })
         
-        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: { (action) in
-            print("user canceled")
-        })
+        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler:nil)
         
         alert.addAction(deleteAction)
         alert.addAction(cancel)
         self.presentViewController(alert, animated: true, completion: nil)
         
-    }
-    
-    
-    
-    func showStopAlert(){
-        let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .Alert)
-        
-        let activateAutoReport = UIAlertAction(title: "ok", style:.Default) { (action) in
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        
-        
-        alert.addAction(activateAutoReport)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func openSideMenu()

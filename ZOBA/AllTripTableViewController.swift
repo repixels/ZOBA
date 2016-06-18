@@ -21,13 +21,11 @@ class AllTripTableViewController: UITableViewController {
     {
         super.viewWillAppear(animated)
         if SessionObjects.currentVehicle != nil
-        {
-            let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-            
+        {   
             var vehicleName = ""
             vehicleName =  SessionObjects.currentVehicle.name!
             self.prepareNavigationBar(vehicleName+" Trips")
-            trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: vehicleName) as! [Trip]
+            trips = SessionObjects.currentVehicle.trip?.allObjects as! [Trip]
             addBtn.enabled = true
             addBtn.tintColor = UIColor.whiteColor()
             self.view.reloadInputViews()
@@ -62,7 +60,6 @@ class AllTripTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("display trip details")
         let trip = trips[indexPath.row]
         let controller = self.storyboard?.instantiateViewControllerWithIdentifier("tripDetails") as! TripDetailController
         
@@ -77,10 +74,8 @@ class AllTripTableViewController: UITableViewController {
         
         cell.coveredMilageLabel.text = trips[indexPath.row].coveredKm!.stringValue
         let coordinates = trips[indexPath.row].coordinates!.allObjects as![TripCoordinate]
-        let first = coordinates.first //as! TripCoordinate
-        print(first!.latitude)
-        cell.endingLocationLabel.text = String(coordinates.last!.latitude!)
-        cell.startingLocationLabel.text = String(coordinates.first!.latitude!)
+        cell.endingLocationLabel.text = coordinates.last!.address != nil ? coordinates.last!.address : "Not Available"
+        cell.startingLocationLabel.text = coordinates.first!.address != nil ? coordinates.first!.address : "Not Available"
         
         return cell
     }
@@ -136,9 +131,7 @@ class AllTripTableViewController: UITableViewController {
             
         })
         
-        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: { (action) in
-            print("user canceled")
-        })
+        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: nil)
         
         alert.addAction(deleteAction)
         alert.addAction(cancel)

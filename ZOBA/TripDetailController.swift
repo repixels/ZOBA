@@ -113,7 +113,6 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
     
     func fetchRoute(){
         
-        print("fetching ")
         
         if (sourceItem != nil && destinationItem != nil)
         {
@@ -132,18 +131,16 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
             
             let directions = MKDirections(request: request)
             
-            print(" try to calculate route")
             
             directions.calculateDirectionsWithCompletionHandler ({
                 (response: MKDirectionsResponse?, error: NSError?) in
                 if error == nil {
                     let route = response!.routes[0] as MKRoute
                     self.map.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
-                    print("calculate route")
                 }
                 else
                 {
-                    print("error in calculating route")
+                    print(error?.description)
                 }
             })
             
