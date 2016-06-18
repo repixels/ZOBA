@@ -16,6 +16,9 @@ import FoldingTabBar
 class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YALTabBarInteracting {
     var menuView: BTNavigationDropdownMenu!
     let locationManager = CLLocationManager()
+    var timelinePopulater : TimelinePopulater?
+    
+    var tableCells : [AnyObject]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +30,10 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.loadUserVehiclesDropDown()
+        
+        timelinePopulater = TimelinePopulater(tableView: self.tableView)
+        tableCells = timelinePopulater?.populateTableData()
+        self.tableView.reloadData()
     }
     
     
@@ -43,32 +50,31 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0;
+        return (tableCells?.count)!
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if (indexPath.row % 2 == 0 ){
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier, forIndexPath: indexPath) as! DaySummaryCell
-            
-            cell.currentOdemeter?.text = "1000 "
-            cell.date!.text = "9"
+     
+        if let cell = tableCells![indexPath.row] as? TripCell
+        {
             return cell
         }
-        else if (indexPath.row % 3 == 0 ){
-            let cell = tableView.dequeueReusableCellWithIdentifier(TripCell.identifier, forIndexPath: indexPath) as! TripCell
-            
-            cell.initialOdemeter!.text = "1000 "
-            cell.distanceCovered!.text = "20 km"
+        else if let cell = tableCells![indexPath.row] as? FuelCell
+        {
             return cell
         }
-        else{
-            let cell = tableView.dequeueReusableCellWithIdentifier(FuelCell.identifier, forIndexPath: indexPath) as! FuelCell
-            cell.fuelAmount!.text = "50 Litters"
-            cell.serviceProvider?.text = "fuel service"
+        else if let cell = tableCells![indexPath.row] as? OilCell
+        {
+            
             return cell
+        }
+        else
+        {
+            return UITableViewCell()
+            
             
         }
+        
     }
     
     
@@ -169,20 +175,22 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
         
-        let itemCount = items.count - 1
-        
-        if indexPath == itemCount {
-        
-        let story = UIStoryboard.init(name: "Vehicle", bundle: nil)
-        let controller = story.instantiateViewControllerWithIdentifier("Add Vehicle") as! AddVehicleTableViewController
-        
-        self.navigationController!.pushViewController(controller, animated: true)
-        }
-        else
-        {
-        SessionObjects.currentVehicle = vehicles[indexPath]
-        Defaults[.curentVehicleName] = SessionObjects.currentVehicle.name
-        }
+            
+            let itemCount = items.count - 1
+            
+            if indexPath == itemCount
+            {
+                let story = UIStoryboard.init(name: "Vehicle", bundle: nil)
+                let controller = story.instantiateViewControllerWithIdentifier("Add Vehicle") as! AddVehicleTableViewController
+                self.navigationController!.pushViewController(controller, animated: true)
+            }
+            else
+            {
+                SessionObjects.currentVehicle = vehicles[indexPath]
+                Defaults[.curentVehicleName] = SessionObjects.currentVehicle.name
+                self.tableCells = self.timelinePopulater?.populateTableData()
+                self.tableView.reloadData()
+            }
         }
         
         

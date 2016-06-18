@@ -8,7 +8,12 @@
 
 import UIKit
 
-class DaySummaryCell: UITableViewCell {
+
+class TimeLineCell: UITableViewCell {
+
+    var data:NSDate! = NSDate()
+}
+class DaySummaryCell: TimeLineCell {
     static let identifier = "DateCell"
     
 @IBOutlet  var date: UILabel?

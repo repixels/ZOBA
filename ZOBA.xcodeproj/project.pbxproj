@@ -14,6 +14,7 @@
 		82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */; };
 		82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7D1D0490D600BC80DD /* TimelineViewController.swift */; };
 		82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7F1D0490E400BC80DD /* AddTripViewController.swift */; };
+		821D9D691D1564230087698D /* TimelinePopulater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821D9D681D1564230087698D /* TimelinePopulater.swift */; };
 		82501A751D05A9A3008272CB /* add-fuel.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A661D05A9A3008272CB /* add-fuel.png */; };
 		82501A761D05A9A3008272CB /* add-oil.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A671D05A9A3008272CB /* add-oil.png */; };
 		82501A771D05A9A3008272CB /* add-trip.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A681D05A9A3008272CB /* add-trip.png */; };
@@ -202,6 +203,7 @@
 		82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFuelViewController.swift; sourceTree = "<group>"; };
 		82057F7D1D0490D600BC80DD /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		82057F7F1D0490E400BC80DD /* AddTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
+		821D9D681D1564230087698D /* TimelinePopulater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelinePopulater.swift; sourceTree = "<group>"; };
 		82501A661D05A9A3008272CB /* add-fuel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-fuel.png"; sourceTree = "<group>"; };
 		82501A671D05A9A3008272CB /* add-oil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-oil.png"; sourceTree = "<group>"; };
 		82501A681D05A9A3008272CB /* add-trip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-trip.png"; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				831B12CC1D0641CF00D10CBA /* FuelCell.swift */,
 				831B12CE1D0643A200D10CBA /* OilCell.swift */,
 				831B12D01D06448200D10CBA /* TripCell.swift */,
+				821D9D681D1564230087698D /* TimelinePopulater.swift */,
 			);
 			name = Timeline;
 			sourceTree = "<group>";
@@ -1344,6 +1347,7 @@
 				DC0095941D075660000856FC /* ServiceProviderServices.swift in Sources */,
 				82AE18EB1D12C3CB00F4EED6 /* Service+CoreDataProperties.swift in Sources */,
 				825BB0081D0C39AB00F44EA3 /* SessionObjects.swift in Sources */,
+				821D9D691D1564230087698D /* TimelinePopulater.swift in Sources */,
 				82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */,
 				DC00958E1D075660000856FC /* TrackingData.swift in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
