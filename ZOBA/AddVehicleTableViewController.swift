@@ -10,7 +10,8 @@ import UIKit
 import TextFieldEffects
 import Alamofire
 import ObjectMapper
-
+import SwiftyUserDefaults
+import CoreData
 
 class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSource , UIPickerViewDelegate {
     
@@ -22,10 +23,10 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
-    var makes : [Make]!
-    var models : [Model]!
-    var trims : [Trim]!
-    var years : [Year]!
+    var makes : [Make]?
+    var models : [Model]?
+    var trims : [Trim]?
+    var years : [Year]?
     
     @IBOutlet weak var licensePlateTextField: HoshiTextField!
     @IBOutlet weak var makeTextField: HoshiTextField!
@@ -51,6 +52,12 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Intialize Arrays
+        makes = [Make]()
+        models = [Model]()
+        years = [Year]()
+        trims = [Trim]()
         
         makePicker.delegate = self
         modelPicker.delegate = self
@@ -83,9 +90,6 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         toolBar.userInteractionEnabled = true
         
         
-        //        makePicker.addSubview(toolBar)
-        
-        
         makeTextField.inputView = makePicker
         modelTextField.inputView = modelPicker
         yearTextField.inputView = modelPicker
@@ -98,10 +102,10 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
         
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        makes =   dao.selectAll(entityName: "Make") as!  [Make]
-        trims =  dao.selectAll(entityName: "Trim") as!  [Trim]
-        years =  dao.selectAll(entityName: "Year") as!  [Year]
-        models =  dao.selectAll(entityName: "Model") as!  [Model]
+        makes =   dao.selectAll(entityName: "Make") as?  [Make]
+//        trims =  dao.selectAll(entityName: "Trim") as!  [Trim]
+//        years =  dao.selectAll(entityName: "Year") as!  [Year]
+//        models =  dao.selectAll(entityName: "Model") as!  [Model]
         
         
         saveBtn.enabled = false
@@ -132,16 +136,16 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         var count = 0
         switch pickerView {
         case makePicker:
-            count = makes.count
+            count = makes!.count
         case modelPicker:
             
             switch component {
             case 0:
-                count = models.count
+                count = models!.count
             case 1:
-                count = years.count
+                count = years!.count
             case 2:
-                count = trims.count
+                count = trims!.count
             default:
                 count = 0
             }
@@ -163,20 +167,20 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             
             switch pickerView {
             case makePicker:
-                title = makes[row].name!
+                title = makes![row].name!
             case modelPicker:
                 
                 switch component {
                 case 0:
-                    title = models[row].name!
+                    title = models![row].name!
                     
                 case 1:
-                    title = String(years[row].name!)
+                    title = String(years![row].name!)
                 
                     
                     
                 case 2:
-                    title = trims[row].name!
+                    title = trims![row].name!
                     
                 default:
                     title = ""
@@ -196,8 +200,8 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
         switch pickerView {
         case makePicker:
-            print( makes[row].name!)
-            selectedMake = makes[row]
+            print( makes![row].name!)
+            selectedMake = makes![row]
             modelTextField.text?.removeAll()
             trimTextField.text?.removeAll()
             yearTextField.text?.removeAll()
@@ -206,29 +210,29 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             
             switch component {
             case 0:
-                print( models[row].name!)
-                selectedModel = models[row]
-                years.removeAll()
-                let vehicleModels = models[row].vehicleModel!.allObjects as! [VehicleModel]
+                print( models![row].name!)
+                selectedModel = models![row]
+                years!.removeAll()
+                let vehicleModels = models![row].vehicleModel!.allObjects as! [VehicleModel]
                 vehicleModels.forEach({ (vehicleModel) in
-                    years.append( vehicleModel.year! )
+                    years!.append( vehicleModel.year! )
                 })
                 modelPicker.reloadComponent(1)
                 
             case 1:
-                print( years[row].name!)
-                selectedYear = years[row]
+                print( years![row].name!)
+                selectedYear = years![row]
                 
-                trims.removeAll()
-                let vehicleModels = years[row].vehicleModel!.allObjects as! [VehicleModel]
+                trims!.removeAll()
+                let vehicleModels = years![row].vehicleModel!.allObjects as! [VehicleModel]
                 vehicleModels.forEach({ (vehicleModel) in
-                    trims.append( vehicleModel.trim! )
+                    trims!.append( vehicleModel.trim! )
                 })
                 
                 modelPicker.reloadComponent(2)
             case 2:
-                print( trims[row].name!)
-                selectedTrim = trims[row]
+                print( trims![row].name!)
+                selectedTrim = trims![row]
             default:
                 print("default")
             }
@@ -262,7 +266,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             print(json.result.value)
             print("===========================")
             self.makes = Mapper<Make>().mapArray(json.result.value)
-            self.makes[0].save()
+            self.makes![0].save()
             self.makePicker.reloadAllComponents()
         }
         
@@ -276,7 +280,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             print(json.result.value)
             print("===========================")
             self.models = Mapper<Model>().mapArray(json.result.value)
-            self.models[0].save()
+            self.models![0].save()
             self.modelPicker.reloadAllComponents()
         }
         
@@ -288,8 +292,8 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             print(json.result.value)
             print("===========================")
             self.years = Mapper<Year>().mapArray(json.result.value)
-            self.years[0].save()
-            self.years.forEach({ (y) in
+            self.years![0].save()
+            self.years!.forEach({ (y) in
                 print("name : \(y.yearId)")
                 print("name : \(y.name)")
                 
@@ -305,17 +309,31 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             print(json.result.value)
             print("===========================")
             self.trims = Mapper<Trim>().mapArray(json.result.value)
-            self.trims[0].save()
+            self.trims![0].save()
             self.modelPicker.reloadAllComponents()
         }
         
     }
     
     func donePicker(){
+
         
         let mak = makePicker.selectedRowInComponent(0)
-        selectedMake = makes[mak]
-        models = selectedMake.model?.allObjects as! [Model]
+        selectedMake = makes![mak]
+        models = selectedMake.model?.allObjects as? [Model]
+        print(models)
+        let vehicleModelYears = models![0].vehicleModel!.allObjects as! [VehicleModel]
+        print(vehicleModelYears.count)
+        print(vehicleModelYears[0].year?.yearId)
+        vehicleModelYears.forEach({ (vehicleModelYear) in
+            years!.append( vehicleModelYear.year! )
+        })
+        let vehicleModelTrims = years![0].vehicleModel!.allObjects as! [VehicleModel]
+        vehicleModelTrims.forEach { (vehicleModelTrim) in
+            trims!
+                .append(vehicleModelTrim.trim!)
+        }
+        
         makeTextField.text = selectedMake.name
         makeTextField.resignFirstResponder()
     }
@@ -328,11 +346,11 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     
     func modelDonePicker(){
         let mod = modelPicker.selectedRowInComponent(0)
-        selectedModel = models[mod]
+        selectedModel = models![mod]
         let y = modelPicker.selectedRowInComponent(1)
-        selectedYear = years[y]
+        selectedYear = years![y]
         let t = modelPicker.selectedRowInComponent(2)
-        selectedTrim = trims[t]
+        selectedTrim = trims![t]
         
         modelTextField.text = selectedModel.name!
         yearTextField.text = String(selectedYear.name!)
@@ -352,29 +370,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
     }
     
-    @IBAction func saveVehiclePresses(sender: UIBarButtonItem) {
-        
-        let vehicleModel = VehicleModel(managedObjectContext: SessionObjects.currentManageContext ,entityName: "VehicleModel")
-        selectedModel.make = selectedMake
-        vehicleModel.model = selectedModel
-        vehicleModel.year = selectedYear
-        vehicleModel.trim = selectedTrim
-        vehicleModel.save()
-        
-        let vehicle = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
-        
-        vehicle.name = vehicleNameTextField.text
-        vehicle.initialOdemeter = Int (initialOdemeterTextField.text!)!
-        vehicle.currentOdemeter = Int (initialOdemeterTextField.text!)!
-        vehicle.licensePlate = licensePlateTextField.text
-        vehicle.vehicleModel = vehicleModel
-        vehicle.user = SessionObjects.currentUser
-        
-        vehicle.save()
-        
-        self.navigationController?.popViewControllerAnimated(true)
-        
-    }
+   
     
     
     @IBAction func nameIsChanging(sender: UITextField) {
@@ -436,5 +432,44 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
     }
     
+    @IBAction func saveVehiclePresses(sender: UIBarButtonItem) {
+        
+
+        
+        let vehicle = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
+        
+        vehicle.name = vehicleNameTextField.text
+        vehicle.initialOdemeter = Int (initialOdemeterTextField.text!)!
+        vehicle.currentOdemeter = Int (initialOdemeterTextField.text!)!
+        vehicle.licensePlate = licensePlateTextField.text
+        
+        
+        let fetchRequest = NSFetchRequest(entityName: "VehicleModel")
+        let predicate = NSPredicate(format: "%K = %@ AND %K = %@ AND %K = %@", "model",selectedModel,"year", selectedYear , "trim" ,selectedTrim)
+        fetchRequest.predicate = predicate
+        var res : VehicleModel!
+        do{
+            res = try SessionObjects.currentManageContext.executeFetchRequest(fetchRequest)[0] as! VehicleModel
+        } catch let error {
+            print(error)
+        }
+        
+        //selectedTrim.mutableSetValueForKey("vehicleModel.year").allObjects
+        vehicle.vehicleModel = res != nil  ? res : nil
+        vehicle.user = SessionObjects.currentUser
+        
+        vehicle.save()
+        
+        
+        if Defaults[.curentVehicleName] == nil
+        {
+            print("Nil was found")
+            Defaults[.curentVehicleName] = vehicle.name
+            SessionObjects.currentVehicle = vehicle
+        }
+        
+        self.navigationController?.popViewControllerAnimated(true)
+        
+    }
     
 }
