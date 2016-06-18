@@ -175,7 +175,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         selectedVehicle = vehicles[row]
-        currentOdemeter.text = String( selectedVehicle.currentOdemeter)
+        currentOdemeter.text = String( selectedVehicle.currentOdemeter!)
         
         coveredKm.text = ""
         finalOdemeter.text = ""
@@ -374,14 +374,6 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         }
         
         
-    }
-    
-    
-    @IBAction func showUserProfile(sender: UIBarButtonItem) {
-        
-        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("userProfile") as! UserProfileViewController
-        
-        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func dateDonePicker(){

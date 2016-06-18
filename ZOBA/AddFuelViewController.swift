@@ -34,6 +34,8 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     var isCurrentOdeReady = true
 
     var isFuelMountReady = false
+    
+    var isServiceProviderReady = false
 
     var formatter = NSDateFormatter()
 
@@ -44,6 +46,8 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     var date : String!
     
     var selectedServiceProvider : ServiceProvider?
+    
+    
     
 
     override func viewWillAppear(animated: Bool) {
@@ -59,7 +63,6 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSForegroundColorAttributeName: UIColor.whiteColor(),
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-
         // Do any additional setup after loading the view.
         
         formatter.dateFormat = "MMM dd,yyyy"
@@ -98,16 +101,24 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         serviceProviderPickerToolbar.userInteractionEnabled = true
         
         
+        
         serviceProviderTextFeild.inputAccessoryView = serviceProviderPickerToolbar
         
         dateTextField.inputAccessoryView = datePickerToolbar
         
+        
+        let selectedVehicleIndex = self.getCurrentVehicleIndex()
+        if selectedVehicleIndex >= 0 {
+            vehiclePickerView.selectRow(selectedVehicleIndex, inComponent: 0, animated: false)
+        }
         selectedVehicle = vehicles[vehiclePickerView.selectedRowInComponent(0)]
         selectedServiceProvider = serviceProviders[serviceProviderPickerView.selectedRowInComponent(0)]
         
-        initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
         
+        
+        initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
         currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
+        
     }
     
     
@@ -120,7 +131,8 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     @IBAction func fuelAmountEditingDidEnd(sender: AnyObject) {
         
         
-        if (fuelAmountTextField.text?.isNotEmpty ==  true && DataValidations.hasNoWhiteSpaces(fuelAmountTextField.text!)) {
+        if (fuelAmountTextField.text?.isNotEmpty ==  true && DataValidations.hasNoWhiteSpaces(fuelAmountTextField.text!))
+        {
             isFuelMountReady = true
         }
         else
@@ -203,7 +215,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     }
     
     func validateSaveBtn() {
-        if (isFuelMountReady && isCurrentOdeReady && dateTextField.text?.isNotEmpty == true) {
+        if (isFuelMountReady && isCurrentOdeReady && isServiceProviderReady && dateTextField.text?.isNotEmpty == true) {
             enablBtn()
         }
         else
@@ -239,7 +251,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     
     func enablBtn()  {
         saveBtn.enabled = true
-        saveBtn.tintColor = UIColor.blueColor()
+        saveBtn.tintColor = UIColor.whiteColor()
     }
     
 
@@ -264,6 +276,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         {
             selectedVehicle = vehicles[row]
             initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
+            currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
         }
         
         else
@@ -298,23 +311,28 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
         dateTextField.text = date
         
+        validateSaveBtn()
+        
         view.endEditing(true)
     }
     
     func dateToolbarCancelClicked()
     {
+        validateSaveBtn()
         dateTextField.resignFirstResponder()
     }
     
     func serviceProviderToolbarDoneClicked()
     {
         serviceProviderTextFeild.text = selectedServiceProvider!.name
+        isServiceProviderReady = true
+        validateSaveBtn()
         serviceProviderTextFeild.resignFirstResponder()
     }
     
     func serviceProviderToolbarCancelClicked()
     {
-        
+        view.endEditing(true)
     }
     
     
@@ -356,6 +374,19 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
     }
     
+    func getCurrentVehicleIndex() -> Int{
+        
+        var index = -1
+        let vehicle = SessionObjects.currentVehicle
+        for i in 0..<vehicles.count
+        {
+            if vehicles[i] == vehicle {
+                index = i
+            }
+        }
+        return index
+    }
+    
     
     @IBAction func saveFuel(sender: AnyObject) {
         
@@ -369,28 +400,18 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         
-        let trackingType = dao.selectByString(entityName: "TrackingType", AttributeName: "name", value: "Vehicle Refuelling") as![TrackingType]
+        let trackingType = dao.selectByString(entityName: "TrackingType", AttributeName: "name", value: StringConstants.fuelTrackingType) as![TrackingType]
         
         trackingDataObj.trackingType = trackingType[0]
         
         trackingDataObj.vehicle =  selectedVehicle
+        trackingDataObj.vehicle?.currentOdemeter = Int(currentOdometerTextField!.text!)
         trackingDataObj.serviceProviderName = serviceProviderTextFeild.text
         
         trackingDataObj.save()
         
-        performSegueWithIdentifier("allData", sender: self)
+        self.navigationController?.popViewControllerAnimated(true)
     }
-    /*
-    // MARK: - Navigation
-
-     //In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
- 
-            }
- */
-   
 
 
 }
