@@ -28,6 +28,9 @@ class AllTripTableViewController: UITableViewController {
             vehicleName =  SessionObjects.currentVehicle.name!
             self.prepareNavigationBar(vehicleName+" Trips")
             trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: vehicleName) as! [Trip]
+            addBtn.enabled = true
+            addBtn.tintColor = UIColor.whiteColor()
+            self.view.reloadInputViews()
             tableView.reloadData()
         }
         else
