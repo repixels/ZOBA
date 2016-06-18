@@ -54,12 +54,12 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
         self.prepareNavigationBar("Add a New Trip")
         
         let dao  = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
-
+        
         let DateToolBar = UIToolbar()
         DateToolBar.barStyle = UIBarStyle.Default
         DateToolBar.translucent = true
@@ -121,7 +121,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
             saveBtn.enabled = true
             saveBtn.tintColor = UIColor.blueColor()
         }
-
+        
         
     }
     
@@ -298,7 +298,14 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         let mapViewController: MapController = self.storyboard!.instantiateViewControllerWithIdentifier("MapView") as! MapController
         mapViewController.delegate = self
-        mapViewController.delegate = self
+        if ( isSecondPoint ) {
+            
+            mapViewController.firstCoordinate = self.startCoordinate
+            print("send first location : \(startCoordinate.latitude)  &&&&  \( startCoordinate.longitude)")
+        }
+        else {
+            mapViewController.firstCoordinate = self.destinationCoordinate
+        }
         self.navigationController?.pushViewController(mapViewController, animated: true)
         
     }
