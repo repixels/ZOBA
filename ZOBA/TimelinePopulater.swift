@@ -21,7 +21,7 @@ class TimelinePopulater
     
     let tableView : UITableView
     
-    var tableCells : [AnyObject]
+    var tableCells : [TimeLineCell]
     
     init(tableView:UITableView)
     {
@@ -34,7 +34,7 @@ class TimelinePopulater
         vehicleFuelTrackingData = [TrackingData]()
         vehicleOilTrackingData = [TrackingData]()
         
-        self.tableCells = [AnyObject]()
+        self.tableCells = [TimeLineCell]()
         
         self.tableView = tableView
         
@@ -51,6 +51,7 @@ class TimelinePopulater
             let tripCell = tableView.dequeueReusableCellWithIdentifier(TripCell.identifier) as! TripCell
             
              let date = NSDate(timeIntervalSince1970:  Double(trip.dateAdded!))
+            tripCell.timeLineDate = date
             tripCell.tripDate!.text = String(date)
             tripCell.tripTitle!.text = (trip.vehicle!.name)!+" Trip"
             tripCell.initialOdemeter!.text = trip.initialOdemeter!.stringValue
@@ -72,6 +73,7 @@ class TimelinePopulater
         for fuel in vehicleFuelTrackingData!{
         
             let fuelCell = tableView.dequeueReusableCellWithIdentifier(FuelCell.identifier) as! FuelCell
+            fuelCell.timeLineDate = fuel.dateAdded
             fuelCell.fuelAmount!.text = fuel.value!
             fuelCell.fuelTitle?.text = (fuel.vehicle!.name)! + " Fuel"
             fuelCell.fuelDate?.text = String(fuel.dateAdded!)
@@ -92,6 +94,7 @@ class TimelinePopulater
         for oil in vehicleOilTrackingData!{
             
             let oilCell = tableView.dequeueReusableCellWithIdentifier(OilCell.identifier) as! OilCell
+            oilCell.timeLineDate = oil.dateAdded
             oilCell.oilAmount!.text = oil.value!
             oilCell.oilTitle?.text = (oil.vehicle!.name)! + " Oil"
             oilCell.oilDate?.text = String(oil.dateAdded!)
@@ -134,7 +137,9 @@ class TimelinePopulater
         self.populateOilCells()
         self.populateTripsCells()
         
-        
+        tableCells.sortInPlace { (firstCell, secondCell) -> Bool in
+            return firstCell.timeLineDate.compare(secondCell.timeLineDate) == NSComparisonResult.OrderedDescending
+        }
         
         
         

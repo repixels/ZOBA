@@ -11,7 +11,7 @@ import UIKit
 
 class TimeLineCell: UITableViewCell {
 
-    var data:NSDate! = NSDate()
+    var timeLineDate:NSDate! = NSDate()
 }
 class DaySummaryCell: TimeLineCell {
     static let identifier = "DateCell"
