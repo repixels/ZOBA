@@ -132,6 +132,7 @@
         <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="trip" inverseEntity="Vehicle" syncable="YES"/>
     </entity>
     <entity name="TripCoordinate" representedClassName=".TripCoordinate" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="coordinateId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longtitude" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
@@ -154,7 +155,7 @@
         <relationship name="featuresValue" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ModelFeatureValue" inverseName="vehicleModels" inverseEntity="ModelFeatureValue" syncable="YES"/>
         <relationship name="model" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Model" inverseName="vehicleModel" inverseEntity="Model" syncable="YES"/>
         <relationship name="trim" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Trim" inverseName="vehicleModel" inverseEntity="Trim" syncable="YES"/>
-        <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="vehicleModel" inverseEntity="Vehicle" syncable="YES"/>
+        <relationship name="vehicle" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="vehicleModel" inverseEntity="Vehicle" syncable="YES"/>
         <relationship name="year" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Year" inverseName="vehicleModel" inverseEntity="Year" syncable="YES"/>
     </entity>
     <entity name="Year" representedClassName=".Year" syncable="YES">
@@ -180,9 +181,9 @@
         <element name="TrackingType" positionX="-171" positionY="-321" width="128" height="120"/>
         <element name="Trim" positionX="-29" positionY="-243" width="128" height="88"/>
         <element name="Trip" positionX="-135" positionY="245" width="128" height="165"/>
-        <element name="TripCoordinate" positionX="-243" positionY="230" width="128" height="103"/>
+        <element name="TripCoordinate" positionX="-243" positionY="230" width="128" height="120"/>
         <element name="Vehicle" positionX="-387" positionY="252" width="128" height="195"/>
-        <element name="VehicleModel" positionX="322" positionY="290" width="128" height="133"/>
+        <element name="VehicleModel" positionX="322" positionY="290" width="128" height="135"/>
         <element name="Year" positionX="-11" positionY="81" width="128" height="90"/>
     </elements>
 </model>
