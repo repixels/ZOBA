@@ -45,7 +45,7 @@ class FuelTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return data.count
+        return data != nil ? data.count : 0
     }
 
     

@@ -139,6 +139,7 @@ class DummyDataBaseOperation {
         model.modelId = 1
         
         model.save()
+        
     }
     
     
@@ -264,6 +265,7 @@ class DummyDataBaseOperation {
         year.name = 2016
         year.yearId  = 2016
         
+        
         let trim = Trim(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trim")
         trim.name = "LX"
         trim.trimId=4
@@ -303,9 +305,9 @@ class DummyDataBaseOperation {
     
     static func populateData()
     {
-        DummyDataBaseOperation.populateMake()
-        DummyDataBaseOperation.populateYear()
-        DummyDataBaseOperation.populateModel()
+//        DummyDataBaseOperation.populateMake()
+//        DummyDataBaseOperation.populateYear()
+//        DummyDataBaseOperation.populateModel()
         saveVehicleModel()
         DummyDataBaseOperation.populateServiceProvider()
     }

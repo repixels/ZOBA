@@ -36,7 +36,7 @@ class VehicleModel: NSManagedObject , Mappable{
         self.vehicleModelId <- map[""]
         self.model <- map[""]
         self.trim <- map[""]
-        self.vehicle <- map[""]
+        //self.vehicle <- map[""]
         self.year <- map[""]
         featuresValueArray <- map[""]
         

@@ -55,14 +55,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             SessionObjects.currentUser = abstractDAO.selectAll(entityName: "MyUser")[0] as! MyUser
             
             let vehicleName = Defaults[.curentVehicleName]
-            let vehicles = abstractDAO.selectByString(entityName: "Vehicle", AttributeName: "name", value: vehicleName!) as! [Vehicle]
-            if(vehicles.count > 0){
-                SessionObjects.currentVehicle = vehicles.first
-            }
-            else{
-                print("no car selected")
-            }
+            if vehicleName != nil
+            {
+                let vehicles = abstractDAO.selectByString(entityName: "Vehicle", AttributeName: "name", value: vehicleName!) as! [Vehicle]
+                if(vehicles.count > 0){
+                    SessionObjects.currentVehicle = vehicles.first
+                }
+                else{
+                    print("no car selected")
+                }
             
+            }
             
             let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
             let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
