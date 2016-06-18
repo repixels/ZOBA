@@ -192,28 +192,8 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         sender.inputView = datePickerView
         
-        datePickerView.addTarget(self, action: #selector(self.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
-        
     }
     
-    func datePickerValueChanged(sender:UIDatePicker) {
-        
-        let dateFormatter = NSDateFormatter()
-        
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        
-        dateTextField.text = dateFormatter.stringFromDate(sender.date)
-        
-        isDateValid = true
-        validateSave()
-    }
-    
-    
-    
-    @IBAction func vehicleEditingBegin(sender: HoshiTextField) {
-    }
     
     
     //MARK: Odemeter textField editing
