@@ -141,7 +141,7 @@ class TimelinePopulater
         
         //sort table cell
         tableCells.sortInPlace { (firstCell, secondCell) -> Bool in
-        
+            
             return firstCell.timeLineDate.compare(secondCell.timeLineDate) == NSComparisonResult.OrderedDescending
         }
         
@@ -155,28 +155,30 @@ class TimelinePopulater
         
         sortedCells.append(cell)
         
-        
-        for i in 1 ..< tableCells.count - 1
-        {
-            sortedCells.append(tableCells[i])
-            
-            let cal = NSCalendar.currentCalendar()
-            let firstComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i].timeLineDate)
-            let secondComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i+1].timeLineDate)
-            if firstComps > secondComps
+        if tableCells.count > 1 {
+            for i in 1 ..< tableCells.count - 1
             {
+                sortedCells.append(tableCells[i])
                 
-                timelineDate = tableCells[i].timeLineDate
-                let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
-                cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter!.stringValue
-                cell.salutation?.text = contextAwareTitle()
-                sortedCells.append(cell)
+                let cal = NSCalendar.currentCalendar()
+                let firstComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i].timeLineDate)
+                let secondComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i+1].timeLineDate)
+                if firstComps > secondComps
+                {
+                    
+                    timelineDate = tableCells[i].timeLineDate
+                    let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
+                    cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter!.stringValue
+                    cell.salutation?.text = contextAwareTitle()
+                    sortedCells.append(cell)
+                }
+                
+                
             }
-            
-            
         }
+          if tableCells.count > 0 {
         sortedCells.append(tableCells.last!)
-        
+        }
         
         return sortedCells
         
