@@ -8,8 +8,8 @@
 
 import UIKit
 
-class OilCell: UITableViewCell {
-    static let identifier = "OilCell"
+class OilCell: TimeLineCell {
+    static let identifier = "OilData"
     
     @IBOutlet  var oilDate: UILabel?
     @IBOutlet  var initialOdemeter: UILabel?

@@ -14,6 +14,7 @@
 		82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */; };
 		82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7D1D0490D600BC80DD /* TimelineViewController.swift */; };
 		82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7F1D0490E400BC80DD /* AddTripViewController.swift */; };
+		821D9D691D1564230087698D /* TimelinePopulater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821D9D681D1564230087698D /* TimelinePopulater.swift */; };
 		82501A751D05A9A3008272CB /* add-fuel.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A661D05A9A3008272CB /* add-fuel.png */; };
 		82501A761D05A9A3008272CB /* add-oil.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A671D05A9A3008272CB /* add-oil.png */; };
 		82501A771D05A9A3008272CB /* add-trip.png in Resources */ = {isa = PBXBuildFile; fileRef = 82501A681D05A9A3008272CB /* add-trip.png */; };
@@ -45,6 +46,7 @@
 		829825681D0D816D00FCC4C8 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829825671D0D816D00FCC4C8 /* EditPasswordViewController.swift */; };
 		8298256A1D0EBA6F00FCC4C8 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */; };
 		829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829C437B1CFBBA1E00869E59 /* Media.xcassets */; };
+		829C62531D16727F007C9A63 /* ServiceProvider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829C62521D16727F007C9A63 /* ServiceProvider.storyboard */; };
 		82AE18961D12BAEF00F4EED6 /* SideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AE18951D12BAEF00F4EED6 /* SideMenu.storyboard */; };
 		82AE189A1D12C2EC00F4EED6 /* ZOBA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82AE18981D12C2EC00F4EED6 /* ZOBA.xcdatamodeld */; };
 		82AE18DA1D12C3CB00F4EED6 /* VehicleModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AE18C51D12C3CB00F4EED6 /* VehicleModel+CoreDataProperties.swift */; };
@@ -202,6 +204,7 @@
 		82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFuelViewController.swift; sourceTree = "<group>"; };
 		82057F7D1D0490D600BC80DD /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		82057F7F1D0490E400BC80DD /* AddTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
+		821D9D681D1564230087698D /* TimelinePopulater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelinePopulater.swift; sourceTree = "<group>"; };
 		82501A661D05A9A3008272CB /* add-fuel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-fuel.png"; sourceTree = "<group>"; };
 		82501A671D05A9A3008272CB /* add-oil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-oil.png"; sourceTree = "<group>"; };
 		82501A681D05A9A3008272CB /* add-trip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-trip.png"; sourceTree = "<group>"; };
@@ -240,6 +243,11 @@
 		829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		829C43791CFBAC9500869E59 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		829C437B1CFBBA1E00869E59 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
+		829C624E1D166D8A007C9A63 /* DS-DIGI.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGI.TTF"; sourceTree = "<group>"; };
+		829C624F1D166D8A007C9A63 /* DS-DIGIB.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGIB.TTF"; sourceTree = "<group>"; };
+		829C62501D166D8A007C9A63 /* DS-DIGII.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGII.TTF"; sourceTree = "<group>"; };
+		829C62511D166D8A007C9A63 /* DS-DIGIT.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGIT.TTF"; sourceTree = "<group>"; };
+		829C62521D16727F007C9A63 /* ServiceProvider.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ServiceProvider.storyboard; sourceTree = "<group>"; };
 		82AE18951D12BAEF00F4EED6 /* SideMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideMenu.storyboard; sourceTree = "<group>"; };
 		82AE18991D12C2EC00F4EED6 /* ZOBA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ZOBA.xcdatamodel; sourceTree = "<group>"; };
 		82AE18C51D12C3CB00F4EED6 /* VehicleModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VehicleModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -461,6 +469,7 @@
 				831B12CC1D0641CF00D10CBA /* FuelCell.swift */,
 				831B12CE1D0643A200D10CBA /* OilCell.swift */,
 				831B12D01D06448200D10CBA /* TripCell.swift */,
+				821D9D681D1564230087698D /* TimelinePopulater.swift */,
 			);
 			name = Timeline;
 			sourceTree = "<group>";
@@ -584,6 +593,7 @@
 				DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */,
 				829825631D0D538600FCC4C8 /* UserProfile.storyboard */,
 				829825651D0D718F00FCC4C8 /* VehicleTrips.storyboard */,
+				829C62521D16727F007C9A63 /* ServiceProvider.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -669,6 +679,10 @@
 		82F8B8B61CF8905B00E46B05 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				829C624E1D166D8A007C9A63 /* DS-DIGI.TTF */,
+				829C624F1D166D8A007C9A63 /* DS-DIGIB.TTF */,
+				829C62501D166D8A007C9A63 /* DS-DIGII.TTF */,
+				829C62511D166D8A007C9A63 /* DS-DIGIT.TTF */,
 				82F8B8B71CF8905B00E46B05 /* contb.ttf */,
 				82F8B8B81CF8905B00E46B05 /* contl.ttf */,
 				82F8B8B91CF8905B00E46B05 /* contm.ttf */,
@@ -948,6 +962,7 @@
 				DC778F2B1D0D7B3600F43AE8 /* oil.storyboard in Resources */,
 				82F8B8A11CF8807400E46B05 /* service-centers.png in Resources */,
 				82501A791D05A9A3008272CB /* flag.png in Resources */,
+				829C62531D16727F007C9A63 /* ServiceProvider.storyboard in Resources */,
 				82501A801D05A9A3008272CB /* rainbow.png in Resources */,
 				82501A771D05A9A3008272CB /* add-trip.png in Resources */,
 				82501A811D05A9A3008272CB /* route.png in Resources */,
@@ -1344,6 +1359,7 @@
 				DC0095941D075660000856FC /* ServiceProviderServices.swift in Sources */,
 				82AE18EB1D12C3CB00F4EED6 /* Service+CoreDataProperties.swift in Sources */,
 				825BB0081D0C39AB00F44EA3 /* SessionObjects.swift in Sources */,
+				821D9D691D1564230087698D /* TimelinePopulater.swift in Sources */,
 				82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */,
 				DC00958E1D075660000856FC /* TrackingData.swift in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
