@@ -465,6 +465,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         {
             Defaults[.curentVehicleName] = vehicle.name
             SessionObjects.currentVehicle = vehicle
+            SessionObjects.motionMonitor.startDetection()
         }
         
         self.navigationController?.popViewControllerAnimated(true)

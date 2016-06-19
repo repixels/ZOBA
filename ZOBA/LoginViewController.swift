@@ -328,6 +328,10 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     
                     let app = UIApplication.sharedApplication().delegate as! AppDelegate
                     app.window?.rootViewController = slideMenuController
+                   
+                    SessionObjects.motionMonitor = LocationMonitor()
+                    
+                    SessionObjects.motionMonitor.startDetection()
                     
 
                     break;

@@ -24,7 +24,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
         
         super.init()
         
-        locationManager.requestAlwaysAuthorization()
+//        locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         SOLocationManager.sharedInstance().allowsBackgroundLocationUpdates = true
         getMotionDetector().setMaximumRunningSpeed(10)
@@ -85,7 +85,9 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
                     
                     print("data from old trip from more than 10 minutes earlier")
                     print("time diff \(timeDifference)")
-                    self.startNewTrip()
+                    Defaults[.isHavingTrip] = false
+//                    self.presentStartMotionNotification()
+                    
                     self.saveLocation(location)
                     
                     //clear plist and start new trip

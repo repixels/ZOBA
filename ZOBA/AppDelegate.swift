@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         NetworkActivityIndicatorManager.sharedManager.startDelay = 0
         NetworkActivityIndicatorManager.sharedManager.completionDelay = 0.5
         
+        
+        
         // Override point for customization after application launch.
         
         if(Defaults[.isLoggedIn] == false)
@@ -64,6 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 else{
                     print("no car selected")
                 }
+               
+                SessionObjects.motionMonitor = LocationMonitor()
+                
+                SessionObjects.motionMonitor.startDetection()
+                
                 
             }
             
@@ -83,10 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         
         
-        SessionObjects.motionMonitor = LocationMonitor()
-        SessionObjects.motionMonitor.stopTrip()
-        SessionObjects.motionMonitor.startDetection()
-        
+      
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
