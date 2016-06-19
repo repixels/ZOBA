@@ -158,6 +158,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         map.addOverlay(mapOvelay!)
     }
     
+
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
         let renderer = MKPolylineRenderer(overlay: overlay)
@@ -165,9 +166,11 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         renderer.strokeColor = UIColor.greenColor()
         renderer.lineWidth = 10
         
+        
         requestSnapshotData(map) { (image, error) in
         
-            print("image save")
+           // return image!.drawLayer(mapView.overlays.first as! CALayer, inContext: mapView)
+
         }
         
         return renderer
@@ -185,25 +188,15 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                 completion(nil, error)
                 return
             }
-            
             let image = snapshot!.image
+            
             let data = UIImagePNGRepresentation(image)
             let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
             data!.writeToFile(filename, atomically: true)
-            
             print(filename)
             
             completion(data, nil)
         }
-//
-//        UIGraphicsBeginImageContext(mapView.frame.size)
-//        mapView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-//        let image = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        
-//        //Save it to the camera roll
-//        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-//        print("CALLED")
     }
     func getDocumentsDirectory() -> NSString {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
