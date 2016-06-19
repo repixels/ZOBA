@@ -222,20 +222,36 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let renderer = MKPolylineRenderer(overlay: overlay)
         
-        renderer.strokeColor = UIColor.greenColor()
+        renderer.strokeColor = UIColor.flatRedColor()
         renderer.lineWidth = 9
         
         
         requestSnapshotData(map) { (image, error) in
-            
-        }
+        print(error)}
         
         return renderer
     }
     
     func requestSnapshotData(mapView: MKMapView,  completion: (NSData?, NSError?) -> ()) {
         let options = MKMapSnapshotOptions()
-        options.region = mapView.region
+        
+        let arrayofLocations = locationPlist.getCoordinatesArray()
+        
+        let firstCoordinate = arrayofLocations.first
+        let lastCoordinate  = arrayofLocations.last
+        
+        
+        let firstlocation = CLLocation(latitude: CLLocationDegrees((firstCoordinate?.latitude)!), longitude: CLLocationDegrees((firstCoordinate?.longitude)!))
+        
+        let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate?.latitude)!), longitude: CLLocationDegrees((lastCoordinate?.longitude)!))
+        
+        
+        let diff = lastlocation.distanceFromLocation(firstlocation)
+        
+        let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diff, diff)
+    
+
+        options.region = region
         options.size = mapView.frame.size
         options.scale = UIScreen.mainScreen().scale
         
@@ -245,7 +261,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                 completion(nil, error)
                 return
             }
-                        
+            
             UIGraphicsBeginImageContext(self.map.frame.size)
             self.map.drawViewHierarchyInRect(self.map.bounds, afterScreenUpdates: true)
             let imageee = UIGraphicsGetImageFromCurrentImageContext();
