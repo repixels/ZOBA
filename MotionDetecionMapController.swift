@@ -22,6 +22,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     @IBOutlet weak var totalDistance: UILabel!
     
     
+    @IBOutlet weak var stopReportingBtn: UIButton!
     
     let annotation = MKPointAnnotation()
     let locationManager = CLLocationManager()
@@ -45,6 +46,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     var image : NSData?
     var point = NSMutableDictionary()
     
+     var isStop = String(Defaults[.isHavingTrip])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +63,26 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             self.currentSpeed.text = String(Int(speed))
             print("received  : \(speed)")
             self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", distance,"Km")
-            //            self.havingTripTextField.text = String(Defaults[.isHavingTrip])
+            
+           // for i in 0 ..< speedArray.count-1 {
+                //let speed = locationPlist.getSpeed(i)
+                if speed < 30 {
+                    
+                    self.currentSpeed.textColor = UIColor.greenColor()
+                    
+                }
+                else if speed < 80
+                {
+                    self.currentSpeed.textColor = UIColor.yellowColor()
+                    
+                }
+                else
+                {
+                    self.currentSpeed.textColor = UIColor.redColor()
+                }
+                
+                
+           // }
         }
         
         SessionObjects.motionMonitor.updateLocationBlock = block
@@ -76,30 +97,42 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
-        SessionObjects.motionMonitor.stopTrip()
-        //        self.havingTripTextField.text = String(Defaults[.isHavingTrip])
-        drawRoad()
         
-        let point = locationPlist.getLocationsDictionaryArray()
-        
-        let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-        firstCoordinate.latitude =  point.firstObject?.objectForKey("latitude") as? NSDecimalNumber
-        firstCoordinate.longtitude = point.firstObject?.objectForKey("longitude") as? NSDecimalNumber
-        
-        let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-        
-        
-        lastCoordinate.latitude = point.lastObject?.objectForKey("latitude") as? NSDecimalNumber
-        lastCoordinate.longtitude = point.lastObject?.objectForKey("longitude") as? NSDecimalNumber
-        
-        let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
-        
-        let distance = locationPlist.getDistanceInKM()
-        
-        tripObj.coveredKm  = distance
-        tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
-        
-        tripObj.save()
+        if  Defaults[.isHavingTrip]
+        {
+            SessionObjects.motionMonitor.stopTrip()
+            stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
+            
+            drawRoad()
+            let point = locationPlist.getLocationsDictionaryArray()
+            
+            let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+            firstCoordinate.latitude =  point.firstObject?.objectForKey("latitude") as? NSDecimalNumber
+            firstCoordinate.longtitude = point.firstObject?.objectForKey("longitude") as? NSDecimalNumber
+            
+            let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+            
+            
+            lastCoordinate.latitude = point.lastObject?.objectForKey("latitude") as? NSDecimalNumber
+            lastCoordinate.longtitude = point.lastObject?.objectForKey("longitude") as? NSDecimalNumber
+            
+            let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+            
+            let distance = locationPlist.getDistanceInKM()
+            
+            tripObj.coveredKm  = distance
+            tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
+            
+            tripObj.save()
+        }
+        else
+        {
+            
+            startDetection(sender)
+         
+            stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
+
+        }
     }
     
     @IBAction func cancelTapped(sender: AnyObject) {
@@ -146,9 +179,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
     }
     
-    @IBAction func startDetection(sender: AnyObject) {
+     func startDetection(sender: AnyObject) {
         
         SessionObjects.motionMonitor.startNewTrip()
+        
+        let speedArray = locationPlist.getLocationsDictionaryArray()
+
+
     }
     
     

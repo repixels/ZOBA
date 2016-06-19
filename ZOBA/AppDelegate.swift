@@ -326,8 +326,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         
         //get current active view controller
-        let menu = application.windows[0].rootViewController as! SlideMenuController
-        
+      if  let menu = application.windows[0].rootViewController as? SlideMenuController
+      {
         let tabController = menu.mainViewController as! UITabBarController
         //            application.windows[0].rootViewController as! UITabBarController
         let navigationController = tabController.selectedViewController as! UINavigationController
@@ -354,7 +354,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         
         
-        
+        }
     }
 }
 
