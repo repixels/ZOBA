@@ -156,7 +156,7 @@ class TimelinePopulater
         sortedCells.append(cell)
         
         if tableCells.count > 1 {
-            for i in 1 ..< tableCells.count - 1
+            for i in 0 ..< tableCells.count - 1
             {
                 sortedCells.append(tableCells[i])
                 

@@ -26,7 +26,7 @@ class Make: NSManagedObject , Mappable {
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
-        mapping(map)
+//        mapping(map)
         
     }
     
@@ -38,8 +38,8 @@ class Make: NSManagedObject , Mappable {
         self.makeId <- map["id"]
         self.name <- map["name"]
         self.niceName <- map["niceName"]
-        modelsArray <- map[""]
-        serviceProvidersArray <- map[""]
+        modelsArray <- map["models"]
+        serviceProvidersArray <- map["serviceProviders"]
         
         if modelsArray != nil
         {

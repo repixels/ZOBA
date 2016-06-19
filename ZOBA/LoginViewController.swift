@@ -298,19 +298,21 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     if((Defaults[.deviceToken]) != nil)
                     {
                         SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+                        let deviceWebService = DeviceWebservice(deviceToken: Defaults[.deviceToken]!,currentUser: SessionObjects.currentUser)
+                        deviceWebService.registerUserDevice()
                     }
-//
-//                    let deviceWebService = DeviceWebservice(deviceToken: Defaults[.deviceToken]!,currentUser: SessionObjects.currentUser)
-//                    deviceWebService.registerUserDevice()
-//                    
+                    
+                    
+                    print(user!)
+                    print(user!.vehicle!.allObjects)
                     SessionObjects.currentUser.save()
                     Defaults[.isLoggedIn] = true
                     Defaults[.useremail] = user!.email
                     Defaults[.launchCount] += 1
                     
-                    //To be removed
-
-                    
+//                    //To be removed
+//
+//                    
                     DummyDataBaseOperation.populateOnlyOnce()
                     DummyDataBaseOperation.populateData()
                     
