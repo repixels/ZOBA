@@ -26,7 +26,7 @@ class Trim: NSManagedObject , Mappable {
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
-        mapping(map)
+//        mapping(map)
         
     }
     
@@ -36,7 +36,7 @@ class Trim: NSManagedObject , Mappable {
         
         self.name <- map["name"]
         self.trimId <- map["id"]
-        vehicleModelsArray <- map[""]
+        vehicleModelsArray <- map["vehicleModels"]
         
         if vehicleModelsArray != nil
         {

@@ -90,6 +90,7 @@ class UserWebservice
                         }
                         
                         result(user: mappedUser,code: connectionStatus)
+                        mappedUser?.release(SessionObjects.currentManageContext)
                     }
                     
                     break;

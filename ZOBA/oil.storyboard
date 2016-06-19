@@ -179,6 +179,7 @@
                         <outlet property="initialOdemeter" destination="sZ1-pc-Rjo" id="ACx-Lq-J3w"/>
                         <outlet property="oilAmountTextField" destination="3gf-6M-QDp" id="D1Y-ba-pUf"/>
                         <outlet property="saveBtn" destination="yx9-F9-Ub9" id="0CF-Cg-Pfg"/>
+                        <outlet property="serviceProviderButton" destination="KHw-ft-xhw" id="iTs-RF-E1N"/>
                         <outlet property="serviceProviderTextFeild" destination="Y9P-1S-YEk" id="EtW-bL-RSR"/>
                         <outlet property="vehiclePickerView" destination="Gta-rC-07x" id="VgJ-w6-JC0"/>
                     </connections>

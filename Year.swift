@@ -28,7 +28,7 @@ class Year: NSManagedObject , Mappable
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
-        mapping(map)
+//        mapping(map)
         
     }
     
@@ -42,7 +42,7 @@ class Year: NSManagedObject , Mappable
         self.name = NSNumber(integer: nameInt)
         self.yearId <- map["id"]
         
-        vehicleModelsArrray <- map[""]
+        vehicleModelsArrray <- map["vehicleModel"]
         
         if vehicleModelsArrray != nil
         {
@@ -52,5 +52,6 @@ class Year: NSManagedObject , Mappable
         {
             self.vehicleModel = nil
         }
+        self.vehicleModel = nil
     }
 }

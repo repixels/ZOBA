@@ -280,6 +280,38 @@ class DummyDataBaseOperation {
         
     }
     
+    static func saveVehicleModel2()
+    {
+        
+        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        
+        let make = dao.selectByString(entityName: "Make", AttributeName: "name", value: "Mitsubishi") as! [Make]
+        
+        
+        let model = Model(managedObjectContext: SessionObjects.currentManageContext, entityName: "Model")
+        model.make =  make[0]
+        model.name = "Mirage"
+        model.niceName = "mirage"
+        model.modelId = 5
+        
+        let year = Year(managedObjectContext: SessionObjects.currentManageContext, entityName: "Year")
+        year.name = 2017
+        year.yearId  = 2017
+        
+        
+        let trim = Trim(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trim")
+        trim.name = "GX"
+        trim.trimId=5
+        
+        let vehicleModel = VehicleModel(managedObjectContext: SessionObjects.currentManageContext, entityName: "VehicleModel")
+        vehicleModel.model = model
+        vehicleModel.year = year
+        vehicleModel.trim = trim
+        
+        vehicleModel.save()
+        
+    }
+    
     static func populateMeasuringUnit()
     {
         let kilometer =  MeasuringUnit(managedObjectContext: SessionObjects.currentManageContext , entityName: "MeasuringUnit")
@@ -309,7 +341,8 @@ class DummyDataBaseOperation {
 //        DummyDataBaseOperation.populateMake()
 //        DummyDataBaseOperation.populateYear()
 //        DummyDataBaseOperation.populateModel()
-        saveVehicleModel()
+//        saveVehicleModel()
+//        saveVehicleModel2()
         DummyDataBaseOperation.populateServiceProvider()
     }
 }
