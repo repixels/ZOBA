@@ -47,8 +47,6 @@ class DummyDataBaseOperation {
         let image = UIImage(named: "add-trip")
         
         let data = UIImagePNGRepresentation(image!)
-        // print(data)
-        //
         
         let url = "http://10.118.48.143:8080/WebServiceProject/rest/img/mas"
         

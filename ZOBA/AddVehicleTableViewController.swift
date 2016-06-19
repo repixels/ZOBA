@@ -264,7 +264,6 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     func getAllMakes(){
         Alamofire.request(.GET,makeUrl).responseJSON { (json) in
             print(json.result.value)
-            print("===========================")
             self.makes = Mapper<Make>().mapArray(json.result.value)
             self.makes![0].save()
             self.makePicker.reloadAllComponents()

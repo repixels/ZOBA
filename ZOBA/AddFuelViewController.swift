@@ -114,7 +114,9 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         }
         selectedVehicle = vehicles[vehiclePickerView.selectedRowInComponent(0)]
         
-        
+        let abstractDAO = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        let serviceProviderDAO = abstractDAO.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
+        serviceProviders = serviceProviderDAO
         
         if serviceProviders != nil && serviceProviders.count > 0
         {

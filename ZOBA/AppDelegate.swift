@@ -314,6 +314,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Defaults[.deviceToken] = tokenString
         print("tokenString: \(tokenString)")
         print("Device Token is : \(deviceToken)")
+        
+        if(SessionObjects.currentUser != nil)
+        {
+            SessionObjects.currentUser.deviceToken = tokenString
+            let deviceWebService = DeviceWebservice(deviceToken: Defaults[.deviceToken]!,currentUser: SessionObjects.currentUser)
+            deviceWebService.registerUserDevice()
+            print("Device Token is : \(deviceToken)")
+        }
+        else
+        {
+            Defaults[.deviceToken] = tokenString
+        }
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
