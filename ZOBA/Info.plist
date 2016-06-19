@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
@@ -66,6 +65,10 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>DS-DIGI.TTF</string>
+		<string>DS-DIGIT.TTF</string>
+		<string>DS-DIGIB.TTF</string>
+		<string>DS-DIGII.TTF</string>
 		<string>sf-outer-limits.upright.ttf</string>
 		<string>nasalization rg.ttf</string>
 		<string>contb.ttf</string>
@@ -97,5 +100,4 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>ZOBA uses your location to automatically collect your trip data to acquire accurate details about your trip. Yet none of this occurs without your permission.</string>
 </dict>
-
 </plist>
