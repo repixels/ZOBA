@@ -20,12 +20,11 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     var updateLocationBlock : ((Double,Double)->())!
     let locationPlist = LocationPlistManager()
     
-    init(delegate : MapDetectionDelegate!) {
-        
+    override init() {
         
         super.init()
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
+        
+//        locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         SOLocationManager.sharedInstance().allowsBackgroundLocationUpdates = true
         getMotionDetector().setMaximumRunningSpeed(10)
@@ -79,14 +78,16 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
         getMotionDetector().locationChangedBlock = { (location) in
             if Defaults[.isHavingTrip] {    
                 let timeDifference = location.timestamp.timeIntervalSinceDate(self.locationPlist.readLastLocation().date)
-                 print(self.locationPlist.getLocationsDictionaryArray())
+               
                 //if this is a new trip
                 if timeDifference > (60*10)
                 {
                     
                     print("data from old trip from more than 10 minutes earlier")
                     print("time diff \(timeDifference)")
-                    self.startNewTrip()
+                    Defaults[.isHavingTrip] = false
+//                    self.presentStartMotionNotification()
+                    
                     self.saveLocation(location)
                     
                     //clear plist and start new trip
@@ -177,9 +178,9 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
             dispatch_async(dispatch_get_main_queue(), {
                 
                 let story = UIStoryboard.init(name: "MotionDetection", bundle: nil)
-                let controller = story.instantiateInitialViewController()
+               let controller = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
                 
-                activeViewCont.presentViewController(controller!, animated: true, completion: nil)
+                activeViewCont.navigationController?.pushViewController(controller, animated: true)
                 
             })
             alert.dismissViewControllerAnimated(true, completion: nil)
