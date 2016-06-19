@@ -15,13 +15,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     
     @IBOutlet weak var map: MKMapView!
- 
- 
+    
+    
     @IBOutlet weak var currentSpeed: UILabel!
     
     @IBOutlet weak var totalDistance: UILabel!
     
-
+    
     
     let annotation = MKPointAnnotation()
     let locationManager = CLLocationManager()
@@ -32,10 +32,10 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     var locationPlist = LocationPlistManager()
     
     @IBOutlet weak var autoReportingControlButton: UIButton!
-
+    
     @IBOutlet weak var speedMeasuringUnitLabel: UILabel!
     
-  
+    
     @IBOutlet weak var elapsedTimeLabel: UILabel!
     
     
@@ -44,7 +44,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     var monitor : LocationMonitor! = nil
     var image : NSData?
     var point = NSMutableDictionary()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,15 +57,17 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let block :(Double,Double)->() = {(speed,distance) in
             
-            self.currentSpeed.text = String.localizedStringWithFormat("%.2f %@", speed, " Km/Hr")
+            
+            self.currentSpeed.text = String(Int(speed))
+            print("received  : \(speed)")
             self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", distance,"Km")
-//            self.havingTripTextField.text = String(Defaults[.isHavingTrip])
+            //            self.havingTripTextField.text = String(Defaults[.isHavingTrip])
         }
         
         SessionObjects.motionMonitor.updateLocationBlock = block
         map.delegate = self
     }
- 
+    
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         annotation.coordinate = (locations.first?.coordinate)!
@@ -75,7 +77,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
         SessionObjects.motionMonitor.stopTrip()
-//        self.havingTripTextField.text = String(Defaults[.isHavingTrip])
+        //        self.havingTripTextField.text = String(Defaults[.isHavingTrip])
         drawRoad()
         
         let point = locationPlist.getLocationsDictionaryArray()
@@ -93,7 +95,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
         
         let distance = locationPlist.getDistanceInKM()
-
+        
         tripObj.coveredKm  = distance
         tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
         
@@ -110,7 +112,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let activateAutoReport = UIAlertAction(title: "Auto report", style:.Default) { (action) in
             print("auto reprt started")
             SessionObjects.motionMonitor.startNewTrip()
-//            self.havingTripTextField.text = String(Defaults[.isHavingTrip])
+            //            self.havingTripTextField.text = String(Defaults[.isHavingTrip])
             alert.dismissViewControllerAnimated(true, completion: nil)
             
             
@@ -154,7 +156,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     {
         
         var ArrayOfpoint = locationPlist.getCoordinatesArray()
-    
+        
         var polyline : MKPolyline?
         for i in 0 ..< ArrayOfpoint.count-1
         {
@@ -163,14 +165,14 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             var arr = [first,second]
             polyline = MKPolyline(coordinates: &arr , count: arr.count)
             self.map.addOverlay(polyline!)
-
+            
         }
         
         let mapOvelay = map.overlays.last
         map.addOverlay(mapOvelay!)
     }
     
-
+    
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
         let renderer = MKPolylineRenderer(overlay: overlay)
@@ -180,9 +182,9 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         
         requestSnapshotData(map) { (image, error) in
-        
-           // return image!.drawLayer(mapView.overlays.first as! CALayer, inContext: mapView)
-
+            
+            // return image!.drawLayer(mapView.overlays.first as! CALayer, inContext: mapView)
+            
         }
         
         return renderer

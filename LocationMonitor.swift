@@ -20,11 +20,10 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     var updateLocationBlock : ((Double,Double)->())!
     let locationPlist = LocationPlistManager()
     
-    init(delegate : MapDetectionDelegate!) {
-        
+    override init() {
         
         super.init()
-        locationManager.delegate = self
+        
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         SOLocationManager.sharedInstance().allowsBackgroundLocationUpdates = true

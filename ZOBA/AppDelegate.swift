@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 else{
                     print("no car selected")
                 }
-            
+                
             }
             
             let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
@@ -78,12 +78,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             slideMenuController.automaticallyAdjustsScrollViewInsets = true
             self.window?.rootViewController = slideMenuController
             self.window?.makeKeyAndVisible()
-
+            
         }
         
         
         
-        SessionObjects.motionMonitor = LocationMonitor(delegate: nil)
+        SessionObjects.motionMonitor = LocationMonitor()
         SessionObjects.motionMonitor.stopTrip()
         SessionObjects.motionMonitor.startDetection()
         
@@ -326,12 +326,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         
         //get current active view controller
-        let tabController = application.windows[0].rootViewController as! UITabBarController
+        let menu = application.windows[0].rootViewController as! SlideMenuController
+        
+        let tabController = menu.mainViewController as! UITabBarController
+        //            application.windows[0].rootViewController as! UITabBarController
         let navigationController = tabController.selectedViewController as! UINavigationController
         let activeViewCont = navigationController.visibleViewController
-//        SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
-//        
-//        
+        //        SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
+        //        
+        //
         
         switch notification.category! {
         case "zoba_start_motion":
