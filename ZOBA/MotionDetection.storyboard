@@ -150,6 +150,7 @@
                         <outlet property="map" destination="tef-Od-Y6j" id="um2-sK-pCz"/>
                         <outlet property="speedMeasuringUnitLabel" destination="Buf-RL-jGZ" id="E2V-tI-EfH"/>
                         <outlet property="stopReportingBtn" destination="FSF-Ud-5fM" id="l69-zF-b24"/>
+                        <outlet property="timeDisplay" destination="O4n-eH-kuL" id="rqe-TF-0hL"/>
                         <outlet property="totalDistance" destination="c3B-4b-RPp" id="4CJ-Ny-e4v"/>
                     </connections>
                 </viewController>

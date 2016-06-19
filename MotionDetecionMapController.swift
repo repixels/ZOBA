@@ -14,13 +14,12 @@ import SwiftyUserDefaults
 class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,MKMapViewDelegate{
     
     
+    @IBOutlet weak var timeDisplay: UILabel!
     @IBOutlet weak var map: MKMapView!
-    
     
     @IBOutlet weak var currentSpeed: UILabel!
     
     @IBOutlet weak var totalDistance: UILabel!
-    
     
     @IBOutlet weak var stopReportingBtn: UIButton!
     
@@ -32,14 +31,11 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     var endlong : Double?
     var locationPlist = LocationPlistManager()
     
-    @IBOutlet weak var autoReportingControlButton: UIButton!
+    //@IBOutlet weak var autoReportingControlButton: UIButton!
     
     @IBOutlet weak var speedMeasuringUnitLabel: UILabel!
     
-    
     @IBOutlet weak var elapsedTimeLabel: UILabel!
-    
-    
     
     let manager  = CLLocationManager()
     var monitor : LocationMonitor! = nil
@@ -59,17 +55,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let block :(Double,Double)->() = {(speed,distance) in
             
-            
             self.currentSpeed.text = String(Int(speed))
             print("received  : \(speed)")
             self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", distance,"Km")
             
-           // for i in 0 ..< speedArray.count-1 {
-                //let speed = locationPlist.getSpeed(i)
                 if speed < 30 {
                     
                     self.currentSpeed.textColor = UIColor.greenColor()
-                    
                 }
                 else if speed < 80
                 {
@@ -80,9 +72,17 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                 {
                     self.currentSpeed.textColor = UIColor.redColor()
                 }
-                
-                
-           // }
+            
+            let firstDate = self.locationPlist.readFirstLocation().date
+            let lastDate = self.locationPlist.readLastLocation().date
+
+           let hr =  lastDate.hoursFrom(firstDate)
+           let min = lastDate.minutesFrom(firstDate)
+           let sec = lastDate.secondsFrom(firstDate)
+
+            
+            self.timeDisplay.text = "\(hr):\(min):\(sec)"
+           
         }
         
         SessionObjects.motionMonitor.updateLocationBlock = block
@@ -99,7 +99,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     @IBAction func stopDetecionTapped(sender: AnyObject) {
         
         let firstLoc = locationPlist.readFirstLocation()
-        print("\(firstLoc.date) \n \(firstLoc.longitude ) \n \(firstLoc.latitude)")
         
         if  Defaults[.isHavingTrip]
         {
@@ -120,10 +119,18 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             lastCoordinate.longtitude = point.lastObject?.objectForKey("longitude") as? NSDecimalNumber
             
             let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+            tripObj.vehicle = SessionObjects.currentVehicle
+            tripObj.initialOdemeter = SessionObjects.currentVehicle.currentOdemeter
             
-            let distance = locationPlist.getDistanceInKM()
+            tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
             
+            let distance = locationPlist.getDistanceInMetter()
+            print(SessionObjects.currentVehicle.currentOdemeter)
+            SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance/1000)
+            print(SessionObjects.currentVehicle.currentOdemeter)
+            print(distance)
             tripObj.coveredKm  = distance
+            print(tripObj.coveredKm)
             tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
             
             tripObj.save()
@@ -148,7 +155,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let activateAutoReport = UIAlertAction(title: "Auto report", style:.Default) { (action) in
             print("auto reprt started")
             SessionObjects.motionMonitor.startNewTrip()
-            //            self.havingTripTextField.text = String(Defaults[.isHavingTrip])
+          
             alert.dismissViewControllerAnimated(true, completion: nil)
             
             
