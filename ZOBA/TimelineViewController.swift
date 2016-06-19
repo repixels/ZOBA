@@ -18,23 +18,29 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     let locationManager = CLLocationManager()
     var timelinePopulater : TimelinePopulater?
     
-    var tableCells : [TimeLineCell]?
+    var tableCells : [TimeLineCell] = [TimeLineCell]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareNavigationBar()
         isLocationEnabled()
         isNotificationsEnabled()
+        
+        
+        //   timelinePopulater = TimelinePopulater(tableView: self.tableView)
+        
+//                SessionObjects.currentVehicle.delete()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.loadUserVehiclesDropDown()
         
-        timelinePopulater = TimelinePopulater(tableView: self.tableView)
-        tableCells = timelinePopulater?.populateTableData()
-        
-//        initialDate = self.tableCells![0].timeLineDate
+        if SessionObjects.currentVehicle != nil {
+            timelinePopulater = TimelinePopulater(tableView: self.tableView)
+            tableCells = timelinePopulater!.populateTableData()
+        }
+        //        initialDate = self.tableCells![0].timeLineDate
         self.tableView.reloadData()
     }
     
@@ -52,27 +58,27 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (tableCells?.count)!
+        return (tableCells.count)
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
         
         
-        if let cell = tableCells![indexPath.row] as? TripCell
+        if let cell = tableCells[indexPath.row] as? TripCell
         {
             return cell
         }
-        else if let cell = tableCells![indexPath.row] as? FuelCell
+        else if let cell = tableCells[indexPath.row] as? FuelCell
         {
             return cell
         }
-        else if let cell = tableCells![indexPath.row] as? OilCell
+        else if let cell = tableCells[indexPath.row] as? OilCell
         {
             
             return cell
         }
-        else if let cell = tableCells![indexPath.row] as? DaySummaryCell
+        else if let cell = tableCells[indexPath.row] as? DaySummaryCell
         {
             return cell
         }
@@ -116,7 +122,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     @IBAction func menuButtonClicked(sender: AnyObject) {
         self.slideMenuController()?.openLeft()
     }
-
+    
     func extraRightItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
         print("Yemeen")
     }
@@ -146,7 +152,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         var items :[String] = [String]()
         
         vehicles.forEach { (vehicle) in
-        items.append(vehicle.name!)
+            items.append(vehicle.name!)
         }
         
         
@@ -155,7 +161,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         {
             let selectedVehicle : Vehicle =   SessionObjects.currentVehicle
             menuTitle = selectedVehicle.name!
-        
+            
         }
         items.append("Add vehicle")
         
@@ -180,7 +186,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         menuView.checkMarkImage = UIImage(named: "plus_icon")
         
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
-        
+            
             
             let itemCount = items.count - 1
             
@@ -194,7 +200,10 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
             {
                 SessionObjects.currentVehicle = vehicles[indexPath]
                 Defaults[.curentVehicleName] = SessionObjects.currentVehicle.name
-                self.tableCells = self.timelinePopulater?.populateTableData()
+                if self.timelinePopulater == nil {
+                    self.timelinePopulater = TimelinePopulater(tableView: self.tableView)
+                }
+                self.tableCells = self.timelinePopulater!.populateTableData()
                 self.tableView.reloadData()
             }
         }
