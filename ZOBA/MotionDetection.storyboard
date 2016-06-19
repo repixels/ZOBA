@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="cFQ-Je-ffd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="uSP-1m-SeW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -28,23 +28,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ldv-vK-BQN">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="cancel" id="Gr2-5e-DZv">
-                                        <connections>
-                                            <action selector="cancelTapped:" destination="cFQ-Je-ffd" id="0Zh-UQ-YaA"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem systemItem="cancel" id="Gr2-5e-DZv"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="aQR-zc-NcI"/>
-                                    <barButtonItem title="stop detection" id="TdQ-5C-D67">
-                                        <connections>
-                                            <action selector="stopDetecionTapped:" destination="cFQ-Je-ffd" id="o7E-Xu-Xnf"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="stop detection" id="TdQ-5C-D67"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="QtR-IZ-FFg"/>
-                                    <barButtonItem title="start detection" id="wLf-Gz-sWW">
-                                        <connections>
-                                            <action selector="startDetection:" destination="cFQ-Je-ffd" id="BVh-dI-aiT"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="start detection" id="wLf-Gz-sWW"/>
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="current speed" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1AD-yZ-gYU" customClass="HoshiTextField" customModule="TextFieldEffects">
@@ -75,12 +63,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="currentSpeed" destination="1AD-yZ-gYU" id="hPr-Lx-t3S"/>
-                        <outlet property="havingTripTextField" destination="yZU-tt-HVh" id="xmM-sl-p23"/>
-                        <outlet property="map" destination="sWZ-qy-Emb" id="SJI-Ph-oNM"/>
-                        <outlet property="totalDistance" destination="4TJ-Cm-6VG" id="0bR-Z2-ebb"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9m2-0Q-1WV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -132,12 +114,6 @@
                                 <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100 KM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3B-4b-RPp">
-                                <rect key="frame" x="0.0" y="295" width="161" height="50"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00 : 00 : 00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4n-eH-kuL">
                                 <rect key="frame" x="161" y="294" width="159" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -151,21 +127,29 @@
                                 <rect key="frame" x="35" y="28" width="251" height="48"/>
                                 <color key="backgroundColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
                                 <size key="titleShadowOffset" width="1" height="1"/>
-                                <state key="normal" title="Start Auto Reporting">
+                                <state key="normal" title="Stop Auto Reporting">
                                     <color key="titleColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.15410047769546509" green="0.41306763887405396" blue="0.69063264131546021" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="stopDetecionTapped:" destination="uSP-1m-SeW" eventType="touchUpInside" id="5kX-x4-Wpj"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100 KM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3B-4b-RPp">
+                                <rect key="frame" x="0.0" y="295" width="161" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.90823972230000005" green="0.92638683320000004" blue="0.93171715740000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.89126098155975342" green="0.3545563817024231" blue="0.39968371391296387" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
-                        <outlet property="autoReportingControlButton" destination="FSF-Ud-5fM" id="kjW-Xi-Ska"/>
-                        <outlet property="coveredDistanceLabel" destination="c3B-4b-RPp" id="gru-lR-10D"/>
-                        <outlet property="currentSpeedLabel" destination="WYq-de-1aM" id="jhB-nD-qxs"/>
-                        <outlet property="elapsedTimeLabel" destination="O4n-eH-kuL" id="FMi-MF-aGb"/>
-                        <outlet property="map" destination="tef-Od-Y6j" id="iYI-lz-0zh"/>
-                        <outlet property="speedMeasuringUnitLabel" destination="Buf-RL-jGZ" id="wmg-9y-m0y"/>
+                        <outlet property="currentSpeed" destination="WYq-de-1aM" id="LDK-yw-ojj"/>
+                        <outlet property="elapsedTimeLabel" destination="O4n-eH-kuL" id="51A-gM-lZC"/>
+                        <outlet property="map" destination="tef-Od-Y6j" id="um2-sK-pCz"/>
+                        <outlet property="speedMeasuringUnitLabel" destination="Buf-RL-jGZ" id="E2V-tI-EfH"/>
+                        <outlet property="totalDistance" destination="c3B-4b-RPp" id="4CJ-Ny-e4v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5VO-yp-hC6" userLabel="First Responder" sceneMemberID="firstResponder"/>

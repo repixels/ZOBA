@@ -15,9 +15,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     
     @IBOutlet weak var map: MKMapView!
-    @IBOutlet weak var currentSpeed: HoshiTextField!
-    @IBOutlet weak var totalDistance: HoshiTextField!
-    @IBOutlet weak var havingTripTextField: HoshiTextField!
+ 
+ 
+    @IBOutlet weak var currentSpeed: UILabel!
+    
+    @IBOutlet weak var totalDistance: UILabel!
+    
+
     
     let annotation = MKPointAnnotation()
     let locationManager = CLLocationManager()
@@ -28,9 +32,10 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     var locationPlist = LocationPlistManager()
     
     @IBOutlet weak var autoReportingControlButton: UIButton!
-    @IBOutlet weak var currentSpeedLabel: UILabel!
+
     @IBOutlet weak var speedMeasuringUnitLabel: UILabel!
-    @IBOutlet weak var coveredDistanceLabel: UILabel!
+    
+  
     @IBOutlet weak var elapsedTimeLabel: UILabel!
     
     
@@ -54,7 +59,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             
             self.currentSpeed.text = String.localizedStringWithFormat("%.2f %@", speed, " Km/Hr")
             self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", distance,"Km")
-            self.havingTripTextField.text = String(Defaults[.isHavingTrip])
+//            self.havingTripTextField.text = String(Defaults[.isHavingTrip])
         }
         
         SessionObjects.motionMonitor.updateLocationBlock = block
@@ -70,7 +75,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
         SessionObjects.motionMonitor.stopTrip()
-        self.havingTripTextField.text = String(Defaults[.isHavingTrip])
+//        self.havingTripTextField.text = String(Defaults[.isHavingTrip])
         drawRoad()
         
         let point = locationPlist.getLocationsDictionaryArray()
@@ -105,7 +110,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let activateAutoReport = UIAlertAction(title: "Auto report", style:.Default) { (action) in
             print("auto reprt started")
             SessionObjects.motionMonitor.startNewTrip()
-            self.havingTripTextField.text = String(Defaults[.isHavingTrip])
+//            self.havingTripTextField.text = String(Defaults[.isHavingTrip])
             alert.dismissViewControllerAnimated(true, completion: nil)
             
             
