@@ -31,9 +31,9 @@ class OilDetailsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         currentOdemeter.text = String(data.initialOdemeter!)
-        dateAdedd.text = String(data.dateAdded)
-        oilAmount.text = data.value
-        serviceProvider.text = "Shell"
+        dateAdedd.text = String(data.dateAdded!)
+        oilAmount.text = data.value!
+        serviceProvider.text = data.serviceProviderName
     }
     
     override func didReceiveMemoryWarning() {

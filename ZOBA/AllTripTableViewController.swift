@@ -15,43 +15,30 @@ class AllTripTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
-             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
-        
-        
-        
-        
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        
-        self.navigationController?.title = "Trips"
-        self.navigationController?.navigationBar.userInteractionEnabled = true
-        
-        //        trips = dao.selectAll(entityName: "Trip") as! [Trip]
-        var vehicleName = ""
-        if SessionObjects.currentVehicle != nil {
+        if SessionObjects.currentVehicle != nil
+        {   
+            var vehicleName = ""
             vehicleName =  SessionObjects.currentVehicle.name!
+            self.prepareNavigationBar(vehicleName+" Trips")
+            trips = SessionObjects.currentVehicle.trip?.allObjects as! [Trip]
+            addBtn.enabled = true
+            addBtn.tintColor = UIColor.whiteColor()
+            self.view.reloadInputViews()
+            tableView.reloadData()
         }
-        else{
+        else
+        {
             addBtn.enabled = false
             addBtn.tintColor = UIColor.grayColor()
+            self.prepareNavigationBar("No Trips Available")
         }
-        trips = dao.selectByString(entityName: "Trip", AttributeName: "vehicle.name", value: vehicleName) as! [Trip]
         
         
-        tableView.reloadData()
         
     }
     override func didReceiveMemoryWarning() {
@@ -69,11 +56,10 @@ class AllTripTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return trips.count
+        return trips != nil ? trips.count : 0
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("display trip details")
         let trip = trips[indexPath.row]
         let controller = self.storyboard?.instantiateViewControllerWithIdentifier("tripDetails") as! TripDetailController
         
@@ -88,10 +74,8 @@ class AllTripTableViewController: UITableViewController {
         
         cell.coveredMilageLabel.text = trips[indexPath.row].coveredKm!.stringValue
         let coordinates = trips[indexPath.row].coordinates!.allObjects as![TripCoordinate]
-        let first = coordinates.first //as! TripCoordinate
-        print(first!.latitude)
-        cell.endingLocationLabel.text = String(coordinates.last!.latitude!)
-        cell.startingLocationLabel.text = String(coordinates.first!.latitude!)
+        cell.endingLocationLabel.text = coordinates.last!.address != nil ? coordinates.last!.address : "Not Available"
+        cell.startingLocationLabel.text = coordinates.first!.address != nil ? coordinates.first!.address : "Not Available"
         
         return cell
     }
@@ -147,9 +131,7 @@ class AllTripTableViewController: UITableViewController {
             
         })
         
-        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: { (action) in
-            print("user canceled")
-        })
+        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: nil)
         
         alert.addAction(deleteAction)
         alert.addAction(cancel)
@@ -174,7 +156,19 @@ class AllTripTableViewController: UITableViewController {
     
     
     // MARK: - Navigation
+    func prepareNavigationBar(title: String)
+    {
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.title = title
+        self.navigationController?.navigationBar.userInteractionEnabled = true
+    }
     
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        self.slideMenuController()?.openLeft()
+    }
     
     
 }

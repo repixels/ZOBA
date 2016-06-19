@@ -49,25 +49,16 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     let datePickerView:UIDatePicker = UIDatePicker()
     
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        self.title = "Add Trip"
-        self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
-             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
-        
-        saveBtn.enabled = false
-        saveBtn.tintColor = UIColor.grayColor()
+        self.prepareNavigationBar("Add a New Trip")
         
         let dao  = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
-        
-        
-        
         
         let DateToolBar = UIToolbar()
         DateToolBar.barStyle = UIBarStyle.Default
@@ -104,11 +95,12 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
+        super.viewWillAppear(animated)
         
         if(isEditingTrip && trip != nil)
         {
+            prepareNavigationBar("Edit Your Trip")
             self.isDateValid = true
             self.isVehicleValid = true
             self.isCoveredKmValid = true
@@ -130,6 +122,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
             saveBtn.tintColor = UIColor.blueColor()
         }
         
+        
     }
     
     @IBAction func saveTrip(sender: AnyObject) {
@@ -139,12 +132,12 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
         firstCoordinate.latitude = NSDecimalNumber(double: startCoordinate.latitude)
         firstCoordinate.longtitude = NSDecimalNumber(double:startCoordinate.longitude)
-        firstCoordinate.save()
+        firstCoordinate.address = startingPointTextField.text != nil ? startingPointTextField.text : ""
         
         let secondCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
         secondCoordinate.latitude = NSDecimalNumber(double:destinationCoordinate.latitude)
         secondCoordinate.longtitude = NSDecimalNumber(double:destinationCoordinate.longitude)
-        secondCoordinate.save()
+        secondCoordinate.address = endingPointTextField.text != nil ? endingPointTextField.text : ""
         
         if !isEditingTrip || self.trip == nil
         {
@@ -182,7 +175,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         selectedVehicle = vehicles[row]
-        currentOdemeter.text = String( selectedVehicle.currentOdemeter)
+        currentOdemeter.text = String( selectedVehicle.currentOdemeter!)
         
         coveredKm.text = ""
         finalOdemeter.text = ""
@@ -305,7 +298,12 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
         let mapViewController: MapController = self.storyboard!.instantiateViewControllerWithIdentifier("MapView") as! MapController
         mapViewController.delegate = self
-        mapViewController.delegate = self
+        if ( isSecondPoint ) {
+            mapViewController.firstCoordinate = self.startCoordinate
+        }
+        else {
+            mapViewController.firstCoordinate = self.destinationCoordinate
+        }
         self.navigationController?.pushViewController(mapViewController, animated: true)
         
     }
@@ -331,7 +329,6 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
             dispatch_async(dispatch_get_main_queue(), {
                 sender.text = places!.first?.name
-                
             })
             
             
@@ -379,14 +376,6 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
     }
     
-    
-    @IBAction func showUserProfile(sender: UIBarButtonItem) {
-        
-        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("userProfile") as! UserProfileViewController
-        
-        self.navigationController?.pushViewController(controller, animated: true)
-    }
-    
     func dateDonePicker(){
         
         
@@ -416,16 +405,23 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         {
             if vehicles[i] == vehicle {
                 index = i
-                print("selected vehicle is \(vehicles[i].name)")
             }
-            
         }
-        
-        if index < 0{
-            print("couldn't find car")
-        }
-        
         return index
+    }
+    
+    func prepareNavigationBar(title:String)
+    {
+        self.title = title
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        
+        saveBtn.enabled = false
+        saveBtn.tintColor = UIColor.grayColor()
+        
     }
     
 }

@@ -14,6 +14,7 @@ import FBSDKLoginKit
 import TextFieldEffects
 import CoreData
 import SwiftyUserDefaults
+import SlideMenuControllerSwift
 
 class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDelegate{
     
@@ -309,14 +310,26 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     
                     //To be removed
 
-                    let vehicle = DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Lancer")
+                    
                     DummyDataBaseOperation.populateOnlyOnce()
                     DummyDataBaseOperation.populateData()
                     
-                    Defaults[.curentVehicleName] = vehicle.name
-                    SessionObjects.currentVehicle = vehicle
                     
-                    self.performSegueWithIdentifier(identifier,sender: sender)
+                    
+                    let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+                    let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                    
+                    let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
+                    let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                    
+                    
+                    let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
+                    slideMenuController.automaticallyAdjustsScrollViewInsets = true
+                    
+                    let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                    app.window?.rootViewController = slideMenuController
+                    
+
                     break;
                 default:
                     self.generateErrorAlert(code)

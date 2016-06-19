@@ -48,6 +48,8 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         let notCenter = NSNotificationCenter.defaultCenter()
         notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
         notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+        
+        self.prepareNavigationBar("")
     }
     
     override func viewDidLoad() {
@@ -99,6 +101,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     }
     
     func keyboardWillHide(notification: NSNotification) {
+        print("Keyboard will hide")
         if let userInfo = notification.userInfo {
             if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
                 let contentInset = UIEdgeInsetsZero;
@@ -211,6 +214,40 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        self.slideMenuController()?.openLeft()
+    }
+    
+    func prepareNavigationBar(title: String)
+    {
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.title = self.contextAwareTitle()
+        self.navigationController?.navigationBar.userInteractionEnabled = true
+        
+        
+    }
+    
+    func contextAwareTitle() -> String?
+    {
+        let now = NSDate()
+        let cal = NSCalendar.currentCalendar()
+        let comps = cal.component(NSCalendarUnit.Hour, fromDate: now)
+        
+        switch comps {
+        case 0 ... 12:
+            return "Good Morning"
+        case 13 ... 17:
+            return "Good Afternoon"
+        case 18 ... 23:
+            return "Good Evening"
+        default:
+            return "Welcome Back"
+        }
+    }
+
     
     
 }

@@ -17,6 +17,8 @@ target 'ZOBA' do
   pod 'AlamofireImage', '~> 2.0'
   pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
   pod ’SOMotionDetector’
+  pod 'SlideMenuControllerSwift'
+
 
   # Pods for ZOBA
 

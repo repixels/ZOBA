@@ -70,6 +70,8 @@
 		82AE18EE1D12C3CB00F4EED6 /* Vehicle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AE18D91D12C3CB00F4EED6 /* Vehicle+CoreDataProperties.swift */; };
 		82AE18EF1D12C73300F4EED6 /* AddVehicleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */; };
 		82B980161D10164100B0658A /* Device Webservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B980151D10164100B0658A /* Device Webservices.swift */; };
+		82CC7C901D12F57A004AECA1 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CC7C8F1D12F57A004AECA1 /* MenuTableViewController.swift */; };
+		82D6C2AA1D149EAE0047326B /* VehicleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6C2A91D149EAE0047326B /* VehicleTableViewCell.swift */; };
 		82D6D2011D0CA308005C1AA6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827827581CF837D600684CE5 /* LoginViewController.swift */; };
 		82DEC9961D0F93A4003E1154 /* TrackingOnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */; };
 		82EF3BE01D056E3F00AC103C /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */; };
@@ -141,7 +143,6 @@
 		DC0D49151D116AC700F5D9DC /* OilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D49141D116AC700F5D9DC /* OilTableViewCell.swift */; };
 		DC562BB61D1036680066B8A8 /* OilDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC562BB51D1036680066B8A8 /* OilDetailsViewController.swift */; };
 		DC562BB81D103E540066B8A8 /* FuelDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC562BB71D103E540066B8A8 /* FuelDetailViewController.swift */; };
-		DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */; };
 		DC778F271D0D6FB600F43AE8 /* HomeStoryBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F261D0D6FB600F43AE8 /* HomeStoryBoard.storyboard */; };
 		DC778F291D0D708600F43AE8 /* Fuel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F281D0D708600F43AE8 /* Fuel.storyboard */; };
 		DC778F2B1D0D7B3600F43AE8 /* oil.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */; };
@@ -197,7 +198,6 @@
 		3C4DC4794BB8782CEF3EBF4B /* Pods-ZOBA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBA.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA.release.xcconfig"; sourceTree = "<group>"; };
 		3F8E380008BDADDDD9B21C92 /* Pods_ZOBAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZOBAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsMapping.swift; sourceTree = "<group>"; };
-		82057F731D048C1700BC80DD /* AddVehicleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVehicleViewController.swift; sourceTree = "<group>"; };
 		82057F781D048FDA00BC80DD /* AddOilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOilViewController.swift; sourceTree = "<group>"; };
 		82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFuelViewController.swift; sourceTree = "<group>"; };
 		82057F7D1D0490D600BC80DD /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +264,8 @@
 		82AE18D81D12C3CB00F4EED6 /* ServiceProviderAddress+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServiceProviderAddress+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		82AE18D91D12C3CB00F4EED6 /* Vehicle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Vehicle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		82B980151D10164100B0658A /* Device Webservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Device Webservices.swift"; sourceTree = "<group>"; };
+		82CC7C8F1D12F57A004AECA1 /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		82D6C2A91D149EAE0047326B /* VehicleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleTableViewCell.swift; sourceTree = "<group>"; };
 		82DEC9951D0F93A4003E1154 /* TrackingOnboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingOnboardViewController.swift; sourceTree = "<group>"; };
 		82EF3BDE1D056E3F00AC103C /* ZOBA Quick Access.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ZOBA Quick Access.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82EF3BDF1D056E3F00AC103C /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -336,7 +338,6 @@
 		DC00956C1D075660000856FC /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		DC00956E1D075660000856FC /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		DC0095701D075660000856FC /* ModelFeatureValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelFeatureValue.swift; sourceTree = "<group>"; };
-		DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceConnection.swift; sourceTree = "<group>"; };
 		DC0D49141D116AC700F5D9DC /* OilTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OilTableViewCell.swift; sourceTree = "<group>"; };
 		DC562BB51D1036680066B8A8 /* OilDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OilDetailsViewController.swift; sourceTree = "<group>"; };
 		DC562BB71D103E540066B8A8 /* FuelDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelDetailViewController.swift; sourceTree = "<group>"; };
@@ -416,14 +417,6 @@
 				116AC9BAA293836FEAA57FDB /* Pods-ZOBAUITests.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		82057F721D048BF200BC80DD /* User Vehicles */ = {
-			isa = PBXGroup;
-			children = (
-				82057F731D048C1700BC80DD /* AddVehicleViewController.swift */,
-			);
-			name = "User Vehicles";
 			sourceTree = "<group>";
 		};
 		82057F751D048E5900BC80DD /* Fuel Tracking */ = {
@@ -513,6 +506,7 @@
 		827827551CF837D600684CE5 /* ZOBA */ = {
 			isa = PBXGroup;
 			children = (
+				82CC7C8F1D12F57A004AECA1 /* MenuTableViewController.swift */,
 				8373C6AA1D103A5E00E2C865 /* TextFieldExtension */,
 				8314DC861D0D48F200601B45 /* Vehicle */,
 				82DEC9941D0F936A003E1154 /* Onboard View Controllers */,
@@ -522,7 +516,6 @@
 				82057F771D048E6B00BC80DD /* Oil Tracking */,
 				82057F761D048E6200BC80DD /* Trip Tracking */,
 				82057F751D048E5900BC80DD /* Fuel Tracking */,
-				82057F721D048BF200BC80DD /* User Vehicles */,
 				82EF3BF61D05745B00AC103C /* Application Files */,
 				82EF3BF11D0573DC00AC103C /* Login and Register */,
 				82EF3BF01D0573B100AC103C /* Storyboards */,
@@ -530,7 +523,6 @@
 				82EF3BF41D05742C00AC103C /* Validation */,
 				82EF3BEF1D0572CA00AC103C /* ZOBA Quick Access Extension */,
 				82EF3BF31D05741600AC103C /* Folding TabBar Controller */,
-				82EF3BF21D0573FB00AC103C /* Webservice Communication */,
 			);
 			path = ZOBA;
 			sourceTree = "<group>";
@@ -605,14 +597,6 @@
 			name = "Login and Register";
 			sourceTree = "<group>";
 		};
-		82EF3BF21D0573FB00AC103C /* Webservice Communication */ = {
-			isa = PBXGroup;
-			children = (
-				DC04DA3B1CFE99D5008E4E64 /* WebServiceConnection.swift */,
-			);
-			name = "Webservice Communication";
-			sourceTree = "<group>";
-		};
 		82EF3BF31D05741600AC103C /* Folding TabBar Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,11 +625,11 @@
 		82EF3BF61D05745B00AC103C /* Application Files */ = {
 			isa = PBXGroup;
 			children = (
+				825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */,
 				827827561CF837D600684CE5 /* AppDelegate.swift */,
 				827827651CF837D600684CE5 /* Info.plist */,
 				825BB0051D0C266D00F44EA3 /* StringConstants.swift */,
 				82AE18981D12C2EC00F4EED6 /* ZOBA.xcdatamodeld */,
-				825BB0071D0C39AB00F44EA3 /* SessionObjects.swift */,
 				8200B8581D0C5CF0007AB057 /* UserDefaultsMapping.swift */,
 			);
 			name = "Application Files";
@@ -713,6 +697,7 @@
 				8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */,
 				8314DC8F1D0F9AAD00601B45 /* VehicleTableViewController.swift */,
 				8314DC911D0F9AFA00601B45 /* vehicleDetailsViewController.swift */,
+				82D6C2A91D149EAE0047326B /* VehicleTableViewCell.swift */,
 			);
 			name = Vehicle;
 			sourceTree = "<group>";
@@ -801,7 +786,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8278277E1CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBA" */;
 			buildPhases = (
-				88AF5081DE364F21C0B42F53 /* 📦 Check Pods Manifest.lock */,
+				88AF5081DE364F21C0B42F53 /* [CP] Check Pods Manifest.lock */,
 				EC940CFFF9A48F95D36CAB9B /* [CP] Check Pods Manifest.lock */,
 				BC6AB6838CF825B6FCF1C696 /* [CP] Check Pods Manifest.lock */,
 				8278274F1CF837D600684CE5 /* Sources */,
@@ -827,7 +812,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 827827811CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBATests" */;
 			buildPhases = (
-				C7764838E272A81429FF7A4A /* 📦 Check Pods Manifest.lock */,
+				C7764838E272A81429FF7A4A /* [CP] Check Pods Manifest.lock */,
 				0B31482077938DEA81894FD4 /* [CP] Check Pods Manifest.lock */,
 				3B04073713425CEBC571F285 /* [CP] Check Pods Manifest.lock */,
 				827827661CF837D600684CE5 /* Sources */,
@@ -852,7 +837,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 827827841CF837D600684CE5 /* Build configuration list for PBXNativeTarget "ZOBAUITests" */;
 			buildPhases = (
-				D8D380FE560BB4DAA0EBECD2 /* 📦 Check Pods Manifest.lock */,
+				D8D380FE560BB4DAA0EBECD2 /* [CP] Check Pods Manifest.lock */,
 				32EC0646C54416C2BC13C26E /* [CP] Check Pods Manifest.lock */,
 				EC708C73D3D50BDE278DB3C8 /* [CP] Check Pods Manifest.lock */,
 				827827711CF837D600684CE5 /* Sources */,
@@ -1170,14 +1155,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		88AF5081DE364F21C0B42F53 /* 📦 Check Pods Manifest.lock */ = {
+		88AF5081DE364F21C0B42F53 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1230,14 +1215,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C7764838E272A81429FF7A4A /* 📦 Check Pods Manifest.lock */ = {
+		C7764838E272A81429FF7A4A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1260,14 +1245,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D8D380FE560BB4DAA0EBECD2 /* 📦 Check Pods Manifest.lock */ = {
+		D8D380FE560BB4DAA0EBECD2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1334,7 +1319,6 @@
 				DC00958A1D075660000856FC /* MyUser.swift in Sources */,
 				830ACD7F1D11A20800AD457B /* MotionDetecionMapController.swift in Sources */,
 				831B12D11D06448200D10CBA /* TripCell.swift in Sources */,
-				DC5D919E1D046CA400A382C8 /* WebServiceConnection.swift in Sources */,
 				82AE18E41D12C3CB00F4EED6 /* TripCoordinate+CoreDataProperties.swift in Sources */,
 				82AE18E11D12C3CB00F4EED6 /* Make+CoreDataProperties.swift in Sources */,
 				82AE18DD1D12C3CB00F4EED6 /* Days+CoreDataProperties.swift in Sources */,
@@ -1356,6 +1340,7 @@
 				82AE18DE1D12C3CB00F4EED6 /* Year+CoreDataProperties.swift in Sources */,
 				DC00957C1D075660000856FC /* TripCoordinate.swift in Sources */,
 				83AEBCF71D08244400B334FE /* UserProfileEditController.swift in Sources */,
+				82CC7C901D12F57A004AECA1 /* MenuTableViewController.swift in Sources */,
 				DC0095941D075660000856FC /* ServiceProviderServices.swift in Sources */,
 				82AE18EB1D12C3CB00F4EED6 /* Service+CoreDataProperties.swift in Sources */,
 				825BB0081D0C39AB00F44EA3 /* SessionObjects.swift in Sources */,
@@ -1377,6 +1362,7 @@
 				82AE18DF1D12C3CB00F4EED6 /* MyUser+CoreDataProperties.swift in Sources */,
 				825BB0061D0C266D00F44EA3 /* StringConstants.swift in Sources */,
 				830ACD811D11A47300AD457B /* MapDetectionDelegate.swift in Sources */,
+				82D6C2AA1D149EAE0047326B /* VehicleTableViewCell.swift in Sources */,
 				DC0095921D075660000856FC /* VehicleModel.swift in Sources */,
 				DC0095981D075660000856FC /* Vehicle.swift in Sources */,
 				8314DC901D0F9AAD00601B45 /* VehicleTableViewController.swift in Sources */,

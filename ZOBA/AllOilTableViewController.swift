@@ -13,10 +13,30 @@ class AllOilTableViewController: UITableViewController {
     
     var dao : AbstractDao!
     
-    var data: [TrackingData]!
+    var oilTrackingData: [TrackingData]!
     
     var ArraysortedByDate : [TrackingData]!
     
+    override func viewWillAppear(animated: Bool) {
+        if SessionObjects.currentVehicle != nil
+        {
+            oilTrackingData = [TrackingData]()
+            let vehicleName = SessionObjects.currentVehicle.name != nil ? SessionObjects.currentVehicle.name!+" " : ""
+            self.prepareNavigationBar(vehicleName + "Oil")
+            for trackingData in SessionObjects.currentVehicle.traclingData!.allObjects as! [TrackingData]
+            {
+                if(trackingData.trackingType!.name == StringConstants.oilTrackingType)
+                {
+                    oilTrackingData!.append(trackingData)
+                }
+            }
+            self.tableView.reloadData()
+        }
+        else
+        {
+            self.prepareNavigationBar("No Car Selected")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,16 +46,6 @@ class AllOilTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        
-        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-         dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
-        data = dao.selectByString(entityName: "TrackingData", AttributeName: "trackingType.name", value: "oil") as![TrackingData]
-        
-
-        
-        self.tableView.reloadData()
         
     }
     
@@ -53,7 +63,7 @@ class AllOilTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return data.count
+        return oilTrackingData != nil ? oilTrackingData.count : 0
     }
     
     
@@ -64,10 +74,13 @@ class AllOilTableViewController: UITableViewController {
         
        // compare()NSComparisonResult.OrderedAscending
         
-        cell.dateLabel.text = String(data[indexPath.row].dateAdded)
-        cell.oilAmountLabel.text = data[indexPath.row].value
-        cell.oilMesuringUnitLabel.text = "Liters"
-        cell.startingOdemeterLabel.text = String(data[indexPath.row].initialOdemeter)
+        let serviceProviderName = oilTrackingData![indexPath.row].serviceProviderName
+        
+        cell.oilAmountLabel.text = oilTrackingData![indexPath.row].value!
+        cell.oilMesuringUnitLabel.text = oilTrackingData![indexPath.row].trackingType!.measuringUnit!.name!
+        cell.serviceProvideLabel.text = serviceProviderName != nil ? serviceProviderName! : "Not Available"
+        cell.startingOdemeterLabel.text = String(oilTrackingData![indexPath.row].initialOdemeter!)
+        cell.dateLabel.text  = String(oilTrackingData![indexPath.row].dateAdded!)
 
         
         return cell
@@ -78,7 +91,7 @@ class AllOilTableViewController: UITableViewController {
      
         let detailsView = self.storyboard?.instantiateViewControllerWithIdentifier("details") as! OilDetailsViewController
 
-         detailsView.data = data[indexPath.row]
+         detailsView.data = oilTrackingData[indexPath.row]
         
         self.navigationController?.pushViewController(detailsView, animated: true)
 
@@ -136,5 +149,19 @@ class AllOilTableViewController: UITableViewController {
         }
      }
  */
+    
+    func prepareNavigationBar(title: String)
+    {
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.title = title
+        self.navigationController?.navigationBar.userInteractionEnabled = true
+    }
+    
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        self.slideMenuController()?.openLeft()
+    }
     
 }
