@@ -28,6 +28,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     @IBOutlet weak var vehiclesPickerView: UIPickerView!
     
     var selectedVehicle : Vehicle!
+    var selectedDate : NSDate!
     
     var vehicles : [Vehicle]!
     
@@ -147,7 +148,8 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         trip.coveredKm = Int(self.coveredKm.text!)!
         trip.initialOdemeter = Int(self.currentOdemeter.text!)!
         
-        
+       
+        trip.dateAdded =  selectedDate != nil ? selectedDate.timeIntervalSince1970 : NSDate().timeIntervalSince1970
         
         trip.coordinates = NSSet(array: [firstCoordinate,secondCoordinate])
         
@@ -388,6 +390,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         dateTextField.text = dateFormatter.stringFromDate(datePickerView.date)
         dateTextField.resignFirstResponder()
         isDateValid = true
+        selectedDate = datePickerView.date
         validateSave()
         
     }

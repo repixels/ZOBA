@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FuelCell: UITableViewCell {
+class FuelCell: TimeLineCell {
     static let identifier = "FuelData"
     
     @IBOutlet  var fuelDate: UILabel?

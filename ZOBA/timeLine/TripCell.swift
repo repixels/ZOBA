@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TripCell: UITableViewCell {
+class TripCell: TimeLineCell {
     static let identifier = "TripData"
     
     @IBOutlet  var tripDate: UILabel?
@@ -23,7 +23,6 @@ class TripCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

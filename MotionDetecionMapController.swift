@@ -26,6 +26,15 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     var endlat : Double?
     var endlong : Double?
     var locationPlist = LocationPlistManager()
+    
+    @IBOutlet weak var autoReportingControlButton: UIButton!
+    @IBOutlet weak var currentSpeedLabel: UILabel!
+    @IBOutlet weak var speedMeasuringUnitLabel: UILabel!
+    @IBOutlet weak var coveredDistanceLabel: UILabel!
+    @IBOutlet weak var elapsedTimeLabel: UILabel!
+    
+    
+    
     let manager  = CLLocationManager()
     var monitor : LocationMonitor! = nil
     var image : NSData?
