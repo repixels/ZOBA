@@ -228,8 +228,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         requestSnapshotData(map) { (image, error) in
             
-            // return image!.drawLayer(mapView.overlays.first as! CALayer, inContext: mapView)
-            
         }
         
         return renderer
@@ -247,9 +245,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                 completion(nil, error)
                 return
             }
-            let image = snapshot!.image
+                        
+            UIGraphicsBeginImageContext(self.map.frame.size)
+            self.map.drawViewHierarchyInRect(self.map.bounds, afterScreenUpdates: true)
+            let imageee = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
             
-            let data = UIImagePNGRepresentation(image)
+            let data = UIImagePNGRepresentation(imageee)
             let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
             data!.writeToFile(filename, atomically: true)
             print(filename)
