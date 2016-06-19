@@ -46,6 +46,7 @@
 		829825681D0D816D00FCC4C8 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829825671D0D816D00FCC4C8 /* EditPasswordViewController.swift */; };
 		8298256A1D0EBA6F00FCC4C8 /* TripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */; };
 		829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 829C437B1CFBBA1E00869E59 /* Media.xcassets */; };
+		829C62531D16727F007C9A63 /* ServiceProvider.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829C62521D16727F007C9A63 /* ServiceProvider.storyboard */; };
 		82AE18961D12BAEF00F4EED6 /* SideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AE18951D12BAEF00F4EED6 /* SideMenu.storyboard */; };
 		82AE189A1D12C2EC00F4EED6 /* ZOBA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82AE18981D12C2EC00F4EED6 /* ZOBA.xcdatamodeld */; };
 		82AE18DA1D12C3CB00F4EED6 /* VehicleModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AE18C51D12C3CB00F4EED6 /* VehicleModel+CoreDataProperties.swift */; };
@@ -242,6 +243,11 @@
 		829825691D0EBA6F00FCC4C8 /* TripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripTableViewCell.swift; sourceTree = "<group>"; };
 		829C43791CFBAC9500869E59 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		829C437B1CFBBA1E00869E59 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = ../Media.xcassets; sourceTree = "<group>"; };
+		829C624E1D166D8A007C9A63 /* DS-DIGI.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGI.TTF"; sourceTree = "<group>"; };
+		829C624F1D166D8A007C9A63 /* DS-DIGIB.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGIB.TTF"; sourceTree = "<group>"; };
+		829C62501D166D8A007C9A63 /* DS-DIGII.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGII.TTF"; sourceTree = "<group>"; };
+		829C62511D166D8A007C9A63 /* DS-DIGIT.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DS-DIGIT.TTF"; sourceTree = "<group>"; };
+		829C62521D16727F007C9A63 /* ServiceProvider.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ServiceProvider.storyboard; sourceTree = "<group>"; };
 		82AE18951D12BAEF00F4EED6 /* SideMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideMenu.storyboard; sourceTree = "<group>"; };
 		82AE18991D12C2EC00F4EED6 /* ZOBA.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ZOBA.xcdatamodel; sourceTree = "<group>"; };
 		82AE18C51D12C3CB00F4EED6 /* VehicleModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VehicleModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -587,6 +593,7 @@
 				DC778F2A1D0D7B3600F43AE8 /* oil.storyboard */,
 				829825631D0D538600FCC4C8 /* UserProfile.storyboard */,
 				829825651D0D718F00FCC4C8 /* VehicleTrips.storyboard */,
+				829C62521D16727F007C9A63 /* ServiceProvider.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -672,6 +679,10 @@
 		82F8B8B61CF8905B00E46B05 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				829C624E1D166D8A007C9A63 /* DS-DIGI.TTF */,
+				829C624F1D166D8A007C9A63 /* DS-DIGIB.TTF */,
+				829C62501D166D8A007C9A63 /* DS-DIGII.TTF */,
+				829C62511D166D8A007C9A63 /* DS-DIGIT.TTF */,
 				82F8B8B71CF8905B00E46B05 /* contb.ttf */,
 				82F8B8B81CF8905B00E46B05 /* contl.ttf */,
 				82F8B8B91CF8905B00E46B05 /* contm.ttf */,
@@ -951,6 +962,7 @@
 				DC778F2B1D0D7B3600F43AE8 /* oil.storyboard in Resources */,
 				82F8B8A11CF8807400E46B05 /* service-centers.png in Resources */,
 				82501A791D05A9A3008272CB /* flag.png in Resources */,
+				829C62531D16727F007C9A63 /* ServiceProvider.storyboard in Resources */,
 				82501A801D05A9A3008272CB /* rainbow.png in Resources */,
 				82501A771D05A9A3008272CB /* add-trip.png in Resources */,
 				82501A811D05A9A3008272CB /* route.png in Resources */,

@@ -21,6 +21,14 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     @IBOutlet weak var totalDistance: HoshiTextField!
     @IBOutlet weak var havingTripTextField: HoshiTextField!
     
+    @IBOutlet weak var autoReportingControlButton: UIButton!
+    @IBOutlet weak var currentSpeedLabel: UILabel!
+    @IBOutlet weak var speedMeasuringUnitLabel: UILabel!
+    @IBOutlet weak var coveredDistanceLabel: UILabel!
+    @IBOutlet weak var elapsedTimeLabel: UILabel!
+    
+    
+    
     let manager  = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()

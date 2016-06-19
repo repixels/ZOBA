@@ -9,6 +9,9 @@
 import UIKit
 
 
+//Add a new car crashes 
+
+
 class TimeLineCell: UITableViewCell {
     
     var formattedDate = NSDate()
