@@ -73,28 +73,26 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         self.havingTripTextField.text = String(Defaults[.isHavingTrip])
         drawRoad()
         
-//        let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-//        firstCoordinate.latitude = NSDecimalNumber ( double : lat!)
-//        firstCoordinate.longtitude = NSDecimalNumber ( double : long!)
-//        firstCoordinate.save()
-//        
-//        let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-//        
-//        
-//        lastCoordinate.latitude = NSDecimalNumber ( double : endlat!)
-//        lastCoordinate.longtitude = NSDecimalNumber ( double : endlong!)
-//        lastCoordinate.save()
-//        
-//        let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
-//       
-//        print(totalDistance.text)
-//        
-//        let distance = locationPlist.getDistanceInKM()
-//
-//        tripObj.coveredKm  = distance
-//        tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
-//        
-//        tripObj.save()
+        let point = locationPlist.getLocationsDictionaryArray()
+        
+        let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+        firstCoordinate.latitude =  point.firstObject?.objectForKey("latitude") as? NSDecimalNumber
+        firstCoordinate.longtitude = point.firstObject?.objectForKey("longitude") as? NSDecimalNumber
+        
+        let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+        
+        
+        lastCoordinate.latitude = point.lastObject?.objectForKey("latitude") as? NSDecimalNumber
+        lastCoordinate.longtitude = point.lastObject?.objectForKey("longitude") as? NSDecimalNumber
+        
+        let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+        
+        let distance = locationPlist.getDistanceInKM()
+
+        tripObj.coveredKm  = distance
+        tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
+        
+        tripObj.save()
     }
     
     @IBAction func cancelTapped(sender: AnyObject) {
