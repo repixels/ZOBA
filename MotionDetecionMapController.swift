@@ -59,11 +59,11 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             
                 if speed < 30 {
                     
-                    self.currentSpeed.textColor = UIColor.greenColor()
+                    self.currentSpeed.textColor = UIColor.flatGreenColor()
                 }
                 else if speed < 80
                 {
-                    self.currentSpeed.textColor = UIColor.yellowColor()
+                    self.currentSpeed.textColor = UIColor.flatYellowColor()
                     
                 }
                 else

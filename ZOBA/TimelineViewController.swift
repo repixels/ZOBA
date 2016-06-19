@@ -124,7 +124,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     }
     
     func extraRightItemDidPress() {
-     print("yeemen")
+     
         let MotionDetectionStoryBoard =  UIStoryboard(name: "MotionDetection", bundle: nil)
         let MotionNavigationController = MotionDetectionStoryBoard.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
         self.navigationController?.pushViewController(MotionNavigationController, animated: true)
@@ -187,7 +187,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         menuView.maskBackgroundOpacity = 0.3
         menuView.checkMarkImage = nil
         
-        menuView.checkMarkImage = UIImage(named: "plus_icon")
+      //  menuView.checkMarkImage = UIImage(named: "plus_icon")
         
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
             
