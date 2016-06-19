@@ -120,7 +120,10 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     
     
     @IBAction func menuButtonClicked(sender: AnyObject) {
+        
         self.slideMenuController()?.openLeft()
+        menuView.animationDuration = 0
+        menuView.hide()
     }
     
     func extraRightItemDidPress() {
@@ -176,7 +179,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         menuView.keepSelectedCellColor = true
         menuView.cellTextLabelColor = UIColor.flatWatermelonColor()
         menuView.cellTextLabelFont = UIFont(name: "Continuum Medium", size: 20)
-        
+
         
         menuView.cellTextLabelAlignment = .Center // .Center // .Right // .Left
         
@@ -189,7 +192,9 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         
       //  menuView.checkMarkImage = UIImage(named: "plus_icon")
         
+        
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+            
             
             
             let itemCount = items.count - 1
@@ -214,6 +219,9 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         
         
         self.navigationItem.titleView = menuView
+        
+       
+       
     }
     
     /*
