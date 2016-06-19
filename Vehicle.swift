@@ -25,7 +25,7 @@ class Vehicle: NSManagedObject , Mappable{
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
-        mapping(map)
+//        mapping(map)
         
     }
     
@@ -35,15 +35,14 @@ class Vehicle: NSManagedObject , Mappable{
         var tripsArray : [Trip]?
         
         
-        self.currentOdemeter <- map[""]
-        self.initialOdemeter <- map[""]
+        self.currentOdemeter <- map["currentOdemeter"]
+        self.initialOdemeter <- map["intialOdemeter"]
         self.isAdmin <- map[""]
         self.licensePlate <- map[""]
-        self.name <- map[""]
-        self.vehicleModel <- map[""]
-        self.user <- map[""]
-        trackingDataArray <- map[""]
-        tripsArray <- map[""]
+        self.name <- map["name"]
+        self.vehicleModel <- map["vehicleModel"]
+        trackingDataArray <- map["trackingDatas"]
+        tripsArray <- map["trips"]
         
         if trackingDataArray != nil
         {

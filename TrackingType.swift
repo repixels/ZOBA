@@ -26,7 +26,7 @@ class TrackingType: NSManagedObject , Mappable{
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
-        mapping(map)
+//        mapping(map)
         
     }
     

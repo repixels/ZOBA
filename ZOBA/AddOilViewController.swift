@@ -25,6 +25,8 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     @IBOutlet weak var serviceProviderTextFeild: HoshiTextField!
     
+    @IBOutlet weak var serviceProviderButton: UIButton!
+    
     var serviceProviderPickerView : UIPickerView!
     
     var selectedVehicle : Vehicle!
@@ -110,8 +112,26 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
             vehiclePickerView.selectRow(selectedVehicleIndex, inComponent: 0, animated: false)
         }
         
+        let abstractDAO = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        let serviceProviderDAO = abstractDAO.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
+        serviceProviders = serviceProviderDAO
+        
         selectedVehicle = vehicles[vehiclePickerView.selectedRowInComponent(0)]
-        selectedServiceProvider = serviceProviders[serviceProviderPickerView.selectedRowInComponent(0)]
+        
+        if serviceProviders != nil && serviceProviders.count > 0
+        {
+            selectedServiceProvider = serviceProviders[serviceProviderPickerView.selectedRowInComponent(0)]
+        }
+        else
+        {
+            selectedServiceProvider = nil
+            isServiceProviderReady = true
+            serviceProviderTextFeild.hidden = true
+            serviceProviderTextFeild.enabled = false
+            serviceProviderButton.enabled = false
+            serviceProviderButton.hidden = true
+        }
+        
         
         initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
         currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
@@ -267,6 +287,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         }
         else
         {
+            print("Hello World")
             let abstractDAO = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
             let serviceProviderDAO = abstractDAO.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
             serviceProviders = serviceProviderDAO
@@ -368,11 +389,14 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         let trackingType = dao.selectByString(entityName: "TrackingType", AttributeName: "name", value: StringConstants.oilTrackingType) as![TrackingType]
         
-        trackingDataObj.trackingType = trackingType[0]
+        if trackingType.count > 0
+        {
+            trackingDataObj.trackingType = trackingType[0]
+        }
         
         trackingDataObj.vehicle =  selectedVehicle
         trackingDataObj.vehicle?.currentOdemeter = Int(currentOdometerTextField!.text!)
-        trackingDataObj.serviceProviderName = serviceProviderTextFeild.text
+         trackingDataObj.serviceProviderName = selectedServiceProvider != nil && selectedServiceProvider!.name != nil  ? serviceProviderTextFeild.text! : "Not Available"
         
         trackingDataObj.save()
         
