@@ -46,6 +46,10 @@ class LocationPlistManager {
             
             LocationPlistManager.distance += location.distanceFromLocation(lastLoc)
         }else {
+            print("saving first location")
+            print("\(location.timestamp) \n \(location.coordinate.longitude ) \n \(location.coordinate.latitude)")
+            print("==========================")
+            saveFirstLocationInformation(location)
             LocationPlistManager.distance = 0
         }
         self.saveLastLocationInformation(location)
@@ -102,12 +106,12 @@ class LocationPlistManager {
     func getCoordinatesArray() -> [CLLocationCoordinate2D]{
         var coordinates = [CLLocationCoordinate2D]()
         for i in 0 ..< self.getLocationsDictionaryArray().count {
-    let location = self.getLocationFromDictionary(self.getLocationDictionaryAt(i))
+            let location = self.getLocationFromDictionary(self.getLocationDictionaryAt(i))
             coordinates.append(location.coordinate)
-        
+            
         }
-    return coordinates
-    
+        return coordinates
+        
     }
     
     func getDistanceInMetter() -> (Double){
@@ -120,21 +124,24 @@ class LocationPlistManager {
     }
     
     
-    func saveLastLocationInformation(location : CLLocation){
+    func saveFirstLocationInformation(location : CLLocation){
         let userDefault =  NSUserDefaults.standardUserDefaults()
         
-        userDefault.setObject(location.timestamp, forKey: "date")
-        userDefault.setObject(location.coordinate.latitude, forKey: "latitude")
-        userDefault.setObject(location.coordinate.longitude, forKey: "longitude")
+        userDefault.setObject(location.timestamp, forKey: "firstDate")
+        userDefault.setObject(location.coordinate.latitude, forKey: "firstLatitude")
+        userDefault.setObject(location.coordinate.longitude, forKey: "firstLongitude")
         
     }
     
-    func readLastLocation() -> (date: NSDate! ,latitude: CLLocationDegrees! ,longitude : CLLocationDegrees!){
+    func readFirstLocation() -> (date: NSDate! ,latitude: CLLocationDegrees! ,longitude : CLLocationDegrees!){
+        
         let userDefault =  NSUserDefaults.standardUserDefaults()
-        if ( userDefault.objectForKey("date") != nil){
-            let date = userDefault.objectForKey("date") as! NSDate
-            let latitude = userDefault.objectForKey("latitude") as! CLLocationDegrees
-            let longitude = userDefault.objectForKey("longitude") as! CLLocationDegrees
+        if ( userDefault.objectForKey("firstDate") != nil){
+            let date = userDefault.objectForKey("firstDate") as! NSDate
+            
+            let latitude = userDefault.objectForKey("firstLatitude") as! CLLocationDegrees
+            let longitude = userDefault.objectForKey("firstLongitude") as! CLLocationDegrees
+            
             return (date ,latitude ,longitude)
         }
         else {
@@ -142,4 +149,32 @@ class LocationPlistManager {
             return (NSDate(timeIntervalSince1970: 0),nil,nil)
         }
     }
+    
+    
+    func saveLastLocationInformation(location : CLLocation){
+        let userDefault =  NSUserDefaults.standardUserDefaults()
+        
+        userDefault.setObject(location.timestamp, forKey: "lastDate")
+        userDefault.setObject(location.coordinate.latitude, forKey: "lastLatitude")
+        userDefault.setObject(location.coordinate.longitude, forKey: "lastLongitude")
+        
+    }
+    
+    func readLastLocation() -> (date: NSDate! ,latitude: CLLocationDegrees! ,longitude : CLLocationDegrees!){
+        
+        let userDefault =  NSUserDefaults.standardUserDefaults()
+        if ( userDefault.objectForKey("lastDate") != nil){
+            let date = userDefault.objectForKey("lastDate") as! NSDate
+            
+            let latitude = userDefault.objectForKey("lastLatitude") as! CLLocationDegrees
+            let longitude = userDefault.objectForKey("lastLongitude") as! CLLocationDegrees
+            
+            return (date ,latitude ,longitude)
+        }
+        else {
+            
+            return (NSDate(timeIntervalSince1970: 0),nil,nil)
+        }
+    }
+    
 }

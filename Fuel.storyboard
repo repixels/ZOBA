@@ -186,6 +186,7 @@
                         <outlet property="fuelAmountTextField" destination="RRf-dY-trr" id="C9b-7g-r1N"/>
                         <outlet property="initialOdemeter" destination="xvE-I8-Lba" id="Ft2-aL-gOg"/>
                         <outlet property="saveBtn" destination="WIy-fz-pbu" id="kq3-oP-7MC"/>
+                        <outlet property="serviceProviderButton" destination="Sr8-Gs-30O" id="RGZ-Wq-2bc"/>
                         <outlet property="serviceProviderTextFeild" destination="khV-B2-X9p" id="gsr-FC-2uY"/>
                         <outlet property="vehiclePickerView" destination="vjy-Ex-5wA" id="n0c-9K-0Au"/>
                         <segue destination="qf5-uh-oX7" kind="show" identifier="allData" id="GKa-I6-TWv"/>

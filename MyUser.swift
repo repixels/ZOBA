@@ -26,7 +26,7 @@ class MyUser: NSManagedObject , Mappable {
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
-        mapping(map)
+//        mapping(map)
         
     }
     
@@ -47,6 +47,8 @@ class MyUser: NSManagedObject , Mappable {
         if vehicle != nil
         {
             self.vehicle = NSSet(array: vehicle!)
+            print("Vehicle Name : \(self.vehicle!)")
+            print("===============================")
         }
         else
         {

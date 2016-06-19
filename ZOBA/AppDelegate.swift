@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         NetworkActivityIndicatorManager.sharedManager.startDelay = 0
         NetworkActivityIndicatorManager.sharedManager.completionDelay = 0.5
         
+        
+        
         // Override point for customization after application launch.
         
         if(Defaults[.isLoggedIn] == false)
@@ -64,7 +66,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 else{
                     print("no car selected")
                 }
-            
+               
+                SessionObjects.motionMonitor = LocationMonitor()
+                
+                SessionObjects.motionMonitor.startDetection()
+                
+                
             }
             
             let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
@@ -78,15 +85,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             slideMenuController.automaticallyAdjustsScrollViewInsets = true
             self.window?.rootViewController = slideMenuController
             self.window?.makeKeyAndVisible()
-
+            
         }
         
         
         
-        SessionObjects.motionMonitor = LocationMonitor(delegate: nil)
-        SessionObjects.motionMonitor.stopTrip()
-        SessionObjects.motionMonitor.startDetection()
-        
+      
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
@@ -314,6 +318,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Defaults[.deviceToken] = tokenString
         print("tokenString: \(tokenString)")
         print("Device Token is : \(deviceToken)")
+        
+        if(SessionObjects.currentUser != nil)
+        {
+            SessionObjects.currentUser.deviceToken = tokenString
+            let deviceWebService = DeviceWebservice(deviceToken: Defaults[.deviceToken]!,currentUser: SessionObjects.currentUser)
+            deviceWebService.registerUserDevice()
+            print("Device Token is : \(deviceToken)")
+        }
+        else
+        {
+            Defaults[.deviceToken] = tokenString
+        }
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
@@ -326,12 +342,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         
         //get current active view controller
-        let tabController = application.windows[0].rootViewController as! UITabBarController
+      if  let menu = application.windows[0].rootViewController as? SlideMenuController
+      {
+        let tabController = menu.mainViewController as! UITabBarController
+        //            application.windows[0].rootViewController as! UITabBarController
         let navigationController = tabController.selectedViewController as! UINavigationController
         let activeViewCont = navigationController.visibleViewController
-//        SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
-//        
-//        
+        //        SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
+        //        
+        //
         
         switch notification.category! {
         case "zoba_start_motion":
@@ -351,7 +370,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         
         
-        
+        }
     }
 }
 

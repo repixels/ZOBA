@@ -10,7 +10,7 @@ import Foundation
 
 class StringConstants
 {
-    static let servicesDomain = "http://192.168.0.2:8080/WebServiceProject/rest/"
+    static let servicesDomain = "http://localhost:8080/WebServiceProject/rest/"
     static let fuelTrackingType = "Vehicle Refuelling"
     static let oilTrackingType = "Oil Change"
     
