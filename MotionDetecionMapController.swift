@@ -97,29 +97,9 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
-<<<<<<< HEAD
-=======
         
         let firstLoc = locationPlist.readFirstLocation()
         print("\(firstLoc.date) \n \(firstLoc.longitude ) \n \(firstLoc.latitude)")
-        SessionObjects.motionMonitor.stopTrip()
-        //        self.havingTripTextField.text = String(Defaults[.isHavingTrip])
-        drawRoad()
-        
-        let point = locationPlist.getLocationsDictionaryArray()
-        
-        let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-        firstCoordinate.latitude =  point.firstObject?.objectForKey("latitude") as? NSDecimalNumber
-        firstCoordinate.longtitude = point.firstObject?.objectForKey("longitude") as? NSDecimalNumber
-        
-        let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-        
-        
-        lastCoordinate.latitude = point.lastObject?.objectForKey("latitude") as? NSDecimalNumber
-        lastCoordinate.longtitude = point.lastObject?.objectForKey("longitude") as? NSDecimalNumber
-        
-        let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
->>>>>>> origin/Auto-Reporting-Trip
         
         if  Defaults[.isHavingTrip]
         {
@@ -205,8 +185,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
      func startDetection(sender: AnyObject) {
         
         SessionObjects.motionMonitor.startNewTrip()
-        
-        let speedArray = locationPlist.getLocationsDictionaryArray()
 
 
     }
