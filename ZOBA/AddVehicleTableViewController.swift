@@ -44,8 +44,8 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     
     @IBOutlet weak var initialOdemeterTextField: HoshiTextField!
     
-
-        var selectedMake : Make!
+    
+    var selectedMake : Make!
     var selectedModel : Model!
     var selectedYear : Year!
     var selectedTrim : Trim!
@@ -103,9 +103,9 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         makes =   dao.selectAll(entityName: "Make") as?  [Make]
-//        trims =  dao.selectAll(entityName: "Trim") as!  [Trim]
-//        years =  dao.selectAll(entityName: "Year") as!  [Year]
-//        models =  dao.selectAll(entityName: "Model") as!  [Model]
+        //        trims =  dao.selectAll(entityName: "Trim") as!  [Trim]
+        //        years =  dao.selectAll(entityName: "Year") as!  [Year]
+        //        models =  dao.selectAll(entityName: "Model") as!  [Model]
         
         
         saveBtn.enabled = false
@@ -158,41 +158,41 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         return count;
     }
     
-
+    
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
+        
+        var title = ""
+        
+        switch pickerView {
+        case makePicker:
+            title = makes![row].name!
+        case modelPicker:
             
-            var title = ""
-            
-            switch pickerView {
-            case makePicker:
-                title = makes![row].name!
-            case modelPicker:
+            switch component {
+            case 0:
+                title = models![row].name!
                 
-                switch component {
-                case 0:
-                    title = models![row].name!
-                    
-                case 1:
-                    title = String(years![row].name!)
+            case 1:
+                title = String(years![row].name!)
                 
-                    
-                    
-                case 2:
-                    title = trims![row].name!
-                    
-                default:
-                    title = ""
-                }
+                
+                
+            case 2:
+                title = trims![row].name!
                 
             default:
                 title = ""
             }
-            //
             
-            return title
+        default:
+            title = ""
         }
+        //
+        
+        return title
+    }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
@@ -316,7 +316,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     }
     
     func donePicker(){
-
+        
         
         let mak = makePicker.selectedRowInComponent(0)
         selectedMake = makes![mak]
@@ -370,7 +370,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
     }
     
-   
+    
     
     
     @IBAction func nameIsChanging(sender: UITextField) {
@@ -434,7 +434,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     
     @IBAction func saveVehiclePresses(sender: UIBarButtonItem) {
         
-
+        
         
         let vehicle = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
         
@@ -465,6 +465,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         {
             Defaults[.curentVehicleName] = vehicle.name
             SessionObjects.currentVehicle = vehicle
+            SessionObjects.motionMonitor = LocationMonitor()
             SessionObjects.motionMonitor.startDetection()
         }
         
