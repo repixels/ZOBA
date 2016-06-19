@@ -176,9 +176,9 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
             dispatch_async(dispatch_get_main_queue(), {
                 
                 let story = UIStoryboard.init(name: "MotionDetection", bundle: nil)
-                let controller = story.instantiateInitialViewController()
+               let controller = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
                 
-                activeViewCont.presentViewController(controller!, animated: true, completion: nil)
+                activeViewCont.navigationController?.pushViewController(controller, animated: true)
                 
             })
             alert.dismissViewControllerAnimated(true, completion: nil)

@@ -123,11 +123,15 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         self.slideMenuController()?.openLeft()
     }
     
-    func extraRightItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
-        print("Yemeen")
+    func extraRightItemDidPress() {
+     print("yeemen")
+        let MotionDetectionStoryBoard =  UIStoryboard(name: "MotionDetection", bundle: nil)
+        let MotionNavigationController = MotionDetectionStoryBoard.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
+        self.navigationController?.pushViewController(MotionNavigationController, animated: true)
     }
     
     func extraLeftItemDidPress() {
+    
         let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
         let vehicleNavigationController = vehiclesStoryBoard.instantiateViewControllerWithIdentifier("vehicleTable")
         self.navigationController?.pushViewController(vehicleNavigationController, animated: true)

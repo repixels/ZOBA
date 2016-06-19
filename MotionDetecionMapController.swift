@@ -30,9 +30,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     var endlat : Double?
     var endlong : Double?
     var locationPlist = LocationPlistManager()
-    
-    //@IBOutlet weak var autoReportingControlButton: UIButton!
-    
+        
     @IBOutlet weak var speedMeasuringUnitLabel: UILabel!
     
     @IBOutlet weak var elapsedTimeLabel: UILabel!
@@ -77,8 +75,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             let lastDate = self.locationPlist.readLastLocation().date
 
            let hr =  lastDate.hoursFrom(firstDate)
-           let min = lastDate.minutesFrom(firstDate)
-           let sec = lastDate.secondsFrom(firstDate)
+           let min = lastDate.minutesFrom(firstDate) % 60
+           let sec = lastDate.secondsFrom(firstDate) % 60
 
             
             self.timeDisplay.text = "\(hr):\(min):\(sec)"
@@ -93,8 +91,10 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         annotation.coordinate = (locations.first?.coordinate)!
         self.map.addAnnotation(annotation)
-        self.map.centerCoordinate = annotation.coordinate
         
+        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
+        let region = MKCoordinateRegion(center: locations[0].coordinate, span: span)
+        self.map.setRegion(region, animated: true)
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
         
@@ -113,7 +113,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             firstCoordinate.longtitude = point.firstObject?.objectForKey("longitude") as? NSDecimalNumber
             
             let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-            
+           
             
             lastCoordinate.latitude = point.lastObject?.objectForKey("latitude") as? NSDecimalNumber
             lastCoordinate.longtitude = point.lastObject?.objectForKey("longitude") as? NSDecimalNumber
@@ -223,7 +223,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let renderer = MKPolylineRenderer(overlay: overlay)
         
         renderer.strokeColor = UIColor.greenColor()
-        renderer.lineWidth = 10
+        renderer.lineWidth = 9
         
         
         requestSnapshotData(map) { (image, error) in
