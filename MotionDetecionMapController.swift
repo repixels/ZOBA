@@ -76,6 +76,9 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
+        
+        let firstLoc = locationPlist.readFirstLocation()
+        print("\(firstLoc.date) \n \(firstLoc.longitude ) \n \(firstLoc.latitude)")
         SessionObjects.motionMonitor.stopTrip()
         //        self.havingTripTextField.text = String(Defaults[.isHavingTrip])
         drawRoad()
