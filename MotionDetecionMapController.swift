@@ -42,7 +42,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     let firstLocationAnnotation = MKPointAnnotation()
     let lastLocationAnnotation = MKPointAnnotation()
-    
+      var polyline : MKPolyline!
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -147,6 +147,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         else
         {
             startDetection(sender)
+          
             stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
             
             manager.startUpdatingLocation()
@@ -193,8 +194,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
      func startDetection(sender: AnyObject) {
         self.map.removeAnnotations(map.annotations)
         SessionObjects.motionMonitor.startNewTrip()
-        
     }
+    
     
     func drawRoad()
     {
@@ -269,9 +270,9 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let diffrence = lastlocation.distanceFromLocation(firstlocation)
         
-        let longitudeDifference = (lastCoordinate?.longitude)! - (firstCoordinate?.longitude)!
+        let longitudeDifference = ((lastCoordinate?.longitude)! + (firstCoordinate?.longitude)!)/2
         
-        let lattitudeDifference = (lastCoordinate?.latitude)! - (firstCoordinate?.latitude)!
+        let lattitudeDifference = ((lastCoordinate?.latitude)! + (firstCoordinate?.latitude)!)/2
         
         let centerCoordinate = CLLocationCoordinate2D(latitude: lattitudeDifference, longitude: longitudeDifference)
         
