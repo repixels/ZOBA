@@ -61,7 +61,7 @@ class UserWebservice
         
         //Clear Users in the managed context
         self.user?.release(SessionObjects.currentManageContext)
-
+        
     }
     
     
@@ -72,46 +72,46 @@ class UserWebservice
         self.buildRegisterURL()
         
         Alamofire.request(.GET, self.registerURL)
-        .responseJSON { response in
-            switch response.result
-            {
-            case .Success(let _data):
-                let connectionStatus = _data["status"] as! String
-                switch connectionStatus
+            .responseJSON { response in
+                switch response.result
                 {
-                case "success":
-                    if let userJSON = _data["result"] as? NSDictionary
+                case .Success(let _data):
+                    let connectionStatus = _data["status"] as! String
+                    switch connectionStatus
                     {
-                        let mappedUser = Mapper<MyUser>().map(userJSON)
-                        
-                        if(Defaults[.deviceToken] != nil)
+                    case "success":
+                        if let userJSON = _data["result"] as? NSDictionary
                         {
-                            mappedUser?.deviceToken = Defaults[.deviceToken]
+                            let mappedUser = Mapper<MyUser>().map(userJSON)
+                            
+                            if(Defaults[.deviceToken] != nil)
+                            {
+                                mappedUser?.deviceToken = Defaults[.deviceToken]
+                            }
+                            
+                            result(user: mappedUser,code: connectionStatus)
+                            mappedUser?.release(SessionObjects.currentManageContext)
                         }
                         
-                        result(user: mappedUser,code: connectionStatus)
-                        mappedUser?.release(SessionObjects.currentManageContext)
+                        break;
+                    case "error":
+                        let returnedJSON = _data["result"] as? String
+                        result(user: nil,code: returnedJSON!)
+                        break;
+                    default:
+                        result(user: nil,code: connectionStatus)
+                        break;
+                        
                     }
                     
-                    break;
-                case "error":
-                    let returnedJSON = _data["result"] as? String
-                    result(user: nil,code: returnedJSON!)
-                    break;
-                default:
-                    result(user: nil,code: connectionStatus)
-                    break;
-                    
+                    break
+                case .Failure( _):
+                    let errorMessage = "We're having a tiny problem. Try loging in later!"
+                    result(user: nil,code: errorMessage)
+                    break
                 }
                 
-                break
-            case .Failure( _):
-                let errorMessage = "We're having a tiny problem. Try loging in later!"
-                result(user: nil,code: errorMessage)
-                break
-            }
-            
-            
+                
         }
     }
     
@@ -155,6 +155,24 @@ class UserWebservice
         }
     }
     
+    
+    static func saveProfilePicture(userId : Int , image : UIImage , imageExtension : String){
+        
+        
+        
+        
+        let data = UIImagePNGRepresentation(image)
+        
+        let url = StringConstants.servicesDomain + "img"
+        
+        
+        let base64String = data!.base64EncodedStringWithOptions([])
+        
+        Alamofire.request(.POST, url , parameters: ["image":base64String,"userId":userId,"fileExt":imageExtension]).response { (req, res, data, error) in
+            print(res)
+        }
+        
+    }
     
     
     
