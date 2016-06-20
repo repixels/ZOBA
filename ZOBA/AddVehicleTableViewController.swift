@@ -18,7 +18,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     
     
     var makePicker : UIPickerView! = UIPickerView()
-    var modelPicker : UIPickerView! = UIPickerView()
+    var modelYearTrimPicker : UIPickerView! = UIPickerView()
     
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
@@ -50,6 +50,8 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     var selectedYear : Year!
     var selectedTrim : Trim!
     
+    let vehicleWebService = VehicleWebServices()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,7 +62,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         trims = [Trim]()
         
         makePicker.delegate = self
-        modelPicker.delegate = self
+        modelYearTrimPicker.delegate = self
         
         let modelToolBar = UIToolbar()
         modelToolBar.barStyle = UIBarStyle.Default
@@ -89,42 +91,18 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.userInteractionEnabled = true
         
+        self.populateMakes()
+        
         
         makeTextField.inputView = makePicker
-        modelTextField.inputView = modelPicker
-        yearTextField.inputView = modelPicker
-        trimTextField.inputView = modelPicker
+        modelTextField.inputView = modelYearTrimPicker
+        yearTextField.inputView = modelYearTrimPicker
+        trimTextField.inputView = modelYearTrimPicker
         
         makeTextField.inputAccessoryView = toolBar
         modelTextField.inputAccessoryView = modelToolBar
         yearTextField.inputAccessoryView = modelToolBar
         trimTextField.inputAccessoryView = modelToolBar
-        
-        
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        makes =   dao.selectAll(entityName: "Make") as?  [Make]
-        //        trims =  dao.selectAll(entityName: "Trim") as!  [Trim]
-        //        years =  dao.selectAll(entityName: "Year") as!  [Year]
-        //        models =  dao.selectAll(entityName: "Model") as!  [Model]
-        
-        
-        
-        // get all makes then all models for first make then all years for first model
-        //        //then all trims for first model and first year
-        webService.getMakes({ (makes, code) in
-            self.makes = makes
-            self.webService.getModels(self.makes!.first!.name!, result: { (models, code) in
-                self.models = models
-                self.webService.getYears(self.models!.first!.name!, result: { (years, code) in
-                    self.years = years
-                    self.webService.getTrims(self.models!.first!.name!, year: Int(self.years!.first!.name!), result: { (trims, code) in
-                        self.trims = trims
-                        
-                    })
-                })
-            })
-        })
-        
         
         
         saveBtn.enabled = false
@@ -138,7 +116,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         var count = 1
         switch pickerView {
-        case modelPicker:
+        case modelYearTrimPicker:
             count = 3
             break
         case makePicker:
@@ -156,7 +134,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         switch pickerView {
         case makePicker:
             count = makes!.count
-        case modelPicker:
+        case modelYearTrimPicker:
             
             switch component {
             case 0:
@@ -187,17 +165,13 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         switch pickerView {
         case makePicker:
             title = makes![row].name!
-        case modelPicker:
+        case modelYearTrimPicker:
             
             switch component {
             case 0:
                 title = models![row].name!
-                
             case 1:
                 title = String(years![row].name!)
-                
-                
-                
             case 2:
                 title = trims![row].name!
                 
@@ -217,41 +191,34 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     {
         //should set trip vehicle value here
         
+        
         switch pickerView {
         case makePicker:
-            print( makes![row].name!)
             selectedMake = makes![row]
             modelTextField.text?.removeAll()
             trimTextField.text?.removeAll()
             yearTextField.text?.removeAll()
-            
-        case modelPicker:
+            self.populateModels(selectedMake)
+            modelYearTrimPicker.reloadAllComponents()
+            print("Entered  didSelectRow entered!")
+        case modelYearTrimPicker:
             
             switch component {
             case 0:
-                print( models![row].name!)
+                
                 selectedModel = models![row]
-                years!.removeAll()
-                let vehicleModels = models![row].vehicleModel!.allObjects as! [VehicleModel]
-                vehicleModels.forEach({ (vehicleModel) in
-                    years!.append( vehicleModel.year! )
-                })
-                modelPicker.reloadComponent(1)
-                
+                self.populateYears(selectedModel)
+                modelYearTrimPicker.reloadAllComponents()
+                print("Entered  didSelectRow entered!")
             case 1:
-                print( years![row].name!)
                 selectedYear = years![row]
-                
-                trims!.removeAll()
-                let vehicleModels = years![row].vehicleModel!.allObjects as! [VehicleModel]
-                vehicleModels.forEach({ (vehicleModel) in
-                    trims!.append( vehicleModel.trim! )
-                })
-                
-                modelPicker.reloadComponent(2)
+                self.populateTrims(selectedModel, year: selectedYear)
+                modelYearTrimPicker.reloadAllComponents()
+                print("Entered  didSelectRow entered!")
             case 2:
-                print( trims![row].name!)
                 selectedTrim = trims![row]
+                modelYearTrimPicker.reloadAllComponents()
+                print("Entered  didSelectRow entered!")
             default:
                 print("default")
             }
@@ -266,91 +233,12 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
     }
     
-    
-    
-    //    let makeUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/makes"
-    //    let modelUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/models?make=m1"
-    //    let yearUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/year?model=bte5a"
-    //    let trimUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/trim?model=bte5a&year=2014"
-    //
-    
-    let makeUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/makes"
-    let modelUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/models"
-    let yearUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/year"
-    let trimUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/trim"
-    
-    
-    func getAllMakes(){
-        Alamofire.request(.GET,makeUrl).responseJSON { (json) in
-            print(json.result.value)
-            self.makes = Mapper<Make>().mapArray(json.result.value)
-            self.makes![0].save()
-            self.makePicker.reloadAllComponents()
-        }
-        
-    }
-    
-    
-    func getAllModels(makeName : String){
-        
-        
-        Alamofire.request(.GET,modelUrl,parameters: ["make":makeName]).responseJSON { (json) in
-            print(json.result.value)
-            print("===========================")
-            self.models = Mapper<Model>().mapArray(json.result.value)
-            self.models![0].save()
-            self.modelPicker.reloadAllComponents()
-        }
-        
-    }
-    
-    
-    func getAllYears(modelName :String){
-        Alamofire.request(.GET,yearUrl,parameters: ["model":modelName]).responseJSON { (json) in
-            print(json.result.value)
-            print("===========================")
-            self.years = Mapper<Year>().mapArray(json.result.value)
-            self.years![0].save()
-            self.years!.forEach({ (y) in
-                print("name : \(y.yearId)")
-                print("name : \(y.name)")
-                
-            })
-            self.modelPicker.reloadAllComponents()
-        }
-        
-    }
-    
-    
-    func getAllTrims(modelName : String , year : Int){
-        Alamofire.request(.GET,trimUrl,parameters: ["model":modelName,"year":year]).responseJSON { (json) in
-            print(json.result.value)
-            print("===========================")
-            self.trims = Mapper<Trim>().mapArray(json.result.value)
-            self.trims![0].save()
-            self.modelPicker.reloadAllComponents()
-        }
-        
-    }
-    
     func donePicker(){
         
         
-        let mak = makePicker.selectedRowInComponent(0)
-        selectedMake = makes![mak]
-        models = selectedMake.model?.allObjects as? [Model]
-        print(models)
-        let vehicleModelYears = models![0].vehicleModel!.allObjects as! [VehicleModel]
-        print(vehicleModelYears.count)
-        print(vehicleModelYears[0].year?.yearId)
-        vehicleModelYears.forEach({ (vehicleModelYear) in
-            years!.append( vehicleModelYear.year! )
-        })
-        let vehicleModelTrims = years![0].vehicleModel!.allObjects as! [VehicleModel]
-        vehicleModelTrims.forEach { (vehicleModelTrim) in
-            trims!
-                .append(vehicleModelTrim.trim!)
-        }
+        let make = makePicker.selectedRowInComponent(0)
+        selectedMake = makes![make]
+        self.populateModels(selectedMake)
         
         makeTextField.text = selectedMake.name
         makeTextField.resignFirstResponder()
@@ -363,11 +251,11 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     
     
     func modelDonePicker(){
-        let mod = modelPicker.selectedRowInComponent(0)
+        let mod = modelYearTrimPicker.selectedRowInComponent(0)
         selectedModel = models![mod]
-        let y = modelPicker.selectedRowInComponent(1)
+        let y = modelYearTrimPicker.selectedRowInComponent(1)
         selectedYear = years![y]
-        let t = modelPicker.selectedRowInComponent(2)
+        let t = modelYearTrimPicker.selectedRowInComponent(2)
         selectedTrim = trims![t]
         
         modelTextField.text = selectedModel.name!
@@ -489,6 +377,90 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
         self.navigationController?.popViewControllerAnimated(true)
         
+    }
+    
+    func populateMakes()
+    {
+        // get all makes then all models for first make then all years for first model
+        //        //then all trims for first model and first year
+        vehicleWebService.getMakes({ (makes, code) in
+            
+            switch code
+            {
+            case "success":
+                if(makes.isEmpty)
+                {
+                    
+                }
+                else
+                {
+                    self.makes = makes
+                    self.makePicker.reloadAllComponents()
+                }
+                break;
+            case "error":
+                print(code)
+                break;
+            default:
+                print(code)
+            }
+            
+        })
+
+    }
+    
+    func populateModels(make : Make)
+    {
+        vehicleWebService.getModels(make.name!) { (models, code) in
+            switch code
+            {
+            case "success":
+                self.models = models
+                self.modelYearTrimPicker.reloadAllComponents()
+                break;
+            case "error":
+                    break;
+            default:
+                break;
+            }
+        }
+    }
+    
+    func populateTrims(model : Model , year: Year)
+    {
+        vehicleWebService.getTrims(model.name!, year: year.name!.stringValue) { (trims, code) in
+            switch code
+            {
+                case "success":
+                    self.trims = trims
+                    self.modelYearTrimPicker.reloadAllComponents()
+                    break
+                case "failure":
+                    print(code)
+                    break
+                default:
+                    break
+            }
+        }
+    }
+    
+    func populateYears(model : Model )
+    {
+        vehicleWebService.getYears(model.name!) { (years, code) in
+            switch code
+            {
+                case "success":
+                    self.years = years
+                    self.modelYearTrimPicker.reloadAllComponents()
+                    break;
+                case "failure":
+                    print(code)
+                    break;
+                default:
+                    print(code)
+                    break;
+            }
+        }
     }
     
 }

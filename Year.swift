@@ -23,7 +23,7 @@ class Year: NSManagedObject , Mappable
     required init?(_ map: Map) {
         
         
-        let managedContext = NSManagedObject.getPrivateContext() //SessionObjects.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("Year", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
