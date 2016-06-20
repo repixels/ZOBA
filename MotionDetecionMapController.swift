@@ -106,17 +106,18 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
             
             drawRoad()
+            
             let point = locationPlist.getLocationsDictionaryArray()
             
+    
             let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-            firstCoordinate.latitude =  point.firstObject?.objectForKey("latitude") as? NSDecimalNumber
-            firstCoordinate.longtitude = point.firstObject?.objectForKey("longitude") as? NSDecimalNumber
+            firstCoordinate.latitude =  NSDecimalNumber(string: point.firstObject?.objectForKey("latitude") as? String)
+            firstCoordinate.longtitude = NSDecimalNumber(string: point.firstObject?.objectForKey("longitude") as? String)
             
             let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
            
-            
-            lastCoordinate.latitude = point.lastObject?.objectForKey("latitude") as? NSDecimalNumber
-            lastCoordinate.longtitude = point.lastObject?.objectForKey("longitude") as? NSDecimalNumber
+            lastCoordinate.latitude = NSDecimalNumber(string: point.lastObject?.objectForKey("latitude") as? String)
+            lastCoordinate.longtitude = NSDecimalNumber(string: point.lastObject?.objectForKey("longitude") as? String)
             
             let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
             tripObj.vehicle = SessionObjects.currentVehicle
@@ -124,7 +125,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             
             tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
             
-            let distance = locationPlist.getDistanceInMetter()
+            let distance = locationPlist.getDistanceInKM()
             print(SessionObjects.currentVehicle.currentOdemeter)
             SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance/1000)
             print(SessionObjects.currentVehicle.currentOdemeter)
@@ -231,22 +232,39 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let renderer = MKPolylineRenderer(overlay: overlay)
         
-        renderer.strokeColor = UIColor.greenColor()
+        renderer.strokeColor = UIColor.flatRedColor()
         renderer.lineWidth = 9
         
         
         requestSnapshotData(map) { (image, error) in
-            
-            // return image!.drawLayer(mapView.overlays.first as! CALayer, inContext: mapView)
-            
-        }
+        print(error)}
         
         return renderer
     }
     
     func requestSnapshotData(mapView: MKMapView,  completion: (NSData?, NSError?) -> ()) {
         let options = MKMapSnapshotOptions()
-        options.region = mapView.region
+        
+        let arrayofLocations = locationPlist.getCoordinatesArray()
+        
+        
+        let firstCoordinate = arrayofLocations.first
+        let lastCoordinate  = arrayofLocations.last
+        
+        
+        let firstlocation = CLLocation(latitude: CLLocationDegrees((firstCoordinate?.latitude)!), longitude: CLLocationDegrees((firstCoordinate?.longitude)!))
+        
+        let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate?.latitude)!), longitude: CLLocationDegrees((lastCoordinate?.longitude)!))
+        
+        
+        let diffrence = lastlocation.distanceFromLocation(firstlocation)
+        
+        print(diffrence)
+        
+        let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diffrence, diffrence)
+    
+
+        options.region = region
         options.size = mapView.frame.size
         options.scale = UIScreen.mainScreen().scale
         
@@ -256,9 +274,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                 completion(nil, error)
                 return
             }
-            let image = snapshot!.image
             
-            let data = UIImagePNGRepresentation(image)
+            UIGraphicsBeginImageContext(self.map.frame.size)
+            self.map.drawViewHierarchyInRect(self.map.bounds, afterScreenUpdates: true)
+            let imageee = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            let data = UIImagePNGRepresentation(imageee)
             let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
             data!.writeToFile(filename, atomically: true)
             print(filename)

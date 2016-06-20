@@ -488,7 +488,6 @@
 		8278274A1CF837D600684CE5 = {
 			isa = PBXGroup;
 			children = (
-				830ACD6D1D119A5600AD457B /* Motion Detection */,
 				DCFC30E11CFDDF250018BBD3 /* DAO */,
 				DCFC30DA1CFDDE740018BBD3 /* poco */,
 				827827551CF837D600684CE5 /* ZOBA */,
@@ -518,6 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				82CC7C8F1D12F57A004AECA1 /* MenuTableViewController.swift */,
+				830ACD6D1D119A5600AD457B /* Motion Detection */,
 				8373C6AA1D103A5E00E2C865 /* TextFieldExtension */,
 				8314DC861D0D48F200601B45 /* Vehicle */,
 				82DEC9941D0F936A003E1154 /* Onboard View Controllers */,
@@ -706,6 +706,7 @@
 				DC8B7E3C1D16C95F00A82CA4 /* DateExtention.swift */,
 			);
 			name = "Motion Detection";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		8314DC861D0D48F200601B45 /* Vehicle */ = {
