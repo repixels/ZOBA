@@ -15,6 +15,7 @@ import TextFieldEffects
 import CoreData
 import Alamofire
 import SwiftyUserDefaults
+import SlideMenuControllerSwift
 
 class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
@@ -279,7 +280,35 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                         SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
                     }
                     SessionObjects.currentUser.save()
-                    self.performSegueWithIdentifier(identifier,sender: sender)
+                    
+                    SessionObjects.motionMonitor = LocationMonitor()
+                    
+                    SessionObjects.motionMonitor.startDetection()
+                    
+                    Defaults[.isLoggedIn] = true
+                    Defaults[.useremail] = user!.email
+                    Defaults[.launchCount] += 1
+                    
+                     //To be removed
+                    //
+                    //
+                    DummyDataBaseOperation.populateOnlyOnce()
+                    DummyDataBaseOperation.populateData()
+                    
+                    
+                    let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+                    let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                    
+                    let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
+                    let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                    
+                    
+                    let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
+                    slideMenuController.automaticallyAdjustsScrollViewInsets = true
+                    
+                    let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                    app.window?.rootViewController = slideMenuController
+                    
                     break;
                 default:
                     self.generateErrorAlert(code)

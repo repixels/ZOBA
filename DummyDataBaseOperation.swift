@@ -336,11 +336,11 @@ class DummyDataBaseOperation {
     
     static func populateData()
     {
-//        DummyDataBaseOperation.populateMake()
-//        DummyDataBaseOperation.populateYear()
-//        DummyDataBaseOperation.populateModel()
-//        saveVehicleModel()
-//        saveVehicleModel2()
+        DummyDataBaseOperation.populateMake()
+        DummyDataBaseOperation.populateYear()
+        DummyDataBaseOperation.populateModel()
+        saveVehicleModel()
+        saveVehicleModel2()
         DummyDataBaseOperation.populateServiceProvider()
     }
 }
