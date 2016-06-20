@@ -302,9 +302,6 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                         deviceWebService.registerUserDevice()
                     }
                     
-                    
-                    print(user!)
-                    print(user!.vehicle!.allObjects)
                     SessionObjects.currentUser.save()
                     Defaults[.isLoggedIn] = true
                     Defaults[.useremail] = user!.email
