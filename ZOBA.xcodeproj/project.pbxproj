@@ -105,6 +105,7 @@
 		830ACD7F1D11A20800AD457B /* MotionDetecionMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830ACD7E1D11A20800AD457B /* MotionDetecionMapController.swift */; };
 		830ACD811D11A47300AD457B /* MapDetectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830ACD801D11A47300AD457B /* MapDetectionDelegate.swift */; };
 		830ACD831D17034B00AD457B /* VehicleWebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830ACD821D17034B00AD457B /* VehicleWebServices.swift */; };
+		830ACD851D179D5700AD457B /* TripWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830ACD841D179D5700AD457B /* TripWebService.swift */; };
 		8314DC811D0C767600601B45 /* DummyDataBaseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC801D0C767600601B45 /* DummyDataBaseOperation.swift */; };
 		8314DC881D0D4B5500601B45 /* Vehicle.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8314DC871D0D4B5500601B45 /* Vehicle.storyboard */; };
 		8314DC901D0F9AAD00601B45 /* VehicleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8314DC8F1D0F9AAD00601B45 /* VehicleTableViewController.swift */; };
@@ -307,6 +308,7 @@
 		830ACD7E1D11A20800AD457B /* MotionDetecionMapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotionDetecionMapController.swift; sourceTree = "<group>"; };
 		830ACD801D11A47300AD457B /* MapDetectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDetectionDelegate.swift; sourceTree = "<group>"; };
 		830ACD821D17034B00AD457B /* VehicleWebServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleWebServices.swift; sourceTree = "<group>"; };
+		830ACD841D179D5700AD457B /* TripWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripWebService.swift; sourceTree = "<group>"; };
 		8314DC801D0C767600601B45 /* DummyDataBaseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyDataBaseOperation.swift; sourceTree = "<group>"; };
 		8314DC871D0D4B5500601B45 /* Vehicle.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Vehicle.storyboard; sourceTree = "<group>"; };
 		8314DC8B1D0DE6FE00601B45 /* AddVehicleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVehicleTableViewController.swift; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 				825BB0031D0C0EBB00F44EA3 /* UserWebservices.swift */,
 				82B980151D10164100B0658A /* Device Webservices.swift */,
 				830ACD821D17034B00AD457B /* VehicleWebServices.swift */,
+				830ACD841D179D5700AD457B /* TripWebService.swift */,
 			);
 			name = "Webservice Integeration";
 			sourceTree = "<group>";
@@ -1347,6 +1350,7 @@
 				82DEC9961D0F93A4003E1154 /* TrackingOnboardViewController.swift in Sources */,
 				8314DC921D0F9AFA00601B45 /* vehicleDetailsViewController.swift in Sources */,
 				83548F261D09EB040013E67F /* MapController.swift in Sources */,
+				830ACD851D179D5700AD457B /* TripWebService.swift in Sources */,
 				82AE18EE1D12C3CB00F4EED6 /* Vehicle+CoreDataProperties.swift in Sources */,
 				8301381C1D060D0B00A1EE21 /* DaySummaryCell.swift in Sources */,
 				82AE18EA1D12C3CB00F4EED6 /* CarFeature+CoreDataProperties.swift in Sources */,
