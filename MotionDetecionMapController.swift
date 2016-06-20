@@ -200,21 +200,30 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     func drawRoad()
     {
         
-        var ArrayOfpoint = locationPlist.getCoordinatesArray()
+        var pointsArray = locationPlist.getCoordinatesArray()
         
-        var polyline : MKPolyline?
-        for i in 0 ..< ArrayOfpoint.count-1
+        
+        if pointsArray.isEmpty
         {
-            let first = ArrayOfpoint[i]
-            let second = ArrayOfpoint[i+1]
-            var arr = [first,second]
-            polyline = MKPolyline(coordinates: &arr , count: arr.count)
-            self.map.addOverlay(polyline!)
             
         }
-        
-        let mapOvelay = map.overlays.last
-        map.addOverlay(mapOvelay!)
+        else
+        {
+            
+            var polyline : MKPolyline?
+            for i in 0 ..< pointsArray.count-1
+            {
+                let first = pointsArray[i]
+                let second = pointsArray[i+1]
+                var arr = [first,second]
+                polyline = MKPolyline(coordinates: &arr , count: arr.count)
+                self.map.addOverlay(polyline!)
+                
+            }
+            
+            let mapOvelay = map.overlays.last
+            map.addOverlay(mapOvelay!)
+        }
     }
     
     
