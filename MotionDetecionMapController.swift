@@ -172,7 +172,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     }
     
      func startDetection(sender: AnyObject) {
-        
+        self.map.removeAnnotations(map.annotations)
         SessionObjects.motionMonitor.startNewTrip()
         
     }
