@@ -355,6 +355,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         switch notification.category! {
         case "zoba_start_motion":
             print("delegate : start motion")
+            
             SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
         case "zoba_stop_motion":
             

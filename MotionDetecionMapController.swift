@@ -43,6 +43,15 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     let firstLocationAnnotation = MKPointAnnotation()
     let lastLocationAnnotation = MKPointAnnotation()
       var polyline : MKPolyline!
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        print("will appear")
+        
+        toggleButton()
+           }
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -56,8 +65,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             if isFirstLocation {
             self.locationPlist.saveLocation(location)
             }
-            let speed = location.speed
-            self.currentSpeed.text = String(Int(speed * 3.6) )
+            let speed = location.speed * 3.6
+            self.currentSpeed.text = String(Int(speed))
             
             
             let firstLocationData = self.locationPlist.readFirstLocation()
@@ -74,7 +83,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                     
                     self.currentSpeed.textColor = UIColor.flatGreenColor()
                 }
-                else if speed < 80
+                else if speed < 100
                 {
                     self.currentSpeed.textColor = UIColor.flatYellowColor()
                     
@@ -111,85 +120,54 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
         if  Defaults[.isHavingTrip]
         {
-            manager.stopUpdatingLocation()
-            self.map.showsUserLocation = false
-            SessionObjects.motionMonitor.stopTrip()
-            stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
-            
-            drawRoad()
-            
-            let point = locationPlist.getLocationsDictionaryArray()
-    
-            let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-            firstCoordinate.latitude =  NSDecimalNumber(string: point.firstObject?.objectForKey("latitude") as? String)
-            firstCoordinate.longtitude = NSDecimalNumber(string: point.firstObject?.objectForKey("longitude") as? String)
-            
-            let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-           
-            lastCoordinate.latitude = NSDecimalNumber(string: point.lastObject?.objectForKey("latitude") as? String)
-            lastCoordinate.longtitude = NSDecimalNumber(string: point.lastObject?.objectForKey("longitude") as? String)
-            
-      
-            tripObj.vehicle = SessionObjects.currentVehicle
-            tripObj.initialOdemeter = SessionObjects.currentVehicle.currentOdemeter
-            
-            let firstLoc = locationPlist.readFirstLocation()
-
-            tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
-            
-            let distance = locationPlist.getDistanceInKM()
-            SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance/1000)
-            tripObj.coveredKm  = distance
-            tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
-            
+            saveTrip()
           
         }
         else
         {
+              stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
             startDetection(sender)
-          
-            stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
-            
             manager.startUpdatingLocation()
             self.map.showsUserLocation = true
         }
     }
-    
-    func showAlert() {
-        let alert = UIAlertController(title: "Zoba", message: "looks like you are moving  ", preferredStyle: .Alert)
+
+    func saveTrip()  {
         
-        let activateAutoReport = UIAlertAction(title: "Auto report", style:.Default) { (action) in
-            SessionObjects.motionMonitor.startNewTrip()
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }
+        manager.stopUpdatingLocation()
+        self.map.showsUserLocation = false
+        SessionObjects.motionMonitor.stopTrip()
+        stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
         
-        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: nil)
         
-        alert.addAction(activateAutoReport)
-        alert.addAction(cancel)
-        self.presentViewController(alert, animated: true, completion: nil)
+        drawRoad()
+        
+        let point = locationPlist.getLocationsDictionaryArray()
+        
+        let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+        firstCoordinate.latitude =  NSDecimalNumber(string: point.firstObject?.objectForKey("latitude") as? String)
+        firstCoordinate.longtitude = NSDecimalNumber(string: point.firstObject?.objectForKey("longitude") as? String)
+        
+        let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+        
+        lastCoordinate.latitude = NSDecimalNumber(string: point.lastObject?.objectForKey("latitude") as? String)
+        lastCoordinate.longtitude = NSDecimalNumber(string: point.lastObject?.objectForKey("longitude") as? String)
+        
+        
+        tripObj.vehicle = SessionObjects.currentVehicle
+        tripObj.initialOdemeter = SessionObjects.currentVehicle.currentOdemeter
+        
+        let firstLoc = locationPlist.readFirstLocation()
+        
+        tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
+        
+        let distance = locationPlist.getDistanceInKM()
+        SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance/1000)
+        tripObj.coveredKm  = distance
+        tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
+
     }
     
-    func showStopAlert() {
-        
-        let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .Alert)
-        
-        let stopAutoReport = UIAlertAction(title: "ok", style:.Default) { (action) in
-            
-            SessionObjects.motionMonitor.stopTrip()
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        let cancel = UIAlertAction(title: "cancel", style:.Default) { (action) in
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        
-        alert.addAction(stopAutoReport)
-        alert.addAction(cancel)
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-    }
     
      func startDetection(sender: AnyObject) {
         self.map.removeAnnotations(map.annotations)
@@ -317,9 +295,28 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     func resetMapZoom(firstAnnotation : MKAnnotation , secondAnnotation : MKAnnotation)
     {
-//        let annotations = [firstAnnotation , secondAnnotation]
         
         map.showAnnotations(map.annotations, animated: true)
+    }
+    
+    func toggleButton()  {
+        
+        if Defaults[.isHavingTrip] {
+            stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
+            
+        }else{
+            
+            stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
+        }
+
+    }
+    
+    func clearView(){
+    
+        toggleButton()
+        currentSpeed.text = "0"
+        self.elapsedTimeLabel.text = "00:00:00"
+        self.totalDistance.text = "0"
     }
     
 }
