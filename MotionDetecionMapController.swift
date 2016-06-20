@@ -30,7 +30,10 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     var endlat : Double?
     var endlong : Double?
     var locationPlist = LocationPlistManager()
-        
+    
+    var imageData : NSData!
+    
+    
     @IBOutlet weak var speedMeasuringUnitLabel: UILabel!
     
     @IBOutlet weak var elapsedTimeLabel: UILabel!
@@ -98,7 +101,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
         
-        let firstLoc = locationPlist.readFirstLocation()
         
         if  Defaults[.isHavingTrip]
         {
@@ -108,7 +110,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             drawRoad()
             
             let point = locationPlist.getLocationsDictionaryArray()
-            
     
             let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
             firstCoordinate.latitude =  NSDecimalNumber(string: point.firstObject?.objectForKey("latitude") as? String)
@@ -123,6 +124,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             tripObj.vehicle = SessionObjects.currentVehicle
             tripObj.initialOdemeter = SessionObjects.currentVehicle.currentOdemeter
             
+            let firstLoc = locationPlist.readFirstLocation()
+
             tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
             
             let distance = locationPlist.getDistanceInKM()
@@ -134,6 +137,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             print(tripObj.coveredKm)
             tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
             
+            tripObj.image = imageData
             tripObj.save()
         }
         else
@@ -193,40 +197,34 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
      func startDetection(sender: AnyObject) {
         
         SessionObjects.motionMonitor.startNewTrip()
-
-
     }
-    
     
     func drawRoad()
     {
         
         var pointsArray = locationPlist.getCoordinatesArray()
+      
+        var polyline : MKPolyline?
         
+        var coordinates: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
         
         if pointsArray.isEmpty
         {
-            
+    
         }
         else
         {
-            
-            var polyline : MKPolyline?
             for i in 0 ..< pointsArray.count-1
             {
-                let first = pointsArray[i]
-                let second = pointsArray[i+1]
-                var arr = [first,second]
-                polyline = MKPolyline(coordinates: &arr , count: arr.count)
-                self.map.addOverlay(polyline!)
-                
+                let coordinate  = CLLocationCoordinate2DMake(pointsArray[i].latitude, pointsArray[i].longitude)
+                coordinates.append(coordinate)
             }
-            
-            let mapOvelay = map.overlays.last
-            map.addOverlay(mapOvelay!)
+    
+            polyline = MKPolyline(coordinates: &coordinates , count: coordinates.count)
+
+            self.map.addOverlay(polyline!)
         }
     }
-    
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
@@ -237,13 +235,16 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         
         requestSnapshotData(map) { (image, error) in
-        print(error)}
+        print(error)
+            
+        print("Image ")
+        }
         
         return renderer
     }
     
     func requestSnapshotData(mapView: MKMapView,  completion: (NSData?, NSError?) -> ()) {
-        let options = MKMapSnapshotOptions()
+        
         
         let arrayofLocations = locationPlist.getCoordinatesArray()
         
@@ -259,11 +260,11 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let diffrence = lastlocation.distanceFromLocation(firstlocation)
         
-        print(diffrence)
+        print("diffrence \(diffrence)")
         
-        let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diffrence, diffrence)
-    
-
+         let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diffrence, diffrence)
+        
+        let options = MKMapSnapshotOptions()
         options.region = region
         options.size = mapView.frame.size
         options.scale = UIScreen.mainScreen().scale
@@ -280,12 +281,14 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             let imageee = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             
-            let data = UIImagePNGRepresentation(imageee)
+             self.imageData = UIImagePNGRepresentation(imageee)
+            
+            
             let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
-            data!.writeToFile(filename, atomically: true)
+            self.imageData!.writeToFile(filename, atomically: true)
             print(filename)
             
-            completion(data, nil)
+            completion(self.imageData, nil)
         }
     }
     func getDocumentsDirectory() -> NSString {
