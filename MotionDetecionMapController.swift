@@ -106,17 +106,18 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
             
             drawRoad()
+            
             let point = locationPlist.getLocationsDictionaryArray()
             
+    
             let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-            firstCoordinate.latitude =  point.firstObject?.objectForKey("latitude") as? NSDecimalNumber
-            firstCoordinate.longtitude = point.firstObject?.objectForKey("longitude") as? NSDecimalNumber
+            firstCoordinate.latitude =  NSDecimalNumber(string: point.firstObject?.objectForKey("latitude") as? String)
+            firstCoordinate.longtitude = NSDecimalNumber(string: point.firstObject?.objectForKey("longitude") as? String)
             
             let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
            
-            
-            lastCoordinate.latitude = point.lastObject?.objectForKey("latitude") as? NSDecimalNumber
-            lastCoordinate.longtitude = point.lastObject?.objectForKey("longitude") as? NSDecimalNumber
+            lastCoordinate.latitude = NSDecimalNumber(string: point.lastObject?.objectForKey("latitude") as? String)
+            lastCoordinate.longtitude = NSDecimalNumber(string: point.lastObject?.objectForKey("longitude") as? String)
             
             let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
             tripObj.vehicle = SessionObjects.currentVehicle
@@ -124,7 +125,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             
             tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
             
-            let distance = locationPlist.getDistanceInMetter()
+            let distance = locationPlist.getDistanceInKM()
             print(SessionObjects.currentVehicle.currentOdemeter)
             SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance/1000)
             print(SessionObjects.currentVehicle.currentOdemeter)
@@ -202,6 +203,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         var ArrayOfpoint = locationPlist.getCoordinatesArray()
         
+      
         var polyline : MKPolyline?
         for i in 0 ..< ArrayOfpoint.count-1
         {
@@ -237,6 +239,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let arrayofLocations = locationPlist.getCoordinatesArray()
         
+        
         let firstCoordinate = arrayofLocations.first
         let lastCoordinate  = arrayofLocations.last
         
@@ -246,9 +249,11 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate?.latitude)!), longitude: CLLocationDegrees((lastCoordinate?.longitude)!))
         
         
-        let diff = lastlocation.distanceFromLocation(firstlocation)
+        let diffrence = lastlocation.distanceFromLocation(firstlocation)
         
-        let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diff, diff)
+        print(diffrence)
+        
+        let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diffrence, diffrence)
     
 
         options.region = region
