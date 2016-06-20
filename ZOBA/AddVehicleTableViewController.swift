@@ -108,6 +108,25 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         //        models =  dao.selectAll(entityName: "Model") as!  [Model]
         
         
+        
+        // get all makes then all models for first make then all years for first model
+        //        //then all trims for first model and first year
+        webService.getMakes({ (makes, code) in
+            self.makes = makes
+            self.webService.getModels(self.makes!.first!.name!, result: { (models, code) in
+                self.models = models
+                self.webService.getYears(self.models!.first!.name!, result: { (years, code) in
+                    self.years = years
+                    self.webService.getTrims(self.models!.first!.name!, year: Int(self.years!.first!.name!), result: { (trims, code) in
+                        self.trims = trims
+                        
+                    })
+                })
+            })
+        })
+        
+        
+        
         saveBtn.enabled = false
         saveBtn.tintColor = UIColor.grayColor()
         

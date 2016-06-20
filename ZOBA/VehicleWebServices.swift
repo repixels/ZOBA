@@ -173,16 +173,10 @@ class VehicleWebServices {
                 
                 self.getModels(make.name!, result: { (models, code) in
                     models.forEach({ (model) in
-                        
-                        
-                        
+                      
                         self.getYears(model.name!, result: { (years, code) in
                             
-                        
-                            
                             years.forEach({ (year) in
-                                
-                        
                                 
                                 self.getTrims(model.name!, year: Int(year.name!), result:{ (trims, code) in
                                     
@@ -208,8 +202,10 @@ class VehicleWebServices {
                         
                     })
                 })
+                
             })
-            
+            let context = makes!.first!.managedObjectContext
+            makes.first?.release(context)
             
         })
         
