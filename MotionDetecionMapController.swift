@@ -45,6 +45,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
      var isStop = String(Defaults[.isHavingTrip])
     
+    var newregion : MKCoordinateRegion!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -89,10 +91,12 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         SessionObjects.motionMonitor.updateLocationBlock = block
         map.delegate = self
     }
+
     
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         annotation.coordinate = (locations.first?.coordinate)!
+            
         self.map.addAnnotation(annotation)
         
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
@@ -100,8 +104,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         self.map.setRegion(region, animated: true)
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
-        
-        
+    
         if  Defaults[.isHavingTrip]
         {
             SessionObjects.motionMonitor.stopTrip()
@@ -162,8 +165,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             SessionObjects.motionMonitor.startNewTrip()
           
             alert.dismissViewControllerAnimated(true, completion: nil)
-            
-            
         }
         
         let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: nil)
@@ -203,14 +204,20 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     {
         
         var pointsArray = locationPlist.getCoordinatesArray()
-      
-        var polyline : MKPolyline?
         
         var coordinates: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
         
         if pointsArray.isEmpty
         {
     
+             let alert = UIAlertController(title: "Zoba", message: "No Vehiche Selected", preferredStyle: .Alert)
+             let selectCar = UIAlertAction(title: "ok", style:.Default) { (action) in
+                
+                alert.dismissViewControllerAnimated(true, completion: nil)
+            }
+            alert.addAction(selectCar)
+            self.presentViewController(alert, animated: true, completion: nil)
+            
         }
         else
         {
@@ -220,9 +227,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                 coordinates.append(coordinate)
             }
     
-            polyline = MKPolyline(coordinates: &coordinates , count: coordinates.count)
-
-            self.map.addOverlay(polyline!)
+            let polyline = MKPolyline(coordinates: &coordinates , count: coordinates.count)
+            self.map.addOverlay(polyline)
         }
     }
     
@@ -245,27 +251,34 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     func requestSnapshotData(mapView: MKMapView,  completion: (NSData?, NSError?) -> ()) {
         
+       
         
-        let arrayofLocations = locationPlist.getCoordinatesArray()
+//        
+//        let firstCoordinate = arrayofLocations.first
+//        let lastCoordinate  = arrayofLocations.last
+//        
+//        
+//        let firstlocation = CLLocation(latitude: CLLocationDegrees((firstCoordinate?.latitude)!), longitude: CLLocationDegrees((firstCoordinate?.longitude)!))
+//        
+//        let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate?.latitude)!), longitude: CLLocationDegrees((lastCoordinate?.longitude)!))
+//        
+//        
+//        let diffrence = lastlocation.distanceFromLocation(firstlocation)
+//        
+//        print("diffrence \(diffrence)")
+//        
+        // let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diffrence, diffrence)
+        //map.centerCoordinate(arrayofLocations.first , arrayofLocations)
+
+        let arrayofCoordinates = locationPlist.getCoordinatesArray()
         
         
-        let firstCoordinate = arrayofLocations.first
-        let lastCoordinate  = arrayofLocations.last
+        let center = CLLocationCoordinate2D(latitude: (arrayofCoordinates.first?.latitude)!, longitude: (arrayofCoordinates.first?.longitude)!)
         
-        
-        let firstlocation = CLLocation(latitude: CLLocationDegrees((firstCoordinate?.latitude)!), longitude: CLLocationDegrees((firstCoordinate?.longitude)!))
-        
-        let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate?.latitude)!), longitude: CLLocationDegrees((lastCoordinate?.longitude)!))
-        
-        
-        let diffrence = lastlocation.distanceFromLocation(firstlocation)
-        
-        print("diffrence \(diffrence)")
-        
-         let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diffrence, diffrence)
+         let newregion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
         let options = MKMapSnapshotOptions()
-        options.region = region
+        options.region = newregion
         options.size = mapView.frame.size
         options.scale = UIScreen.mainScreen().scale
         
