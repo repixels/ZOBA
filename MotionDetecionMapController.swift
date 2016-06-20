@@ -23,45 +23,38 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     @IBOutlet weak var stopReportingBtn: UIButton!
     
-    let annotation = MKPointAnnotation()
-    let locationManager = CLLocationManager()
-    var lat : Double?
-    var long :Double?
-    var endlat : Double?
-    var endlong : Double?
-    var locationPlist = LocationPlistManager()
-    
-    var imageData : NSData!
-    
-    
     @IBOutlet weak var speedMeasuringUnitLabel: UILabel!
     
     @IBOutlet weak var elapsedTimeLabel: UILabel!
     
+    
+    let annotation = MKPointAnnotation()
+    var locationPlist = LocationPlistManager()
+
     let manager  = CLLocationManager()
-    var monitor : LocationMonitor! = nil
-    var image : NSData?
     var point = NSMutableDictionary()
     
-     var isStop = String(Defaults[.isHavingTrip])
+    var isStop = String(Defaults[.isHavingTrip])
     
     var newregion : MKCoordinateRegion!
 
-          let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+    let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+    
+    let firstLocationAnnotation = MKPointAnnotation()
+    let lastLocationAnnotation = MKPointAnnotation()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         self.map.showsUserLocation = true
         self.manager.delegate = self
-        manager.requestAlwaysAuthorization()
-        manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         
         let block :(Double,Double)->() = {(speed,distance) in
             
-            self.currentSpeed.text = String(Int(speed))
-            print("received  : \(speed)")
+            self.currentSpeed.text = String(Int(speed * 3.6) )
+            
             self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", distance,"Km")
             
                 if speed < 30 {
@@ -129,12 +122,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
             
             let distance = locationPlist.getDistanceInKM()
-            print(SessionObjects.currentVehicle.currentOdemeter)
             SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance/1000)
-            print(SessionObjects.currentVehicle.currentOdemeter)
-            print(distance)
             tripObj.coveredKm  = distance
-            print(tripObj.coveredKm)
             tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
             
           
@@ -150,9 +139,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let alert = UIAlertController(title: "Zoba", message: "looks like you are moving  ", preferredStyle: .Alert)
         
         let activateAutoReport = UIAlertAction(title: "Auto report", style:.Default) { (action) in
-            print("auto reprt started")
             SessionObjects.motionMonitor.startNewTrip()
-          
             alert.dismissViewControllerAnimated(true, completion: nil)
         }
         
@@ -187,6 +174,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
      func startDetection(sender: AnyObject) {
         
         SessionObjects.motionMonitor.startNewTrip()
+        
     }
     
     func drawRoad()
@@ -217,17 +205,25 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let renderer = MKPolylineRenderer(overlay: overlay)
         
-        renderer.strokeColor = UIColor.flatRedColor()
-        renderer.lineWidth = 9
+        renderer.strokeColor = UIColor.flatMintColor()
+        renderer.lineWidth = 5
         
-        requestSnapshotData(map) { (image, error) in
-        print(error)
+        requestSnapshotData(map){ (image, error) in
+            if image != nil
+            {
+                self.tripObj.image = image
             
-        print("Image ")
+                self.tripObj.save()
+            
+                let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
+                image!.writeToFile(filename, atomically: true)
+                
+            }
         }
         
         return renderer
     }
+    
     
     func requestSnapshotData(mapView: MKMapView,  completion: (NSData?, NSError?) -> ()) {
        
@@ -239,25 +235,31 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let firstlocation = CLLocation(latitude: CLLocationDegrees((firstCoordinate?.latitude)!), longitude: CLLocationDegrees((firstCoordinate?.longitude)!))
         
         
-        let firstLocationAnnotation = MKPointAnnotation()
+       
         firstLocationAnnotation.coordinate = firstCoordinate!
-        firstLocationAnnotation.title = "first"
+        firstLocationAnnotation.title = "Starting Point"
         self.map.addAnnotation(firstLocationAnnotation)
         
         
-        let lastLocationAnnotation = MKPointAnnotation()
+        
         lastLocationAnnotation.coordinate = lastCoordinate!
-        lastLocationAnnotation.title = "first"
+        lastLocationAnnotation.title = "Ending Point"
         self.map.addAnnotation(lastLocationAnnotation)
         
         let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate?.latitude)!), longitude: CLLocationDegrees((lastCoordinate?.longitude)!))
         
         let diffrence = lastlocation.distanceFromLocation(firstlocation)
         
-        let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diffrence, diffrence)
+        let longitudeDifference = (lastCoordinate?.longitude)! - (firstCoordinate?.longitude)!
+        
+        let lattitudeDifference = (lastCoordinate?.latitude)! - (firstCoordinate?.latitude)!
+        
+        let centerCoordinate = CLLocationCoordinate2D(latitude: lattitudeDifference, longitude: longitudeDifference)
+        
+        let region =  MKCoordinateRegionMakeWithDistance(centerCoordinate, diffrence, diffrence)
         
         let options = MKMapSnapshotOptions()
-        options.region = mapView.region
+        options.region = region
         options.size = mapView.frame.size
         options.scale = UIScreen.mainScreen().scale
         
@@ -272,17 +274,11 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             
             UIGraphicsBeginImageContext(self.map.frame.size)
             self.map.drawViewHierarchyInRect(self.map.bounds, afterScreenUpdates: true)
-            let imageee = UIGraphicsGetImageFromCurrentImageContext();
+            let finalImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             
-            
-             self.imageData = UIImagePNGRepresentation(imageee)
-            
-            self.tripObj.image = self.imageData
-            
-            self.tripObj.save()
-            
-            completion(self.imageData, nil)
+            completion(UIImagePNGRepresentation(finalImage) , error)
+            return
         }
     }
     func getDocumentsDirectory() -> NSString {

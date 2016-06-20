@@ -24,7 +24,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
         
         super.init()
         
-//        locationManager.requestAlwaysAuthorization()
+        //        locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         SOLocationManager.sharedInstance().allowsBackgroundLocationUpdates = true
         getMotionDetector().setMaximumRunningSpeed(10)
@@ -76,37 +76,27 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
         
         
         getMotionDetector().locationChangedBlock = { (location) in
-            if Defaults[.isHavingTrip] {    
+            if Defaults[.isHavingTrip] {
                 let timeDifference = location.timestamp.timeIntervalSinceDate(self.locationPlist.readLastLocation().date)
-               
+             if location.horizontalAccuracy < 20 {
                 //if this is a new trip
                 if timeDifference > (60*10)
                 {
-                    
-                    print("data from old trip from more than 10 minutes earlier")
-                    print("time diff \(timeDifference)")
                     Defaults[.isHavingTrip] = false
-//                    self.presentStartMotionNotification()
-                    
                     self.saveLocation(location)
-                    
-                    //clear plist and start new trip
                 }
-                    // interval of updating location in sec
-                else if  timeDifference > 2 {
-                    print("speed : \(location.speed)")
-                    
-                    if(location.speed>15){
-                        
-                        self.saveLocation(location)
-                        
-                        if self.updateLocationBlock != nil {
-                            
-                            self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
-                            
-                        }
-                        
+                else
+                {
+                    if self.updateLocationBlock != nil
+                    {
+                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
                     }
+                    
+                    if  timeDifference > 20 {
+                        print("speed : \(location.speed)")
+                        self.saveLocation(location)
+                    }
+                        
                     else if location.speed == 0{
                         
                         print("user stopped")
@@ -115,18 +105,21 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
                         self.presentStopMotionNotification()
                         self.isMoving = false
                     }
+                        
+                    else {
+                        
+                        print("irrelevant data ")
+                        
+                    }
+                    
                     
                 }
-                    
-                else {
-                    
-                    print("irrelevant data ")
-                    
-                }
-                
             }
+            }
+            
         }
     }
+    
     
     func checkIfAccelerationChanged(block : ((CMAcceleration!)->())!){
         
@@ -147,7 +140,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     func stopTrip(){
         Defaults[.isHavingTrip] = false
         isMoving = false
-      
+        
         
     }
     
@@ -178,7 +171,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
             dispatch_async(dispatch_get_main_queue(), {
                 
                 let story = UIStoryboard.init(name: "MotionDetection", bundle: nil)
-               let controller = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
+                let controller = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
                 
                 activeViewCont.navigationController?.pushViewController(controller, animated: true)
                 
@@ -296,7 +289,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
             else{
                 print("checking not moving : user still stopped")
                 NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector(self.presentCheckIfStillMovingNotification()), userInfo: nil, repeats: false)
-//                presentCheckIfStillMovingNotification()
+                //                presentCheckIfStillMovingNotification()
             }
         }
         else{
