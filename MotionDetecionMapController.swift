@@ -47,6 +47,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     var newregion : MKCoordinateRegion!
 
+          let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -83,7 +85,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
            let min = lastDate.minutesFrom(firstDate) % 60
            let sec = lastDate.secondsFrom(firstDate) % 60
 
-            
             self.timeDisplay.text = "\(hr):\(min):\(sec)"
            
         }
@@ -93,12 +94,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     }
 
     
-    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-       
-//        annotation.coordinate = (locations.first?.coordinate)!
-//            
-//        self.map.addAnnotation(annotation)
         
         let span = MKCoordinateSpan(latitudeDelta: 0.09, longitudeDelta: 0.09)
         let region = MKCoordinateRegion(center: locations.first!.coordinate, span: span)
@@ -124,7 +120,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             lastCoordinate.latitude = NSDecimalNumber(string: point.lastObject?.objectForKey("latitude") as? String)
             lastCoordinate.longtitude = NSDecimalNumber(string: point.lastObject?.objectForKey("longitude") as? String)
             
-            let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+      
             tripObj.vehicle = SessionObjects.currentVehicle
             tripObj.initialOdemeter = SessionObjects.currentVehicle.currentOdemeter
             
@@ -141,21 +137,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             print(tripObj.coveredKm)
             tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
             
-            tripObj.image = imageData
-            tripObj.save()
+          
         }
         else
         {
-            
             startDetection(sender)
-         
             stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
-
         }
-    }
-    
-    @IBAction func cancelTapped(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func showAlert() {
@@ -203,7 +191,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     func drawRoad()
     {
-        
         var pointsArray = locationPlist.getCoordinatesArray()
         
         var coordinates: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
@@ -288,11 +275,12 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             let imageee = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             
+            
              self.imageData = UIImagePNGRepresentation(imageee)
             
-            let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
-            self.imageData!.writeToFile(filename, atomically: true)
-            print(filename)
+            self.tripObj.image = self.imageData
+            
+            self.tripObj.save()
             
             completion(self.imageData, nil)
         }
