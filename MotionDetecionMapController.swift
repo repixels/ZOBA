@@ -199,6 +199,12 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     func drawRoad()
     {
+//        map.showAnnotations(map.annotations, animated: true)
+        
+        self.map.fitMapViewToAnnotaionList()
+        
+        map.reloadInputViews()
+        
         var pointsArray = locationPlist.getCoordinatesArray()
         
         var coordinates: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
@@ -301,10 +307,39 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             return
         }
     }
+    
+    
     func getDocumentsDirectory() -> NSString {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
     
+    func resetMapZoom(firstAnnotation : MKAnnotation , secondAnnotation : MKAnnotation)
+    {
+//        let annotations = [firstAnnotation , secondAnnotation]
+        
+        map.showAnnotations(map.annotations, animated: true)
+    }
+    
+}
+
+extension MKMapView {
+    func fitMapViewToAnnotaionList() -> Void {
+        let mapEdgePadding = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        var zoomRect:MKMapRect = MKMapRectNull
+        
+        for index in 0..<self.annotations.count {
+            let annotation = self.annotations[index]
+            let aPoint:MKMapPoint = MKMapPointForCoordinate(annotation.coordinate)
+            let rect:MKMapRect = MKMapRectMake(aPoint.x, aPoint.y, 0.1, 0.1)
+            
+            if MKMapRectIsNull(zoomRect) {
+                zoomRect = rect
+            } else {
+                zoomRect = MKMapRectUnion(zoomRect, rect)
+            }
+        }
+        self.setVisibleMapRect(zoomRect, edgePadding: mapEdgePadding, animated: true)
+    }
 }
