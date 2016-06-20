@@ -17,7 +17,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     
     private var isUserStoppedBefore = true
     
-    var updateLocationBlock : ((Double,Double)->())!
+    var updateLocationBlock : ((CLLocation,Double)->())!
     let locationPlist = LocationPlistManager()
     
     override init() {
@@ -51,7 +51,6 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
         
         getMotionDetector().motionTypeChangedBlock = { type in
             if type == MotionTypeAutomotive  && !(Defaults[.isHavingTrip]) {
-                print("start moving by car show alert ")
                 
                 // prevent OS from stoping this app tracking after 20 min from being in background mode
                 SOLocationManager.sharedInstance().locationManager.pausesLocationUpdatesAutomatically = false
@@ -89,7 +88,8 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
                 {
                     if self.updateLocationBlock != nil
                     {
-                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
+//                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
+                        self.updateLocationBlock(location,self.locationPlist.getDistanceInKM())
                     }
                     
                     if  timeDifference > 20 {
@@ -140,7 +140,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     func stopTrip(){
         Defaults[.isHavingTrip] = false
         isMoving = false
-        
+        LocationPlistManager.distance = 0
         
     }
     

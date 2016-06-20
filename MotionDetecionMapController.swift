@@ -50,12 +50,25 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         self.map.showsUserLocation = true
         self.manager.delegate = self
         manager.startUpdatingLocation()
-        
-        let block :(Double,Double)->() = {(speed,distance) in
+        let isFirstLocation = true
+        let block :(CLLocation,Double)->() = {(location,distance) in
             
+            if isFirstLocation {
+            self.locationPlist.saveLocation(location)
+            }
+            let speed = location.speed
             self.currentSpeed.text = String(Int(speed * 3.6) )
             
-            self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", distance,"Km")
+            
+            let firstLocationData = self.locationPlist.readFirstLocation()
+            let lastLocationData = self.locationPlist.readLastLocation()
+            let firstLocation = CLLocation(latitude: firstLocationData.latitude, longitude: firstLocationData.longitude)
+            let lastLocation = CLLocation(latitude: lastLocationData.latitude, longitude: lastLocationData.longitude)
+           
+            var  dist = lastLocation.distanceFromLocation(firstLocation) + location.distanceFromLocation(lastLocation)
+          
+            
+            self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", (dist/1000),"KM")
             
                 if speed < 30 {
                     
@@ -71,8 +84,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                     self.currentSpeed.textColor = UIColor.redColor()
                 }
             
-            let firstDate = self.locationPlist.readFirstLocation().date
-            let lastDate = self.locationPlist.readLastLocation().date
+            let firstDate = firstLocationData.date
+            let lastDate = location.timestamp
 
            let hr =  lastDate.hoursFrom(firstDate)
            let min = lastDate.minutesFrom(firstDate) % 60
@@ -89,14 +102,17 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let span = MKCoordinateSpan(latitudeDelta: 0.09, longitudeDelta: 0.09)
+        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
         let region = MKCoordinateRegion(center: locations.first!.coordinate, span: span)
         self.map.setRegion(region, animated: true)
+        
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
     
         if  Defaults[.isHavingTrip]
         {
+            manager.stopUpdatingLocation()
+            self.map.showsUserLocation = false
             SessionObjects.motionMonitor.stopTrip()
             stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
             
@@ -132,6 +148,9 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         {
             startDetection(sender)
             stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
+            
+            manager.startUpdatingLocation()
+            self.map.showsUserLocation = true
         }
     }
     

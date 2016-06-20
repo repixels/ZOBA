@@ -75,6 +75,7 @@ class LocationPlistManager {
         let arr = dict?.mutableArrayValueForKey("Points")
         arr?.removeAllObjects()
         dict?.writeToFile(path.absoluteString, atomically: false)
+        LocationPlistManager.distance = 0
         
         
     }
@@ -159,7 +160,7 @@ class LocationPlistManager {
         userDefault.setObject(location.coordinate.longitude, forKey: "lastLongitude")
         
     }
-    
+  
     func readLastLocation() -> (date: NSDate! ,latitude: CLLocationDegrees! ,longitude : CLLocationDegrees!){
         
         let userDefault =  NSUserDefaults.standardUserDefaults()
