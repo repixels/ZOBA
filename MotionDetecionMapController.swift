@@ -95,12 +95,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        annotation.coordinate = (locations.first?.coordinate)!
-            
-        self.map.addAnnotation(annotation)
+       
+//        annotation.coordinate = (locations.first?.coordinate)!
+//            
+//        self.map.addAnnotation(annotation)
         
-        let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-        let region = MKCoordinateRegion(center: locations[0].coordinate, span: span)
+        let span = MKCoordinateSpan(latitudeDelta: 0.09, longitudeDelta: 0.09)
+        let region = MKCoordinateRegion(center: locations.first!.coordinate, span: span)
         self.map.setRegion(region, animated: true)
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
@@ -209,14 +210,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         if pointsArray.isEmpty
         {
-    
-             let alert = UIAlertController(title: "Zoba", message: "No Vehiche Selected", preferredStyle: .Alert)
-             let selectCar = UIAlertAction(title: "ok", style:.Default) { (action) in
-                
-                alert.dismissViewControllerAnimated(true, completion: nil)
-            }
-            alert.addAction(selectCar)
-            self.presentViewController(alert, animated: true, completion: nil)
+
             
         }
         else
@@ -239,7 +233,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         renderer.strokeColor = UIColor.flatRedColor()
         renderer.lineWidth = 9
         
-        
         requestSnapshotData(map) { (image, error) in
         print(error)
             
@@ -250,37 +243,38 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     }
     
     func requestSnapshotData(mapView: MKMapView,  completion: (NSData?, NSError?) -> ()) {
-        
        
-        
-//        
-//        let firstCoordinate = arrayofLocations.first
-//        let lastCoordinate  = arrayofLocations.last
-//        
-//        
-//        let firstlocation = CLLocation(latitude: CLLocationDegrees((firstCoordinate?.latitude)!), longitude: CLLocationDegrees((firstCoordinate?.longitude)!))
-//        
-//        let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate?.latitude)!), longitude: CLLocationDegrees((lastCoordinate?.longitude)!))
-//        
-//        
-//        let diffrence = lastlocation.distanceFromLocation(firstlocation)
-//        
-//        print("diffrence \(diffrence)")
-//        
-        // let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diffrence, diffrence)
-        //map.centerCoordinate(arrayofLocations.first , arrayofLocations)
-
         let arrayofCoordinates = locationPlist.getCoordinatesArray()
         
+        let firstCoordinate = arrayofCoordinates.first
+        let lastCoordinate  = arrayofCoordinates.last
         
-        let center = CLLocationCoordinate2D(latitude: (arrayofCoordinates.first?.latitude)!, longitude: (arrayofCoordinates.first?.longitude)!)
+        let firstlocation = CLLocation(latitude: CLLocationDegrees((firstCoordinate?.latitude)!), longitude: CLLocationDegrees((firstCoordinate?.longitude)!))
         
-         let newregion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        let firstLocationAnnotation = MKPointAnnotation()
+        firstLocationAnnotation.coordinate = firstCoordinate!
+        firstLocationAnnotation.title = "first"
+        self.map.addAnnotation(firstLocationAnnotation)
+        
+        
+        let lastLocationAnnotation = MKPointAnnotation()
+        lastLocationAnnotation.coordinate = lastCoordinate!
+        lastLocationAnnotation.title = "first"
+        self.map.addAnnotation(lastLocationAnnotation)
+        
+        let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate?.latitude)!), longitude: CLLocationDegrees((lastCoordinate?.longitude)!))
+        
+        let diffrence = lastlocation.distanceFromLocation(firstlocation)
+        
+        let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diffrence, diffrence)
         
         let options = MKMapSnapshotOptions()
-        options.region = newregion
+        options.region = mapView.region
         options.size = mapView.frame.size
         options.scale = UIScreen.mainScreen().scale
+        
+        self.map.setRegion(region, animated: true)
         
         let snapshotter = MKMapSnapshotter(options: options)
         snapshotter.startWithCompletionHandler() { snapshot, error in
@@ -295,7 +289,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             UIGraphicsEndImageContext();
             
              self.imageData = UIImagePNGRepresentation(imageee)
-            
             
             let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
             self.imageData!.writeToFile(filename, atomically: true)
