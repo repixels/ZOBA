@@ -91,71 +91,129 @@ class VehicleWebServices {
         
     }
     
+    func getYears(modelName : String , result : ((years : [Year]! ,code :String)->())){
+        let makeUrl = buildUrl("vehicle/year")
+        Alamofire.request(.GET,makeUrl,parameters: ["model":modelName]).responseJSON { (response) in
+            
+            switch response.result {
+                
+            case .Success(let data):
+                print(data["status"])
+                let connectionStatus = data["status"] as! String
+                switch connectionStatus
+                {
+                case "success":
+                    let json = data["result"]
+                    let yearArray = Mapper<Year>().mapArray(json)
+                    print(yearArray![0] )
+                    result(years: yearArray!, code: connectionStatus)
+                case "error" :
+                    print("status error")
+                    result(years: nil, code: "no years")
+                    break
+                default :
+                    print("default")
+                    break
+                }
+            case .Failure(let error):
+                print(error)
+                result(years: nil, code: "We're having a tiny problem. try again later")
+                break
+            }
+            
+        }
+        
+        
+    }
     
+    func getTrims(modelName : String , year : Int , result : ((trims : [Trim]! ,code :String)->())){
+        let makeUrl = buildUrl("vehicle/year")
+        Alamofire.request(.GET,makeUrl,parameters: ["model":modelName,"year":year]).responseJSON { (response) in
+            
+            switch response.result {
+                
+            case .Success(let data):
+                print(data["status"])
+                let connectionStatus = data["status"] as! String
+                switch connectionStatus
+                {
+                case "success":
+                    let json = data["result"]
+                    let trimsArray = Mapper<Trim>().mapArray(json)
+                    print(trimsArray![0] )
+                    result(trims: trimsArray!, code: connectionStatus)
+                case "error" :
+                    print("status error")
+                    result(trims: nil, code: "no years")
+                    break
+                default :
+                    print("default")
+                    break
+                }
+            case .Failure(let error):
+                print(error)
+                result(trims: nil, code: "We're having a tiny problem. try again later")
+                break
+            }
+            
+        }
+        
+        
+    }
     
-    //    let makeUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/makes"
-    //    let modelUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/models?make=m1"
-    //    let yearUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/year?model=bte5a"
-    //    let trimUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/trim?model=bte5a&year=2014"
-    //
+    func populateAllVehicleModels(){
+        
+        // get all makes then all models for first make then all years for first model
+        //then all trims for first model and first year then repeat
+        // and insert all of trim and trim's year and (trim's year)'s model and ( (trim's year)'s model )'s make in dictionary and add this dictionary to array
+        //then repeat
+        getMakes({ (makes, code) in
+            
+            makes.forEach({ (make) in
+                
+                self.getModels(make.name!, result: { (models, code) in
+                    models.forEach({ (model) in
+                        
+                        
+                        
+                        self.getYears(model.name!, result: { (years, code) in
+                            
+                        
+                            
+                            years.forEach({ (year) in
+                                
+                        
+                                
+                                self.getTrims(model.name!, year: Int(year.name!), result:{ (trims, code) in
+                                    
+//                                    yearTrims.addObject(trims)
+                                   trims.forEach({ (trim) in
+                                    
+                                        let vehicleModel = VehicleModel(backGroundEntity: "VehicleModel")
+                                        model.make = make
+                                    vehicleModel.model = model
+                                    vehicleModel.year = year
+                                    vehicleModel.trim = trim
+                                    vehicleModel.save()
+                                   })
+                                    
+                                })
+                                
+                        
+                            })
+                        
+                            
+                        })
+                        
+                        
+                    })
+                })
+            })
+            
+            
+        })
+        
+        
     
-    let makeUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/makes"
-    let modelUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/models"
-    let yearUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/year"
-    let trimUrl = "http://10.118.48.143:8080/WebServiceProject/rest/vehicle/trim"
-    //    
-    //    
-    //    func getAllMakes(){
-    //        Alamofire.request(.GET,makeUrl).responseJSON { (json) in
-    //            print(json.result.value)
-    //            self.makes = Mapper<Make>().mapArray(json.result.value)
-    //            self.makes![0].save()
-    //            self.makePicker.reloadAllComponents()
-    //        }
-    //        
-    //    }
-    //    
-    //    
-    //    func getAllModels(makeName : String){
-    //        
-    //        
-    //        Alamofire.request(.GET,modelUrl,parameters: ["make":makeName]).responseJSON { (json) in
-    //            print(json.result.value)
-    //            print("===========================")
-    //            self.models = Mapper<Model>().mapArray(json.result.value)
-    //            self.models![0].save()
-    //            self.modelPicker.reloadAllComponents()
-    //        }
-    //        
-    //    }
-    //    
-    //    
-    //    func getAllYears(modelName :String){
-    //        Alamofire.request(.GET,yearUrl,parameters: ["model":modelName]).responseJSON { (json) in
-    //            print(json.result.value)
-    //            print("===========================")
-    //            self.years = Mapper<Year>().mapArray(json.result.value)
-    //            self.years![0].save()
-    //            self.years!.forEach({ (y) in
-    //                print("name : \(y.yearId)")
-    //                print("name : \(y.name)")
-    //                
-    //            })
-    //            self.modelPicker.reloadAllComponents()
-    //        }
-    //        
-    //    }
-    //    
-    //    
-    //    func getAllTrims(modelName : String , year : Int){
-    //        Alamofire.request(.GET,trimUrl,parameters: ["model":modelName,"year":year]).responseJSON { (json) in
-    //            print(json.result.value)
-    //            print("===========================")
-    //            self.trims = Mapper<Trim>().mapArray(json.result.value)
-    //            self.trims![0].save()
-    //            self.modelPicker.reloadAllComponents()
-    //        }
-    //        
-    //    }
-    //    
+    }
 }
