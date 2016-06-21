@@ -192,6 +192,7 @@
                                         <rect key="frame" x="0.0" y="-7" width="320" height="216"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Gta-rC-07x" secondAttribute="height" multiplier="40:27" id="7In-eC-NuP"/>
+                                            <constraint firstAttribute="width" secondItem="Gta-rC-07x" secondAttribute="height" multiplier="40:27" id="Re3-QW-vac"/>
                                         </constraints>
                                     </pickerView>
                                 </subviews>
@@ -265,7 +266,7 @@
                                 <rect key="frame" x="0.0" y="92" width="320" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DDI-zy-VSR" id="gWF-HF-frD">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3e-Yp-UOH">
