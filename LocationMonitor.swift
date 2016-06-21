@@ -50,23 +50,26 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     func checkIfMotionTypeChanegd()  {
         
         getMotionDetector().motionTypeChangedBlock = { type in
-            if type == MotionTypeAutomotive  && !(Defaults[.isHavingTrip]) {
-                
-                // prevent OS from stoping this app tracking after 20 min from being in background mode
-                SOLocationManager.sharedInstance().locationManager.pausesLocationUpdatesAutomatically = false
-                SOLocationManager.sharedInstance().locationManager.activityType = .AutomotiveNavigation
-                
-                //update location if location changed by 10 metter to save power
-                SOLocationManager.sharedInstance().locationManager.distanceFilter = 10
-                
-                self.presentStartMotionNotification()
-                self.isMoving = true
-                self.isUserStoppedBefore = true
-                
-            }
-            else if type == MotionTypeNotMoving {
-                print("not moving")
-                
+            if SessionObjects.currentVehicle != nil
+            {
+                if type == MotionTypeAutomotive  && !(Defaults[.isHavingTrip]   ) {
+                    
+                    // prevent OS from stoping this app tracking after 20 min from being in background mode
+                    SOLocationManager.sharedInstance().locationManager.pausesLocationUpdatesAutomatically = false
+                    SOLocationManager.sharedInstance().locationManager.activityType = .AutomotiveNavigation
+                    
+                    //update location if location changed by 10 metter to save power
+                    SOLocationManager.sharedInstance().locationManager.distanceFilter = 10
+                    
+                    self.presentStartMotionNotification()
+                    self.isMoving = true
+                    self.isUserStoppedBefore = true
+                    
+                }
+                else if type == MotionTypeNotMoving {
+                    print("not moving")
+                    
+                }
             }
         }
     }
@@ -77,7 +80,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
         getMotionDetector().locationChangedBlock = { (location) in
             if Defaults[.isHavingTrip] {
                 let timeDifference = location.timestamp.timeIntervalSinceDate(self.locationPlist.readLastLocation().date)
-            // if location.horizontalAccuracy < 20 {
+                // if location.horizontalAccuracy < 20 {
                 //if this is a new trip
                 if timeDifference > (60*10)
                 {
@@ -88,7 +91,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
                 {
                     if self.updateLocationBlock != nil
                     {
-//                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
+                        //                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
                         self.updateLocationBlock(location,self.locationPlist.getDistanceInKM())
                     }
                     
@@ -115,7 +118,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
                     
                 }
             }
-           // }
+            // }
             
         }
     }
@@ -174,11 +177,11 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
                     (activeViewCont as! MotionDetecionMapController).clearView()
                 }
                 else {
-                
-                let story = UIStoryboard.init(name: "MotionDetection", bundle: nil)
-                let controller = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
-                
-                activeViewCont.navigationController?.pushViewController(controller, animated: true)
+                    
+                    let story = UIStoryboard.init(name: "MotionDetection", bundle: nil)
+                    let controller = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
+                    
+                    activeViewCont.navigationController?.pushViewController(controller, animated: true)
                 }
             })
             alert.dismissViewControllerAnimated(true, completion: nil)
@@ -202,25 +205,25 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
         }
         else {
             
-        
-        let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .Alert)
-        
-        let stopAutoReport = UIAlertAction(title: "ok", style:.Default) { (action) in
             
-            SessionObjects.motionMonitor.stopTrip()
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        let cancel = UIAlertAction(title: "cancel", style:.Default) { (action) in
-            alert.dismissViewControllerAnimated(true, completion: nil)
+            let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .Alert)
             
-            self.presentCheckIfStillMovingNotification()
-        }
-        
-        
-        alert.addAction(stopAutoReport)
-        alert.addAction(cancel)
-        activeViewCont.presentViewController(alert, animated: true, completion: nil)
+            let stopAutoReport = UIAlertAction(title: "ok", style:.Default) { (action) in
+                
+                SessionObjects.motionMonitor.stopTrip()
+                alert.dismissViewControllerAnimated(true, completion: nil)
+            }
+            
+            let cancel = UIAlertAction(title: "cancel", style:.Default) { (action) in
+                alert.dismissViewControllerAnimated(true, completion: nil)
+                
+                self.presentCheckIfStillMovingNotification()
+            }
+            
+            
+            alert.addAction(stopAutoReport)
+            alert.addAction(cancel)
+            activeViewCont.presentViewController(alert, animated: true, completion: nil)
         }
         
     }
