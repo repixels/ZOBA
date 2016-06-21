@@ -52,7 +52,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         if SessionObjects.currentVehicle == nil {
             
             self.stopReportingBtn .enabled = false
-            self.stopReportingBtn.titleLabel?.text = "No Available Vehicle To report"
+            self.stopReportingBtn.setTitle("No Available Vehicle To report", forState: .Disabled)
+                self.stopReportingBtn.backgroundColor = UIColor.grayColor()
         }
         else {
             
@@ -112,7 +113,9 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             
         }
         
+        if SessionObjects.motionMonitor != nil {
         SessionObjects.motionMonitor.updateLocationBlock = block
+        }
         map.delegate = self
     }
     

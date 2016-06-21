@@ -147,9 +147,10 @@ class VehicleTableViewController: UITableViewController {
                 }
                 else
                 {
+                    SessionObjects.motionMonitor.stopDetection()
                     SessionObjects.currentVehicle = nil
                     Defaults[.curentVehicleName] = nil
-                    SessionObjects.motionMonitor.stopDetection()
+                    
                 }
             }
             self.tableView.endUpdates()

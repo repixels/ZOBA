@@ -28,6 +28,11 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         SOLocationManager.sharedInstance().allowsBackgroundLocationUpdates = true
         getMotionDetector().setMaximumRunningSpeed(10)
+        if( getMotionDetector().motionType == MotionTypeAutomotive )
+        {
+            initializeDetection()
+        
+        }
         checkIfMotionTypeChanegd()
         checkIfLocationChanged()
         startDetection()
@@ -55,15 +60,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
                 if type == MotionTypeAutomotive  && !(Defaults[.isHavingTrip]   ) {
                     
                     // prevent OS from stoping this app tracking after 20 min from being in background mode
-                    SOLocationManager.sharedInstance().locationManager.pausesLocationUpdatesAutomatically = false
-                    SOLocationManager.sharedInstance().locationManager.activityType = .AutomotiveNavigation
-                    
-                    //update location if location changed by 10 metter to save power
-                    SOLocationManager.sharedInstance().locationManager.distanceFilter = 10
-                    
-                    self.presentStartMotionNotification()
-                    self.isMoving = true
-                    self.isUserStoppedBefore = true
+                  self.initializeDetection()
                     
                 }
                 else if type == MotionTypeNotMoving {
@@ -72,6 +69,18 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
                 }
             }
         }
+    }
+    
+    private func initializeDetection(){
+        SOLocationManager.sharedInstance().locationManager.pausesLocationUpdatesAutomatically = false
+        SOLocationManager.sharedInstance().locationManager.activityType = .AutomotiveNavigation
+        
+        //update location if location changed by 10 metter to save power
+        SOLocationManager.sharedInstance().locationManager.distanceFilter = 10
+        
+        self.presentStartMotionNotification()
+        self.isMoving = true
+        self.isUserStoppedBefore = true
     }
     
     func checkIfLocationChanged(){
@@ -182,8 +191,9 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
                     
                     let story = UIStoryboard.init(name: "MotionDetection", bundle: nil)
                     let controller = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
-                    
+                  
                     activeViewCont.navigationController?.pushViewController(controller, animated: true)
+                    
                 }
             })
             alert.dismissViewControllerAnimated(true, completion: nil)
