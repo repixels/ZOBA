@@ -599,6 +599,9 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WzL-Sp-SaU">
                                 <rect key="frame" x="0.0" y="64" width="320" height="203"/>
                             </mapView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iI9-bV-6uR">
+                                <rect key="frame" x="0.0" y="64" width="320" height="203"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -608,6 +611,7 @@
                         <outlet property="currentOdemeterTextField" destination="iUZ-CR-r6g" id="YbD-Wm-8aG"/>
                         <outlet property="dateTextField" destination="x2G-bK-yAf" id="QDn-me-ssS"/>
                         <outlet property="endPointTextField" destination="0Pq-rO-7un" id="zKd-Ck-F8B"/>
+                        <outlet property="imageView" destination="iI9-bV-6uR" id="1Tr-H7-Efq"/>
                         <outlet property="initialOdemeterTextField" destination="xLP-CE-u63" id="DDQ-B9-Ley"/>
                         <outlet property="map" destination="WzL-Sp-SaU" id="XIz-cQ-dCM"/>
                         <outlet property="startPointTextField" destination="PmB-Ka-bXA" id="U13-Ym-bGz"/>

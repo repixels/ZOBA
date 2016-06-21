@@ -132,7 +132,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         super.touchesBegan(touches, withEvent: event)
     }
     
- 
+    
     
     
     @IBAction func validateUserEmail(sender: AnyObject)
@@ -281,15 +281,13 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                     }
                     SessionObjects.currentUser.save()
                     
-                    SessionObjects.motionMonitor = LocationMonitor()
                     
-                    SessionObjects.motionMonitor.startDetection()
                     
                     Defaults[.isLoggedIn] = true
                     Defaults[.useremail] = user!.email
                     Defaults[.launchCount] += 1
                     
-                     //To be removed
+                    //To be removed
                     //
                     //
                     DummyDataBaseOperation.populateOnlyOnce()
@@ -308,6 +306,13 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                     
                     let app = UIApplication.sharedApplication().delegate as! AppDelegate
                     app.window?.rootViewController = slideMenuController
+                    
+                    //start detection if user has car
+                    if SessionObjects.currentVehicle != nil {
+                        SessionObjects.motionMonitor = LocationMonitor()
+                        
+                        SessionObjects.motionMonitor.startDetection()
+                    }
                     
                     break;
                 default:

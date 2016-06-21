@@ -22,13 +22,13 @@ class Year: NSManagedObject , Mappable
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        
+        let managedContext = NSManagedObject.getPrivateContext() //SessionObjects.managedObjectContext
         let entity = NSEntityDescription.entityForName("Year", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
-//        mapping(map)
+        //        mapping(map)
         
     }
     

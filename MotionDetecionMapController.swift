@@ -40,22 +40,24 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     var newregion : MKCoordinateRegion!
     
-    let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+    
     
     let firstLocationAnnotation = MKPointAnnotation()
     let lastLocationAnnotation = MKPointAnnotation()
     var polyline : MKPolyline!
     
+    var dist : Double = 0.0
+    
+    var tripObj : Trip!
     
     
    
     override func viewWillAppear(animated: Bool) {
         
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         print("will appear")
         
         toggleButton()
-        
         
     }
     override func viewDidLoad() {
@@ -81,10 +83,10 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             let firstLocation = CLLocation(latitude: firstLocationData.latitude, longitude: firstLocationData.longitude)
             let lastLocation = CLLocation(latitude: lastLocationData.latitude, longitude: lastLocationData.longitude)
             
-            var  dist = lastLocation.distanceFromLocation(firstLocation) + location.distanceFromLocation(lastLocation)
+            self.dist = lastLocation.distanceFromLocation(firstLocation) + location.distanceFromLocation(lastLocation)
             
             
-            self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", (dist/1000),"KM")
+            self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", (self.dist/1000),"KM")
             
             if speed < 30 {
                 
@@ -111,12 +113,25 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             
         }
         
-        SessionObjects.motionMonitor.updateLocationBlock = block
+        if SessionObjects.motionMonitor != nil {
+            SessionObjects.motionMonitor.updateLocationBlock = block
+        }
         map.delegate = self
         
         var adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
         self.scrollView.contentInset = adjustForTabbarInsets;
         self.scrollView.scrollIndicatorInsets = adjustForTabbarInsets;
+        
+        if SessionObjects.currentVehicle == nil {
+            
+            self.stopReportingBtn .enabled = false
+            self.stopReportingBtn.setTitle("No Available Vehicle To report", forState: .Disabled)
+            self.stopReportingBtn.backgroundColor = UIColor.grayColor()
+        }
+        else {
+            
+            toggleButton()
+        }
     }
     
     
@@ -167,7 +182,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         lastCoordinate.latitude = NSDecimalNumber(string: point.lastObject?.objectForKey("latitude") as? String)
         lastCoordinate.longtitude = NSDecimalNumber(string: point.lastObject?.objectForKey("longitude") as? String)
-        
+        tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
         
         tripObj.vehicle = SessionObjects.currentVehicle
         tripObj.initialOdemeter = SessionObjects.currentVehicle.currentOdemeter
@@ -178,8 +193,33 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let distance = locationPlist.getDistanceInKM()
         SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance/1000)
-        tripObj.coveredKm  = distance
+        tripObj.coveredKm  = dist/1000
+        tripObj.vehicle?.currentOdemeter = Int(tripObj.vehicle!.currentOdemeter!) + Int(dist/1000)
         tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
+        
+        getLocation(firstCoordinate)
+        getLocation(lastCoordinate)
+        
+        tripObj.save()
+    }
+    
+    
+    func getLocation(coordinate : TripCoordinate){
+        
+        
+        let location = CLLocation(latitude: Double(coordinate.latitude!), longitude: Double(coordinate.longtitude!))
+        
+        
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
+            dispatch_async(dispatch_get_main_queue(), {
+                if places!.count > 0 {
+                    coordinate.address =  places!.first?.name
+                    coordinate.save()
+                }
+            })
+            
+            
+        })
         
     }
     
@@ -193,7 +233,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     func drawRoad()
     {
         //        map.showAnnotations(map.annotations, animated: true)
-        polyLines.removeAll()
+    
         
         self.map.fitMapViewToAnnotaionList()
         
@@ -217,7 +257,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             }
             
             let polyline = MKPolyline(coordinates: &coordinates , count: coordinates.count)
-            polyLines.append(polyline)
+            
             self.map.addOverlay(polyline)
         }
     }
@@ -226,25 +266,28 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
-        let renderer = MKPolylineRenderer(overlay: overlay)
-        
-        renderer.strokeColor = UIColor.flatMintColor()
-        renderer.lineWidth = 5
-        
-        requestSnapshotData(map){ (image, error) in
-            if image != nil
-            {
-                self.tripObj.image = image
-                
-                self.tripObj.save()
-                
-                let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
-                image!.writeToFile(filename, atomically: true)
-                
+        if (overlay is MKPolyline) {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            
+            renderer.strokeColor = UIColor.flatMintColor()
+            renderer.lineWidth = 5
+            
+            requestSnapshotData(map){ (image, error) in
+                if image != nil
+                {
+                    self.tripObj.image = image
+                    
+                    self.tripObj.save()
+                    
+                    let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
+                    image!.writeToFile(filename, atomically: true)
+                    
+                }
             }
+            
+            return renderer
         }
-        
-        return renderer
+        return MKPolylineRenderer()
     }
     
     
@@ -322,11 +365,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     func toggleButton()  {
         
         if Defaults[.isHavingTrip] {
-            stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
-            
+            if stopReportingBtn != nil {
+                stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
+            }
         }else{
-            
-            stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
+            if stopReportingBtn != nil {
+                stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
+            }
         }
         
     }

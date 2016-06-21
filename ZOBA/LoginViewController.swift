@@ -307,9 +307,9 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     Defaults[.useremail] = user!.email
                     Defaults[.launchCount] += 1
                     
-//                    //To be removed
-//
-//                    
+                    //                    //To be removed
+                    //
+                    //                    
                     DummyDataBaseOperation.populateOnlyOnce()
                     DummyDataBaseOperation.populateData()
                     
@@ -327,12 +327,13 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     
                     let app = UIApplication.sharedApplication().delegate as! AppDelegate
                     app.window?.rootViewController = slideMenuController
-                   
-                    SessionObjects.motionMonitor = LocationMonitor()
                     
-                    SessionObjects.motionMonitor.startDetection()
+                    if SessionObjects.currentVehicle != nil {
+                        SessionObjects.motionMonitor = LocationMonitor()
+                        
+                        SessionObjects.motionMonitor.startDetection()
+                    }
                     
-
                     break;
                 default:
                     self.generateErrorAlert(code)
