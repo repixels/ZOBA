@@ -10,8 +10,10 @@ import UIKit
 import MapKit
 import TextFieldEffects
 import SwiftyUserDefaults
+import FoldingTabBar
 
-class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,MKMapViewDelegate{
+class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,MKMapViewDelegate , UIScrollViewDelegate , YALTabBarViewDelegate , YALTabBarInteracting
+{    @IBOutlet weak var scrollView: UIScrollView!
     
     
     @IBOutlet weak var timeDisplay: UILabel!
@@ -23,223 +25,312 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     @IBOutlet weak var stopReportingBtn: UIButton!
     
-    let annotation = MKPointAnnotation()
-    let locationManager = CLLocationManager()
-    var lat : Double?
-    var long :Double?
-    var endlat : Double?
-    var endlong : Double?
-    var locationPlist = LocationPlistManager()
-        
     @IBOutlet weak var speedMeasuringUnitLabel: UILabel!
     
     @IBOutlet weak var elapsedTimeLabel: UILabel!
     
+    
+    let annotation = MKPointAnnotation()
+    var locationPlist = LocationPlistManager()
+    
     let manager  = CLLocationManager()
-    var monitor : LocationMonitor! = nil
-    var image : NSData?
     var point = NSMutableDictionary()
     
-     var isStop = String(Defaults[.isHavingTrip])
+    var isStop = String(Defaults[.isHavingTrip])
     
+    var newregion : MKCoordinateRegion!
+    
+    
+    
+    let firstLocationAnnotation = MKPointAnnotation()
+    let lastLocationAnnotation = MKPointAnnotation()
+    var polyline : MKPolyline!
+    
+    var dist : Double = 0.0
+    
+    var tripObj : Trip!
+    
+    
+   
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        print("will appear")
+        
+        toggleButton()
+        
+    }
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         self.map.showsUserLocation = true
         self.manager.delegate = self
-        manager.requestAlwaysAuthorization()
-        manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        
-        let block :(Double,Double)->() = {(speed,distance) in
+        let isFirstLocation = true
+        let block :(CLLocation,Double)->() = {(location,distance) in
             
-            self.currentSpeed.text = String(Int(speed))
-            print("received  : \(speed)")
-            self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", distance,"Km")
+            if isFirstLocation {
+                self.locationPlist.saveLocation(location)
+            }
+            let speed = location.speed * 3.6
+            if (speed >= 0){
+                self.currentSpeed.text = String(Int(speed))
+            }
             
-                if speed < 30 {
-                    
-                    self.currentSpeed.textColor = UIColor.flatGreenColor()
-                }
-                else if speed < 80
-                {
-                    self.currentSpeed.textColor = UIColor.flatYellowColor()
-                    
-                }
-                else
-                {
-                    self.currentSpeed.textColor = UIColor.redColor()
-                }
+            let firstLocationData = self.locationPlist.readFirstLocation()
+            let lastLocationData = self.locationPlist.readLastLocation()
+            let firstLocation = CLLocation(latitude: firstLocationData.latitude, longitude: firstLocationData.longitude)
+            let lastLocation = CLLocation(latitude: lastLocationData.latitude, longitude: lastLocationData.longitude)
             
-            let firstDate = self.locationPlist.readFirstLocation().date
-            let lastDate = self.locationPlist.readLastLocation().date
-
-           let hr =  lastDate.hoursFrom(firstDate)
-           let min = lastDate.minutesFrom(firstDate) % 60
-           let sec = lastDate.secondsFrom(firstDate) % 60
-
+            self.dist = lastLocation.distanceFromLocation(firstLocation) + location.distanceFromLocation(lastLocation)
+            
+            
+            self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", (self.dist/1000),"KM")
+            
+            if speed < 30 {
+                
+                self.currentSpeed.textColor = UIColor.flatGreenColor()
+            }
+            else if speed < 100
+            {
+                self.currentSpeed.textColor = UIColor.flatYellowColor()
+                
+            }
+            else
+            {
+                self.currentSpeed.textColor = UIColor.redColor()
+            }
+            
+            let firstDate = firstLocationData.date
+            let lastDate = location.timestamp
+            
+            let hr =  lastDate.hoursFrom(firstDate)
+            let min = lastDate.minutesFrom(firstDate) % 60
+            let sec = lastDate.secondsFrom(firstDate) % 60
             
             self.timeDisplay.text = "\(hr):\(min):\(sec)"
-           
+            
         }
         
-        SessionObjects.motionMonitor.updateLocationBlock = block
+        if SessionObjects.motionMonitor != nil {
+            SessionObjects.motionMonitor.updateLocationBlock = block
+        }
         map.delegate = self
+        
+        var adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
+        self.scrollView.contentInset = adjustForTabbarInsets;
+        self.scrollView.scrollIndicatorInsets = adjustForTabbarInsets;
+        
+        if SessionObjects.currentVehicle == nil {
+            
+            self.stopReportingBtn .enabled = false
+            self.stopReportingBtn.setTitle("No Available Vehicle To report", forState: .Disabled)
+            self.stopReportingBtn.backgroundColor = UIColor.grayColor()
+        }
+        else {
+            
+            toggleButton()
+        }
     }
     
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        annotation.coordinate = (locations.first?.coordinate)!
-        self.map.addAnnotation(annotation)
         
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-        let region = MKCoordinateRegion(center: locations[0].coordinate, span: span)
+        let region = MKCoordinateRegion(center: locations.first!.coordinate, span: span)
         self.map.setRegion(region, animated: true)
+        
     }
     @IBAction func stopDetecionTapped(sender: AnyObject) {
         
-        let firstLoc = locationPlist.readFirstLocation()
-        
         if  Defaults[.isHavingTrip]
         {
-            SessionObjects.motionMonitor.stopTrip()
-            stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
+            saveTrip()
             
-            drawRoad()
-            let point = locationPlist.getLocationsDictionaryArray()
-            
-            let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-            firstCoordinate.latitude =  point.firstObject?.objectForKey("latitude") as? NSDecimalNumber
-            firstCoordinate.longtitude = point.firstObject?.objectForKey("longitude") as? NSDecimalNumber
-            
-            let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-           
-            
-            lastCoordinate.latitude = point.lastObject?.objectForKey("latitude") as? NSDecimalNumber
-            lastCoordinate.longtitude = point.lastObject?.objectForKey("longitude") as? NSDecimalNumber
-            
-            let tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
-            tripObj.vehicle = SessionObjects.currentVehicle
-            tripObj.initialOdemeter = SessionObjects.currentVehicle.currentOdemeter
-            
-            tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
-            
-            let distance = locationPlist.getDistanceInMetter()
-            print(SessionObjects.currentVehicle.currentOdemeter)
-            SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance/1000)
-            print(SessionObjects.currentVehicle.currentOdemeter)
-            print(distance)
-            tripObj.coveredKm  = distance
-            print(tripObj.coveredKm)
-            tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
-            
-            tripObj.save()
         }
         else
         {
+            stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
+            
+            resetMap()
             
             startDetection(sender)
-         
-            stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
-
-        }
-    }
-    
-    @IBAction func cancelTapped(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func showAlert() {
-        let alert = UIAlertController(title: "Zoba", message: "looks like you are moving  ", preferredStyle: .Alert)
-        
-        let activateAutoReport = UIAlertAction(title: "Auto report", style:.Default) { (action) in
-            print("auto reprt started")
-            SessionObjects.motionMonitor.startNewTrip()
-          
-            alert.dismissViewControllerAnimated(true, completion: nil)
-            
+            manager.startUpdatingLocation()
+            self.map.showsUserLocation = true
             
         }
-        
-        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: nil)
-        
-        alert.addAction(activateAutoReport)
-        alert.addAction(cancel)
-        self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func showStopAlert() {
+    func saveTrip()  {
         
-        let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .Alert)
+        manager.stopUpdatingLocation()
+        self.map.showsUserLocation = false
+        SessionObjects.motionMonitor.stopTrip()
+        stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
         
-        let stopAutoReport = UIAlertAction(title: "ok", style:.Default) { (action) in
+        
+        drawRoad()
+        
+        let point = locationPlist.getLocationsDictionaryArray()
+        
+        let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+        firstCoordinate.latitude =  NSDecimalNumber(string: point.firstObject?.objectForKey("latitude") as? String)
+        firstCoordinate.longtitude = NSDecimalNumber(string: point.firstObject?.objectForKey("longitude") as? String)
+        
+        let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+        
+        lastCoordinate.latitude = NSDecimalNumber(string: point.lastObject?.objectForKey("latitude") as? String)
+        lastCoordinate.longtitude = NSDecimalNumber(string: point.lastObject?.objectForKey("longitude") as? String)
+        tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+        
+        tripObj.vehicle = SessionObjects.currentVehicle
+        tripObj.initialOdemeter = SessionObjects.currentVehicle.currentOdemeter
+        
+        let firstLoc = locationPlist.readFirstLocation()
+        
+        tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
+        
+        let distance = locationPlist.getDistanceInKM()
+        SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance/1000)
+        tripObj.coveredKm  = dist/1000
+        tripObj.vehicle?.currentOdemeter = Int(tripObj.vehicle!.currentOdemeter!) + Int(dist/1000)
+        tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
+        
+        getLocation(firstCoordinate)
+        getLocation(lastCoordinate)
+        
+        tripObj.save()
+    }
+    
+    
+    func getLocation(coordinate : TripCoordinate){
+        
+        
+        let location = CLLocation(latitude: Double(coordinate.latitude!), longitude: Double(coordinate.longtitude!))
+        
+        
+        CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
+            dispatch_async(dispatch_get_main_queue(), {
+                if places!.count > 0 {
+                    coordinate.address =  places!.first?.name
+                    coordinate.save()
+                }
+            })
             
-            SessionObjects.motionMonitor.stopTrip()
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        let cancel = UIAlertAction(title: "cancel", style:.Default) { (action) in
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        
-        alert.addAction(stopAutoReport)
-        alert.addAction(cancel)
-        self.presentViewController(alert, animated: true, completion: nil)
+            
+        })
         
     }
     
-     func startDetection(sender: AnyObject) {
-        
+    
+    func startDetection(sender: AnyObject) {
+        self.map.removeAnnotations(map.annotations)
         SessionObjects.motionMonitor.startNewTrip()
-
-
     }
     
     
     func drawRoad()
     {
+        //        map.showAnnotations(map.annotations, animated: true)
+    
         
-        var ArrayOfpoint = locationPlist.getCoordinatesArray()
+        self.map.fitMapViewToAnnotaionList()
         
-        var polyline : MKPolyline?
-        for i in 0 ..< ArrayOfpoint.count-1
+        map.reloadInputViews()
+        
+        var pointsArray = locationPlist.getCoordinatesArray()
+        
+        var coordinates: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
+        
+        if pointsArray.isEmpty
         {
-            let first = ArrayOfpoint[i]
-            let second = ArrayOfpoint[i+1]
-            var arr = [first,second]
-            polyline = MKPolyline(coordinates: &arr , count: arr.count)
-            self.map.addOverlay(polyline!)
+            
             
         }
-        
-        let mapOvelay = map.overlays.last
-        map.addOverlay(mapOvelay!)
+        else
+        {
+            for i in 0 ..< pointsArray.count-1
+            {
+                let coordinate  = CLLocationCoordinate2DMake(pointsArray[i].latitude, pointsArray[i].longitude)
+                coordinates.append(coordinate)
+            }
+            
+            let polyline = MKPolyline(coordinates: &coordinates , count: coordinates.count)
+            
+            self.map.addOverlay(polyline)
+        }
     }
     
+    var polyLines = [MKPolyline]()
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
-        let renderer = MKPolylineRenderer(overlay: overlay)
-        
-        renderer.strokeColor = UIColor.greenColor()
-        renderer.lineWidth = 9
-        
-        
-        requestSnapshotData(map) { (image, error) in
+        if (overlay is MKPolyline) {
+            let renderer = MKPolylineRenderer(overlay: overlay)
             
-            // return image!.drawLayer(mapView.overlays.first as! CALayer, inContext: mapView)
+            renderer.strokeColor = UIColor.flatMintColor()
+            renderer.lineWidth = 5
             
+            requestSnapshotData(map){ (image, error) in
+                if image != nil
+                {
+                    self.tripObj.image = image
+                    
+                    self.tripObj.save()
+                    
+                    let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
+                    image!.writeToFile(filename, atomically: true)
+                    
+                }
+            }
+            
+            return renderer
         }
-        
-        return renderer
+        return MKPolylineRenderer()
     }
     
+    
+    
     func requestSnapshotData(mapView: MKMapView,  completion: (NSData?, NSError?) -> ()) {
+        
+        let arrayofCoordinates = locationPlist.getCoordinatesArray()
+        
+        let firstCoordinate = arrayofCoordinates.first
+        let lastCoordinate  = arrayofCoordinates.last
+        
+        let firstlocation = CLLocation(latitude: CLLocationDegrees((firstCoordinate?.latitude)!), longitude: CLLocationDegrees((firstCoordinate?.longitude)!))
+        
+        
+        
+        firstLocationAnnotation.coordinate = firstCoordinate!
+        firstLocationAnnotation.title = "Starting Point"
+        self.map.addAnnotation(firstLocationAnnotation)
+        
+        
+        
+        lastLocationAnnotation.coordinate = lastCoordinate!
+        lastLocationAnnotation.title = "Ending Point"
+        self.map.addAnnotation(lastLocationAnnotation)
+        
+        let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate?.latitude)!), longitude: CLLocationDegrees((lastCoordinate?.longitude)!))
+        
+        let diffrence = lastlocation.distanceFromLocation(firstlocation)
+        
+        let longitudeDifference = ((lastCoordinate?.longitude)! + (firstCoordinate?.longitude)!)/2
+        
+        let lattitudeDifference = ((lastCoordinate?.latitude)! + (firstCoordinate?.latitude)!)/2
+        
+        let centerCoordinate = CLLocationCoordinate2D(latitude: lattitudeDifference, longitude: longitudeDifference)
+        
+        let region =  MKCoordinateRegionMakeWithDistance(centerCoordinate, diffrence, diffrence)
+        
         let options = MKMapSnapshotOptions()
-        options.region = mapView.region
+        options.region = region
         options.size = mapView.frame.size
         options.scale = UIScreen.mainScreen().scale
+        
+        self.map.setRegion(region, animated: true)
         
         let snapshotter = MKMapSnapshotter(options: options)
         snapshotter.startWithCompletionHandler() { snapshot, error in
@@ -247,20 +338,85 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                 completion(nil, error)
                 return
             }
-            let image = snapshot!.image
             
-            let data = UIImagePNGRepresentation(image)
-            let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
-            data!.writeToFile(filename, atomically: true)
-            print(filename)
+            UIGraphicsBeginImageContext(self.map.frame.size)
+            self.map.drawViewHierarchyInRect(self.map.bounds, afterScreenUpdates: true)
+            let finalImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
             
-            completion(data, nil)
+            completion(UIImagePNGRepresentation(finalImage) , error)
+            return
         }
     }
+    
+    
     func getDocumentsDirectory() -> NSString {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         let documentsDirectory = paths[0]
         return documentsDirectory
+    }
+    
+    func resetMapZoom(firstAnnotation : MKAnnotation , secondAnnotation : MKAnnotation)
+    {
+        
+        map.showAnnotations(map.annotations, animated: true)
+    }
+    
+    func toggleButton()  {
+        
+        if Defaults[.isHavingTrip] {
+            if stopReportingBtn != nil {
+                stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
+            }
+        }else{
+            if stopReportingBtn != nil {
+                stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
+            }
+        }
+        
+    }
+    
+    
+    func resetMap(){
+        
+        if( self.map != nil )
+        {
+            
+            self.map.removeOverlays(self.map.overlays)
+            self.map.reloadInputViews()
+        }
+        
+    }
+    
+    func clearView(){
+        
+        toggleButton()
+        currentSpeed.text = "0"
+        self.elapsedTimeLabel.text = "00:00:00"
+        self.totalDistance.text = "0"
+        
+    }
+    
+    
+}
+
+extension MKMapView {
+    func fitMapViewToAnnotaionList() -> Void {
+        let mapEdgePadding = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        var zoomRect:MKMapRect = MKMapRectNull
+        
+        for index in 0..<self.annotations.count {
+            let annotation = self.annotations[index]
+            let aPoint:MKMapPoint = MKMapPointForCoordinate(annotation.coordinate)
+            let rect:MKMapRect = MKMapRectMake(aPoint.x, aPoint.y, 0.1, 0.1)
+            
+            if MKMapRectIsNull(zoomRect) {
+                zoomRect = rect
+            } else {
+                zoomRect = MKMapRectUnion(zoomRect, rect)
+            }
+        }
+        self.setVisibleMapRect(zoomRect, edgePadding: mapEdgePadding, animated: true)
     }
     
 }

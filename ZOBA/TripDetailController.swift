@@ -29,6 +29,7 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
     
     @IBOutlet weak var currentOdemeterTextField: HoshiTextField!
     
+    @IBOutlet weak var imageView: UIImageView!
     
     
     var trip : Trip!
@@ -64,7 +65,14 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
         getLocation(coordinates.last!,sender: endPointTextField)
         setRegion(coordinates.first! , lastCoordinate: coordinates.last!)
         
-        
+        if trip.image != nil {
+            imageView.hidden = false
+            self.map.hidden = true
+            self.map.userInteractionEnabled = false
+            imageView.contentMode = .ScaleAspectFill
+            imageView.image = UIImage(data:trip.image! )
+            
+        }
     }
     
     func getLocation(coordinate : TripCoordinate,sender : HoshiTextField){
