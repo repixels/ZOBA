@@ -38,7 +38,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         
         if SessionObjects.currentVehicle != nil {
             timelinePopulater = TimelinePopulater(tableView: self.tableView)
-            tableCells = timelinePopulater!.populateTableData()
+//            tableCells = timelinePopulater!.populateTableData()
         }
         //        initialDate = self.tableCells![0].timeLineDate
         self.tableView.reloadData()
