@@ -184,14 +184,16 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let distance = locationPlist.getDistanceInKM()
         SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance/1000)
-        tripObj.coveredKm  = dist/1000
-        tripObj.vehicle?.currentOdemeter = Int(tripObj.vehicle!.currentOdemeter!) + Int(dist/1000)
+        tripObj.coveredKm  = distance ///1000
+        tripObj.vehicle?.currentOdemeter = Int(tripObj.vehicle!.currentOdemeter!) + Int(distance)
         tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
         
         getLocation(firstCoordinate)
         getLocation(lastCoordinate)
         
-        tripObj.save()
+        //tripObj.save()
+        
+        saveTripToWebService(tripObj)
     }
     
     
@@ -224,7 +226,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     func drawRoad()
     {
         //        map.showAnnotations(map.annotations, animated: true)
-    
+        
         
         self.map.fitMapViewToAnnotaionList()
         
@@ -387,6 +389,58 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         self.totalDistance.text = "0"
         
     }
+    
+    func saveTripToWebService(trip :Trip)
+    {
+        let tripWebService = TripWebService()
+        tripWebService.saveTrip(trip) { (returnedTrip, code) in
+            
+            
+            switch code {
+            case "success":
+                
+                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.first as! TripCoordinate)
+                
+                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.last as! TripCoordinate)
+                
+                trip.tripId = returnedTrip?.tripId
+                SessionObjects.currentManageContext.deleteObject(returnedTrip!)
+                trip.save()
+                break
+            case "error" :
+                trip.save()
+                break
+            default:
+                break
+                
+            }
+        }
+    }
+    
+    func saveTripCoordinateToWebService(trip : Trip, tripCoordinate : TripCoordinate){
+        
+        let tripWebService = TripWebService()
+        let vehicleId = Int(trip.vehicle!.vehicleId!)
+        tripWebService.saveCoordinate(vehicleId, coordinate:  tripCoordinate, tripId: Int(trip.tripId!)){ (returnedCoordinate , code )in
+            
+            
+            switch code {
+            case "success":
+                SessionObjects.currentManageContext.deleteObject(returnedCoordinate!)
+                
+                break
+            case "error" :
+                break
+            default:
+                break
+                
+            }
+            
+        }
+        print("coordiate saved")
+    }
+    
+    
     
 }
 

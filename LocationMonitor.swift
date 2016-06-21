@@ -116,9 +116,10 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
                         
                         print("user stopped")
                         print("distance : \(self.locationPlist.getDistanceInMetter())")
-                        
+                        if self.isMoving!  {
                         self.presentStopMotionNotification()
                         self.isMoving = false
+                        }
                     }
                         
                     else {
