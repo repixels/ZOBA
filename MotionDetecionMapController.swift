@@ -49,8 +49,15 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         super.viewWillAppear(animated)
         print("will appear")
-        
-        toggleButton()
+        if SessionObjects.currentVehicle == nil {
+            
+            self.stopReportingBtn .enabled = false
+            self.stopReportingBtn.titleLabel?.text = "No Available Vehicle To report"
+        }
+        else {
+            
+            toggleButton()
+        }
     }
     override func viewDidLoad() {
         
@@ -216,25 +223,28 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
-        let renderer = MKPolylineRenderer(overlay: overlay)
-        
-        renderer.strokeColor = UIColor.flatMintColor()
-        renderer.lineWidth = 5
-        
-        requestSnapshotData(map){ (image, error) in
-            if image != nil
-            {
-                self.tripObj.image = image
-                
-                self.tripObj.save()
-                
-                let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
-                image!.writeToFile(filename, atomically: true)
-                
+        if (overlay is MKPolyline) {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            
+            renderer.strokeColor = UIColor.flatMintColor()
+            renderer.lineWidth = 5
+            
+            requestSnapshotData(map){ (image, error) in
+                if image != nil
+                {
+                    self.tripObj.image = image
+                    
+                    self.tripObj.save()
+                    
+                    let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
+                    image!.writeToFile(filename, atomically: true)
+                    
+                }
             }
+            
+            return renderer
         }
-        
-        return renderer
+        return MKPolylineRenderer()
     }
     
     

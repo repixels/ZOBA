@@ -25,22 +25,29 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         prepareNavigationBar()
         isLocationEnabled()
         isNotificationsEnabled()
-        
-        
-        //   timelinePopulater = TimelinePopulater(tableView: self.tableView)
-        
-//                SessionObjects.currentVehicle.delete()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.loadUserVehiclesDropDown()
         
+        
+        
+        
         if SessionObjects.currentVehicle != nil {
             timelinePopulater = TimelinePopulater(tableView: self.tableView)
-//            tableCells = timelinePopulater!.populateTableData()
+            
+            
+            SessionObjects.motionMonitor = LocationMonitor()
+            
+            SessionObjects.motionMonitor.startDetection()
         }
-        //        initialDate = self.tableCells![0].timeLineDate
+        else {
+            SessionObjects.motionMonitor = LocationMonitor()
+            SessionObjects.motionMonitor.stopDetection()
+            
+        }
+        
         self.tableView.reloadData()
     }
     
@@ -127,14 +134,14 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     }
     
     func extraRightItemDidPress() {
-     
+        
         let MotionDetectionStoryBoard =  UIStoryboard(name: "MotionDetection", bundle: nil)
         let MotionNavigationController = MotionDetectionStoryBoard.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
         self.navigationController?.pushViewController(MotionNavigationController, animated: true)
     }
     
     func extraLeftItemDidPress() {
-    
+        
         let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
         let vehicleNavigationController = vehiclesStoryBoard.instantiateViewControllerWithIdentifier("vehicleTable")
         self.navigationController?.pushViewController(vehicleNavigationController, animated: true)
@@ -179,7 +186,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         menuView.keepSelectedCellColor = true
         menuView.cellTextLabelColor = UIColor.flatWatermelonColor()
         menuView.cellTextLabelFont = UIFont(name: "Continuum Medium", size: 20)
-
+        
         
         menuView.cellTextLabelAlignment = .Center // .Center // .Right // .Left
         
@@ -190,7 +197,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         menuView.maskBackgroundOpacity = 0.3
         menuView.checkMarkImage = nil
         
-      //  menuView.checkMarkImage = UIImage(named: "plus_icon")
+        //  menuView.checkMarkImage = UIImage(named: "plus_icon")
         
         
         menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
@@ -220,8 +227,8 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         
         self.navigationItem.titleView = menuView
         
-       
-       
+        
+        
     }
     
     /*

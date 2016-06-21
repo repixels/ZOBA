@@ -136,7 +136,9 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     
     
     func stopDetection(){
+        stopTrip()
         getMotionDetector().stopDetection()
+        
     }
     
     
