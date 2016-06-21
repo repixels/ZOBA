@@ -349,19 +349,25 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         vehicle.currentOdemeter = Int (initialOdemeterTextField.text!)!
         vehicle.licensePlate = licensePlateTextField.text
         
+        let vehicleModel = VehicleModel(managedObjectContext: SessionObjects.currentManageContext, entityName: "VehicleModel")
+        selectedModel.make = selectedMake
+        vehicleModel.model = selectedModel
+        vehicleModel.trim = selectedTrim
+        vehicleModel.year = selectedYear
         
-        let fetchRequest = NSFetchRequest(entityName: "VehicleModel")
-        let predicate = NSPredicate(format: "%K = %@ AND %K = %@ AND %K = %@", "model",selectedModel,"year", selectedYear , "trim" ,selectedTrim)
-        fetchRequest.predicate = predicate
-        var res : VehicleModel!
-        do{
-            res = try SessionObjects.currentManageContext.executeFetchRequest(fetchRequest)[0] as! VehicleModel
-        } catch let error {
-            print(error)
-        }
+        //        let fetchRequest = NSFetchRequest(entityName: "VehicleModel")
+        //        let predicate = NSPredicate(format: "%K = %@ AND %K = %@ AND %K = %@", "model",selectedModel,"year", selectedYear , "trim" ,selectedTrim)
+        //        fetchRequest.predicate = predicate
+        //        var res : VehicleModel!
+        //        do{
+        //            res = try SessionObjects.currentManageContext.executeFetchRequest(fetchRequest)[0] as! VehicleModel
+        //        } catch let error {
+        //            print(error)
+        //        }
         
         //selectedTrim.mutableSetValueForKey("vehicleModel.year").allObjects
-        vehicle.vehicleModel = res != nil  ? res : nil
+        //        vehicle.vehicleModel = res != nil  ? res : nil
+        vehicle.vehicleModel = vehicleModel
         vehicle.user = SessionObjects.currentUser
         
         vehicle.save()
@@ -376,7 +382,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             SessionObjects.motionMonitor.startDetection()
         }
         else{
-        self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewControllerAnimated(true)
         }
     }
     
@@ -397,6 +403,9 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
                 {
                     self.makes = makes
                     self.makePicker.reloadAllComponents()
+                    if self.makes?.count > 0 {
+                        self.populateModels(self.makes![0])
+                    }
                 }
                 break;
             case "error":
@@ -407,7 +416,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             }
             
         })
-
+        
     }
     
     func populateModels(make : Make)
@@ -418,9 +427,12 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             case "success":
                 self.models = models
                 self.modelYearTrimPicker.reloadAllComponents()
+                if self.models!.count > 0 {
+                    self.populateYears(self.models![0])
+                }
                 break;
             case "error":
-                    break;
+                break;
             default:
                 break;
             }
@@ -432,15 +444,15 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         vehicleWebService.getTrims(model.name!, year: year.name!.stringValue) { (trims, code) in
             switch code
             {
-                case "success":
-                    self.trims = trims
-                    self.modelYearTrimPicker.reloadAllComponents()
-                    break
-                case "failure":
-                    print(code)
-                    break
-                default:
-                    break
+            case "success":
+                self.trims = trims
+                self.modelYearTrimPicker.reloadAllComponents()
+                break
+            case "failure":
+                print(code)
+                break
+            default:
+                break
             }
         }
     }
@@ -450,16 +462,17 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         vehicleWebService.getYears(model.name!) { (years, code) in
             switch code
             {
-                case "success":
-                    self.years = years
-                    self.modelYearTrimPicker.reloadAllComponents()
-                    break;
-                case "failure":
-                    print(code)
-                    break;
-                default:
-                    print(code)
-                    break;
+            case "success":
+                self.years = years
+                self.modelYearTrimPicker.reloadAllComponents()
+                self.populateTrims(model, year: self.years!.first! )
+                break;
+            case "failure":
+                print(code)
+                break;
+            default:
+                print(code)
+                break;
             }
         }
     }
