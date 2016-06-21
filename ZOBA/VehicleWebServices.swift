@@ -124,8 +124,8 @@ class VehicleWebServices {
         print("Trim URL : \(makeUrl)")
         Alamofire.request(.GET,makeUrl,parameters: ["model":modelName,"year":year]).responseJSON { (response) in
             
-        switch response.result
-        {
+            switch response.result
+            {
             case .Success(let data):
                 let connectionStatus = data["status"] as! String
                 switch connectionStatus
@@ -150,55 +150,115 @@ class VehicleWebServices {
         }
     }
     
-//    func populateAllVehicleModels(){
-//        
-//        // get all makes then all models for first make then all years for first model
-//        //then all trims for first model and first year then repeat
-//        // and insert all of trim and trim's year and (trim's year)'s model and ( (trim's year)'s model )'s make in dictionary and add this dictionary to array
-//        //then repeat
-//        getMakes({ (makes, code) in
-//            
-//            makes.forEach({ (make) in
-//                
-//                self.getModels(make.name!, result: { (models, code) in
-//                    models.forEach({ (model) in
-//                      
-//                        self.getYears(model.name!, result: { (years, code) in
-//                            
-//                            years.forEach({ (year) in
-//                                
-//                                self.getTrims(model.name!, year: year.name!.stringValue, result:{ (trims, code) in
-//                                    
-////                                    yearTrims.addObject(trims)
-//                                   trims.forEach({ (trim) in
-//                                    
-//                                        let vehicleModel = VehicleModel(backGroundEntity: "VehicleModel")
-//                                        model.make = make
-//                                    vehicleModel.model = model
-//                                    vehicleModel.year = year
-//                                    vehicleModel.trim = trim
-//                                    vehicleModel.save()
-//                                   })
-//                                    
-//                                })
-//                                
-//                        
-//                            })
-//                        
-//                            
-//                        })
-//                        
-//                        
-//                    })
-//                })
-//                
-//            })
-//            let context = makes!.first!.managedObjectContext
-//            makes.first?.release(context!)
-//            
-//        })
-//        
-//        
-//    
-//    }
+    
+    
+    func saveVehicle(vehicle:Vehicle , result :((returnedVehicle : Vehicle!,code :String)->())){
+        
+        let vehicleUrl = buildUrl("vehicle/add")
+        
+        let params :[String : AnyObject]? = [ "model" : vehicle.vehicleModel!.model!.name!,
+                                              "year" : vehicle.vehicleModel!.year!.name!,
+                                              "trim" : vehicle.vehicleModel!.trim!.name!,
+                                              "userId": vehicle.user!.userId!,
+                                              "carName":vehicle.name!,
+                                              "initialOdemeter":vehicle.initialOdemeter!,
+                                              "licencePlate":vehicle.licensePlate!]
+        
+        print(params)
+        Alamofire.request(.GET,vehicleUrl ,parameters: params).responseJSON { response in
+            
+            
+            switch response.result
+            {
+            case .Success(let _data):
+                let connectionStatus = _data["status"] as! String
+                switch connectionStatus
+                {
+                case "success":
+                    let vehicleJson = _data["result"]
+                    
+                    
+                    let vehicle = Mapper<Vehicle>().map(vehicleJson)
+                    result(returnedVehicle: vehicle!, code: "success")
+                    
+                    
+                    break;
+                case "error":
+                    
+                    print(_data)
+                    result(returnedVehicle: nil, code: "error")
+                    
+                    break;
+                default:
+                    
+                    break;
+                    
+                }
+                
+                break
+            case .Failure( _):
+                
+                
+                result(returnedVehicle: nil, code: "error")
+                break
+            }
+            
+            
+            
+        }
+        
+        
+    }
+    
+    //    func populateAllVehicleModels(){
+    //        
+    //        // get all makes then all models for first make then all years for first model
+    //        //then all trims for first model and first year then repeat
+    //        // and insert all of trim and trim's year and (trim's year)'s model and ( (trim's year)'s model )'s make in dictionary and add this dictionary to array
+    //        //then repeat
+    //        getMakes({ (makes, code) in
+    //            
+    //            makes.forEach({ (make) in
+    //                
+    //                self.getModels(make.name!, result: { (models, code) in
+    //                    models.forEach({ (model) in
+    //                      
+    //                        self.getYears(model.name!, result: { (years, code) in
+    //                            
+    //                            years.forEach({ (year) in
+    //                                
+    //                                self.getTrims(model.name!, year: year.name!.stringValue, result:{ (trims, code) in
+    //                                    
+    ////                                    yearTrims.addObject(trims)
+    //                                   trims.forEach({ (trim) in
+    //                                    
+    //                                        let vehicleModel = VehicleModel(backGroundEntity: "VehicleModel")
+    //                                        model.make = make
+    //                                    vehicleModel.model = model
+    //                                    vehicleModel.year = year
+    //                                    vehicleModel.trim = trim
+    //                                    vehicleModel.save()
+    //                                   })
+    //                                    
+    //                                })
+    //                                
+    //                        
+    //                            })
+    //                        
+    //                            
+    //                        })
+    //                        
+    //                        
+    //                    })
+    //                })
+    //                
+    //            })
+    //            let context = makes!.first!.managedObjectContext
+    //            makes.first?.release(context!)
+    //            
+    //        })
+    //        
+    //        
+    //    
+    //    }
 }

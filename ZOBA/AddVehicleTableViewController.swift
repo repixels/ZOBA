@@ -370,8 +370,11 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         vehicle.vehicleModel = vehicleModel
         vehicle.user = SessionObjects.currentUser
         
-        vehicle.save()
-        
+        //vehicle.save()
+        vehicleWebService.saveVehicle(vehicle) { (returnedVehicle, code) in
+            print(code)
+            print(returnedVehicle)
+        }
         
         if Defaults[.curentVehicleName] == nil
         {

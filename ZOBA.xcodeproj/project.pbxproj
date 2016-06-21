@@ -113,7 +113,6 @@
 		831B12CD1D0641D000D10CBA /* FuelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CC1D0641CF00D10CBA /* FuelCell.swift */; };
 		831B12CF1D0643A200D10CBA /* OilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CE1D0643A200D10CBA /* OilCell.swift */; };
 		831B12D11D06448200D10CBA /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12D01D06448200D10CBA /* TripCell.swift */; };
-		832068E41D18325C006325D1 /* VehicleWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832068E31D18325B006325D1 /* VehicleWebService.swift */; };
 		83548F241D09D2080013E67F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83548F231D09D2080013E67F /* MapKit.framework */; };
 		83548F261D09EB040013E67F /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83548F251D09EB040013E67F /* MapController.swift */; };
 		83548F281D0A1CD30013E67F /* AllTripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */; };
@@ -322,7 +321,6 @@
 		831B12CC1D0641CF00D10CBA /* FuelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FuelCell.swift; path = timeLine/FuelCell.swift; sourceTree = "<group>"; };
 		831B12CE1D0643A200D10CBA /* OilCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OilCell.swift; path = timeLine/OilCell.swift; sourceTree = "<group>"; };
 		831B12D01D06448200D10CBA /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripCell.swift; path = timeLine/TripCell.swift; sourceTree = "<group>"; };
-		832068E31D18325B006325D1 /* VehicleWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleWebService.swift; sourceTree = "<group>"; };
 		83548F231D09D2080013E67F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		83548F251D09EB040013E67F /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTripTableViewController.swift; sourceTree = "<group>"; };
@@ -493,7 +491,6 @@
 				82B980151D10164100B0658A /* Device Webservices.swift */,
 				830ACD821D17034B00AD457B /* VehicleWebServices.swift */,
 				830ACD841D179D5700AD457B /* TripWebService.swift */,
-				832068E31D18325B006325D1 /* VehicleWebService.swift */,
 			);
 			name = "Webservice Integeration";
 			sourceTree = "<group>";
@@ -1386,7 +1383,6 @@
 				82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */,
 				DC00958E1D075660000856FC /* TrackingData.swift in Sources */,
 				DCE6DC431CFC635D00637977 /* UIViewControllerExtension.swift in Sources */,
-				832068E41D18325C006325D1 /* VehicleWebService.swift in Sources */,
 				8200B8591D0C5CF0007AB057 /* UserDefaultsMapping.swift in Sources */,
 				DC0095961D075660000856FC /* Service.swift in Sources */,
 				82AE189A1D12C2EC00F4EED6 /* ZOBA.xcdatamodeld in Sources */,
