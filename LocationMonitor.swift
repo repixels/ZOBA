@@ -17,14 +17,14 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     
     private var isUserStoppedBefore = true
     
-    var updateLocationBlock : ((Double,Double)->())!
+    var updateLocationBlock : ((CLLocation,Double)->())!
     let locationPlist = LocationPlistManager()
     
     override init() {
         
         super.init()
         
-//        locationManager.requestAlwaysAuthorization()
+        //        locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         SOLocationManager.sharedInstance().allowsBackgroundLocationUpdates = true
         getMotionDetector().setMaximumRunningSpeed(10)
@@ -50,24 +50,26 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     func checkIfMotionTypeChanegd()  {
         
         getMotionDetector().motionTypeChangedBlock = { type in
-            if type == MotionTypeAutomotive  && !(Defaults[.isHavingTrip]) {
-                print("start moving by car show alert ")
-                
-                // prevent OS from stoping this app tracking after 20 min from being in background mode
-                SOLocationManager.sharedInstance().locationManager.pausesLocationUpdatesAutomatically = false
-                SOLocationManager.sharedInstance().locationManager.activityType = .AutomotiveNavigation
-                
-                //update location if location changed by 10 metter to save power
-                SOLocationManager.sharedInstance().locationManager.distanceFilter = 10
-                
-                self.presentStartMotionNotification()
-                self.isMoving = true
-                self.isUserStoppedBefore = true
-                
-            }
-            else if type == MotionTypeNotMoving {
-                print("not moving")
-                
+            if SessionObjects.currentVehicle != nil
+            {
+                if type == MotionTypeAutomotive  && !(Defaults[.isHavingTrip]   ) {
+                    
+                    // prevent OS from stoping this app tracking after 20 min from being in background mode
+                    SOLocationManager.sharedInstance().locationManager.pausesLocationUpdatesAutomatically = false
+                    SOLocationManager.sharedInstance().locationManager.activityType = .AutomotiveNavigation
+                    
+                    //update location if location changed by 10 metter to save power
+                    SOLocationManager.sharedInstance().locationManager.distanceFilter = 10
+                    
+                    self.presentStartMotionNotification()
+                    self.isMoving = true
+                    self.isUserStoppedBefore = true
+                    
+                }
+                else if type == MotionTypeNotMoving {
+                    print("not moving")
+                    
+                }
             }
         }
     }
@@ -76,37 +78,28 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
         
         
         getMotionDetector().locationChangedBlock = { (location) in
-            if Defaults[.isHavingTrip] {    
+            if Defaults[.isHavingTrip] {
                 let timeDifference = location.timestamp.timeIntervalSinceDate(self.locationPlist.readLastLocation().date)
-               
+                // if location.horizontalAccuracy < 20 {
                 //if this is a new trip
                 if timeDifference > (60*10)
                 {
-                    
-                    print("data from old trip from more than 10 minutes earlier")
-                    print("time diff \(timeDifference)")
                     Defaults[.isHavingTrip] = false
-//                    self.presentStartMotionNotification()
-                    
                     self.saveLocation(location)
-                    
-                    //clear plist and start new trip
                 }
-                    // interval of updating location in sec
-                else if  timeDifference > 2 {
-                    print("speed : \(location.speed)")
-                    
-                    if(location.speed>15){
-                        
-                        self.saveLocation(location)
-                        
-                        if self.updateLocationBlock != nil {
-                            
-                            self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
-                            
-                        }
-                        
+                else
+                {
+                    if self.updateLocationBlock != nil
+                    {
+                        //                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
+                        self.updateLocationBlock(location,self.locationPlist.getDistanceInKM())
                     }
+                    
+                    if  timeDifference > 20 {
+                        print("speed : \(location.speed)")
+                        self.saveLocation(location)
+                    }
+                        
                     else if location.speed == 0{
                         
                         print("user stopped")
@@ -115,18 +108,21 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
                         self.presentStopMotionNotification()
                         self.isMoving = false
                     }
+                        
+                    else {
+                        
+                        print("irrelevant data ")
+                        
+                    }
+                    
                     
                 }
-                    
-                else {
-                    
-                    print("irrelevant data ")
-                    
-                }
-                
             }
+            // }
+            
         }
     }
+    
     
     func checkIfAccelerationChanged(block : ((CMAcceleration!)->())!){
         
@@ -147,7 +143,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     func stopTrip(){
         Defaults[.isHavingTrip] = false
         isMoving = false
-      
+        LocationPlistManager.distance = 0
         
     }
     
@@ -177,11 +173,16 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
             
             dispatch_async(dispatch_get_main_queue(), {
                 
-                let story = UIStoryboard.init(name: "MotionDetection", bundle: nil)
-               let controller = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
-                
-                activeViewCont.navigationController?.pushViewController(controller, animated: true)
-                
+                if activeViewCont is MotionDetecionMapController{
+                    (activeViewCont as! MotionDetecionMapController).clearView()
+                }
+                else {
+                    
+                    let story = UIStoryboard.init(name: "MotionDetection", bundle: nil)
+                    let controller = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
+                    
+                    activeViewCont.navigationController?.pushViewController(controller, animated: true)
+                }
             })
             alert.dismissViewControllerAnimated(true, completion: nil)
         }
@@ -198,24 +199,32 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     
     func showStopTripAlert(viewController activeViewCont : UIViewController){
         
-        let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .Alert)
-        
-        let stopAutoReport = UIAlertAction(title: "ok", style:.Default) { (action) in
-            
+        if activeViewCont is MotionDetecionMapController{
             SessionObjects.motionMonitor.stopTrip()
-            alert.dismissViewControllerAnimated(true, completion: nil)
+            (activeViewCont as! MotionDetecionMapController).toggleButton()
         }
-        
-        let cancel = UIAlertAction(title: "cancel", style:.Default) { (action) in
-            alert.dismissViewControllerAnimated(true, completion: nil)
+        else {
             
-            self.presentCheckIfStillMovingNotification()
+            
+            let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .Alert)
+            
+            let stopAutoReport = UIAlertAction(title: "ok", style:.Default) { (action) in
+                
+                SessionObjects.motionMonitor.stopTrip()
+                alert.dismissViewControllerAnimated(true, completion: nil)
+            }
+            
+            let cancel = UIAlertAction(title: "cancel", style:.Default) { (action) in
+                alert.dismissViewControllerAnimated(true, completion: nil)
+                
+                self.presentCheckIfStillMovingNotification()
+            }
+            
+            
+            alert.addAction(stopAutoReport)
+            alert.addAction(cancel)
+            activeViewCont.presentViewController(alert, animated: true, completion: nil)
         }
-        
-        
-        alert.addAction(stopAutoReport)
-        alert.addAction(cancel)
-        activeViewCont.presentViewController(alert, animated: true, completion: nil)
         
     }
     
@@ -296,7 +305,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
             else{
                 print("checking not moving : user still stopped")
                 NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector(self.presentCheckIfStillMovingNotification()), userInfo: nil, repeats: false)
-//                presentCheckIfStillMovingNotification()
+                //                presentCheckIfStillMovingNotification()
             }
         }
         else{
