@@ -18,7 +18,7 @@ class VehicleTableViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
         self.tableView.reloadData()
         
@@ -134,7 +134,7 @@ class VehicleTableViewController: UITableViewController {
             self.vehicles[indexPath.row].delete()
             
             self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
-
+            
             
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             
@@ -147,8 +147,10 @@ class VehicleTableViewController: UITableViewController {
                 }
                 else
                 {
+                    SessionObjects.motionMonitor.stopDetection()
                     SessionObjects.currentVehicle = nil
                     Defaults[.curentVehicleName] = nil
+                    
                 }
             }
             self.tableView.endUpdates()

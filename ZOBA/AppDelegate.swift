@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 else{
                     print("no car selected")
                 }
-               
+                
                 SessionObjects.motionMonitor = LocationMonitor()
                 
                 SessionObjects.motionMonitor.startDetection()
@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         
         
-      
+        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
@@ -340,37 +340,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         
-        
-        //get current active view controller
-      if  let menu = application.windows[0].rootViewController as? SlideMenuController
-      {
-        let tabController = menu.mainViewController as! UITabBarController
-        //            application.windows[0].rootViewController as! UITabBarController
-        let navigationController = tabController.selectedViewController as! UINavigationController
-        let activeViewCont = navigationController.visibleViewController
-        //        SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
-        //        
-        //
-        
-        switch notification.category! {
-        case "zoba_start_motion":
-            print("delegate : start motion")
+        if application.applicationState == .Inactive
+        {
+            print("will enter foreground")
+            let menu = application.windows[0].rootViewController as! SlideMenuController
+            let tabController = menu.mainViewController as! UITabBarController
             
-            SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
-        case "zoba_stop_motion":
+            let navigationController = tabController.selectedViewController as! UINavigationController
+            let activeViewCont = navigationController.visibleViewController
             
-            print("delegate : stop motion")
-            SessionObjects.motionMonitor.showStopTripAlert(viewController: activeViewCont!)
-        case "zoba_check_if_running":
-            print("delegate : check if running")
-           // SessionObjects.motionMonitor.checkIfMoving()
             
-        default:
-            print("not motion notification")
+            if !(activeViewCont is MotionDetecionMapController)
+            {
+                let story = UIStoryboard(name: "MotionDetection", bundle: nil)
+                let motionDetection = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
+                activeViewCont?.navigationController?.pushViewController(motionDetection, animated: true)
+            }
+            else {
+                
+                let motionDetection = activeViewCont as! MotionDetecionMapController
+                
+            }
         }
         
-        
-        
+        //get current active view controller
+        if  let menu = application.windows[0].rootViewController as? SlideMenuController
+        {
+            let tabController = menu.mainViewController as! UITabBarController
+            
+            let navigationController = tabController.selectedViewController as! UINavigationController
+            let activeViewCont = navigationController.visibleViewController
+            
+            switch notification.category! {
+            case "zoba_start_motion":
+                print("delegate : start motion")
+                
+                SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
+            case "zoba_stop_motion":
+                
+                print("delegate : stop motion")
+                SessionObjects.motionMonitor.showStopTripAlert(viewController: activeViewCont!)
+            case "zoba_check_if_running":
+                print("delegate : check if running")
+                // SessionObjects.motionMonitor.checkIfMoving()
+                
+            default:
+                print("not motion notification")
+            }
+            
+            
+            
         }
     }
 }

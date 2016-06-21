@@ -126,39 +126,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
     }
     
-    @IBAction func saveTrip(sender: AnyObject) {
-        
-        //save Trip
-        
-        let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-        firstCoordinate.latitude = NSDecimalNumber(double: startCoordinate.latitude)
-        firstCoordinate.longtitude = NSDecimalNumber(double:startCoordinate.longitude)
-        firstCoordinate.address = startingPointTextField.text != nil ? startingPointTextField.text : ""
-        
-        let secondCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-        secondCoordinate.latitude = NSDecimalNumber(double:destinationCoordinate.latitude)
-        secondCoordinate.longtitude = NSDecimalNumber(double:destinationCoordinate.longitude)
-        secondCoordinate.address = endingPointTextField.text != nil ? endingPointTextField.text : ""
-        
-        if !isEditingTrip || self.trip == nil
-        {
-            self.trip = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
-        }
-        
-        trip.coveredKm = Int(self.coveredKm.text!)!
-        trip.initialOdemeter = Int(self.currentOdemeter.text!)!
-        
-       
-        trip.dateAdded =  selectedDate != nil ? selectedDate.timeIntervalSince1970 : NSDate().timeIntervalSince1970
-        
-        trip.coordinates = NSSet(array: [firstCoordinate,secondCoordinate])
-        
-        trip.vehicle = selectedVehicle
-        trip.vehicle?.currentOdemeter = Int(trip.initialOdemeter!) + Int(trip.coveredKm!)
-        trip.save()
-        
-        self.navigationController?.popViewControllerAnimated(true)
-    }
+    
     
     
     // MARK:vehicle picker methods
@@ -426,5 +394,99 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         saveBtn.tintColor = UIColor.grayColor()
         
     }
+    
+    
+    @IBAction func saveTrip(sender: AnyObject) {
+        
+        //save Trip
+        
+        let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+        firstCoordinate.latitude = NSDecimalNumber(double: startCoordinate.latitude)
+        firstCoordinate.longtitude = NSDecimalNumber(double:startCoordinate.longitude)
+        firstCoordinate.address = startingPointTextField.text != nil ? startingPointTextField.text : ""
+        
+        let secondCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
+        secondCoordinate.latitude = NSDecimalNumber(double:destinationCoordinate.latitude)
+        secondCoordinate.longtitude = NSDecimalNumber(double:destinationCoordinate.longitude)
+        secondCoordinate.address = endingPointTextField.text != nil ? endingPointTextField.text : ""
+        
+        if !isEditingTrip || self.trip == nil
+        {
+            self.trip = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
+        }
+        
+        trip.coveredKm = Int(self.coveredKm.text!)!
+        trip.initialOdemeter = Int(self.currentOdemeter.text!)!
+        
+        
+        trip.dateAdded =  selectedDate != nil ? selectedDate.timeIntervalSince1970 : NSDate().timeIntervalSince1970
+        
+        trip.coordinates = NSSet(array: [firstCoordinate,secondCoordinate])
+        
+        trip.vehicle = selectedVehicle
+        trip.vehicle?.currentOdemeter = Int(trip.initialOdemeter!) + Int(trip.coveredKm!)
+        saveTripToWebService(trip)
+        
+        
+        //trip.save()
+        
+        
+        
+        
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    
+    func saveTripToWebService(trip :Trip)
+    {
+        let tripWebService = TripWebService()
+        tripWebService.saveTrip(trip) { (returnedTrip, code) in
+            
+            
+            switch code {
+            case "success":
+                
+                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.first as! TripCoordinate)
+                
+                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.last as! TripCoordinate)
+                
+                trip.tripId = returnedTrip?.tripId
+                SessionObjects.currentManageContext.deleteObject(returnedTrip!)
+                trip.save()
+                break
+            case "error" :
+                trip.save()
+                break
+            default:
+                break
+                
+            }
+        }
+    }
+    
+    func saveTripCoordinateToWebService(trip : Trip, tripCoordinate : TripCoordinate){
+        
+        let tripWebService = TripWebService()
+        tripWebService.saveCoordinate(Int(selectedVehicle.vehicleId!), coordinate:  tripCoordinate, tripId: Int(trip.tripId!)){ (returnedCoordinate , code )in
+            
+            
+            switch code {
+            case "success":
+                SessionObjects.currentManageContext.deleteObject(returnedCoordinate!)
+                
+                break
+            case "error" :
+                break
+            default:
+                break
+                
+            }
+            
+        }
+        print("coordiate saved")
+    }
+    
+    
+    
     
 }
