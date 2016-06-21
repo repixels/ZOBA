@@ -34,11 +34,23 @@ class Vehicle: NSManagedObject , Mappable{
         var trackingDataArray : [TrackingData]?
         var tripsArray : [Trip]?
         
+        var isAdminFlag = false
+        isAdminFlag <- map["adminFlag"]
+        
         
         self.currentOdemeter <- map["currentOdemeter"]
         self.initialOdemeter <- map["intialOdemeter"]
-        self.isAdmin <- map[""]
-        self.licensePlate <- map[""]
+        
+        if isAdminFlag
+        {
+            self.isAdmin = 1
+        }
+        else
+        {
+            self.isAdmin = 0
+        }
+        self.vehicleId <- map["id"]
+        self.licensePlate <- map["licencePlate"]
         self.name <- map["name"]
         self.vehicleModel <- map["vehicleModel"]
         trackingDataArray <- map["trackingDatas"]

@@ -120,7 +120,7 @@ class VehicleWebServices {
     }
     
     func getTrims(modelName : String , year : String , result : ((trims : [Trim]! ,code :String)->())){
-        let makeUrl = buildUrl("vehicle/trim?model="+modelName+"&year="+String(year))
+        let makeUrl = buildUrl("vehicle/trim")//?model="+modelName+"&year="+String(year))
         print("Trim URL : \(makeUrl)")
         Alamofire.request(.GET,makeUrl,parameters: ["model":modelName,"year":year]).responseJSON { (response) in
             
@@ -156,6 +156,7 @@ class VehicleWebServices {
         
         let vehicleUrl = buildUrl("vehicle/add")
         
+        
         let params :[String : AnyObject]? = [ "model" : vehicle.vehicleModel!.model!.name!,
                                               "year" : vehicle.vehicleModel!.year!.name!,
                                               "trim" : vehicle.vehicleModel!.trim!.name!,
@@ -166,11 +167,13 @@ class VehicleWebServices {
         
         print(params)
         Alamofire.request(.GET,vehicleUrl ,parameters: params).responseJSON { response in
-            
+            print(response.request)
             
             switch response.result
             {
+                
             case .Success(let _data):
+                
                 let connectionStatus = _data["status"] as! String
                 switch connectionStatus
                 {

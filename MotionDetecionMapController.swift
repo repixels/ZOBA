@@ -212,7 +212,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
             dispatch_async(dispatch_get_main_queue(), {
-                if places!.count > 0 {
+                
+                if places != nil && places!.count > 0 {
                     coordinate.address =  places!.first?.name
                     coordinate.save()
                 }

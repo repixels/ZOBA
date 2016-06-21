@@ -249,6 +249,24 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         makeTextField.resignFirstResponder()
     }
     
+    @IBAction func modelYearTrimBeginEditing(sender: AnyObject) {
+        
+        print("will begin editing")
+        let mod = modelYearTrimPicker.selectedRowInComponent(0)
+        if models!.count > mod {
+        selectedModel = models![mod]
+        }
+        let y = modelYearTrimPicker.selectedRowInComponent(1)
+        if years!.count > y {
+        selectedYear = years![y]
+        }
+        
+        let t = modelYearTrimPicker.selectedRowInComponent(2)
+        if trims!.count > t{
+        selectedTrim = trims![t]
+        }
+        
+    }
     
     func modelDonePicker(){
         let mod = modelYearTrimPicker.selectedRowInComponent(0)
@@ -369,12 +387,9 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         //        vehicle.vehicleModel = res != nil  ? res : nil
         vehicle.vehicleModel = vehicleModel
         vehicle.user = SessionObjects.currentUser
-        
+        vehicle.isAdmin = 1
         //vehicle.save()
-        vehicleWebService.saveVehicle(vehicle) { (returnedVehicle, code) in
-            print(code)
-            print(returnedVehicle)
-        }
+        saveVehicleToWebService(vehicle)
         
         if Defaults[.curentVehicleName] == nil
         {
@@ -389,6 +404,68 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         }
     }
     
+    func saveVehicleToWebService(vehicle : Vehicle)
+    {
+        
+        self.makes?.forEach({ (m) in
+            if m != self.selectedMake
+            {
+                SessionObjects.currentManageContext.deleteObject(m)
+            
+            }
+        })
+        
+        
+        self.trims?.forEach({ (t) in
+            if t != self.selectedTrim
+            {
+                SessionObjects.currentManageContext.deleteObject(t)
+                
+            }
+        })
+        
+        
+        self.models?.forEach({ (m) in
+            if m != self.selectedModel
+            {
+                SessionObjects.currentManageContext.deleteObject(m)
+                
+            }
+        })
+        
+        
+        self.years?.forEach({ (y) in
+            if y != self.selectedYear
+            {
+                SessionObjects.currentManageContext.deleteObject(y)
+                
+            }
+        })
+        
+        
+        
+        vehicleWebService.saveVehicle(vehicle) { (returnedVehicle, code) in
+            switch code {
+            case "success":
+                
+                print("success in saveing vehicle")
+                print(returnedVehicle.vehicleId)
+                vehicle.vehicleId = returnedVehicle.vehicleId
+                SessionObjects.currentManageContext.deleteObject(returnedVehicle)
+                vehicle.save()
+                break
+            case "error" :
+                print("error in saveing vehicle")
+                vehicle.save()
+                break
+            default:
+                break
+                
+            }
+            
+           
+        }
+    }
     func populateMakes()
     {
         // get all makes then all models for first make then all years for first model
@@ -406,8 +483,15 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
                 {
                     self.makes = makes
                     self.makePicker.reloadAllComponents()
+                    
                     if self.makes?.count > 0 {
+                        if self.selectedMake == nil  {
+                            self.selectedMake = self.makes![0]
+                        }
+                        
+                        self.makeTextField.text = self.makes![0].name
                         self.populateModels(self.makes![0])
+                        
                     }
                 }
                 break;
@@ -429,8 +513,12 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             {
             case "success":
                 self.models = models
-                self.modelYearTrimPicker.reloadAllComponents()
+             //   self.modelYearTrimPicker.reloadAllComponents()
                 if self.models!.count > 0 {
+                    if self.selectedModel == nil  {
+                        self.selectedModel = self.models![0]
+                    }
+                    self.modelTextField.text = self.models![0].name
                     self.populateYears(self.models![0])
                 }
                 break;
@@ -450,6 +538,13 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             case "success":
                 self.trims = trims
                 self.modelYearTrimPicker.reloadAllComponents()
+                if self.trims!.count > 0 {
+                    
+                    if self.selectedTrim == nil  {
+                        self.selectedTrim = self.trims![0]
+                    }
+                self.trimTextField.text = self.trims![0].name
+                }
                 break
             case "failure":
                 print(code)
@@ -467,8 +562,15 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             {
             case "success":
                 self.years = years
-                self.modelYearTrimPicker.reloadAllComponents()
-                self.populateTrims(model, year: self.years!.first! )
+              //  self.modelYearTrimPicker.reloadAllComponents()
+                if self.years!.count > 0 {
+                    if self.selectedYear == nil  {
+                        self.selectedYear = self.years![0]
+                    }
+                    self.yearTextField.text = String(self.years![0].name!)
+                    self.populateTrims(model, year: self.years!.first! )
+                }
+                
                 break;
             case "failure":
                 print(code)
