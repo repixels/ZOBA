@@ -10,8 +10,10 @@ import UIKit
 import MapKit
 import TextFieldEffects
 import SwiftyUserDefaults
+import FoldingTabBar
 
-class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,MKMapViewDelegate{
+class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,MKMapViewDelegate , UIScrollViewDelegate , YALTabBarViewDelegate , YALTabBarInteracting
+{    @IBOutlet weak var scrollView: UIScrollView!
     
     
     @IBOutlet weak var timeDisplay: UILabel!
@@ -45,12 +47,16 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     var polyline : MKPolyline!
     
     
+    
+   
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
         print("will appear")
         
         toggleButton()
+        
+        
     }
     override func viewDidLoad() {
         
@@ -107,6 +113,10 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         SessionObjects.motionMonitor.updateLocationBlock = block
         map.delegate = self
+        
+        var adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
+        self.scrollView.contentInset = adjustForTabbarInsets;
+        self.scrollView.scrollIndicatorInsets = adjustForTabbarInsets;
     }
     
     
@@ -342,6 +352,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
     }
     
+    
 }
 
 extension MKMapView {
@@ -362,4 +373,5 @@ extension MKMapView {
         }
         self.setVisibleMapRect(zoomRect, edgePadding: mapEdgePadding, animated: true)
     }
+    
 }
