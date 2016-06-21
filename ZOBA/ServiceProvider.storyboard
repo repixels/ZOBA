@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="contb.ttf">
@@ -22,25 +24,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DOq-g1-eLf">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DOq-g1-eLf">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DOq-g1-eLf" secondAttribute="height" multiplier="32:17" id="x5a-oy-PKZ"/>
+                                </constraints>
                             </mapView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hexa-image" translatesAutoresizingMaskIntoConstraints="NO" id="i63-Uj-OOE">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hexa-image" translatesAutoresizingMaskIntoConstraints="NO" id="i63-Uj-OOE">
                                 <rect key="frame" x="105" y="121" width="110" height="110"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="seK-8Z-d0A" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="112" y="239" width="188" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Service Provider Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Key-FL-6DF">
-                                <rect key="frame" x="47" y="239" width="227" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Provider Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Key-FL-6DF">
+                                <rect key="frame" x="47" y="244" width="227" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Home Branch" placeholder="Change Service Provider Branch" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wKU-hp-Cpd" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="268" width="280" height="52"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEy-P2-ZsJ">
+                                <rect key="frame" x="136" y="155" width="49" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zEy-P2-ZsJ" secondAttribute="height" multiplier="49:41" id="RwY-YD-47M"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ContinuumBold" family="Continuum Bold" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Home Branch" placeholder="Change Service Provider Branch" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wKU-hp-Cpd" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="264" width="280" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wKU-hp-Cpd" secondAttribute="height" multiplier="70:13" id="5Jd-mn-esm"/>
+                                </constraints>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -59,14 +71,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEy-P2-ZsJ">
-                                <rect key="frame" x="116" y="151" width="88" height="50"/>
-                                <fontDescription key="fontDescription" name="ContinuumBold" family="Continuum Bold" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.98624199628829956" green="0.7796865701675415" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="wKU-hp-Cpd" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leadingMargin" constant="4" id="0b0-9F-uMZ"/>
+                            <constraint firstItem="Key-FL-6DF" firstAttribute="top" secondItem="i63-Uj-OOE" secondAttribute="bottom" constant="13" id="3ym-z4-vp8"/>
+                            <constraint firstItem="Myv-0c-Ieo" firstAttribute="top" secondItem="wKU-hp-Cpd" secondAttribute="bottom" constant="252" id="5Xz-Fx-Qax"/>
+                            <constraint firstItem="Key-FL-6DF" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leadingMargin" constant="31" id="Afm-Um-Wcs"/>
+                            <constraint firstItem="Key-FL-6DF" firstAttribute="centerX" secondItem="wKU-hp-Cpd" secondAttribute="centerX" id="EB4-7K-ado"/>
+                            <constraint firstItem="DOq-g1-eLf" firstAttribute="centerX" secondItem="zEy-P2-ZsJ" secondAttribute="centerX" id="PZV-xX-UyR"/>
+                            <constraint firstAttribute="trailing" secondItem="DOq-g1-eLf" secondAttribute="trailing" id="Vzv-xP-64e"/>
+                            <constraint firstItem="DOq-g1-eLf" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leading" id="XmQ-dU-qEX"/>
+                            <constraint firstItem="DOq-g1-eLf" firstAttribute="centerX" secondItem="wKU-hp-Cpd" secondAttribute="centerX" id="Yml-EB-iE9"/>
+                            <constraint firstItem="i63-Uj-OOE" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leadingMargin" constant="89" id="ZU0-Zu-kSy"/>
+                            <constraint firstItem="DOq-g1-eLf" firstAttribute="top" secondItem="yu1-9F-U2C" secondAttribute="top" id="Zzg-bj-trW"/>
+                            <constraint firstItem="i63-Uj-OOE" firstAttribute="top" secondItem="lG4-xg-uyu" secondAttribute="bottom" constant="101" id="alo-lX-vxB"/>
+                            <constraint firstItem="i63-Uj-OOE" firstAttribute="centerX" secondItem="zEy-P2-ZsJ" secondAttribute="centerX" id="fKY-mc-oUg"/>
+                            <constraint firstItem="i63-Uj-OOE" firstAttribute="centerY" secondItem="zEy-P2-ZsJ" secondAttribute="centerY" id="j2l-Z4-Spq"/>
+                            <constraint firstItem="Myv-0c-Ieo" firstAttribute="top" secondItem="Key-FL-6DF" secondAttribute="bottom" constant="303" id="kNz-CU-Je8"/>
+                            <constraint firstItem="zEy-P2-ZsJ" firstAttribute="top" secondItem="lG4-xg-uyu" secondAttribute="bottom" constant="135" id="uEi-iP-p1e"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fO-7z-uwS" userLabel="First Responder" sceneMemberID="firstResponder"/>
