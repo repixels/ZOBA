@@ -296,21 +296,21 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
         notif.alertTitle = "Zoba"
         notif.category = "zoba_check_if_running"
         
-        var after :Double = 60
-        if isUserStoppedBefore {
-            notif.fireDate =  NSDate(timeIntervalSinceNow: after)
-            print(notif.fireDate)
-            print("showing notification after \(after)  sec")
-        }
-        else{
-            notif.fireDate =  NSDate(timeIntervalSinceNow: after*3)
-            print(notif.fireDate)
-            print("showing notification after \(after*3)  sec")
-        }
+        //        let after :Double = 60
+        //        if isUserStoppedBefore {
+        //            notif.fireDate =  NSDate(timeIntervalSinceNow: after)
+        //        print(notif.fireDate)
+        //            print("showing notification after \(after)  sec")
+        //        }
+        //        else{
+        //            notif.fireDate =  NSDate(timeIntervalSinceNow: after*3)
+        //            print(notif.fireDate)
+        //            print("showing notification after \(after*3)  sec")
+        //        }
+        //        
         
         
-        
-        isUserStoppedBefore = !isUserStoppedBefore
+       // isUserStoppedBefore = !isUserStoppedBefore
         
         UIApplication.sharedApplication().delegate?.application!(UIApplication.sharedApplication(), didReceiveLocalNotification: notif)
         
@@ -324,7 +324,8 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
         if(!isMoving) {
             if(isUserStoppedBefore){
                 print("stopping trip as user still stopped")
-                stopTrip()}
+                //                stopTrip()
+            }
             else{
                 print("checking not moving : user still stopped")
                 NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector(self.presentCheckIfStillMovingNotification()), userInfo: nil, repeats: false)

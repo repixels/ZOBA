@@ -22,8 +22,8 @@ extension NSManagedObject{
     {
     
         privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        privateContext.persistentStoreCoordinator = delegate.persistentStoreCoordinator
+        //let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        privateContext.persistentStoreCoordinator = SessionObjects.currentManageContext.persistentStoreCoordinator
         
         return privateContext
     }
