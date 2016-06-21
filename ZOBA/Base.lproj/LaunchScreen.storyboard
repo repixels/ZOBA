@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,69 +14,31 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="splash-background.png" translatesAutoresizingMaskIntoConstraints="NO" id="lwB-Ys-X36">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="600" id="Qjd-AN-0vc"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Qjd-AN-0vc"/>
-                                    </mask>
-                                </variation>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-background.png" translatesAutoresizingMaskIntoConstraints="NO" id="lwB-Ys-X36">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="568"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" image="splash-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cop-Hs-OQ7">
-                                <rect key="frame" x="65" y="53" width="515" height="493"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="splash-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cop-Hs-OQ7">
+                                <rect key="frame" x="0.0" y="117" width="319" height="333"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lwB-Ys-X36" firstAttribute="centerY" secondItem="Cop-Hs-OQ7" secondAttribute="centerY" id="3zB-cW-2cF"/>
-                            <constraint firstItem="lwB-Ys-X36" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Bzm-9R-ORg"/>
-                            <constraint firstItem="Cop-Hs-OQ7" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-58" id="KLB-na-Tl4"/>
-                            <constraint firstItem="lwB-Ys-X36" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XAi-rV-sck"/>
+                            <constraint firstItem="Cop-Hs-OQ7" firstAttribute="leading" secondItem="lwB-Ys-X36" secondAttribute="leading" id="RSC-gy-aKe"/>
                             <constraint firstItem="lwB-Ys-X36" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Yal-Wl-VGB"/>
-                            <constraint firstItem="lwB-Ys-X36" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Ztb-md-gMW"/>
-                            <constraint firstItem="Cop-Hs-OQ7" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="42" id="jbX-UN-U4s"/>
-                            <constraint firstItem="Cop-Hs-OQ7" firstAttribute="centerX" secondItem="lwB-Ys-X36" secondAttribute="centerX" id="oSd-g7-S0M"/>
-                            <constraint firstItem="lwB-Ys-X36" firstAttribute="centerX" secondItem="Cop-Hs-OQ7" secondAttribute="centerX" id="raa-ip-AhC"/>
-                            <constraint firstItem="Cop-Hs-OQ7" firstAttribute="centerY" secondItem="lwB-Ys-X36" secondAttribute="centerY" id="s3B-1d-vzB"/>
+                            <constraint firstItem="Cop-Hs-OQ7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dgy-YK-oSs"/>
+                            <constraint firstItem="lwB-Ys-X36" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="gwp-jx-0Mk"/>
+                            <constraint firstItem="Cop-Hs-OQ7" firstAttribute="centerY" secondItem="lwB-Ys-X36" secondAttribute="centerY" id="mgD-mr-L8s"/>
+                            <constraint firstItem="Cop-Hs-OQ7" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="97" id="u5o-cK-Xyd"/>
                             <constraint firstItem="lwB-Ys-X36" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="v7j-9J-Ej5"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="3zB-cW-2cF"/>
-                                <exclude reference="Bzm-9R-ORg"/>
-                                <exclude reference="Yal-Wl-VGB"/>
-                                <exclude reference="raa-ip-AhC"/>
-                                <exclude reference="v7j-9J-Ej5"/>
-                                <exclude reference="KLB-na-Tl4"/>
-                                <exclude reference="jbX-UN-U4s"/>
-                            </mask>
-                        </variation>
-                        <variation key="widthClass=compact">
-                            <mask key="constraints">
-                                <include reference="3zB-cW-2cF"/>
-                                <include reference="Bzm-9R-ORg"/>
-                                <exclude reference="XAi-rV-sck"/>
-                                <include reference="Yal-Wl-VGB"/>
-                                <exclude reference="Ztb-md-gMW"/>
-                                <include reference="raa-ip-AhC"/>
-                                <include reference="v7j-9J-Ej5"/>
-                                <include reference="KLB-na-Tl4"/>
-                                <include reference="jbX-UN-U4s"/>
-                                <exclude reference="oSd-g7-S0M"/>
-                                <exclude reference="s3B-1d-vzB"/>
-                            </mask>
-                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28.5" y="383"/>
+            <point key="canvasLocation" x="15" y="362"/>
         </scene>
     </scenes>
     <resources>

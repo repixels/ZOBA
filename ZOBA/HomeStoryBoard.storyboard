@@ -484,7 +484,7 @@
         <!--Time Line Navigation-->
         <scene sceneID="Jan-4d-pLy">
             <objects>
-                <navigationController storyboardIdentifier="TimeLineView" title="Time Line Navigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fgU-MI-soC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TimeLineView" title="Time Line Navigation" useStoryboardIdentifierAsRestorationIdentifier="YES" hidesBarsWhenVerticallyCompact="YES" id="fgU-MI-soC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="xU9-3K-9VB"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="khc-yc-SRj"/>
