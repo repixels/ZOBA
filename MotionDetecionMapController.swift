@@ -200,8 +200,70 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         getLocation(firstCoordinate)
         getLocation(lastCoordinate)
         
-        tripObj.save()
+      //  tripObj.save()
+        saveTripToWebService(tripObj)
     }
+    
+    
+    func saveTripToWebService(trip :Trip)
+    {
+        let tripWebService = TripWebService()
+        tripWebService.saveTrip(trip) { (returnedTrip, code) in
+            
+            
+            switch code {
+            case "success":
+                
+                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.first as! TripCoordinate)
+                
+                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.last as! TripCoordinate)
+                
+                
+                SessionObjects.currentManageContext.deleteObject(returnedTrip!)
+                trip.tripId = returnedTrip?.tripId
+                trip.save()
+                print("trip saved")
+                break
+            case "error" :
+                print("error in saving")
+                trip.save()
+                break
+            default:
+                break
+                
+            }
+        }
+    }
+    
+    func saveTripCoordinateToWebService(trip : Trip, tripCoordinate : TripCoordinate){
+        
+        let tripWebService = TripWebService()
+        tripWebService.saveCoordinate(Int(SessionObjects.currentVehicle.vehicleId!), coordinate:  tripCoordinate, tripId: Int(trip.tripId!)){ (returnedCoordinate , code )in
+            
+            
+            switch code {
+            case "success":
+                print("saving cooridnate")
+                tripCoordinate.coordinateId = returnedCoordinate?.coordinateId
+                
+                SessionObjects.currentManageContext.deleteObject(returnedCoordinate!)
+                
+                break
+            case "error" :
+                print("error on saving coordinate")
+                break
+            default:
+                break
+                
+            }
+            
+        }
+        print("coordiate saved")
+    }
+    
+    
+    
+
     
     
     func getLocation(coordinate : TripCoordinate){
