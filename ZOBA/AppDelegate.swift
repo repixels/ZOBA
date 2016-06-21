@@ -363,7 +363,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             SessionObjects.motionMonitor.showStopTripAlert(viewController: activeViewCont!)
         case "zoba_check_if_running":
             print("delegate : check if running")
-            SessionObjects.motionMonitor.checkIfMoving()
+           // SessionObjects.motionMonitor.checkIfMoving()
             
         default:
             print("not motion notification")

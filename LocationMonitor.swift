@@ -196,6 +196,13 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
     
     func showStopTripAlert(viewController activeViewCont : UIViewController){
         
+        if activeViewCont is MotionDetecionMapController{
+            SessionObjects.motionMonitor.stopTrip()
+            (activeViewCont as! MotionDetecionMapController).toggleButton()
+        }
+        else {
+            
+        
         let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .Alert)
         
         let stopAutoReport = UIAlertAction(title: "ok", style:.Default) { (action) in
@@ -214,6 +221,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate {
         alert.addAction(stopAutoReport)
         alert.addAction(cancel)
         activeViewCont.presentViewController(alert, animated: true, completion: nil)
+        }
         
     }
     
