@@ -328,6 +328,12 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     let app = UIApplication.sharedApplication().delegate as! AppDelegate
                     app.window?.rootViewController = slideMenuController
                     
+                    if SessionObjects.currentUser.vehicle?.count > 0 {
+                        SessionObjects.currentVehicle = SessionObjects.currentUser.vehicle?.allObjects[0] as! Vehicle
+                        Defaults[.curentVehicleName] = SessionObjects.currentVehicle.name
+                    }
+                    
+                    
                     if SessionObjects.currentVehicle != nil {
                         SessionObjects.motionMonitor = LocationMonitor()
                         
