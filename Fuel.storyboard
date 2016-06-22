@@ -100,11 +100,14 @@
                                             <constraint firstItem="3yZ-KL-FWV" firstAttribute="centerX" secondItem="wff-5p-XFk" secondAttribute="centerX" constant="-3" id="xcU-GZ-Gco"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vQg-Hu-9Eu">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vQg-Hu-9Eu">
                                         <rect key="frame" x="22" y="387" width="287" height="59"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select Service Provider" placeholder="Service Provider" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khV-B2-X9p" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select Service Provider" placeholder="Service Provider" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khV-B2-X9p" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                 <rect key="frame" x="3" y="0.0" width="280" height="51"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="khV-B2-X9p" secondAttribute="height" multiplier="280:51" id="PxZ-c4-TBX"/>
+                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -126,7 +129,6 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sr8-Gs-30O">
                                                 <rect key="frame" x="3" y="0.0" width="280" height="59"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Sr8-Gs-30O" secondAttribute="height" multiplier="280:59" id="TME-Dz-Qhh"/>
                                                     <constraint firstAttribute="width" secondItem="Sr8-Gs-30O" secondAttribute="height" multiplier="280:59" id="cgQ-4N-2SY"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
