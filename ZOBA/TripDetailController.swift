@@ -12,6 +12,7 @@ import TextFieldEffects
 
 class TripDetailController: UIViewController ,MKMapViewDelegate{
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var map: MKMapView!
     

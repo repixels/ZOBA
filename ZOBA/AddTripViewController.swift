@@ -12,6 +12,7 @@ import MapKit
 
 class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentationControllerDelegate
 ,UIPickerViewDataSource , UIPickerViewDelegate {
+    @IBOutlet weak var scrollview: UIScrollView!
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
@@ -92,6 +93,12 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         selectedVehicle = vehicles[vehiclesPickerView.selectedRowInComponent(0)]
         currentOdemeter.text = String(selectedVehicle.currentOdemeter!)
         
+        
+        
+        //register keyboard notification
+        let notCenter = NSNotificationCenter.defaultCenter()
+        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
+        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
         
     }
     
@@ -488,5 +495,40 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     
     
+    //MARK: - keyboard
+    func keyBoardWillAppear(notification : NSNotification){
+        print("Keyboard will Appear")
+        
+        if let userInfo = notification.userInfo {
+            if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
+                
+                self.scrollview.contentInset = contentInset
+                self.scrollview.scrollIndicatorInsets = contentInset
+                
+                self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, 0 + ( keyboardSize.height/2)) //set zero instead
+                
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        print("Keyboard will hide")
+        if let userInfo = notification.userInfo {
+            if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsZero;
+                
+                self.scrollview.contentInset = contentInset
+                self.scrollview.scrollIndicatorInsets = contentInset
+                self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, self.scrollview.contentOffset.y)
+            }
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
 }

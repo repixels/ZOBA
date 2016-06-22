@@ -74,9 +74,10 @@ class AllTripTableViewController: UITableViewController {
         
         cell.coveredMilageLabel.text = trips[indexPath.row].coveredKm!.stringValue
         let coordinates = trips[indexPath.row].coordinates!.allObjects as![TripCoordinate]
-        cell.endingLocationLabel.text = coordinates.last!.address != nil ? coordinates.last!.address : "Not Available"
-        cell.startingLocationLabel.text = coordinates.first!.address != nil ? coordinates.first!.address : "Not Available"
-        
+        if coordinates.count > 0 {
+            cell.endingLocationLabel.text = coordinates.last!.address != nil ? coordinates.last!.address : "Not Available"
+            cell.startingLocationLabel.text = coordinates.first!.address != nil ? coordinates.first!.address : "Not Available"
+        }
         return cell
     }
     
