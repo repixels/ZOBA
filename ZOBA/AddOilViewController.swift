@@ -398,8 +398,38 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         trackingDataObj.vehicle?.currentOdemeter = Int(currentOdometerTextField!.text!)
          trackingDataObj.serviceProviderName = selectedServiceProvider != nil && selectedServiceProvider!.name != nil  ? serviceProviderTextFeild.text! : "Not Available"
         
-        trackingDataObj.save()
-        
+       // trackingDataObj.save()
+        saveOilToWebService(trackingDataObj)
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    
+    func saveOilToWebService(oil : TrackingData){
+        
+        let trackingWebService = TrackingDataWebService()
+        
+        trackingWebService.saveTrackingData(oil, result: { (trackingData, code) in
+            
+            switch code {
+            case "success":
+                
+                print("success in saving data")
+                print(trackingData.trackingId)
+                oil.trackingId = trackingData.trackingId
+                SessionObjects.currentManageContext.deleteObject(trackingData)
+                oil.save()
+                break
+            case "error" :
+                print("error in saving tracking")
+                oil.save()
+                break
+            default:
+                break
+                
+            }
+            
+            
+        })
+    }
+
 }

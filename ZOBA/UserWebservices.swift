@@ -90,7 +90,8 @@ class UserWebservice
                             }
                             
                             result(user: mappedUser,code: connectionStatus)
-                            mappedUser?.release(SessionObjects.currentManageContext)
+                            SessionObjects.currentManageContext.deleteObject(self.user!)
+                            //release(SessionObjects.currentManageContext)
                         }
                         
                         break;

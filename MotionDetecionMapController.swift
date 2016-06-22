@@ -10,8 +10,10 @@ import UIKit
 import MapKit
 import TextFieldEffects
 import SwiftyUserDefaults
+import FoldingTabBar
 
-class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,MKMapViewDelegate{
+class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,MKMapViewDelegate , UIScrollViewDelegate , YALTabBarViewDelegate , YALTabBarInteracting
+{    @IBOutlet weak var scrollView: UIScrollView!
     
     
     @IBOutlet weak var timeDisplay: UILabel!
@@ -48,10 +50,14 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     var tripObj : Trip!
     
-    override func viewDidAppear(animated: Bool) {
+    
+   
+    override func viewWillAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
         print("will appear")
+        
+        toggleButton()
         
     }
     override func viewDidLoad() {
@@ -112,6 +118,9 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         }
         map.delegate = self
         
+        var adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
+        self.scrollView.contentInset = adjustForTabbarInsets;
+        self.scrollView.scrollIndicatorInsets = adjustForTabbarInsets;
         
         if SessionObjects.currentVehicle == nil {
             
@@ -191,10 +200,70 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         getLocation(firstCoordinate)
         getLocation(lastCoordinate)
         
-        //tripObj.save()
-        
         saveTripToWebService(tripObj)
     }
+    
+    
+    func saveTripToWebService(trip :Trip)
+    {
+        let tripWebService = TripWebService()
+        tripWebService.saveTrip(trip) { (returnedTrip, code) in
+            
+            
+            switch code {
+            case "success":
+                
+                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.first as! TripCoordinate)
+                
+                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.last as! TripCoordinate)
+                
+                
+                SessionObjects.currentManageContext.deleteObject(returnedTrip!)
+                trip.tripId = returnedTrip?.tripId
+                trip.save()
+                print("trip saved")
+                break
+            case "error" :
+                print("error in saving")
+                trip.save()
+                break
+            default:
+                break
+                
+            }
+        }
+    }
+    
+    func saveTripCoordinateToWebService(trip : Trip, tripCoordinate : TripCoordinate){
+        
+        let tripWebService = TripWebService()
+        tripWebService.saveCoordinate(Int(SessionObjects.currentVehicle.vehicleId!), coordinate:  tripCoordinate, tripId: Int(trip.tripId!)){ (returnedCoordinate , code )in
+            
+            
+            switch code {
+            case "success":
+                print("saving cooridnate")
+                tripCoordinate.coordinateId = returnedCoordinate?.coordinateId
+                
+                SessionObjects.currentManageContext.deleteObject(returnedCoordinate!)
+                
+                break
+            case "error" :
+                print("error on saving coordinate")
+                break
+            default:
+                break
+                
+            }
+            
+        }
+        print("coordiate saved")
+>>>>>>> master
+    }
+    
+    
+    
+
     
     
     func getLocation(coordinate : TripCoordinate){
@@ -205,7 +274,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
             dispatch_async(dispatch_get_main_queue(), {
-                if places!.count > 0 {
+                
+                if places != nil && places!.count > 0 {
                     coordinate.address =  places!.first?.name
                     coordinate.save()
                 }
@@ -440,8 +510,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         print("coordiate saved")
     }
     
-    
-    
 }
 
 extension MKMapView {
@@ -462,4 +530,5 @@ extension MKMapView {
         }
         self.setVisibleMapRect(zoomRect, edgePadding: mapEdgePadding, animated: true)
     }
+    
 }
