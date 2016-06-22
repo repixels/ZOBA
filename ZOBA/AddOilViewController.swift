@@ -444,9 +444,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     
     //MARK: - keyboard
-    func keyBoardWillAppear(notification : NSNotification){
-        print("Keyboard will Appear")
-        
+    func keyBoardWillAppear(notification : NSNotification){        
         if let userInfo = notification.userInfo {
             if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
                 let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
@@ -462,7 +460,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        print("Keyboard will hide")
         if let userInfo = notification.userInfo {
             if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
                 let contentInset = UIEdgeInsetsZero;
@@ -479,5 +476,9 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
     
 }
