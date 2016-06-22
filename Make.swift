@@ -37,7 +37,7 @@ class Make: NSManagedObject , Mappable {
         self.makeId <- map["id"]
         self.name <- map["name"]
         self.niceName <- map["niceName"]
-        modelsArray <- map["models"]
+        modelsArray <- map[""]
         serviceProvidersArray <- map["serviceProviders"]
         
         if modelsArray != nil

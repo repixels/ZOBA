@@ -157,7 +157,7 @@ class UserWebservice
     }
     
     
-    static func saveProfilePicture(userId : Int , image : UIImage , imageExtension : String){
+    func saveProfilePicture(userId : Int , image : UIImage , imageExtension : String){
         
         
         
@@ -170,7 +170,9 @@ class UserWebservice
         let base64String = data!.base64EncodedStringWithOptions([])
         
         Alamofire.request(.POST, url , parameters: ["image":base64String,"userId":userId,"fileExt":imageExtension]).response { (req, res, data, error) in
-            print(res)
+            
+            print("result : \(res)")
+            print("error :\(error)" )
         }
         
     }
