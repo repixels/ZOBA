@@ -74,7 +74,7 @@ class VehicleTableViewController: UITableViewController {
             if vehicle.name != nil
             {
                 cell.vehicleNameInitialsLabel.hidden = false
-                cell.vehicleNameInitialsLabel.text = String(vehicle.name!.characters.prefix(2))
+                cell.vehicleNameInitialsLabel.text = String(vehicle.name!.characters.prefix(2)).uppercaseString
             }
         }
         

@@ -148,7 +148,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
                 }
             }
             initialsLabel.hidden = false
-            initialsLabel.text = userIntials
+            initialsLabel.text = userIntials.uppercaseString
         }
     }
     
