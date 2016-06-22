@@ -157,7 +157,7 @@ class UserWebservice
     }
     
     
-    static func saveProfilePicture(userId : Int , image : UIImage , imageExtension : String){
+    func saveProfilePicture(userId : Int , image : UIImage , imageExtension : String){
         
         
         
@@ -170,11 +170,65 @@ class UserWebservice
         let base64String = data!.base64EncodedStringWithOptions([])
         
         Alamofire.request(.POST, url , parameters: ["image":base64String,"userId":userId,"fileExt":imageExtension]).response { (req, res, data, error) in
-            print(res)
+            
+            print("result : \(res)")
+            print("error :\(error)" )
         }
         
     }
     
+    func registerWithFaceBook(result : (user:MyUser? , code:String)->Void ){
+    
+        
+        let faceBookRegisterUrl = StringConstants.servicesDomain+"fb"
+        
+        let params : [String : AnyObject!] = ["username":user!.userName,
+                                              "email" : user!.email,
+                                              "password" : user!.password,
+                                              "firstName" : user!.firstName,
+                                              "lastName" : user!.lastName,
+                                              "phone" : user!.phone]
+        
+        Alamofire.request(.GET,faceBookRegisterUrl,parameters: params).responseJSON { (response) in
+            
+            print(response.request)
+            
+            switch response.result {
+            case .Success(let _data):
+               
+                let connectionStatus = _data["status"] as! String
+                switch connectionStatus
+                {
+                case "success":
+                    if let userJSON = _data["result"] as? NSDictionary
+                    {
+                        let mappedUser = Mapper<MyUser>().map(userJSON)
+                        result(user: mappedUser,code: connectionStatus)
+                    }
+                    
+                    break;
+                case "error":
+                    let returnedJSON = _data["result"] as? String
+                    result(user: nil,code: returnedJSON!)
+                    break;
+                default:
+                    result(user: nil,code: connectionStatus)
+                    break;
+                    
+                }
+                
+                break
+            case .Failure(_):
+                let errorMessage = "We're having a tiny problem. Try loging in later!"
+                result(user: nil,code: errorMessage)
+                break
+                
+        
+            }
+        
+        }
+        
+    }
     
     
 }

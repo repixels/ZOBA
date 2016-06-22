@@ -16,6 +16,7 @@ import CoreData
 import Alamofire
 import SwiftyUserDefaults
 import SlideMenuControllerSwift
+import AlamofireImage
 
 class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
@@ -100,13 +101,65 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                 let userEmail = (result.valueForKey("email") as? String)!
                 let userName = userEmail.componentsSeparatedByString("@")[0]
                 
-                self.firstNameTextField.text = firstName
-                self.lastNameTextField.text = lastName
-                self.emailTextField.text = result.valueForKey("email") as? String
-                self.userNameTextField.text = userName
-                self.passwordTextField.text = self.randomAlphaNumericString(6)
-                print(self.passwordTextField.text)
-                self.facebookLoginButton.hidden = true
+                let  fbUser = MyUser(managedObjectContext: SessionObjects.currentManageContext, entityName: "MyUser")
+                fbUser.email = userEmail
+                fbUser.userName = userName
+                fbUser.firstName = firstName
+                fbUser.lastName = lastName
+                fbUser.phone = "1234567"
+                fbUser.password = self.randomAlphaNumericString(6)
+                let userWebService = UserWebservice(currentUser: fbUser)
+                userWebService.registerWithFaceBook({ (user, code) in
+                    
+                    switch code{
+                    
+                    case "success":
+                        SessionObjects.currentUser = user!
+                        if((Defaults[.deviceToken]) != nil)
+                        {
+                            SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+                        }
+                        SessionObjects.currentUser.save()
+                        
+                        Defaults[.isFBLogin] = true
+                        Defaults[.isLoggedIn] = true
+                        Defaults[.useremail] = user!.email
+                        Defaults[.launchCount] += 1
+                        
+                        //To be removed
+//                        DummyDataBaseOperation.populateOnlyOnce()
+//                        DummyDataBaseOperation.populateData()
+                        
+                        self.facebookLoginButton.hidden = true
+                        
+                        let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+                        let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                        
+                        let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
+                        let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                        
+                        
+                        let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
+                        slideMenuController.automaticallyAdjustsScrollViewInsets = true
+                        
+                        let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                        app.window?.rootViewController = slideMenuController
+                        
+                        //start detection if user has car
+                        if SessionObjects.currentVehicle != nil {
+                            SessionObjects.motionMonitor = LocationMonitor()
+                            
+                            SessionObjects.motionMonitor.startDetection()
+                        }
+                    default :
+                        self.generateErrorAlert(code)
+                        break
+                    
+                    
+                    }
+                    
+                    
+                })
             }
         })
     }
@@ -127,13 +180,11 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         self.view.insertSubview(backgroundImageMask, atIndex: 1)
         
     }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
-    
-    
-    
     
     @IBAction func validateUserEmail(sender: AnyObject)
     {
@@ -233,8 +284,6 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         registerButton.enabled = false
         registerButton.alpha = 0.7
     }
-    
-    
     
     func showErrorMessage(message:String , textField:HoshiTextField)
     {
