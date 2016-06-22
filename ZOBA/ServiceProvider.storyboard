@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -23,10 +24,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DOq-g1-eLf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="193"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="DOq-g1-eLf" secondAttribute="height" multiplier="320:193" id="Prf-AC-goO"/>
+                                </constraints>
+                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Service Provider Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Key-FL-6DF">
                                 <rect key="frame" x="47" y="247" width="235" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="PiA-uc-p1T"/>
+                                    <constraint firstAttribute="height" constant="22" id="wHR-aw-a1Q"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,22 +52,21 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="i63-Uj-OOE" firstAttribute="top" secondItem="IeD-Ug-C2b" secondAttribute="top" id="BlR-Q7-Wyw"/>
-                                    <constraint firstAttribute="bottom" secondItem="i63-Uj-OOE" secondAttribute="bottom" id="JhR-an-P7P"/>
-                                    <constraint firstAttribute="trailing" secondItem="i63-Uj-OOE" secondAttribute="trailing" constant="-30" id="MzZ-OO-OQc"/>
-                                    <constraint firstItem="i63-Uj-OOE" firstAttribute="centerY" secondItem="zEy-P2-ZsJ" secondAttribute="centerY" id="Orl-e2-1US"/>
-                                    <constraint firstItem="zEy-P2-ZsJ" firstAttribute="top" secondItem="IeD-Ug-C2b" secondAttribute="top" constant="35" id="XXx-I1-xu9"/>
-                                    <constraint firstItem="zEy-P2-ZsJ" firstAttribute="leading" secondItem="IeD-Ug-C2b" secondAttribute="leading" constant="43" id="d3X-Gf-bDu"/>
-                                    <constraint firstItem="i63-Uj-OOE" firstAttribute="centerX" secondItem="zEy-P2-ZsJ" secondAttribute="centerX" id="jtg-PK-YHM"/>
-                                    <constraint firstItem="i63-Uj-OOE" firstAttribute="leading" secondItem="IeD-Ug-C2b" secondAttribute="leading" constant="-33" id="t8v-OF-pRn"/>
+                                    <constraint firstItem="i63-Uj-OOE" firstAttribute="top" secondItem="IeD-Ug-C2b" secondAttribute="top" id="2wr-CP-CXd"/>
+                                    <constraint firstItem="zEy-P2-ZsJ" firstAttribute="leading" secondItem="IeD-Ug-C2b" secondAttribute="leading" constant="43" id="DYZ-pm-9tJ"/>
+                                    <constraint firstItem="zEy-P2-ZsJ" firstAttribute="top" secondItem="IeD-Ug-C2b" secondAttribute="top" constant="35" id="JCs-rm-8PY"/>
+                                    <constraint firstAttribute="bottom" secondItem="i63-Uj-OOE" secondAttribute="bottom" id="SgH-74-tTB"/>
+                                    <constraint firstItem="i63-Uj-OOE" firstAttribute="centerX" secondItem="zEy-P2-ZsJ" secondAttribute="centerX" id="cAb-6T-I9T"/>
+                                    <constraint firstItem="i63-Uj-OOE" firstAttribute="centerY" secondItem="zEy-P2-ZsJ" secondAttribute="centerY" id="iMw-iC-HV4"/>
+                                    <constraint firstItem="i63-Uj-OOE" firstAttribute="leading" secondItem="IeD-Ug-C2b" secondAttribute="leading" constant="-33" id="jL8-aH-akV"/>
+                                    <constraint firstAttribute="trailing" secondItem="i63-Uj-OOE" secondAttribute="trailing" constant="-30" id="tNW-iX-jMV"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Home Branch" placeholder="Change Service Provider Branch" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wKU-hp-Cpd" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="277" width="280" height="69"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="69" id="t7L-wy-Y6t"/>
+                                    <constraint firstAttribute="height" constant="69" id="qh0-9y-aj4"/>
                                 </constraints>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -80,26 +86,23 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DOq-g1-eLf">
-                                <rect key="frame" x="0.0" y="5" width="320" height="188"/>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="0.98624199628829956" green="0.7796865701675415" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="DOq-g1-eLf" firstAttribute="centerX" secondItem="wKU-hp-Cpd" secondAttribute="centerX" id="1nZ-um-Ans"/>
-                            <constraint firstItem="IeD-Ug-C2b" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leadingMargin" constant="79" id="86d-YU-DwE"/>
-                            <constraint firstItem="DOq-g1-eLf" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leading" id="DSu-bo-bfO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="IeD-Ug-C2b" secondAttribute="trailing" constant="68" id="PEQ-Lj-W3q"/>
-                            <constraint firstAttribute="trailing" secondItem="DOq-g1-eLf" secondAttribute="trailing" id="Tbo-Aq-Jfe"/>
-                            <constraint firstItem="DOq-g1-eLf" firstAttribute="top" secondItem="yu1-9F-U2C" secondAttribute="topMargin" constant="5" id="UV3-UW-Iyo"/>
-                            <constraint firstItem="Key-FL-6DF" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leadingMargin" constant="31" id="XbP-ur-xWW"/>
-                            <constraint firstItem="wKU-hp-Cpd" firstAttribute="top" secondItem="Key-FL-6DF" secondAttribute="bottom" constant="8" symbolic="YES" id="ZUZ-vN-qz3"/>
-                            <constraint firstItem="wKU-hp-Cpd" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leadingMargin" constant="4" id="aL7-Df-xaq"/>
-                            <constraint firstItem="Key-FL-6DF" firstAttribute="top" secondItem="DOq-g1-eLf" secondAttribute="bottom" constant="54" id="ef1-zH-yRi"/>
-                            <constraint firstItem="IeD-Ug-C2b" firstAttribute="top" secondItem="lG4-xg-uyu" secondAttribute="bottom" constant="107" id="efz-7r-hqj"/>
-                            <constraint firstItem="Myv-0c-Ieo" firstAttribute="top" secondItem="wKU-hp-Cpd" secondAttribute="bottom" constant="222" id="rrO-3V-lyW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Key-FL-6DF" secondAttribute="trailing" constant="22" id="sK2-cq-mHB"/>
-                            <constraint firstItem="Key-FL-6DF" firstAttribute="top" secondItem="IeD-Ug-C2b" secondAttribute="bottom" constant="7" id="uaS-0M-8Wn"/>
+                            <constraint firstItem="Myv-0c-Ieo" firstAttribute="top" secondItem="wKU-hp-Cpd" secondAttribute="bottom" constant="222" id="1HM-zB-DgM"/>
+                            <constraint firstItem="IeD-Ug-C2b" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leadingMargin" constant="79" id="2lA-kW-tcw"/>
+                            <constraint firstItem="IeD-Ug-C2b" firstAttribute="top" secondItem="lG4-xg-uyu" secondAttribute="bottom" constant="107" id="EY3-EO-Ndn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Key-FL-6DF" secondAttribute="trailing" constant="22" id="MOL-z5-GTP"/>
+                            <constraint firstItem="DOq-g1-eLf" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leading" id="UJ9-fE-V9M"/>
+                            <constraint firstItem="Key-FL-6DF" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leadingMargin" constant="31" id="XJY-AE-5N3"/>
+                            <constraint firstItem="wKU-hp-Cpd" firstAttribute="leading" secondItem="yu1-9F-U2C" secondAttribute="leadingMargin" constant="4" id="ZYK-Z5-DXX"/>
+                            <constraint firstItem="wKU-hp-Cpd" firstAttribute="top" secondItem="Key-FL-6DF" secondAttribute="bottom" constant="8" symbolic="YES" id="cpP-38-zYF"/>
+                            <constraint firstItem="Key-FL-6DF" firstAttribute="top" secondItem="DOq-g1-eLf" secondAttribute="bottom" constant="54" id="fYm-5e-YOv"/>
+                            <constraint firstAttribute="trailing" secondItem="DOq-g1-eLf" secondAttribute="trailing" id="lMR-zG-nSn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IeD-Ug-C2b" secondAttribute="trailing" constant="68" id="lfw-qi-HWc"/>
+                            <constraint firstItem="DOq-g1-eLf" firstAttribute="top" secondItem="yu1-9F-U2C" secondAttribute="top" id="nGj-4J-WRk"/>
+                            <constraint firstItem="Key-FL-6DF" firstAttribute="top" secondItem="IeD-Ug-C2b" secondAttribute="bottom" constant="7" id="nv4-mh-0Ar"/>
+                            <constraint firstItem="DOq-g1-eLf" firstAttribute="centerX" secondItem="wKU-hp-Cpd" secondAttribute="centerX" id="pf1-qX-gRa"/>
                         </constraints>
                     </view>
                 </viewController>
