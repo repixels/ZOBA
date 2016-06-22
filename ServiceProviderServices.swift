@@ -32,11 +32,11 @@ class ServiceProviderServices: NSManagedObject , Mappable {
     
     func mapping(map: Map) {
         
-        self.endingHour <- map[""]
-        self.serviceProviderServicesId <- map[""]
-        self.startingHour <- map[""]
-        self.service <- map[""]
-        self.serviceProvider <- map[""]
+        self.endingHour <- map["endingHour"]
+        self.serviceProviderServicesId <- map["id"]
+        self.startingHour <- map["startingHour"]
+        self.service <- map["service"]
+        self.serviceProvider <- map["serviceProvider"]
         
     }
 }
