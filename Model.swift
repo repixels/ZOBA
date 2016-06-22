@@ -20,7 +20,7 @@ class Model: NSManagedObject , Mappable {
     
     required init?(_ map: Map) {
         
-        let managedContext = NSManagedObject.getPrivateContext() //SessionObjects.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("Model", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)

@@ -28,7 +28,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     @IBOutlet var editImageButton: UIButton!
     
     @IBOutlet var initialsLabel: UILabel!
-
+    
     @IBOutlet var scrollView: UIScrollView!
     
     var isEditMode : Bool = false
@@ -205,7 +205,12 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         dismissViewControllerAnimated(true, completion: nil)
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
             SessionObjects.currentUser.image = NSData(data: UIImagePNGRepresentation(image)!)
+            SessionObjects.currentUser.save()
+            let userWebService = UserWebservice(currentUser: SessionObjects.currentUser)
+            userWebService.saveProfilePicture(Int(SessionObjects.currentUser.userId!), image: image, imageExtension: "png")
+            
         }
         self.loadUserImage()
     }
@@ -247,7 +252,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
             return "Welcome Back"
         }
     }
-
+    
     
     
 }
