@@ -161,7 +161,7 @@
                                         </constraints>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,7 +191,7 @@
                                         </constraints>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -206,7 +206,7 @@
                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                                <integer key="value" value="6"/>
+                                                <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -264,6 +264,7 @@
                         <outlet property="fuelAmountTextField" destination="RRf-dY-trr" id="C9b-7g-r1N"/>
                         <outlet property="initialOdemeter" destination="xvE-I8-Lba" id="Ft2-aL-gOg"/>
                         <outlet property="saveBtn" destination="WIy-fz-pbu" id="kq3-oP-7MC"/>
+                        <outlet property="scrollView" destination="FtN-56-442" id="PzA-Qa-6ap"/>
                         <outlet property="serviceProviderButton" destination="Sr8-Gs-30O" id="RGZ-Wq-2bc"/>
                         <outlet property="serviceProviderTextFeild" destination="khV-B2-X9p" id="gsr-FC-2uY"/>
                         <outlet property="vehiclePickerView" destination="vjy-Ex-5wA" id="n0c-9K-0Au"/>
