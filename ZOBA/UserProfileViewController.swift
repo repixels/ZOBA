@@ -113,6 +113,11 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         }
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     func changeFieldsStatus()
     {
         phone.enabled = isEditMode
