@@ -22,7 +22,7 @@ class TripWebService {
     func saveTrip(trip : Trip,result : ((returnedTrip : Trip? , code : String)->())){
         let tripUrl = buildUrl("trip/addTrip")
         Alamofire.request(.GET,tripUrl ,parameters: ["vehicleId": Int(trip.vehicle!.vehicleId!), "initialOdemeter": Int(trip.initialOdemeter!) , "coveredMilage" :Int(trip.coveredKm!)] ).responseJSON { response in
-            
+            print(response.request)
             switch response.result
             {
             case .Success(let _data):
