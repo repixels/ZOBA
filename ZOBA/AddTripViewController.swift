@@ -164,7 +164,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     //MARK: date picker
     @IBAction func dateEditingBegin(sender: HoshiTextField) {
         
-        
+        datePickerView.maximumDate = NSDate()
         datePickerView.datePickerMode = UIDatePickerMode.Date
         
         sender.inputView = datePickerView

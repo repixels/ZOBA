@@ -62,6 +62,8 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
         notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
         
+        
+        
     }
     
     override func viewDidLoad() {
@@ -141,6 +143,10 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
         currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
+        
+        datePickerView = UIDatePicker()
+        datePickerView.maximumDate = NSDate()
+        
     }
     
     
@@ -336,8 +342,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     }
     
     @IBAction func dateUpdate(sender: AnyObject) {
-        
-        datePickerView = UIDatePicker()
         
         datePickerView.datePickerMode = UIDatePickerMode.Date
         
