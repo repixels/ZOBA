@@ -177,7 +177,7 @@
                                 <rect key="frame" x="0.0" y="-74" width="320" height="878"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gxx-JU-Kzj">
-                                        <rect key="frame" x="8" y="522" width="304" height="48"/>
+                                        <rect key="frame" x="8" y="527" width="304" height="48"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select a End Point for the Trip" placeholder="Ending Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dph-wZ-h08" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                 <rect key="frame" x="12" y="0.0" width="280" height="48"/>
@@ -248,7 +248,7 @@
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nsj-GG-QpK">
-                                        <rect key="frame" x="8" y="454" width="304" height="60"/>
+                                        <rect key="frame" x="8" y="459" width="304" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select a Start Point for the Trip" placeholder="Starting Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Ot-Eu-K1K" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                 <rect key="frame" x="12" y="9" width="280" height="48"/>
@@ -292,31 +292,8 @@
                                             <constraint firstItem="9lQ-5X-yE1" firstAttribute="top" secondItem="8Ot-Eu-K1K" secondAttribute="top" id="hy3-Rk-rRV"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-tY-v3V" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="342" width="280" height="48"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="xPw-tY-v3V" secondAttribute="height" multiplier="35:6" id="w6F-cP-Ce8"/>
-                                        </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.15410047769546509" green="0.41306763887405396" blue="0.69063264131546021" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Final Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qIL-H5-pxI" customClass="validatedTextField" customModule="ZOBA">
-                                        <rect key="frame" x="168" y="398" width="132" height="48"/>
+                                        <rect key="frame" x="182" y="408" width="118" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="qIL-H5-pxI" secondAttribute="height" multiplier="11:4" id="LJw-AA-XoR"/>
                                         </constraints>
@@ -346,15 +323,14 @@
                                         </connections>
                                     </textField>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOf-7t-jVf">
-                                        <rect key="frame" x="0.0" y="138" width="320" height="162"/>
+                                        <rect key="frame" x="-54" y="84" width="427" height="216"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="162" id="vxL-hN-6PK"/>
+                                            <constraint firstAttribute="width" secondItem="oOf-7t-jVf" secondAttribute="height" multiplier="160:81" id="A3l-2L-FbH"/>
                                         </constraints>
                                     </pickerView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Covered Milage" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3t-hm-MhY" customClass="validatedTextField" customModule="ZOBA">
-                                        <rect key="frame" x="20" y="398" width="132" height="48"/>
+                                        <rect key="frame" x="20" y="398" width="146" height="53"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="Nru-l3-MKn"/>
                                             <constraint firstAttribute="width" secondItem="r3t-hm-MhY" secondAttribute="height" multiplier="11:4" id="XhR-gX-gnz"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -381,6 +357,29 @@
                                         <connections>
                                             <action selector="coveredKmEdited:" destination="1xC-7H-O8v" eventType="editingChanged" id="F6v-83-03a"/>
                                         </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-tY-v3V" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="342" width="280" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="xPw-tY-v3V" secondAttribute="height" multiplier="35:6" id="w6F-cP-Ce8"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" red="0.15410047769546509" green="0.41306763887405396" blue="0.69063264131546021" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -715,9 +714,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="leading" secondItem="k4i-pb-jRv" secondAttribute="leading" id="10t-dd-l0b"/>
-                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="top" secondItem="k4i-pb-jRv" secondAttribute="top" id="3T9-aS-D7k"/>
-                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="bottom" secondItem="WAX-9J-UiV" secondAttribute="top" id="quB-fQ-xNz"/>
+                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="bottom" secondItem="WAX-9J-UiV" secondAttribute="top" id="Olj-b1-9B1"/>
+                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="centerX" secondItem="k4i-pb-jRv" secondAttribute="centerX" id="SSm-M8-6Zp"/>
+                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="width" secondItem="k4i-pb-jRv" secondAttribute="height" multiplier="40:71" id="ZYh-TX-mgV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Qi4-oP-Gnt"/>

@@ -50,7 +50,6 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
         let item3 = YALTabBarItem(itemImage: UIImage(named: "add-fuel"), leftItemImage: nil, rightItemImage: nil)
         
         let item4 = YALTabBarItem(itemImage: UIImage(named: "add-oil"), leftItemImage: nil, rightItemImage: nil)
-        
         self.tabBarView.offsetForExtraTabBarItems = YALForExtraTabBarItemsDefaultOffset
         self.leftBarItems = [item1, item2]
         self.rightBarItems = [item3, item4]
