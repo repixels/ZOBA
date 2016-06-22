@@ -157,10 +157,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQN-j8-Vga">
-                                        <rect key="frame" x="70" y="22" width="179" height="153"/>
+                                        <rect key="frame" x="70" y="17" width="179" height="153"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="pXD-8z-mvw">
-                                                <rect key="frame" x="19" y="8" width="134" height="137"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="pXD-8z-mvw">
+                                                <rect key="frame" x="19" y="8" width="137" height="137"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfE-Qb-tct">
                                                 <rect key="frame" x="27" y="45" width="119" height="64"/>
@@ -186,15 +186,15 @@
                                             <constraint firstItem="HfE-Qb-tct" firstAttribute="centerX" secondItem="dQN-j8-Vga" secondAttribute="centerX" constant="-3" id="l9Q-dJ-wbp"/>
                                             <constraint firstItem="eib-uz-Anq" firstAttribute="width" secondItem="dQN-j8-Vga" secondAttribute="height" multiplier="10:43" constant="-5.5813953488372121" id="nqa-8G-XlN"/>
                                             <constraint firstItem="pXD-8z-mvw" firstAttribute="leading" secondItem="dQN-j8-Vga" secondAttribute="leading" constant="19" id="ptp-C8-412"/>
-                                            <constraint firstItem="pXD-8z-mvw" firstAttribute="centerX" secondItem="dQN-j8-Vga" secondAttribute="centerX" constant="-3.5" id="pwk-tI-sof"/>
+                                            <constraint firstItem="pXD-8z-mvw" firstAttribute="centerX" secondItem="dQN-j8-Vga" secondAttribute="centerX" constant="-2" id="pwk-tI-sof"/>
                                             <constraint firstItem="pXD-8z-mvw" firstAttribute="leading" secondItem="HfE-Qb-tct" secondAttribute="leading" constant="-8" id="qIh-Yj-1hc"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="2ae-Y3-NfX" firstAttribute="top" secondItem="dQN-j8-Vga" secondAttribute="bottom" constant="-14" id="0ZE-Z5-WcH"/>
+                                    <constraint firstItem="2ae-Y3-NfX" firstAttribute="top" secondItem="dQN-j8-Vga" secondAttribute="bottom" constant="-9" id="0ZE-Z5-WcH"/>
                                     <constraint firstAttribute="trailing" secondItem="2ae-Y3-NfX" secondAttribute="trailing" constant="20" id="391-2u-T5o"/>
-                                    <constraint firstItem="2ae-Y3-NfX" firstAttribute="top" secondItem="dQN-j8-Vga" secondAttribute="bottom" constant="-14" id="3q3-Uw-7xt"/>
+                                    <constraint firstItem="2ae-Y3-NfX" firstAttribute="top" secondItem="dQN-j8-Vga" secondAttribute="bottom" constant="-9" id="3q3-Uw-7xt"/>
                                     <constraint firstItem="toG-Tz-MOg" firstAttribute="centerY" secondItem="Iry-0h-ZMD" secondAttribute="centerY" id="6zH-MA-SE5"/>
                                     <constraint firstItem="PM1-1t-wSd" firstAttribute="top" secondItem="vMU-hj-gNt" secondAttribute="bottom" constant="8" symbolic="YES" id="8iG-Qz-L2z"/>
                                     <constraint firstItem="7mI-2B-A9T" firstAttribute="leading" secondItem="toG-Tz-MOg" secondAttribute="leading" id="BOo-an-oox"/>
@@ -209,15 +209,15 @@
                                     <constraint firstItem="raL-wY-suT" firstAttribute="leading" secondItem="vMU-hj-gNt" secondAttribute="leading" id="Tqc-Mg-bH6"/>
                                     <constraint firstItem="2ae-Y3-NfX" firstAttribute="leading" secondItem="raL-wY-suT" secondAttribute="trailing" constant="20" id="V6L-Pw-D5J"/>
                                     <constraint firstItem="dQN-j8-Vga" firstAttribute="leading" secondItem="Tca-If-3Le" secondAttribute="leading" constant="70" id="WQn-MY-6RH"/>
-                                    <constraint firstItem="raL-wY-suT" firstAttribute="top" secondItem="dQN-j8-Vga" secondAttribute="bottom" constant="-19" id="db3-xs-vbe"/>
+                                    <constraint firstItem="raL-wY-suT" firstAttribute="top" secondItem="dQN-j8-Vga" secondAttribute="bottom" constant="-14" id="db3-xs-vbe"/>
                                     <constraint firstItem="vMU-hj-gNt" firstAttribute="top" secondItem="raL-wY-suT" secondAttribute="bottom" constant="8" symbolic="YES" id="ehi-1o-06Z"/>
                                     <constraint firstItem="7mI-2B-A9T" firstAttribute="top" secondItem="PM1-1t-wSd" secondAttribute="bottom" constant="8" symbolic="YES" id="ifB-Qb-neT"/>
                                     <constraint firstItem="toG-Tz-MOg" firstAttribute="trailing" secondItem="Iry-0h-ZMD" secondAttribute="trailing" id="kNW-Cr-7Pn"/>
                                     <constraint firstItem="vMU-hj-gNt" firstAttribute="centerX" secondItem="Tca-If-3Le" secondAttribute="centerX" id="kr0-dK-fcj"/>
-                                    <constraint firstItem="dQN-j8-Vga" firstAttribute="top" secondItem="Tca-If-3Le" secondAttribute="top" constant="22" id="mDS-2J-r1p"/>
-                                    <constraint firstItem="raL-wY-suT" firstAttribute="top" secondItem="dQN-j8-Vga" secondAttribute="bottom" constant="-19" id="nQO-IK-u20"/>
+                                    <constraint firstItem="dQN-j8-Vga" firstAttribute="top" secondItem="Tca-If-3Le" secondAttribute="top" constant="17" id="mDS-2J-r1p"/>
+                                    <constraint firstItem="raL-wY-suT" firstAttribute="top" secondItem="dQN-j8-Vga" secondAttribute="bottom" constant="-14" id="nQO-IK-u20"/>
                                     <constraint firstItem="raL-wY-suT" firstAttribute="leading" secondItem="Tca-If-3Le" secondAttribute="leading" constant="20" id="oi8-Qu-g5f"/>
-                                    <constraint firstItem="2ae-Y3-NfX" firstAttribute="top" secondItem="dQN-j8-Vga" secondAttribute="bottom" constant="-14" id="oxR-zm-ZSB"/>
+                                    <constraint firstItem="2ae-Y3-NfX" firstAttribute="top" secondItem="dQN-j8-Vga" secondAttribute="bottom" constant="-9" id="oxR-zm-ZSB"/>
                                     <constraint firstItem="raL-wY-suT" firstAttribute="top" secondItem="Tca-If-3Le" secondAttribute="top" constant="156" id="pwQ-hg-E9P"/>
                                     <constraint firstItem="toG-Tz-MOg" firstAttribute="top" secondItem="7mI-2B-A9T" secondAttribute="bottom" constant="37" id="rNw-mF-oxV"/>
                                     <constraint firstItem="vMU-hj-gNt" firstAttribute="leading" secondItem="PM1-1t-wSd" secondAttribute="leading" id="tJ1-uj-bNr"/>
