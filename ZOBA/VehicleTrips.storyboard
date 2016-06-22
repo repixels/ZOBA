@@ -715,9 +715,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="leading" secondItem="k4i-pb-jRv" secondAttribute="leading" id="10t-dd-l0b"/>
-                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="top" secondItem="k4i-pb-jRv" secondAttribute="top" id="3T9-aS-D7k"/>
-                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="bottom" secondItem="WAX-9J-UiV" secondAttribute="top" id="quB-fQ-xNz"/>
+                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="bottom" secondItem="WAX-9J-UiV" secondAttribute="top" id="Olj-b1-9B1"/>
+                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="centerX" secondItem="k4i-pb-jRv" secondAttribute="centerX" id="SSm-M8-6Zp"/>
+                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="width" secondItem="k4i-pb-jRv" secondAttribute="height" multiplier="40:71" id="ZYh-TX-mgV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Qi4-oP-Gnt"/>
