@@ -35,7 +35,7 @@ class Service: NSManagedObject , Mappable {
         self.name <- map["name"]
         self.serviceId <- map["id"]
         serviceProviderServicesArray <- map["serviceProviderServices"]
-        trackingTypesArray <- map["trackingTypes"]
+        trackingTypesArray <- map["trackingType"]
         
         if serviceProviderServicesArray != nil
         {
