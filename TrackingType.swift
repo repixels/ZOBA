@@ -33,11 +33,11 @@ class TrackingType: NSManagedObject , Mappable{
     func mapping(map: Map) {
         
         
-        self.name <- map[""]
-        self.typeId <- map[""]
-        self.measuringUnit <- map[""]
+        self.name <- map["name"]
+        self.typeId <- map["id"]
+        self.measuringUnit <- map["measuringUnit"]
+        self.service <- map["service"]
         self.trackingData <- map[""]
-        self.service <- map[""]
         
     }
 }

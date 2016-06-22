@@ -31,14 +31,12 @@ class TrackingData: NSManagedObject , Mappable {
     }
     
     func mapping(map: Map) {
-        
+                
         self.dateAdded <- map["dateAdded"]
         self.dateModified <- map["dateModified"]
         self.initialOdemeter <- map["intialOdemeter"]
         self.trackingId <- map["id"]
         self.value <- map["value"]
-        self.trackingId <- map[""]
-        self.vehicle <- map[""]
-        
+        self.vehicle = SessionObjects.currentVehicle!
     }
 }

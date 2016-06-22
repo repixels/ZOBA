@@ -34,10 +34,10 @@ class MeasuringUnit: NSManagedObject , Mappable {
         
         var trackingTypesArray : [TrackingType]?
         
-        self.name <- map[""]
-        self.suffix <- map[""]
-        self.unitId <- map[""]
-        trackingTypesArray <- map[""]
+        self.name <- map["name"]
+        self.suffix <- map["sufffix"]
+        self.unitId <- map["id"]
+        trackingTypesArray <- map["trackingType"]
         
         if trackingTypesArray != nil
         {

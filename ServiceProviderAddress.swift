@@ -32,7 +32,7 @@ class ServiceProviderAddress: NSManagedObject , Mappable{
     
     func mapping(map: Map) {
         
-        self.addressId <- map[""]
+        self.addressId <- map["id"]
         self.city <- map[""]
         self.country <- map[""]
         self.landMark <- map[""]
