@@ -47,7 +47,7 @@
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="98d-77-47W">
                                                     <rect key="frame" x="17" y="15" width="225" height="185.5"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="timeline-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="VL6-kb-2Ht">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="timeline-circle" translatesAutoresizingMaskIntoConstraints="NO" id="VL6-kb-2Ht">
                                                             <rect key="frame" x="51" y="8" width="122" height="122"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="EM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YqC-zp-UiQ">
@@ -247,6 +247,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="timeline-circle" width="117" height="117"/>
         <image name="timeline-circle.png" width="350" height="350"/>
     </resources>
 </document>

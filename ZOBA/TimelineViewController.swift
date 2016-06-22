@@ -36,7 +36,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         
         if SessionObjects.currentVehicle != nil {
             timelinePopulater = TimelinePopulater(tableView: self.tableView)
-            
+            tableCells = (timelinePopulater?.populateTableData())!
             if SessionObjects.motionMonitor == nil {
             SessionObjects.motionMonitor = LocationMonitor()
             }
