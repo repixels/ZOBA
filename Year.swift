@@ -28,8 +28,6 @@ class Year: NSManagedObject , Mappable
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
-        //        mapping(map)
-        
     }
     
     

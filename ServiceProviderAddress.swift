@@ -20,27 +20,24 @@ class ServiceProviderAddress: NSManagedObject , Mappable{
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("ServiceProviderAddress", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-//        mapping(map)
         
     }
     
     func mapping(map: Map) {
         
         self.addressId <- map["id"]
-        self.city <- map[""]
-        self.country <- map[""]
-        self.landMark <- map[""]
-        self.latitude <- map[""]
-        self.longtiude <- map[""]
-        self.others <- map[""]
-        self.postalCode <- map[""]
-        self.street <- map[""]
-        self.serviceProvider <- map[""]
+        self.city <- map["city"]
+        self.country <- map["country"]
+        self.landMark <- map["landmark"]
+        self.latitude <- map["latitude"]
+        self.longtiude <- map["longitude"]
+        self.others <- map["others"]
+        self.postalCode <- map["postalCode"]
+        self.street <- map["street"]
+        self.serviceProvider <- map["serviceProvider"]
     }
 }

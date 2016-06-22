@@ -19,8 +19,7 @@ class VehicleModel: NSManagedObject , Mappable{
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("VehicleModel", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)

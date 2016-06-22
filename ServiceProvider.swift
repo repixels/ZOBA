@@ -20,13 +20,10 @@ class ServiceProvider: NSManagedObject , Mappable {
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("ServiceProvider", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-//        mapping(map)
         
     }
     
@@ -40,18 +37,18 @@ class ServiceProvider: NSManagedObject , Mappable {
         var serviceProviderServicesArray : [ServiceProviderServices]?
         
         
-        self.email <- map[""]
-        self.name <- map[""]
-        self.serviceProviderId <- map[""]
-        self.webSite <- map[""]
-        self.address <- map[""]
+        self.email <- map["email"]
+        self.name <- map["name"]
+        self.serviceProviderId <- map["id"]
+        self.webSite <- map["website"]
+        self.address <- map["address"]
         self.headQuarter <- map[""]
         branchesArray <- map[""]
-        phonesArray <- map[""]
-        calendarsArray <- map[""]
-        makesArray <- map[""]
-        phoneArray <- map[""]
-        serviceProviderServicesArray <- map[""]
+        phonesArray <- map["serviceProviderPhones"]
+        calendarsArray <- map["serviceProviderCalendars"]
+        makesArray <- map["makes"]
+        phoneArray <- map["serviceProviderPhones"]
+        serviceProviderServicesArray <- map["serviceProviderServices"]
         
         if branchesArray != nil
         {

@@ -30,7 +30,7 @@
                                     <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQN-j8-Vga">
                                         <rect key="frame" x="72" y="0.0" width="164" height="166"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="pXD-8z-mvw">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle" translatesAutoresizingMaskIntoConstraints="NO" id="pXD-8z-mvw">
                                                 <rect key="frame" x="14" y="17" width="137" height="137"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eib-uz-Anq">
@@ -421,6 +421,6 @@
         <image name="edit" width="76" height="76"/>
         <image name="menu" width="22" height="22"/>
         <image name="next" width="171" height="171"/>
-        <image name="timeline-circle.png" width="350" height="350"/>
+        <image name="timeline-circle" width="117" height="117"/>
     </resources>
 </document>

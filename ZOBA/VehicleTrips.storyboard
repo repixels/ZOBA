@@ -29,7 +29,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="uq3-NB-K5r">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle" translatesAutoresizingMaskIntoConstraints="NO" id="uq3-NB-K5r">
                                             <rect key="frame" x="8" y="4" width="82" height="82"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="uq3-NB-K5r" secondAttribute="height" multiplier="1:1" id="gxY-sB-Bve"/>
@@ -750,6 +750,6 @@
     <resources>
         <image name="menu" width="22" height="22"/>
         <image name="situation-pin" width="530" height="827"/>
-        <image name="timeline-circle.png" width="350" height="350"/>
+        <image name="timeline-circle" width="117" height="117"/>
     </resources>
 </document>
