@@ -31,8 +31,8 @@ class Days: NSManagedObject , Mappable {
         
         var calendars : [ServiceProviderCalender]?
         
-        self.dayId <- map[""]
-        self.name <- map[""]
+        self.dayId <- map["id"]
+        self.name <- map["name"]
         calendars <- map[""]
         
         if calendars != nil
