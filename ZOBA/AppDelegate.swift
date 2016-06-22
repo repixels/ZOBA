@@ -354,11 +354,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 let motionDetection = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
                 activeViewCont?.navigationController?.pushViewController(motionDetection, animated: true)
             }
-            else {
-                
-                let motionDetection = activeViewCont as! MotionDetecionMapController
-                
-            }
         }
         
         //get current active view controller
