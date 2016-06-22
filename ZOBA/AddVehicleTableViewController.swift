@@ -448,14 +448,14 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             switch code {
             case "success":
                 
-                print("success in saveing vehicle")
+                print("success in saving vehicle")
                 print(returnedVehicle.vehicleId)
                 vehicle.vehicleId = returnedVehicle.vehicleId
                 SessionObjects.currentManageContext.deleteObject(returnedVehicle)
                 vehicle.save()
                 break
             case "error" :
-                print("error in saveing vehicle")
+                print("error in saving vehicle")
                 vehicle.save()
                 break
             default:
