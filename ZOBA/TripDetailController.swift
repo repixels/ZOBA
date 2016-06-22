@@ -74,6 +74,9 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
             imageView.image = UIImage(data:trip.image! )
             
         }
+        let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
+        self.scrollView.contentInset = adjustForTabbarInsets;
+        self.scrollView.scrollIndicatorInsets = adjustForTabbarInsets;
     }
     
     func getLocation(coordinate : TripCoordinate,sender : HoshiTextField){
