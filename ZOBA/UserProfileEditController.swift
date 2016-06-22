@@ -279,8 +279,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         let cameraPicker = UIImagePickerController()
         cameraPicker.delegate = self
         cameraPicker.sourceType = .PhotoLibrary
-        
-        presentViewController(cameraPicker, animated: true, completion: nil)
+        self.navigationController?.pushViewController(cameraPicker, animated: true)
         //    originalImage=imageView.image
         
     }
@@ -288,8 +287,14 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     // MARK: UIImagePickerControllerDelegate
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         dismissViewControllerAnimated(true, completion: nil)
+        print("receiving image")
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = image
+            let data = UIImagePNGRepresentation(image)
+            SessionObjects.currentUser.image = data
+            let userWebService = UserWebservice(currentUser: SessionObjects.currentUser)
+            userWebService.saveProfilePicture(Int(SessionObjects.currentUser.userId!), image: image, imageExtension: "png")
+            
         }
         info.forEach { (value) in
             print("\(value.0)  :  \(value.1)")
