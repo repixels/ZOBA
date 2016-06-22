@@ -12,9 +12,9 @@ import ObjectMapper
 
 
 class ServiceProviderPhone: NSManagedObject , Mappable {
-
-// Insert code here to add functionality to your managed object subclass
-
+    
+    // Insert code here to add functionality to your managed object subclass
+    
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -28,14 +28,13 @@ class ServiceProviderPhone: NSManagedObject , Mappable {
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
-//        mapping(map)
         
     }
     
     func mapping(map: Map) {
         
-        self.phone <- map[""]
-        self.phoneId <- map[""]
+        self.phone <- map["phone"]
+        self.phoneId <- map["id"]
         self.serviceProvider <- map[""]
     }
 }

@@ -12,8 +12,8 @@ import ObjectMapper
 
 
 class ServiceProviderAddress: NSManagedObject , Mappable{
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -26,21 +26,21 @@ class ServiceProviderAddress: NSManagedObject , Mappable{
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
-//        mapping(map)
+        
         
     }
     
     func mapping(map: Map) {
         
-        self.addressId <- map[""]
-        self.city <- map[""]
-        self.country <- map[""]
-        self.landMark <- map[""]
-        self.latitude <- map[""]
-        self.longtiude <- map[""]
+        self.addressId <- map["id"]
+        self.city <- map["city"]
+        self.country <- map["country"]
+        self.landMark <- map["landmark"]
+        self.latitude <- map["latitude"]
+        self.longtiude <- map["longitude"]
         self.others <- map[""]
-        self.postalCode <- map[""]
-        self.street <- map[""]
+        self.postalCode <- map["postalCode"]
+        self.street <- map["Maadi"]
         self.serviceProvider <- map[""]
     }
 }

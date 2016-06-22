@@ -135,6 +135,8 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
         currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
+        
+        getServiceProviders()
     }
     
     
@@ -183,7 +185,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         validateSaveBtn()
     }
     
-
+    
     @IBAction func currentOdemeterEditingChang(sender: AnyObject) {
         
         if(currentOdometerTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(currentOdometerTextField!.text!) && Int(currentOdometerTextField.text!)! > 0)
@@ -396,9 +398,9 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         trackingDataObj.vehicle =  selectedVehicle
         trackingDataObj.vehicle?.currentOdemeter = Int(currentOdometerTextField!.text!)
-         trackingDataObj.serviceProviderName = selectedServiceProvider != nil && selectedServiceProvider!.name != nil  ? serviceProviderTextFeild.text! : "Not Available"
+        trackingDataObj.serviceProviderName = selectedServiceProvider != nil && selectedServiceProvider!.name != nil  ? serviceProviderTextFeild.text! : "Not Available"
         
-       // trackingDataObj.save()
+        // trackingDataObj.save()
         saveOilToWebService(trackingDataObj)
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -431,5 +433,26 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
             
         })
     }
-
+    
+    
+    func getServiceProviders()
+    {
+        
+        let serviceProviderWebService = ServiceProviderWebService()
+        serviceProviderWebService.getServiceProvider { (serviceProviderArray, code) in
+            switch code {
+            case "success" :
+                print(serviceProviderArray)
+                self.serviceProviders = [ServiceProvider]()
+                self.serviceProviders = serviceProviderArray
+                
+                break
+            default :
+                print("error")
+                break
+            }
+        }
+        
+    }
+    
 }
