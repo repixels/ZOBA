@@ -24,7 +24,7 @@ class Service: NSManagedObject , Mappable {
         let entity = NSEntityDescription.entityForName("Service", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
+
     }
     
     func mapping(map: Map) {
@@ -32,10 +32,10 @@ class Service: NSManagedObject , Mappable {
         var serviceProviderServicesArray : [ServiceProviderServices]?
         var trackingTypesArray : [TrackingType]?
         
-        self.name <- map[""]
-        self.serviceId <- map[""]
-        serviceProviderServicesArray <- map[""]
-        trackingTypesArray <- map[""]
+        self.name <- map["name"]
+        self.serviceId <- map["id"]
+        serviceProviderServicesArray <- map["serviceProviderServices"]
+        trackingTypesArray <- map["trackingType"]
         
         if serviceProviderServicesArray != nil
         {
