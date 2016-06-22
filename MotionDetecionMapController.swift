@@ -50,6 +50,12 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     var tripObj : Trip!
     
+    var lastPlistIndex = 1
+    
+    var polyLines = [MKPolyline]()
+    
+    
+    
     
    
     override func viewWillAppear(animated: Bool) {
@@ -111,6 +117,9 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             
             self.timeDisplay.text = "\(hr):\(min):\(sec)"
             
+                self.drawRoad()
+
+            
         }
         
         if SessionObjects.motionMonitor != nil {
@@ -118,7 +127,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         }
         map.delegate = self
         
-        var adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
+        let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
         self.scrollView.contentInset = adjustForTabbarInsets;
         self.scrollView.scrollIndicatorInsets = adjustForTabbarInsets;
         
@@ -133,7 +142,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             toggleButton()
         }
     }
-    
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -164,13 +172,15 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     func saveTrip()  {
         
+        
+        self.map.addOverlays(polyLines)
+        
         manager.stopUpdatingLocation()
         self.map.showsUserLocation = false
         SessionObjects.motionMonitor.stopTrip()
         stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
         
-        
-        drawRoad()
+        createMapImageWithPolyline()
         
         let point = locationPlist.getLocationsDictionaryArray()
         
@@ -182,17 +192,21 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         lastCoordinate.latitude = NSDecimalNumber(string: point.lastObject?.objectForKey("latitude") as? String)
         lastCoordinate.longtitude = NSDecimalNumber(string: point.lastObject?.objectForKey("longitude") as? String)
+
         tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
         
         tripObj.vehicle = SessionObjects.currentVehicle
+        print(SessionObjects.currentVehicle!.vehicleId!)
         tripObj.initialOdemeter = SessionObjects.currentVehicle.currentOdemeter
         
         let firstLoc = locationPlist.readFirstLocation()
         
         tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
         
-        let distance = locationPlist.getDistanceInKM()
-        SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance/1000)
+        let distance = dist / 1000
+        SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance)
+        
+        print("Distance is: \(distance)")
         tripObj.coveredKm  = distance ///1000
         tripObj.vehicle?.currentOdemeter = Int(tripObj.vehicle!.currentOdemeter!) + Int(distance)
         tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
@@ -202,65 +216,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         saveTripToWebService(tripObj)
     }
-    
-    
-    func saveTripToWebService(trip :Trip)
-    {
-        let tripWebService = TripWebService()
-        tripWebService.saveTrip(trip) { (returnedTrip, code) in
-            
-            
-            switch code {
-            case "success":
-                
-                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.first as! TripCoordinate)
-                
-                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.last as! TripCoordinate)
-                
-                
-                SessionObjects.currentManageContext.deleteObject(returnedTrip!)
-                trip.tripId = returnedTrip?.tripId
-                trip.save()
-                print("trip saved")
-                break
-            case "error" :
-                print("error in saving")
-                trip.save()
-                break
-            default:
-                break
-                
-            }
-        }
-    }
-    
-    func saveTripCoordinateToWebService(trip : Trip, tripCoordinate : TripCoordinate){
-        
-        let tripWebService = TripWebService()
-        tripWebService.saveCoordinate(Int(SessionObjects.currentVehicle.vehicleId!), coordinate:  tripCoordinate, tripId: Int(trip.tripId!)){ (returnedCoordinate , code )in
-            
-            
-            switch code {
-            case "success":
-                print("saving cooridnate")
-                tripCoordinate.coordinateId = returnedCoordinate?.coordinateId
-                
-                SessionObjects.currentManageContext.deleteObject(returnedCoordinate!)
-                
-                break
-            case "error" :
-                print("error on saving coordinate")
-                break
-            default:
-                break
-                
-            }
-            
-        }
-        print("coordiate saved")
->>>>>>> master
-    }
-    
     
     
 
@@ -295,16 +250,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     func drawRoad()
     {
-        //        map.showAnnotations(map.annotations, animated: true)
-        
-        
-        self.map.fitMapViewToAnnotaionList()
         
         map.reloadInputViews()
         
         var pointsArray = locationPlist.getCoordinatesArray()
-        
+        locationPlist.clearPlist()
         var coordinates: [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
+        
         
         if pointsArray.isEmpty
         {
@@ -313,19 +265,24 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         }
         else
         {
-            for i in 0 ..< pointsArray.count-1
+        
+            if lastPlistIndex > pointsArray.count-1
+            {
+                lastPlistIndex = 1
+            }
+            
+            for i in lastPlistIndex ..< pointsArray.count
             {
                 let coordinate  = CLLocationCoordinate2DMake(pointsArray[i].latitude, pointsArray[i].longitude)
                 coordinates.append(coordinate)
             }
+            lastPlistIndex = pointsArray.count-1
             
-            let polyline = MKPolyline(coordinates: &coordinates , count: coordinates.count)
+            polyLines.append(MKPolyline(coordinates: &coordinates , count: coordinates.count))
             
-            self.map.addOverlay(polyline)
+            
         }
     }
-    
-    var polyLines = [MKPolyline]()
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
@@ -335,54 +292,60 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             renderer.strokeColor = UIColor.flatMintColor()
             renderer.lineWidth = 5
             
-            requestSnapshotData(map){ (image, error) in
-                if image != nil
-                {
-                    self.tripObj.image = image
-                    
-                    self.tripObj.save()
-                    
-                    let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
-                    image!.writeToFile(filename, atomically: true)
-                    
-                }
-            }
-            
             return renderer
         }
         return MKPolylineRenderer()
     }
     
     
+    func createMapImageWithPolyline()
+    {
+        self.map.fitMapViewToAnnotaionList()
+        requestSnapshotData(map){ (image, error) in
+            if image != nil
+            {
+                self.tripObj.image = image
+                
+                self.tripObj.save()
+                
+                let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
+                image!.writeToFile(filename, atomically: true)
+                
+            }
+        }
+    }
+    
     
     func requestSnapshotData(mapView: MKMapView,  completion: (NSData?, NSError?) -> ()) {
         
-        let arrayofCoordinates = locationPlist.getCoordinatesArray()
-        
-        let firstCoordinate = arrayofCoordinates.first
-        let lastCoordinate  = arrayofCoordinates.last
-        
-        let firstlocation = CLLocation(latitude: CLLocationDegrees((firstCoordinate?.latitude)!), longitude: CLLocationDegrees((firstCoordinate?.longitude)!))
         
         
+        let firstCoordinate = locationPlist.readFirstLocation()
+        let lastCoordinate  = locationPlist.readLastLocation()
         
-        firstLocationAnnotation.coordinate = firstCoordinate!
+        let firstlocation = CLLocation(latitude: CLLocationDegrees((firstCoordinate.latitude)!), longitude: CLLocationDegrees((firstCoordinate.longitude)!))
+        let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate.latitude)!), longitude: CLLocationDegrees((lastCoordinate.longitude)!))
+        
+        
+        
+        firstLocationAnnotation.coordinate = firstlocation.coordinate
         firstLocationAnnotation.title = "Starting Point"
         self.map.addAnnotation(firstLocationAnnotation)
         
         
         
-        lastLocationAnnotation.coordinate = lastCoordinate!
+        lastLocationAnnotation.coordinate = lastlocation.coordinate
+        
         lastLocationAnnotation.title = "Ending Point"
         self.map.addAnnotation(lastLocationAnnotation)
         
-        let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate?.latitude)!), longitude: CLLocationDegrees((lastCoordinate?.longitude)!))
+        
         
         let diffrence = lastlocation.distanceFromLocation(firstlocation)
         
-        let longitudeDifference = ((lastCoordinate?.longitude)! + (firstCoordinate?.longitude)!)/2
+        let longitudeDifference = ((lastCoordinate.longitude)! + (firstCoordinate.longitude)!)/2
         
-        let lattitudeDifference = ((lastCoordinate?.latitude)! + (firstCoordinate?.latitude)!)/2
+        let lattitudeDifference = ((lastCoordinate.latitude)! + (firstCoordinate.latitude)!)/2
         
         let centerCoordinate = CLLocationCoordinate2D(latitude: lattitudeDifference, longitude: longitudeDifference)
         
