@@ -84,7 +84,6 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     
     //MARK: - keyboard
     func keyBoardWillAppear(notification : NSNotification){
-        print("Keyboard will Appear")
         
         if let userInfo = notification.userInfo {
             if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
@@ -101,7 +100,6 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        print("Keyboard will hide")
         if let userInfo = notification.userInfo {
             if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
                 let contentInset = UIEdgeInsetsZero;

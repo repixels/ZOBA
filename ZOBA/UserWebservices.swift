@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import ObjectMapper
 import SwiftyUserDefaults
+import AlamofireImage
 class UserWebservice
 {
     var user: MyUser?
@@ -170,9 +171,6 @@ class UserWebservice
         let base64String = data!.base64EncodedStringWithOptions([])
         
         Alamofire.request(.POST, url , parameters: ["image":base64String,"userId":userId,"fileExt":imageExtension]).response { (req, res, data, error) in
-            
-            print("result : \(res)")
-            print("error :\(error)" )
         }
         
     }
@@ -190,9 +188,6 @@ class UserWebservice
                                               "phone" : user!.phone]
         
         Alamofire.request(.GET,faceBookRegisterUrl,parameters: params).responseJSON { (response) in
-            
-            print(response.request)
-            
             switch response.result {
             case .Success(let _data):
                
@@ -203,6 +198,7 @@ class UserWebservice
                     if let userJSON = _data["result"] as? NSDictionary
                     {
                         let mappedUser = Mapper<MyUser>().map(userJSON)
+                        mappedUser?.image = self.user?.image
                         result(user: mappedUser,code: connectionStatus)
                     }
                     
@@ -228,6 +224,20 @@ class UserWebservice
         
         }
         
+    }
+    
+    func getUserImageFromFacebook(profilePictureURL : String , result: (imageData : NSData? , code:String)-> Void)
+    {
+        Alamofire.request(.GET, profilePictureURL)
+            .responseImage { response in
+                if let image = response.result.value {
+                    result(imageData: UIImagePNGRepresentation(image)!,code: "success")
+                }
+                else
+                {
+                    result(imageData: nil,code: "error")
+                }
+        }
     }
     
     
