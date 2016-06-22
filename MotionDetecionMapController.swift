@@ -50,8 +50,10 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     var tripObj : Trip!
     
+    var tripFirstLocation = CLLocation()
+    var tripLastLocation = CLLocation()
+    var isFirstLocation = true
     
-   
     override func viewWillAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
@@ -67,23 +69,26 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         self.map.showsUserLocation = true
         self.manager.delegate = self
         manager.startUpdatingLocation()
-        let isFirstLocation = true
+        
         let block :(CLLocation,Double)->() = {(location,distance) in
             
-            if isFirstLocation {
+            if self.isFirstLocation {
                 self.locationPlist.saveLocation(location)
+                self.tripFirstLocation = location
+                self.tripLastLocation = location
+                self.isFirstLocation = false
             }
             let speed = location.speed * 3.6
             if (speed >= 0){
                 self.currentSpeed.text = String(Int(speed))
             }
             
-            let firstLocationData = self.locationPlist.readFirstLocation()
-            let lastLocationData = self.locationPlist.readLastLocation()
-            let firstLocation = CLLocation(latitude: firstLocationData.latitude, longitude: firstLocationData.longitude)
-            let lastLocation = CLLocation(latitude: lastLocationData.latitude, longitude: lastLocationData.longitude)
+            // let firstLocationData = self.locationPlist.readFirstLocation()
+            // let lastLocationData = self.locationPlist.readLastLocation()
+            // let firstLocation = CLLocation(latitude: firstLocationData.latitude, longitude: firstLocationData.longitude)
+            // let lastLocation = CLLocation(latitude: lastLocationData.latitude, longitude: lastLocationData.longitude)
             
-            self.dist = lastLocation.distanceFromLocation(firstLocation) + location.distanceFromLocation(lastLocation)
+            self.dist = self.tripLastLocation.distanceFromLocation(self.tripFirstLocation) + location.distanceFromLocation(self.tripLastLocation)
             
             
             self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", (self.dist/1000),"KM")
@@ -102,7 +107,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                 self.currentSpeed.textColor = UIColor.redColor()
             }
             
-            let firstDate = firstLocationData.date
+            let firstDate = self.tripFirstLocation.timestamp
             let lastDate = location.timestamp
             
             let hr =  lastDate.hoursFrom(firstDate)
@@ -110,12 +115,17 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             let sec = lastDate.secondsFrom(firstDate) % 60
             
             self.timeDisplay.text = "\(hr):\(min):\(sec)"
+            self.tripLastLocation = location
             
         }
         
         if SessionObjects.motionMonitor != nil {
             SessionObjects.motionMonitor.updateLocationBlock = block
+        }else {
+            SessionObjects.motionMonitor = LocationMonitor()
+            SessionObjects.motionMonitor.updateLocationBlock = block
         }
+        
         map.delegate = self
         
         var adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
@@ -147,14 +157,14 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         if  Defaults[.isHavingTrip]
         {
             saveTrip()
-            
+            self.isFirstLocation = false
         }
         else
         {
             stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
             
             resetMap()
-            
+            self.isFirstLocation = true
             startDetection(sender)
             manager.startUpdatingLocation()
             self.map.showsUserLocation = true
@@ -258,12 +268,12 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             
         }
         print("coordiate saved")
->>>>>>> master
+        
     }
     
     
     
-
+    
     
     
     func getLocation(coordinate : TripCoordinate){
@@ -460,55 +470,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
     }
     
-    func saveTripToWebService(trip :Trip)
-    {
-        let tripWebService = TripWebService()
-        tripWebService.saveTrip(trip) { (returnedTrip, code) in
-            
-            
-            switch code {
-            case "success":
-                
-                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.first as! TripCoordinate)
-                
-                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.last as! TripCoordinate)
-                
-                trip.tripId = returnedTrip?.tripId
-                SessionObjects.currentManageContext.deleteObject(returnedTrip!)
-                trip.save()
-                break
-            case "error" :
-                trip.save()
-                break
-            default:
-                break
-                
-            }
-        }
-    }
     
-    func saveTripCoordinateToWebService(trip : Trip, tripCoordinate : TripCoordinate){
-        
-        let tripWebService = TripWebService()
-        let vehicleId = Int(trip.vehicle!.vehicleId!)
-        tripWebService.saveCoordinate(vehicleId, coordinate:  tripCoordinate, tripId: Int(trip.tripId!)){ (returnedCoordinate , code )in
-            
-            
-            switch code {
-            case "success":
-                SessionObjects.currentManageContext.deleteObject(returnedCoordinate!)
-                
-                break
-            case "error" :
-                break
-            default:
-                break
-                
-            }
-            
-        }
-        print("coordiate saved")
-    }
     
 }
 
