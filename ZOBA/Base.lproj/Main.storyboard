@@ -413,6 +413,7 @@
                         <outlet property="lastNameTextField" destination="ImV-Ry-feh" id="Cvl-c2-aHO"/>
                         <outlet property="passwordTextField" destination="KkZ-29-TFJ" id="q1l-Hy-Ta4"/>
                         <outlet property="registerButton" destination="qgH-6c-kdP" id="Bfo-0a-Ljm"/>
+                        <outlet property="scrollview" destination="AnZ-4v-q8B" id="Gqd-n5-2sx"/>
                         <outlet property="userNameTextField" destination="3cP-vu-l3Y" id="rRr-Bf-5ve"/>
                     </connections>
                 </viewController>

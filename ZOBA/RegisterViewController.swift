@@ -25,6 +25,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     var managedObjectContext : NSManagedObjectContext!
     
+    @IBOutlet weak var scrollview: UIScrollView!
     /*
      * Text Fields
      * Hoshi Text Fields
@@ -47,6 +48,11 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     let facebookReadPermissions = ["public_profile", "email", "user_friends"]
     
+    override func viewWillAppear(animated: Bool) {
+        let notCenter = NSNotificationCenter.defaultCenter()
+        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
+        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         super.hideKeyboardWhenTappedAround()
@@ -63,6 +69,9 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         facebookLoginButton.readPermissions = facebookReadPermissions
         facebookLoginButton.delegate = self
         facebookLoginButton.loginBehavior = FBSDKLoginBehavior.Native
+        
+
+
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -419,5 +428,37 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         }
         
         return randomString
+    }
+    //MARK: - keyboard
+    func keyBoardWillAppear(notification : NSNotification){
+        if let userInfo = notification.userInfo {
+            if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
+                
+                self.scrollview.contentInset = contentInset
+                self.scrollview.scrollIndicatorInsets = contentInset
+                
+                self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, 0 + (keyboardSize.height/2)) //set zero instead
+                
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsZero;
+                
+                self.scrollview.contentInset = contentInset
+                self.scrollview.scrollIndicatorInsets = contentInset
+                self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, self.scrollview.contentOffset.y)
+            }
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
