@@ -32,17 +32,12 @@ class TrackingDataWebService {
             ]
         
         Alamofire.request(.GET,url,parameters: params).responseJSON { (response) in
-       
-            print(response.request)
-            
             switch response.result
             {
                 
             case .Success(let _data):
                 
                 let connectionStatus = _data["status"] as! String
-                print(connectionStatus)
-                
                 switch connectionStatus
                 {
                 case "success":
@@ -56,8 +51,6 @@ class TrackingDataWebService {
                     
                     break;
                 case "error":
-                    
-                    print(_data)
                     result(trackingData: nil, code: "error")
                     
                     break;
@@ -69,8 +62,6 @@ class TrackingDataWebService {
                 
                 break
             case .Failure( _):
-                
-                
                 result(trackingData: nil, code: "error")
                 break
             }

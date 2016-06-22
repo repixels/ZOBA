@@ -433,6 +433,9 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="addDataBTN" destination="lEW-ya-1H4" id="apO-jE-wSt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hZS-Qa-XDS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

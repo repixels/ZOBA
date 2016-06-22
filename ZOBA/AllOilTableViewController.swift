@@ -17,9 +17,13 @@ class AllOilTableViewController: UITableViewController {
     
     var ArraysortedByDate : [TrackingData]!
     
+    @IBOutlet weak var addDataBTN: UIBarButtonItem!
+    
     override func viewWillAppear(animated: Bool) {
         if SessionObjects.currentVehicle != nil
         {
+            addDataBTN.enabled = true
+            addDataBTN.tintColor = UIColor.whiteColor()
             oilTrackingData = [TrackingData]()
             let vehicleName = SessionObjects.currentVehicle.name != nil ? SessionObjects.currentVehicle.name!+" " : ""
             self.prepareNavigationBar(vehicleName + "Oil")
@@ -34,6 +38,8 @@ class AllOilTableViewController: UITableViewController {
         }
         else
         {
+            addDataBTN.enabled = false
+            addDataBTN.tintColor = UIColor.flatGrayColor()
             self.prepareNavigationBar("No Car Selected")
         }
     }

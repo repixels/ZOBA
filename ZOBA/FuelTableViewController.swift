@@ -14,9 +14,12 @@ class FuelTableViewController: UITableViewController {
     
     var fuelTrackingData =  [TrackingData]?()
     
+    @IBOutlet weak var addDataBTN: UIBarButtonItem!
     override func viewWillAppear(animated: Bool) {
         if SessionObjects.currentVehicle != nil
         {
+            addDataBTN.enabled = true
+            addDataBTN.tintColor = UIColor.whiteColor()
             fuelTrackingData = [TrackingData]()
             let vehicleName = SessionObjects.currentVehicle.name != nil ? SessionObjects.currentVehicle.name!+" " : ""
             self.prepareNavigationBar(vehicleName + "Fuel")
@@ -34,6 +37,8 @@ class FuelTableViewController: UITableViewController {
         }
         else
         {
+            addDataBTN.enabled = false
+            addDataBTN.tintColor = UIColor.flatGrayColor()
             self.prepareNavigationBar("No Vehicle Selected")
         }
     }
