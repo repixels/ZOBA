@@ -365,7 +365,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     @IBAction func dateUpdate(sender: AnyObject) {
         
         datePickerView = UIDatePicker()
-        
+        datePickerView.maximumDate = NSDate()
         datePickerView.datePickerMode = UIDatePickerMode.Date
         
         dateTextField.inputView = datePickerView
