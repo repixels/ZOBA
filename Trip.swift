@@ -39,7 +39,7 @@ class Trip: NSManagedObject , Mappable {
         self.tripId <- map["id"]
         self.vehicle <- map[""]
         
-        coordinatesArray <- map[""]
+        coordinatesArray <- map["coordinates"]
         
         if coordinatesArray != nil
         {

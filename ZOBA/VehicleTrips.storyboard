@@ -29,12 +29,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adt-ex-axn">
-                                            <rect key="frame" x="27" y="26" width="45" height="27"/>
-                                            <fontDescription key="fontDescription" name="ContinuumMedium" family="Continuum Medium" pointSize="22"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fg-ah-UVo">
                                             <rect key="frame" x="36" y="52" width="27" height="22"/>
                                             <fontDescription key="fontDescription" name="ContinuumMedium" family="Continuum Medium" pointSize="14"/>
@@ -89,6 +83,12 @@
                                                 <constraint firstAttribute="width" secondItem="uq3-NB-K5r" secondAttribute="height" multiplier="1:1" id="gxY-sB-Bve"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adt-ex-axn">
+                                            <rect key="frame" x="27" y="26" width="45" height="27"/>
+                                            <fontDescription key="fontDescription" name="ContinuumMedium" family="Continuum Medium" pointSize="22"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="t2y-fI-pEL" firstAttribute="leading" secondItem="auE-V4-j70" secondAttribute="leading" id="02X-SH-LNi"/>

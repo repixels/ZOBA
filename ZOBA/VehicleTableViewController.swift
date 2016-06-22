@@ -19,8 +19,14 @@ class VehicleTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
-        self.tableView.reloadData()
+        if SessionObjects.currentUser.vehicle?.count > 0 {
+            self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
+            self.tableView.reloadData()
+        }
+        else {
+            
+            self.vehicles = [Vehicle]()
+        }
         
         self.navigationController?.navigationBar.barTintColor = UIColor.blueColor()
         self.navigationController?.navigationController?.navigationBar.tintColor = UIColor.blueColor()
