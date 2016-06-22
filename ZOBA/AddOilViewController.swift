@@ -11,6 +11,7 @@ import TextFieldEffects
 
 class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerViewDataSource{
     
+    @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
     @IBOutlet weak var vehiclePickerView: UIPickerView!

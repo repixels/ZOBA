@@ -11,6 +11,7 @@ import TextFieldEffects
 
 class AddFuelViewController: UIViewController , UIPickerViewDelegate {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
     @IBOutlet weak var vehiclePickerView: UIPickerView!

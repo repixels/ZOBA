@@ -12,6 +12,7 @@ import MapKit
 
 class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentationControllerDelegate
 ,UIPickerViewDataSource , UIPickerViewDelegate {
+    @IBOutlet weak var scrollview: UIScrollView!
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
