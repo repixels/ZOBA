@@ -429,9 +429,37 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         trackingDataObj.vehicle?.currentOdemeter = Int(currentOdometerTextField!.text!)
         trackingDataObj.serviceProviderName = selectedServiceProvider != nil && selectedServiceProvider!.name != nil  ? serviceProviderTextFeild.text! : "Not Available"
         
-        trackingDataObj.save()
-        
+       // trackingDataObj.save()
+        self.saveFuelToWebService(trackingDataObj)
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func saveFuelToWebService(fuel : TrackingData){
+    
+        let trackingWebService = TrackingDataWebService()
+        
+        trackingWebService.saveTrackingData(fuel, result: { (trackingData, code) in
+            
+            switch code {
+            case "success":
+                
+                print("success in saving data")
+                print(trackingData.trackingId)
+                fuel.trackingId = trackingData.trackingId
+                SessionObjects.currentManageContext.deleteObject(trackingData)
+                fuel.save()
+                break
+            case "error" :
+                print("error in saving tracking")
+                fuel.save()
+                break
+            default:
+                break
+                
+            }
+            
+            
+        })
     }
 
 
