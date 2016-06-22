@@ -57,6 +57,13 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         super.viewWillAppear(true)
         disableBtn()
+        
+        let notCenter = NSNotificationCenter.defaultCenter()
+        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
+        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+        
+        
+        
     }
     
     override func viewDidLoad() {
@@ -136,6 +143,10 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
         currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
+        
+        datePickerView = UIDatePicker()
+        datePickerView.maximumDate = NSDate()
+        
     }
     
     
@@ -184,7 +195,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         validateSaveBtn()
     }
     
-
+    
     @IBAction func currentOdemeterEditingChang(sender: AnyObject) {
         
         if(currentOdometerTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(currentOdometerTextField!.text!) && Int(currentOdometerTextField.text!)! > 0)
@@ -332,8 +343,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     @IBAction func dateUpdate(sender: AnyObject) {
         
-        datePickerView = UIDatePicker()
-        
         datePickerView.datePickerMode = UIDatePickerMode.Date
         
         dateTextField.inputView = datePickerView
@@ -397,9 +406,9 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         trackingDataObj.vehicle =  selectedVehicle
         trackingDataObj.vehicle?.currentOdemeter = Int(currentOdometerTextField!.text!)
-         trackingDataObj.serviceProviderName = selectedServiceProvider != nil && selectedServiceProvider!.name != nil  ? serviceProviderTextFeild.text! : "Not Available"
+        trackingDataObj.serviceProviderName = selectedServiceProvider != nil && selectedServiceProvider!.name != nil  ? serviceProviderTextFeild.text! : "Not Available"
         
-       // trackingDataObj.save()
+        // trackingDataObj.save()
         saveOilToWebService(trackingDataObj)
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -432,5 +441,43 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
             
         })
     }
-
+    
+    
+    //MARK: - keyboard
+    func keyBoardWillAppear(notification : NSNotification){
+        print("Keyboard will Appear")
+        
+        if let userInfo = notification.userInfo {
+            if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
+                
+                self.scrollview.contentInset = contentInset
+                self.scrollview.scrollIndicatorInsets = contentInset
+                
+                self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, 0 + (keyboardSize.height/2)) //set zero instead
+                
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        print("Keyboard will hide")
+        if let userInfo = notification.userInfo {
+            if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsZero;
+                
+                self.scrollview.contentInset = contentInset
+                self.scrollview.scrollIndicatorInsets = contentInset
+                self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, self.scrollview.contentOffset.y)
+            }
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    
 }

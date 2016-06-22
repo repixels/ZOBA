@@ -96,10 +96,12 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
             }
             else
             {
+                let userId = result.valueForKey("id") as? String
                 let firstName = result.valueForKey("first_name") as? String
                 let lastName = result.valueForKey("last_name") as? String
                 let userEmail = (result.valueForKey("email") as? String)!
                 let userName = userEmail.componentsSeparatedByString("@")[0]
+                let userProfileImage = "http://graph.facebook.com/\(userId!)/picture?type=large"
                 
                 let  fbUser = MyUser(managedObjectContext: SessionObjects.currentManageContext, entityName: "MyUser")
                 fbUser.email = userEmail
@@ -109,59 +111,73 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                 fbUser.phone = "1234567"
                 fbUser.password = self.randomAlphaNumericString(6)
                 let userWebService = UserWebservice(currentUser: fbUser)
-                userWebService.registerWithFaceBook({ (user, code) in
-                    
-                    switch code{
-                    
+                
+                userWebService.getUserImageFromFacebook(userProfileImage, result: { (imageData, code) in
+                    switch code
+                    {
                     case "success":
-                        SessionObjects.currentUser = user!
-                        if((Defaults[.deviceToken]) != nil)
-                        {
-                            SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
-                        }
-                        SessionObjects.currentUser.save()
-                        
-                        Defaults[.isFBLogin] = true
-                        Defaults[.isLoggedIn] = true
-                        Defaults[.useremail] = user!.email
-                        Defaults[.launchCount] += 1
-                        
-                        //To be removed
-//                        DummyDataBaseOperation.populateOnlyOnce()
-//                        DummyDataBaseOperation.populateData()
-                        
-                        self.facebookLoginButton.hidden = true
-                        
-                        let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
-                        let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
-                        
-                        let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
-                        let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
-                        
-                        
-                        let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
-                        slideMenuController.automaticallyAdjustsScrollViewInsets = true
-                        
-                        let app = UIApplication.sharedApplication().delegate as! AppDelegate
-                        app.window?.rootViewController = slideMenuController
-                        
-                        //start detection if user has car
-                        if SessionObjects.currentVehicle != nil {
-                            SessionObjects.motionMonitor = LocationMonitor()
-                            
-                            SessionObjects.motionMonitor.startDetection()
-                        }
-                    default :
-                        self.generateErrorAlert(code)
-                        break
-                    
-                    
+                        userWebService.user?.image = imageData
+                        self.navigateToMain(userWebService)
+                        break;
+                    case "error":
+                        self.navigateToMain(userWebService)
+                    default:
+                        self.navigateToMain(userWebService)
                     }
-                    
-                    
                 })
             }
         })
+    }
+    
+    func navigateToMain(userWebService: UserWebservice)
+    {
+        userWebService.registerWithFaceBook({ (user, code) in
+            
+            switch code{
+                
+            case "success":
+                SessionObjects.currentUser = user!
+                if((Defaults[.deviceToken]) != nil)
+                {
+                    SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+                }
+                SessionObjects.currentUser.save()
+                
+                Defaults[.isFBLogin] = true
+                Defaults[.isLoggedIn] = true
+                Defaults[.useremail] = user!.email
+                Defaults[.launchCount] += 1
+                
+                
+                self.facebookLoginButton.hidden = true
+                
+                let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+                let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                
+                let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
+                let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                
+                
+                let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
+                slideMenuController.automaticallyAdjustsScrollViewInsets = true
+                
+                let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                app.window?.rootViewController = slideMenuController
+                
+                //start detection if user has car
+                if SessionObjects.currentVehicle != nil {
+                    SessionObjects.motionMonitor = LocationMonitor()
+                    
+                    SessionObjects.motionMonitor.startDetection()
+                }
+            default :
+                self.generateErrorAlert(code)
+                break
+                
+                
+            }
+        })
+        
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {

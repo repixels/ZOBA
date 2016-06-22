@@ -19,7 +19,7 @@ class VehicleTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if SessionObjects.currentUser.vehicle?.count > 0 {
+        if SessionObjects.currentUser != nil && SessionObjects.currentUser.vehicle?.count > 0 {
             self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
             self.tableView.reloadData()
         }
@@ -74,7 +74,7 @@ class VehicleTableViewController: UITableViewController {
             if vehicle.name != nil
             {
                 cell.vehicleNameInitialsLabel.hidden = false
-                cell.vehicleNameInitialsLabel.text = String(vehicle.name!.characters.prefix(2))
+                cell.vehicleNameInitialsLabel.text = String(vehicle.name!.characters.prefix(2)).uppercaseString
             }
         }
         

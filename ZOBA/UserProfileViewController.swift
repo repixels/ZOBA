@@ -84,7 +84,6 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     
     //MARK: - keyboard
     func keyBoardWillAppear(notification : NSNotification){
-        print("Keyboard will Appear")
         
         if let userInfo = notification.userInfo {
             if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
@@ -101,7 +100,6 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        print("Keyboard will hide")
         if let userInfo = notification.userInfo {
             if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
                 let contentInset = UIEdgeInsetsZero;
@@ -111,6 +109,11 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
                 self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y)
             }
         }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func changeFieldsStatus()
@@ -150,7 +153,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
                 }
             }
             initialsLabel.hidden = false
-            initialsLabel.text = userIntials
+            initialsLabel.text = userIntials.uppercaseString
         }
     }
     

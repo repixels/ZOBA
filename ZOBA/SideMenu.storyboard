@@ -234,6 +234,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="foQ-LJ-Ury"/>
+                    <connections>
+                        <outlet property="backgroundColor" destination="oPI-UY-rCh" id="LLP-pL-ZbD"/>
+                        <outlet property="initialsLabel" destination="YqC-zp-UiQ" id="oVj-jN-4l0"/>
+                        <outlet property="profilePicture" destination="VL6-kb-2Ht" id="23f-m8-Pz6"/>
+                        <outlet property="welcomeMessage" destination="5az-89-LUc" id="xy1-PB-P7C"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HxN-au-Ev2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
