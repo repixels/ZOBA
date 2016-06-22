@@ -180,7 +180,7 @@ class UserWebservice
     func registerWithFaceBook(result : (user:MyUser? , code:String)->Void ){
     
         
-        let faceBookRegisterUrl = StringConstants.servicesDomain+"fb"
+        let faceBookRegisterUrl = StringConstants.servicesDomain+"register/fb"
         
         let params : [String : AnyObject!] = ["username":user!.userName,
                                               "email" : user!.email,

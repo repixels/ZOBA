@@ -116,9 +116,10 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
                         
                         print("user stopped")
                         print("distance : \(self.locationPlist.getDistanceInMetter())")
-                        
-                        self.presentStopMotionNotification()
-                        self.isMoving = false
+                        if self.isMoving!  {
+                            self.presentStopMotionNotification()
+                            self.isMoving = false
+                        }
                     }
                         
                     else {
@@ -186,7 +187,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
         let activateAutoReport = UIAlertAction(title: "Auto report", style:.Default) { (action) in
             
             print("auto reprt started")
-            SessionObjects.motionMonitor.startNewTrip()
+            //            SessionObjects.motionMonitor.startNewTrip()
             
             dispatch_async(dispatch_get_main_queue(), {
                 
@@ -310,7 +311,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
         //        
         
         
-       // isUserStoppedBefore = !isUserStoppedBefore
+        // isUserStoppedBefore = !isUserStoppedBefore
         
         UIApplication.sharedApplication().delegate?.application!(UIApplication.sharedApplication(), didReceiveLocalNotification: notif)
         
