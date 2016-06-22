@@ -101,15 +101,12 @@ class VehicleWebServices {
                     let yearArray = Mapper<Year>().mapArray(json)
                     result(years: yearArray!, code: connectionStatus)
                 case "error" :
-                    print("status error")
                     result(years: nil, code: "no years")
                     break
                 default :
-                    print("default")
                     break
                 }
             case .Failure(let error):
-                print(error)
                 result(years: nil, code: "We're having a tiny problem. try again later")
                 break
             }
@@ -120,8 +117,9 @@ class VehicleWebServices {
     }
     
     func getTrims(modelName : String , year : String , result : ((trims : [Trim]! ,code :String)->())){
-        let makeUrl = buildUrl("vehicle/trim")//?model="+modelName+"&year="+String(year))
-        print("Trim URL : \(makeUrl)")
+        
+        let makeUrl = buildUrl("vehicle/trim")
+        
         Alamofire.request(.GET,makeUrl,parameters: ["model":modelName,"year":year]).responseJSON { (response) in
             
             switch response.result
@@ -135,11 +133,9 @@ class VehicleWebServices {
                     let trimsArray = Mapper<Trim>().mapArray(json)
                     result(trims: trimsArray!, code: connectionStatus)
                 case "error" :
-                    print("status error")
                     result(trims: nil, code: "error")
                     break
                 default :
-                    print("default")
                     break
                 }
             case .Failure(let error):
@@ -165,10 +161,7 @@ class VehicleWebServices {
                                               "initialOdemeter":vehicle.initialOdemeter!,
                                               "licencePlate":vehicle.licensePlate!]
         
-        print(params)
         Alamofire.request(.GET,vehicleUrl ,parameters: params).responseJSON { response in
-            print(response.request)
-            
             switch response.result
             {
                 
@@ -212,56 +205,4 @@ class VehicleWebServices {
         
         
     }
-    
-    //    func populateAllVehicleModels(){
-    //        
-    //        // get all makes then all models for first make then all years for first model
-    //        //then all trims for first model and first year then repeat
-    //        // and insert all of trim and trim's year and (trim's year)'s model and ( (trim's year)'s model )'s make in dictionary and add this dictionary to array
-    //        //then repeat
-    //        getMakes({ (makes, code) in
-    //            
-    //            makes.forEach({ (make) in
-    //                
-    //                self.getModels(make.name!, result: { (models, code) in
-    //                    models.forEach({ (model) in
-    //                      
-    //                        self.getYears(model.name!, result: { (years, code) in
-    //                            
-    //                            years.forEach({ (year) in
-    //                                
-    //                                self.getTrims(model.name!, year: year.name!.stringValue, result:{ (trims, code) in
-    //                                    
-    ////                                    yearTrims.addObject(trims)
-    //                                   trims.forEach({ (trim) in
-    //                                    
-    //                                        let vehicleModel = VehicleModel(backGroundEntity: "VehicleModel")
-    //                                        model.make = make
-    //                                    vehicleModel.model = model
-    //                                    vehicleModel.year = year
-    //                                    vehicleModel.trim = trim
-    //                                    vehicleModel.save()
-    //                                   })
-    //                                    
-    //                                })
-    //                                
-    //                        
-    //                            })
-    //                        
-    //                            
-    //                        })
-    //                        
-    //                        
-    //                    })
-    //                })
-    //                
-    //            })
-    //            let context = makes!.first!.managedObjectContext
-    //            makes.first?.release(context!)
-    //            
-    //        })
-    //        
-    //        
-    //    
-    //    }
 }
