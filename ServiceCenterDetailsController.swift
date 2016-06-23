@@ -24,7 +24,7 @@ class ServiceCenterDetailsController: UIViewController {
         nameLabel.text = serviceProvider.name!
         prepareInitials()
         prepareNavigationBar(serviceProvider.name!)
-        
+        self.addAnnotation()
         // Do any additional setup after loading the view.
     }
     
@@ -67,7 +67,9 @@ class ServiceCenterDetailsController: UIViewController {
         
         map.addAnnotation(annotation)
         
-        let region = MKCoordinateRegion(center: annotation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002))
+        let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+        
+        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
         map.setRegion(region, animated: true)
     }
     

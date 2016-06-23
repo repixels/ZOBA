@@ -18,6 +18,7 @@ class MenuTableViewController: UITableViewController {
     var vehiclesStoryBoard: UIStoryboard?
     var tripsStoryBoard: UIStoryboard?
     var homeViewController : HomeViewController?
+    var serviceProviderStoryBoard : UIStoryboard?
     
     @IBOutlet weak var initialsLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
@@ -47,6 +48,7 @@ class MenuTableViewController: UITableViewController {
         self.vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
         self.tripsStoryBoard =  UIStoryboard(name: "VehicleTrips", bundle: nil)
         self.homeViewController = self.homeStoryBoard!.instantiateViewControllerWithIdentifier("HomeTabController") as? HomeViewController
+        self.serviceProviderStoryBoard = UIStoryboard(name: "ServiceProvider", bundle: nil)
         
     }
 
@@ -120,6 +122,10 @@ class MenuTableViewController: UITableViewController {
                 break
             }
         case 4:
+            let serviceProviderNavigationController = self.serviceProviderStoryBoard!.instantiateViewControllerWithIdentifier("ServiceProviders")
+            self.slideMenuController()?.changeMainViewController(serviceProviderNavigationController, close: true)
+            break;
+        case 5:
             print("Logout Clicked")
             break
         default:

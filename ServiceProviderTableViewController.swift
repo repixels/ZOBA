@@ -99,6 +99,7 @@ class ServiceProviderTableViewController: UITableViewController {
         
         
     }
+    
     func prepareNavigationBar(title: String)
     {
         self.navigationController?.navigationBar.titleTextAttributes =
@@ -128,6 +129,10 @@ class ServiceProviderTableViewController: UITableViewController {
         default:
             return "Welcome Back"
         }
+    }
+    
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        self.slideMenuController()?.openLeft()
     }
     
     /*
