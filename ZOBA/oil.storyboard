@@ -77,7 +77,7 @@
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -90,6 +90,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
                                                 <color key="value" red="0.15101002156734467" green="0.56891876459121704" blue="0.43715286254882812" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                                <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -168,7 +171,7 @@
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -181,6 +184,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
                                                 <color key="value" red="0.15101002156734467" green="0.56891876459121704" blue="0.43715286254882812" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                                <integer key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -244,6 +250,7 @@
                         <outlet property="initialOdemeter" destination="sZ1-pc-Rjo" id="ACx-Lq-J3w"/>
                         <outlet property="oilAmountTextField" destination="3gf-6M-QDp" id="D1Y-ba-pUf"/>
                         <outlet property="saveBtn" destination="yx9-F9-Ub9" id="0CF-Cg-Pfg"/>
+                        <outlet property="scrollview" destination="i07-hH-Lnd" id="nyR-sx-kxr"/>
                         <outlet property="serviceProviderButton" destination="KHw-ft-xhw" id="iTs-RF-E1N"/>
                         <outlet property="serviceProviderTextFeild" destination="Y9P-1S-YEk" id="EtW-bL-RSR"/>
                         <outlet property="vehiclePickerView" destination="Gta-rC-07x" id="VgJ-w6-JC0"/>
@@ -251,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjU-W5-ufE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1877" y="1081"/>
+            <point key="canvasLocation" x="1847" y="1170"/>
         </scene>
         <!--All Oil Table View Controller-->
         <scene sceneID="ZLD-da-y0G">
@@ -278,7 +285,7 @@
                                             <color key="textColor" red="0.111818932" green="0.11183650050000001" blue="0.1118125319" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder.png" translatesAutoresizingMaskIntoConstraints="NO" id="gKp-lL-BbB">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="gKp-lL-BbB">
                                             <rect key="frame" x="88" y="52" width="26" height="26"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oil Filled From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y78-n4-pV6">
@@ -302,7 +309,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hd0-gq-XaI">
                                             <rect key="frame" x="0.0" y="0.0" width="90" height="87"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="Evm-fi-R9l">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle" translatesAutoresizingMaskIntoConstraints="NO" id="Evm-fi-R9l">
                                                     <rect key="frame" x="8" y="5" width="82" height="82"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3e-Ww-64J">
@@ -333,7 +340,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="zqq-fB-um0" secondAttribute="bottom" constant="19" id="sHS-oF-rLG"/>
                                             </constraints>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Odometer.png" translatesAutoresizingMaskIntoConstraints="NO" id="C53-Q0-7TU">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Odometer" translatesAutoresizingMaskIntoConstraints="NO" id="C53-Q0-7TU">
                                             <rect key="frame" x="88" y="18" width="26" height="26"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="26" id="NE1-nH-DC0"/>
@@ -408,6 +415,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="addDataBTN" destination="iEY-nG-wMf" id="tjc-bG-Ngk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6lx-JC-XdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -560,11 +570,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Odometer" width="827" height="827"/>
         <image name="Odometer.png" width="2480" height="2480"/>
         <image name="calendar.png" width="2230" height="2318"/>
         <image name="menu" width="22" height="22"/>
         <image name="oil-level.png" width="1434" height="1434"/>
+        <image name="placeholder" width="578" height="827"/>
         <image name="placeholder.png" width="1734" height="2480"/>
-        <image name="timeline-circle.png" width="350" height="350"/>
+        <image name="timeline-circle" width="117" height="117"/>
     </resources>
 </document>

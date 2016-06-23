@@ -20,23 +20,20 @@ class ServiceProviderServices: NSManagedObject , Mappable {
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("ServiceProviderServices", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-//        mapping(map)
         
     }
     
     func mapping(map: Map) {
         
-        self.endingHour <- map[""]
-        self.serviceProviderServicesId <- map[""]
-        self.startingHour <- map[""]
-        self.service <- map[""]
-        self.serviceProvider <- map[""]
+        self.endingHour <- map["endingHour"]
+        self.serviceProviderServicesId <- map["id"]
+        self.startingHour <- map["startingHour"]
+        self.service <- map["service"]
+        self.serviceProvider <- map["serviceProvider"]
         
     }
 }

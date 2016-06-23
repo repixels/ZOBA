@@ -240,7 +240,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         let serviceCentersPage = OnboardingContentViewController(title: "Service Centers", body: "View the nearest Service Centers to you From their location to their working hours and the offered services", image: UIImage(named: "service-centers"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
-            NSLog("Tracking Page")
         }
         
         serviceCentersPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
@@ -248,7 +247,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         let zobaPage = OnboardingContentViewController(title: "Zoba", body: "Your Car Pal", image: UIImage(named: "logo"), buttonText: "Lets Get Started") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
-            NSLog("Tracking Page")
             self.handleOnboardingCompletion()
         }
         
@@ -355,11 +353,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 let story = UIStoryboard(name: "MotionDetection", bundle: nil)
                 let motionDetection = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
                 activeViewCont?.navigationController?.pushViewController(motionDetection, animated: true)
-            }
-            else {
-                
-                let motionDetection = activeViewCont as! MotionDetecionMapController
-                
             }
         }
         

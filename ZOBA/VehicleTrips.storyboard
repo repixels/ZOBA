@@ -29,7 +29,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="uq3-NB-K5r">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle" translatesAutoresizingMaskIntoConstraints="NO" id="uq3-NB-K5r">
                                             <rect key="frame" x="8" y="4" width="82" height="82"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="uq3-NB-K5r" secondAttribute="height" multiplier="1:1" id="gxY-sB-Bve"/>
@@ -177,7 +177,7 @@
                                 <rect key="frame" x="0.0" y="-74" width="320" height="878"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gxx-JU-Kzj">
-                                        <rect key="frame" x="8" y="522" width="304" height="48"/>
+                                        <rect key="frame" x="8" y="527" width="304" height="48"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select a End Point for the Trip" placeholder="Ending Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dph-wZ-h08" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                 <rect key="frame" x="12" y="0.0" width="280" height="48"/>
@@ -248,7 +248,7 @@
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nsj-GG-QpK">
-                                        <rect key="frame" x="8" y="454" width="304" height="60"/>
+                                        <rect key="frame" x="8" y="459" width="304" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Select a Start Point for the Trip" placeholder="Starting Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Ot-Eu-K1K" customClass="HoshiTextField" customModule="TextFieldEffects">
                                                 <rect key="frame" x="12" y="9" width="280" height="48"/>
@@ -292,31 +292,8 @@
                                             <constraint firstItem="9lQ-5X-yE1" firstAttribute="top" secondItem="8Ot-Eu-K1K" secondAttribute="top" id="hy3-Rk-rRV"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-tY-v3V" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="342" width="280" height="48"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="xPw-tY-v3V" secondAttribute="height" multiplier="35:6" id="w6F-cP-Ce8"/>
-                                        </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.15410047769546509" green="0.41306763887405396" blue="0.69063264131546021" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Final Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qIL-H5-pxI" customClass="validatedTextField" customModule="ZOBA">
-                                        <rect key="frame" x="168" y="398" width="132" height="48"/>
+                                        <rect key="frame" x="182" y="408" width="118" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="qIL-H5-pxI" secondAttribute="height" multiplier="11:4" id="LJw-AA-XoR"/>
                                         </constraints>
@@ -346,15 +323,14 @@
                                         </connections>
                                     </textField>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oOf-7t-jVf">
-                                        <rect key="frame" x="0.0" y="138" width="320" height="162"/>
+                                        <rect key="frame" x="-54" y="84" width="427" height="216"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="162" id="vxL-hN-6PK"/>
+                                            <constraint firstAttribute="width" secondItem="oOf-7t-jVf" secondAttribute="height" multiplier="160:81" id="A3l-2L-FbH"/>
                                         </constraints>
                                     </pickerView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Covered Milage" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3t-hm-MhY" customClass="validatedTextField" customModule="ZOBA">
-                                        <rect key="frame" x="20" y="398" width="132" height="48"/>
+                                        <rect key="frame" x="20" y="398" width="146" height="53"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="48" id="Nru-l3-MKn"/>
                                             <constraint firstAttribute="width" secondItem="r3t-hm-MhY" secondAttribute="height" multiplier="11:4" id="XhR-gX-gnz"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -381,6 +357,29 @@
                                         <connections>
                                             <action selector="coveredKmEdited:" destination="1xC-7H-O8v" eventType="editingChanged" id="F6v-83-03a"/>
                                         </connections>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-tY-v3V" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="342" width="280" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="xPw-tY-v3V" secondAttribute="height" multiplier="35:6" id="w6F-cP-Ce8"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" red="0.15410047769546509" green="0.41306763887405396" blue="0.69063264131546021" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -431,6 +430,7 @@
                         <outlet property="endingPointTextField" destination="dph-wZ-h08" id="KwH-KE-1w7"/>
                         <outlet property="finalOdemeter" destination="qIL-H5-pxI" id="ynO-Gq-2e8"/>
                         <outlet property="saveBtn" destination="JkI-FT-rSr" id="4cT-S4-Jyw"/>
+                        <outlet property="scrollview" destination="M2d-EV-6za" id="ue7-eH-vzc"/>
                         <outlet property="startingPointTextField" destination="8Ot-Eu-K1K" id="EvF-jl-qW9"/>
                         <outlet property="vehiclesPickerView" destination="oOf-7t-jVf" id="z7v-qx-4j4"/>
                     </connections>
@@ -451,13 +451,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WzL-Sp-SaU">
+                                <rect key="frame" x="0.0" y="64" width="320" height="220"/>
+                            </mapView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gN8-jy-PaD">
-                                <rect key="frame" x="0.0" y="266" width="320" height="335"/>
+                                <rect key="frame" x="0.0" y="284" width="320" height="284"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Initial Odemeter Before Trip" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-CE-u63" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="61" width="280" height="48"/>
+                                        <rect key="frame" x="20" y="86" width="280" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="xLP-CE-u63" secondAttribute="height" multiplier="35:6" id="IuN-F0-YZE"/>
+                                            <constraint firstAttribute="height" constant="48" id="ogs-1D-oxQ"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -477,56 +480,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Covered Milage" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ASP-ch-5Fg" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="127" width="132" height="48"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Covered Milage" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ASP-ch-5Fg" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="142" width="132" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="ASP-ch-5Fg" secondAttribute="height" multiplier="11:4" id="PhG-0T-BZT"/>
-                                        </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Starting Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PmB-Ka-bXA" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="183" width="280" height="48"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="PmB-Ka-bXA" secondAttribute="height" multiplier="35:6" id="AHT-qR-5qc"/>
-                                        </constraints>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ending Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Pq-rO-7un" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="239" width="280" height="48"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="0Pq-rO-7un" secondAttribute="height" multiplier="35:6" id="mxE-yP-IWH"/>
+                                            <constraint firstAttribute="height" constant="48" id="7vV-eM-oHo"/>
+                                            <constraint firstAttribute="width" secondItem="ASP-ch-5Fg" secondAttribute="height" multiplier="11:4" id="YN8-EN-cR5"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -547,9 +505,9 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x2G-bK-yAf" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="168" y="15" width="132" height="33"/>
+                                        <rect key="frame" x="180" y="29" width="132" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="x2G-bK-yAf" secondAttribute="height" multiplier="4:1" id="ZtY-Ci-jUY"/>
+                                            <constraint firstAttribute="width" secondItem="x2G-bK-yAf" secondAttribute="height" multiplier="11:4" id="3Kw-Sa-g0A"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -570,9 +528,11 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Vehicle" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Myy-ZO-deo" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="0.0" width="132" height="48"/>
+                                        <rect key="frame" x="20" y="29" width="132" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="Myy-ZO-deo" secondAttribute="height" multiplier="11:4" id="AAV-Ez-brw"/>
+                                            <constraint firstAttribute="width" constant="132" id="0cs-UX-EoY"/>
+                                            <constraint firstAttribute="height" constant="48" id="cnr-Sy-Q0v"/>
+                                            <constraint firstAttribute="width" secondItem="Myy-ZO-deo" secondAttribute="height" multiplier="11:4" id="dCX-8s-gUT"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -593,9 +553,55 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Odemeter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iUZ-CR-r6g" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="168" y="128" width="132" height="47"/>
+                                        <rect key="frame" x="168" y="142" width="132" height="48"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="iUZ-CR-r6g" secondAttribute="height" multiplier="4:1" constant="-56" id="2TE-8e-DOD"/>
+                                            <constraint firstAttribute="width" secondItem="iUZ-CR-r6g" secondAttribute="height" multiplier="11:4" id="bBL-ap-gX8"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Starting Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PmB-Ka-bXA" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="205" width="280" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="Rvv-A5-s7d"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Ending Point" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Pq-rO-7un" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="261" width="280" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="Jj8-pI-deZ"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -617,59 +623,52 @@
                                     </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="x2G-bK-yAf" firstAttribute="leading" secondItem="Myy-ZO-deo" secondAttribute="trailing" constant="16" id="6aI-O9-EQp"/>
-                                    <constraint firstItem="PmB-Ka-bXA" firstAttribute="centerX" secondItem="gN8-jy-PaD" secondAttribute="centerX" id="BNJ-mo-xKA"/>
-                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="baseline" secondItem="x2G-bK-yAf" secondAttribute="baseline" id="Dwe-He-HD7"/>
-                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="leading" secondItem="gN8-jy-PaD" secondAttribute="leading" constant="20" id="EPL-3P-iBN"/>
-                                    <constraint firstItem="0Pq-rO-7un" firstAttribute="width" secondItem="gN8-jy-PaD" secondAttribute="height" multiplier="56:67" id="Hoj-sa-jqr"/>
-                                    <constraint firstAttribute="bottom" secondItem="0Pq-rO-7un" secondAttribute="bottom" constant="48" id="Iku-Wi-0pT"/>
-                                    <constraint firstItem="xLP-CE-u63" firstAttribute="top" secondItem="Myy-ZO-deo" secondAttribute="bottom" constant="13" id="J9r-59-RGv"/>
-                                    <constraint firstItem="iUZ-CR-r6g" firstAttribute="trailing" secondItem="PmB-Ka-bXA" secondAttribute="trailing" id="K1J-er-bxZ"/>
-                                    <constraint firstItem="xLP-CE-u63" firstAttribute="trailing" secondItem="iUZ-CR-r6g" secondAttribute="trailing" id="Leb-Li-Ka1"/>
-                                    <constraint firstItem="ASP-ch-5Fg" firstAttribute="top" secondItem="xLP-CE-u63" secondAttribute="bottom" constant="18" id="Mtm-tV-W0f"/>
-                                    <constraint firstItem="ASP-ch-5Fg" firstAttribute="baseline" secondItem="iUZ-CR-r6g" secondAttribute="baseline" constant="-1" id="Qgm-zy-fyZ"/>
-                                    <constraint firstItem="x2G-bK-yAf" firstAttribute="leading" secondItem="iUZ-CR-r6g" secondAttribute="leading" id="SXd-Ir-4eH"/>
-                                    <constraint firstItem="iUZ-CR-r6g" firstAttribute="top" secondItem="xLP-CE-u63" secondAttribute="bottom" constant="19" id="Y3R-fj-L8k"/>
-                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="leading" secondItem="xLP-CE-u63" secondAttribute="leading" id="aU1-FZ-Ue0"/>
-                                    <constraint firstItem="ASP-ch-5Fg" firstAttribute="leading" secondItem="PmB-Ka-bXA" secondAttribute="leading" id="b8p-tf-ALM"/>
-                                    <constraint firstItem="xLP-CE-u63" firstAttribute="leading" secondItem="ASP-ch-5Fg" secondAttribute="leading" id="bnH-H9-VJt"/>
-                                    <constraint firstItem="0Pq-rO-7un" firstAttribute="top" secondItem="PmB-Ka-bXA" secondAttribute="bottom" constant="8" symbolic="YES" id="c20-3Q-Fm4"/>
-                                    <constraint firstItem="PmB-Ka-bXA" firstAttribute="top" secondItem="iUZ-CR-r6g" secondAttribute="bottom" constant="8" symbolic="YES" id="hsn-zF-CZv"/>
-                                    <constraint firstItem="PmB-Ka-bXA" firstAttribute="trailing" secondItem="0Pq-rO-7un" secondAttribute="trailing" id="kW6-bf-JTo"/>
-                                    <constraint firstAttribute="width" secondItem="gN8-jy-PaD" secondAttribute="height" multiplier="64:67" id="liv-Fd-CFf"/>
-                                    <constraint firstAttribute="trailing" secondItem="x2G-bK-yAf" secondAttribute="trailing" constant="20" id="mnv-mI-O1t"/>
-                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="trailing" secondItem="ASP-ch-5Fg" secondAttribute="trailing" id="mvf-2T-uh6"/>
-                                    <constraint firstItem="PmB-Ka-bXA" firstAttribute="top" secondItem="ASP-ch-5Fg" secondAttribute="bottom" constant="8" symbolic="YES" id="pJt-Ph-fsx"/>
-                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="top" secondItem="gN8-jy-PaD" secondAttribute="top" id="pbH-kH-qlk"/>
-                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="bottom" secondItem="x2G-bK-yAf" secondAttribute="bottom" id="tz0-gJ-giq"/>
-                                    <constraint firstItem="PmB-Ka-bXA" firstAttribute="leading" secondItem="0Pq-rO-7un" secondAttribute="leading" id="wms-8u-roC"/>
-                                    <constraint firstItem="x2G-bK-yAf" firstAttribute="trailing" secondItem="xLP-CE-u63" secondAttribute="trailing" id="xO7-sC-fJl"/>
+                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="top" secondItem="gN8-jy-PaD" secondAttribute="top" constant="29" id="0UP-h5-8hH"/>
+                                    <constraint firstItem="xLP-CE-u63" firstAttribute="top" secondItem="Myy-ZO-deo" secondAttribute="bottom" constant="9" id="1BU-NL-ty6"/>
+                                    <constraint firstItem="PmB-Ka-bXA" firstAttribute="top" secondItem="ASP-ch-5Fg" secondAttribute="bottom" constant="15" id="6ty-bZ-xzX"/>
+                                    <constraint firstItem="xLP-CE-u63" firstAttribute="centerX" secondItem="gN8-jy-PaD" secondAttribute="centerX" id="6wM-wN-Ecn"/>
+                                    <constraint firstItem="iUZ-CR-r6g" firstAttribute="trailing" secondItem="PmB-Ka-bXA" secondAttribute="trailing" id="6wy-Xt-hKx"/>
+                                    <constraint firstItem="iUZ-CR-r6g" firstAttribute="trailing" secondItem="xLP-CE-u63" secondAttribute="trailing" id="APh-B3-TIG"/>
+                                    <constraint firstItem="iUZ-CR-r6g" firstAttribute="leading" secondItem="ASP-ch-5Fg" secondAttribute="trailing" constant="16" id="Bbr-At-63s"/>
+                                    <constraint firstAttribute="trailing" secondItem="xLP-CE-u63" secondAttribute="trailing" constant="20" id="Ce0-6Y-R5X"/>
+                                    <constraint firstItem="0Pq-rO-7un" firstAttribute="top" secondItem="PmB-Ka-bXA" secondAttribute="bottom" constant="8" symbolic="YES" id="Dig-d0-6kA"/>
+                                    <constraint firstItem="PmB-Ka-bXA" firstAttribute="leading" secondItem="0Pq-rO-7un" secondAttribute="leading" id="ElK-gH-cpZ"/>
+                                    <constraint firstItem="x2G-bK-yAf" firstAttribute="leading" secondItem="Myy-ZO-deo" secondAttribute="trailing" constant="28" id="Fco-Kz-vDv"/>
+                                    <constraint firstItem="x2G-bK-yAf" firstAttribute="trailing" secondItem="gN8-jy-PaD" secondAttribute="trailingMargin" id="Fdv-fg-1M6"/>
+                                    <constraint firstItem="ASP-ch-5Fg" firstAttribute="leading" secondItem="PmB-Ka-bXA" secondAttribute="leading" id="G8A-xb-GWl"/>
+                                    <constraint firstAttribute="bottom" secondItem="0Pq-rO-7un" secondAttribute="bottom" constant="-25" id="JK8-y4-QMf"/>
+                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="trailing" secondItem="ASP-ch-5Fg" secondAttribute="trailing" id="KG6-fk-Ajg"/>
+                                    <constraint firstItem="xLP-CE-u63" firstAttribute="leading" secondItem="ASP-ch-5Fg" secondAttribute="leading" id="ORX-9c-G6q"/>
+                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="leading" secondItem="xLP-CE-u63" secondAttribute="leading" id="Sfj-2s-rNd"/>
+                                    <constraint firstItem="ASP-ch-5Fg" firstAttribute="top" secondItem="xLP-CE-u63" secondAttribute="bottom" constant="8" symbolic="YES" id="Suv-Z6-yKC"/>
+                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="top" secondItem="x2G-bK-yAf" secondAttribute="top" id="VJu-RV-Cld"/>
+                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="bottom" secondItem="x2G-bK-yAf" secondAttribute="bottom" id="iMP-AY-Woe"/>
+                                    <constraint firstItem="iUZ-CR-r6g" firstAttribute="baseline" secondItem="ASP-ch-5Fg" secondAttribute="baseline" id="iiy-bq-COZ"/>
+                                    <constraint firstItem="iUZ-CR-r6g" firstAttribute="bottom" secondItem="ASP-ch-5Fg" secondAttribute="bottom" id="lAA-aT-kcX"/>
+                                    <constraint firstItem="Myy-ZO-deo" firstAttribute="leading" secondItem="gN8-jy-PaD" secondAttribute="leading" constant="20" id="md6-Ch-saE"/>
+                                    <constraint firstItem="PmB-Ka-bXA" firstAttribute="trailing" secondItem="0Pq-rO-7un" secondAttribute="trailing" id="omF-no-kwn"/>
                                 </constraints>
                             </scrollView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="WzL-Sp-SaU">
-                                <rect key="frame" x="0.0" y="64" width="320" height="203"/>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iI9-bV-6uR">
+                                <rect key="frame" x="0.0" y="64" width="320" height="220"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="WzL-Sp-SaU" secondAttribute="height" multiplier="320:203" id="MOe-RN-VUM"/>
-                                </constraints>
-                            </mapView>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iI9-bV-6uR">
-                                <rect key="frame" x="0.0" y="64" width="328" height="203"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="iI9-bV-6uR" secondAttribute="height" multiplier="328:203" id="H9o-Y3-Ijm"/>
+                                    <constraint firstAttribute="height" constant="220" id="alg-cK-R3x"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.19376453757286072" green="0.50850099325180054" blue="0.85232251882553101" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="WzL-Sp-SaU" firstAttribute="bottom" secondItem="iI9-bV-6uR" secondAttribute="bottom" id="1Da-rH-Swk"/>
-                            <constraint firstItem="WzL-Sp-SaU" firstAttribute="trailing" secondItem="gN8-jy-PaD" secondAttribute="trailing" id="HAc-vu-5Y7"/>
-                            <constraint firstItem="WzL-Sp-SaU" firstAttribute="leading" secondItem="F0V-RF-pUq" secondAttribute="leading" id="IM4-NY-hCL"/>
-                            <constraint firstItem="gN8-jy-PaD" firstAttribute="top" secondItem="sFL-Yp-x5b" secondAttribute="bottom" constant="202" id="KPV-F5-Muh"/>
-                            <constraint firstItem="WzL-Sp-SaU" firstAttribute="top" secondItem="iI9-bV-6uR" secondAttribute="top" id="UhP-FJ-8Lh"/>
-                            <constraint firstItem="WzL-Sp-SaU" firstAttribute="leading" secondItem="iI9-bV-6uR" secondAttribute="leading" id="bO1-wj-AIg"/>
-                            <constraint firstItem="WzL-Sp-SaU" firstAttribute="top" secondItem="sFL-Yp-x5b" secondAttribute="bottom" id="iUR-l2-St6"/>
-                            <constraint firstItem="WzL-Sp-SaU" firstAttribute="leading" secondItem="gN8-jy-PaD" secondAttribute="leading" id="qVs-aS-C4W"/>
-                            <constraint firstItem="gN8-jy-PaD" firstAttribute="centerX" secondItem="F0V-RF-pUq" secondAttribute="centerX" id="sUm-2m-D4w"/>
+                            <constraint firstItem="iI9-bV-6uR" firstAttribute="leading" secondItem="F0V-RF-pUq" secondAttribute="leading" id="8FN-FF-deA"/>
+                            <constraint firstItem="iI9-bV-6uR" firstAttribute="leading" secondItem="WzL-Sp-SaU" secondAttribute="leading" id="8Qt-pJ-bEI"/>
+                            <constraint firstItem="gN8-jy-PaD" firstAttribute="top" secondItem="iI9-bV-6uR" secondAttribute="bottom" id="9Br-eD-hxr"/>
+                            <constraint firstItem="WzL-Sp-SaU" firstAttribute="bottom" secondItem="iI9-bV-6uR" secondAttribute="bottom" id="9zg-NF-jPN"/>
+                            <constraint firstAttribute="trailing" secondItem="iI9-bV-6uR" secondAttribute="trailing" id="Af1-fv-34j"/>
+                            <constraint firstItem="iI9-bV-6uR" firstAttribute="top" secondItem="WzL-Sp-SaU" secondAttribute="top" id="Daf-zU-C9i"/>
+                            <constraint firstItem="iI9-bV-6uR" firstAttribute="top" secondItem="sFL-Yp-x5b" secondAttribute="bottom" id="F5P-CB-rnz"/>
+                            <constraint firstItem="iI9-bV-6uR" firstAttribute="trailing" secondItem="gN8-jy-PaD" secondAttribute="trailing" id="OAw-8h-CZo"/>
+                            <constraint firstItem="WzL-Sp-SaU" firstAttribute="leading" secondItem="gN8-jy-PaD" secondAttribute="leading" id="Zzl-bG-XtW"/>
+                            <constraint firstItem="WzL-Sp-SaU" firstAttribute="trailing" secondItem="iI9-bV-6uR" secondAttribute="trailing" id="fAC-ZG-DzP"/>
+                            <constraint firstItem="gN8-jy-PaD" firstAttribute="bottom" secondItem="luL-d5-DqZ" secondAttribute="top" id="t6B-6q-Mcn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="thn-3s-tKS"/>
@@ -681,6 +680,7 @@
                         <outlet property="imageView" destination="iI9-bV-6uR" id="1Tr-H7-Efq"/>
                         <outlet property="initialOdemeterTextField" destination="xLP-CE-u63" id="DDQ-B9-Ley"/>
                         <outlet property="map" destination="WzL-Sp-SaU" id="XIz-cQ-dCM"/>
+                        <outlet property="scrollView" destination="gN8-jy-PaD" id="fOm-2h-wge"/>
                         <outlet property="startPointTextField" destination="PmB-Ka-bXA" id="U13-Ym-bGz"/>
                         <outlet property="vehicleNameTextField" destination="Myy-ZO-deo" id="5oK-YK-HR5"/>
                     </connections>
@@ -701,15 +701,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ai3-cz-xbh">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ai3-cz-xbh">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ai3-cz-xbh" secondAttribute="height" multiplier="40:71" id="bI4-RW-Lka"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="sIB-WW-5Ns" appends="YES" id="KCy-lO-um4"/>
                                 </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="bottom" secondItem="WAX-9J-UiV" secondAttribute="top" id="Olj-b1-9B1"/>
+                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="centerX" secondItem="k4i-pb-jRv" secondAttribute="centerX" id="SSm-M8-6Zp"/>
+                            <constraint firstItem="Ai3-cz-xbh" firstAttribute="width" secondItem="k4i-pb-jRv" secondAttribute="height" multiplier="40:71" id="ZYh-TX-mgV"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Qi4-oP-Gnt"/>
                     <connections>
@@ -742,6 +750,6 @@
     <resources>
         <image name="menu" width="22" height="22"/>
         <image name="situation-pin" width="530" height="827"/>
-        <image name="timeline-circle.png" width="350" height="350"/>
+        <image name="timeline-circle" width="117" height="117"/>
     </resources>
 </document>

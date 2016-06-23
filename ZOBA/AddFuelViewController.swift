@@ -10,47 +10,48 @@ import UIKit
 import TextFieldEffects
 
 class AddFuelViewController: UIViewController , UIPickerViewDelegate {
-
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
     @IBOutlet weak var vehiclePickerView: UIPickerView!
     
     @IBOutlet weak var initialOdemeter: HoshiTextField!
-   
+    
     @IBOutlet weak var dateTextField: HoshiTextField!
-
+    
     @IBOutlet weak var fuelAmountTextField: HoshiTextField!
     
     @IBOutlet weak var currentOdometerTextField: HoshiTextField!
     
     @IBOutlet weak var serviceProviderTextFeild: HoshiTextField!
-
+    
     @IBOutlet weak var serviceProviderButton: UIButton!
     var serviceProviderPickerView : UIPickerView!
-
+    
     var selectedVehicle : Vehicle!
-
+    
     var vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
-
+    
     var isCurrentOdeReady = true
-
+    
     var isFuelMountReady = false
     
     var isServiceProviderReady = false
-
+    
     var formatter = NSDateFormatter()
-
+    
     var serviceProviders : [ServiceProvider]!
-
+    
     var datePickerView : UIDatePicker!
-
+    
     var date : String!
     
     var selectedServiceProvider : ServiceProvider?
     
     
     
-
+    
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(true)
@@ -137,8 +138,13 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
         currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
         
+        
+        //register keyboard notification
+        let notCenter = NSNotificationCenter.defaultCenter()
+        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
+        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+        
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -165,7 +171,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
         if(fuelAmountTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(fuelAmountTextField!.text!) && Int(fuelAmountTextField.text!)! > 0)
         {
-        
+            
             if (Int(fuelAmountTextField.text!)! < 90)
             {
                 
@@ -272,12 +278,12 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         saveBtn.tintColor = UIColor.whiteColor()
     }
     
-
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       
+        
         if pickerView == vehiclePickerView {
             
             return vehicles[row].name
@@ -296,7 +302,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
             initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
             currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
         }
-        
+            
         else
         {
             selectedServiceProvider = serviceProviders[row]
@@ -356,10 +362,10 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     
     
     
-     @IBAction func dateUpdate(sender: AnyObject) {
+    @IBAction func dateUpdate(sender: AnyObject) {
         
         datePickerView = UIDatePicker()
-        
+        datePickerView.maximumDate = NSDate()
         datePickerView.datePickerMode = UIDatePickerMode.Date
         
         dateTextField.inputView = datePickerView
@@ -367,8 +373,8 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         dateTextField.becomeFirstResponder()
         
         datePickerView.addTarget(self, action: #selector(AddFuelViewController.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
-
-     }
+        
+    }
     
     
     
@@ -429,13 +435,13 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         trackingDataObj.vehicle?.currentOdemeter = Int(currentOdometerTextField!.text!)
         trackingDataObj.serviceProviderName = selectedServiceProvider != nil && selectedServiceProvider!.name != nil  ? serviceProviderTextFeild.text! : "Not Available"
         
-       // trackingDataObj.save()
+        // trackingDataObj.save()
         self.saveFuelToWebService(trackingDataObj)
         self.navigationController?.popViewControllerAnimated(true)
     }
     
     func saveFuelToWebService(fuel : TrackingData){
-    
+        
         let trackingWebService = TrackingDataWebService()
         
         trackingWebService.saveTrackingData(fuel, result: { (trackingData, code) in
@@ -461,6 +467,45 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
             
         })
     }
-
-
+    
+    
+    
+    //MARK: - keyboard
+    func keyBoardWillAppear(notification : NSNotification){        
+        if let userInfo = notification.userInfo {
+            if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
+                
+                self.scrollView.contentInset = contentInset
+                self.scrollView.scrollIndicatorInsets = contentInset
+                
+                self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, 0 + (keyboardSize.height/2)) //set zero instead
+                
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsZero;
+                
+                self.scrollView.contentInset = contentInset
+                self.scrollView.scrollIndicatorInsets = contentInset
+                self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y)
+            }
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+    
 }

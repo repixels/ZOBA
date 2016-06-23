@@ -19,9 +19,17 @@ class MenuTableViewController: UITableViewController {
     var tripsStoryBoard: UIStoryboard?
     var homeViewController : HomeViewController?
     
+    @IBOutlet weak var initialsLabel: UILabel!
+    @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var welcomeMessage: UILabel!
     
+    @IBOutlet weak var backgroundColor: UITableViewCell!
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
+        
+        self.welcomeMessage.text = contextAwareTitle()?.capitalizedString
+        loadUserImage()
+        
     }
 
     override func viewDidLoad() {
@@ -190,6 +198,62 @@ class MenuTableViewController: UITableViewController {
         slideMenuController()?.openLeft()
     }
     
+    func loadUserImage()
+    {
+        if (SessionObjects.currentUser.image != nil)
+        {
+            profilePicture.image = UIImage(data: SessionObjects.currentUser.image!)
+            initialsLabel.hidden = true
+            
+            profilePicture.layer.borderWidth = 2.5
+            profilePicture.layer.masksToBounds = false
+            profilePicture.layer.borderColor = UIColor.whiteColor().CGColor
+            profilePicture.layer.cornerRadius = profilePicture.frame.height/2
+            profilePicture.clipsToBounds = true
+        }
+        else
+        {
+            var userIntials = ""
+            if SessionObjects.currentUser.firstName?.characters.first != nil
+            {
+                userIntials.append((SessionObjects.currentUser.firstName?.characters.first)!)
+                
+                
+                if SessionObjects.currentUser.lastName?.characters.first != nil
+                {
+                    
+                    userIntials.append((SessionObjects.currentUser.lastName?.characters.first)!)
+                }
+                else
+                {
+                    userIntials.append((SessionObjects.currentUser.lastName?.characters.last)!)
+                    
+                }
+            }
+            initialsLabel.hidden = false
+            initialsLabel.text = userIntials.uppercaseString
+        }
+    }
+    
+    func contextAwareTitle() -> String?
+    {
+        let now = NSDate()
+        let cal = NSCalendar.currentCalendar()
+        let comps = cal.component(NSCalendarUnit.Hour, fromDate: now)
+        
+        switch comps {
+        case 0 ... 12:
+            self.backgroundColor.backgroundColor = UIColor.flatBlueColor()
+            return "Good Morning"
+        case 13 ... 17:
+            self.backgroundColor.backgroundColor = UIColor.flatMintColor()
+            return "Good Afternoon"
+        case 18 ... 23:
+            return "Good Evening"
+        default:
+            return "Welcome Back"
+        }
+    }
 
 }
 

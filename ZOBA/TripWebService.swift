@@ -22,7 +22,6 @@ class TripWebService {
     func saveTrip(trip : Trip,result : ((returnedTrip : Trip? , code : String)->())){
         let tripUrl = buildUrl("trip/addTrip")
         Alamofire.request(.GET,tripUrl ,parameters: ["vehicleId": Int(trip.vehicle!.vehicleId!), "initialOdemeter": Int(trip.initialOdemeter!) , "coveredMilage" :Int(trip.coveredKm!)] ).responseJSON { response in
-            print(response.request)
             switch response.result
             {
             case .Success(let _data):
@@ -35,12 +34,8 @@ class TripWebService {
                     
                     let trip = Mapper<Trip>().map(tripJson)
                     result(returnedTrip: trip!, code: "success")
-                    
-                    
                     break;
                 case "error":
-                    
-                    //       let returnedJSON = _data["result"] as? String
                     result(returnedTrip: nil, code: "error")
                     
                     break;
@@ -52,8 +47,6 @@ class TripWebService {
                 
                 break
             case .Failure( _):
-                //   let errorMessage = "We're having a tiny problem. Try loging in later!"
-                
                 result(returnedTrip: nil, code: "error")
                 break
             }
@@ -84,10 +77,7 @@ class TripWebService {
                     result(returnedCoordinate: coordinate!, code: "success")
                     break;
                 case "error":
-                    
-                    //  let returnedJSON = _data["result"] as? String
                     result(returnedCoordinate: nil, code: "error")
-                    //
                     break;
                 default:
                     
@@ -97,8 +87,6 @@ class TripWebService {
                 
                 break
             case .Failure( _):
-                //   let errorMessage = "We're having a tiny problem. Try loging in later!"
-                
                 result(returnedCoordinate:nil, code: "error")
                 break
             }

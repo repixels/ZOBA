@@ -20,13 +20,10 @@ class MeasuringUnit: NSManagedObject , Mappable {
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("MeasuringUnit", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-//        mapping(map)
         
     }
     
@@ -34,10 +31,10 @@ class MeasuringUnit: NSManagedObject , Mappable {
         
         var trackingTypesArray : [TrackingType]?
         
-        self.name <- map[""]
-        self.suffix <- map[""]
-        self.unitId <- map[""]
-        trackingTypesArray <- map[""]
+        self.name <- map["name"]
+        self.suffix <- map["sufffix"]
+        self.unitId <- map["id"]
+        trackingTypesArray <- map["trackingType"]
         
         if trackingTypesArray != nil
         {
