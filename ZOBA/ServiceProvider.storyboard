@@ -12,10 +12,76 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Service Provider Table View Controller-->
+        <scene sceneID="cwQ-jE-kTb">
+            <objects>
+                <tableViewController id="CuV-Hs-jJS" customClass="ServiceProviderTableViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="121" sectionHeaderHeight="28" sectionFooterHeight="28" id="U2D-vG-pOf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceCell" rowHeight="121" id="Y7Q-Zb-uP9" customClass="ServiceProviderCell" customModule="ZOBA" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="121"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y7Q-Zb-uP9" id="MSC-eT-Ol3">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="120.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Service provider " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3TL-N5-rav" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                            <rect key="frame" x="106" y="21" width="109" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Ce-WH-fr3" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                            <rect key="frame" x="114" y="59" width="92" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGc-ME-9ij">
+                                            <rect key="frame" x="256" y="46" width="46" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="timeline-circle" translatesAutoresizingMaskIntoConstraints="NO" id="FlB-Yd-sTv">
+                                            <rect key="frame" x="16" y="21" width="82" height="79"/>
+                                        </imageView>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="EA" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bTc-XV-81O">
+                                            <rect key="frame" x="24" y="34" width="66" height="55"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="address" destination="2Ce-WH-fr3" id="0nx-BC-jem"/>
+                                    <outlet property="name" destination="3TL-N5-rav" id="1U3-0h-9pv"/>
+                                    <outlet property="nameInitial" destination="bTc-XV-81O" id="cXH-pB-3cc"/>
+                                    <outlet property="supportBtn" destination="CGc-ME-9ij" id="NeS-6P-mlU"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CuV-Hs-jJS" id="NRv-nN-YhR"/>
+                            <outlet property="delegate" destination="CuV-Hs-jJS" id="dTw-fr-dQl"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="0bD-BG-UBI">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="oOi-3x-eXY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="menuButtonClicked:" destination="CuV-Hs-jJS" id="KC5-hl-GPK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IYH-7t-BeY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1875" y="747"/>
+        </scene>
+        <!--Service Center Details Controller-->
         <scene sceneID="DCz-PS-zvs">
             <objects>
-                <viewController id="YE2-KB-x43" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="serviceProviderDetails" id="YE2-KB-x43" customClass="ServiceCenterDetailsController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lG4-xg-uyu"/>
                         <viewControllerLayoutGuide type="bottom" id="Myv-0c-Ieo"/>
@@ -24,7 +90,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DOq-g1-eLf">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DOq-g1-eLf">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="193"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DOq-g1-eLf" secondAttribute="height" multiplier="320:193" id="Prf-AC-goO"/>
@@ -63,7 +129,7 @@
                                     <constraint firstAttribute="trailing" secondItem="i63-Uj-OOE" secondAttribute="trailing" constant="-30" id="tNW-iX-jMV"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Home Branch" placeholder="Change Service Provider Branch" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wKU-hp-Cpd" customClass="HoshiTextField" customModule="TextFieldEffects">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Home Branch" placeholder="Change Service Provider Branch" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wKU-hp-Cpd" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="277" width="280" height="69"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="69" id="qh0-9y-aj4"/>
@@ -105,13 +171,38 @@
                             <constraint firstItem="DOq-g1-eLf" firstAttribute="centerX" secondItem="wKU-hp-Cpd" secondAttribute="centerX" id="pf1-qX-gRa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="map" destination="DOq-g1-eLf" id="xr5-h4-lH1"/>
+                        <outlet property="nameInitiallabel" destination="zEy-P2-ZsJ" id="vGA-dE-6bG"/>
+                        <outlet property="nameLabel" destination="Key-FL-6DF" id="dyX-4e-d59"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5fO-7z-uwS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1689" y="747"/>
+            <point key="canvasLocation" x="2221" y="747"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rF4-Rc-3Pb">
+            <objects>
+                <navigationController storyboardIdentifier="ServiceProviders" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4FF-5n-Ve0" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LAT-aK-av4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CuV-Hs-jJS" kind="relationship" relationship="rootViewController" id="as8-Jh-eqj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sie-Q8-1rL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1343" y="747"/>
         </scene>
     </scenes>
     <resources>
         <image name="hexa-image" width="257" height="296"/>
+        <image name="menu" width="22" height="22"/>
+        <image name="timeline-circle" width="117" height="117"/>
     </resources>
 </document>

@@ -12,8 +12,8 @@ import ObjectMapper
 
 
 class ServiceProvider: NSManagedObject , Mappable {
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -33,7 +33,7 @@ class ServiceProvider: NSManagedObject , Mappable {
         var phonesArray : [ServiceProviderPhone]?
         var calendarsArray : [ServiceProviderCalender]?
         var makesArray : [Make]?
-        var phoneArray : [ServiceProviderPhone]?
+        
         var serviceProviderServicesArray : [ServiceProviderServices]?
         
         
@@ -47,7 +47,6 @@ class ServiceProvider: NSManagedObject , Mappable {
         phonesArray <- map["serviceProviderPhones"]
         calendarsArray <- map["serviceProviderCalendars"]
         makesArray <- map["makes"]
-        phoneArray <- map["serviceProviderPhones"]
         serviceProviderServicesArray <- map["serviceProviderServices"]
         
         if branchesArray != nil
@@ -86,14 +85,7 @@ class ServiceProvider: NSManagedObject , Mappable {
             self.make = nil
         }
         
-        if phoneArray != nil
-        {
-            self.phone = NSSet(array: phoneArray!)
-        }
-        else
-        {
-            self.phone = nil
-        }
+        
         
         if serviceProviderServicesArray != nil
         {

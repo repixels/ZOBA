@@ -20,7 +20,7 @@ class MenuTableViewController: UITableViewController {
     var tripsStoryBoard: UIStoryboard?
     var homeViewController : HomeViewController?
     var loginStoryboard : UIStoryboard?
-    
+    var serviceProviderStoryBoard : UIStoryboard?
     
     @IBOutlet weak var initialsLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
@@ -50,6 +50,7 @@ class MenuTableViewController: UITableViewController {
         self.vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
         self.tripsStoryBoard =  UIStoryboard(name: "VehicleTrips", bundle: nil)
         self.homeViewController = self.homeStoryBoard!.instantiateViewControllerWithIdentifier("HomeTabController") as? HomeViewController
+        self.serviceProviderStoryBoard = UIStoryboard(name: "ServiceProvider", bundle: nil)
         
         self.loginStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
@@ -125,6 +126,10 @@ class MenuTableViewController: UITableViewController {
                 break
             }
         case 4:
+            let serviceProviderNavigationController = self.serviceProviderStoryBoard!.instantiateViewControllerWithIdentifier("ServiceProviders")
+            self.slideMenuController()?.changeMainViewController(serviceProviderNavigationController, close: true)
+            break;
+        case 5:
             print("Logout Clicked")
             
             if SessionObjects.currentVehicle != nil  {

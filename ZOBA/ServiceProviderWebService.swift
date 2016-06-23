@@ -18,62 +18,62 @@ class ServiceProviderWebService {
         return StringConstants.servicesDomain + url
     }
     
+    //    /serviceProvider/getServiceProviders
+    func getServiceProvider( result :((serviceProvider : [ServiceProvider]!,code :String)->())){
+        
+        let url = buildUrl("serviceProvider/getServiceProviders")
+        
+        
+        
+        
+        
+        Alamofire.request(.GET,url ).responseJSON { response in
+            print(response.request)
+            
+            switch response.result
+            {
+                
+            case .Success(let _data):
+                
+                let connectionStatus = _data["status"] as! String
+                switch connectionStatus
+                {
+                case "success":
+                    let serviceProvidersJson = _data["result"]
+                    print(serviceProvidersJson)
+                    
+                    let serviceProviders = Mapper<ServiceProvider>().mapArray(serviceProvidersJson)
+                    result(serviceProvider: serviceProviders!, code: "success")
+                    
+                    
+                    break;
+                case "error":
+                    
+                    print(_data)
+                    result(serviceProvider: nil, code: "error")
+                    
+                    break;
+                default:
+                    
+                    break;
+                    
+                }
+                
+                break
+            case .Failure( _):
+                
+                
+                result(serviceProvider: nil, code: "error")
+                break
+            }
+            
+            
+            
+        }
+        
+        
+    }
     
-//    func getServiceProvider( result :((serviceProvider : ServiceProvider!,code :String)->())){
-//        
-//        let vehicleUrl = buildUrl("vehicle/add")
-//        
-//        
-//        let params :[String : AnyObject]? = [ ]
-//        
-//        print(params)
-//        Alamofire.request(.GET,vehicleUrl ,parameters: params).responseJSON { response in
-//            print(response.request)
-//            
-//            switch response.result
-//            {
-//                
-//            case .Success(let _data):
-//                
-//                let connectionStatus = _data["status"] as! String
-//                switch connectionStatus
-//                {
-//                case "success":
-//                    let vehicleJson = _data["result"]
-//                    
-//                    
-//                    let vehicle = Mapper<Vehicle>().map(vehicleJson)
-//                    result(returnedVehicle: vehicle!, code: "success")
-//                    
-//                    
-//                    break;
-//                case "error":
-//                    
-//                    print(_data)
-//                    result(returnedVehicle: nil, code: "error")
-//                    
-//                    break;
-//                default:
-//                    
-//                    break;
-//                    
-//                }
-//                
-//                break
-//            case .Failure( _):
-//                
-//                
-//                result(returnedVehicle: nil, code: "error")
-//                break
-//            }
-//            
-//            
-//            
-//        }
-//        
-//        
-//    }
-//    
-//    
+    
     
 }

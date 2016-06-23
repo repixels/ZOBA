@@ -40,6 +40,8 @@ class TimelinePopulater
         
         self.tableView = tableView
         
+        
+        
     }
     
     func populateTripsCells() -> [TripCell]?
@@ -149,35 +151,115 @@ class TimelinePopulater
         //insert day summery cell at the begining of each day
         var sortedCells = [TimeLineCell]()
         
+        
         let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
-        cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter!.stringValue
+        cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter?.stringValue != nil ? SessionObjects.currentVehicle.currentOdemeter!.stringValue : "Not Available"
         cell.salutation?.text = contextAwareTitle()
+        cell.monthLabel?.text = "Hello"
+        timelineDate = NSDate()
+        if timelineDate != nil
+        {
+            let formatter = NSDateFormatter()
+            
+            formatter.dateFormat = "MMM"
+            
+            cell.monthLabel?.text = formatter.stringFromDate(timelineDate!).uppercaseString
+            print(formatter.stringFromDate(timelineDate!).uppercaseString)
+            
+            formatter.dateFormat = "dd"
+            cell.dayLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
+            
+            
+
+        }
         
         sortedCells.append(cell)
         
-        if tableCells.count > 1 {
+        if tableCells.count > 1
+        {
             for i in 0 ..< tableCells.count - 1
             {
-                sortedCells.append(tableCells[i])
-                
                 let cal = NSCalendar.currentCalendar()
-                let firstComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i].timeLineDate)
-                let secondComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i+1].timeLineDate)
-                if firstComps > secondComps
+                cal.timeZone = NSTimeZone(name: "UTC")!
+                var firstComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i].timeLineDate)
+                var secondComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i+1].timeLineDate)
+                firstComps -= 1
+                secondComps -= 1
+                
+                let firstMonthComps = cal.component(NSCalendarUnit.Month, fromDate: tableCells[i].timeLineDate)
+                let secondMonthComps = cal.component(NSCalendarUnit.Month, fromDate: tableCells[i+1].timeLineDate)
+                
+                let firstYearComps = cal.component(NSCalendarUnit.Year, fromDate: tableCells[i].timeLineDate)
+                let secondYearComps = cal.component(NSCalendarUnit.Year, fromDate: tableCells[i+1].timeLineDate)
+                
+                if firstComps > secondComps || firstMonthComps > secondMonthComps || firstYearComps > secondYearComps
                 {
-                    
                     timelineDate = tableCells[i].timeLineDate
+                    timelineDate = timelineDate?.dateByAddingTimeInterval(60*60*24 * -1)
+                    
+                    
                     let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
-                    cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter!.stringValue
+                    cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter?.stringValue != nil ? SessionObjects.currentVehicle.currentOdemeter!.stringValue : "Not Available"
+                    cell.currentOdemeter?.hidden = true
+                    cell.dayImage?.image = nil
+                    cell.dayImage?.hidden = true
                     cell.salutation?.text = contextAwareTitle()
+                    
+                    if timelineDate != nil
+                    {
+                        let formatter = NSDateFormatter()
+                        
+                        formatter.dateFormat = "MMM"
+                        
+                        cell.monthLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                        
+                        formatter.dateFormat = "dd"
+                        cell.dayLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                        
+                        formatter.dateFormat = "EEEE"
+                        cell.salutation?.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                    }
+                    
                     sortedCells.append(cell)
                 }
                 
-                
+                sortedCells.append(tableCells[i])
             }
         }
-          if tableCells.count > 0 {
-        sortedCells.append(tableCells.last!)
+        
+        if tableCells.count > 0
+        {
+        
+                timelineDate = tableCells.last!.timeLineDate
+//                timelineDate = timelineDate?.dateByAddingTimeInterval(60*60*24 * -1)
+            
+                
+                let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
+                cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter?.stringValue != nil ? SessionObjects.currentVehicle.currentOdemeter!.stringValue : "Not Available"
+                cell.currentOdemeter?.hidden = true
+                cell.dayImage?.image = nil
+                cell.dayImage?.hidden = true
+                cell.salutation?.text = contextAwareTitle()
+                
+                if timelineDate != nil
+                {
+                    let formatter = NSDateFormatter()
+                    
+                    formatter.dateFormat = "MMM"
+                    
+                    cell.monthLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                    
+                    formatter.dateFormat = "dd"
+                    cell.dayLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                    
+                    formatter.dateFormat = "EEEE"
+                    cell.salutation?.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                }
+                
+                sortedCells.append(cell)
+            
+
+            sortedCells.append(tableCells.last!)
         }
         
         return sortedCells
