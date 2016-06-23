@@ -36,7 +36,7 @@ class ServiceProviderServices: NSManagedObject , Mappable {
         startingHRStr <- map["startingHour"]
         
         let formatter = NSDateFormatter()
-        formatter.dateFormat = "hh:mm:ss"
+        formatter.dateFormat = "hh:mm"
         
         
         if endingHRStr != nil {
@@ -48,6 +48,7 @@ class ServiceProviderServices: NSManagedObject , Mappable {
             print(startingHRStr)
             self.startingHour = formatter.dateFromString(startingHRStr!)?.timeIntervalSince1970
         }
+        
         
         
         self.serviceProviderServicesId <- map["id"]

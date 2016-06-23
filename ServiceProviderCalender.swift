@@ -35,15 +35,17 @@ class ServiceProviderCalender: NSManagedObject , Mappable{
         startingHRStr <- map["startingHour"]
         
         let formatter = NSDateFormatter()
-        formatter.dateFormat = "hh:mm:ss"
+        formatter.dateFormat = "hh:mm"
         
         
         if endingHRStr != nil {
+            
             self.endingHour = formatter.dateFromString(endingHRStr!)?.timeIntervalSince1970
         }
         
         if startingHRStr != nil {
             self.startingHour      = formatter.dateFromString(startingHRStr!)?.timeIntervalSince1970
+            
         }
         
         
