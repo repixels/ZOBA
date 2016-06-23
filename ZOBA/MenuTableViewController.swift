@@ -127,18 +127,24 @@ class MenuTableViewController: UITableViewController {
         case 4:
             print("Logout Clicked")
             
-            
-            
-            
+            if SessionObjects.currentVehicle != nil  {
+                
             SessionObjects.currentUser.release(SessionObjects.currentManageContext)
             SessionObjects.currentVehicle.release(SessionObjects.currentManageContext)
-
-
+            
+            }
+            else
+            {
+                SessionObjects.currentUser.release(SessionObjects.currentManageContext)
+            }
+            
             deleteEntities("MyUser")
             deleteEntities("Vehicle")
             let login = self.loginStoryboard!.instantiateViewControllerWithIdentifier("mainStoryBoard") as! LoginViewController
+            // self.presentedViewController(login, animated: true, completion: nil)
+            self.slideMenuController()?.closeLeft()
             
-          // self.presentedViewController(login, animated: true, completion: nil)
+          
             break
         default:
             self.closeLeft()
