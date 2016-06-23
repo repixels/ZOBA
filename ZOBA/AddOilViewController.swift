@@ -143,8 +143,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
         currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
-        
-        getServiceProviders()
+        	
         datePickerView = UIDatePicker()
         datePickerView.maximumDate = NSDate()
         
@@ -444,24 +443,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     }
     
     
-    func getServiceProviders()
-    {
-        
-        let serviceProviderWebService = ServiceProviderWebService()
-        serviceProviderWebService.getServiceProvider { (serviceProviderArray, code) in
-            switch code {
-            case "success" :
-                print(serviceProviderArray)
-                self.serviceProviders = [ServiceProvider]()
-                self.serviceProviders = serviceProviderArray
-                
-                break
-            default :
-                print("error")
-                break
-            }
-            }
-    }
     //MARK: - keyboard
     func keyBoardWillAppear(notification : NSNotification){
         if let userInfo = notification.userInfo {
@@ -472,7 +453,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
                 self.scrollview.scrollIndicatorInsets = contentInset
                 
                 self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, 0 + (keyboardSize.height/2)) //set zero instead
-                    
+                
             }
         }
     }
@@ -499,5 +480,5 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         super.touchesBegan(touches, withEvent: event)
     }
     
-
+    
 }

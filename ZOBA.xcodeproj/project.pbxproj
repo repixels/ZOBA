@@ -122,6 +122,8 @@
 		838918461D0AE30C001F0060 /* TripDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838918451D0AE30C001F0060 /* TripDetailController.swift */; };
 		83AEBCF51D0767F100B334FE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEBCF41D0767F100B334FE /* UserProfileViewController.swift */; };
 		83AEBCF71D08244400B334FE /* UserProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEBCF61D08244300B334FE /* UserProfileEditController.swift */; };
+		83B042051D1BAAF100C6CAD1 /* ServiceProviderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B042041D1BAAF000C6CAD1 /* ServiceProviderTableViewController.swift */; };
+		83B042071D1BACD000C6CAD1 /* ServiceProviderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B042061D1BACD000C6CAD1 /* ServiceProviderCell.swift */; };
 		83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC89F1D048766006CC257 /* AbstractDao.swift */; };
 		8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */; };
 		D7E3809149A0ABDF4F894412 /* Pods_ZOBATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */; };
@@ -332,6 +334,8 @@
 		838918451D0AE30C001F0060 /* TripDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailController.swift; sourceTree = "<group>"; };
 		83AEBCF41D0767F100B334FE /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		83AEBCF61D08244300B334FE /* UserProfileEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileEditController.swift; sourceTree = "<group>"; };
+		83B042041D1BAAF000C6CAD1 /* ServiceProviderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderTableViewController.swift; sourceTree = "<group>"; };
+		83B042061D1BACD000C6CAD1 /* ServiceProviderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderCell.swift; sourceTree = "<group>"; };
 		83BAC89F1D048766006CC257 /* AbstractDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDao.swift; sourceTree = "<group>"; };
 		8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = managedObjectExtension.swift; sourceTree = "<group>"; };
 		B7974B3E65B33BEAC6D00F69 /* Pods-ZOBAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBAUITests/Pods-ZOBAUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -532,6 +536,7 @@
 		827827551CF837D600684CE5 /* ZOBA */ = {
 			isa = PBXGroup;
 			children = (
+				83B042031D1BAA3300C6CAD1 /* ServiceProvider */,
 				82CC7C8F1D12F57A004AECA1 /* MenuTableViewController.swift */,
 				830ACD6D1D119A5600AD457B /* Motion Detection */,
 				8373C6AA1D103A5E00E2C865 /* TextFieldExtension */,
@@ -752,6 +757,16 @@
 				829825671D0D816D00FCC4C8 /* EditPasswordViewController.swift */,
 			);
 			name = "User Profile";
+			sourceTree = "<group>";
+		};
+		83B042031D1BAA3300C6CAD1 /* ServiceProvider */ = {
+			isa = PBXGroup;
+			children = (
+				83B042041D1BAAF000C6CAD1 /* ServiceProviderTableViewController.swift */,
+				83B042061D1BACD000C6CAD1 /* ServiceProviderCell.swift */,
+			);
+			name = ServiceProvider;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		DCFC30DA1CFDDE740018BBD3 /* poco */ = {
@@ -1342,6 +1357,7 @@
 				82AE18DC1D12C3CB00F4EED6 /* TrackingData+CoreDataProperties.swift in Sources */,
 				8265E7F11D0583780039D0AF /* AppDelegate.swift in Sources */,
 				824858C41D1A0BD800BC95E7 /* TrackingDataWebService.swift in Sources */,
+				83B042051D1BAAF100C6CAD1 /* ServiceProviderTableViewController.swift in Sources */,
 				82AE18E81D12C3CB00F4EED6 /* ServiceProviderServices+CoreDataProperties.swift in Sources */,
 				DC0095741D075660000856FC /* ServiceProviderPhone.swift in Sources */,
 				8265E7F01D0583560039D0AF /* RegisterViewController.swift in Sources */,
@@ -1417,6 +1433,7 @@
 				82AE18DB1D12C3CB00F4EED6 /* Model+CoreDataProperties.swift in Sources */,
 				DC00957A1D075660000856FC /* MeasuringUnit.swift in Sources */,
 				DC00958C1D075660000856FC /* ServiceProvider.swift in Sources */,
+				83B042071D1BACD000C6CAD1 /* ServiceProviderCell.swift in Sources */,
 				8255E19C1D0426430044C2CB /* HomeViewController.swift in Sources */,
 				830ACD7B1D119B7F00AD457B /* LocationPlistManager.swift in Sources */,
 				82057F791D048FDA00BC80DD /* AddOilViewController.swift in Sources */,

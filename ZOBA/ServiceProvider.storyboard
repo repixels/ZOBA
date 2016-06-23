@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -12,6 +12,64 @@
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--Service Provider Table View Controller-->
+        <scene sceneID="cwQ-jE-kTb">
+            <objects>
+                <tableViewController id="CuV-Hs-jJS" customClass="ServiceProviderTableViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="121" sectionHeaderHeight="28" sectionFooterHeight="28" id="U2D-vG-pOf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="serviceCell" rowHeight="121" id="Y7Q-Zb-uP9" customClass="ServiceProviderCell" customModule="ZOBA" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="121"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y7Q-Zb-uP9" id="MSC-eT-Ol3">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Service provider " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3TL-N5-rav" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                            <rect key="frame" x="106" y="21" width="109" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Ce-WH-fr3" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                            <rect key="frame" x="114" y="59" width="92" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGc-ME-9ij">
+                                            <rect key="frame" x="256" y="46" width="46" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                        </button>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bTc-XV-81O">
+                                            <rect key="frame" x="24" y="34" width="66" height="55"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="timeline-circle" translatesAutoresizingMaskIntoConstraints="NO" id="FlB-Yd-sTv">
+                                            <rect key="frame" x="16" y="21" width="82" height="79"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="address" destination="2Ce-WH-fr3" id="0nx-BC-jem"/>
+                                    <outlet property="name" destination="3TL-N5-rav" id="1U3-0h-9pv"/>
+                                    <outlet property="nameInitial" destination="bTc-XV-81O" id="cXH-pB-3cc"/>
+                                    <outlet property="supportBtn" destination="CGc-ME-9ij" id="NeS-6P-mlU"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="CuV-Hs-jJS" id="NRv-nN-YhR"/>
+                            <outlet property="delegate" destination="CuV-Hs-jJS" id="dTw-fr-dQl"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IYH-7t-BeY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1343" y="747"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="DCz-PS-zvs">
             <objects>
@@ -113,5 +171,6 @@
     </scenes>
     <resources>
         <image name="hexa-image" width="257" height="296"/>
+        <image name="timeline-circle" width="117" height="117"/>
     </resources>
 </document>
