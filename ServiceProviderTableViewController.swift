@@ -49,6 +49,7 @@ class ServiceProviderTableViewController: UITableViewController {
         let serviceMakes  = serviceProviders[indexPath.row].make
         
         serviceMakes?.forEach({ (make ) in
+            if SessionObjects.currentVehicle != nil {
             if (make as! Make).name == SessionObjects.currentVehicle.vehicleModel?.model?.make?.name
             {
                 cell.supportBtn.backgroundColor = UIColor.flatGreenColor()
@@ -59,6 +60,13 @@ class ServiceProviderTableViewController: UITableViewController {
                 
                 cell.supportBtn.backgroundColor = UIColor.flatRedColor()
                 cell.supportBtn.setTitle("doesn't support your car", forState: .Normal)
+               }
+            }
+            else {
+            
+                
+                cell.supportBtn.backgroundColor = UIColor.flatGrayColor()
+                cell.supportBtn.setTitle("you have no car", forState: .Normal)
             }
         })
         
