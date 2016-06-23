@@ -16,8 +16,21 @@ class ServiceCenterDetailsController: UIViewController {
     
     var serviceProvider : ServiceProvider!
     
+    @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var nameInitiallabel: UILabel!
     
+    @IBOutlet weak var phoneLabel: UILabel!
+    
+    
+    @IBOutlet weak var cityLabel: UILabel!
+    
+    @IBOutlet weak var streetLabel: UILabel!
+    @IBOutlet weak var landMarkLabel: UILabel!
+    
+    
+    @IBOutlet weak var websiteLabel: UILabel!
+    
+    @IBOutlet weak var container: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,8 +38,24 @@ class ServiceCenterDetailsController: UIViewController {
         prepareInitials()
         prepareNavigationBar(serviceProvider.name!)
         self.addAnnotation()
+        
+        let address = serviceProvider.address
+        cityLabel.text = address?.city
+        streetLabel.text = address?.street
+        landMarkLabel.text = address?.landMark
+        
+       websiteLabel.text =  serviceProvider.webSite
+        
+        let phone = serviceProvider.phone?.allObjects[0] as! ServiceProviderPhone
+        phoneLabel.text = phone.phone
+        emailLabel.text = serviceProvider.email
+        
+        
+        
+        
         // Do any additional setup after loading the view.
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,16 +90,17 @@ class ServiceCenterDetailsController: UIViewController {
     func addAnnotation(){
         
         let annotation = MKPointAnnotation()
+        print(serviceProvider.address?.latitude!.doubleValue)
         
         //        serviceProvider.address?.latitude?.doubleValue
-        annotation.coordinate = CLLocationCoordinate2D(latitude: (serviceProvider.address?.latitude!.doubleValue)!, longitude: (serviceProvider.address?.longtiude!.doubleValue)!)
-        
-        map.addAnnotation(annotation)
-        
-        let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
-        
-        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
-        map.setRegion(region, animated: true)
+//        annotation.coordinate = CLLocationCoordinate2D(latitude: (serviceProvider.address?.latitude!.doubleValue)!, longitude: (serviceProvider.address?.longtiude!.doubleValue)!)
+//        
+//        map.addAnnotation(annotation)
+//        
+//        let location = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+//        
+//        let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+//        map.setRegion(region, animated: true)
     }
     
     func prepareNavigationBar(title: String)
@@ -86,14 +116,26 @@ class ServiceCenterDetailsController: UIViewController {
         
     }
     
-    /*
+    
+    
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
+        if segue.identifier == "servicesSegue"
+        {
+            let controller = segue.destinationViewController as! ServicesTableViewController
+            
+            controller.serviceProvider = self.serviceProvider
+        
+        }
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
      }
-     */
+ 
     
 }
+

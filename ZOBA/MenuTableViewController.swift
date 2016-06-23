@@ -9,6 +9,7 @@
 import UIKit
 import SlideMenuControllerSwift
 import CoreData
+import SwiftyUserDefaults
 
 class MenuTableViewController: UITableViewController {
     
@@ -147,9 +148,19 @@ class MenuTableViewController: UITableViewController {
             deleteEntities("Vehicle")
             deleteEntities("Make")
             deleteEntities("ServiceProvider")
-            let login = self.loginStoryboard!.instantiateViewControllerWithIdentifier("mainStoryBoard") as! LoginViewController
-            //self.slideMenuController()!.presentedViewController(login, animated: true, completion: nil)
-            self.slideMenuController()?.closeLeft()
+            
+            Defaults[.curentVehicleName] = nil
+            Defaults[.isFBLogin] = false
+            Defaults[.isHavingTrip] = false
+            Defaults[.isLoggedIn] = false
+            Defaults[.useremail] = nil
+            
+            
+            let login = self.loginStoryboard!.instantiateViewControllerWithIdentifier("loginNavigationController") as! UINavigationController
+            
+            self.slideMenuController()!.presentViewController(login, animated: true, completion: nil)
+//            self.slideMenuController()!.presentedViewController(login, animated: true, completion: nil)
+//            self.slideMenuController()?.closeLeft()
             
           
             break

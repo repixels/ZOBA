@@ -14,6 +14,7 @@
 		82057F7B1D04906C00BC80DD /* AddFuelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */; };
 		82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7D1D0490D600BC80DD /* TimelineViewController.swift */; };
 		82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82057F7F1D0490E400BC80DD /* AddTripViewController.swift */; };
+		821103391D1BCE6D0052AFDD /* ServicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821103381D1BCE6D0052AFDD /* ServicesTableViewController.swift */; };
 		821D9D691D1564230087698D /* TimelinePopulater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821D9D681D1564230087698D /* TimelinePopulater.swift */; };
 		824858C41D1A0BD800BC95E7 /* TrackingDataWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824858C31D1A0BD800BC95E7 /* TrackingDataWebService.swift */; };
 		824858C61D1A218100BC95E7 /* ServiceProviderWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824858C51D1A218100BC95E7 /* ServiceProviderWebService.swift */; };
@@ -216,6 +217,7 @@
 		82057F7A1D04906C00BC80DD /* AddFuelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFuelViewController.swift; sourceTree = "<group>"; };
 		82057F7D1D0490D600BC80DD /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		82057F7F1D0490E400BC80DD /* AddTripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTripViewController.swift; sourceTree = "<group>"; };
+		821103381D1BCE6D0052AFDD /* ServicesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesTableViewController.swift; sourceTree = "<group>"; };
 		821D9D681D1564230087698D /* TimelinePopulater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelinePopulater.swift; sourceTree = "<group>"; };
 		824858C31D1A0BD800BC95E7 /* TrackingDataWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingDataWebService.swift; sourceTree = "<group>"; };
 		824858C51D1A218100BC95E7 /* ServiceProviderWebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderWebService.swift; sourceTree = "<group>"; };
@@ -767,6 +769,7 @@
 				83B042041D1BAAF000C6CAD1 /* ServiceProviderTableViewController.swift */,
 				83B042061D1BACD000C6CAD1 /* ServiceProviderCell.swift */,
 				83B042081D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift */,
+				821103381D1BCE6D0052AFDD /* ServicesTableViewController.swift */,
 			);
 			name = ServiceProvider;
 			path = ..;
@@ -1415,6 +1418,7 @@
 				82AE189A1D12C2EC00F4EED6 /* ZOBA.xcdatamodeld in Sources */,
 				8373C6A91D102C9C00E2C865 /* textFieldExtension.swift in Sources */,
 				DC9A805F1D1166B30081C832 /* FuelTableViewCell.swift in Sources */,
+				821103391D1BCE6D0052AFDD /* ServicesTableViewController.swift in Sources */,
 				830ACD831D17034B00AD457B /* VehicleWebServices.swift in Sources */,
 				DC562BB61D1036680066B8A8 /* OilDetailsViewController.swift in Sources */,
 				DCE6DC411CFC33A400637977 /* DataValidations.swift in Sources */,
