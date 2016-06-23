@@ -140,8 +140,10 @@ class MenuTableViewController: UITableViewController {
             
             deleteEntities("MyUser")
             deleteEntities("Vehicle")
+            deleteEntities("Make")
+            deleteEntities("ServiceProvider")
             let login = self.loginStoryboard!.instantiateViewControllerWithIdentifier("mainStoryBoard") as! LoginViewController
-            // self.presentedViewController(login, animated: true, completion: nil)
+            //self.slideMenuController()!.presentedViewController(login, animated: true, completion: nil)
             self.slideMenuController()?.closeLeft()
             
           
