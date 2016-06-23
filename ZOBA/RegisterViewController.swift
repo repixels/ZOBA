@@ -70,8 +70,8 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         facebookLoginButton.delegate = self
         facebookLoginButton.loginBehavior = FBSDKLoginBehavior.Native
         
-
-
+        
+        
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -361,11 +361,19 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                     Defaults[.useremail] = user!.email
                     Defaults[.launchCount] += 1
                     
-                    //To be removed
-                    //
-                    //
-                    DummyDataBaseOperation.populateOnlyOnce()
-                    DummyDataBaseOperation.populateData()
+                    
+                    let serviceCenterWebSevice = ServiceProviderWebService()
+                    serviceCenterWebSevice.getServiceProvider({ (serviceProvider, code) in
+                        switch code{
+                        case "success" :
+                            print("serviceProviders count : \(serviceProvider.count)")
+                            serviceProvider[0].save()
+                        default :
+                            print("failed")
+                            DummyDataBaseOperation.populateOnlyOnce()
+                        }
+                    })
+                    
                     
                     
                     let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)

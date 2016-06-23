@@ -499,5 +499,5 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         super.touchesBegan(touches, withEvent: event)
     }
     
->>>>>>> master
+
 }

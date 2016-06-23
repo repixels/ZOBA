@@ -25,9 +25,9 @@ class TimeLineCell: UITableViewCell {
 //        set{
 //            
 //            let formatter = NSDateFormatter()
+
 //            formatter.dateFormat = "E, d MMM yyyy"
-//            self.formattedDate = formatter.dateFromString(formatter.stringFromDate(newValue))!
-//        }
+//            self.formattedDate = formatter.dateFromString(formatter.stringFromDate(newValue))!//        }
 //    }
     
 }

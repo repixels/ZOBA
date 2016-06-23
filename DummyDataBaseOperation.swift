@@ -61,8 +61,8 @@ class DummyDataBaseOperation {
         }
         
     }
-
-
+    
+    
     static func saveTrackingType(managedObjectContext moc : NSManagedObjectContext , name: String?)
     {
         let trackingType = TrackingType(managedObjectContext: moc, entityName: "TrackingType")
@@ -85,13 +85,13 @@ class DummyDataBaseOperation {
         serobj.name = name!
         serobj.save()
         serobj.mutableSetValueForKey("trackingType").addObject(trackingType)
-                
+        
     }
     
     static func saveServiceProvider(managedObjectContext moc : NSManagedObjectContext , name: String?)
     {
         let serviceProvider = ServiceProvider(managedObjectContext: moc, entityName: "ServiceProvider")
-      
+        
         serviceProvider.name = name!
         
         serviceProvider.save()
@@ -332,15 +332,11 @@ class DummyDataBaseOperation {
     {
         DummyDataBaseOperation.populateMeasuringUnit()
         DummyDataBaseOperation.populateDays()
+        DummyDataBaseOperation.populateServiceProvider()
     }
     
     static func populateData()
     {
-        DummyDataBaseOperation.populateMake()
-        DummyDataBaseOperation.populateYear()
-        DummyDataBaseOperation.populateModel()
-        saveVehicleModel()
-        saveVehicleModel2()
         DummyDataBaseOperation.populateServiceProvider()
     }
 }

@@ -12,8 +12,8 @@ import ObjectMapper
 
 
 class ServiceProviderServices: NSManagedObject , Mappable {
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -29,9 +29,27 @@ class ServiceProviderServices: NSManagedObject , Mappable {
     
     func mapping(map: Map) {
         
-        self.endingHour <- map["endingHour"]
+        var endingHRStr : String?
+        var startingHRStr : String?
+        
+        endingHRStr <- map["endingHour"]
+        startingHRStr <- map["startingHour"]
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "hh:mm:ss"
+        
+        
+        if endingHRStr != nil {
+            self.endingHour      = formatter.dateFromString(endingHRStr!)!.timeIntervalSinceNow
+        }
+        
+        if startingHRStr != nil {
+            self.startingHour      = formatter.dateFromString(startingHRStr!)!.timeIntervalSinceNow
+        }
+        
+        
         self.serviceProviderServicesId <- map["id"]
-        self.startingHour <- map["startingHour"]
+        
         self.service <- map["service"]
         self.serviceProvider <- map["serviceProvider"]
         
