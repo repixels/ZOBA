@@ -23,16 +23,15 @@ class ServiceProviderCalender: NSManagedObject , Mappable{
         let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("ServiceProviderCalender", inManagedObjectContext: managedContext)
         
-        super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
     }
     
     func mapping(map: Map) {
         
-        self.calenderId <- map[""]
-        self.endingHour <- map[""]
-        self.startingHour <- map[""]
-        self.day <- map[""]
+        self.calenderId <- map["id"]
+        self.endingHour <- map["endingHour"]
+        self.startingHour <- map["startingHour"]
+        self.day <- map["dayDTO"]
         self.serviceProvider <- map[""]
         
     }
