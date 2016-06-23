@@ -34,7 +34,7 @@ class Trip: NSManagedObject , Mappable {
         self.coveredKm <- map["coveredMilage"]
         self.initialOdemeter <- map["intialOdemeter"]
         self.tripId <- map["id"]
-        self.vehicle = SessionObjects.currentVehicle!
+        self.vehicle = SessionObjects.currentVehicle != nil ? SessionObjects.currentVehicle! : nil
         
         coordinatesArray <- map["coordinates"]
         

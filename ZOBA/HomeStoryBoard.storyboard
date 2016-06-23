@@ -29,13 +29,6 @@
                                             <rect key="frame" x="9" y="18" width="90" height="103"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JUN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zu8-JL-jwz">
-                                            <rect key="frame" x="29" y="72" width="51" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
-                                            <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Morning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WMm-eP-adc">
                                             <rect key="frame" x="164" y="39" width="148" height="25"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -62,9 +55,16 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lir-cO-jma">
-                                            <rect key="frame" x="46" y="35" width="17" height="34"/>
+                                            <rect key="frame" x="29" y="35" width="51" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="29"/>
+                                            <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JUN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zu8-JL-jwz">
+                                            <rect key="frame" x="13" y="70" width="83" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
                                             <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -72,9 +72,9 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="currentOdemeter" destination="MR2-zZ-bwk" id="VYN-oH-feo"/>
-                                    <outlet property="date" destination="lir-cO-jma" id="fGy-SF-dLA"/>
                                     <outlet property="dayImage" destination="z3K-xw-Bbx" id="jPu-jj-XeW"/>
-                                    <outlet property="month" destination="Zu8-JL-jwz" id="4NF-OB-ENS"/>
+                                    <outlet property="dayLabel" destination="lir-cO-jma" id="E36-Gv-95f"/>
+                                    <outlet property="monthLabel" destination="Zu8-JL-jwz" id="4ph-eK-WQ7"/>
                                     <outlet property="salutation" destination="WMm-eP-adc" id="IM9-Od-7PI"/>
                                 </connections>
                             </tableViewCell>

@@ -362,18 +362,6 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                     Defaults[.launchCount] += 1
                     
                     
-                    let serviceCenterWebSevice = ServiceProviderWebService()
-                    serviceCenterWebSevice.getServiceProvider({ (serviceProvider, code) in
-                        switch code{
-                        case "success" :
-                            print("serviceProviders count : \(serviceProvider.count)")
-                            serviceProvider[0].save()
-                        default :
-                            print("failed")
-                            DummyDataBaseOperation.populateOnlyOnce()
-                        }
-                    })
-                    
                     
                     
                     let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
@@ -395,6 +383,18 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                         
                         SessionObjects.motionMonitor.startDetection()
                     }
+                    
+                    let serviceCenterWebSevice = ServiceProviderWebService()
+                    serviceCenterWebSevice.getServiceProvider({ (serviceProvider, code) in
+                        switch code{
+                        case "success" :
+                            print("serviceProviders count : \(serviceProvider.count)")
+                            serviceProvider[0].save()
+                        default :
+                            print("failed")
+                            DummyDataBaseOperation.populateOnlyOnce()
+                        }
+                    })
                     
                     break;
                 default:

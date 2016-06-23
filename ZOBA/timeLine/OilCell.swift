@@ -11,11 +11,11 @@ import UIKit
 class OilCell: TimeLineCell {
     static let identifier = "OilData"
     
-    @IBOutlet  var oilDate: UILabel?
-    @IBOutlet  var initialOdemeter: UILabel?
-    @IBOutlet  var oilAmount: UILabel?
-    @IBOutlet  var serviceProvider: UILabel?
-    @IBOutlet  var oilTitle: UILabel?
+    @IBOutlet weak var oilDate: UILabel?
+    @IBOutlet weak var initialOdemeter: UILabel?
+    @IBOutlet weak var oilAmount: UILabel?
+    @IBOutlet weak var serviceProvider: UILabel?
+    @IBOutlet weak var oilTitle: UILabel?
     
 
     override func awakeFromNib() {

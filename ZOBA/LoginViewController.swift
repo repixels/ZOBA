@@ -328,19 +328,6 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     Defaults[.launchCount] += 1
                     
                     
-                    let serviceCenterWebSevice = ServiceProviderWebService()
-                    serviceCenterWebSevice.getServiceProvider({ (serviceProvider, code) in
-                        switch code{
-                        case "success" :
-                            print("serviceProviders count : \(serviceProvider.count)")
-                            serviceProvider[0].save()
-                        default :
-                            print("failed")
-                            DummyDataBaseOperation.populateOnlyOnce()
-                        }
-                    })
-                    
-                    
                     let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
                     let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
                     
@@ -366,6 +353,17 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                         
                         SessionObjects.motionMonitor.startDetection()
                     }
+                    
+                    let serviceCenterWebSevice = ServiceProviderWebService()
+                    serviceCenterWebSevice.getServiceProvider({ (serviceProvider, code) in
+                        switch code{
+                        case "success" :
+                            print("serviceProviders count : \(serviceProvider.count)")
+                            serviceProvider[0].save()
+                        default :
+                            DummyDataBaseOperation.populateOnlyOnce()
+                        }
+                    })
                     
                     break;
                 default:
