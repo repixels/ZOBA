@@ -71,10 +71,10 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         modelToolBar.sizeToFit()
         
         let modelDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddVehicleTableViewController.modelDonePicker))
-        let modelSpaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let modelCancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddVehicleTableViewController.modelCancelPicker))
-        
-        modelToolBar.setItems([modelCancelButton, modelSpaceButton, modelDoneButton], animated: false)
+        //        let modelSpaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        //        let modelCancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddVehicleTableViewController.modelCancelPicker))
+        //        
+        modelToolBar.setItems([modelDoneButton], animated: false)
         modelToolBar.userInteractionEnabled = true
         
         
@@ -85,10 +85,10 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         toolBar.sizeToFit()
         
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddVehicleTableViewController.donePicker))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddVehicleTableViewController.cancelPicker))
-        
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        //        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        //        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddVehicleTableViewController.cancelPicker))
+        //        
+        toolBar.setItems([doneButton], animated: false)
         toolBar.userInteractionEnabled = true
         
         self.populateMakes()
@@ -195,6 +195,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         switch pickerView {
         case makePicker:
             selectedMake = makes![row]
+            makeTextField.text = selectedMake.name
             modelTextField.text?.removeAll()
             trimTextField.text?.removeAll()
             yearTextField.text?.removeAll()
@@ -202,7 +203,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             modelYearTrimPicker.reloadAllComponents()
             
         case modelYearTrimPicker:
-
+            
             switch component {
             case 0:
                 
@@ -250,16 +251,16 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
         let mod = modelYearTrimPicker.selectedRowInComponent(0)
         if models!.count > mod {
-        selectedModel = models![mod]
+            selectedModel = models![mod]
         }
         let y = modelYearTrimPicker.selectedRowInComponent(1)
         if years!.count > y {
-        selectedYear = years![y]
+            selectedYear = years![y]
         }
         
         let t = modelYearTrimPicker.selectedRowInComponent(2)
         if trims!.count > t{
-        selectedTrim = trims![t]
+            selectedTrim = trims![t]
         }
         
     }
@@ -368,7 +369,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         vehicleModel.model = selectedModel
         vehicleModel.trim = selectedTrim
         vehicleModel.year = selectedYear
-
+        
         vehicle.vehicleModel = vehicleModel
         vehicle.user = SessionObjects.currentUser
         vehicle.isAdmin = 1
@@ -394,7 +395,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             if m != self.selectedMake
             {
                 SessionObjects.currentManageContext.deleteObject(m)
-            
+                
             }
         })
         
@@ -442,7 +443,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
                 
             }
             
-           
+            
         }
     }
     func populateMakes()
@@ -520,7 +521,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
                     if self.selectedTrim == nil  {
                         self.selectedTrim = self.trims![0]
                     }
-                self.trimTextField.text = self.trims![0].name
+                    self.trimTextField.text = self.trims![0].name
                 }
                 break
             case "failure":
