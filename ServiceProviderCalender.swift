@@ -39,11 +39,11 @@ class ServiceProviderCalender: NSManagedObject , Mappable{
         
         
         if endingHRStr != nil {
-            self.endingHour      = formatter.dateFromString(endingHRStr!)!.timeIntervalSinceNow
+            self.endingHour = formatter.dateFromString(endingHRStr!)?.timeIntervalSince1970
         }
         
         if startingHRStr != nil {
-            self.startingHour      = formatter.dateFromString(startingHRStr!)!.timeIntervalSinceNow
+            self.startingHour      = formatter.dateFromString(startingHRStr!)?.timeIntervalSince1970
         }
         
         

@@ -40,11 +40,13 @@ class ServiceProviderServices: NSManagedObject , Mappable {
         
         
         if endingHRStr != nil {
-            self.endingHour      = formatter.dateFromString(endingHRStr!)!.timeIntervalSinceNow
+            print(endingHRStr)
+            self.endingHour = formatter.dateFromString(endingHRStr!)?.timeIntervalSince1970
         }
         
         if startingHRStr != nil {
-            self.startingHour      = formatter.dateFromString(startingHRStr!)!.timeIntervalSinceNow
+            print(startingHRStr)
+            self.startingHour = formatter.dateFromString(startingHRStr!)?.timeIntervalSince1970
         }
         
         
