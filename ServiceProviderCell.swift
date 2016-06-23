@@ -11,8 +11,8 @@ import TextFieldEffects
 
 class ServiceProviderCell: UITableViewCell {
     
-    @IBOutlet weak var name: HoshiTextField!
-    @IBOutlet weak var address: HoshiTextField!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var address: UILabel!
     
     @IBOutlet weak var nameInitial: UITextField!
     

@@ -9,46 +9,47 @@
 import UIKit
 import MapKit
 
-class ServiceCenterDetailsController: UIViewController {
+class ServiceCenterDetailsController: UIViewController  {
     
     @IBOutlet weak var map: MKMapView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameTextField: UILabel!
     
     var serviceProvider : ServiceProvider!
     
-    @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var nameInitiallabel: UILabel!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var nameInitialTextField: UILabel!
     
-    @IBOutlet weak var phoneLabel: UILabel!
-    
-    
-    @IBOutlet weak var cityLabel: UILabel!
-    
-    @IBOutlet weak var streetLabel: UILabel!
-    @IBOutlet weak var landMarkLabel: UILabel!
+    @IBOutlet weak var phoneTextField: UITextField!
     
     
-    @IBOutlet weak var websiteLabel: UILabel!
+    @IBOutlet weak var cityTextField: UITextField!
+    
+    @IBOutlet weak var streetTextField: UITextField!
+    @IBOutlet weak var landMarkTextField: UITextField!
+    
+    
+    //@IBOutlet weak var websiteTextField: UITextField!
     
     @IBOutlet weak var container: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameLabel.text = serviceProvider.name!
+        
+        nameTextField.text = serviceProvider.name!
         prepareInitials()
         prepareNavigationBar(serviceProvider.name!)
         self.addAnnotation()
         
         let address = serviceProvider.address
-        cityLabel.text = address?.city
-        streetLabel.text = address?.street
-        landMarkLabel.text = address?.landMark
+        cityTextField.text = address?.city
+        streetTextField.text = address?.street
+        landMarkTextField.text = address?.landMark
         
-       websiteLabel.text =  serviceProvider.webSite
+     //  websiteTextField.text =  serviceProvider.webSite
         
         let phone = serviceProvider.phone?.allObjects[0] as! ServiceProviderPhone
-        phoneLabel.text = phone.phone
-        emailLabel.text = serviceProvider.email
+        phoneTextField.text = phone.phone
+        emailTextField.text = serviceProvider.email
         
         
         
@@ -83,7 +84,7 @@ class ServiceCenterDetailsController: UIViewController {
             }
         }
         
-        nameInitiallabel.text = serviceInitial.capitalizedString
+        nameInitialTextField.text = serviceInitial.capitalizedString
         
     }
     
