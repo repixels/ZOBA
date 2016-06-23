@@ -124,6 +124,7 @@
 		83AEBCF71D08244400B334FE /* UserProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AEBCF61D08244300B334FE /* UserProfileEditController.swift */; };
 		83B042051D1BAAF100C6CAD1 /* ServiceProviderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B042041D1BAAF000C6CAD1 /* ServiceProviderTableViewController.swift */; };
 		83B042071D1BACD000C6CAD1 /* ServiceProviderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B042061D1BACD000C6CAD1 /* ServiceProviderCell.swift */; };
+		83B042091D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B042081D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift */; };
 		83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC89F1D048766006CC257 /* AbstractDao.swift */; };
 		8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */; };
 		D7E3809149A0ABDF4F894412 /* Pods_ZOBATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */; };
@@ -336,6 +337,7 @@
 		83AEBCF61D08244300B334FE /* UserProfileEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileEditController.swift; sourceTree = "<group>"; };
 		83B042041D1BAAF000C6CAD1 /* ServiceProviderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderTableViewController.swift; sourceTree = "<group>"; };
 		83B042061D1BACD000C6CAD1 /* ServiceProviderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderCell.swift; sourceTree = "<group>"; };
+		83B042081D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCenterDetailsController.swift; sourceTree = "<group>"; };
 		83BAC89F1D048766006CC257 /* AbstractDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDao.swift; sourceTree = "<group>"; };
 		8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = managedObjectExtension.swift; sourceTree = "<group>"; };
 		B7974B3E65B33BEAC6D00F69 /* Pods-ZOBAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBAUITests/Pods-ZOBAUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -764,6 +766,7 @@
 			children = (
 				83B042041D1BAAF000C6CAD1 /* ServiceProviderTableViewController.swift */,
 				83B042061D1BACD000C6CAD1 /* ServiceProviderCell.swift */,
+				83B042081D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift */,
 			);
 			name = ServiceProvider;
 			path = ..;
@@ -1428,6 +1431,7 @@
 				DC0095981D075660000856FC /* Vehicle.swift in Sources */,
 				8314DC901D0F9AAD00601B45 /* VehicleTableViewController.swift in Sources */,
 				DC0095721D075660000856FC /* Year.swift in Sources */,
+				83B042091D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift in Sources */,
 				8298256A1D0EBA6F00FCC4C8 /* TripTableViewCell.swift in Sources */,
 				831B12CF1D0643A200D10CBA /* OilCell.swift in Sources */,
 				82AE18DB1D12C3CB00F4EED6 /* Model+CoreDataProperties.swift in Sources */,

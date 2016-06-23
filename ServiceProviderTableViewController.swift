@@ -16,6 +16,8 @@ class ServiceProviderTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        prepareNavigationBar("Service Providers")
+        
         let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
         serviceProviders = dao.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
         
@@ -86,6 +88,47 @@ class ServiceProviderTableViewController: UITableViewController {
         return cell
     }
     
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("serviceProviderDetails") as! ServiceCenterDetailsController
+        
+        controller.serviceProvider = serviceProviders[indexPath.row]
+        
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+        
+    }
+    func prepareNavigationBar(title: String)
+    {
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        // self.title = self.contextAwareTitle()
+        self.title = title
+        self.navigationController?.navigationBar.userInteractionEnabled = true
+        
+        
+    }
+    
+    func contextAwareTitle() -> String?
+    {
+        let now = NSDate()
+        let cal = NSCalendar.currentCalendar()
+        let comps = cal.component(NSCalendarUnit.Hour, fromDate: now)
+        
+        switch comps {
+        case 0 ... 12:
+            return "Good Morning"
+        case 13 ... 17:
+            return "Good Afternoon"
+        case 18 ... 23:
+            return "Good Evening"
+        default:
+            return "Welcome Back"
+        }
+    }
     
     /*
      // Override to support conditional editing of the table view.
