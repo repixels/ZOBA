@@ -16,6 +16,7 @@ import FBSDKLoginKit
 import SwiftyUserDefaults
 import AlamofireNetworkActivityIndicator
 import SlideMenuControllerSwift
+import Firebase
 
 let isFirstTime = "isFirstTime"
 
@@ -88,8 +89,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             
         }
         
+        //////////firebase
         
-        
+        FIRApp.configure()
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

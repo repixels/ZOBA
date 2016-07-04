@@ -31,6 +31,7 @@ class TimelinePopulater
         
         trips = selectedVehicle?.trip?.allObjects as! [Trip]!
         
+        
         vehicleTrackingData = selectedVehicle?.traclingData?.allObjects as! [TrackingData]!
         
         vehicleFuelTrackingData = [TrackingData]()
@@ -170,7 +171,7 @@ class TimelinePopulater
             cell.dayLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
             
             
-
+            
         }
         
         sortedCells.append(cell)
@@ -229,36 +230,36 @@ class TimelinePopulater
         
         if tableCells.count > 0
         {
-        
-                timelineDate = tableCells.last!.timeLineDate
-//                timelineDate = timelineDate?.dateByAddingTimeInterval(60*60*24 * -1)
             
-                
-                let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
-                cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter?.stringValue != nil ? SessionObjects.currentVehicle.currentOdemeter!.stringValue : "Not Available"
-                cell.currentOdemeter?.hidden = true
-                cell.dayImage?.image = nil
-                cell.dayImage?.hidden = true
-                cell.salutation?.text = contextAwareTitle()
-                
-                if timelineDate != nil
-                {
-                    let formatter = NSDateFormatter()
-                    
-                    formatter.dateFormat = "MMM"
-                    
-                    cell.monthLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
-                    
-                    formatter.dateFormat = "dd"
-                    cell.dayLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
-                    
-                    formatter.dateFormat = "EEEE"
-                    cell.salutation?.text = formatter.stringFromDate(timelineDate!).uppercaseString
-                }
-                
-                sortedCells.append(cell)
+            timelineDate = tableCells.last!.timeLineDate
+            //                timelineDate = timelineDate?.dateByAddingTimeInterval(60*60*24 * -1)
             
-
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
+            cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter?.stringValue != nil ? SessionObjects.currentVehicle.currentOdemeter!.stringValue : "Not Available"
+            cell.currentOdemeter?.hidden = true
+            cell.dayImage?.image = nil
+            cell.dayImage?.hidden = true
+            cell.salutation?.text = contextAwareTitle()
+            
+            if timelineDate != nil
+            {
+                let formatter = NSDateFormatter()
+                
+                formatter.dateFormat = "MMM"
+                
+                cell.monthLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                
+                formatter.dateFormat = "dd"
+                cell.dayLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                
+                formatter.dateFormat = "EEEE"
+                cell.salutation?.text = formatter.stringFromDate(timelineDate!).uppercaseString
+            }
+            
+            sortedCells.append(cell)
+            
+            
             sortedCells.append(tableCells.last!)
         }
         

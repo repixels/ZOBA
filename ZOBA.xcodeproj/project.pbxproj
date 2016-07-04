@@ -116,6 +116,10 @@
 		831B12CD1D0641D000D10CBA /* FuelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CC1D0641CF00D10CBA /* FuelCell.swift */; };
 		831B12CF1D0643A200D10CBA /* OilCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12CE1D0643A200D10CBA /* OilCell.swift */; };
 		831B12D11D06448200D10CBA /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B12D01D06448200D10CBA /* TripCell.swift */; };
+		83395CD81D2AB68600A1A347 /* Firebase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83395CD41D2AB68600A1A347 /* Firebase.storyboard */; };
+		83395CD91D2AB68600A1A347 /* FireBaseDataBaseOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83395CD51D2AB68600A1A347 /* FireBaseDataBaseOperations.swift */; };
+		83395CDA1D2AB68600A1A347 /* FirebaseLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83395CD61D2AB68600A1A347 /* FirebaseLogin.swift */; };
+		83395CDB1D2AB68600A1A347 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 83395CD71D2AB68600A1A347 /* GoogleService-Info.plist */; };
 		83548F241D09D2080013E67F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83548F231D09D2080013E67F /* MapKit.framework */; };
 		83548F261D09EB040013E67F /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83548F251D09EB040013E67F /* MapController.swift */; };
 		83548F281D0A1CD30013E67F /* AllTripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */; };
@@ -330,6 +334,10 @@
 		831B12CC1D0641CF00D10CBA /* FuelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FuelCell.swift; path = timeLine/FuelCell.swift; sourceTree = "<group>"; };
 		831B12CE1D0643A200D10CBA /* OilCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OilCell.swift; path = timeLine/OilCell.swift; sourceTree = "<group>"; };
 		831B12D01D06448200D10CBA /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripCell.swift; path = timeLine/TripCell.swift; sourceTree = "<group>"; };
+		83395CD41D2AB68600A1A347 /* Firebase.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Firebase.storyboard; sourceTree = "<group>"; };
+		83395CD51D2AB68600A1A347 /* FireBaseDataBaseOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireBaseDataBaseOperations.swift; sourceTree = "<group>"; };
+		83395CD61D2AB68600A1A347 /* FirebaseLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseLogin.swift; sourceTree = "<group>"; };
+		83395CD71D2AB68600A1A347 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		83548F231D09D2080013E67F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		83548F251D09EB040013E67F /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		83548F271D0A1CD20013E67F /* AllTripTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTripTableViewController.swift; sourceTree = "<group>"; };
@@ -540,6 +548,7 @@
 		827827551CF837D600684CE5 /* ZOBA */ = {
 			isa = PBXGroup;
 			children = (
+				83395CD31D2AB5DC00A1A347 /* Firebase */,
 				83B042031D1BAA3300C6CAD1 /* ServiceProvider */,
 				82CC7C8F1D12F57A004AECA1 /* MenuTableViewController.swift */,
 				830ACD6D1D119A5600AD457B /* Motion Detection */,
@@ -743,6 +752,17 @@
 				82D6C2A91D149EAE0047326B /* VehicleTableViewCell.swift */,
 			);
 			name = Vehicle;
+			sourceTree = "<group>";
+		};
+		83395CD31D2AB5DC00A1A347 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				83395CD41D2AB68600A1A347 /* Firebase.storyboard */,
+				83395CD51D2AB68600A1A347 /* FireBaseDataBaseOperations.swift */,
+				83395CD61D2AB68600A1A347 /* FirebaseLogin.swift */,
+				83395CD71D2AB68600A1A347 /* GoogleService-Info.plist */,
+			);
+			name = Firebase;
 			sourceTree = "<group>";
 		};
 		8373C6AA1D103A5E00E2C865 /* TextFieldExtension */ = {
@@ -1017,6 +1037,7 @@
 				82F8B8A41CF8807400E46B05 /* tips.png in Resources */,
 				82501A7F1D05A9A3008272CB /* placeholder.png in Resources */,
 				82501A761D05A9A3008272CB /* add-oil.png in Resources */,
+				83395CD81D2AB68600A1A347 /* Firebase.storyboard in Resources */,
 				827827641CF837D600684CE5 /* LaunchScreen.storyboard in Resources */,
 				82F8B8C41CF89A2500E46B05 /* splash-logo.png in Resources */,
 				829825641D0D538600FCC4C8 /* UserProfile.storyboard in Resources */,
@@ -1037,6 +1058,7 @@
 				829C437C1CFBBA1F00869E59 /* Media.xcassets in Resources */,
 				82F8B8A01CF8807400E46B05 /* rescue.png in Resources */,
 				82501A7B1D05A9A3008272CB /* hexa.png in Resources */,
+				83395CDB1D2AB68600A1A347 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1364,6 +1386,7 @@
 				8265E7F11D0583780039D0AF /* AppDelegate.swift in Sources */,
 				824858C41D1A0BD800BC95E7 /* TrackingDataWebService.swift in Sources */,
 				83B042051D1BAAF100C6CAD1 /* ServiceProviderTableViewController.swift in Sources */,
+				83395CDA1D2AB68600A1A347 /* FirebaseLogin.swift in Sources */,
 				82AE18E81D12C3CB00F4EED6 /* ServiceProviderServices+CoreDataProperties.swift in Sources */,
 				DC0095741D075660000856FC /* ServiceProviderPhone.swift in Sources */,
 				8265E7F01D0583560039D0AF /* RegisterViewController.swift in Sources */,
@@ -1447,6 +1470,7 @@
 				82057F791D048FDA00BC80DD /* AddOilViewController.swift in Sources */,
 				82057F801D0490E400BC80DD /* AddTripViewController.swift in Sources */,
 				82AE18E91D12C3CB00F4EED6 /* TrackingType+CoreDataProperties.swift in Sources */,
+				83395CD91D2AB68600A1A347 /* FireBaseDataBaseOperations.swift in Sources */,
 				838918461D0AE30C001F0060 /* TripDetailController.swift in Sources */,
 				83AEBCF51D0767F100B334FE /* UserProfileViewController.swift in Sources */,
 				82057F7E1D0490D600BC80DD /* TimelineViewController.swift in Sources */,
