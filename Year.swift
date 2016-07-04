@@ -40,16 +40,18 @@ class Year: NSManagedObject , Mappable
         self.name = NSNumber(integer: nameInt)
         self.yearId <- map["id"]
         
-        vehicleModelsArrray <- map["vehicleModel"]
-        
-        if vehicleModelsArrray != nil
-        {
-            self.vehicleModel = NSSet(array: vehicleModelsArrray!)
+        if map.mappingType == .ToJSON {}
+        else{
+            vehicleModelsArrray <- map["vehicleModel"]
+            
+            if vehicleModelsArrray != nil
+            {
+                self.vehicleModel = NSSet(array: vehicleModelsArrray!)
+            }
+            else
+            {
+                self.vehicleModel = nil
+            }
         }
-        else
-        {
-            self.vehicleModel = nil
-        }
-        self.vehicleModel = nil
     }
 }

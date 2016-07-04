@@ -51,26 +51,47 @@ class Vehicle: NSManagedObject , Mappable{
         self.licensePlate <- map["licencePlate"]
         self.name <- map["name"]
         self.vehicleModel <- map["vehicleModel"]
-        trackingDataArray <- map["trackingDatas"]
-        tripsArray <- map["trips"]
         
-        if trackingDataArray != nil
-        {
-            self.traclingData = NSSet(array: trackingDataArray!)
+        
+        
+        if map.mappingType == .ToJSON {
+            
+            var mappedTrips = Mapper().toJSONArray((self.trip!.allObjects as! [Trip]))
+            mappedTrips <- map["trips"]
+            
+            
+            
+            
+            var mappedTrackingData  = Mapper().toJSONArray((self.traclingData?.allObjects as! [TrackingData]))
+            
+            mappedTrackingData <- map["trackingDatas"]
+            
         }
-        else
-        {
-            self.traclingData = nil
+        else {
+            
+            
+            trackingDataArray <- map["trackingDatas"]
+            tripsArray <- map["trips"]
+            if trackingDataArray != nil
+            {
+                self.traclingData = NSSet(array: trackingDataArray!)
+            }
+            else
+            {
+                self.traclingData = nil
+            }
+            
+            if tripsArray != nil
+            {
+                self.trip = NSSet(array: tripsArray!)
+            }
+            else
+            {
+                self.trip = nil
+            }
+            
         }
         
-        if tripsArray != nil
-        {
-            self.trip = NSSet(array: tripsArray!)
-        }
-        else
-        {
-            self.trip = nil
-        }
         
     }
 }

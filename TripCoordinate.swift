@@ -11,8 +11,8 @@ import CoreData
 import ObjectMapper
 
 class TripCoordinate: NSManagedObject , Mappable{
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -28,10 +28,10 @@ class TripCoordinate: NSManagedObject , Mappable{
     
     func mapping(map: Map) {
         
-        self.coordinateId <- map[""]
-        self.latitude <- map[""]
-        self.longtitude <- map[""]
-        self.trip <- map[""]
+        self.coordinateId <- map["coordinateId"]
+        self.latitude <- map["latitude"]
+        self.longtitude <- map["longtitude"]
+     //   self.trip <- map[""]
         
     }
 }

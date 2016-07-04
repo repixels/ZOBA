@@ -34,15 +34,16 @@ class Days: NSManagedObject , Mappable {
         self.dayId <- map["dayId"]
         self.name <- map["dayName"]
         calendars <- map["serviceProviderCalendars"]
-        
-        if calendars != nil
-        {
-            self.calender = NSSet(array: calendars!)
+        if map.mappingType == .ToJSON {}
+        else{
+            if calendars != nil
+            {
+                self.calender = NSSet(array: calendars!)
+            }
+            else
+            {
+                self.calender = nil
+            }
         }
-        else
-        {
-            self.calender = nil
-        }
-        
     }
 }

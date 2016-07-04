@@ -18,6 +18,9 @@ target 'ZOBA' do
   pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
   pod ’SOMotionDetector’
   pod 'SlideMenuControllerSwift'
+  pod ’Firebase’
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
 
   # Pods for ZOBA

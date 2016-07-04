@@ -12,8 +12,8 @@ import ObjectMapper
 
 
 class MyUser: NSManagedObject , Mappable {
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -39,17 +39,29 @@ class MyUser: NSManagedObject , Mappable {
         self.phone <- map["phone"]
         self.userId <- map["id"]
         self.userName <- map["username"]
-        vehicle <- map["vehicles"]
         
-        if vehicle != nil
-        {
-            self.vehicle = NSSet(array: vehicle!)
+        
+        if map.mappingType == .ToJSON {
+            
+            var mappedVehicle = Mapper().toJSONArray((self.vehicle!.allObjects as! [Vehicle]))
+            mappedVehicle <- map["vehicles"]
+            
+            
+            
         }
-        else
-        {
-            self.vehicle = nil
+        else{
+            vehicle <- map["vehicles"]
+            print(map["vehicles"])
+            if vehicle != nil
+            {
+                print(vehicle!.count)
+                self.vehicle = NSSet(array: vehicle!)
+            }
+            else
+            {
+                self.vehicle = nil
+            }
+            
         }
-        
-        
     }
 }

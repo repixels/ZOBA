@@ -34,20 +34,29 @@ class Trip: NSManagedObject , Mappable {
         self.coveredKm <- map["coveredMilage"]
         self.initialOdemeter <- map["intialOdemeter"]
         self.tripId <- map["id"]
-        self.vehicle = SessionObjects.currentVehicle != nil ? SessionObjects.currentVehicle! : nil
+        //        self.vehicle = SessionObjects.currentVehicle != nil ? SessionObjects.currentVehicle! : nil
+        //  self.vehicle <- map ["vehicle"]
         
-        coordinatesArray <- map["coordinates"]
-        
-        if coordinatesArray != nil
-        {
-            self.coordinates = NSSet(array: coordinatesArray!)
+        if map.mappingType == .ToJSON {
+            var mappedCoordinate = Mapper().toJSONArray((self.coordinates!.allObjects as! [TripCoordinate]))
+            mappedCoordinate <- map["coordinates"]
+            
         }
-        else
-        {
-            self.coordinates = nil
+        else{
+            
+            coordinatesArray <- map["coordinates"]
+            
+            if coordinatesArray != nil
+            {
+                self.coordinates = NSSet(array: coordinatesArray!)
+            }
+            else
+            {
+                
+                self.coordinates = nil
+            }
+            
         }
-        
-        
         
     }
 }

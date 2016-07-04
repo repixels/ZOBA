@@ -11,8 +11,8 @@ import CoreData
 import ObjectMapper
 
 class VehicleModel: NSManagedObject , Mappable{
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
@@ -35,17 +35,24 @@ class VehicleModel: NSManagedObject , Mappable{
         self.trim <- map["trim"]
         self.vehicle <- map[""]
         self.year <- map["year"]
-        featuresValueArray <- map["features"]
         
-        if featuresValueArray != nil
-        {
-            self.featuresValue = NSSet(array: featuresValueArray!)
+        
+        if map.mappingType == .ToJSON {
+            
+            var mappedFeatures = Mapper().toJSONArray((self.featuresValue!.allObjects as! [CarFeature]))
+            mappedFeatures <- map["features"]
         }
-        else
-        {
-            self.featuresValue = nil
+        else {
+            featuresValueArray <- map["features"]
+            if featuresValueArray != nil
+            {
+                self.featuresValue = NSSet(array: featuresValueArray!)
+            }
+            else
+            {
+                self.featuresValue = nil
+            }
+            
         }
-        
-        
     }
 }

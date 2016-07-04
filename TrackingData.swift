@@ -34,6 +34,6 @@ class TrackingData: NSManagedObject , Mappable {
         self.initialOdemeter <- map["intialOdemeter"]
         self.trackingId <- map["id"]
         self.value <- map["value"]
-        self.vehicle = SessionObjects.currentVehicle != nil ? SessionObjects.currentVehicle! : nil
+//        self.vehicle = SessionObjects.currentVehicle != nil ? SessionObjects.currentVehicle! : nil
     }
 }
