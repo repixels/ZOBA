@@ -96,7 +96,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
                 //if this is a new trip
                 if timeDifference > (60*10)
                 {
-                    Defaults[.isHavingTrip] = false
+//                    Defaults[.isHavingTrip] = false
                     self.saveLocation(location)
                 }
                 else

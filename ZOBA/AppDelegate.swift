@@ -359,29 +359,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         //get current active view controller
         if  let menu = application.windows[0].rootViewController as? SlideMenuController
         {
-            let tabController = menu.mainViewController as! UITabBarController
-            
-            let navigationController = tabController.selectedViewController as! UINavigationController
-            let activeViewCont = navigationController.visibleViewController
-            
-            switch notification.category! {
-            case "zoba_start_motion":
-                print("delegate : start motion")
+            if let tabController = menu.mainViewController as? UITabBarController {
                 
-                SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
-            case "zoba_stop_motion":
+                let navigationController = tabController.selectedViewController as! UINavigationController
+                let activeViewCont = navigationController.visibleViewController
                 
-                print("delegate : stop motion")
-                SessionObjects.motionMonitor.showStopTripAlert(viewController: activeViewCont!)
-            case "zoba_check_if_running":
-                print("delegate : check if running")
-                // SessionObjects.motionMonitor.checkIfMoving()
+                switch notification.category! {
+                case "zoba_start_motion":
+                    print("delegate : start motion")
+                    
+                    SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
+                case "zoba_stop_motion":
+                    
+                    print("delegate : stop motion")
+                    SessionObjects.motionMonitor.showStopTripAlert(viewController: activeViewCont!)
+                case "zoba_check_if_running":
+                    print("delegate : check if running")
+                    // SessionObjects.motionMonitor.checkIfMoving()
+                    
+                default:
+                    print("not motion notification")
+                }
                 
-            default:
-                print("not motion notification")
             }
-            
-            
             
         }
     }

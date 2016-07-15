@@ -8,6 +8,8 @@
 
 import UIKit
 import SlideMenuControllerSwift
+import CoreData
+import SwiftyUserDefaults
 
 class MenuTableViewController: UITableViewController {
     
@@ -18,6 +20,8 @@ class MenuTableViewController: UITableViewController {
     var vehiclesStoryBoard: UIStoryboard?
     var tripsStoryBoard: UIStoryboard?
     var homeViewController : HomeViewController?
+    var loginStoryboard : UIStoryboard?
+    var serviceProviderStoryBoard : UIStoryboard?
     
     @IBOutlet weak var initialsLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
@@ -47,6 +51,9 @@ class MenuTableViewController: UITableViewController {
         self.vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
         self.tripsStoryBoard =  UIStoryboard(name: "VehicleTrips", bundle: nil)
         self.homeViewController = self.homeStoryBoard!.instantiateViewControllerWithIdentifier("HomeTabController") as? HomeViewController
+        self.serviceProviderStoryBoard = UIStoryboard(name: "ServiceProvider", bundle: nil)
+        
+        self.loginStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
     }
 
@@ -120,7 +127,42 @@ class MenuTableViewController: UITableViewController {
                 break
             }
         case 4:
+            let serviceProviderNavigationController = self.serviceProviderStoryBoard!.instantiateViewControllerWithIdentifier("ServiceProviders")
+            self.slideMenuController()?.changeMainViewController(serviceProviderNavigationController, close: true)
+            break;
+        case 5:
             print("Logout Clicked")
+            
+            if SessionObjects.currentVehicle != nil  {
+                
+            SessionObjects.currentUser.release(SessionObjects.currentManageContext)
+            SessionObjects.currentVehicle.release(SessionObjects.currentManageContext)
+            
+            }
+            else
+            {
+                SessionObjects.currentUser.release(SessionObjects.currentManageContext)
+            }
+            
+            deleteEntities("MyUser")
+            deleteEntities("Vehicle")
+            deleteEntities("Make")
+            deleteEntities("ServiceProvider")
+            
+            Defaults[.curentVehicleName] = nil
+            Defaults[.isFBLogin] = false
+            Defaults[.isHavingTrip] = false
+            Defaults[.isLoggedIn] = false
+            Defaults[.useremail] = nil
+            
+            
+            let login = self.loginStoryboard!.instantiateViewControllerWithIdentifier("loginNavigationController") as! UINavigationController
+            
+            self.slideMenuController()!.presentViewController(login, animated: true, completion: nil)
+//            self.slideMenuController()!.presentedViewController(login, animated: true, completion: nil)
+//            self.slideMenuController()?.closeLeft()
+            
+          
             break
         default:
             self.closeLeft()
@@ -255,6 +297,23 @@ class MenuTableViewController: UITableViewController {
         }
     }
 
+    
+    func deleteEntities(etitiyName : String)
+    {
+        let fetchRequest = NSFetchRequest(entityName: etitiyName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        // delegate objects
+        let myManagedObjectContext = SessionObjects.currentManageContext
+        let myPersistentStoreCoordinator = (UIApplication.sharedApplication().delegate as! AppDelegate).persistentStoreCoordinator
+        
+        // perform the delete
+        do {
+            try myPersistentStoreCoordinator.executeRequest(deleteRequest, withContext: myManagedObjectContext)
+        } catch let error as NSError {
+            print(error)
+        }
+    }
 }
 
 

@@ -143,7 +143,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
         initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
         currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
-        
+        	
         datePickerView = UIDatePicker()
         datePickerView.maximumDate = NSDate()
         
@@ -444,7 +444,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     
     
     //MARK: - keyboard
-    func keyBoardWillAppear(notification : NSNotification){        
+    func keyBoardWillAppear(notification : NSNotification){
         if let userInfo = notification.userInfo {
             if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
                 let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
@@ -456,7 +456,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
                 
             }
         }
-        
     }
     
     func keyboardWillHide(notification: NSNotification) {
@@ -480,5 +479,6 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
+    
     
 }

@@ -46,15 +46,15 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     let lastLocationAnnotation = MKPointAnnotation()
     var polyline : MKPolyline!
     
-    var dist : Double = 0.0
+    static var  dist : Double = 0.0
     
     var tripObj : Trip!
     
     
-    var tripFirstLocation = CLLocation()
-    var tripLastLocation = CLLocation()
-    var isFirstLocation = true
-    
+    static var tripFirstLocation = CLLocation()
+    static var tripLastLocation = CLLocation()
+   static var isFirstLocation = true
+    static var lastDate : NSDate!
     var lastPlistIndex = 1
     
     var polyLines = [MKPolyline]()
@@ -68,6 +68,19 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         super.viewDidAppear(animated)
         print("will appear")
         
+       
+        self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", (MotionDetecionMapController.dist/1000),"KM")
+        
+        
+        
+        if MotionDetecionMapController.lastDate != nil {
+        let firstDate = MotionDetecionMapController.tripFirstLocation.timestamp
+        let hr =  MotionDetecionMapController.lastDate.hoursFrom(firstDate)
+        let min = MotionDetecionMapController.lastDate.minutesFrom(firstDate) % 60
+        let sec = MotionDetecionMapController.lastDate.secondsFrom(firstDate) % 60
+        
+        self.timeDisplay.text = "\(hr):\(min):\(sec)"
+        }
         toggleButton()
         
     }
@@ -81,26 +94,23 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let block :(CLLocation,Double)->() = {(location,distance) in
             
-            if self.isFirstLocation {
+            if MotionDetecionMapController.isFirstLocation {
                 self.locationPlist.saveLocation(location)
-                self.tripFirstLocation = location
-                self.tripLastLocation = location
-                self.isFirstLocation = false
+                MotionDetecionMapController.tripFirstLocation = location
+                MotionDetecionMapController.tripLastLocation = location
+                MotionDetecionMapController.isFirstLocation = false
+                
             }
             let speed = location.speed * 3.6
             if (speed >= 0){
                 self.currentSpeed.text = String(Int(speed))
             }
             
-            // let firstLocationData = self.locationPlist.readFirstLocation()
-            // let lastLocationData = self.locationPlist.readLastLocation()
-            // let firstLocation = CLLocation(latitude: firstLocationData.latitude, longitude: firstLocationData.longitude)
-            // let lastLocation = CLLocation(latitude: lastLocationData.latitude, longitude: lastLocationData.longitude)
             
-            self.dist = self.tripLastLocation.distanceFromLocation(self.tripFirstLocation) + location.distanceFromLocation(self.tripLastLocation)
+            MotionDetecionMapController.dist = MotionDetecionMapController.tripLastLocation.distanceFromLocation(MotionDetecionMapController.tripFirstLocation) + location.distanceFromLocation(MotionDetecionMapController.tripLastLocation)
             
             
-            self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", (self.dist/1000),"KM")
+            self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", (MotionDetecionMapController.dist/1000),"KM")
             
             if speed < 30 {
                 
@@ -116,15 +126,15 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                 self.currentSpeed.textColor = UIColor.redColor()
             }
             
-            let firstDate = self.tripFirstLocation.timestamp
-            let lastDate = location.timestamp
+            let firstDate = MotionDetecionMapController.tripFirstLocation.timestamp
+             MotionDetecionMapController.lastDate = location.timestamp
             
-            let hr =  lastDate.hoursFrom(firstDate)
-            let min = lastDate.minutesFrom(firstDate) % 60
-            let sec = lastDate.secondsFrom(firstDate) % 60
+            let hr =  MotionDetecionMapController.lastDate.hoursFrom(firstDate)
+            let min = MotionDetecionMapController.lastDate.minutesFrom(firstDate) % 60
+            let sec = MotionDetecionMapController.lastDate.secondsFrom(firstDate) % 60
             
             self.timeDisplay.text = "\(hr):\(min):\(sec)"
-            self.tripLastLocation = location
+            MotionDetecionMapController.tripLastLocation = location
             
             if self.locationPlist.getCoordinatesArray().count > 5 {
                 self.drawRoad()
@@ -169,14 +179,14 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         if  Defaults[.isHavingTrip]
         {
             saveTrip()
-            self.isFirstLocation = false
+            MotionDetecionMapController.isFirstLocation = false
         }
         else
         {
             stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
             
             resetMap()
-            self.isFirstLocation = true
+            MotionDetecionMapController.isFirstLocation = true
             startDetection(sender)
             manager.startUpdatingLocation()
             self.map.showsUserLocation = true
@@ -217,7 +227,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
         
-        let distance = dist / 1000
+        let distance = MotionDetecionMapController.dist / 1000
         SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance)
         
         print("Distance is: \(distance)")
@@ -393,8 +403,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         
         
-        let firstCoordinate = tripFirstLocation//locationPlist.readFirstLocation()
-        let lastCoordinate  = tripLastLocation//locationPlist.readLastLocation()
+        let firstCoordinate = MotionDetecionMapController.tripFirstLocation//locationPlist.readFirstLocation()
+        let lastCoordinate  = MotionDetecionMapController.tripLastLocation//locationPlist.readLastLocation()
         
         let firstlocation = CLLocation(latitude: CLLocationDegrees((firstCoordinate.coordinate.latitude)), longitude: CLLocationDegrees((firstCoordinate.coordinate.longitude)))
         let lastlocation = CLLocation(latitude: CLLocationDegrees((lastCoordinate.coordinate.latitude)), longitude: CLLocationDegrees((lastCoordinate.coordinate.longitude)))
@@ -490,9 +500,9 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     func clearView(){
         
         toggleButton()
-        currentSpeed.text = "0"
-        self.elapsedTimeLabel.text = "00:00:00"
-        self.totalDistance.text = "0"
+//        currentSpeed.text = "0"
+//        self.elapsedTimeLabel.text = "00:00:00"
+//        self.totalDistance.text = "0"
         
     }
     
