@@ -28,7 +28,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     @IBOutlet var editImageButton: UIButton!
     
     @IBOutlet var initialsLabel: UILabel!
-
+    
     @IBOutlet var scrollView: UIScrollView!
     
     var isEditMode : Bool = false
@@ -48,6 +48,8 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         let notCenter = NSNotificationCenter.defaultCenter()
         notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
         notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+        
+        self.prepareNavigationBar("")
     }
     
     override func viewDidLoad() {
@@ -82,7 +84,6 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     
     //MARK: - keyboard
     func keyBoardWillAppear(notification : NSNotification){
-        print("Keyboard will Appear")
         
         if let userInfo = notification.userInfo {
             if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
@@ -108,6 +109,11 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
                 self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y)
             }
         }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func changeFieldsStatus()
@@ -147,7 +153,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
                 }
             }
             initialsLabel.hidden = false
-            initialsLabel.text = userIntials
+            initialsLabel.text = userIntials.uppercaseString
         }
     }
     
@@ -202,13 +208,52 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         dismissViewControllerAnimated(true, completion: nil)
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
             SessionObjects.currentUser.image = NSData(data: UIImagePNGRepresentation(image)!)
+            SessionObjects.currentUser.save()
+            let userWebService = UserWebservice(currentUser: SessionObjects.currentUser)
+            userWebService.saveProfilePicture(Int(SessionObjects.currentUser.userId!), image: image, imageExtension: "png")
+            
         }
         self.loadUserImage()
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        self.slideMenuController()?.openLeft()
+    }
+    
+    func prepareNavigationBar(title: String)
+    {
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.title = self.contextAwareTitle()
+        self.navigationController?.navigationBar.userInteractionEnabled = true
+        
+        
+    }
+    
+    func contextAwareTitle() -> String?
+    {
+        let now = NSDate()
+        let cal = NSCalendar.currentCalendar()
+        let comps = cal.component(NSCalendarUnit.Hour, fromDate: now)
+        
+        switch comps {
+        case 0 ... 12:
+            return "Good Morning"
+        case 13 ... 17:
+            return "Good Afternoon"
+        case 18 ... 23:
+            return "Good Evening"
+        default:
+            return "Welcome Back"
+        }
     }
     
     

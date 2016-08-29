@@ -15,6 +15,7 @@ import FBSDKShareKit
 import FBSDKLoginKit
 import SwiftyUserDefaults
 import AlamofireNetworkActivityIndicator
+import SlideMenuControllerSwift
 
 let isFirstTime = "isFirstTime"
 
@@ -36,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         NetworkActivityIndicatorManager.sharedManager.startDelay = 0
         NetworkActivityIndicatorManager.sharedManager.completionDelay = 0.5
         
+        
+        
         // Override point for customization after application launch.
         
         if(Defaults[.isLoggedIn] == false)
@@ -54,20 +57,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             SessionObjects.currentUser = abstractDAO.selectAll(entityName: "MyUser")[0] as! MyUser
             
             let vehicleName = Defaults[.curentVehicleName]
-            let vehicles = abstractDAO.selectByString(entityName: "Vehicle", AttributeName: "name", value: vehicleName!) as! [Vehicle]
-            if(vehicles.count > 0){
-                SessionObjects.currentVehicle = vehicles.first
+            if vehicleName != nil
+            {
+                let vehicles = abstractDAO.selectByString(entityName: "Vehicle", AttributeName: "name", value: vehicleName!) as! [Vehicle]
+                if(vehicles.count > 0){
+                    SessionObjects.currentVehicle = vehicles.first
+                }
+                else{
+                    print("no car selected")
+                }
+                
+                SessionObjects.motionMonitor = LocationMonitor()
+                
+                SessionObjects.motionMonitor.startDetection()
+                
+                
             }
-            else{
-                print("no car selected")
-            }
+            
+            let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+            let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+            
+            let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
+            let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+            
+            
+            let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
+            slideMenuController.automaticallyAdjustsScrollViewInsets = true
+            self.window?.rootViewController = slideMenuController
+            self.window?.makeKeyAndVisible()
+            
         }
         
         
         
-        SessionObjects.motionMonitor = LocationMonitor(delegate: nil)
-        SessionObjects.motionMonitor.stopTrip()
-        SessionObjects.motionMonitor.startDetection()
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -218,7 +240,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         let serviceCentersPage = OnboardingContentViewController(title: "Service Centers", body: "View the nearest Service Centers to you From their location to their working hours and the offered services", image: UIImage(named: "service-centers"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
-            NSLog("Tracking Page")
         }
         
         serviceCentersPage.titleLabel.font = UIFont(name: "Continuum Medium" , size: 28.0)
@@ -226,7 +247,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
         let zobaPage = OnboardingContentViewController(title: "Zoba", body: "Your Car Pal", image: UIImage(named: "logo"), buttonText: "Lets Get Started") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
-            NSLog("Tracking Page")
             self.handleOnboardingCompletion()
         }
         
@@ -296,6 +316,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         Defaults[.deviceToken] = tokenString
         print("tokenString: \(tokenString)")
         print("Device Token is : \(deviceToken)")
+        
+        if(SessionObjects.currentUser != nil)
+        {
+            SessionObjects.currentUser.deviceToken = tokenString
+            let deviceWebService = DeviceWebservice(deviceToken: Defaults[.deviceToken]!,currentUser: SessionObjects.currentUser)
+            deviceWebService.registerUserDevice()
+            print("Device Token is : \(deviceToken)")
+        }
+        else
+        {
+            Defaults[.deviceToken] = tokenString
+        }
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
@@ -306,34 +338,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
         
-        
-        //get current active view controller
-        let tabController = application.windows[0].rootViewController as! UITabBarController
-        let navigationController = tabController.selectedViewController as! UINavigationController
-        let activeViewCont = navigationController.visibleViewController
-//        SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
-//        
-//        
-        
-        switch notification.category! {
-        case "zoba_start_motion":
-            print("delegate : start motion")
-            SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
-        case "zoba_stop_motion":
+        if application.applicationState == .Inactive
+        {
+            print("will enter foreground")
+            let menu = application.windows[0].rootViewController as! SlideMenuController
+            let tabController = menu.mainViewController as! UITabBarController
             
-            print("delegate : stop motion")
-            SessionObjects.motionMonitor.showStopTripAlert(viewController: activeViewCont!)
-        case "zoba_check_if_running":
-            print("delegate : check if running")
-            SessionObjects.motionMonitor.checkIfMoving()
+            let navigationController = tabController.selectedViewController as! UINavigationController
+            let activeViewCont = navigationController.visibleViewController
             
-        default:
-            print("not motion notification")
+            
+            if !(activeViewCont is MotionDetecionMapController)
+            {
+                let story = UIStoryboard(name: "MotionDetection", bundle: nil)
+                let motionDetection = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
+                activeViewCont?.navigationController?.pushViewController(motionDetection, animated: true)
+            }
         }
         
-        
-        
-        
+        //get current active view controller
+        if  let menu = application.windows[0].rootViewController as? SlideMenuController
+        {
+            if let tabController = menu.mainViewController as? UITabBarController {
+                
+                let navigationController = tabController.selectedViewController as! UINavigationController
+                let activeViewCont = navigationController.visibleViewController
+                
+                switch notification.category! {
+                case "zoba_start_motion":
+                    print("delegate : start motion")
+                    
+                    SessionObjects.motionMonitor.showStartTripAlert(viewController: activeViewCont!)
+                case "zoba_stop_motion":
+                    
+                    print("delegate : stop motion")
+                    SessionObjects.motionMonitor.showStopTripAlert(viewController: activeViewCont!)
+                case "zoba_check_if_running":
+                    print("delegate : check if running")
+                    // SessionObjects.motionMonitor.checkIfMoving()
+                    
+                default:
+                    print("not motion notification")
+                }
+                
+            }
+            
+        }
     }
 }
 

@@ -11,96 +11,46 @@ import BTNavigationDropdownMenu
 import ChameleonFramework
 import SwiftyUserDefaults
 import CoreLocation
-import SwiftyUserDefaults
+import FoldingTabBar
 
-class TimelineViewController: UITableViewController {
+class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YALTabBarInteracting {
     var menuView: BTNavigationDropdownMenu!
     let locationManager = CLLocationManager()
+    var timelinePopulater : TimelinePopulater?
+    
+    var tableCells : [TimeLineCell] = [TimeLineCell]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
-        self.edgesForExtendedLayout = UIRectEdge.None
-        self.extendedLayoutIncludesOpaqueBars = false
-        self.automaticallyAdjustsScrollViewInsets = false
-        
-        
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.whiteColor() ]
-        
+        prepareNavigationBar()
+        isLocationEnabled()
+        isNotificationsEnabled()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        let vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
-        
-        var items :[String] = [String]()//= ["Car one","car two","car two","car two" ,"Add Vehicles"]
-        vehicles.forEach { (vehicle) in
-            items.append(vehicle.name!)
-        }
+        self.loadUserVehiclesDropDown()
         
         
-        var menuTitle : String = "Add vehicle"
-        if SessionObjects.currentVehicle != nil{
-            let selectedVehicle : Vehicle =   SessionObjects.currentVehicle
-            menuTitle = selectedVehicle.name!
-            
-        }else {
-            //            items.append(menuTitle)
-            
-            print("no car selected in time lline")
-        }
-        items.append("Add vehicle")
-        
-        menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: menuTitle, items: items)
-        menuView.cellHeight = 40
-        menuView.cellBackgroundColor = UIColor.flatWhiteColor()
-        menuView.cellSelectionColor = UIColor.flatSandColor()
-        menuView.keepSelectedCellColor = true
-        menuView.cellTextLabelColor = UIColor.flatWatermelonColor()
-        menuView.cellTextLabelFont = UIFont(name: "Continuum Medium", size: 20)
         
         
-        menuView.cellTextLabelAlignment = .Center // .Center // .Right // .Left
-        
-        menuView.arrowPadding = 10
-        
-        menuView.animationDuration = 0.5
-        menuView.maskBackgroundColor = UIColor.blackColor()
-        menuView.maskBackgroundOpacity = 0.3
-        menuView.checkMarkImage = nil
-        
-        menuView.checkMarkImage = UIImage(named: "plus_icon")
-        
-        menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
-            
-            let itemCount = items.count - 1
-            
-            if indexPath == itemCount {
-                
-                let story = UIStoryboard.init(name: "Vehicle", bundle: nil)
-                let controller = story.instantiateViewControllerWithIdentifier("addVehicle") as! AddVehicleTableViewController
-                
-                self.navigationController!.pushViewController(controller, animated: true)
-            }else{
-                print(" out ")
-                
-                SessionObjects.currentVehicle = vehicles[indexPath]
-                Defaults[.curentVehicleName] = SessionObjects.currentVehicle.name
-                
-                
+        if SessionObjects.currentVehicle != nil {
+            timelinePopulater = TimelinePopulater(tableView: self.tableView)
+            tableCells = (timelinePopulater?.populateTableData())!
+            if SessionObjects.motionMonitor == nil {
+            SessionObjects.motionMonitor = LocationMonitor()
             }
-            //self.selectedCellLabel.text = items[indexPath]
+            SessionObjects.motionMonitor.startDetection()
+            
+        }
+        else {
+           // SessionObjects.motionMonitor = LocationMonitor()
+            if SessionObjects.motionMonitor != nil {
+            SessionObjects.motionMonitor.stopDetection()
+            }
         }
         
-        
-        self.navigationItem.titleView = menuView
-        
-        isLocationEnabled()
-        isNotificationsEnabled()
-        
+        self.tableView.reloadData()
     }
     
     
@@ -117,32 +67,35 @@ class TimelineViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0;
+        return (tableCells.count)
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if (indexPath.row % 2 == 0 ){
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier, forIndexPath: indexPath) as! DaySummaryCell
-            
-            cell.currentOdemeter?.text = "1000 "
-            cell.date!.text = "9"
+        
+        
+        
+        if let cell = tableCells[indexPath.row] as? TripCell
+        {
             return cell
         }
-        else if (indexPath.row % 3 == 0 ){
-            let cell = tableView.dequeueReusableCellWithIdentifier(TripCell.identifier, forIndexPath: indexPath) as! TripCell
-            
-            cell.initialOdemeter!.text = "1000 "
-            cell.distanceCovered!.text = "20 km"
+        else if let cell = tableCells[indexPath.row] as? FuelCell
+        {
             return cell
         }
-        else{
-            let cell = tableView.dequeueReusableCellWithIdentifier(FuelCell.identifier, forIndexPath: indexPath) as! FuelCell
-            cell.fuelAmount!.text = "50 Litters"
-            cell.serviceProvider?.text = "fuel service"
-            return cell
+        else if let cell = tableCells[indexPath.row] as? OilCell
+        {
             
+            return cell
         }
+        else if let cell = tableCells[indexPath.row] as? DaySummaryCell
+        {
+            return cell
+        }
+        else
+        {
+            return UITableViewCell()
+        }
+        
     }
     
     
@@ -175,7 +128,110 @@ class TimelineViewController: UITableViewController {
     }
     
     
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        
+        self.slideMenuController()?.openLeft()
+        menuView.animationDuration = 0
+        menuView.hide()
+    }
     
+    func extraRightItemDidPress() {
+        
+        let MotionDetectionStoryBoard =  UIStoryboard(name: "MotionDetection", bundle: nil)
+        let MotionNavigationController = MotionDetectionStoryBoard.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
+        self.navigationController?.pushViewController(MotionNavigationController, animated: true)
+    }
+    
+    func extraLeftItemDidPress() {
+        
+        let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
+        let vehicleNavigationController = vehiclesStoryBoard.instantiateViewControllerWithIdentifier("vehicleTable")
+        self.navigationController?.pushViewController(vehicleNavigationController, animated: true)
+    }
+    
+    func prepareNavigationBar()
+    {
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
+        self.edgesForExtendedLayout = UIRectEdge.None
+        self.extendedLayoutIncludesOpaqueBars = false
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.whiteColor() ]
+    }
+    
+    func loadUserVehiclesDropDown()
+    {
+        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        let vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
+        
+        var items :[String] = [String]()
+        
+        vehicles.forEach { (vehicle) in
+            items.append(vehicle.name!)
+        }
+        
+        
+        var menuTitle : String = "Add vehicle"
+        if SessionObjects.currentVehicle != nil
+        {
+            let selectedVehicle : Vehicle =   SessionObjects.currentVehicle
+            menuTitle = selectedVehicle.name!
+            
+        }
+        items.append("Add vehicle")
+        
+        menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: menuTitle, items: items)
+        menuView.cellHeight = 40
+        menuView.cellBackgroundColor = UIColor.flatWhiteColor()
+        menuView.cellSelectionColor = UIColor.flatSandColor()
+        menuView.keepSelectedCellColor = true
+        menuView.cellTextLabelColor = UIColor.flatWatermelonColor()
+        menuView.cellTextLabelFont = UIFont(name: "Continuum Medium", size: 20)
+        
+        
+        menuView.cellTextLabelAlignment = .Center // .Center // .Right // .Left
+        
+        menuView.arrowPadding = 10
+        
+        menuView.animationDuration = 0.5
+        menuView.maskBackgroundColor = UIColor.blackColor()
+        menuView.maskBackgroundOpacity = 0.3
+        menuView.checkMarkImage = nil
+        
+        //  menuView.checkMarkImage = UIImage(named: "plus_icon")
+        
+        
+        menuView.didSelectItemAtIndexHandler = {(indexPath: Int) -> () in
+            
+            
+            
+            let itemCount = items.count - 1
+            
+            if indexPath == itemCount
+            {
+                let story = UIStoryboard.init(name: "Vehicle", bundle: nil)
+                let controller = story.instantiateViewControllerWithIdentifier("Add Vehicle") as! AddVehicleTableViewController
+                self.navigationController!.pushViewController(controller, animated: true)
+            }
+            else
+            {
+                SessionObjects.currentVehicle = vehicles[indexPath]
+                Defaults[.curentVehicleName] = SessionObjects.currentVehicle.name
+                if self.timelinePopulater == nil {
+                    self.timelinePopulater = TimelinePopulater(tableView: self.tableView)
+                }
+                self.tableCells = self.timelinePopulater!.populateTableData()
+                self.tableView.reloadData()
+            }
+        }
+        
+        
+        self.navigationItem.titleView = menuView
+        
+        
+        
+    }
     
     /*
      // MARK: - Navigation
@@ -192,8 +248,3 @@ class TimelineViewController: UITableViewController {
      */
     
 }
-//        cell.checkmarkIcon.hidden = (indexPath.row == selectedIndexPath) ? false : true
-//if self.configuration.keepSelectedCellColor == true {
-//    cell.contentView.backgroundColor = (selectedIndexPath != nil && indexPath.row == selectedIndexPath) ? self.configuration.cellSelectionColor : self.configuration.cellBackgroundColor
-//}
-//

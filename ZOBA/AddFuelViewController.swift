@@ -10,71 +10,52 @@ import UIKit
 import TextFieldEffects
 
 class AddFuelViewController: UIViewController , UIPickerViewDelegate {
-
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     
     @IBOutlet weak var vehiclePickerView: UIPickerView!
     
     @IBOutlet weak var initialOdemeter: HoshiTextField!
-   
+    
     @IBOutlet weak var dateTextField: HoshiTextField!
-
+    
     @IBOutlet weak var fuelAmountTextField: HoshiTextField!
     
     @IBOutlet weak var currentOdometerTextField: HoshiTextField!
     
     @IBOutlet weak var serviceProviderTextFeild: HoshiTextField!
-
-     var pickerView : UIPickerView!
     
-     var selectedVehicle : Vehicle!
+    @IBOutlet weak var serviceProviderButton: UIButton!
+    var serviceProviderPickerView : UIPickerView!
     
-     var vehicles : [Vehicle]!
+    var selectedVehicle : Vehicle!
     
-     var isCurrentOdeReady = false
+    var vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
     
-     var isFuelMountReady = false
+    var isCurrentOdeReady = true
     
-     var formatter = NSDateFormatter()
+    var isFuelMountReady = false
     
-     var pickOption : [ServiceProvider]!
+    var isServiceProviderReady = false
     
-     var datePickerView : UIDatePicker!
+    var formatter = NSDateFormatter()
     
-     var date : String!
+    var serviceProviders : [ServiceProvider]!
+    
+    var datePickerView : UIDatePicker!
+    
+    var date : String!
+    
+    var selectedServiceProvider : ServiceProvider?
+    
+    
+    
     
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(true)
-        
-        //initialOdemeter.text = String(selectedVehicle.initialOdemeter)
-        
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        
-       
-        let trackingData = dao.selectAll(entityName: "TrackingData")
-        
-        if trackingData.count == 0
-        {
-            initialOdemeter.text = String(selectedVehicle.initialOdemeter)
-        }
-        else
-        {
-            let lastObj = trackingData.last as! TrackingData
-            
-            initialOdemeter.text = String(lastObj.initialOdemeter)
-        }
-
-        
-        vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
-        
-        let serviceProviderDAO = dao.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
-        
-        pickOption = serviceProviderDAO
-        
         disableBtn()
-        
-        print("View Will Appear")
     }
     
     override func viewDidLoad() {
@@ -88,30 +69,81 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         
         formatter.dateFormat = "MMM dd,yyyy"
         
-        pickerView = UIPickerView()
+        serviceProviderPickerView = UIPickerView()
         
-        pickerView.delegate = self
+        serviceProviderPickerView.delegate = self
         
         vehiclePickerView.delegate = self
         
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
-        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        toolBar.sizeToFit()
+        let datePickerToolbar = UIToolbar()
+        datePickerToolbar.barStyle = UIBarStyle.Default
+        datePickerToolbar.translucent = true
+        datePickerToolbar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        datePickerToolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddOilViewController.donePicker))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddFuelViewController.dateToolbarDoneClicked))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddFuelViewController.donePicker))
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddFuelViewController.dateToolbarCancelClicked))
         
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.userInteractionEnabled = true
+        datePickerToolbar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        datePickerToolbar.userInteractionEnabled = true
         
-        serviceProviderTextFeild.inputAccessoryView = toolBar
         
-        dateTextField.inputAccessoryView = toolBar
+        let serviceProviderPickerToolbar = UIToolbar()
+        serviceProviderPickerToolbar.barStyle = UIBarStyle.Default
+        serviceProviderPickerToolbar.translucent = true
+        serviceProviderPickerToolbar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        serviceProviderPickerToolbar.sizeToFit()
         
+        let serviceProviderdoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddFuelViewController.serviceProviderToolbarDoneClicked))
+        let serviceProviderspaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let serviceProviderCancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddFuelViewController.serviceProviderToolbarCancelClicked))
+        
+        serviceProviderPickerToolbar.setItems([serviceProviderCancelButton, serviceProviderspaceButton, serviceProviderdoneButton], animated: false)
+        serviceProviderPickerToolbar.userInteractionEnabled = true
+        
+        
+        
+        serviceProviderTextFeild.inputAccessoryView = serviceProviderPickerToolbar
+        
+        dateTextField.inputAccessoryView = datePickerToolbar
+        
+        
+        let selectedVehicleIndex = self.getCurrentVehicleIndex()
+        if selectedVehicleIndex >= 0 {
+            vehiclePickerView.selectRow(selectedVehicleIndex, inComponent: 0, animated: false)
+        }
         selectedVehicle = vehicles[vehiclePickerView.selectedRowInComponent(0)]
+        
+        let abstractDAO = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        let serviceProviderDAO = abstractDAO.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
+        serviceProviders = serviceProviderDAO
+        
+        if serviceProviders != nil && serviceProviders.count > 0
+        {
+            selectedServiceProvider = serviceProviders[serviceProviderPickerView.selectedRowInComponent(0)]
+        }
+        else
+        {
+            selectedServiceProvider = nil
+            isServiceProviderReady = true
+            serviceProviderTextFeild.hidden = true
+            serviceProviderTextFeild.enabled = false
+            serviceProviderButton.enabled = false
+            serviceProviderButton.hidden = true
+        }
+        
+        
+        
+        initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
+        currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
+        
+        
+        //register keyboard notification
+        let notCenter = NSNotificationCenter.defaultCenter()
+        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
+        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,7 +155,8 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     @IBAction func fuelAmountEditingDidEnd(sender: AnyObject) {
         
         
-        if (fuelAmountTextField.text?.isNotEmpty ==  true && DataValidations.hasNoWhiteSpaces(fuelAmountTextField.text!)) {
+        if (fuelAmountTextField.text?.isNotEmpty ==  true && DataValidations.hasNoWhiteSpaces(fuelAmountTextField.text!))
+        {
             isFuelMountReady = true
         }
         else
@@ -133,30 +166,50 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         }
     }
     
-    @IBAction func fuelAmountEditingChang(sender: AnyObject) {
+    @IBAction func fuelAmountEditingChang(sender: AnyObject)
+    {
         
-        if (Int(fuelAmountTextField.text!)! < 90) {
+        if(fuelAmountTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(fuelAmountTextField!.text!) && Int(fuelAmountTextField.text!)! > 0)
+        {
             
-            showValidMessage("fuel Amount" , textField: fuelAmountTextField)
-            isFuelMountReady = true
+            if (Int(fuelAmountTextField.text!)! < 90)
+            {
+                
+                showValidMessage("Fuel Amount (L)" , textField: fuelAmountTextField)
+                isFuelMountReady = true
+            }
+            else
+            {
+                showErrorMessage("Amount Not Valid!"  , textField: fuelAmountTextField)
+                isFuelMountReady = false
+            }
         }
         else
         {
-            showErrorMessage("Enter Valid fuel Amount"  , textField: fuelAmountTextField)
+            showErrorMessage("Amount Not Valid!"  , textField: fuelAmountTextField)
             isFuelMountReady = false
         }
+        validateSaveBtn()
     }
     
-    @IBAction func currentOdemterEditingDidEnd(sender: AnyObject) {
-        
-        if (NSNumber(integer: Int(currentOdometerTextField.text!)!).integerValue > selectedVehicle.currentOdemeter!.integerValue ) {
-            
-            showValidMessage("Current Odemeter",textField: currentOdometerTextField)
-            isCurrentOdeReady = true
+    @IBAction func currentOdemterEditingDidEnd(sender: AnyObject)
+    {
+        if(currentOdometerTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(currentOdometerTextField!.text!) && Int(currentOdometerTextField.text!)! > 0)
+        {
+            if (Int(currentOdometerTextField.text!)! >= selectedVehicle.currentOdemeter!.integerValue )
+            {
+                showValidMessage("Current Odemeter",textField: currentOdometerTextField)
+                isCurrentOdeReady = true
+            }
+            else
+            {
+                showErrorMessage("Enter valid Odemeter" ,textField: currentOdometerTextField)
+                isCurrentOdeReady = false
+            }
         }
         else
         {
-            showErrorMessage("Enter valid Odemeter" ,textField: currentOdometerTextField)
+            showErrorMessage("Not Valid" ,textField: currentOdometerTextField)
             isCurrentOdeReady = false
         }
         validateSaveBtn()
@@ -164,18 +217,29 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     
     @IBAction func currentOdemeterEditingChang(sender: AnyObject) {
         
-        if (currentOdometerTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(currentOdometerTextField.text!) ) {
-            
-            isCurrentOdeReady = true
+        if(currentOdometerTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(currentOdometerTextField!.text!) && Int(currentOdometerTextField.text!)! > 0)
+        {
+            if (Int(currentOdometerTextField.text!)! >= selectedVehicle.currentOdemeter!.integerValue )
+            {
+                showValidMessage("Current Odemeter",textField: currentOdometerTextField)
+                isCurrentOdeReady = true
+            }
+            else
+            {
+                showErrorMessage("Enter valid Odemeter" ,textField: currentOdometerTextField)
+                isCurrentOdeReady = false
+            }
         }
         else
         {
+            showErrorMessage("Not Valid" ,textField: currentOdometerTextField)
             isCurrentOdeReady = false
         }
+        validateSaveBtn()
     }
     
     func validateSaveBtn() {
-        if (isFuelMountReady && isCurrentOdeReady && dateTextField.text?.isNotEmpty == true) {
+        if (isFuelMountReady && isCurrentOdeReady && isServiceProviderReady && dateTextField.text?.isNotEmpty == true) {
             enablBtn()
         }
         else
@@ -211,44 +275,42 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
     
     func enablBtn()  {
         saveBtn.enabled = true
-        saveBtn.tintColor = UIColor.blueColor()
+        saveBtn.tintColor = UIColor.whiteColor()
     }
     
-
+    
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       
+        
         if pickerView == vehiclePickerView {
             
             return vehicles[row].name
         }
         else
         {
-        
-        return pickOption[row].name
+            return serviceProviders[row].name
         }
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        if pickerView == vehiclePickerView {
-        
-           selectedVehicle = vehicles[row]
+        if pickerView == vehiclePickerView
+        {
+            selectedVehicle = vehicles[row]
+            initialOdemeter.text = selectedVehicle.currentOdemeter!.stringValue
+            currentOdometerTextField.text = selectedVehicle.currentOdemeter!.stringValue
         }
-        
+            
         else
         {
-        serviceProviderTextFeild.text = pickOption[row].name
+            selectedServiceProvider = serviceProviders[row]
+            serviceProviderTextFeild.text = serviceProviders[row].name
         }
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-       
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        
-        vehicles = dao.selectAll(entityName: "Vehicle") as! [Vehicle]
         
         if pickerView == vehiclePickerView
         {
@@ -256,42 +318,54 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         }
         else
         {
-        return pickOption.count
-    
+            let abstractDAO = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+            let serviceProviderDAO = abstractDAO.selectAll(entityName: "ServiceProvider") as! [ServiceProvider]
+            serviceProviders = serviceProviderDAO
+            return serviceProviders.count
         }
     }
     
-    func donePicker() {
+    func dateToolbarDoneClicked() {
+        
+        formatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        
+        formatter.timeStyle = NSDateFormatterStyle.NoStyle
+        
+        date = formatter.stringFromDate(datePickerView.date)
+        
+        dateTextField.text = date
+        
+        validateSaveBtn()
+        
         view.endEditing(true)
     }
     
-    @IBAction func saveFuel(sender: AnyObject) {
-        
-        let trackingDataObj = TrackingData(managedObjectContext: SessionObjects.currentManageContext , entityName: "TrackingData")
-        
-        trackingDataObj.initialOdemeter = NSNumber(integer : Int(currentOdometerTextField.text!)!)
-        
-        trackingDataObj.value = fuelAmountTextField.text!
-        
-        trackingDataObj.dateAdded = datePickerView.date
-    
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        
-        let typeObj = dao.selectByString(entityName: "TrackingType", AttributeName: "name", value: "fuel") as![TrackingType]
-        
-        trackingDataObj.trackingType = typeObj[0]
-        
-        trackingDataObj.vehicle =  selectedVehicle
-        
-        trackingDataObj.save()
-        
-        performSegueWithIdentifier("allData", sender: self)
+    func dateToolbarCancelClicked()
+    {
+        validateSaveBtn()
+        dateTextField.resignFirstResponder()
     }
     
-     @IBAction func dateUpdate(sender: AnyObject) {
+    func serviceProviderToolbarDoneClicked()
+    {
+        serviceProviderTextFeild.text = selectedServiceProvider!.name
+        isServiceProviderReady = true
+        validateSaveBtn()
+        serviceProviderTextFeild.resignFirstResponder()
+    }
+    
+    func serviceProviderToolbarCancelClicked()
+    {
+        view.endEditing(true)
+    }
+    
+    
+    
+    
+    @IBAction func dateUpdate(sender: AnyObject) {
         
         datePickerView = UIDatePicker()
-        
+        datePickerView.maximumDate = NSDate()
         datePickerView.datePickerMode = UIDatePickerMode.Date
         
         dateTextField.inputView = datePickerView
@@ -299,8 +373,9 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         dateTextField.becomeFirstResponder()
         
         datePickerView.addTarget(self, action: #selector(AddFuelViewController.datePickerValueChanged), forControlEvents: UIControlEvents.ValueChanged)
-
-     }
+        
+    }
+    
     
     
     func datePickerValueChanged(sender:UIDatePicker) {
@@ -314,24 +389,123 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate {
         dateTextField.text = date
         
     }
+    
     @IBAction func servicePROVIDER(sender: AnyObject) {
         
-        serviceProviderTextFeild.inputView = pickerView
+        serviceProviderTextFeild.inputView = serviceProviderPickerView
         
         serviceProviderTextFeild.becomeFirstResponder()
         
     }
-    /*
-    // MARK: - Navigation
-
-     //In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
- 
+    
+    func getCurrentVehicleIndex() -> Int{
+        
+        var index = -1
+        let vehicle = SessionObjects.currentVehicle
+        for i in 0..<vehicles.count
+        {
+            if vehicles[i] == vehicle {
+                index = i
             }
- */
-   
-
-
+        }
+        return index
+    }
+    
+    
+    @IBAction func saveFuel(sender: AnyObject) {
+        
+        let trackingDataObj = TrackingData(managedObjectContext: SessionObjects.currentManageContext , entityName: "TrackingData")
+        
+        trackingDataObj.initialOdemeter = NSNumber(integer : Int(currentOdometerTextField.text!)!)
+        
+        trackingDataObj.value = fuelAmountTextField.text!
+        
+        trackingDataObj.dateAdded = datePickerView.date
+        
+        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        
+        let trackingType = dao.selectByString(entityName: "TrackingType", AttributeName: "name", value: StringConstants.fuelTrackingType) as![TrackingType]
+        
+        if trackingType.count > 0
+        {
+            trackingDataObj.trackingType = trackingType[0]
+        }
+        
+        trackingDataObj.vehicle =  selectedVehicle
+        trackingDataObj.vehicle?.currentOdemeter = Int(currentOdometerTextField!.text!)
+        trackingDataObj.serviceProviderName = selectedServiceProvider != nil && selectedServiceProvider!.name != nil  ? serviceProviderTextFeild.text! : "Not Available"
+        
+        // trackingDataObj.save()
+        self.saveFuelToWebService(trackingDataObj)
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func saveFuelToWebService(fuel : TrackingData){
+        
+        let trackingWebService = TrackingDataWebService()
+        
+        trackingWebService.saveTrackingData(fuel, result: { (trackingData, code) in
+            
+            switch code {
+            case "success":
+                
+                print("success in saving data")
+                print(trackingData.trackingId)
+                fuel.trackingId = trackingData.trackingId
+                SessionObjects.currentManageContext.deleteObject(trackingData)
+                fuel.save()
+                break
+            case "error" :
+                print("error in saving tracking")
+                fuel.save()
+                break
+            default:
+                break
+                
+            }
+            
+            
+        })
+    }
+    
+    
+    
+    //MARK: - keyboard
+    func keyBoardWillAppear(notification : NSNotification){        
+        if let userInfo = notification.userInfo {
+            if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
+                
+                self.scrollView.contentInset = contentInset
+                self.scrollView.scrollIndicatorInsets = contentInset
+                
+                self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, 0 + (keyboardSize.height/2)) //set zero instead
+                
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsZero;
+                
+                self.scrollView.contentInset = contentInset
+                self.scrollView.scrollIndicatorInsets = contentInset
+                self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y)
+            }
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+        view.endEditing(true)
+        super.touchesBegan(touches, withEvent: event)
+    }
+    
+    
 }

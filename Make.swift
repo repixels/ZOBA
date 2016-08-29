@@ -12,21 +12,18 @@ import ObjectMapper
 
 
 class Make: NSManagedObject , Mappable {
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("Make", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        mapping(map)
         
     }
     
@@ -39,7 +36,7 @@ class Make: NSManagedObject , Mappable {
         self.name <- map["name"]
         self.niceName <- map["niceName"]
         modelsArray <- map[""]
-        serviceProvidersArray <- map[""]
+        serviceProvidersArray <- map["serviceProviders"]
         
         if modelsArray != nil
         {

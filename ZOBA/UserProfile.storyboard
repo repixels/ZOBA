@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fTT-d1-y3u">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fTT-d1-y3u">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="contm.ttf">
@@ -13,7 +15,7 @@
         <!--User Profile View Controller-->
         <scene sceneID="aTk-1N-H0E">
             <objects>
-                <viewController id="0vu-fw-awE" customClass="UserProfileViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="0vu-fw-awE" customClass="UserProfileViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HhW-HS-8hq"/>
                         <viewControllerLayoutGuide type="bottom" id="yHu-YM-GF5"/>
@@ -21,25 +23,54 @@
                     <view key="view" contentMode="scaleToFill" id="ebp-Wb-aa2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <userGuides>
-                            <userLayoutGuide location="159" affinity="minX"/>
-                        </userGuides>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tca-If-3Le">
-                                <rect key="frame" x="0.0" y="65" width="320" height="503"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tca-If-3Le">
+                                <rect key="frame" x="-4" y="64" width="328" height="504"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="timeline-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="pXD-8z-mvw">
-                                        <rect key="frame" x="100" y="7" width="120" height="120"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eib-uz-Anq">
-                                        <rect key="frame" x="180" y="92" width="30" height="30"/>
-                                        <state key="normal" image="edit"/>
-                                        <connections>
-                                            <action selector="updateUserImage:" destination="0vu-fw-awE" eventType="touchUpInside" id="mWi-1f-Uks"/>
-                                        </connections>
-                                    </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="raL-wY-suT" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="142" width="132" height="48"/>
+                                    <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQN-j8-Vga">
+                                        <rect key="frame" x="72" y="0.0" width="172" height="191"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eib-uz-Anq">
+                                                <rect key="frame" x="109" y="130" width="38" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="pUW-1L-v7W"/>
+                                                    <constraint firstAttribute="width" constant="38" id="yln-0u-INS"/>
+                                                </constraints>
+                                                <state key="normal" image="edit"/>
+                                                <connections>
+                                                    <action selector="updateUserImage:" destination="0vu-fw-awE" eventType="touchUpInside" id="mWi-1f-Uks"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfE-Qb-tct">
+                                                <rect key="frame" x="23" y="66" width="126" height="64"/>
+                                                <fontDescription key="fontDescription" name="ContinuumMedium" family="Continuum Medium" pointSize="51"/>
+                                                <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle" translatesAutoresizingMaskIntoConstraints="NO" id="pXD-8z-mvw">
+                                                <rect key="frame" x="16" y="14" width="140" height="162"/>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="HfE-Qb-tct" secondAttribute="trailing" constant="23" id="0oW-3w-fn2"/>
+                                            <constraint firstItem="HfE-Qb-tct" firstAttribute="centerY" secondItem="dQN-j8-Vga" secondAttribute="centerY" constant="3" id="0vt-0f-GnD"/>
+                                            <constraint firstItem="HfE-Qb-tct" firstAttribute="leading" secondItem="dQN-j8-Vga" secondAttribute="leading" constant="23" id="96l-Vj-sPc"/>
+                                            <constraint firstAttribute="trailing" secondItem="pXD-8z-mvw" secondAttribute="trailing" constant="16" id="FTh-43-sCR"/>
+                                            <constraint firstItem="pXD-8z-mvw" firstAttribute="centerY" secondItem="HfE-Qb-tct" secondAttribute="centerY" constant="-3" id="WhF-YA-z34"/>
+                                            <constraint firstItem="pXD-8z-mvw" firstAttribute="top" secondItem="dQN-j8-Vga" secondAttribute="top" constant="14" id="et8-AG-O66"/>
+                                            <constraint firstItem="HfE-Qb-tct" firstAttribute="centerX" secondItem="dQN-j8-Vga" secondAttribute="centerX" id="lxV-ft-dDI"/>
+                                            <constraint firstItem="pXD-8z-mvw" firstAttribute="leading" secondItem="dQN-j8-Vga" secondAttribute="leading" constant="16" id="rWz-rU-Uh4"/>
+                                            <constraint firstItem="eib-uz-Anq" firstAttribute="top" secondItem="HfE-Qb-tct" secondAttribute="bottom" id="vli-gx-12w"/>
+                                            <constraint firstAttribute="trailing" secondItem="eib-uz-Anq" secondAttribute="trailing" constant="25" id="wVV-k2-xUF"/>
+                                            <constraint firstAttribute="bottom" secondItem="eib-uz-Anq" secondAttribute="bottom" constant="31" id="wkN-Om-jvT"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ae-Y3-NfX" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="181" y="184" width="128" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="Na2-gH-adS"/>
+                                            <constraint firstAttribute="width" constant="128" id="tmT-gE-tXi"/>
+                                        </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -58,28 +89,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ae-Y3-NfX" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="168" y="135" width="132" height="55"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vMU-hj-gNt" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="198" width="280" height="48"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vMU-hj-gNt" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="235" width="289" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="luU-hu-9KD"/>
+                                        </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="next"/>
@@ -98,8 +112,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7mI-2B-A9T" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="310" width="280" height="48"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7mI-2B-A9T" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="347" width="289" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="VOf-CE-7co"/>
+                                        </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
@@ -118,8 +135,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PM1-1t-wSd" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                        <rect key="frame" x="20" y="254" width="280" height="48"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PM1-1t-wSd" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="291" width="289" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="3uY-6Q-NPR"/>
+                                        </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
@@ -138,17 +158,15 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="EM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfE-Qb-tct">
-                                        <rect key="frame" x="118" y="35" width="85" height="64"/>
-                                        <fontDescription key="fontDescription" name="ContinuumMedium" family="Continuum Medium" pointSize="51"/>
-                                        <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="Iry-0h-ZMD">
-                                        <rect key="frame" x="282" y="401" width="18" height="18"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="Iry-0h-ZMD">
+                                        <rect key="frame" x="291" y="438" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="1Jd-yS-uO7"/>
+                                            <constraint firstAttribute="width" constant="18" id="7Ru-ib-B1n"/>
+                                        </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toG-Tz-MOg">
-                                        <rect key="frame" x="20" y="395" width="280" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toG-Tz-MOg">
+                                        <rect key="frame" x="20" y="432" width="289" height="30"/>
                                         <state key="normal" title="Change Your Password">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -156,12 +174,74 @@
                                             <segue destination="z6C-cG-59e" kind="push" id="9OY-cW-pGI"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="raL-wY-suT" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="20" y="179" width="141" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="X9s-wr-5uV"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="2ae-Y3-NfX" firstAttribute="trailing" secondItem="vMU-hj-gNt" secondAttribute="trailing" id="Bii-T8-dAC"/>
+                                    <constraint firstItem="vMU-hj-gNt" firstAttribute="top" secondItem="2ae-Y3-NfX" secondAttribute="bottom" constant="8" symbolic="YES" id="Ddv-tK-37E"/>
+                                    <constraint firstItem="raL-wY-suT" firstAttribute="leading" secondItem="Tca-If-3Le" secondAttribute="leading" constant="20" id="G99-Nt-6hF"/>
+                                    <constraint firstItem="vMU-hj-gNt" firstAttribute="leading" secondItem="PM1-1t-wSd" secondAttribute="leading" id="LsG-jX-8V5"/>
+                                    <constraint firstItem="PM1-1t-wSd" firstAttribute="trailing" secondItem="7mI-2B-A9T" secondAttribute="trailing" id="OMM-SC-EZA"/>
+                                    <constraint firstItem="toG-Tz-MOg" firstAttribute="top" secondItem="7mI-2B-A9T" secondAttribute="bottom" constant="37" id="Okw-g5-cfp"/>
+                                    <constraint firstItem="7mI-2B-A9T" firstAttribute="leading" secondItem="toG-Tz-MOg" secondAttribute="leading" id="RDc-as-eSu"/>
+                                    <constraint firstAttribute="bottom" secondItem="dQN-j8-Vga" secondAttribute="bottom" constant="335" id="RqG-TY-sb5"/>
+                                    <constraint firstItem="toG-Tz-MOg" firstAttribute="trailing" secondItem="Iry-0h-ZMD" secondAttribute="trailing" id="RyI-od-X2x"/>
+                                    <constraint firstAttribute="trailing" secondItem="dQN-j8-Vga" secondAttribute="trailing" constant="85" id="SXU-yg-UKe"/>
+                                    <constraint firstItem="2ae-Y3-NfX" firstAttribute="leading" secondItem="raL-wY-suT" secondAttribute="trailing" constant="20" id="Sjw-nR-ehL"/>
+                                    <constraint firstItem="7mI-2B-A9T" firstAttribute="top" secondItem="PM1-1t-wSd" secondAttribute="bottom" constant="8" symbolic="YES" id="UDr-Ka-iSi"/>
+                                    <constraint firstItem="dQN-j8-Vga" firstAttribute="top" secondItem="Tca-If-3Le" secondAttribute="top" id="V9N-H1-8hP"/>
+                                    <constraint firstAttribute="trailing" secondItem="2ae-Y3-NfX" secondAttribute="trailing" constant="20" id="Xmg-f9-Zab"/>
+                                    <constraint firstItem="vMU-hj-gNt" firstAttribute="trailing" secondItem="PM1-1t-wSd" secondAttribute="trailing" id="XnF-HF-L3j"/>
+                                    <constraint firstItem="7mI-2B-A9T" firstAttribute="trailing" secondItem="Iry-0h-ZMD" secondAttribute="trailing" id="aYx-HG-9o3"/>
+                                    <constraint firstItem="PM1-1t-wSd" firstAttribute="top" secondItem="vMU-hj-gNt" secondAttribute="bottom" constant="8" symbolic="YES" id="d9D-Gy-6S6"/>
+                                    <constraint firstItem="toG-Tz-MOg" firstAttribute="centerY" secondItem="Iry-0h-ZMD" secondAttribute="centerY" id="eCD-Bp-LxM"/>
+                                    <constraint firstAttribute="bottom" secondItem="toG-Tz-MOg" secondAttribute="bottom" constant="64" id="kJi-ON-g6B"/>
+                                    <constraint firstItem="vMU-hj-gNt" firstAttribute="top" secondItem="raL-wY-suT" secondAttribute="bottom" constant="8" symbolic="YES" id="oOJ-QK-Jce"/>
+                                    <constraint firstItem="vMU-hj-gNt" firstAttribute="centerX" secondItem="Tca-If-3Le" secondAttribute="centerX" id="udE-Zo-EVy"/>
+                                    <constraint firstItem="raL-wY-suT" firstAttribute="leading" secondItem="vMU-hj-gNt" secondAttribute="leading" id="vkW-xB-Zrb"/>
+                                    <constraint firstItem="dQN-j8-Vga" firstAttribute="leading" secondItem="Tca-If-3Le" secondAttribute="leading" constant="72" id="xCg-l5-W9g"/>
+                                    <constraint firstItem="PM1-1t-wSd" firstAttribute="leading" secondItem="7mI-2B-A9T" secondAttribute="leading" id="yJ2-VT-Jhm"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dQN-j8-Vga" firstAttribute="width" secondItem="ebp-Wb-aa2" secondAttribute="height" multiplier="43:142" id="Icl-fz-4Db"/>
+                            <constraint firstItem="Tca-If-3Le" firstAttribute="leading" secondItem="ebp-Wb-aa2" secondAttribute="leadingMargin" constant="-20" id="MUw-v6-UVC"/>
+                            <constraint firstItem="Tca-If-3Le" firstAttribute="top" secondItem="HhW-HS-8hq" secondAttribute="bottom" id="dmr-Jz-qeY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Tca-If-3Le" secondAttribute="trailing" constant="-20" id="uPr-nm-exp"/>
+                            <constraint firstItem="Tca-If-3Le" firstAttribute="bottom" secondItem="yHu-YM-GF5" secondAttribute="top" id="zQj-hy-5qe"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kl3-Q9-ZGS">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="2SP-ny-9o4">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="menuButtonClicked:" destination="0vu-fw-awE" id="Xij-fi-l8E"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="kfB-Ee-aNw">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -198,32 +278,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5YD-Wa-BLS" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="93" width="280" height="48"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="isOldPasswordMatch:" destination="z6C-cG-59e" eventType="editingDidEnd" id="KLs-4J-uVW"/>
-                                    <action selector="isOldPasswordValid:" destination="z6C-cG-59e" eventType="editingDidEnd" id="gdH-jo-EcT"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dq3-EW-L0t" customClass="HoshiTextField" customModule="TextFieldEffects">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dq3-EW-L0t" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="205" width="280" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dq3-EW-L0t" secondAttribute="height" multiplier="35:6" id="tJi-Vh-kgI"/>
+                                </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done" secureTextEntry="YES"/>
@@ -248,8 +307,11 @@
                                     <action selector="isNewPasswordMatch:" destination="z6C-cG-59e" eventType="editingChanged" id="awj-LO-PUI"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hgF-n4-A21" customClass="HoshiTextField" customModule="TextFieldEffects">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hgF-n4-A21" customClass="HoshiTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="20" y="149" width="280" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hgF-n4-A21" secondAttribute="height" multiplier="35:6" id="1Nw-UX-xE2"/>
+                                </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
@@ -271,11 +333,50 @@
                                     <action selector="checkNewPassword:" destination="z6C-cG-59e" eventType="editingDidEnd" id="gp8-u9-xmu"/>
                                 </connections>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5YD-Wa-BLS" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="93" width="280" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="5YD-Wa-BLS" secondAttribute="height" multiplier="35:6" id="PLR-qd-Uyy"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="isOldPasswordMatch:" destination="z6C-cG-59e" eventType="editingDidEnd" id="KLs-4J-uVW"/>
+                                    <action selector="isOldPasswordValid:" destination="z6C-cG-59e" eventType="editingDidEnd" id="gdH-jo-EcT"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dq3-EW-L0t" firstAttribute="top" secondItem="hgF-n4-A21" secondAttribute="bottom" constant="8" symbolic="YES" id="0gD-cf-sua"/>
+                            <constraint firstItem="5YD-Wa-BLS" firstAttribute="leading" secondItem="hgF-n4-A21" secondAttribute="leading" id="RNx-HS-VHa"/>
+                            <constraint firstItem="5YD-Wa-BLS" firstAttribute="leading" secondItem="W8g-Gh-QdN" secondAttribute="leadingMargin" constant="4" id="i7f-Un-7pU"/>
+                            <constraint firstItem="5YD-Wa-BLS" firstAttribute="trailing" secondItem="dq3-EW-L0t" secondAttribute="trailing" id="mHM-d9-8uz"/>
+                            <constraint firstItem="5YD-Wa-BLS" firstAttribute="centerX" secondItem="W8g-Gh-QdN" secondAttribute="centerX" id="mJI-7o-ht0"/>
+                            <constraint firstItem="hgF-n4-A21" firstAttribute="top" secondItem="5YD-Wa-BLS" secondAttribute="bottom" constant="8" symbolic="YES" id="oV0-xm-tJA"/>
+                            <constraint firstItem="5YD-Wa-BLS" firstAttribute="leading" secondItem="dq3-EW-L0t" secondAttribute="leading" id="osX-fG-hNw"/>
+                            <constraint firstItem="5YD-Wa-BLS" firstAttribute="trailing" secondItem="hgF-n4-A21" secondAttribute="trailing" id="pf6-YN-lFD"/>
+                            <constraint firstItem="5YD-Wa-BLS" firstAttribute="top" secondItem="Qba-DB-p5r" secondAttribute="bottom" constant="29" id="qSR-HY-73f"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="CN5-6a-9CZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="IZp-an-NuG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="updateUserPassword:" destination="z6C-cG-59e" id="oot-Ur-i88"/>
                             </connections>
@@ -294,7 +395,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Kr4-0a-lnb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fTT-d1-y3u" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="UserProfileNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fTT-d1-y3u" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MVk-bt-Wnr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -312,7 +413,8 @@
     </scenes>
     <resources>
         <image name="edit" width="76" height="76"/>
+        <image name="menu" width="22" height="22"/>
         <image name="next" width="171" height="171"/>
-        <image name="timeline-circle.png" width="350" height="350"/>
+        <image name="timeline-circle" width="117" height="117"/>
     </resources>
 </document>

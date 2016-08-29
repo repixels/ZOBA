@@ -10,8 +10,9 @@ import UIKit
 import MapKit
 import TextFieldEffects
 
-class TripDetailController: UIViewController {
+class TripDetailController: UIViewController ,MKMapViewDelegate{
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var map: MKMapView!
     
@@ -29,6 +30,7 @@ class TripDetailController: UIViewController {
     
     @IBOutlet weak var currentOdemeterTextField: HoshiTextField!
     
+    @IBOutlet weak var imageView: UIImageView!
     
     
     var trip : Trip!
@@ -43,6 +45,7 @@ class TripDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        map.delegate = self
     }
     
     
@@ -50,7 +53,8 @@ class TripDetailController: UIViewController {
         super.viewWillAppear(animated)
         
         vehicleNameTextField.text = trip.vehicle?.name
-        dateTextField.text = "10/10/2020"
+        
+        dateTextField.text = String(NSDate(timeIntervalSince1970:Double(trip.dateAdded!)))
         initialOdemeterTextField.text = String(trip.initialOdemeter!)
         coveredMilageTextField.text = String(trip.coveredKm!)
         currentOdemeterTextField.text = String ( Int(trip.initialOdemeter!) + Int(trip.coveredKm!))
@@ -62,7 +66,17 @@ class TripDetailController: UIViewController {
         getLocation(coordinates.last!,sender: endPointTextField)
         setRegion(coordinates.first! , lastCoordinate: coordinates.last!)
         
-        
+        if trip.image != nil {
+            imageView.hidden = false
+            self.map.hidden = true
+            self.map.userInteractionEnabled = false
+            imageView.contentMode = .ScaleAspectFill
+            imageView.image = UIImage(data:trip.image! )
+            
+        }
+        let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
+        self.scrollView.contentInset = adjustForTabbarInsets;
+        self.scrollView.scrollIndicatorInsets = adjustForTabbarInsets;
     }
     
     func getLocation(coordinate : TripCoordinate,sender : HoshiTextField){
@@ -72,7 +86,9 @@ class TripDetailController: UIViewController {
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
             dispatch_async(dispatch_get_main_queue(), {
+                if places != nil && places!.count > 0 {
                 sender.text = places!.first?.name
+                }
             })
             
             
@@ -98,6 +114,10 @@ class TripDetailController: UIViewController {
         firstAnnotation = setAnnotation(firstlocation.coordinate, title: "first")
         
         secondAnnotation = setAnnotation(lastlocation.coordinate, title: "last")
+        var coordinates = [firstlocation.coordinate,lastlocation.coordinate]
+        let polyline = MKPolyline(coordinates: &coordinates , count: 2)
+        
+        map.addOverlay(polyline)
         
         let diff = lastlocation.distanceFromLocation(firstlocation)
         
@@ -108,7 +128,6 @@ class TripDetailController: UIViewController {
     
     func fetchRoute(){
         
-        print("fetching ")
         
         if (sourceItem != nil && destinationItem != nil)
         {
@@ -127,24 +146,30 @@ class TripDetailController: UIViewController {
             
             let directions = MKDirections(request: request)
             
-            print(" try to calculate route")
             
             directions.calculateDirectionsWithCompletionHandler ({
                 (response: MKDirectionsResponse?, error: NSError?) in
                 if error == nil {
                     let route = response!.routes[0] as MKRoute
                     self.map.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
-                    print("calculate route")
                 }
                 else
                 {
-                    print("error in calculating route")
+                    print(error?.description)
                 }
             })
             
         }
     }
     
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.blueColor()
+        renderer.lineWidth = 5.0
+        
+        
+        return renderer
+    }
     
     
     

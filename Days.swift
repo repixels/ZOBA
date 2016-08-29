@@ -12,21 +12,18 @@ import ObjectMapper
 
 
 class Days: NSManagedObject , Mappable {
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("Days", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        mapping(map)
         
     }
     
@@ -34,9 +31,9 @@ class Days: NSManagedObject , Mappable {
         
         var calendars : [ServiceProviderCalender]?
         
-        self.dayId <- map[""]
-        self.name <- map[""]
-        calendars <- map[""]
+        self.dayId <- map["dayId"]
+        self.name <- map["dayName"]
+        calendars <- map["serviceProviderCalendars"]
         
         if calendars != nil
         {

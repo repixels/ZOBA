@@ -12,35 +12,39 @@ import ObjectMapper
 
 
 class ServiceProviderAddress: NSManagedObject , Mappable{
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("ServiceProviderAddress", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        mapping(map)
         
     }
     
     func mapping(map: Map) {
         
-        self.addressId <- map[""]
-        self.city <- map[""]
-        self.country <- map[""]
-        self.landMark <- map[""]
-        self.latitude <- map[""]
-        self.longtiude <- map[""]
-        self.others <- map[""]
-        self.postalCode <- map[""]
-        self.street <- map[""]
-        self.serviceProvider <- map[""]
+        var longtitudeStr = ""
+        longtitudeStr <- map["longitude"]
+        var latitudeStr = ""
+        latitudeStr <- map["latitude"]
+        
+        
+        
+        self.addressId <- map["id"]
+        self.city <- map["city"]
+        self.country <- map["country"]
+        self.landMark <- map["landmark"]
+        self.latitude = NSDecimalNumber(string: latitudeStr)
+        self.longtiude = NSDecimalNumber(string: longtitudeStr)
+        self.others <- map["others"]
+        self.postalCode <- map["postalCode"]
+        self.street <- map["street"]
+        self.serviceProvider <- map["serviceProvider"]
     }
 }

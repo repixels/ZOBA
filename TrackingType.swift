@@ -20,24 +20,21 @@ class TrackingType: NSManagedObject , Mappable{
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("TrackingType", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        mapping(map)
         
     }
     
     func mapping(map: Map) {
         
         
-        self.name <- map[""]
-        self.typeId <- map[""]
-        self.measuringUnit <- map[""]
+        self.name <- map["name"]
+        self.typeId <- map["id"]
+        self.measuringUnit <- map["measuringUnit"]
+        self.service <- map["service"]
         self.trackingData <- map[""]
-        self.service <- map[""]
         
     }
 }

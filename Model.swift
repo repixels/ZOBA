@@ -20,13 +20,10 @@ class Model: NSManagedObject , Mappable {
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("Model", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        mapping(map)
         
     }
     
@@ -37,8 +34,8 @@ class Model: NSManagedObject , Mappable {
         self.modelId <- map["id"]
         self.name <- map["name"]
         self.niceName <- map["niceName"]
-        self.make <- map[""]
-        vehicleModelsArray <- map[""]
+        self.make <- map["make"]
+        vehicleModelsArray <- map["vehicleModel"]
         
         if(vehicleModelsArray != nil)
         {

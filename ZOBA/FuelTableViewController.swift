@@ -12,25 +12,35 @@ class FuelTableViewController: UITableViewController {
     
     var dao : AbstractDao!
     
-    var data: [TrackingData]!
+    var fuelTrackingData =  [TrackingData]?()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        let appDel = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        dao = AbstractDao(managedObjectContext: appDel.managedObjectContext)
-        
-       data = dao.selectByString(entityName: "TrackingData", AttributeName: "trackingType.name", value: "fuel") as![TrackingData]
-        
-        
-        self.tableView.reloadData()
+    @IBOutlet weak var addDataBTN: UIBarButtonItem!
+    override func viewWillAppear(animated: Bool) {
+        if SessionObjects.currentVehicle != nil
+        {
+            addDataBTN.enabled = true
+            addDataBTN.tintColor = UIColor.whiteColor()
+            fuelTrackingData = [TrackingData]()
+            let vehicleName = SessionObjects.currentVehicle.name != nil ? SessionObjects.currentVehicle.name!+" " : ""
+            self.prepareNavigationBar(vehicleName + "Fuel")
+            
+            for trackingData in SessionObjects.currentVehicle.traclingData!.allObjects as! [TrackingData]
+            {
+                if(trackingData.trackingType!.name == StringConstants.fuelTrackingType)
+                {
+                    fuelTrackingData!.append(trackingData)
+                }
+            }
+            
+            self.tableView.reloadData()
+            
+        }
+        else
+        {
+            addDataBTN.enabled = false
+            addDataBTN.tintColor = UIColor.flatGrayColor()
+            self.prepareNavigationBar("No Vehicle Selected")
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,18 +57,19 @@ class FuelTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return data.count
+        return fuelTrackingData != nil ? fuelTrackingData!.count : 0
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("fuelCell", forIndexPath: indexPath) as! FuelTableViewCell
+        let serviceProviderName = fuelTrackingData![indexPath.row].serviceProviderName
         
-        cell.fuelAmountLabel.text = data[indexPath.row].value
-        cell.fuelUnitLabel.text = "Liters"
-        cell.serviceProviderNameLabel.text = "Shell Helix"
-        cell.startingOdemeterLabel.text = String(data[indexPath.row].initialOdemeter)
-
+        cell.fuelAmountLabel.text = fuelTrackingData![indexPath.row].value!
+        cell.fuelUnitLabel.text = fuelTrackingData![indexPath.row].trackingType!.measuringUnit!.name!
+        cell.serviceProviderNameLabel.text = serviceProviderName != nil ? serviceProviderName! : "Not Available"
+        cell.startingOdemeterLabel.text = String(fuelTrackingData![indexPath.row].initialOdemeter!)
+        cell.dateLabel.text  = String(fuelTrackingData![indexPath.row].dateAdded!)
         // Configure the cell...
             return cell
     }
@@ -68,7 +79,7 @@ class FuelTableViewController: UITableViewController {
        
         let detailsView = self.storyboard?.instantiateViewControllerWithIdentifier("details") as! FuelDetailViewController
         
-        detailsView.data = data[indexPath.row]
+        detailsView.data = fuelTrackingData![indexPath.row]
         
         self.navigationController?.pushViewController(detailsView, animated: true)
 
@@ -118,5 +129,20 @@ class FuelTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func prepareNavigationBar(title:String)
+    {
+        self.navigationController?.navigationBar.titleTextAttributes =
+            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+             NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
+        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.title = title
+        self.navigationController?.navigationBar.userInteractionEnabled = true
+    }
+    
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        self.slideMenuController()?.openLeft()
+    }
+    
 
 }

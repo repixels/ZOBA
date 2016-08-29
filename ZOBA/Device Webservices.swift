@@ -26,7 +26,7 @@ class DeviceWebservice {
     
     private func buildRegisterDeviceURL()
     {
-        registerDeviceURL = StringConstants.servicesDomain+"device/register?"
+        registerDeviceURL = StringConstants.servicesDomain+"device/add?"
         registerDeviceURL += "userId="+(self.user.userId!.stringValue)
         registerDeviceURL += "&token="+(self.user.deviceToken)!
         print(registerDeviceURL)

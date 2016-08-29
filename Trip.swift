@@ -12,21 +12,18 @@ import ObjectMapper
 
 
 class Trip: NSManagedObject , Mappable {
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("Trip", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        mapping(map)
         
     }
     
@@ -34,12 +31,12 @@ class Trip: NSManagedObject , Mappable {
         
         var coordinatesArray : [TripCoordinate]?
         
-        self.coveredKm <- map[""]
-        self.initialOdemeter <- map[""]
-        self.tripId <- map[""]
-        self.vehicle <- map[""]
+        self.coveredKm <- map["coveredMilage"]
+        self.initialOdemeter <- map["intialOdemeter"]
+        self.tripId <- map["id"]
+        self.vehicle = SessionObjects.currentVehicle != nil ? SessionObjects.currentVehicle! : nil
         
-        coordinatesArray <- map[""]
+        coordinatesArray <- map["coordinates"]
         
         if coordinatesArray != nil
         {

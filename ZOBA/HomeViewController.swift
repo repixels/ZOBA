@@ -15,9 +15,11 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarView.delegate = self
         prepareTabBar()
+        self.tabBarView.delegate = self
+        
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
         // Do any additional setup after loading the view.
     }
@@ -48,7 +50,6 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
         let item3 = YALTabBarItem(itemImage: UIImage(named: "add-fuel"), leftItemImage: nil, rightItemImage: nil)
         
         let item4 = YALTabBarItem(itemImage: UIImage(named: "add-oil"), leftItemImage: nil, rightItemImage: nil)
-        
         self.tabBarView.offsetForExtraTabBarItems = YALForExtraTabBarItemsDefaultOffset
         self.leftBarItems = [item1, item2]
         self.rightBarItems = [item3, item4]
@@ -62,24 +63,6 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
         self.tabBarView.tabBarViewEdgeInsets = YALTabBarViewHDefaultEdgeInsets
         self.tabBarView.tabBarItemsEdgeInsets = YALTabBarViewItemsDefaultEdgeInsets
         
-    }
-    
-    func tabBarViewDidExpand(tabBarView: YALFoldingTabBar!) {
-        print("Hello")
-    }
-    
-    func extraLeftItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
-        print("Extra Left Item Pressed")
-        let storyBoard = UIStoryboard.init(name: "Vehicle", bundle: nil)
-        let controller = storyBoard.instantiateViewControllerWithIdentifier("vehicleTable") as! VehicleTableViewController
-        let navigation = UINavigationController(rootViewController: controller)
-        self.presentViewController(navigation, animated: true, completion: nil)
-        
-        
-    }
-    
-    func extraRightItemDidPressInTabBarView(tabBarView: YALFoldingTabBar!) {
-        print("Extra Right Item Pressed")
     }
     
     

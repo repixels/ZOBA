@@ -11,21 +11,19 @@ import CoreData
 import ObjectMapper
 
 class Vehicle: NSManagedObject , Mappable{
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("Vehicle", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        mapping(map)
         
     }
     
@@ -34,16 +32,27 @@ class Vehicle: NSManagedObject , Mappable{
         var trackingDataArray : [TrackingData]?
         var tripsArray : [Trip]?
         
+        var isAdminFlag = false
+        isAdminFlag <- map["adminFlag"]
         
-        self.currentOdemeter <- map[""]
-        self.initialOdemeter <- map[""]
-        self.isAdmin <- map[""]
-        self.licensePlate <- map[""]
-        self.name <- map[""]
-        self.vehicleModel <- map[""]
-        self.user <- map[""]
-        trackingDataArray <- map[""]
-        tripsArray <- map[""]
+        
+        self.currentOdemeter <- map["currentOdemeter"]
+        self.initialOdemeter <- map["intialOdemeter"]
+        
+        if isAdminFlag
+        {
+            self.isAdmin = 1
+        }
+        else
+        {
+            self.isAdmin = 0
+        }
+        self.vehicleId <- map["id"]
+        self.licensePlate <- map["licencePlate"]
+        self.name <- map["name"]
+        self.vehicleModel <- map["vehicleModel"]
+        trackingDataArray <- map["trackingDatas"]
+        tripsArray <- map["trips"]
         
         if trackingDataArray != nil
         {

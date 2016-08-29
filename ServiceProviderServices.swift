@@ -12,31 +12,49 @@ import ObjectMapper
 
 
 class ServiceProviderServices: NSManagedObject , Mappable {
-
-// Insert code here to add functionality to your managed object subclass
+    
+    // Insert code here to add functionality to your managed object subclass
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("ServiceProviderServices", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        mapping(map)
         
     }
     
     func mapping(map: Map) {
         
-        self.endingHour <- map[""]
-        self.serviceProviderServicesId <- map[""]
-        self.startingHour <- map[""]
-        self.service <- map[""]
-        self.serviceProvider <- map[""]
+        var endingHRStr : String?
+        var startingHRStr : String?
+        
+        endingHRStr <- map["endingHour"]
+        startingHRStr <- map["startingHour"]
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "hh:mm"
+        
+        
+        if endingHRStr != nil {
+            print(endingHRStr)
+            self.endingHour = formatter.dateFromString(endingHRStr!)?.timeIntervalSince1970
+        }
+        
+        if startingHRStr != nil {
+            print(startingHRStr)
+            self.startingHour = formatter.dateFromString(startingHRStr!)?.timeIntervalSince1970
+        }
+        
+        
+        
+        self.serviceProviderServicesId <- map["id"]
+        
+        self.service <- map["service"]
+        self.serviceProvider <- map["serviceProvider"]
         
     }
 }

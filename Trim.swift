@@ -20,13 +20,10 @@ class Trim: NSManagedObject , Mappable {
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("Trim", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        mapping(map)
         
     }
     
@@ -36,7 +33,7 @@ class Trim: NSManagedObject , Mappable {
         
         self.name <- map["name"]
         self.trimId <- map["id"]
-        vehicleModelsArray <- map[""]
+        vehicleModelsArray <- map["vehicleModels"]
         
         if vehicleModelsArray != nil
         {

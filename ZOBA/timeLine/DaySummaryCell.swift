@@ -8,18 +8,27 @@
 
 import UIKit
 
-class DaySummaryCell: UITableViewCell {
+
+//Add a new car crashes 
+
+
+class TimeLineCell: UITableViewCell {
+    
+    var formattedDate = NSDate()
+    
+    var timeLineDate = NSDate()
+    
+}
+class DaySummaryCell: TimeLineCell {
     static let identifier = "DateCell"
     
-@IBOutlet  var date: UILabel?
-    @IBOutlet  var currentOdemeter: UILabel?
-    @IBOutlet  var month: UILabel?
-    @IBOutlet  var salutation: UILabel?
-    @IBOutlet  var dayImage: UIImageView?
+    @IBOutlet weak  var currentOdemeter: UILabel?
+    @IBOutlet weak var salutation: UILabel?
+    @IBOutlet weak  var dayImage: UIImageView?
     
+    @IBOutlet weak var dayLabel: UILabel!
     
-    
-    
+    @IBOutlet weak var monthLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

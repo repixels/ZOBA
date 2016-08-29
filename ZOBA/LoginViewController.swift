@@ -14,6 +14,7 @@ import FBSDKLoginKit
 import TextFieldEffects
 import CoreData
 import SwiftyUserDefaults
+import SlideMenuControllerSwift
 
 class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFieldDelegate{
     
@@ -99,15 +100,35 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
             }
             else
             {
-                _ = result.valueForKey("first_name") as? String
-                _ = result.valueForKey("last_name") as? String
+                let userId = result.valueForKey("id") as? String
+                let firstName = result.valueForKey("first_name") as? String
+                let lastName = result.valueForKey("last_name") as? String
                 let userEmail = (result.valueForKey("email") as? String)!
-                _ = userEmail.componentsSeparatedByString("@")[0]
+                let userName = userEmail.componentsSeparatedByString("@")[0]
+                let userProfileImage = "http://graph.facebook.com/\(userId!)/picture?type=large"
                 
-                self.emailTextField.text = result.valueForKey("email") as? String
-                self.passwordTextField.text = self.randomAlphaNumericString(6)
-                print(self.passwordTextField.text)
-                self.fbLoginButton.hidden = true
+                let  fbUser = MyUser(managedObjectContext: SessionObjects.currentManageContext, entityName: "MyUser")
+                fbUser.email = userEmail
+                fbUser.userName = userName
+                fbUser.firstName = firstName
+                fbUser.lastName = lastName
+                fbUser.phone = "1234567"
+                fbUser.password = self.randomAlphaNumericString(6)
+                let userWebService = UserWebservice(currentUser: fbUser)
+                
+                userWebService.getUserImageFromFacebook(userProfileImage, result: { (imageData, code) in
+                    switch code
+                    {
+                    case "success":
+                        userWebService.user?.image = imageData
+                        self.navigateToMain(userWebService)
+                        break;
+                    case "error":
+                        self.navigateToMain(userWebService)
+                    default:
+                        self.navigateToMain(userWebService)
+                    }
+                })
             }
         })
     }
@@ -297,26 +318,53 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     if((Defaults[.deviceToken]) != nil)
                     {
                         SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+                        let deviceWebService = DeviceWebservice(deviceToken: Defaults[.deviceToken]!,currentUser: SessionObjects.currentUser)
+                        deviceWebService.registerUserDevice()
                     }
-//
-//                    let deviceWebService = DeviceWebservice(deviceToken: Defaults[.deviceToken]!,currentUser: SessionObjects.currentUser)
-//                    deviceWebService.registerUserDevice()
-//                    
+                    
                     SessionObjects.currentUser.save()
                     Defaults[.isLoggedIn] = true
                     Defaults[.useremail] = user!.email
                     Defaults[.launchCount] += 1
                     
-                    //To be removed
-
-                    let vehicle = DummyDataBaseOperation.saveVehicle(managedObjectContext: SessionObjects.currentManageContext,name: "Lancer")
-                    DummyDataBaseOperation.populateOnlyOnce()
-                    DummyDataBaseOperation.populateData()
                     
-                    Defaults[.curentVehicleName] = vehicle.name
-                    SessionObjects.currentVehicle = vehicle
+                    let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+                    let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
                     
-                    self.performSegueWithIdentifier(identifier,sender: sender)
+                    let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
+                    let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                    
+                    
+                    let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
+                    slideMenuController.automaticallyAdjustsScrollViewInsets = true
+                    
+                    let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                    app.window?.rootViewController = slideMenuController
+                    
+                    print(SessionObjects.currentUser.vehicle?.count )
+                    if SessionObjects.currentUser.vehicle?.count > 0 {
+                        SessionObjects.currentVehicle = SessionObjects.currentUser.vehicle?.allObjects[0] as! Vehicle
+                        Defaults[.curentVehicleName] = SessionObjects.currentVehicle.name
+                    }
+                    
+                    
+                    if SessionObjects.currentVehicle != nil {
+                        SessionObjects.motionMonitor = LocationMonitor()
+                        
+                        SessionObjects.motionMonitor.startDetection()
+                    }
+                    
+                    let serviceCenterWebSevice = ServiceProviderWebService()
+                    serviceCenterWebSevice.getServiceProvider({ (serviceProvider, code) in
+                        switch code{
+                        case "success" :
+                            print("serviceProviders count : \(serviceProvider.count)")
+                            serviceProvider[0].save()
+                        default :
+                            DummyDataBaseOperation.populateOnlyOnce()
+                        }
+                    })
+                    
                     break;
                 default:
                     self.generateErrorAlert(code)
@@ -360,6 +408,59 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         return randomString
     }
     
+    func navigateToMain(userWebService: UserWebservice)
+    {
+        userWebService.registerWithFaceBook({ (user, code) in
+            
+            switch code{
+                
+            case "success":
+                SessionObjects.currentUser = user!
+                if((Defaults[.deviceToken]) != nil)
+                {
+                    SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+                }
+                SessionObjects.currentUser.save()
+                
+                Defaults[.isFBLogin] = true
+                Defaults[.isLoggedIn] = true
+                Defaults[.useremail] = user!.email
+                Defaults[.launchCount] += 1
+                
+                //To be removed
+                //                        DummyDataBaseOperation.populateOnlyOnce()
+                //                        DummyDataBaseOperation.populateData()
+                
+                self.fbLoginButton.hidden = true
+                
+                let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+                let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                
+                let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
+                let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                
+                
+                let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
+                slideMenuController.automaticallyAdjustsScrollViewInsets = true
+                
+                let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                app.window?.rootViewController = slideMenuController
+                
+                //start detection if user has car
+                if SessionObjects.currentVehicle != nil {
+                    SessionObjects.motionMonitor = LocationMonitor()
+                    
+                    SessionObjects.motionMonitor.startDetection()
+                }
+            default :
+                self.generateErrorAlert(code)
+                break
+                
+                
+            }
+        })
+        
+    }
     
 }
 

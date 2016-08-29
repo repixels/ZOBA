@@ -15,6 +15,8 @@ import TextFieldEffects
 import CoreData
 import Alamofire
 import SwiftyUserDefaults
+import SlideMenuControllerSwift
+import AlamofireImage
 
 class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
@@ -23,6 +25,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     var managedObjectContext : NSManagedObjectContext!
     
+    @IBOutlet weak var scrollview: UIScrollView!
     /*
      * Text Fields
      * Hoshi Text Fields
@@ -45,6 +48,11 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     let facebookReadPermissions = ["public_profile", "email", "user_friends"]
     
+    override func viewWillAppear(animated: Bool) {
+        let notCenter = NSNotificationCenter.defaultCenter()
+        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
+        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         super.hideKeyboardWhenTappedAround()
@@ -61,6 +69,9 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         facebookLoginButton.readPermissions = facebookReadPermissions
         facebookLoginButton.delegate = self
         facebookLoginButton.loginBehavior = FBSDKLoginBehavior.Native
+        
+        
+        
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -94,20 +105,88 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
             }
             else
             {
+                let userId = result.valueForKey("id") as? String
                 let firstName = result.valueForKey("first_name") as? String
                 let lastName = result.valueForKey("last_name") as? String
                 let userEmail = (result.valueForKey("email") as? String)!
                 let userName = userEmail.componentsSeparatedByString("@")[0]
+                let userProfileImage = "http://graph.facebook.com/\(userId!)/picture?type=large"
                 
-                self.firstNameTextField.text = firstName
-                self.lastNameTextField.text = lastName
-                self.emailTextField.text = result.valueForKey("email") as? String
-                self.userNameTextField.text = userName
-                self.passwordTextField.text = self.randomAlphaNumericString(6)
-                print(self.passwordTextField.text)
-                self.facebookLoginButton.hidden = true
+                let  fbUser = MyUser(managedObjectContext: SessionObjects.currentManageContext, entityName: "MyUser")
+                fbUser.email = userEmail
+                fbUser.userName = userName
+                fbUser.firstName = firstName
+                fbUser.lastName = lastName
+                fbUser.phone = "1234567"
+                fbUser.password = self.randomAlphaNumericString(6)
+                let userWebService = UserWebservice(currentUser: fbUser)
+                
+                userWebService.getUserImageFromFacebook(userProfileImage, result: { (imageData, code) in
+                    switch code
+                    {
+                    case "success":
+                        userWebService.user?.image = imageData
+                        self.navigateToMain(userWebService)
+                        break;
+                    case "error":
+                        self.navigateToMain(userWebService)
+                    default:
+                        self.navigateToMain(userWebService)
+                    }
+                })
             }
         })
+    }
+    
+    func navigateToMain(userWebService: UserWebservice)
+    {
+        userWebService.registerWithFaceBook({ (user, code) in
+            
+            switch code{
+                
+            case "success":
+                SessionObjects.currentUser = user!
+                if((Defaults[.deviceToken]) != nil)
+                {
+                    SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
+                }
+                SessionObjects.currentUser.save()
+                
+                Defaults[.isFBLogin] = true
+                Defaults[.isLoggedIn] = true
+                Defaults[.useremail] = user!.email
+                Defaults[.launchCount] += 1
+                
+                
+                self.facebookLoginButton.hidden = true
+                
+                let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+                let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                
+                let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
+                let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                
+                
+                let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
+                slideMenuController.automaticallyAdjustsScrollViewInsets = true
+                
+                let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                app.window?.rootViewController = slideMenuController
+                
+                //start detection if user has car
+                if SessionObjects.currentVehicle != nil {
+                    SessionObjects.motionMonitor = LocationMonitor()
+                    
+                    SessionObjects.motionMonitor.startDetection()
+                }
+            default :
+                self.generateErrorAlert(code)
+                break
+                
+                
+            }
+        })
+        
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
@@ -126,13 +205,11 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         self.view.insertSubview(backgroundImageMask, atIndex: 1)
         
     }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
         view.endEditing(true)
         super.touchesBegan(touches, withEvent: event)
     }
-    
- 
-    
     
     @IBAction func validateUserEmail(sender: AnyObject)
     {
@@ -233,8 +310,6 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         registerButton.alpha = 0.7
     }
     
-    
-    
     func showErrorMessage(message:String , textField:HoshiTextField)
     {
         textField.borderInactiveColor = UIColor.redColor()
@@ -279,7 +354,48 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                         SessionObjects.currentUser.deviceToken = Defaults[.deviceToken]!
                     }
                     SessionObjects.currentUser.save()
-                    self.performSegueWithIdentifier(identifier,sender: sender)
+                    
+                    
+                    
+                    Defaults[.isLoggedIn] = true
+                    Defaults[.useremail] = user!.email
+                    Defaults[.launchCount] += 1
+                    
+                    
+                    
+                    
+                    let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
+                    let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                    
+                    let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
+                    let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                    
+                    
+                    let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
+                    slideMenuController.automaticallyAdjustsScrollViewInsets = true
+                    
+                    let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                    app.window?.rootViewController = slideMenuController
+                    
+                    //start detection if user has car
+                    if SessionObjects.currentVehicle != nil {
+                        SessionObjects.motionMonitor = LocationMonitor()
+                        
+                        SessionObjects.motionMonitor.startDetection()
+                    }
+                    
+                    let serviceCenterWebSevice = ServiceProviderWebService()
+                    serviceCenterWebSevice.getServiceProvider({ (serviceProvider, code) in
+                        switch code{
+                        case "success" :
+                            print("serviceProviders count : \(serviceProvider.count)")
+                            serviceProvider[0].save()
+                        default :
+                            print("failed")
+                            DummyDataBaseOperation.populateOnlyOnce()
+                        }
+                    })
+                    
                     break;
                 default:
                     self.generateErrorAlert(code)
@@ -320,5 +436,37 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         }
         
         return randomString
+    }
+    //MARK: - keyboard
+    func keyBoardWillAppear(notification : NSNotification){
+        if let userInfo = notification.userInfo {
+            if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
+                
+                self.scrollview.contentInset = contentInset
+                self.scrollview.scrollIndicatorInsets = contentInset
+                
+                self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, 0 + (keyboardSize.height/2)) //set zero instead
+                
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+                let contentInset = UIEdgeInsetsZero;
+                
+                self.scrollview.contentInset = contentInset
+                self.scrollview.scrollIndicatorInsets = contentInset
+                self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, self.scrollview.contentOffset.y)
+            }
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }

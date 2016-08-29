@@ -8,22 +8,21 @@
 
 import UIKit
 
-class TripCell: UITableViewCell {
+class TripCell: TimeLineCell {
     static let identifier = "TripData"
     
-    @IBOutlet  var tripDate: UILabel?
-    @IBOutlet  var initialOdemeter: UILabel?
-    @IBOutlet  var tripSummary: UILabel?
-    @IBOutlet  var distanceCovered: UILabel?
-    @IBOutlet  var tripTitle: UILabel?
-    @IBOutlet  var tripInfoBtn: UIButton?
+    @IBOutlet weak var tripDate: UILabel?
+    @IBOutlet weak var initialOdemeter: UILabel?
+    @IBOutlet weak var tripSummary: UILabel?
+    @IBOutlet weak var distanceCovered: UILabel?
+    @IBOutlet weak var tripTitle: UILabel?
+    @IBOutlet weak var tripInfoBtn: UIButton?
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

@@ -19,13 +19,10 @@ class VehicleModel: NSManagedObject , Mappable{
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("VehicleModel", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        mapping(map)
         
     }
     
@@ -33,12 +30,12 @@ class VehicleModel: NSManagedObject , Mappable{
         
         var featuresValueArray : [CarFeature]?
         
-        self.vehicleModelId <- map[""]
-        self.model <- map[""]
-        self.trim <- map[""]
+        self.vehicleModelId <- map["id"]
+        self.model <- map["model"]
+        self.trim <- map["trim"]
         self.vehicle <- map[""]
-        self.year <- map[""]
-        featuresValueArray <- map[""]
+        self.year <- map["year"]
+        featuresValueArray <- map["features"]
         
         if featuresValueArray != nil
         {

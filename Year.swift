@@ -22,13 +22,11 @@ class Year: NSManagedObject , Mappable
     
     required init?(_ map: Map) {
         
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appdelegate.managedObjectContext
+        
+        let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entityForName("Year", inManagedObjectContext: managedContext)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        mapping(map)
         
     }
     
@@ -42,7 +40,7 @@ class Year: NSManagedObject , Mappable
         self.name = NSNumber(integer: nameInt)
         self.yearId <- map["id"]
         
-        vehicleModelsArrray <- map[""]
+        vehicleModelsArrray <- map["vehicleModel"]
         
         if vehicleModelsArrray != nil
         {
@@ -52,5 +50,6 @@ class Year: NSManagedObject , Mappable
         {
             self.vehicleModel = nil
         }
+        self.vehicleModel = nil
     }
 }

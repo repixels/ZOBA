@@ -47,8 +47,6 @@ class DummyDataBaseOperation {
         let image = UIImage(named: "add-trip")
         
         let data = UIImagePNGRepresentation(image!)
-        // print(data)
-        //
         
         let url = "http://10.118.48.143:8080/WebServiceProject/rest/img/mas"
         
@@ -63,8 +61,8 @@ class DummyDataBaseOperation {
         }
         
     }
-
-
+    
+    
     static func saveTrackingType(managedObjectContext moc : NSManagedObjectContext , name: String?)
     {
         let trackingType = TrackingType(managedObjectContext: moc, entityName: "TrackingType")
@@ -87,13 +85,13 @@ class DummyDataBaseOperation {
         serobj.name = name!
         serobj.save()
         serobj.mutableSetValueForKey("trackingType").addObject(trackingType)
-                
+        
     }
     
     static func saveServiceProvider(managedObjectContext moc : NSManagedObjectContext , name: String?)
     {
         let serviceProvider = ServiceProvider(managedObjectContext: moc, entityName: "ServiceProvider")
-      
+        
         serviceProvider.name = name!
         
         serviceProvider.save()
@@ -117,7 +115,7 @@ class DummyDataBaseOperation {
     static func populateYear()
     {
         
-        for i in 2000...2017
+        for i in 2000...2015
         {
             let year = Year(managedObjectContext: SessionObjects.currentManageContext, entityName: "Year")
             year.name = i
@@ -139,6 +137,7 @@ class DummyDataBaseOperation {
         model.modelId = 1
         
         model.save()
+        
     }
     
     
@@ -242,6 +241,7 @@ class DummyDataBaseOperation {
         serviceProvider.calender?.mutableSetValueForKey("calender").addObject(serviceProviderCalendar)
         serviceProvider.email = "info@total.eg"
         serviceProvider.webSite = "total.eg"
+        serviceProvider.name = "Total Egypt"
         serviceProvider.phone?.mutableSetValueForKey("phone").addObject(serviceProviderPhone)
         serviceProvider.save()
         
@@ -258,12 +258,48 @@ class DummyDataBaseOperation {
         model.make =  make
         model.name = "Lancer"
         model.niceName = "lancer"
+        model.modelId = 4
         
         let year = Year(managedObjectContext: SessionObjects.currentManageContext, entityName: "Year")
-        year.name = 2014
+        year.name = 2016
+        year.yearId  = 2016
+        
         
         let trim = Trim(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trim")
         trim.name = "LX"
+        trim.trimId=4
+        
+        let vehicleModel = VehicleModel(managedObjectContext: SessionObjects.currentManageContext, entityName: "VehicleModel")
+        vehicleModel.model = model
+        vehicleModel.year = year
+        vehicleModel.trim = trim
+        
+        vehicleModel.save()
+        
+    }
+    
+    static func saveVehicleModel2()
+    {
+        
+        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
+        
+        let make = dao.selectByString(entityName: "Make", AttributeName: "name", value: "Mitsubishi") as! [Make]
+        
+        
+        let model = Model(managedObjectContext: SessionObjects.currentManageContext, entityName: "Model")
+        model.make =  make[0]
+        model.name = "Mirage"
+        model.niceName = "mirage"
+        model.modelId = 5
+        
+        let year = Year(managedObjectContext: SessionObjects.currentManageContext, entityName: "Year")
+        year.name = 2017
+        year.yearId  = 2017
+        
+        
+        let trim = Trim(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trim")
+        trim.name = "GX"
+        trim.trimId=5
         
         let vehicleModel = VehicleModel(managedObjectContext: SessionObjects.currentManageContext, entityName: "VehicleModel")
         vehicleModel.model = model
@@ -296,13 +332,11 @@ class DummyDataBaseOperation {
     {
         DummyDataBaseOperation.populateMeasuringUnit()
         DummyDataBaseOperation.populateDays()
+        DummyDataBaseOperation.populateServiceProvider()
     }
     
     static func populateData()
     {
-        DummyDataBaseOperation.populateMake()
-        DummyDataBaseOperation.populateYear()
-        DummyDataBaseOperation.populateModel()
         DummyDataBaseOperation.populateServiceProvider()
     }
 }

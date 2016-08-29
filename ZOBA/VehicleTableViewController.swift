@@ -7,24 +7,33 @@
 //
 
 import UIKit
+import SwiftyUserDefaults
 
-class VehicleTableViewController: UITableViewController , MapDetectionDelegate {
+class VehicleTableViewController: UITableViewController {
     
     var vehicles : [Vehicle]!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        SessionObjects.motionMonitor = LocationMonitor(delegate: self)
-        SessionObjects.motionMonitor.stopTrip()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-        //MARK: delete 
-        vehicles = dao.selectAll(entityName: "Vehicle") as![Vehicle]
-        //                self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
-        self.tableView.reloadData()
+        
+        if SessionObjects.currentUser != nil && SessionObjects.currentUser.vehicle?.count > 0 {
+            self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
+            self.tableView.reloadData()
+        }
+        else {
+            
+            self.vehicles = [Vehicle]()
+        }
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.blueColor()
+        self.navigationController?.navigationController?.navigationBar.tintColor = UIColor.blueColor()
+        self.navigationController?.navigationBar.backItem?.backBarButtonItem?.tintColor = UIColor.blueColor()
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.blueColor()
+        self.tabBarController?.moreNavigationController.navigationBar.tintColor = UIColor.brownColor()
+        
         
     }
     override func didReceiveMemoryWarning() {
@@ -46,10 +55,47 @@ class VehicleTableViewController: UITableViewController , MapDetectionDelegate {
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("vehicleCell", forIndexPath: indexPath)
-        cell.textLabel?.text = vehicles[indexPath.row].name
-        cell.detailTextLabel?.text = String(vehicles[indexPath.row].currentOdemeter)
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCellWithIdentifier("vehicleCell", forIndexPath: indexPath) as! VehicleTableViewCell
+        
+        let vehicle = vehicles[indexPath.row]
+        var modelTrimYear = ""
+        
+        
+        // Configure Image View
+        if vehicle.vehicleModel?.model?.make?.image != nil
+        {
+            cell.vehicleNameInitialsLabel.hidden = true
+            cell.makeImageView.image = UIImage(data: (vehicle.vehicleModel?.model?.make?.image)!)
+        }
+        else
+        {
+            cell.makeImageView.hidden = true
+            
+            if vehicle.name != nil
+            {
+                cell.vehicleNameInitialsLabel.hidden = false
+                cell.vehicleNameInitialsLabel.text = String(vehicle.name!.characters.prefix(2)).uppercaseString
+            }
+        }
+        
+        //Configure Name
+        cell.vehicleNameLabel.text = vehicle.name
+        
+        //Configure Make
+        cell.vehicleMakeLabel.text = vehicle.vehicleModel?.model?.make?.name != nil ? vehicle.vehicleModel?.model?.make?.name : ""
+        
+        //Configure Model Year Trim
+        modelTrimYear = vehicle.vehicleModel?.model?.name != nil ? (vehicle.vehicleModel?.model?.name)!+" " : ""
+        modelTrimYear += vehicle.vehicleModel?.trim?.name != nil ? (vehicle.vehicleModel?.trim?.name)!+" " : " "
+        modelTrimYear += vehicle.vehicleModel?.year?.name?.stringValue != nil ? (vehicle.vehicleModel?.year?.name?.stringValue)!+" " : " "
+        cell.modelTrimYearLabel.text = modelTrimYear != "" ? modelTrimYear : "N/A"
+        
+        //Configure Initial Odemter
+        
+        cell.initialOdemeterLabel.text = vehicle.initialOdemeter?.stringValue != nil ? vehicle.initialOdemeter?.stringValue : "Not Available"
+        
+        //Configure Current Odemter
+        cell.currentOdemeterLabel.text = vehicle.currentOdemeter?.stringValue != nil ? vehicle.currentOdemeter?.stringValue : "Not Available"
         
         return cell
     }
@@ -84,33 +130,41 @@ class VehicleTableViewController: UITableViewController , MapDetectionDelegate {
     
     func deleteAlert(indexPath : NSIndexPath){
         
-        let alert  = UIAlertController(title: "delete trip", message: "are you sure to delete this trip", preferredStyle: .Alert)
-        let deleteAction = UIAlertAction(title: "delete ", style: .Destructive, handler: { (action) in
+        let vehicleName = self.vehicles[indexPath.row].name
+        let alert  = UIAlertController(title: "Deleting A Trip", message: "We love " + vehicleName! + ", Are you sure you want to delete it?", preferredStyle: .Alert)
+        
+        let deleteAction = UIAlertAction(title: "Delete ", style: .Destructive, handler: { (action) in
             
             
             self.tableView.beginUpdates()
-            let dao = AbstractDao(managedObjectContext: SessionObjects.currentManageContext)
-            let vehicleName = self.vehicles[indexPath.row].name
-            
-            //      self.trips.removeAtIndex(indexPath.row)
             self.vehicles[indexPath.row].delete()
-            //            self.vehicles[indexPath.row].release(SessionObjects.currentManageContext)
+            
             self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
-            //            self.vehicles =  dao.selectAll(entityName: "Vehicle") as! [Vehicle]
+            
             
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            if SessionObjects.currentVehicle.name == vehicleName {
-                SessionObjects.currentVehicle = self.vehicles.first
-            }
             
+            if Defaults[.curentVehicleName] == vehicleName
+            {
+                if self.vehicles != nil && self.vehicles.count > 0
+                {
+                    SessionObjects.currentVehicle = self.vehicles.first
+                    Defaults[.curentVehicleName] = self.vehicles[0].name
+                }
+                else
+                {
+                    SessionObjects.motionMonitor.stopDetection()
+                    SessionObjects.currentVehicle = nil
+                    Defaults[.curentVehicleName] = nil
+                    
+                }
+            }
             self.tableView.endUpdates()
             self.tableView.reloadData()
             
         })
         
-        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: { (action) in
-            print("user canceled")
-        })
+        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler:nil)
         
         alert.addAction(deleteAction)
         alert.addAction(cancel)
@@ -118,45 +172,10 @@ class VehicleTableViewController: UITableViewController , MapDetectionDelegate {
         
     }
     
-    
-    func showAlert(){
-        let alert = UIAlertController(title: "Zoba", message: "looks like you are moving  ", preferredStyle: .Alert)
-        
-        let activateAutoReport = UIAlertAction(title: "Auto report", style:.Default) { (action) in
-            print("auto reprt started")
-            SessionObjects.motionMonitor.startNewTrip()
-            //                        SessionObjects.motionMonitor.startDetection()
-            dispatch_async(dispatch_get_main_queue(), { 
-                
-                let story = UIStoryboard.init(name: "MotionDetection", bundle: nil)
-                let controller = story.instantiateInitialViewController()
-                
-                self.presentViewController(controller!, animated: true, completion: nil)
-                
-            })
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: nil)
-        
-        
-        alert.addAction(activateAutoReport)
-        alert.addAction(cancel)
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func showStopAlert(){
-        let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .Alert)
-        
-        let activateAutoReport = UIAlertAction(title: "ok", style:.Default) { (action) in
-            alert.dismissViewControllerAnimated(true, completion: nil)
-        }
-        
-        
-        
-        alert.addAction(activateAutoReport)
-        
-        self.presentViewController(alert, animated: true, completion: nil)
+    func openSideMenu()
+    {
+        self.slideMenuController()?.openLeft()
+        print("hello")
     }
     
 }

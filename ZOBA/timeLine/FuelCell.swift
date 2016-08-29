@@ -8,14 +8,14 @@
 
 import UIKit
 
-class FuelCell: UITableViewCell {
+class FuelCell: TimeLineCell {
     static let identifier = "FuelData"
     
-    @IBOutlet  var fuelDate: UILabel?
-    @IBOutlet  var initialOdemeter: UILabel?
-    @IBOutlet  var fuelAmount: UILabel?
-    @IBOutlet  var serviceProvider: UILabel?
-    @IBOutlet  var fuelTitle: UILabel?
+    @IBOutlet weak var fuelDate: UILabel?
+    @IBOutlet weak var initialOdemeter: UILabel?
+    @IBOutlet weak var fuelAmount: UILabel?
+    @IBOutlet weak var serviceProvider: UILabel?
+    @IBOutlet weak var fuelTitle: UILabel?
     
     
     override func awakeFromNib() {
