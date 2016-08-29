@@ -613,7 +613,7 @@ class Point:NSObject{
         let v3 = thirdPoint.latitude * (firstPoint.longitude - secondPoint.longitude)
         
         //        let onTheSameLine = Math.ABS(v1 + v2 + v3)
-        let result = ((v1 + v2 + v3) < 0.0000001) && ((v1 + v2 + v3) > -0.0000001)
+        let result = ((v1 + v2 + v3) < 0.000005) && ((v1 + v2 + v3) > -0.000005)
         //        print("")
         print("(v1 + v2 + v3) ==> \(v1 + v2 + v3) and is on the same line \(result)")
         

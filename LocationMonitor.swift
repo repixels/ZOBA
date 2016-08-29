@@ -107,7 +107,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
 //                        //                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
 //                        self.updateLocationBlock(location,self.locationPlist.getDistanceInKM())
 //                    }
-                    if  timeDifference > 60 {
+                    if  timeDifference > 10 {
                         print("speed : \(location.speed)")
                         self.saveLocation(location)
                         if self.updateLocationBlock != nil
