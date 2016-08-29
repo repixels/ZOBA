@@ -101,15 +101,20 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
                 }
                 else
                 {
-                    if self.updateLocationBlock != nil
-                    {
-                        //                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
-                        self.updateLocationBlock(location,self.locationPlist.getDistanceInKM())
-                    }
-                    
-                    if  timeDifference > 20 {
+                 
+//                    if self.updateLocationBlock != nil
+//                    {
+//                        //                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
+//                        self.updateLocationBlock(location,self.locationPlist.getDistanceInKM())
+//                    }
+                    if  timeDifference > 60 {
                         print("speed : \(location.speed)")
                         self.saveLocation(location)
+                        if self.updateLocationBlock != nil
+                        {
+                            //                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
+                            self.updateLocationBlock(location,self.locationPlist.getDistanceInKM())
+                        }
                     }
                         
                     else if location.speed == 0{
@@ -124,7 +129,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
                         
                     else {
                         
-                        print("irrelevant data ")
+                      //  print("irrelevant data ")
                         
                     }
                     

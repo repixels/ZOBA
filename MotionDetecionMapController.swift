@@ -53,14 +53,14 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     
     static var tripFirstLocation = CLLocation()
     static var tripLastLocation = CLLocation()
-   static var isFirstLocation = true
+    static var isFirstLocation = true
     static var lastDate : NSDate!
     var lastPlistIndex = 1
     
     var polyLines = [MKPolyline]()
     
     
-    
+    let pointsSaver = Point()
     
     
     override func viewWillAppear(animated: Bool) {
@@ -68,18 +68,18 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         super.viewDidAppear(animated)
         print("will appear")
         
-       
+        
         self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", (MotionDetecionMapController.dist/1000),"KM")
         
         
         
         if MotionDetecionMapController.lastDate != nil {
-        let firstDate = MotionDetecionMapController.tripFirstLocation.timestamp
-        let hr =  MotionDetecionMapController.lastDate.hoursFrom(firstDate)
-        let min = MotionDetecionMapController.lastDate.minutesFrom(firstDate) % 60
-        let sec = MotionDetecionMapController.lastDate.secondsFrom(firstDate) % 60
-        
-        self.timeDisplay.text = "\(hr):\(min):\(sec)"
+            let firstDate = MotionDetecionMapController.tripFirstLocation.timestamp
+            let hr =  MotionDetecionMapController.lastDate.hoursFrom(firstDate)
+            let min = MotionDetecionMapController.lastDate.minutesFrom(firstDate) % 60
+            let sec = MotionDetecionMapController.lastDate.secondsFrom(firstDate) % 60
+            
+            self.timeDisplay.text = "\(hr):\(min):\(sec)"
         }
         toggleButton()
         
@@ -91,8 +91,10 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         self.map.showsUserLocation = true
         self.manager.delegate = self
         manager.startUpdatingLocation()
-        
+        //start of block
         let block :(CLLocation,Double)->() = {(location,distance) in
+            
+            self.pointsSaver.savePoint(location.coordinate)
             
             if MotionDetecionMapController.isFirstLocation {
                 self.locationPlist.saveLocation(location)
@@ -127,7 +129,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             }
             
             let firstDate = MotionDetecionMapController.tripFirstLocation.timestamp
-             MotionDetecionMapController.lastDate = location.timestamp
+            MotionDetecionMapController.lastDate = location.timestamp
             
             let hr =  MotionDetecionMapController.lastDate.hoursFrom(firstDate)
             let min = MotionDetecionMapController.lastDate.minutesFrom(firstDate) % 60
@@ -141,6 +143,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             }
             
         }
+        // end of block
+        
         
         if SessionObjects.motionMonitor != nil {
             SessionObjects.motionMonitor.updateLocationBlock = block
@@ -179,6 +183,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         if  Defaults[.isHavingTrip]
         {
             saveTrip()
+            let pointsArr = pointsSaver.getArray()
+            print("points count  =====> \(pointsArr.count)")
             MotionDetecionMapController.isFirstLocation = false
         }
         else
@@ -199,12 +205,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         self.map.addOverlays(polyLines)
         
+        
         manager.stopUpdatingLocation()
         self.map.showsUserLocation = false
         SessionObjects.motionMonitor.stopTrip()
         stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
         
-        createMapImageWithPolyline()
+        //createMapImageWithPolyline()
         
         let point = locationPlist.getLocationsDictionaryArray()
         
@@ -500,9 +507,9 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     func clearView(){
         
         toggleButton()
-//        currentSpeed.text = "0"
-//        self.elapsedTimeLabel.text = "00:00:00"
-//        self.totalDistance.text = "0"
+        //        currentSpeed.text = "0"
+        //        self.elapsedTimeLabel.text = "00:00:00"
+        //        self.totalDistance.text = "0"
         
     }
     
@@ -527,6 +534,90 @@ extension MKMapView {
             }
         }
         self.setVisibleMapRect(zoomRect, edgePadding: mapEdgePadding, animated: true)
+    }
+    
+}
+
+class Point:NSObject{
+    
+    var firstPoint : CLLocationCoordinate2D!
+    var secondPoint : CLLocationCoordinate2D!
+    var thirdPoint : CLLocationCoordinate2D!
+    var newArr : [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
+    
+    func tst(){
+        
+        var i = 0
+        let plist = LocationPlistManager()
+        let arr  = plist.getCoordinatesArray()
+        print("count of old arr : \(arr.count)")
+        print("started")
+        while i < arr.count {
+            
+            if firstPoint == nil{
+                firstPoint = arr[i]
+                newArr.append(arr[i])
+            }else if secondPoint == nil {
+                secondPoint = arr[i]
+                newArr.append(arr[i])
+                
+                
+            }else if !isOnTheSameLine(firstPoint,secondPoint: secondPoint,thirdPoint: arr[i]){
+                
+                newArr.append(arr[i])
+                firstPoint = arr[i]
+                secondPoint = nil
+            }
+            
+            
+            
+            i += 1
+        }
+        print("finished")
+        print("count of new arr : \(newArr.count)")
+        
+    }
+    
+    func savePoint(point : CLLocationCoordinate2D){
+        if firstPoint == nil{
+            firstPoint = point
+            newArr.append(point)
+            print("first point is nil and count : \(newArr.count)")
+        }else if secondPoint == nil {
+            secondPoint = point
+            newArr.append(point)
+            print("second point is nil and count : \(newArr.count)")
+            
+        }else if !isOnTheSameLine(firstPoint,secondPoint: secondPoint,thirdPoint: point){
+            
+            newArr.removeLast()
+            newArr.append(point)
+            firstPoint = point
+            secondPoint = nil
+            print("not on the same line and count : \(newArr.count)")
+        }
+        
+        
+        
+    }
+    
+    func getArray()->([CLLocationCoordinate2D]){
+        
+        return newArr
+    }
+    
+    
+    func isOnTheSameLine(firstPoint : CLLocationCoordinate2D ,secondPoint : CLLocationCoordinate2D ,thirdPoint :CLLocationCoordinate2D)->(Bool){
+        let v1 = firstPoint.latitude * (secondPoint.longitude - thirdPoint.longitude)
+        let v2 = secondPoint.latitude * (thirdPoint.longitude - firstPoint.longitude)
+        let v3 = thirdPoint.latitude * (firstPoint.longitude - secondPoint.longitude)
+        
+        //        let onTheSameLine = Math.ABS(v1 + v2 + v3)
+        let result = ((v1 + v2 + v3) < 0.0000001) && ((v1 + v2 + v3) > -0.0000001)
+        //        print("")
+        print("(v1 + v2 + v3) ==> \(v1 + v2 + v3) and is on the same line \(result)")
+        
+        return result
     }
     
 }
