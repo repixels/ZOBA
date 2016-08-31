@@ -30,6 +30,9 @@
                                     <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQN-j8-Vga">
                                         <rect key="frame" x="72" y="0.0" width="172" height="191"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle" translatesAutoresizingMaskIntoConstraints="NO" id="pXD-8z-mvw">
+                                                <rect key="frame" x="16" y="14" width="140" height="162"/>
+                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eib-uz-Anq">
                                                 <rect key="frame" x="109" y="130" width="38" height="30"/>
                                                 <constraints>
@@ -47,9 +50,6 @@
                                                 <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="timeline-circle" translatesAutoresizingMaskIntoConstraints="NO" id="pXD-8z-mvw">
-                                                <rect key="frame" x="16" y="14" width="140" height="162"/>
-                                            </imageView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="HfE-Qb-tct" secondAttribute="trailing" constant="23" id="0oW-3w-fn2"/>
