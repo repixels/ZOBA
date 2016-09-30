@@ -28,14 +28,13 @@
                                 <rect key="frame" x="0.0" y="92" width="320" height="121"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y7Q-Zb-uP9" id="MSC-eT-Ol3">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="121"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="120.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGc-ME-9ij">
                                             <rect key="frame" x="114" y="82" width="151" height="30"/>
                                             <color key="backgroundColor" red="0.1819814891" green="0.69426733259999995" blue="0.53024792669999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="CGc-ME-9ij" secondAttribute="height" multiplier="151:30" id="NQ5-Vf-rTY"/>
                                                 <constraint firstAttribute="height" constant="30" id="UMS-cK-FGQ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
@@ -91,7 +90,6 @@
                                         <constraint firstItem="CGc-ME-9ij" firstAttribute="leading" secondItem="zWQ-Lf-f7I" secondAttribute="trailing" constant="12" id="2Ko-VJ-kWr"/>
                                         <constraint firstItem="xOc-ie-yP7" firstAttribute="top" secondItem="9NI-qQ-a8t" secondAttribute="bottom" constant="3" id="An2-GD-Fec"/>
                                         <constraint firstItem="xOc-ie-yP7" firstAttribute="leading" secondItem="9NI-qQ-a8t" secondAttribute="leading" id="DDY-yp-sCI"/>
-                                        <constraint firstItem="CGc-ME-9ij" firstAttribute="width" secondItem="MSC-eT-Ol3" secondAttribute="height" multiplier="151:121" id="Eq8-m5-Bp8"/>
                                         <constraint firstItem="zWQ-Lf-f7I" firstAttribute="top" secondItem="MSC-eT-Ol3" secondAttribute="topMargin" id="FI5-Ig-RKU"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="CGc-ME-9ij" secondAttribute="bottom" constant="0.5" id="FPw-r0-F0E"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="CGc-ME-9ij" secondAttribute="trailing" constant="47" id="I6d-bP-Ren"/>
