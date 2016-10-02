@@ -96,25 +96,20 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
                 //if this is a new trip
                 if timeDifference > (60*10)
                 {
-//                    Defaults[.isHavingTrip] = false
+                    //                    Defaults[.isHavingTrip] = false
                     self.saveLocation(location)
                 }
                 else
                 {
-                 
-//                    if self.updateLocationBlock != nil
-//                    {
-//                        //                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
-//                        self.updateLocationBlock(location,self.locationPlist.getDistanceInKM())
-//                    }
-                    if  timeDifference > 10 {
+                    if self.updateLocationBlock != nil
+                    {
+                        //                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
+                        self.updateLocationBlock(location,self.locationPlist.getDistanceInKM())
+                    }
+                    
+                    if  timeDifference > 20 {
                         print("speed : \(location.speed)")
                         self.saveLocation(location)
-                        if self.updateLocationBlock != nil
-                        {
-                            //                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
-                            self.updateLocationBlock(location,self.locationPlist.getDistanceInKM())
-                        }
                     }
                         
                     else if location.speed == 0{
@@ -129,7 +124,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
                         
                     else {
                         
-                      //  print("irrelevant data ")
+                     //   print("irrelevant data ")
                         
                     }
                     

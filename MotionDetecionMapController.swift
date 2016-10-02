@@ -60,8 +60,6 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     var polyLines = [MKPolyline]()
     
     
-    let pointsSaver = Point()
-    
     
     override func viewWillAppear(animated: Bool) {
         
@@ -91,10 +89,10 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         self.map.showsUserLocation = true
         self.manager.delegate = self
         manager.startUpdatingLocation()
+        self.manager.startUpdatingHeading()
         //start of block
         let block :(CLLocation,Double)->() = {(location,distance) in
             
-            self.pointsSaver.savePoint(location.coordinate)
             
             if MotionDetecionMapController.isFirstLocation {
                 self.locationPlist.saveLocation(location)
@@ -138,9 +136,10 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             self.timeDisplay.text = "\(hr):\(min):\(sec)"
             MotionDetecionMapController.tripLastLocation = location
             
-            if self.locationPlist.getCoordinatesArray().count > 5 {
-                self.drawRoad()
-            }
+         //   if self.locationPlist.getCoordinatesArray().count > 5 {
+                self.preparePolyLines()
+                
+           // }
             
         }
         // end of block
@@ -183,8 +182,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         if  Defaults[.isHavingTrip]
         {
             saveTrip()
-            let pointsArr = pointsSaver.getArray()
-            print("points count  =====> \(pointsArr.count)")
+            print("points count  =====> \(self.locationPlist.getCoordinatesArray().count)")
             MotionDetecionMapController.isFirstLocation = false
         }
         else
@@ -200,6 +198,12 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         }
     }
     
+    func locationManager(manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        print("===================================")
+        print(newHeading.trueHeading)
+        
+    }
+    
     func saveTrip()  {
         
         
@@ -211,7 +215,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         SessionObjects.motionMonitor.stopTrip()
         stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
         
-        //createMapImageWithPolyline()
+        createMapImageWithPolyline()
         
         let point = locationPlist.getLocationsDictionaryArray()
         
@@ -338,7 +342,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     }
     
     
-    func drawRoad()
+    func preparePolyLines()
     {
         
         map.reloadInputViews()
@@ -359,7 +363,12 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             if lastPlistIndex > pointsArray.count-1
             {
                 lastPlistIndex = 1
+            }else if lastPlistIndex > 0 {
+                
+                lastPlistIndex -= 1
             }
+            
+            polyLines.removeAll()
             
             for i in lastPlistIndex ..< pointsArray.count
             {
@@ -369,7 +378,8 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             lastPlistIndex = pointsArray.count-1
             
             polyLines.append(MKPolyline(coordinates: &coordinates , count: coordinates.count))
-            
+           // self.map.addOverlays(polyLines)
+
             
         }
     }
@@ -537,87 +547,87 @@ extension MKMapView {
     }
     
 }
-
-class Point:NSObject{
-    
-    var firstPoint : CLLocationCoordinate2D!
-    var secondPoint : CLLocationCoordinate2D!
-    var thirdPoint : CLLocationCoordinate2D!
-    var newArr : [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
-    
-    func tst(){
-        
-        var i = 0
-        let plist = LocationPlistManager()
-        let arr  = plist.getCoordinatesArray()
-        print("count of old arr : \(arr.count)")
-        print("started")
-        while i < arr.count {
-            
-            if firstPoint == nil{
-                firstPoint = arr[i]
-                newArr.append(arr[i])
-            }else if secondPoint == nil {
-                secondPoint = arr[i]
-                newArr.append(arr[i])
-                
-                
-            }else if !isOnTheSameLine(firstPoint,secondPoint: secondPoint,thirdPoint: arr[i]){
-                
-                newArr.append(arr[i])
-                firstPoint = arr[i]
-                secondPoint = nil
-            }
-            
-            
-            
-            i += 1
-        }
-        print("finished")
-        print("count of new arr : \(newArr.count)")
-        
-    }
-    
-    func savePoint(point : CLLocationCoordinate2D){
-        if firstPoint == nil{
-            firstPoint = point
-            newArr.append(point)
-            print("first point is nil and count : \(newArr.count)")
-        }else if secondPoint == nil {
-            secondPoint = point
-            newArr.append(point)
-            print("second point is nil and count : \(newArr.count)")
-            
-        }else if !isOnTheSameLine(firstPoint,secondPoint: secondPoint,thirdPoint: point){
-            
-            newArr.removeLast()
-            newArr.append(point)
-            firstPoint = point
-            secondPoint = nil
-            print("not on the same line and count : \(newArr.count)")
-        }
-        
-        
-        
-    }
-    
-    func getArray()->([CLLocationCoordinate2D]){
-        
-        return newArr
-    }
-    
-    
-    func isOnTheSameLine(firstPoint : CLLocationCoordinate2D ,secondPoint : CLLocationCoordinate2D ,thirdPoint :CLLocationCoordinate2D)->(Bool){
-        let v1 = firstPoint.latitude * (secondPoint.longitude - thirdPoint.longitude)
-        let v2 = secondPoint.latitude * (thirdPoint.longitude - firstPoint.longitude)
-        let v3 = thirdPoint.latitude * (firstPoint.longitude - secondPoint.longitude)
-        
-        //        let onTheSameLine = Math.ABS(v1 + v2 + v3)
-        let result = ((v1 + v2 + v3) < 0.000005) && ((v1 + v2 + v3) > -0.000005)
-        //        print("")
-        print("(v1 + v2 + v3) ==> \(v1 + v2 + v3) and is on the same line \(result)")
-        
-        return result
-    }
-    
-}
+/*
+ class Point:NSObject{
+ 
+ var firstPoint : CLLocationCoordinate2D!
+ var secondPoint : CLLocationCoordinate2D!
+ var thirdPoint : CLLocationCoordinate2D!
+ var newArr : [CLLocationCoordinate2D] = [CLLocationCoordinate2D]()
+ 
+ func tst(){
+ 
+ var i = 0
+ let plist = LocationPlistManager()
+ let arr  = plist.getCoordinatesArray()
+ print("count of old arr : \(arr.count)")
+ print("started")
+ while i < arr.count {
+ 
+ if firstPoint == nil{
+ firstPoint = arr[i]
+ newArr.append(arr[i])
+ }else if secondPoint == nil {
+ secondPoint = arr[i]
+ newArr.append(arr[i])
+ 
+ 
+ }else if !isOnTheSameLine(firstPoint,secondPoint: secondPoint,thirdPoint: arr[i]){
+ 
+ newArr.append(arr[i])
+ firstPoint = arr[i]
+ secondPoint = nil
+ }
+ 
+ 
+ 
+ i += 1
+ }
+ print("finished")
+ print("count of new arr : \(newArr.count)")
+ 
+ }
+ 
+ func savePoint(point : CLLocationCoordinate2D){
+ if firstPoint == nil{
+ firstPoint = point
+ newArr.append(point)
+ print("first point is nil and count : \(newArr.count)")
+ }else if secondPoint == nil {
+ secondPoint = point
+ newArr.append(point)
+ print("second point is nil and count : \(newArr.count)")
+ 
+ }else if !isOnTheSameLine(firstPoint,secondPoint: secondPoint,thirdPoint: point){
+ 
+ newArr.removeLast()
+ newArr.append(point)
+ firstPoint = point
+ secondPoint = nil
+ print("not on the same line and count : \(newArr.count)")
+ }
+ 
+ 
+ 
+ }
+ 
+ func getArray()->([CLLocationCoordinate2D]){
+ 
+ return newArr
+ }
+ 
+ 
+ func isOnTheSameLine(firstPoint : CLLocationCoordinate2D ,secondPoint : CLLocationCoordinate2D ,thirdPoint :CLLocationCoordinate2D)->(Bool){
+ let v1 = firstPoint.latitude * (secondPoint.longitude - thirdPoint.longitude)
+ let v2 = secondPoint.latitude * (thirdPoint.longitude - firstPoint.longitude)
+ let v3 = thirdPoint.latitude * (firstPoint.longitude - secondPoint.longitude)
+ 
+ //        let onTheSameLine = Math.ABS(v1 + v2 + v3)
+ let result = ((v1 + v2 + v3) < 0.000005) && ((v1 + v2 + v3) > -0.000005)
+ //        print("")
+ print("(v1 + v2 + v3) ==> \(v1 + v2 + v3) and is on the same line \(result)")
+ 
+ return result
+ }
+ 
+ }*/
