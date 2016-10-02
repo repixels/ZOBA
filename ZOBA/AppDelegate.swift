@@ -54,6 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         else
         {
             let abstractDAO = AbstractDao(managedObjectContext: managedObjectContext)
+            
+            if (abstractDAO.selectAll(entityName: "MyUser").count > 0 )
+            {
+            
             SessionObjects.currentUser = abstractDAO.selectAll(entityName: "MyUser")[0] as! MyUser
             
             let vehicleName = Defaults[.curentVehicleName]
@@ -74,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 
             }
             
+            }
             let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
             let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
             
