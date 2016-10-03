@@ -15,6 +15,9 @@ class LocationPlistManager {
     var path : NSURL
     static var distance = 0.0
     
+    var firstPoint : CLLocationCoordinate2D!
+    var secondPoint : CLLocationCoordinate2D!
+    
     init(){
         
         self.name = "CoordinateList"
@@ -54,6 +57,36 @@ class LocationPlistManager {
         }
         self.saveLastLocationInformation(location)
         
+        //      self.savePoint(location)
+        
+        
+        
+        if firstPoint == nil{
+            firstPoint = location.coordinate
+            self.savePoint(location)
+            print("first point is nil and count : \(locationsArray.count)")
+        }else if secondPoint == nil {
+            secondPoint = location.coordinate
+            self.savePoint(location)
+            print("second point is nil and count : \(locationsArray.count)")
+            
+        }else if !isOnTheSameLine(firstPoint,secondPoint: secondPoint,thirdPoint: location.coordinate){
+            
+            self.removeLastLocation()
+            self.savePoint(location)
+            firstPoint = location.coordinate
+            secondPoint = nil
+            print("not on the same line and count : \(locationsArray.count)")
+        }
+        
+        
+    }
+    
+    private func savePoint(location :CLLocation){
+        
+        
+        
+        
         let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString)
         let arr = dict?.mutableArrayValueForKey("Points")
         let point = NSMutableDictionary()
@@ -62,13 +95,29 @@ class LocationPlistManager {
         point.setValue(String(location.speed), forKey: "speed")
         arr?.addObject(point)
         dict?.writeToFile(path.absoluteString, atomically: false)
+        
     }
+    
+    func isOnTheSameLine(firstPoint : CLLocationCoordinate2D ,secondPoint : CLLocationCoordinate2D ,thirdPoint :CLLocationCoordinate2D)->(Bool){
+        let v1 = firstPoint.latitude * (secondPoint.longitude - thirdPoint.longitude)
+        let v2 = secondPoint.latitude * (thirdPoint.longitude - firstPoint.longitude)
+        let v3 = thirdPoint.latitude * (firstPoint.longitude - secondPoint.longitude)
+        
+        //        let onTheSameLine = Math.ABS(v1 + v2 + v3)
+        let result = ((v1 + v2 + v3) < 0.000005) && ((v1 + v2 + v3) > -0.000005)
+        //        print("")
+        print("(v1 + v2 + v3) ==> \(v1 + v2 + v3) and is on the same line \(result)")
+        
+        return result
+    }
+    
     
     func getLocationsDictionaryArray() -> NSArray {
         let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString)
         let arr = dict?.mutableArrayValueForKey("Points")
         return arr!;
     }
+    
     
     func clearPlist(){
         let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString)
@@ -77,6 +126,22 @@ class LocationPlistManager {
         dict?.writeToFile(path.absoluteString, atomically: false)
         LocationPlistManager.distance = 0
         
+        
+        firstPoint = nil
+        secondPoint = nil
+        
+    }
+    
+    private func removeLastLocation(){
+        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString)
+        let arr = dict?.mutableArrayValueForKey("Points")
+        let oldLastLocation = getLocationFromDictionary((arr?.lastObject)! as! NSMutableDictionary)
+        arr?.removeLastObject()
+        let newLastLocation = getLocationFromDictionary((arr?.lastObject)! as! NSMutableDictionary)
+        
+        dict?.writeToFile(path.absoluteString, atomically: false)
+        
+        LocationPlistManager.distance -= oldLastLocation.distanceFromLocation(newLastLocation)
         
     }
     
@@ -160,7 +225,7 @@ class LocationPlistManager {
         userDefault.setObject(location.coordinate.longitude, forKey: "lastLongitude")
         
     }
-  
+    
     func readLastLocation() -> (date: NSDate! ,latitude: CLLocationDegrees! ,longitude : CLLocationDegrees!){
         
         let userDefault =  NSUserDefaults.standardUserDefaults()
@@ -178,4 +243,13 @@ class LocationPlistManager {
         }
     }
     
+    func removeAllButLastLocation(){
+        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString)
+        let oldArr = dict?.mutableArrayValueForKey("Points")
+       
+        while oldArr?.count > 1 {
+            oldArr?.removeObjectAtIndex(0)
+        }
+        dict?.writeToFile(path.absoluteString, atomically: false)
+    }
 }
