@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OnboardingContentViewController.h"
-@import MediaPlayer;
+@import AVKit;
 
 @interface OnboardingViewController : UIViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate, OnboardingContentViewControllerDelegate>
 
@@ -93,7 +93,7 @@
 /**
  * @brief The movie player controller used to play background movies.
  */
-@property (nonatomic) MPMoviePlayerController *moviePlayerController;
+@property (nonatomic, strong) AVPlayerViewController *moviePlayerController;
 
 
 /**
@@ -134,34 +134,5 @@
  * @brief Method to tell the onboarding view controller to automatically move to the next page.
  */
 - (void)moveNextPage;
-
-
-// The following properties are all deprecated, and will be removed in the next release of Onboard.
-//
-//
-@property (nonatomic) BOOL hidePageControl __attribute__((deprecated("Modify the pageControl property directly. This property will be removed in the next update.")));
-
-@property (nonatomic) CGFloat iconSize __attribute__((deprecated("Modify the content view controller's iconSize directly. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat iconHeight __attribute__((deprecated("Modify the content view controller's iconHeight directly. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat iconWidth __attribute__((deprecated("Modify the content view controller's iconWidth directly. This property will be removed in the next update.")));
-
-@property (nonatomic, strong) UIColor *titleTextColor __attribute__((deprecated("Modify the content view controller's titleLabel directly. This property will be removed in the next update.")));
-@property (nonatomic, strong) NSString *titleFontName __attribute__((deprecated("Modify the content view controller's titleLabel directly. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat titleFontSize __attribute__((deprecated("Modify the content view controller's titleLabel directly. This property will be removed in the next update.")));
-
-@property (nonatomic, strong) UIColor *bodyTextColor __attribute__((deprecated("Modify the content view controller's bodyLabel directly. This property will be removed in the next update.")));
-@property (nonatomic, strong) NSString *bodyFontName __attribute__((deprecated("Modify the content view controller's bodyLabel directly. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat bodyFontSize __attribute__((deprecated("Modify the content view controller's bodyLabel directly.")));
-
-@property (nonatomic, strong) UIColor *buttonTextColor __attribute__((deprecated("Modify the content view controller's actionButton directly. This property will be removed in the next update.")));
-@property (nonatomic, strong) NSString *buttonFontName __attribute__((deprecated("Modify the content view controller's actionButton directly. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat buttonFontSize __attribute__((deprecated("Modify the content view controller's actionButton directly. This property will be removed in the next update.")));
-
-@property (nonatomic, strong) NSString *fontName __attribute__((deprecated("Modify the content view controller's labels directly. This property will be removed in the next update.")));
-
-@property (nonatomic) CGFloat topPadding __attribute__((deprecated("Modify the content view controller's topPadding directly. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat underIconPadding __attribute__((deprecated("Modify the content view controller's underIconPadding directly. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat underTitlePadding __attribute__((deprecated("Modify the content view controller's underTitlePadding directly. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat bottomPadding __attribute__((deprecated("Modify the content view controller's bottomPadding directly. This property will be removed in the next update.")));
 
 @end

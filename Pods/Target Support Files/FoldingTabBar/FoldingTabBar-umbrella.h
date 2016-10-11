@@ -6,7 +6,8 @@
 #import "YALAnimatingTabBarConstants.h"
 #import "YALFoldingTabBarController.h"
 #import "YALTabBarItem.h"
-#import "YALTabBarInteracting.h"
+#import "FoldingTabBar.h"
+#import "YALCustomHeightTabBar.h"
 #import "YALFoldingTabBar.h"
 
 FOUNDATION_EXPORT double FoldingTabBarVersionNumber;

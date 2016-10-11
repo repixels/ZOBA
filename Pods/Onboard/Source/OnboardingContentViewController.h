@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@import MediaPlayer;
+@import AVKit;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class OnboardingViewController;
 @class OnboardingContentViewController;
@@ -134,80 +136,71 @@ typedef void (^action_callback)(OnboardingViewController *onboardController);
 
 
 /**
+ * @brief The movie player controller used to play background movies.
+ */
+@property (nonatomic, strong) AVPlayerViewController *moviePlayerController;
+
+NS_ASSUME_NONNULL_END
+
+/**
  * @brief Convenience class initializer for creating an onboarding content view controller.
  * @return An instance of OnboardingViewController with the provided information.
  */
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
++ (nonnull instancetype)contentWithTitle:(nullable NSString *)title body:(nullable NSString *)body image:(nullable UIImage *)image buttonText:(nullable NSString *)buttonText action:(nullable dispatch_block_t)action;
 
 
 /**
  * @brief Initializer for creating an onboarding content view controller.
  * @return An instance of OnboardingViewController with the provided information.
  */
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title body:(nullable NSString *)body image:(nullable UIImage *)image buttonText:(nullable NSString *)buttonText action:(nullable dispatch_block_t)action;
 
 
 /**
  * @brief Convenience class initializer for creating an onboarding content view controller with an action_callback block.
  * @return An instance of OnboardingViewController with the provided information.
  */
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
++ (nonnull instancetype)contentWithTitle:(nullable NSString *)title body:(nullable NSString *)body image:(nullable UIImage *)image buttonText:(nullable NSString *)buttonText actionBlock:(nullable action_callback)actionBlock;
 
 
 /**
  * @brief Convenience class initializer for creating an onboarding content view controller with a video.
  * @return An instance of OnboardingViewController with the provided information.
  */
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
++ (nonnull instancetype)contentWithTitle:(nullable NSString *)title body:(nullable NSString *)body videoURL:(nullable NSURL *)videoURL buttonText:(nullable NSString *)buttonText action:(nullable dispatch_block_t)action;
 
 
 /**
  * @brief Initializer for creating an onboarding content view controller with a video.
  * @return An instance of OnboardingViewController with the provided information.
  */
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText action:(dispatch_block_t)action;
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title body:(nullable NSString *)body videoURL:(nullable NSURL *)videoURL buttonText:(nullable NSString *)buttonText action:(nullable dispatch_block_t)action;
 
 
 /**
  * @brief Convenience class initializer for creating an onboarding content view controller with a video and an action_callback block.
  * @return An instance of OnboardingViewController with the provided information.
  */
-+ (instancetype)contentWithTitle:(NSString *)title body:(NSString *)body videoURL:(NSURL *)videoURL buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
++ (nonnull instancetype)contentWithTitle:(nullable NSString *)title body:(nullable NSString *)body videoURL:(nullable NSURL *)videoURL buttonText:(nullable NSString *)buttonText actionBlock:(nullable action_callback)actionBlock;
 
 
 /**
  * @brief Initializer for creating an onboarding content view controller with a video and an action_callback block.
  * @return An instance of OnboardingViewController with the provided information.
  */
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title body:(nullable NSString *)body image:(nullable UIImage *)image buttonText:(nullable NSString *)buttonText actionBlock:(nullable action_callback)actionBlock;
 
 
 /**
  * @brief Initializer for creating an onboarding content view controller with a video and an action_callback block.
  * @return An instance of OnboardingViewController with the provided information.
  */
-- (instancetype)initWithTitle:(NSString *)title body:(NSString *)body image:(UIImage *)image videoURL:videoURL buttonText:(NSString *)buttonText actionBlock:(action_callback)actionBlock;
+- (nonnull instancetype)initWithTitle:(nullable NSString *)title body:(nullable NSString *)body image:(nullable UIImage *)image videoURL:(nullable NSURL *)videoURL buttonText:(nullable NSString *)buttonText actionBlock:(nullable action_callback)actionBlock;
 
 
 /**
  * @brief Method used to update the alpha value for all floating subviews (image, title, body, etc.)
  */
 - (void)updateAlphas:(CGFloat)newAlpha;
-
-
-// The following properties are all deprecated, and will be removed in the next release of Onboard.
-//
-//
-@property (nonatomic, strong) UIColor *titleTextColor __attribute__((deprecated("Set titleLabel.textColor instead. This property will be removed in the next update.")));
-@property (nonatomic, strong) NSString *titleFontName __attribute__((deprecated("Set titleLabel.font instead. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat titleFontSize __attribute__((deprecated("Set titleLabel.font instead. This property will be removed in the next update.")));
-
-@property (nonatomic, strong) UIColor *bodyTextColor __attribute__((deprecated("Set bodyLabel.textColor instead. This property will be removed in the next update.")));
-@property (nonatomic, strong) NSString *bodyFontName __attribute__((deprecated("Set bodyLabel.font instead. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat bodyFontSize __attribute__((deprecated("Set bodyLabel.font instead. This property will be removed in the next update.")));
-
-@property (nonatomic, strong) UIColor *buttonTextColor __attribute__((deprecated("Modify the actionButton property directly. This property will be removed in the next update.")));
-@property (nonatomic, strong) NSString *buttonFontName __attribute__((deprecated("Modify the actionButton property directly. This property will be removed in the next update.")));
-@property (nonatomic) CGFloat buttonFontSize __attribute__((deprecated("Modify the actionButton property directly. This property will be removed in the next update.")));
 
 @end

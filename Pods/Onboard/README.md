@@ -22,7 +22,7 @@ Adding the following to your `Podfile` and running `pod install` should do the t
 pod 'Onboard'
 ```
 
-*If you don't want to use CocoaPods*, you can grab the files located in the *Source* folder and pull them into your project manually.
+*If you don't want to use CocoaPods*, you can use Carthage or grab the files located in the *Source* folder and pull them into your project manually.
 
 Each onboarding experience is comprised of two primary components - the background and the content pages. The background includes the static background image/video, the page control, and the skip button. The content pages are made up of four pieces, an image/icon, title, body, and action button.
 
@@ -107,6 +107,8 @@ Apply a fade effect to the icons, text, and buttons, while transitioning between
 ```objective-c
 onboardingVC.shouldFadeTransitions = YES; // defaults to NO
 ```
+
+***Note:*** Ensure you do not cause the onboard view controller's view to be loaded prior to setting these properties, as these values only take effect when the view controller's `viewDidLoad` is called, so doing something like setting your `onboardingVC.view.backgroundColor = [UIColor whiteColor];` before setting this values would lead to the setting of these to not take effect.
 
 You can tweak these settings in a few different combinations to get your desired effect:
 

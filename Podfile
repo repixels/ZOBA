@@ -4,18 +4,18 @@
 target 'ZOBA' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-  pod 'FoldingTabBar', '~> 1.0.2'
-  pod 'CBZSplashView', '~> 1.0.0'
+  pod 'FoldingTabBar', '~> 1.1'
+  pod 'CBZSplashView'
   pod 'Onboard'
-  pod "TextFieldEffects"
-  pod 'Alamofire', '~> 3.4'
-  pod 'AlamofireObjectMapper', '~> 3.0'
-  pod 'ObjectMapper', '~> 1.3'
+  pod 'TextFieldEffects', '~> 1.3’
+  pod 'Alamofire', '~> 4.0’
+  pod 'AlamofireObjectMapper', '~> 4.0'
+  pod 'ObjectMapper', '~> 2.1'
   pod 'ChameleonFramework/Swift'
   pod 'BTNavigationDropdownMenu'
   pod 'SwiftyUserDefaults'
-  pod 'AlamofireImage', '~> 2.0'
-  pod 'AlamofireNetworkActivityIndicator', '~> 1.0'
+  pod 'AlamofireImage', '~> 3.1'
+  pod 'AlamofireNetworkActivityIndicator', '~> 2.0'
   pod ’SOMotionDetector’
   pod 'SlideMenuControllerSwift'
 

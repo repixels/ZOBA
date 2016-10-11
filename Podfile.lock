@@ -1,57 +1,57 @@
 PODS:
-  - Alamofire (3.4.0)
-  - AlamofireImage (2.4.0):
-    - Alamofire (~> 3.3)
-  - AlamofireNetworkActivityIndicator (1.0.1):
-    - Alamofire (~> 3.3)
-  - AlamofireObjectMapper (3.0.0):
-    - Alamofire (~> 3.2)
-    - ObjectMapper (~> 1.0)
-  - BTNavigationDropdownMenu (0.3)
+  - Alamofire (4.0.1)
+  - AlamofireImage (3.1.0):
+    - Alamofire (~> 4.0)
+  - AlamofireNetworkActivityIndicator (2.0.1):
+    - Alamofire (~> 4.0)
+  - AlamofireObjectMapper (4.0.0):
+    - Alamofire (~> 4.0)
+    - ObjectMapper (~> 2.0)
+  - BTNavigationDropdownMenu (0.4.1)
   - CBZSplashView (1.0.0)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
-  - FoldingTabBar (1.0.2)
-  - ObjectMapper (1.3.0)
-  - Onboard (2.2.0)
-  - SlideMenuControllerSwift (2.2.0)
+  - FoldingTabBar (1.1)
+  - ObjectMapper (2.1.0)
+  - Onboard (2.3.1)
+  - SlideMenuControllerSwift (3.0.0)
   - SOMotionDetector (1.0.2)
-  - SwiftyUserDefaults (2.2.0)
-  - TextFieldEffects (1.2.0)
+  - SwiftyUserDefaults (3.0.0)
+  - TextFieldEffects (1.3.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.4)
-  - AlamofireImage (~> 2.0)
-  - AlamofireNetworkActivityIndicator (~> 1.0)
-  - AlamofireObjectMapper (~> 3.0)
+  - Alamofire (~> 4.0)
+  - AlamofireImage (~> 3.1)
+  - AlamofireNetworkActivityIndicator (~> 2.0)
+  - AlamofireObjectMapper (~> 4.0)
   - BTNavigationDropdownMenu
-  - CBZSplashView (~> 1.0.0)
+  - CBZSplashView
   - ChameleonFramework/Swift
-  - FoldingTabBar (~> 1.0.2)
-  - ObjectMapper (~> 1.3)
+  - FoldingTabBar (~> 1.1)
+  - ObjectMapper (~> 2.1)
   - Onboard
   - SlideMenuControllerSwift
   - SOMotionDetector
   - SwiftyUserDefaults
-  - TextFieldEffects
+  - TextFieldEffects (~> 1.3)
 
 SPEC CHECKSUMS:
-  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
-  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
-  AlamofireNetworkActivityIndicator: 49a6e39afb947136f7b1872bae2d684957c26697
-  AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
-  BTNavigationDropdownMenu: c36d20785253699046fdd295698c24b1d1c18f53
+  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
+  AlamofireNetworkActivityIndicator: 3e55069ada3e1ff7703665156429eedcdfea0bc1
+  AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
+  BTNavigationDropdownMenu: 093f3cbfad1572f2c222bdf8d17584d1e13380d4
   CBZSplashView: 9ce4cba22024476ff4a97d6433e7347da6376016
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
-  FoldingTabBar: 79df76dfd5a84c0a369beaa378a31c07aa53b6b2
-  ObjectMapper: 4eb08a726e9791a93b2632049951b56a7c17e471
-  Onboard: c46261255c0bcbe26ab2823782764c96fca7a33e
-  SlideMenuControllerSwift: 16dac00b1aaad153e64fffb5d6969ab31ad88372
+  FoldingTabBar: 55a302cc5753755f917bf0e70b8083705fb2fe8c
+  ObjectMapper: e5e0f8aef8590fc2ddcde7f27eddb255863ee6e9
+  Onboard: b6871f25ac753175b2ab9a362fb2feb26a81a311
+  SlideMenuControllerSwift: 9c0a84f9a3fba51681debd7be77617094562ebcc
   SOMotionDetector: 50131192a9b9ea76747d0230a7b6f82e5124d8d4
-  SwiftyUserDefaults: e7c8197a9d4068702e7f2406a968cae413b8de27
-  TextFieldEffects: bc4fd3bd557321bd61a0762f3f50965477a36f62
+  SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
+  TextFieldEffects: ef594746f17997c813e07633f8ae5acaf9b04f27
 
-PODFILE CHECKSUM: e68de9c49374db7a3f22eb91f61493f8488b8350
+PODFILE CHECKSUM: 49c69f3187ae977a52af095eec35b9aa3cf8773e
 
 COCOAPODS: 1.0.1
