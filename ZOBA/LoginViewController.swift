@@ -56,11 +56,11 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         //Change Status Bar Style to Light
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        UIApplication.shared.statusBarStyle = .lightContent
         
         fbLoginButton.readPermissions = facebookReadPermissions
         fbLoginButton.delegate = self
-        fbLoginButton.loginBehavior = FBSDKLoginBehavior.Native
+        fbLoginButton.loginBehavior = FBSDKLoginBehavior.native
         
     }
     override func didReceiveMemoryWarning() {
@@ -69,17 +69,17 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     }
     
     
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if ((error) != nil)
         {
-            let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             print("\(error)")
             //handle error
         } else {
             loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-            loginButton.loginBehavior = FBSDKLoginBehavior.SystemAccount
+            loginButton.loginBehavior = FBSDKLoginBehavior.systemAccount
             loginButton.delegate = self
             returnUserData()
         }
@@ -88,26 +88,26 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     func returnUserData()
     {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,first_name,last_name,email,age_range,name,picture.width(480).height(480)"])
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+        graphRequest.start(completionHandler: { (connection, result, error) -> Void in
             
             if ((error) != nil)
             {
                 // Process error
-                let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
                 print("Error: \(error)")
             }
             else
             {
-                let userId = result.valueForKey("id") as? String
-                let firstName = result.valueForKey("first_name") as? String
-                let lastName = result.valueForKey("last_name") as? String
-                let userEmail = (result.valueForKey("email") as? String)!
-                let userName = userEmail.componentsSeparatedByString("@")[0]
+                let userId = result.value(forKey: "id") as? String
+                let firstName = result.value(forKey: "first_name") as? String
+                let lastName = result.value(forKey: "last_name") as? String
+                let userEmail = (result.value(forKey: "email") as? String)!
+                let userName = userEmail.components(separatedBy: "@")[0]
                 let userProfileImage = "http://graph.facebook.com/\(userId!)/picture?type=large"
                 
-                let  fbUser = MyUser(managedObjectContext: SessionObjects.currentManageContext, entityName: "MyUser")
+                let  fbUser = MyUser(entity: SessionObjects.currentManageContext, insertIntoManagedObjectContext: "MyUser")
                 fbUser.email = userEmail
                 fbUser.userName = userName
                 fbUser.firstName = firstName
@@ -133,39 +133,39 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         })
     }
     
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
     }
     
-    func setViewBackgroundImage(imageName:String)
+    func setViewBackgroundImage(_ imageName:String)
     {
         let backgroundImageView: UIImageView = UIImageView(frame: self.view.bounds)
-        backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill;
+        backgroundImageView.contentMode = UIViewContentMode.scaleAspectFill;
         backgroundImageView.image = UIImage(named: imageName)
         
         let backgroundImageMask: UIView =  UIView(frame: self.view.bounds)
         backgroundImageMask.backgroundColor = UIColor(white: 0.0, alpha: 0.6)
         
-        self.view.insertSubview(backgroundImageView, atIndex: 0)
-        self.view.insertSubview(backgroundImageMask, atIndex: 1)
+        self.view.insertSubview(backgroundImageView, at: 0)
+        self.view.insertSubview(backgroundImageMask, at: 1)
         
     }
     
-    @IBAction func forgotPasswordClicked(sender: AnyObject) {
+    @IBAction func forgotPasswordClicked(_ sender: AnyObject) {
         
-        let alert = UIAlertController(title: "Reset Your Password", message: "Enter your email below to reset your password!", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Reset Your Password", message: "Enter your email below to reset your password!", preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addTextFieldWithConfigurationHandler(configurationTextField)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:handleCancel))
-        alert.addAction(UIAlertAction(title: "Reset Password", style: UIAlertActionStyle.Destructive, handler:{ (UIAlertAction)in
+        alert.addTextField(configurationHandler: configurationTextField)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler:handleCancel))
+        alert.addAction(UIAlertAction(title: "Reset Password", style: UIAlertActionStyle.destructive, handler:{ (UIAlertAction)in
             print("User Email is : \(self.resetPasswordAlertTextField.text)")
         }))
-        self.presentViewController(alert, animated: true, completion: {
+        self.present(alert, animated: true, completion: {
             print("Alert Ended")
         })
         
     }
     
-    func configurationTextField(textField: UITextField!)
+    func configurationTextField(_ textField: UITextField!)
     {
         print("generating the TextField")
         textField.placeholder = "Enter an item"
@@ -173,14 +173,14 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     }
     
     
-    func handleCancel(alertView: UIAlertAction!)
+    func handleCancel(_ alertView: UIAlertAction!)
     {
         print("Cancel Button Clicked")
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
+        super.touchesBegan(touches, with: event)
         
     }
     
@@ -188,13 +188,13 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
      * Detect when text field gains focus
      */
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         print("\(textField.text)")
         return true
     }
     
-    @IBAction func emailEditingDidEnd(sender: AnyObject) {
+    @IBAction func emailEditingDidEnd(_ sender: AnyObject) {
         
         if(DataValidations.isValidEmail(emailTextField.text!))
         {
@@ -210,7 +210,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         
     }
     
-    @IBAction func emailEditingDidBegin(sender: AnyObject)
+    @IBAction func emailEditingDidBegin(_ sender: AnyObject)
     {
         if(DataValidations.isValidEmail(emailTextField.text!))
         {
@@ -223,7 +223,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         validateLoginBtn()
     }
     
-    @IBAction func emailEditingChanged(sender: AnyObject)
+    @IBAction func emailEditingChanged(_ sender: AnyObject)
     {
         if(DataValidations.isValidEmail(emailTextField.text!))
         {
@@ -236,7 +236,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         validateLoginBtn()
     }
     
-    @IBAction func passwordEditingDidEnd(sender: AnyObject)
+    @IBAction func passwordEditingDidEnd(_ sender: AnyObject)
     {
         if(passwordTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(passwordTextField.text!))
         {
@@ -268,18 +268,18 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     
     func enableLoginBTN()
     {
-        loginButton.enabled = true
+        loginButton.isEnabled = true
         loginButton.alpha = 1.0
     }
     
     func disableLoginBTN()
     {
-        loginButton.enabled = false
+        loginButton.isEnabled = false
         loginButton.alpha = 0.7
         
     }
     
-    func showEmailErrorMessage(message:String)
+    func showEmailErrorMessage(_ message:String)
     {
         self.emailTextField.borderInactiveColor = UIColor.redColor()
         self.emailTextField.borderActiveColor = UIColor.redColor()
@@ -290,7 +290,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         
     }
     
-    func showEmailValidMessage(message:String)
+    func showEmailValidMessage(_ message:String)
     {
         self.emailTextField.borderInactiveColor = UIColor.greenColor()
         self.emailTextField.borderActiveColor = UIColor.greenColor()
@@ -300,11 +300,11 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     }
     
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
         if identifier == "loginSegue"
         {
-            let managedUser = MyUser(managedObjectContext: SessionObjects.currentManageContext , entityName: "MyUser")
+            let managedUser = MyUser(entity: SessionObjects.currentManageContext , insertIntoManagedObjectContext: "MyUser")
             
             managedUser.email = emailTextField.text
             managedUser.password = passwordTextField.text
@@ -382,18 +382,18 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         return false
     }
     
-    func generateErrorAlert(errorMessage: String?)
+    func generateErrorAlert(_ errorMessage: String?)
     {
         if errorMessage != nil
         {
-            let alert = UIAlertController(title: "Login Failed", message: errorMessage!, preferredStyle: UIAlertControllerStyle.Alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let alert = UIAlertController(title: "Login Failed", message: errorMessage!, preferredStyle: UIAlertControllerStyle.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(defaultAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
-    func randomAlphaNumericString(length: Int) -> String {
+    func randomAlphaNumericString(_ length: Int) -> String {
         
         let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let allowedCharsCount = UInt32(allowedChars.characters.count)
@@ -401,14 +401,14 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         
         for _ in (0..<length) {
             let randomNum = Int(arc4random_uniform(allowedCharsCount))
-            let newCharacter = allowedChars[allowedChars.startIndex.advancedBy(randomNum)]
+            let newCharacter = allowedChars[allowedChars.characters.index(allowedChars.startIndex, offsetBy: randomNum)]
             randomString += String(newCharacter)
         }
         
         return randomString
     }
     
-    func navigateToMain(userWebService: UserWebservice)
+    func navigateToMain(_ userWebService: UserWebservice)
     {
         userWebService.registerWithFaceBook({ (user, code) in
             
@@ -431,19 +431,19 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                 //                        DummyDataBaseOperation.populateOnlyOnce()
                 //                        DummyDataBaseOperation.populateData()
                 
-                self.fbLoginButton.hidden = true
+                self.fbLoginButton.isHidden = true
                 
                 let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
-                let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                let homeTabController : HomeViewController = homeStoryBoard.instantiateViewController(withIdentifier: "HomeTabController") as! HomeViewController
                 
                 let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
-                let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuTableViewController
                 
                 
                 let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
                 slideMenuController.automaticallyAdjustsScrollViewInsets = true
                 
-                let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                let app = UIApplication.shared.delegate as! AppDelegate
                 app.window?.rootViewController = slideMenuController
                 
                 //start detection if user has car

@@ -13,13 +13,13 @@ import SwiftyUserDefaults
 
 class TrackingDataWebService {
     
-    func buildUrl(url :String)->String{
+    func buildUrl(_ url :String)->String{
         
         return StringConstants.servicesDomain + url
     }
     
     
-    func saveTrackingData(trackingData : TrackingData ,result  : ((trackingData : TrackingData! ,code :String)->()))
+    func saveTrackingData(_ trackingData : TrackingData ,result  : @escaping ((_ trackingData : TrackingData? ,_ code :String)->()))
     {
         let url = buildUrl("trackingData/add")
         let params :[String : AnyObject]? =

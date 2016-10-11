@@ -127,6 +127,7 @@
 		83B042071D1BACD000C6CAD1 /* ServiceProviderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B042061D1BACD000C6CAD1 /* ServiceProviderCell.swift */; };
 		83B042091D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B042081D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift */; };
 		83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC89F1D048766006CC257 /* AbstractDao.swift */; };
+		8C20A7181DAD887C0069908F /* BTNavigationDropdownMenu 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20A7171DAD887C0069908F /* BTNavigationDropdownMenu 2.swift */; };
 		8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */; };
 		D7E3809149A0ABDF4F894412 /* Pods_ZOBATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */; };
 		DC0095721D075660000856FC /* Year.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0095481D075660000856FC /* Year.swift */; };
@@ -341,6 +342,7 @@
 		83B042061D1BACD000C6CAD1 /* ServiceProviderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderCell.swift; sourceTree = "<group>"; };
 		83B042081D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCenterDetailsController.swift; sourceTree = "<group>"; };
 		83BAC89F1D048766006CC257 /* AbstractDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDao.swift; sourceTree = "<group>"; };
+		8C20A7171DAD887C0069908F /* BTNavigationDropdownMenu 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BTNavigationDropdownMenu 2.swift"; sourceTree = "<group>"; };
 		8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = managedObjectExtension.swift; sourceTree = "<group>"; };
 		B7974B3E65B33BEAC6D00F69 /* Pods-ZOBAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBAUITests/Pods-ZOBAUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BD7787F9DCD77BFD9E47D307 /* Pods-ZOBA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBA/Pods-ZOBA.debug.xcconfig"; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 		8278274A1CF837D600684CE5 = {
 			isa = PBXGroup;
 			children = (
+				8C20A7171DAD887C0069908F /* BTNavigationDropdownMenu 2.swift */,
 				DCFC30E11CFDDF250018BBD3 /* DAO */,
 				DCFC30DA1CFDDE740018BBD3 /* poco */,
 				827827551CF837D600684CE5 /* ZOBA */,
@@ -935,12 +938,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "RE Pixels";
 				TargetAttributes = {
 					827827521CF837D600684CE5 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = B263Y9M649;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -952,15 +956,18 @@
 					};
 					827827691CF837D600684CE5 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 827827521CF837D600684CE5;
 					};
 					827827741CF837D600684CE5 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 827827521CF837D600684CE5;
 					};
 					82EF3BDD1D056E3F00AC103C = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = B263Y9M649;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -1363,6 +1370,7 @@
 				82AE18DC1D12C3CB00F4EED6 /* TrackingData+CoreDataProperties.swift in Sources */,
 				8265E7F11D0583780039D0AF /* AppDelegate.swift in Sources */,
 				824858C41D1A0BD800BC95E7 /* TrackingDataWebService.swift in Sources */,
+				8C20A7181DAD887C0069908F /* BTNavigationDropdownMenu 2.swift in Sources */,
 				83B042051D1BAAF100C6CAD1 /* ServiceProviderTableViewController.swift in Sources */,
 				82AE18E81D12C3CB00F4EED6 /* ServiceProviderServices+CoreDataProperties.swift in Sources */,
 				DC0095741D075660000856FC /* ServiceProviderPhone.swift in Sources */,
@@ -1545,8 +1553,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1590,8 +1600,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1610,6 +1622,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1618,10 +1631,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BD7787F9DCD77BFD9E47D307 /* Pods-ZOBA.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1632,6 +1645,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1639,10 +1653,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C4DC4794BB8782CEF3EBF4B /* Pods-ZOBA.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1653,6 +1667,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1665,6 +1680,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZOBA.app/ZOBA";
 			};
 			name = Debug;
@@ -1678,6 +1694,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZOBA.app/ZOBA";
 			};
 			name = Release;
@@ -1690,6 +1707,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = ZOBA;
 			};
 			name = Debug;
@@ -1702,6 +1720,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = RE.ZOBAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = ZOBA;
 			};
 			name = Release;
@@ -1716,6 +1735,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "RE.ZOBA.ZOBA-Quick-Access";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1729,6 +1749,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "RE.ZOBA.ZOBA-Quick-Access";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

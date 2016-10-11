@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import BTNavigationDropdownMenu
+//import BTNavigationDropdownMenu
 import ChameleonFramework
 import SwiftyUserDefaults
 import CoreLocation
@@ -27,7 +27,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         isNotificationsEnabled()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.loadUserVehiclesDropDown()
         
@@ -59,20 +59,19 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200 ;
     }
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (tableCells.count)
     }
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        
-        
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableCells[indexPath.row] as? TripCell
         {
@@ -101,7 +100,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     
     func isLocationEnabled()
     {
-        if CLLocationManager.authorizationStatus() != .AuthorizedAlways {
+        if CLLocationManager.authorizationStatus() != .authorizedAlways {
             
             
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -111,13 +110,14 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     
     func isNotificationsEnabled()
     {
-        let application = UIApplication.sharedApplication()
+        let application = UIApplication.shared
         
-        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound]
+        let notificationTypes: UIUserNotificationType = [UIUserNotificationType.alert, UIUserNotificationType.badge, UIUserNotificationType.sound]
         
-        if(application.isRegisteredForRemoteNotifications() == false)
+        if(application.isRegisteredForRemoteNotifications == false)
         {
-            let pushNotificationSettings = UIUserNotificationSettings(forTypes: notificationTypes, categories: nil)
+            
+            let pushNotificationSettings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
             application.registerUserNotificationSettings(pushNotificationSettings)
             application.registerForRemoteNotifications()
             if((Defaults[.deviceToken]) != nil)
@@ -138,14 +138,14 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     func extraRightItemDidPress() {
         
         let MotionDetectionStoryBoard =  UIStoryboard(name: "MotionDetection", bundle: nil)
-        let MotionNavigationController = MotionDetectionStoryBoard.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
+        let MotionNavigationController = MotionDetectionStoryBoard.instantiateViewController(withIdentifier: "autoReporting") as! MotionDetecionMapController
         self.navigationController?.pushViewController(MotionNavigationController, animated: true)
     }
     
     func extraLeftItemDidPress() {
         
         let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
-        let vehicleNavigationController = vehiclesStoryBoard.instantiateViewControllerWithIdentifier("vehicleTable")
+        let vehicleNavigationController = vehiclesStoryBoard.instantiateViewController(withIdentifier: "vehicleTable")
         self.navigationController?.pushViewController(vehicleNavigationController, animated: true)
     }
     
@@ -157,7 +157,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         self.automaticallyAdjustsScrollViewInsets = false
         
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.whiteColor() ]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName : UIFont(name: "Continuum Medium", size: 22)! ,NSForegroundColorAttributeName: UIColor.white ]
     }
     
     func loadUserVehiclesDropDown()
@@ -181,21 +181,21 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         }
         items.append("Add vehicle")
         
-        menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: menuTitle, items: items)
+        menuView = BTNavigationDropdownMenu(navigationController: self.navigationController, title: menuTitle, items: items as [AnyObject])
         menuView.cellHeight = 40
-        menuView.cellBackgroundColor = UIColor.flatWhiteColor()
-        menuView.cellSelectionColor = UIColor.flatSandColor()
+        menuView.cellBackgroundColor = UIColor.flatWhite()
+        menuView.cellSelectionColor = UIColor.flatSand()
         menuView.keepSelectedCellColor = true
-        menuView.cellTextLabelColor = UIColor.flatWatermelonColor()
+        menuView.cellTextLabelColor = UIColor.flatWatermelon()
         menuView.cellTextLabelFont = UIFont(name: "Continuum Medium", size: 20)
         
         
-        menuView.cellTextLabelAlignment = .Center // .Center // .Right // .Left
+        menuView.cellTextLabelAlignment = .center // .Center // .Right // .Left
         
         menuView.arrowPadding = 10
         
         menuView.animationDuration = 0.5
-        menuView.maskBackgroundColor = UIColor.blackColor()
+        menuView.maskBackgroundColor = UIColor.black
         menuView.maskBackgroundOpacity = 0.3
         menuView.checkMarkImage = nil
         
@@ -211,7 +211,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
             if indexPath == itemCount
             {
                 let story = UIStoryboard.init(name: "Vehicle", bundle: nil)
-                let controller = story.instantiateViewControllerWithIdentifier("Add Vehicle") as! AddVehicleTableViewController
+                let controller = story.instantiateViewController(withIdentifier: "Add Vehicle") as! AddVehicleTableViewController
                 self.navigationController!.pushViewController(controller, animated: true)
             }
             else

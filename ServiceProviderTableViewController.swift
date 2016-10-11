@@ -25,48 +25,48 @@ class ServiceProviderTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return serviceProviders.count
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("serviceCell", forIndexPath: indexPath) as! ServiceProviderCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServiceProviderCell
         
-        cell.name.text = serviceProviders[indexPath.row].name
-        let address = serviceProviders[indexPath.row].address
+        cell.name.text = serviceProviders[(indexPath as NSIndexPath).row].name
+        let address = serviceProviders[(indexPath as NSIndexPath).row].address
         
         if address != nil {
             cell.address.text = address!.street! + " , " + address!.city!
         }
         
-        let serviceMakes  = serviceProviders[indexPath.row].make
+        let serviceMakes  = serviceProviders[(indexPath as NSIndexPath).row].make
         
         serviceMakes?.forEach({ (make ) in
             if SessionObjects.currentVehicle != nil {
             if (make as! Make).name == SessionObjects.currentVehicle.vehicleModel?.model?.make?.name
             {
-                cell.supportBtn.backgroundColor = UIColor.flatGreenColor()
-                cell.supportBtn.setTitle("supports your car", forState: .Normal)
+                cell.supportBtn.backgroundColor = UIColor.flatGreen()
+                cell.supportBtn.setTitle("supports your car", for: UIControlState())
             }
             else {
                 
                 
-                cell.supportBtn.backgroundColor = UIColor.flatRedColor()
-                cell.supportBtn.setTitle("doesn't support your car", forState: .Normal)
+                cell.supportBtn.backgroundColor = UIColor.flatRed()
+                cell.supportBtn.setTitle("doesn't support your car", for: UIControlState())
                }
             }
             else {
             
                 
-                cell.supportBtn.backgroundColor = UIColor.flatGrayColor()
-                cell.supportBtn.setTitle("you have no car", forState: .Normal)
+                cell.supportBtn.backgroundColor = UIColor.flatGray()
+                cell.supportBtn.setTitle("you have no car", for: UIControlState())
             }
         })
         
@@ -89,7 +89,7 @@ class ServiceProviderTableViewController: UITableViewController {
             }
         }
         
-        cell.nameInitial.text = serviceInitial.capitalizedString
+        cell.nameInitial.text = serviceInitial.capitalized
         
         // Configure the cell...
         
@@ -97,35 +97,35 @@ class ServiceProviderTableViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("serviceProviderDetails") as! ServiceCenterDetailsController
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "serviceProviderDetails") as! ServiceCenterDetailsController
         
-        controller.serviceProvider = serviceProviders[indexPath.row]
+        controller.serviceProvider = serviceProviders[(indexPath as NSIndexPath).row]
         
         self.navigationController?.pushViewController(controller, animated: true)
         
         
     }
     
-    func prepareNavigationBar(title: String)
+    func prepareNavigationBar(_ title: String)
     {
         self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+            [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.navigationController!.navigationBar.tintColor = UIColor.white;
         // self.title = self.contextAwareTitle()
         self.title = title
-        self.navigationController?.navigationBar.userInteractionEnabled = true
+        self.navigationController?.navigationBar.isUserInteractionEnabled = true
         
         
     }
     
     func contextAwareTitle() -> String?
     {
-        let now = NSDate()
-        let cal = NSCalendar.currentCalendar()
-        let comps = cal.component(NSCalendarUnit.Hour, fromDate: now)
+        let now = Date()
+        let cal = Calendar.current
+        let comps = (cal as NSCalendar).component(NSCalendar.Unit.hour, from: now)
         
         switch comps {
         case 0 ... 12:
@@ -139,7 +139,7 @@ class ServiceProviderTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func menuButtonClicked(sender: AnyObject) {
+    @IBAction func menuButtonClicked(_ sender: AnyObject) {
         self.slideMenuController()?.openLeft()
     }
     

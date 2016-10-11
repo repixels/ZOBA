@@ -7,7 +7,6 @@ PODS:
   - AlamofireObjectMapper (4.0.0):
     - Alamofire (~> 4.0)
     - ObjectMapper (~> 2.0)
-  - BTNavigationDropdownMenu (0.4.1)
   - CBZSplashView (1.0.0)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
@@ -25,7 +24,6 @@ DEPENDENCIES:
   - AlamofireImage (~> 3.1)
   - AlamofireNetworkActivityIndicator (~> 2.0)
   - AlamofireObjectMapper (~> 4.0)
-  - BTNavigationDropdownMenu
   - CBZSplashView
   - ChameleonFramework/Swift
   - FoldingTabBar (~> 1.1)
@@ -41,7 +39,6 @@ SPEC CHECKSUMS:
   AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
   AlamofireNetworkActivityIndicator: 3e55069ada3e1ff7703665156429eedcdfea0bc1
   AlamofireObjectMapper: 9faa3ce5a240efda1b209009a2d6e1e949227abc
-  BTNavigationDropdownMenu: 093f3cbfad1572f2c222bdf8d17584d1e13380d4
   CBZSplashView: 9ce4cba22024476ff4a97d6433e7347da6376016
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   FoldingTabBar: 55a302cc5753755f917bf0e70b8083705fb2fe8c
@@ -52,6 +49,6 @@ SPEC CHECKSUMS:
   SwiftyUserDefaults: 0f1d45fc3aafb9064dac661e367f8f83fe21a4b4
   TextFieldEffects: ef594746f17997c813e07633f8ae5acaf9b04f27
 
-PODFILE CHECKSUM: 49c69f3187ae977a52af095eec35b9aa3cf8773e
+PODFILE CHECKSUM: d06bfc7d5357e7356cae5f4eef348da39b33a70a
 
 COCOAPODS: 1.0.1

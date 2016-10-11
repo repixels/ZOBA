@@ -19,9 +19,9 @@ class ServiceProviderWebService {
     }
     
     //    /serviceProvider/getServiceProviders
-    func getServiceProvider( result :((serviceProvider : [ServiceProvider]!,code :String)->())){
+    func getServiceProvider( result :@escaping ((_ serviceProvider : [ServiceProvider]?,_ code :String)->())){
         
-        let url = buildUrl("serviceProvider/getServiceProviders")
+        let url = buildUrl(url: "serviceProvider/getServiceProviders")
         
         
         

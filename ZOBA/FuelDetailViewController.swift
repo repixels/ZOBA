@@ -27,11 +27,11 @@ class FuelDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        dateAded.text = String(data.dateAdded!)
+        dateAded.text = String(describing: data.dateAdded!)
         fuelAmount.text = data.value
-        currentOdemetr.text = String(data.initialOdemeter!)
+        currentOdemetr.text = String(describing: data.initialOdemeter!)
         serviceProvider.text = data.serviceProviderName != nil ? data.serviceProviderName  : "Not Available"
     }
     override func didReceiveMemoryWarning() {

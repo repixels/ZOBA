@@ -31,23 +31,30 @@ extension UITextField {
             addTarget(
                 self,
                 action: #selector(limitLength),
-                forControlEvents: UIControlEvents.EditingChanged
+                for: UIControlEvents.editingChanged
             )
         }
     }
     
     func limitLength(textField: UITextField) {
         // 6
+//        guard let prospectiveText = textField.text
+//            where prospectiveText.characters.count > maxLength else {
+//                return
+//        }
+//        
         guard let prospectiveText = textField.text
-            where prospectiveText.characters.count > maxLength else {
+            , prospectiveText.characters.count > maxLength else {
                 return
         }
         
         let selection = selectedTextRange
         // 7
-        text = prospectiveText.substringWithRange(
+        text = prospectiveText.substring(with:
             Range<String.Index>(prospectiveText.startIndex ..< prospectiveText.startIndex.advancedBy(maxLength))
         )
+        
+        
         selectedTextRange = selection
     }
     
@@ -63,11 +70,11 @@ class validatedTextField :  HoshiTextField , UITextFieldDelegate{
         // 3
         delegate = self
         // 4
-        autocorrectionType = .No
+        autocorrectionType = .no
     }
     
     // 5
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // 6
         guard string.characters.count > 0 else {
             return true
@@ -75,8 +82,8 @@ class validatedTextField :  HoshiTextField , UITextFieldDelegate{
         
         // 7
         let currentText = textField.text ?? ""
-        let prospectiveText = (currentText as NSString).stringByReplacingCharactersInRange(range, withString: string)
-        return prospectiveText.containsOnlyCharactersIn(allowedChars)
+        let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        return prospectiveText.containsOnlyCharactersIn(matchCharacters: allowedChars)
     }
     
     
@@ -90,8 +97,9 @@ extension String {
     
     // Returns true if the string contains only characters found in matchCharacters.
     func containsOnlyCharactersIn(matchCharacters: String) -> Bool {
-        let disallowedCharacterSet = NSCharacterSet(charactersInString: matchCharacters).invertedSet
-        return self.rangeOfCharacterFromSet(disallowedCharacterSet) == nil
+        let disallowedCharacterSet = NSCharacterSet(charactersIn: matchCharacters).inverted
+        
+        return self.rangeOfCharacter(from: disallowedCharacterSet) == nil
     }
     
     

@@ -40,7 +40,7 @@ class UserWebservice
         registerURL += "&phone=";
         
         //Clear Users in the managed context
-        self.user?.release(SessionObjects.currentManageContext)
+        self.user?.release(managedObjectContext: SessionObjects.currentManageContext)
     }
     
     private func buildLoginByUserNameURL()
@@ -50,7 +50,7 @@ class UserWebservice
         loginURL += "&pass="+self.user!.password!
         
         //Clear Users in the managed context
-        self.user?.release(SessionObjects.currentManageContext)
+        self.user?.release(managedObjectContext: SessionObjects.currentManageContext)
         
     }
     
@@ -61,14 +61,14 @@ class UserWebservice
         loginURL += "&pass="+self.user!.password!
         
         //Clear Users in the managed context
-        self.user?.release(SessionObjects.currentManageContext)
+        self.user?.release(managedObjectContext: SessionObjects.currentManageContext)
         
     }
     
     
     
     
-    func registerUser (result : (user:MyUser? , code:String)->Void)
+    func registerUser (result : @escaping (_ user:MyUser? , _ code:String)->Void)
     {
         self.buildRegisterURL()
         
@@ -117,7 +117,7 @@ class UserWebservice
         }
     }
     
-    func loginUser (result: (user:MyUser? , code:String)->Void)
+    func loginUser (result: @escaping (_ user:MyUser? , _ code:String)->Void)
     {
         self.buildLoginByUserEmailURL()
         Alamofire.request(.GET, self.loginURL)
@@ -132,7 +132,8 @@ class UserWebservice
                         if let userJSON = _data["result"] as? NSDictionary
                         {
                             let mappedUser = Mapper<MyUser>().map(userJSON)
-                            result(user: mappedUser,code: connectionStatus)
+                            result(mappedUser, connectionStatus)
+//                            result(user: mappedUser,code: connectionStatus)
                         }
                         
                         break;
@@ -168,24 +169,25 @@ class UserWebservice
         let url = StringConstants.servicesDomain + "img"
         
         
-        let base64String = data!.base64EncodedStringWithOptions([])
+        let base64String = data?.base64EncodedString()
+        //data!.base64EncodedStringWithOptions([])
         
         Alamofire.request(.POST, url , parameters: ["image":base64String,"userId":userId,"fileExt":imageExtension]).response { (req, res, data, error) in
         }
         
     }
     
-    func registerWithFaceBook(result : (user:MyUser? , code:String)->Void ){
+    func registerWithFaceBook(result : @escaping (_ user:MyUser? , _ code:String)->Void ){
     
         
         let faceBookRegisterUrl = StringConstants.servicesDomain+"register/fb"
         
-        let params : [String : AnyObject!] = ["username":user!.userName,
-                                              "email" : user!.email,
-                                              "password" : user!.password,
-                                              "firstName" : user!.firstName,
-                                              "lastName" : user!.lastName,
-                                              "phone" : user!.phone]
+        let params : [String : AnyObject?] = ["username":user?.userName as ImplicitlyUnwrappedOptional<AnyObject>,
+                                              "email" : user!.email as Optional<AnyObject>,
+                                              "password" : user!.password as Optional<AnyObject>,
+                                              "firstName" : user!.firstName as Optional<AnyObject>,
+                                              "lastName" : user!.lastName as Optional<AnyObject>,
+                                              "phone" : user!.phone as Optional<AnyObject>]
         
         Alamofire.request(.GET,faceBookRegisterUrl,parameters: params).responseJSON { (response) in
             switch response.result {
@@ -226,7 +228,7 @@ class UserWebservice
         
     }
     
-    func getUserImageFromFacebook(profilePictureURL : String , result: (imageData : NSData? , code:String)-> Void)
+    func getUserImageFromFacebook(profilePictureURL : String , result: @escaping (_ imageData : NSData? , _ code:String)-> Void)
     {
         Alamofire.request(.GET, profilePictureURL)
             .responseImage { response in

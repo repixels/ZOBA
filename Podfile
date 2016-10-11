@@ -12,7 +12,7 @@ target 'ZOBA' do
   pod 'AlamofireObjectMapper', '~> 4.0'
   pod 'ObjectMapper', '~> 2.1'
   pod 'ChameleonFramework/Swift'
-  pod 'BTNavigationDropdownMenu'
+  #	pod 'BTNavigationDropdownMenu’,’0.4’
   pod 'SwiftyUserDefaults'
   pod 'AlamofireImage', '~> 3.1'
   pod 'AlamofireNetworkActivityIndicator', '~> 2.0'

@@ -19,8 +19,8 @@ class TripWebService {
         return StringConstants.servicesDomain + url
     }
     
-    func saveTrip(trip : Trip,result : ((returnedTrip : Trip? , code : String)->())){
-        let tripUrl = buildUrl("trip/addTrip")
+    func saveTrip(trip : Trip,result : @escaping ((_ returnedTrip : Trip? , _ code : String)->())){
+        let tripUrl = buildUrl(url: "trip/addTrip")
         Alamofire.request(.GET,tripUrl ,parameters: ["vehicleId": Int(trip.vehicle!.vehicleId!), "initialOdemeter": Int(trip.initialOdemeter!) , "coveredMilage" :Int(trip.coveredKm!)] ).responseJSON { response in
             switch response.result
             {
@@ -58,9 +58,9 @@ class TripWebService {
         
     }
     
-    func saveCoordinate(vehicleId :Int , coordinate :TripCoordinate,tripId : Int,result : ((returnedCoordinate : TripCoordinate? , code : String)->())){
+    func saveCoordinate(vehicleId :Int , coordinate :TripCoordinate,tripId : Int,result : @escaping ((_ returnedCoordinate : TripCoordinate? , _ code : String)->())){
         
-        let tripUrl = buildUrl("trip/addCoordinates")
+        let tripUrl = buildUrl(url: "trip/addCoordinates")
         Alamofire.request(.GET,tripUrl ,parameters: ["vehicleId": vehicleId  , "longitude": Double(coordinate.longtitude!) , "latitude" :Double(coordinate.latitude!),"tripId" : tripId] ).responseJSON {response in
             
             switch response.result

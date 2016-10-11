@@ -48,43 +48,43 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     let facebookReadPermissions = ["public_profile", "email", "user_friends"]
     
-    override func viewWillAppear(animated: Bool) {
-        let notCenter = NSNotificationCenter.defaultCenter()
-        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
-        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+    override func viewWillAppear(_ animated: Bool) {
+        let notCenter = NotificationCenter.default
+        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	NSNotification.Name.UIKeyboardWillHide, object: nil)
+        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	NSNotification.Name.UIKeyboardWillShow, object: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         super.hideKeyboardWhenTappedAround()
-        self.navigationController?.navigationBarHidden = false
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        UIApplication.shared.statusBarStyle = .lightContent
         
         setViewBackgroundImage("street")
         
         facebookLoginButton.readPermissions = facebookReadPermissions
         facebookLoginButton.delegate = self
-        facebookLoginButton.loginBehavior = FBSDKLoginBehavior.Native
+        facebookLoginButton.loginBehavior = FBSDKLoginBehavior.native
         
         
         
     }
     
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if ((error) != nil)
         {
-            let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             print("\(error)")
             //handle error
         } else {
             loginButton.readPermissions = ["public_profile", "email", "user_friends"]
-            loginButton.loginBehavior = FBSDKLoginBehavior.SystemAccount
+            loginButton.loginBehavior = FBSDKLoginBehavior.systemAccount
             loginButton.delegate = self
             returnUserData()
         }
@@ -93,26 +93,26 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     func returnUserData()
     {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,first_name,last_name,email,age_range,name,picture.width(480).height(480)"])
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+        graphRequest.start(completionHandler: { (connection, result, error) -> Void in
             
             if ((error) != nil)
             {
                 // Process error
-                let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
                 print("Error: \(error)")
             }
             else
             {
-                let userId = result.valueForKey("id") as? String
-                let firstName = result.valueForKey("first_name") as? String
-                let lastName = result.valueForKey("last_name") as? String
-                let userEmail = (result.valueForKey("email") as? String)!
-                let userName = userEmail.componentsSeparatedByString("@")[0]
+                let userId = result.value(forKey: "id") as? String
+                let firstName = result.value(forKey: "first_name") as? String
+                let lastName = result.value(forKey: "last_name") as? String
+                let userEmail = (result.value(forKey: "email") as? String)!
+                let userName = userEmail.components(separatedBy: "@")[0]
                 let userProfileImage = "http://graph.facebook.com/\(userId!)/picture?type=large"
                 
-                let  fbUser = MyUser(managedObjectContext: SessionObjects.currentManageContext, entityName: "MyUser")
+                let  fbUser = MyUser(entity: SessionObjects.currentManageContext, insertIntoManagedObjectContext: "MyUser")
                 fbUser.email = userEmail
                 fbUser.userName = userName
                 fbUser.firstName = firstName
@@ -138,7 +138,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         })
     }
     
-    func navigateToMain(userWebService: UserWebservice)
+    func navigateToMain(_ userWebService: UserWebservice)
     {
         userWebService.registerWithFaceBook({ (user, code) in
             
@@ -158,19 +158,19 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                 Defaults[.launchCount] += 1
                 
                 
-                self.facebookLoginButton.hidden = true
+                self.facebookLoginButton.isHidden = true
                 
                 let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
-                let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                let homeTabController : HomeViewController = homeStoryBoard.instantiateViewController(withIdentifier: "HomeTabController") as! HomeViewController
                 
                 let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
-                let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuTableViewController
                 
                 
                 let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
                 slideMenuController.automaticallyAdjustsScrollViewInsets = true
                 
-                let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                let app = UIApplication.shared.delegate as! AppDelegate
                 app.window?.rootViewController = slideMenuController
                 
                 //start detection if user has car
@@ -189,29 +189,29 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         
     }
     
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
     }
     
-    func setViewBackgroundImage(imageName:String)
+    func setViewBackgroundImage(_ imageName:String)
     {
         let backgroundImageView: UIImageView = UIImageView(frame: self.view.bounds)
-        backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill;
+        backgroundImageView.contentMode = UIViewContentMode.scaleAspectFill;
         backgroundImageView.image = UIImage(named: imageName)
         
         let backgroundImageMask: UIView =  UIView(frame: self.view.bounds)
         backgroundImageMask.backgroundColor = UIColor(white: 0.0, alpha: 0.6)
         
-        self.view.insertSubview(backgroundImageView, atIndex: 0)
-        self.view.insertSubview(backgroundImageMask, atIndex: 1)
+        self.view.insertSubview(backgroundImageView, at: 0)
+        self.view.insertSubview(backgroundImageMask, at: 1)
         
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
+        super.touchesBegan(touches, with: event)
     }
     
-    @IBAction func validateUserEmail(sender: AnyObject)
+    @IBAction func validateUserEmail(_ sender: AnyObject)
     {
         if(DataValidations.isValidEmail(emailTextField.text!))
         {
@@ -226,7 +226,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         validateRegisterButton()
     }
     
-    @IBAction func validateFirstName(sender: AnyObject)
+    @IBAction func validateFirstName(_ sender: AnyObject)
     {
         if(firstNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(firstNameTextField.text!))
         {
@@ -241,7 +241,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         validateRegisterButton()
     }
     
-    @IBAction func validateLastName(sender: AnyObject)
+    @IBAction func validateLastName(_ sender: AnyObject)
     {
         if(lastNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(lastNameTextField.text!))
         {
@@ -256,7 +256,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         validateRegisterButton()
     }
     
-    @IBAction func validateUserName(sender: AnyObject)
+    @IBAction func validateUserName(_ sender: AnyObject)
     {
         if(userNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(userNameTextField.text!))
         {
@@ -271,7 +271,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         validateRegisterButton()
     }
     
-    @IBAction func validatePassword(sender: AnyObject)
+    @IBAction func validatePassword(_ sender: AnyObject)
     {
         if(passwordTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(passwordTextField.text!))
         {
@@ -300,17 +300,17 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     func enableRegisterButton()
     {
-        registerButton.enabled = true
+        registerButton.isEnabled = true
         registerButton.alpha = 1.0
     }
     
     func disableRegisterButton()
     {
-        registerButton.enabled = false
+        registerButton.isEnabled = false
         registerButton.alpha = 0.7
     }
     
-    func showErrorMessage(message:String , textField:HoshiTextField)
+    func showErrorMessage(_ message:String , textField:HoshiTextField)
     {
         textField.borderInactiveColor = UIColor.redColor()
         textField.borderActiveColor = UIColor.redColor()
@@ -320,7 +320,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         textField.placeholderLabel.alpha = 1.0
     }
     
-    func hideErrorMessage(message : String , textField: HoshiTextField)
+    func hideErrorMessage(_ message : String , textField: HoshiTextField)
     {
         textField.borderInactiveColor = UIColor.greenColor()
         textField.borderActiveColor = UIColor.greenColor()
@@ -329,11 +329,11 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     }
     
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         switch identifier {
         case "Register To Main":
             
-            let managedUser = MyUser(managedObjectContext: SessionObjects.currentManageContext , entityName:"MyUser")
+            let managedUser = MyUser(entity: SessionObjects.currentManageContext , insertIntoManagedObjectContext:"MyUser")
             let userWebservice = UserWebservice(currentUser: managedUser)
             
             
@@ -411,19 +411,19 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         return false
     }
     
-    func generateErrorAlert(errorMessage: String?)
+    func generateErrorAlert(_ errorMessage: String?)
     {
         if errorMessage != nil
         {
-            let alert = UIAlertController(title: "Registeration Failed", message: errorMessage!, preferredStyle: UIAlertControllerStyle.Alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let alert = UIAlertController(title: "Registeration Failed", message: errorMessage!, preferredStyle: UIAlertControllerStyle.alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(defaultAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
     
-    func randomAlphaNumericString(length: Int) -> String {
+    func randomAlphaNumericString(_ length: Int) -> String {
         
         let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let allowedCharsCount = UInt32(allowedChars.characters.count)
@@ -431,42 +431,42 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         
         for _ in (0..<length) {
             let randomNum = Int(arc4random_uniform(allowedCharsCount))
-            let newCharacter = allowedChars[allowedChars.startIndex.advancedBy(randomNum)]
+            let newCharacter = allowedChars[allowedChars.characters.index(allowedChars.startIndex, offsetBy: randomNum)]
             randomString += String(newCharacter)
         }
         
         return randomString
     }
     //MARK: - keyboard
-    func keyBoardWillAppear(notification : NSNotification){
-        if let userInfo = notification.userInfo {
-            if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+    func keyBoardWillAppear(_ notification : Notification){
+        if let userInfo = (notification as NSNotification).userInfo {
+            if let keyboardSize: CGSize =    (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
                 let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
                 
                 self.scrollview.contentInset = contentInset
                 self.scrollview.scrollIndicatorInsets = contentInset
                 
-                self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, 0 + (keyboardSize.height/2)) //set zero instead
+                self.scrollview.contentOffset = CGPoint(x: self.scrollview.contentOffset.x, y: 0 + (keyboardSize.height/2)) //set zero instead
                 
             }
         }
         
     }
     
-    func keyboardWillHide(notification: NSNotification) {
-        if let userInfo = notification.userInfo {
-            if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
-                let contentInset = UIEdgeInsetsZero;
+    func keyboardWillHide(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo {
+            if let _: CGSize =  (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
+                let contentInset = UIEdgeInsets.zero;
                 
                 self.scrollview.contentInset = contentInset
                 self.scrollview.scrollIndicatorInsets = contentInset
-                self.scrollview.contentOffset = CGPointMake(self.scrollview.contentOffset.x, self.scrollview.contentOffset.y)
+                self.scrollview.contentOffset = CGPoint(x: self.scrollview.contentOffset.x, y: self.scrollview.contentOffset.y)
             }
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 }

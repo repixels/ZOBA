@@ -19,8 +19,8 @@ class VehicleWebServices {
     }
     
     
-    func getMakes(result : ((makes : [Make]! ,code :String)->())){
-        let makeUrl = buildUrl("vehicle/makes")
+    func getMakes(result : @escaping ((_ makes : [Make]? ,_ code :String)->())){
+        let makeUrl = buildUrl(url: "vehicle/makes")
         print(makeUrl)
         Alamofire.request(.GET,makeUrl).responseJSON { (response) in
             
@@ -53,8 +53,8 @@ class VehicleWebServices {
         
     }
     
-    func getModels(makeName : String , result : ((models : [Model]! ,code :String)->())){
-        let makeUrl = buildUrl("vehicle/models")
+    func getModels(makeName : String , result : @escaping ((_ models : [Model]? ,_ code :String)->())){
+        let makeUrl = buildUrl(url: "vehicle/models")
         Alamofire.request(.GET,makeUrl,parameters: ["make":makeName]).responseJSON { (response) in
             
             switch response.result {
@@ -85,8 +85,8 @@ class VehicleWebServices {
         
     }
     
-    func getYears(modelName : String , result : ((years : [Year]! ,code :String)->())){
-        let makeUrl = buildUrl("vehicle/year")
+    func getYears(modelName : String , result : @escaping ((_ years : [Year]? ,_ code :String)->())){
+        let makeUrl = buildUrl(url: "vehicle/year")
         Alamofire.request(.GET,makeUrl,parameters: ["model":modelName]).responseJSON { (response) in
             
             switch response.result {
@@ -116,9 +116,9 @@ class VehicleWebServices {
         
     }
     
-    func getTrims(modelName : String , year : String , result : ((trims : [Trim]! ,code :String)->())){
+    func getTrims(modelName : String , year : String , result : @escaping ((_ trims : [Trim]? ,_ code :String)->())){
         
-        let makeUrl = buildUrl("vehicle/trim")
+        let makeUrl = buildUrl(url: "vehicle/trim")
         
         Alamofire.request(.GET,makeUrl,parameters: ["model":modelName,"year":year]).responseJSON { (response) in
             
@@ -148,24 +148,26 @@ class VehicleWebServices {
     
     
     
-    func saveVehicle(vehicle:Vehicle , result :((returnedVehicle : Vehicle!,code :String)->())){
+    func saveVehicle(vehicle:Vehicle , result :@escaping ((_ returnedVehicle : Vehicle?,_ code :String)->())){
         
-        let vehicleUrl = buildUrl("vehicle/add")
+        let vehicleUrl = buildUrl(url: "vehicle/add")
         
         
-        let params :[String : AnyObject]? = [ "model" : vehicle.vehicleModel!.model!.name!,
+        let params :[String : AnyObject]? = [ "model" : vehicle.vehicleModel!.model!.name! as AnyObject,
                                               "year" : vehicle.vehicleModel!.year!.name!,
-                                              "trim" : vehicle.vehicleModel!.trim!.name!,
+                                              "trim" : vehicle.vehicleModel!.trim!.name! as AnyObject,
                                               "userId": vehicle.user!.userId!,
-                                              "carName":vehicle.name!,
+                                              "carName":vehicle.name! as AnyObject,
                                               "initialOdemeter":vehicle.initialOdemeter!,
-                                              "licencePlate":vehicle.licensePlate!]
-        
-        Alamofire.request(.GET,vehicleUrl ,parameters: params).responseJSON { response in
+                                              "licencePlate":vehicle.licensePlate! as AnyObject]
+        Alamofire.request(vehicleUrl, method: .get, parameters: params).responseJSON { (response) in
+//            <#code#>
+//        }
+//        Alamofire.request(.GET,vehicleUrl ,parameters: params).responseJSON { response in
             switch response.result
             {
                 
-            case .Success(let _data):
+            case .success(let _data):
                 
                 let connectionStatus = _data["status"] as! String
                 switch connectionStatus
@@ -182,7 +184,7 @@ class VehicleWebServices {
                 case "error":
                     
                     print(_data)
-                    result(returnedVehicle: nil, code: "error")
+                    result(nil, "error")
                     
                     break;
                 default:
@@ -192,10 +194,10 @@ class VehicleWebServices {
                 }
                 
                 break
-            case .Failure( _):
+            case .failure( _):
                 
                 
-                result(returnedVehicle: nil, code: "error")
+                result(nil, "error")
                 break
             }
             

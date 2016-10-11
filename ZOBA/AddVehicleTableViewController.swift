@@ -12,6 +12,26 @@ import Alamofire
 import ObjectMapper
 import SwiftyUserDefaults
 import CoreData
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSource , UIPickerViewDelegate {
     
@@ -65,31 +85,31 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         modelYearTrimPicker.delegate = self
         
         let modelToolBar = UIToolbar()
-        modelToolBar.barStyle = UIBarStyle.Default
-        modelToolBar.translucent = true
-        modelToolBar.tintColor = UIColor.redColor()
+        modelToolBar.barStyle = UIBarStyle.default
+        modelToolBar.isTranslucent = true
+        modelToolBar.tintColor = UIColor.red
         modelToolBar.sizeToFit()
         
-        let modelDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddVehicleTableViewController.modelDonePicker))
+        let modelDoneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(AddVehicleTableViewController.modelDonePicker))
         //        let modelSpaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         //        let modelCancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddVehicleTableViewController.modelCancelPicker))
         //        
         modelToolBar.setItems([modelDoneButton], animated: false)
-        modelToolBar.userInteractionEnabled = true
+        modelToolBar.isUserInteractionEnabled = true
         
         
         let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
-        toolBar.tintColor = UIColor.redColor() //UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor.red //UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddVehicleTableViewController.donePicker))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(AddVehicleTableViewController.donePicker))
         //        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         //        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddVehicleTableViewController.cancelPicker))
         //        
         toolBar.setItems([doneButton], animated: false)
-        toolBar.userInteractionEnabled = true
+        toolBar.isUserInteractionEnabled = true
         
         self.populateMakes()
         
@@ -105,15 +125,15 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         trimTextField.inputAccessoryView = modelToolBar
         
         
-        saveBtn.enabled = false
-        saveBtn.tintColor = UIColor.grayColor()
+        saveBtn.isEnabled = false
+        saveBtn.tintColor = UIColor.gray
         
     }
     
     
     
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         var count = 1
         switch pickerView {
         case modelYearTrimPicker:
@@ -129,7 +149,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         return count
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var count = 0
         switch pickerView {
         case makePicker:
@@ -157,7 +177,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     
     
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         
         var title = ""
@@ -171,7 +191,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
             case 0:
                 title = models![row].name!
             case 1:
-                title = String(years![row].name!)
+                title = String(describing: years![row].name!)
             case 2:
                 title = trims![row].name!
                 
@@ -187,7 +207,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         return title
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         //should set trip vehicle value here
         
@@ -234,7 +254,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     func donePicker(){
         
         
-        let make = makePicker.selectedRowInComponent(0)
+        let make = makePicker.selectedRow(inComponent: 0)
         selectedMake = makes![make]
         self.populateModels(selectedMake)
         
@@ -247,18 +267,18 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         makeTextField.resignFirstResponder()
     }
     
-    @IBAction func modelYearTrimBeginEditing(sender: AnyObject) {
+    @IBAction func modelYearTrimBeginEditing(_ sender: AnyObject) {
         
-        let mod = modelYearTrimPicker.selectedRowInComponent(0)
+        let mod = modelYearTrimPicker.selectedRow(inComponent: 0)
         if models!.count > mod {
             selectedModel = models![mod]
         }
-        let y = modelYearTrimPicker.selectedRowInComponent(1)
+        let y = modelYearTrimPicker.selectedRow(inComponent: 1)
         if years!.count > y {
             selectedYear = years![y]
         }
         
-        let t = modelYearTrimPicker.selectedRowInComponent(2)
+        let t = modelYearTrimPicker.selectedRow(inComponent: 2)
         if trims!.count > t{
             selectedTrim = trims![t]
         }
@@ -266,15 +286,15 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     }
     
     func modelDonePicker(){
-        let mod = modelYearTrimPicker.selectedRowInComponent(0)
+        let mod = modelYearTrimPicker.selectedRow(inComponent: 0)
         selectedModel = models![mod]
-        let y = modelYearTrimPicker.selectedRowInComponent(1)
+        let y = modelYearTrimPicker.selectedRow(inComponent: 1)
         selectedYear = years![y]
-        let t = modelYearTrimPicker.selectedRowInComponent(2)
+        let t = modelYearTrimPicker.selectedRow(inComponent: 2)
         selectedTrim = trims![t]
         
         modelTextField.text = selectedModel.name!
-        yearTextField.text = String(selectedYear.name!)
+        yearTextField.text = String(describing: selectedYear.name!)
         trimTextField.text = selectedTrim.name!
         
         modelTextField.resignFirstResponder()
@@ -294,9 +314,9 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     
     
     
-    @IBAction func nameIsChanging(sender: UITextField) {
+    @IBAction func nameIsChanging(_ sender: UITextField) {
         
-        if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(sender.text!)
+        if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: sender.text!)
         {
             isNameValid = true
             validateSaveBtn()
@@ -308,9 +328,9 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
     }
     
-    @IBAction func  intialOdemeterIsChanging(sender: UITextField) {
+    @IBAction func  intialOdemeterIsChanging(_ sender: UITextField) {
         
-        if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(sender.text!)
+        if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: sender.text!)
         {
             isInitialOdemeterValid = true
             validateSaveBtn()
@@ -321,9 +341,9 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         }
     }
     
-    @IBAction func licensPlateIsChanging(sender: UITextField) {
+    @IBAction func licensPlateIsChanging(_ sender: UITextField) {
         
-        if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(sender.text!)
+        if sender.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: sender.text!)
         {
             isLicenseValid = true
             validateSaveBtn()
@@ -341,30 +361,30 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
         if isMakeValid && isModelValid && isNameValid && isLicenseValid && isInitialOdemeterValid {
             
-            saveBtn.enabled = true
-            saveBtn.tintColor = UIColor.whiteColor()
+            saveBtn.isEnabled = true
+            saveBtn.tintColor = UIColor.white
         }
         else{
             
-            saveBtn.enabled = false
-            saveBtn.tintColor = UIColor.grayColor()
+            saveBtn.isEnabled = false
+            saveBtn.tintColor = UIColor.gray
             
         }
         
     }
     
-    @IBAction func saveVehiclePresses(sender: UIBarButtonItem) {
+    @IBAction func saveVehiclePresses(_ sender: UIBarButtonItem) {
         
         
         
-        let vehicle = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
+        let vehicle = Vehicle(entity: SessionObjects.currentManageContext, insertIntoManagedObjectContext: "Vehicle")
         
         vehicle.name = vehicleNameTextField.text
         vehicle.initialOdemeter = Int (initialOdemeterTextField.text!)!
         vehicle.currentOdemeter = Int (initialOdemeterTextField.text!)!
         vehicle.licensePlate = licensePlateTextField.text
         
-        let vehicleModel = VehicleModel(managedObjectContext: SessionObjects.currentManageContext, entityName: "VehicleModel")
+        let vehicleModel = VehicleModel(entity: SessionObjects.currentManageContext, insertIntoManagedObjectContext: "VehicleModel")
         selectedModel.make = selectedMake
         vehicleModel.model = selectedModel
         vehicleModel.trim = selectedTrim
@@ -379,22 +399,22 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         {
             Defaults[.curentVehicleName] = vehicle.name
             SessionObjects.currentVehicle = vehicle
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
             SessionObjects.motionMonitor = LocationMonitor()
             SessionObjects.motionMonitor.startDetection()
         }
         else{
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
-    func saveVehicleToWebService(vehicle : Vehicle)
+    func saveVehicleToWebService(_ vehicle : Vehicle)
     {
         
         self.makes?.forEach({ (m) in
             if m != self.selectedMake
             {
-                SessionObjects.currentManageContext.deleteObject(m)
+                SessionObjects.currentManageContext.delete(m)
                 
             }
         })
@@ -403,7 +423,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         self.trims?.forEach({ (t) in
             if t != self.selectedTrim
             {
-                SessionObjects.currentManageContext.deleteObject(t)
+                SessionObjects.currentManageContext.delete(t)
                 
             }
         })
@@ -412,7 +432,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         self.models?.forEach({ (m) in
             if m != self.selectedModel
             {
-                SessionObjects.currentManageContext.deleteObject(m)
+                SessionObjects.currentManageContext.delete(m)
                 
             }
         })
@@ -421,18 +441,18 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         self.years?.forEach({ (y) in
             if y != self.selectedYear
             {
-                SessionObjects.currentManageContext.deleteObject(y)
+                SessionObjects.currentManageContext.delete(y)
                 
             }
         })
         
         
         
-        vehicleWebService.saveVehicle(vehicle) { (returnedVehicle, code) in
+        vehicleWebService.saveVehicle(vehicle: vehicle) { (returnedVehicle, code) in
             switch code {
             case "success":
-                vehicle.vehicleId = returnedVehicle.vehicleId
-                SessionObjects.currentManageContext.deleteObject(returnedVehicle)
+                vehicle.vehicleId = returnedVehicle?.vehicleId
+                SessionObjects.currentManageContext.delete(returnedVehicle!)
                 vehicle.save()
                 break
             case "error" :
@@ -450,12 +470,12 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     {
         // get all makes then all models for first make then all years for first model
         //then all trims for first model and first year
-        vehicleWebService.getMakes({ (makes, code) in
+        vehicleWebService.getMakes(result: { (makes, code) in
             
             switch code
             {
             case "success":
-                if(makes.isEmpty)
+                if(makes?.isEmpty)!
                 {
                     
                 }
@@ -485,9 +505,9 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         
     }
     
-    func populateModels(make : Make)
+    func populateModels(_ make : Make)
     {
-        vehicleWebService.getModels(make.name!) { (models, code) in
+        vehicleWebService.getModels(makeName: make.name!) { (models, code) in
             switch code
             {
             case "success":
@@ -508,9 +528,9 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         }
     }
     
-    func populateTrims(model : Model , year: Year)
+    func populateTrims(_ model : Model , year: Year)
     {
-        vehicleWebService.getTrims(model.name!, year: year.name!.stringValue) { (trims, code) in
+        vehicleWebService.getTrims(modelName: model.name!, year: year.name!.stringValue) { (trims, code) in
             switch code
             {
             case "success":
@@ -532,9 +552,9 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         }
     }
     
-    func populateYears(model : Model )
+    func populateYears(_ model : Model )
     {
-        vehicleWebService.getYears(model.name!) { (years, code) in
+        vehicleWebService.getYears(modelName: model.name!) { (years, code) in
             switch code
             {
             case "success":
@@ -543,7 +563,7 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
                     if self.selectedYear == nil  {
                         self.selectedYear = self.years![0]
                     }
-                    self.yearTextField.text = String(self.years![0].name!)
+                    self.yearTextField.text = String(describing: self.years![0].name!)
                     self.populateTrims(model, year: self.years!.first! )
                 }
                 
@@ -556,8 +576,8 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         }
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
+        super.touchesBegan(touches, with: event)
     }
 }
