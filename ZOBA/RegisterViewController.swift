@@ -126,7 +126,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                     switch code
                     {
                     case "success":
-                        userWebService.user?.image = imageData
+                        userWebService.user?.image = imageData as Data?
                         self.navigateToMain(userWebService)
                         break;
                     case "error":
