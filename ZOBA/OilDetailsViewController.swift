@@ -28,10 +28,10 @@ class OilDetailsViewController: UIViewController {
 
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
-        currentOdemeter.text = String(data.initialOdemeter!)
-        dateAdedd.text = String(data.dateAdded!)
+        currentOdemeter.text = String(describing: data.initialOdemeter!)
+        dateAdedd.text = String(describing: data.dateAdded!)
         oilAmount.text = data.value!
         serviceProvider.text = data.serviceProviderName
     }

@@ -19,14 +19,14 @@ class AllOilTableViewController: UITableViewController {
     
     @IBOutlet weak var addDataBTN: UIBarButtonItem!
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if SessionObjects.currentVehicle != nil
         {
-            addDataBTN.enabled = true
-            addDataBTN.tintColor = UIColor.whiteColor()
+            addDataBTN.isEnabled = true
+            addDataBTN.tintColor = UIColor.white
             oilTrackingData = [TrackingData]()
             let vehicleName = SessionObjects.currentVehicle.name != nil ? SessionObjects.currentVehicle.name!+" " : ""
-            self.prepareNavigationBar(vehicleName + "Oil")
+            self.prepareNavigationBar(title: vehicleName + "Oil")
             for trackingData in SessionObjects.currentVehicle.traclingData!.allObjects as! [TrackingData]
             {
                 if(trackingData.trackingType!.name == StringConstants.oilTrackingType)
@@ -38,9 +38,9 @@ class AllOilTableViewController: UITableViewController {
         }
         else
         {
-            addDataBTN.enabled = false
-            addDataBTN.tintColor = UIColor.flatGrayColor()
-            self.prepareNavigationBar("No Car Selected")
+            addDataBTN.isEnabled = false
+            addDataBTN.tintColor = UIColor.flatGray()
+            self.prepareNavigationBar(title: "No Car Selected")
         }
     }
     
@@ -61,20 +61,17 @@ class AllOilTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return oilTrackingData != nil ? oilTrackingData.count : 0
     }
     
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("oilCell", forIndexPath: indexPath) as! OilTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "oilCell", for: indexPath) as! OilTableViewCell
         
         // Configure the cell...
         
@@ -85,17 +82,16 @@ class AllOilTableViewController: UITableViewController {
         cell.oilAmountLabel.text = oilTrackingData![indexPath.row].value!
         cell.oilMesuringUnitLabel.text = oilTrackingData![indexPath.row].trackingType!.measuringUnit!.name!
         cell.serviceProvideLabel.text = serviceProviderName != nil ? serviceProviderName! : "Not Available"
-        cell.startingOdemeterLabel.text = String(oilTrackingData![indexPath.row].initialOdemeter!)
-        cell.dateLabel.text  = String(oilTrackingData![indexPath.row].dateAdded!)
+        cell.startingOdemeterLabel.text = String(describing: oilTrackingData![indexPath.row].initialOdemeter!)
+        cell.dateLabel.text  = String(describing: oilTrackingData![indexPath.row].dateAdded!)
 
         
         return cell
     }
     
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-     
-        let detailsView = self.storyboard?.instantiateViewControllerWithIdentifier("details") as! OilDetailsViewController
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let detailsView = self.storyboard?.instantiateViewController(withIdentifier: "details") as! OilDetailsViewController
 
          detailsView.data = oilTrackingData[indexPath.row]
         
@@ -159,11 +155,11 @@ class AllOilTableViewController: UITableViewController {
     func prepareNavigationBar(title: String)
     {
         self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+            [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.navigationController!.navigationBar.tintColor = UIColor.white
         self.title = title
-        self.navigationController?.navigationBar.userInteractionEnabled = true
+        self.navigationController?.navigationBar.isUserInteractionEnabled = true
     }
     
     @IBAction func menuButtonClicked(sender: AnyObject) {
