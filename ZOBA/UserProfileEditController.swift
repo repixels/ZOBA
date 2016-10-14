@@ -50,21 +50,21 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         
         
         // disable button
-        self.saveBtn.enabled = false
-        self.saveBtn.tintColor = UIColor.grayColor()
+        self.saveBtn.isEnabled = false
+        self.saveBtn.tintColor = UIColor.gray
         
         //register keyboard notification
-        let notCenter = NSNotificationCenter.defaultCenter()
-        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
-        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+        let notCenter = NotificationCenter.default
+        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	NSNotification.Name.UIKeyboardWillHide, object: nil)
+        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         
-        imagelongPressGesture.addTarget(self.imageView, action: #selector(UserProfileEditController.selectUserImage(_:)))
+        imagelongPressGesture.addTarget(self.imageView, action: #selector(UserProfileEditController.selectUserImage(sender:)))
         
     }
     
     deinit{
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -72,13 +72,15 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     func keyBoardWillAppear(notification : NSNotification){
         
         if let userInfo = notification.userInfo {
-            if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+            if let keyboardSize: CGSize =    (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
                 let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
                 
                 self.scrollView.contentInset = contentInset
                 self.scrollView.scrollIndicatorInsets = contentInset
                 
-                self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, 0 + keyboardSize.height) //set zero instead
+                self.scrollView.contentOffset = CGPoint(x:
+                    
+                    self.scrollView.contentOffset.x,y: 0 + keyboardSize.height) //set zero instead
                 
             }
         }
@@ -87,12 +89,12 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     
     func keyboardWillHide(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
-                let contentInset = UIEdgeInsetsZero;
+            if let _: CGSize =  (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
+                let contentInset = UIEdgeInsets.zero;
                 
                 self.scrollView.contentInset = contentInset
                 self.scrollView.scrollIndicatorInsets = contentInset
-                self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y)
+                self.scrollView.contentOffset = CGPoint(x:self.scrollView.contentOffset.x, y: self.scrollView.contentOffset.y)
             }
         }
     }
@@ -100,15 +102,15 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     //Mark: - validating textfields
     @IBAction func emailEndEditing(sender: AnyObject) {
         
-        if(emailTextField.text!.isNotEmpty && DataValidations.isValidEmail(emailTextField.text!))
+        if(emailTextField.text!.isNotEmpty && DataValidations.isValidEmail(testStr: emailTextField.text!))
         {
-            hideErrorMessage("Email", textField: emailTextField)
+            hideErrorMessage(message: "Email", textField: emailTextField)
             userEmailValid = true
             
         }
         else
         {
-            showErrorMessage("Enter a valid Email", textField: emailTextField)
+            showErrorMessage(message: "Enter a valid Email", textField: emailTextField)
             userEmailValid = false
         }
         validateSaveButton()
@@ -117,15 +119,15 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     
     @IBAction func passwordEndEditing(sender: AnyObject) {
         
-        if(passwordTextField.text!.isNotEmpty && DataValidations.isValidPassword(passwordTextField.text!))
+        if(passwordTextField.text!.isNotEmpty && DataValidations.isValidPassword(str: passwordTextField.text!))
         {
-            hideErrorMessage("Password", textField: passwordTextField)
+            hideErrorMessage(message: "Password", textField: passwordTextField)
             passwordValid = true
             
         }
         else
         {
-            showErrorMessage("Enter a valid password", textField: passwordTextField)
+            showErrorMessage(message: "Enter a valid password", textField: passwordTextField)
             passwordValid = false
         }
         validateSaveButton()
@@ -133,14 +135,14 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     }
     
     @IBAction func userNameEndEditing(sender: AnyObject) {
-        if(userNameTextField.text!.isNotEmpty && DataValidations.isValidUesrName(userNameTextField.text!))
+        if(userNameTextField.text!.isNotEmpty && DataValidations.isValidUesrName(str: userNameTextField.text!))
         {
-            hideErrorMessage("User name", textField: userNameTextField)
+            hideErrorMessage(message: "User name", textField: userNameTextField)
             userNameValid = true
         }
         else
         {
-            showErrorMessage("Enter a valid user name", textField: userNameTextField)
+            showErrorMessage(message: "Enter a valid user name", textField: userNameTextField)
             userNameValid = false
         }
         validateSaveButton()
@@ -149,14 +151,16 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     
     @IBAction func phoneEndEditing(sender: AnyObject) {
         
-        if(phoneTextField.text!.isNotEmpty && DataValidations.isValidPhone(phoneTextField.text!))
+        if(phoneTextField.text!.isNotEmpty && DataValidations.isValidPhone(str: phoneTextField.text!))
         {
-            hideErrorMessage("Phone", textField: phoneTextField)
+            
+            
+            hideErrorMessage(message: "Phone", textField: phoneTextField)
             phoneValid = true
         }
         else
         {
-            showErrorMessage("Enter a valid phone", textField: phoneTextField)
+            showErrorMessage(message: "Enter a valid phone", textField: phoneTextField)
             phoneValid = false
         }
         validateSaveButton()
@@ -165,14 +169,14 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     
     @IBAction func firstNameEndEditing(sender: AnyObject) {
         
-        if(firstNameTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(firstNameTextField.text!))
+        if(firstNameTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: firstNameTextField.text!))
         {
-            hideErrorMessage("First name", textField: firstNameTextField)
+            hideErrorMessage(message: "First name", textField: firstNameTextField)
             firstNameValid = true
         }
         else
         {
-            showErrorMessage("Enter a valid first name", textField: firstNameTextField)
+            showErrorMessage(message: "Enter a valid first name", textField: firstNameTextField)
             firstNameValid = false
         }
         validateSaveButton()
@@ -181,14 +185,14 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     
     @IBAction func lastNameEndEditing(sender: AnyObject) {
         
-        if(lastNameTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(lastNameTextField.text!))
+        if(lastNameTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: lastNameTextField.text!))
         {
-            hideErrorMessage("Last name", textField: lastNameTextField)
+            hideErrorMessage(message: "Last name", textField: lastNameTextField)
             lastNameValid = true
         }
         else
         {
-            showErrorMessage("Enter a valid last name", textField: lastNameTextField)
+            showErrorMessage(message: "Enter a valid last name", textField: lastNameTextField)
             lastNameValid = false
         }
         validateSaveButton()
@@ -198,23 +202,23 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     func validateSaveButton(){
         
         if (userNameValid && userEmailValid && passwordValid && firstNameValid && lastNameValid && phoneValid){
-            self.saveBtn.enabled = true
-            self.saveBtn.tintColor = UIColor.blueColor()
+            self.saveBtn.isEnabled = true
+            self.saveBtn.tintColor = UIColor.blue
             
         }
         else{
             
-            self.saveBtn.enabled = false
-            self.saveBtn.tintColor = UIColor.grayColor()
+            self.saveBtn.isEnabled = false
+            self.saveBtn.tintColor = UIColor.gray
             
         }
     }
     
     func showErrorMessage(message:String , textField:HoshiTextField)
     {
-        textField.borderInactiveColor = UIColor.redColor()
-        textField.borderActiveColor = UIColor.redColor()
-        textField.placeholderColor = UIColor.redColor()
+        textField.borderInactiveColor = UIColor.red
+        textField.borderActiveColor = UIColor.red
+        textField.placeholderColor = UIColor.red
         textField.placeholderLabel.text = message
         textField.placeholderLabel.sizeToFit()
         textField.placeholderLabel.alpha = 1.0
@@ -222,9 +226,10 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     
     func hideErrorMessage(message : String , textField: HoshiTextField)
     {
-        textField.borderInactiveColor = UIColor.greenColor()
-        textField.borderActiveColor = UIColor.greenColor()
-        textField.placeholderColor = UIColor.whiteColor()
+        textField.borderInactiveColor = UIColor.green
+        textField.borderActiveColor = UIColor.green
+        textField.placeholderColor = UIColor.white
+        
         textField.placeholderLabel.text = message
         textField.placeholderLabel.alpha = 1.0
     }
@@ -242,35 +247,35 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         SessionObjects.currentUser.password = passwordTextField.text != nil ? passwordTextField.text  : nil
         
         SessionObjects.currentUser.save()
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
         
     }
     
     @IBAction func selectUserImage(sender: AnyObject) {
         
-        let actionSheet = UIAlertController(title: "New Photo", message: nil, preferredStyle: .ActionSheet)
+        let actionSheet = UIAlertController(title: "New Photo", message: nil, preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { action in
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { action in
             self.showCamera()
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Album", style: .Default, handler: { action in
+        actionSheet.addAction(UIAlertAction(title: "Album", style: .default, handler: { action in
             self.showAlbum()
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         
-        self.presentViewController(actionSheet, animated: true, completion: nil)
+        self.present(actionSheet, animated: true, completion: nil)
     }
     
     
     func showCamera() {
         let cameraPicker = UIImagePickerController()
         cameraPicker.delegate = self
-        cameraPicker.sourceType = .Camera
+        cameraPicker.sourceType = .camera
         
-        presentViewController(cameraPicker, animated: true, completion: nil)
+        present(cameraPicker, animated: true, completion: nil)
         //  originalImage=imageView.image
         
     }
@@ -278,22 +283,22 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     func showAlbum() {
         let cameraPicker = UIImagePickerController()
         cameraPicker.delegate = self
-        cameraPicker.sourceType = .PhotoLibrary
+        cameraPicker.sourceType = .photoLibrary
         self.navigationController?.pushViewController(cameraPicker, animated: true)
         //    originalImage=imageView.image
         
     }
     
     // MARK: UIImagePickerControllerDelegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        dismiss(animated: true, completion: nil)
         print("receiving image")
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = image
             let data = UIImagePNGRepresentation(image)
             SessionObjects.currentUser.image = data
             let userWebService = UserWebservice(currentUser: SessionObjects.currentUser)
-            userWebService.saveProfilePicture(Int(SessionObjects.currentUser.userId!), image: image, imageExtension: "png")
+            userWebService.saveProfilePicture(userId: Int(SessionObjects.currentUser.userId!), image: image, imageExtension: "png")
             
         }
         info.forEach { (value) in
@@ -302,13 +307,12 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         }
         print("==========================")
     }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
+        super.touchesBegan(touches, with: event)
     }
     
 }

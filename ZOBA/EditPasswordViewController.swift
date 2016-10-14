@@ -19,7 +19,7 @@ class EditPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.navigationItem.rightBarButtonItem?.enabled = false
-        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         // Do any additional setup after loading the view.
     }
 
@@ -29,19 +29,19 @@ class EditPasswordViewController: UIViewController {
     }
     
     deinit{
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func isOldPasswordValid(sender: HoshiTextField)
     {
-        if(sender.text!.isNotEmpty && !DataValidations.hasNoWhiteSpaces(sender.text!))
+        if(sender.text!.isNotEmpty && !DataValidations.hasNoWhiteSpaces(str: sender.text!))
         {
-            showErrorMessage("Password Invalid", textField: sender)
+            showErrorMessage(message: "Password Invalid", textField: sender)
             
         }
         else
         {
-            hideErrorMessage("Current Pasword", textField: sender)
+            hideErrorMessage(message: "Current Pasword", textField: sender)
             
         }
     }
@@ -50,40 +50,40 @@ class EditPasswordViewController: UIViewController {
     {
         if SessionObjects.currentUser.password == currentPassword.text
         {
-            showErrorMessage("Password Mismatch", textField: self.currentPassword)
+            showErrorMessage(message: "Password Mismatch", textField: self.currentPassword)
         }
         else
         {
-            hideErrorMessage("Current Password Valid", textField: self.currentPassword)
+            hideErrorMessage(message: "Current Password Valid", textField: self.currentPassword)
         }
     }
     
     @IBAction func checkNewPassword(sender: HoshiTextField)
     {
-        if(newPassword.text!.isNotEmpty && !DataValidations.hasNoWhiteSpaces(newPassword.text!))
+        if(newPassword.text!.isNotEmpty && !DataValidations.hasNoWhiteSpaces(str: newPassword.text!))
         {
-            showErrorMessage("Enter a valid password", textField: self.newPassword)
+            showErrorMessage(message: "Enter a valid password", textField: self.newPassword)
         }
         else
         {
             
-            hideErrorMessage("New Password Valid", textField: self.newPassword)
+            hideErrorMessage(message: "New Password Valid", textField: self.newPassword)
         }
     }
     
     @IBAction func checkConfirmNewPassword(sender: HoshiTextField)
     {
-        if(newPasswordConfirm.text!.isNotEmpty && !DataValidations.hasNoWhiteSpaces(newPasswordConfirm.text!))
+        if(newPasswordConfirm.text!.isNotEmpty && !DataValidations.hasNoWhiteSpaces(str: newPasswordConfirm.text!))
         {
-            showErrorMessage("Enter a valid password", textField: self.newPasswordConfirm)
+            showErrorMessage(message: "Enter a valid password", textField: self.newPasswordConfirm)
         }
         else if(newPassword.text == newPasswordConfirm.text)
         {
-            showErrorMessage("Enter a valid password", textField: self.newPasswordConfirm)
+            showErrorMessage(message: "Enter a valid password", textField: self.newPasswordConfirm)
         }
         else
         {
-            hideErrorMessage("Confirm New Password", textField: self.newPasswordConfirm)
+            hideErrorMessage(message: "Confirm New Password", textField: self.newPasswordConfirm)
         }
     }
     
@@ -92,20 +92,20 @@ class EditPasswordViewController: UIViewController {
     {
         if(newPassword.text == newPasswordConfirm.text)
         {
-            hideErrorMessage("Password Matched", textField: self.newPasswordConfirm)
-            self.navigationItem.rightBarButtonItem?.enabled = true
+            hideErrorMessage(message: "Password Matched", textField: self.newPasswordConfirm)
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
         }
         else
         {
-            self.navigationItem.rightBarButtonItem?.enabled = false
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
     
     func showErrorMessage(message:String , textField:HoshiTextField)
     {
-        textField.borderInactiveColor = UIColor.redColor()
-        textField.borderActiveColor = UIColor.redColor()
-        textField.placeholderColor = UIColor.redColor()
+        textField.borderInactiveColor = UIColor.red
+        textField.borderActiveColor = UIColor.red
+        textField.placeholderColor = UIColor.red
         textField.placeholderLabel.text = message
         textField.placeholderLabel.sizeToFit()
         textField.placeholderLabel.alpha = 1.0
@@ -113,9 +113,9 @@ class EditPasswordViewController: UIViewController {
     
     func hideErrorMessage(message : String , textField: HoshiTextField)
     {
-        textField.borderInactiveColor = UIColor.greenColor()
-        textField.borderActiveColor = UIColor.greenColor()
-        textField.placeholderColor = UIColor.whiteColor()
+        textField.borderInactiveColor = UIColor.green
+        textField.borderActiveColor = UIColor.green
+        textField.placeholderColor = UIColor.white
         textField.placeholderLabel.sizeToFit()
         textField.placeholderLabel.text = message
     }
@@ -125,12 +125,12 @@ class EditPasswordViewController: UIViewController {
     {
         SessionObjects.currentUser.password = newPassword.text
         SessionObjects.currentUser.save()
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
-        super.touchesBegan(touches, withEvent: event)
+        super.touchesBegan(touches, with: event)
     }
     /*
     // MARK: - Navigation

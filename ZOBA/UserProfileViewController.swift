@@ -33,7 +33,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     
     var isEditMode : Bool = false
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.changeFieldsStatus()
         
         self.loadUserImage()
@@ -45,11 +45,11 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         userName.text = (SessionObjects.currentUser.userName != nil) ? SessionObjects.currentUser.userName : " "
         
         //register keyboard notification
-        let notCenter = NSNotificationCenter.defaultCenter()
-        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	UIKeyboardWillHideNotification, object: nil)
-        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	UIKeyboardWillShowNotification, object: nil)
+        let notCenter = NotificationCenter.default
+        notCenter.addObserver(self, selector: #selector (keyboardWillHide), name: 	NSNotification.Name.UIKeyboardWillHide, object: nil)
+        notCenter.addObserver(self, selector: #selector (keyBoardWillAppear), name: 	NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-        self.prepareNavigationBar("")
+        self.prepareNavigationBar(title: "")
     }
     
     override func viewDidLoad() {
@@ -57,11 +57,11 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         
         imageView.layer.borderWidth = 0.5
         imageView.layer.masksToBounds = false
-        imageView.layer.borderColor = UIColor.whiteColor().CGColor
+        imageView.layer.borderColor = UIColor.white.cgColor
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.clipsToBounds = true
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), for: .default)
     }
     @IBAction func rightBarButtonClicked(sender: UIBarButtonItem) {
         
@@ -86,13 +86,13 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     func keyBoardWillAppear(notification : NSNotification){
         
         if let userInfo = notification.userInfo {
-            if let keyboardSize: CGSize =    userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
+            if let keyboardSize: CGSize =    (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
                 let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
                 
                 self.scrollView.contentInset = contentInset
                 self.scrollView.scrollIndicatorInsets = contentInset
                 
-                self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, 0 + keyboardSize.height) //set zero instead
+                self.scrollView.contentOffset = CGPoint(x: self.scrollView.contentOffset.x,y: 0 + keyboardSize.height) //set zero instead
                 
             }
         }
@@ -101,29 +101,30 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     
     func keyboardWillHide(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let _: CGSize =  userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size {
-                let contentInset = UIEdgeInsetsZero;
+            if let _: CGSize =  (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
+                let contentInset = UIEdgeInsets.zero
+                
                 
                 self.scrollView.contentInset = contentInset
                 self.scrollView.scrollIndicatorInsets = contentInset
-                self.scrollView.contentOffset = CGPointMake(self.scrollView.contentOffset.x, self.scrollView.contentOffset.y)
+                self.scrollView.contentOffset = CGPoint(x:self.scrollView.contentOffset.x,y: self.scrollView.contentOffset.y)
             }
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     func changeFieldsStatus()
     {
-        phone.enabled = isEditMode
-        firstName.enabled = isEditMode
-        lastName.enabled = isEditMode
-        email.enabled = isEditMode
-        userName.enabled = isEditMode
-        editImageButton.hidden = !isEditMode
+        phone.isEnabled = isEditMode
+        firstName.isEnabled = isEditMode
+        lastName.isEnabled = isEditMode
+        email.isEnabled = isEditMode
+        userName.isEnabled = isEditMode
+        editImageButton.isEnabled = !isEditMode
     }
     
     func loadUserImage()
@@ -131,7 +132,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         if (SessionObjects.currentUser.image != nil)
         {
             imageView.image = UIImage(data: SessionObjects.currentUser.image!)
-            initialsLabel.hidden = true
+            initialsLabel.isHidden = true
         }
         else
         {
@@ -152,8 +153,9 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
                     
                 }
             }
-            initialsLabel.hidden = false
-            initialsLabel.text = userIntials.uppercaseString
+            initialsLabel.isHidden = false
+            initialsLabel.text = userIntials.uppercased()
+            
         }
     }
     
@@ -169,57 +171,58 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     }
     
     @IBAction func updateUserImage(sender: AnyObject) {
-        let actionSheet = UIAlertController(title: "New Photo", message: nil, preferredStyle: .ActionSheet)
+        let actionSheet = UIAlertController(title: "New Photo", message: nil, preferredStyle: .actionSheet)
         
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { action in
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { action in
             self.showCamera()
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Album", style: .Default, handler: { action in
+        actionSheet.addAction(UIAlertAction(title: "Album", style: .default, handler: { action in
             self.showAlbum()
         }))
         
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         
-        self.presentViewController(actionSheet, animated: true, completion: nil)
+        self.present(actionSheet, animated: true, completion: nil)
         
     }
     
     func showCamera() {
         let cameraPicker = UIImagePickerController()
         cameraPicker.delegate = self
-        cameraPicker.sourceType = .Camera
+        cameraPicker.sourceType = .camera
         
-        presentViewController(cameraPicker, animated: true, completion: nil)
+        present(cameraPicker, animated: true, completion: nil)
         
     }
     
     func showAlbum() {
         let cameraPicker = UIImagePickerController()
         cameraPicker.delegate = self
-        cameraPicker.sourceType = .PhotoLibrary
+        cameraPicker.sourceType = .photoLibrary
         
-        presentViewController(cameraPicker, animated: true, completion: nil)
+        present(cameraPicker, animated: true, completion: nil)
         
     }
     
     // MARK: UIImagePickerControllerDelegate
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        dismissViewControllerAnimated(true, completion: nil)
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
-            SessionObjects.currentUser.image = NSData(data: UIImagePNGRepresentation(image)!)
+            SessionObjects.currentUser.image = UIImagePNGRepresentation(image)
             SessionObjects.currentUser.save()
             let userWebService = UserWebservice(currentUser: SessionObjects.currentUser)
-            userWebService.saveProfilePicture(Int(SessionObjects.currentUser.userId!), image: image, imageExtension: "png")
+            userWebService.saveProfilePicture(userId: Int(SessionObjects.currentUser.userId!), image: image, imageExtension: "png")
             
         }
         self.loadUserImage()
     }
     
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func menuButtonClicked(sender: AnyObject) {
@@ -229,20 +232,20 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     func prepareNavigationBar(title: String)
     {
         self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+            [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.navigationController!.navigationBar.tintColor = UIColor.white;
         self.title = self.contextAwareTitle()
-        self.navigationController?.navigationBar.userInteractionEnabled = true
+        self.navigationController?.navigationBar.isUserInteractionEnabled = true
         
         
     }
     
     func contextAwareTitle() -> String?
     {
-        let now = NSDate()
-        let cal = NSCalendar.currentCalendar()
-        let comps = cal.component(NSCalendarUnit.Hour, fromDate: now)
+        let now = Date()
+        let cal = Calendar.current
+        let comps = cal.component(Calendar.Component.hour, from: now)
         
         switch comps {
         case 0 ... 12:
