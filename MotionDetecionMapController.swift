@@ -54,14 +54,14 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     static var tripFirstLocation = CLLocation()
     static var tripLastLocation = CLLocation()
     static var isFirstLocation = true
-    static var lastDate : NSDate!
+    static var lastDate : Date!
     var lastPlistIndex = 1
     
     var polyLines = [MKPolyline]()
     
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
         print("will appear")
@@ -73,9 +73,9 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         if MotionDetecionMapController.lastDate != nil {
             let firstDate = MotionDetecionMapController.tripFirstLocation.timestamp
-            let hr =  MotionDetecionMapController.lastDate.hoursFrom(firstDate)
-            let min = MotionDetecionMapController.lastDate.minutesFrom(firstDate) % 60
-            let sec = MotionDetecionMapController.lastDate.secondsFrom(firstDate) % 60
+            let hr =  MotionDetecionMapController.lastDate.hours(from: firstDate)
+            let min = MotionDetecionMapController.lastDate.minutes(from: firstDate) % 60
+            let sec = MotionDetecionMapController.lastDate.seconds(from: firstDate) % 60
             
             self.timeDisplay.text = "\(hr):\(min):\(sec)"
         }
@@ -95,7 +95,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             
             
             if MotionDetecionMapController.isFirstLocation {
-                self.locationPlist.saveLocation(location)
+                self.locationPlist.saveLocation(location: location)
                 MotionDetecionMapController.tripFirstLocation = location
                 MotionDetecionMapController.tripLastLocation = location
                 MotionDetecionMapController.isFirstLocation = false
@@ -107,31 +107,31 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
             }
             
             
-            MotionDetecionMapController.dist = MotionDetecionMapController.tripLastLocation.distanceFromLocation(MotionDetecionMapController.tripFirstLocation) + location.distanceFromLocation(MotionDetecionMapController.tripLastLocation)
+            MotionDetecionMapController.dist = MotionDetecionMapController.tripLastLocation.distance(from: MotionDetecionMapController.tripFirstLocation) + location.distance(from: MotionDetecionMapController.tripLastLocation)
             
             
             self.totalDistance.text = String.localizedStringWithFormat("%.2f %@", (MotionDetecionMapController.dist/1000),"KM")
             
             if speed < 30 {
                 
-                self.currentSpeed.textColor = UIColor.flatGreenColor()
+                self.currentSpeed.textColor = UIColor.flatGreen()
             }
             else if speed < 100
             {
-                self.currentSpeed.textColor = UIColor.flatYellowColor()
+                self.currentSpeed.textColor = UIColor.flatYellow()
                 
             }
             else
             {
-                self.currentSpeed.textColor = UIColor.redColor()
+                self.currentSpeed.textColor = UIColor.red
             }
             
             let firstDate = MotionDetecionMapController.tripFirstLocation.timestamp
-            MotionDetecionMapController.lastDate = location.timestamp
+            MotionDetecionMapController.lastDate = location.timestamp as Date!
             
-            let hr =  MotionDetecionMapController.lastDate.hoursFrom(firstDate)
-            let min = MotionDetecionMapController.lastDate.minutesFrom(firstDate) % 60
-            let sec = MotionDetecionMapController.lastDate.secondsFrom(firstDate) % 60
+            let hr =  MotionDetecionMapController.lastDate.hours(from: firstDate)
+            let min = MotionDetecionMapController.lastDate.minutes(from: firstDate) % 60
+            let sec = MotionDetecionMapController.lastDate.seconds(from: firstDate) % 60
             
             self.timeDisplay.text = "\(hr):\(min):\(sec)"
             MotionDetecionMapController.tripLastLocation = location
@@ -154,15 +154,15 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         map.delegate = self
         
-        let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
+        let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, self.tabBarController!.tabBar.frame.height, 0);
         self.scrollView.contentInset = adjustForTabbarInsets;
         self.scrollView.scrollIndicatorInsets = adjustForTabbarInsets;
         
         if SessionObjects.currentVehicle == nil {
             
-            self.stopReportingBtn .enabled = false
-            self.stopReportingBtn.setTitle("No Available Vehicle To report", forState: .Disabled)
-            self.stopReportingBtn.backgroundColor = UIColor.grayColor()
+            self.stopReportingBtn .isEnabled = false
+            self.stopReportingBtn.setTitle("No Available Vehicle To report", for: .disabled)
+            self.stopReportingBtn.backgroundColor = UIColor.gray
         }
         else {
             
@@ -187,11 +187,11 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         }
         else
         {
-            stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
+            stopReportingBtn.setTitle("Stop Auto Reporting", for: .normal)
             
             resetMap()
             MotionDetecionMapController.isFirstLocation = true
-            startDetection(sender)
+            startDetection(sender: sender)
             manager.startUpdatingLocation()
             self.map.showsUserLocation = true
             
@@ -213,20 +213,20 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         manager.stopUpdatingLocation()
         self.map.showsUserLocation = false
         SessionObjects.motionMonitor.stopTrip()
-        stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
+        stopReportingBtn.setTitle("Start Auto Reporting", for: .normal)
         
         createMapImageWithPolyline()
         
         let point = locationPlist.getLocationsDictionaryArray()
         
         let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-        firstCoordinate.latitude =  NSDecimalNumber(string: point.firstObject?.objectForKey("latitude") as? String)
-        firstCoordinate.longtitude = NSDecimalNumber(string: point.firstObject?.objectForKey("longitude") as? String)
+        firstCoordinate.latitude =  NSDecimalNumber(string: (point.firstObject as AnyObject).object("latitude") as? String)
+        firstCoordinate.longtitude = NSDecimalNumber(string: (point.firstObject as AnyObject).object("longitude") as? String)
         
         let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
         
-        lastCoordinate.latitude = NSDecimalNumber(string: point.lastObject?.objectForKey("latitude") as? String)
-        lastCoordinate.longtitude = NSDecimalNumber(string: point.lastObject?.objectForKey("longitude") as? String)
+        lastCoordinate.latitude = NSDecimalNumber(string: (point.lastObject as AnyObject).object("latitude") as? String)
+        lastCoordinate.longtitude = NSDecimalNumber(string: (point.lastObject as AnyObject).object("longitude") as? String)
         
         tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
         
@@ -236,20 +236,20 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         let firstLoc = locationPlist.readFirstLocation()
         
-        tripObj.dateAdded = firstLoc.date.timeIntervalSince1970
+        tripObj.dateAdded = firstLoc.date?.timeIntervalSince1970 as NSNumber?
         
         let distance = MotionDetecionMapController.dist / 1000
-        SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance)
+        SessionObjects.currentVehicle.currentOdemeter = Double(SessionObjects.currentVehicle.currentOdemeter!) +  (distance) as? NSNumber
         
         print("Distance is: \(distance)")
-        tripObj.coveredKm  = distance ///1000
-        tripObj.vehicle?.currentOdemeter = Int(tripObj.vehicle!.currentOdemeter!) + Int(distance)
+        tripObj.coveredKm  = distance as NSNumber? ///1000
+        tripObj.vehicle?.currentOdemeter = Int(tripObj.vehicle!.currentOdemeter!) + Int(distance) as? NSNumber
         tripObj.coordinates = NSSet(array: [firstCoordinate,lastCoordinate])
         
-        getLocation(firstCoordinate)
-        getLocation(lastCoordinate)
+        getLocation(coordinate: firstCoordinate)
+        getLocation(coordinate: lastCoordinate)
         
-        saveTripToWebService(tripObj)
+        saveTripToWebService(trip: tripObj)
     }
     
     
@@ -257,18 +257,18 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     func saveTripToWebService(trip :Trip)
     {
         let tripWebService = TripWebService()
-        tripWebService.saveTrip(trip) { (returnedTrip, code) in
+        tripWebService.saveTrip(trip: trip) { (returnedTrip, code) in
             
             
             switch code {
             case "success":
                 
-                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.first as! TripCoordinate)
+                self.saveTripCoordinateToWebService(trip: returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.first as! TripCoordinate)
                 
-                self.saveTripCoordinateToWebService(returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.last as! TripCoordinate)
+                self.saveTripCoordinateToWebService(trip: returnedTrip!, tripCoordinate: trip.coordinates?.allObjects.last as! TripCoordinate)
                 
                 
-                SessionObjects.currentManageContext.deleteObject(returnedTrip!)
+                SessionObjects.currentManageContext.delete(returnedTrip!)
                 trip.tripId = returnedTrip?.tripId
                 trip.save()
                 print("trip saved")
@@ -287,7 +287,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     func saveTripCoordinateToWebService(trip : Trip, tripCoordinate : TripCoordinate){
         
         let tripWebService = TripWebService()
-        tripWebService.saveCoordinate(Int(SessionObjects.currentVehicle.vehicleId!), coordinate:  tripCoordinate, tripId: Int(trip.tripId!)){ (returnedCoordinate , code )in
+        tripWebService.saveCoordinate(vehicleId: Int(SessionObjects.currentVehicle.vehicleId!), coordinate:  tripCoordinate, tripId: Int(trip.tripId!)){ (returnedCoordinate , code )in
             
             
             switch code {
@@ -295,7 +295,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
                 print("saving cooridnate")
                 tripCoordinate.coordinateId = returnedCoordinate?.coordinateId
                 
-                SessionObjects.currentManageContext.deleteObject(returnedCoordinate!)
+                SessionObjects.currentManageContext.delete(returnedCoordinate!)
                 
                 break
             case "error" :
@@ -322,13 +322,13 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 
                 if places != nil && places!.count > 0 {
                     coordinate.address =  places!.first?.name
                     coordinate.save()
                 }
-            })
+            }
             
             
         })
@@ -389,7 +389,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         if (overlay is MKPolyline) {
             let renderer = MKPolylineRenderer(overlay: overlay)
             
-            renderer.strokeColor = UIColor.flatMintColor()
+            renderer.strokeColor = UIColor.flatMint()
             renderer.lineWidth = 5
             
             return renderer
@@ -401,22 +401,22 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
     func createMapImageWithPolyline()
     {
         self.map.fitMapViewToAnnotaionList()
-        requestSnapshotData(map){ (image, error) in
+        requestSnapshotData(mapView: map){ (image, error) in
             if image != nil
             {
                 self.tripObj.image = image
                 
                 self.tripObj.save()
                 
-                let filename = self.getDocumentsDirectory().stringByAppendingPathComponent("map.png")
-                image!.writeToFile(filename, atomically: true)
+                let filename = self.getDocumentsDirectory().appendingPathComponent("map.png")
+                image!.write(toFile: filename, atomically: true)
                 
             }
         }
     }
     
     
-    func requestSnapshotData(mapView: MKMapView,  completion: (NSData?, NSError?) -> ()) {
+    func requestSnapshotData(mapView: MKMapView,  completion: @escaping (NSData?, NSError?) -> ()) {
         
         
         
@@ -441,7 +441,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         
         
-        let diffrence = lastlocation.distanceFromLocation(firstlocation)
+        let diffrence = lastlocation.distance(from: firstlocation)
         
         let longitudeDifference = ((lastCoordinate.coordinate.longitude) + (firstlocation.coordinate.longitude))/2
         
@@ -454,32 +454,32 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let options = MKMapSnapshotOptions()
         options.region = region
         options.size = mapView.frame.size
-        options.scale = UIScreen.mainScreen().scale
+        options.scale = UIScreen.main.scale
         
         self.map.setRegion(region, animated: true)
         
         let snapshotter = MKMapSnapshotter(options: options)
-        snapshotter.startWithCompletionHandler() { snapshot, error in
+        snapshotter.start() { snapshot, error in
             guard snapshot != nil else {
-                completion(nil, error)
+                completion(nil, error as NSError?)
                 return
             }
             
             UIGraphicsBeginImageContext(self.map.frame.size)
-            self.map.drawViewHierarchyInRect(self.map.bounds, afterScreenUpdates: true)
+            self.map.drawHierarchy(in: self.map.bounds, afterScreenUpdates: true)
             let finalImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             
-            completion(UIImagePNGRepresentation(finalImage) , error)
+            completion(UIImagePNGRepresentation(finalImage!)! as NSData? , error as NSError?)
             return
         }
     }
     
     
     func getDocumentsDirectory() -> NSString {
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
-        return documentsDirectory
+        return documentsDirectory as NSString
     }
     
     func resetMapZoom(firstAnnotation : MKAnnotation , secondAnnotation : MKAnnotation)
@@ -492,11 +492,11 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         
         if Defaults[.isHavingTrip] {
             if stopReportingBtn != nil {
-                stopReportingBtn.setTitle("Stop Auto Reporting", forState: .Normal)
+                stopReportingBtn.setTitle("Stop Auto Reporting", for: .normal)
             }
         }else{
             if stopReportingBtn != nil {
-                stopReportingBtn.setTitle("Start Auto Reporting", forState: .Normal)
+                stopReportingBtn.setTitle("Start Auto Reporting", for: .normal)
             }
         }
         
