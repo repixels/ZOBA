@@ -16,10 +16,10 @@ class VehicleTableViewController: UITableViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if SessionObjects.currentUser != nil && SessionObjects.currentUser.vehicle?.count > 0 {
+        if SessionObjects.currentUser != nil && (SessionObjects.currentUser.vehicle?.count)! > 0 {
             self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
             self.tableView.reloadData()
         }
@@ -28,11 +28,11 @@ class VehicleTableViewController: UITableViewController {
             self.vehicles = [Vehicle]()
         }
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.blueColor()
-        self.navigationController?.navigationController?.navigationBar.tintColor = UIColor.blueColor()
-        self.navigationController?.navigationBar.backItem?.backBarButtonItem?.tintColor = UIColor.blueColor()
-        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.blueColor()
-        self.tabBarController?.moreNavigationController.navigationBar.tintColor = UIColor.brownColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.blue
+        self.navigationController?.navigationController?.navigationBar.tintColor = UIColor.blue
+        self.navigationController?.navigationBar.backItem?.backBarButtonItem?.tintColor = UIColor.blue
+        self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.blue
+        self.tabBarController?.moreNavigationController.navigationBar.tintColor = UIColor.brown
         
         
     }
@@ -42,20 +42,18 @@ class VehicleTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return vehicles.count
     }
     
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("vehicleCell", forIndexPath: indexPath) as! VehicleTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "vehicleCell", for: indexPath) as! VehicleTableViewCell
         
         let vehicle = vehicles[indexPath.row]
         var modelTrimYear = ""
@@ -64,17 +62,17 @@ class VehicleTableViewController: UITableViewController {
         // Configure Image View
         if vehicle.vehicleModel?.model?.make?.image != nil
         {
-            cell.vehicleNameInitialsLabel.hidden = true
-            cell.makeImageView.image = UIImage(data: (vehicle.vehicleModel?.model?.make?.image)!)
+            cell.vehicleNameInitialsLabel.isHidden = true
+            cell.makeImageView.image = UIImage(data: (vehicle.vehicleModel?.model?.make?.image)! as Data)
         }
         else
         {
-            cell.makeImageView.hidden = true
+            cell.makeImageView.isHidden = true
             
             if vehicle.name != nil
             {
-                cell.vehicleNameInitialsLabel.hidden = false
-                cell.vehicleNameInitialsLabel.text = String(vehicle.name!.characters.prefix(2)).uppercaseString
+                cell.vehicleNameInitialsLabel.isHidden = false
+                cell.vehicleNameInitialsLabel.text = String(vehicle.name!.characters.prefix(2)).uppercased()
             }
         }
         
@@ -99,41 +97,38 @@ class VehicleTableViewController: UITableViewController {
         
         return cell
     }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let vehicle = vehicles[indexPath.row]
-        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("vehicleDetail") as! vehicleDetailsViewController
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "vehicleDetail") as! vehicleDetailsViewController
         controller.vehicle = vehicle
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
-    
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     
     
-    
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             // Delete the row from the data source
-            deleteAlert(indexPath)
+            deleteAlert(indexPath: indexPath )
             
-        } else if editingStyle == .Insert {
+        } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
     
     
-    func deleteAlert(indexPath : NSIndexPath){
+    func deleteAlert(indexPath : IndexPath){
         
         let vehicleName = self.vehicles[indexPath.row].name
-        let alert  = UIAlertController(title: "Deleting A Trip", message: "We love " + vehicleName! + ", Are you sure you want to delete it?", preferredStyle: .Alert)
+        let alert  = UIAlertController(title: "Deleting A Trip", message: "We love " + vehicleName! + ", Are you sure you want to delete it?", preferredStyle: .alert)
         
-        let deleteAction = UIAlertAction(title: "Delete ", style: .Destructive, handler: { (action) in
+        let deleteAction = UIAlertAction(title: "Delete ", style: .destructive, handler: { (action) in
             
             
             self.tableView.beginUpdates()
@@ -142,7 +137,7 @@ class VehicleTableViewController: UITableViewController {
             self.vehicles = SessionObjects.currentUser.vehicle?.allObjects as! [Vehicle]
             
             
-            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            self.tableView.deleteRows(at: [indexPath as IndexPath], with: .fade)
             
             if Defaults[.curentVehicleName] == vehicleName
             {
@@ -164,11 +159,11 @@ class VehicleTableViewController: UITableViewController {
             
         })
         
-        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler:nil)
+        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler:nil)
         
         alert.addAction(deleteAction)
         alert.addAction(cancel)
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.present(alert, animated: true, completion: nil)
         
     }
     

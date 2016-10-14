@@ -38,17 +38,17 @@ class vehicleDetailsViewController: UITableViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.currentOdemter.text = String( vehicle.currentOdemeter!)
+        self.currentOdemter.text = vehicle.currentOdemeter!.stringValue
         self.licensePlateTextField.text = vehicle.licensePlate != nil ? vehicle.licensePlate! : ""
         self.vehicleNameTextField.text = vehicle.name != nil ? vehicle.name! : ""
         self.makeTextField.text = vehicle.vehicleModel?.model?.make?.name != nil ? vehicle.vehicleModel?.model?.make?.name! : ""
         self.modelTextField.text = vehicle.vehicleModel?.model?.name != nil ? vehicle.vehicleModel?.model?.name! : ""
-        self.yearTextField.text = String(vehicle.vehicleModel?.year?.name!) != nil ? String(vehicle.vehicleModel?.year?.name!) : ""
+        self.yearTextField.text = vehicle.vehicleModel?.year?.name!.stringValue != nil ? vehicle.vehicleModel?.year?.name!.stringValue : ""
         self.trimTextField.text = vehicle.vehicleModel?.trim?.name != nil ? vehicle.vehicleModel?.trim?.name : ""
-        self.initialOdemterTextField.text = String(vehicle.initialOdemeter!) != nil ? String(vehicle.initialOdemeter!) : ""
+        self.initialOdemterTextField.text = vehicle.initialOdemeter!.stringValue != nil ? vehicle.initialOdemeter!.stringValue : ""
         
         
         
