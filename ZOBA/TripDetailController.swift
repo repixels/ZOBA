@@ -85,7 +85,7 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
         location.coordinate
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
-            DispatchQueue.main.asynchronously(execute: {
+            DispatchQueue.main.async(execute: {
                 if places != nil && places!.count > 0 {
                 sender.text = places!.first?.name
                 }
