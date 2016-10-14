@@ -380,8 +380,8 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
         let vehicle = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
         
         vehicle.name = vehicleNameTextField.text
-        vehicle.initialOdemeter = Int (initialOdemeterTextField.text!)!
-        vehicle.currentOdemeter = Int (initialOdemeterTextField.text!)!
+        vehicle.initialOdemeter = Int(initialOdemeterTextField.text!) as NSNumber?
+        vehicle.currentOdemeter = Int (initialOdemeterTextField.text!)  as NSNumber?
         vehicle.licensePlate = licensePlateTextField.text
 
         
