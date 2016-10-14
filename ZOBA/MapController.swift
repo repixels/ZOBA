@@ -26,14 +26,14 @@ class MapController: UIViewController , CLLocationManagerDelegate{
         super.viewDidLoad()
         locationmgr.delegate = self
         locationmgr.requestWhenInUseAuthorization()
-        longPressGesture.addTarget(self, action: #selector(MapController.getUserselectedCoordinate(_:)))
+        longPressGesture.addTarget(self, action: #selector(MapController.getUserselectedCoordinate(gestureRecognizer:)))
         
         locationmgr.requestLocation()
         setAnnotation()
         
     }
-    
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
+    {
         print(error)
     }
     
@@ -47,9 +47,7 @@ class MapController: UIViewController , CLLocationManagerDelegate{
         }
     }
     
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let latDelta:CLLocationDegrees = 0.05
         
@@ -65,15 +63,15 @@ class MapController: UIViewController , CLLocationManagerDelegate{
     
     func getUserselectedCoordinate(gestureRecognizer:UIGestureRecognizer){
         
-        if gestureRecognizer.state == .Began{
-            let touchPoint = gestureRecognizer.locationInView(map)
-            let newCoordinates = map.convertPoint(touchPoint, toCoordinateFromView: map)
+        if gestureRecognizer.state == .began{
+            let touchPoint = gestureRecognizer.location(in: map)
+            let newCoordinates = map.convert(touchPoint, toCoordinateFrom: map)
             let annotation = MKPointAnnotation()
             annotation.coordinate = newCoordinates
             map.addAnnotation(annotation)
             
-            self.delegate?.getuserSelectedCoordinate(annotation.coordinate)
-            self.navigationController?.popViewControllerAnimated(true)
+            self.delegate?.getuserSelectedCoordinate(coordinate: annotation.coordinate)
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

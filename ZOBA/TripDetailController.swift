@@ -44,37 +44,37 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.navigationController!.navigationBar.tintColor = UIColor.white
         map.delegate = self
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         vehicleNameTextField.text = trip.vehicle?.name
         
-        dateTextField.text = String(NSDate(timeIntervalSince1970:Double(trip.dateAdded!)))
-        initialOdemeterTextField.text = String(trip.initialOdemeter!)
-        coveredMilageTextField.text = String(trip.coveredKm!)
+        dateTextField.text = String(describing: NSDate(timeIntervalSince1970:Double(trip.dateAdded!)))
+        initialOdemeterTextField.text = trip.initialOdemeter!.stringValue
+        coveredMilageTextField.text = trip.coveredKm!.stringValue
         currentOdemeterTextField.text = String ( Int(trip.initialOdemeter!) + Int(trip.coveredKm!))
         let cordinates = trip.coordinates
         
         let coordinates = cordinates?.allObjects as! [TripCoordinate]
         
-        getLocation(coordinates.first!,sender: startPointTextField)
-        getLocation(coordinates.last!,sender: endPointTextField)
-        setRegion(coordinates.first! , lastCoordinate: coordinates.last!)
+        getLocation(coordinate: coordinates.first!,sender: startPointTextField)
+        getLocation(coordinate: coordinates.last!,sender: endPointTextField)
+        setRegion(firstCoordinate: coordinates.first! , lastCoordinate: coordinates.last!)
         
         if trip.image != nil {
-            imageView.hidden = false
-            self.map.hidden = true
-            self.map.userInteractionEnabled = false
-            imageView.contentMode = .ScaleAspectFill
-            imageView.image = UIImage(data:trip.image! )
+            imageView.isHidden = false
+            self.map.isHidden = true
+            self.map.isUserInteractionEnabled = false
+            imageView.contentMode = .scaleAspectFill
+            imageView.image = UIImage(data:trip.image! as Data )
             
         }
-        let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.tabBarController!.tabBar.frame), 0);
+        let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, self.tabBarController!.tabBar.frame.height, 0);
         self.scrollView.contentInset = adjustForTabbarInsets;
         self.scrollView.scrollIndicatorInsets = adjustForTabbarInsets;
     }
@@ -85,7 +85,7 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
         location.coordinate
         
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.asynchronously(execute: {
                 if places != nil && places!.count > 0 {
                 sender.text = places!.first?.name
                 }
@@ -111,15 +111,15 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
         let lastlocation = CLLocation(latitude: CLLocationDegrees(lastCoordinate.latitude!), longitude: CLLocationDegrees(lastCoordinate.longtitude!))
         
         
-        firstAnnotation = setAnnotation(firstlocation.coordinate, title: "first")
+        firstAnnotation = setAnnotation(coordinate: firstlocation.coordinate, title: "first")
         
-        secondAnnotation = setAnnotation(lastlocation.coordinate, title: "last")
+        secondAnnotation = setAnnotation(coordinate: lastlocation.coordinate, title: "last")
         var coordinates = [firstlocation.coordinate,lastlocation.coordinate]
         let polyline = MKPolyline(coordinates: &coordinates , count: 2)
         
-        map.addOverlay(polyline)
+        map.add(polyline)
         
-        let diff = lastlocation.distanceFromLocation(firstlocation)
+        let diff = lastlocation.distance(from: firstlocation)
         
         let region =  MKCoordinateRegionMakeWithDistance(firstlocation.coordinate, diff, diff)
         
@@ -138,7 +138,7 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
             request.destination = destinationItem
             
             // Specify the transportation type
-            request.transportType = MKDirectionsTransportType.Automobile;
+            request.transportType = MKDirectionsTransportType.automobile;
             
             // If you're open to getting more than one route,
             // requestsAlternateRoutes = true; else requestsAlternateRoutes = false;
@@ -147,24 +147,24 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
             let directions = MKDirections(request: request)
             
             
-            directions.calculateDirectionsWithCompletionHandler ({
+            directions.calculate (completionHandler: {
                 (response: MKDirectionsResponse?, error: NSError?) in
                 if error == nil {
                     let route = response!.routes[0] as MKRoute
-                    self.map.addOverlay(route.polyline, level: MKOverlayLevel.AboveRoads)
+                    self.map.add(route.polyline, level: MKOverlayLevel.aboveRoads)
                 }
                 else
                 {
                     print(error?.description)
                 }
-            })
+            } as! MKDirectionsHandler)
             
         }
     }
     
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = UIColor.blueColor()
+        renderer.strokeColor = UIColor.blue
         renderer.lineWidth = 5.0
         
         
@@ -176,10 +176,10 @@ class TripDetailController: UIViewController ,MKMapViewDelegate{
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier! == "editTrip" {
             
-            let controller = segue.destinationViewController as! AddTripViewController
+            let controller = segue.destination as! AddTripViewController
             controller.trip = self.trip
             controller.isEditingTrip = true
         }
