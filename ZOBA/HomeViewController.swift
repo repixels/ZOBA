@@ -9,7 +9,7 @@
 import UIKit
 import FoldingTabBar
 
-class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YALTabBarInteracting {
+class HomeViewController: YALFoldingTabBarController ,YALTabBarDelegate {//,YALTabBarInteracting {
     
     
     
@@ -42,7 +42,7 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
     
     func prepareTabBar()
     {
-        
+
         let item1 = YALTabBarItem(itemImage: UIImage(named: "home-icon"), leftItemImage: UIImage(named: "add-vehicle"), rightItemImage: UIImage(named: "auto-report"))
         
         let item2 = YALTabBarItem(itemImage: UIImage(named: "add-trip"), leftItemImage:nil, rightItemImage: nil)
