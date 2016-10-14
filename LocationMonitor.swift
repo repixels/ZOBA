@@ -76,7 +76,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
     
     private func initializeDetection(){
         SOLocationManager.sharedInstance().locationManager.pausesLocationUpdatesAutomatically = false
-        SOLocationManager.sharedInstance().locationManager.activityType = .AutomotiveNavigation
+        SOLocationManager.sharedInstance().locationManager.activityType = .automotiveNavigation
         
         //update location if location changed by 10 metter to save power
         SOLocationManager.sharedInstance().locationManager.distanceFilter = 10
@@ -91,28 +91,29 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
         
         getMotionDetector().locationChangedBlock = { (location) in
             if Defaults[.isHavingTrip] {
-                let timeDifference = location.timestamp.timeIntervalSinceDate(self.locationPlist.readLastLocation().date)
+                let timeDifference = location?.timestamp.timeIntervalSince(self.locationPlist.readLastLocation().date as Date)
+           
                 // if location.horizontalAccuracy < 20 {
                 //if this is a new trip
-                if timeDifference > (60*10)
+                if timeDifference! > (60*10)
                 {
                     //                    Defaults[.isHavingTrip] = false
-                    self.saveLocation(location)
+                    self.saveLocation(location: location!)
                 }
                 else
                 {
                     if self.updateLocationBlock != nil
                     {
                         //                        self.updateLocationBlock(Double(location.speed),self.locationPlist.getDistanceInKM())
-                        self.updateLocationBlock(location,self.locationPlist.getDistanceInKM())
+                        self.updateLocationBlock(location!,self.locationPlist.getDistanceInKM())
                     }
                     
-                    if  timeDifference > 20 {
-                        print("speed : \(location.speed)")
-                        self.saveLocation(location)
+                    if  (timeDifference! > 20 ){
+                        print("speed : \(location?.speed)")
+                        self.saveLocation(location: location!)
                     }
                         
-                    else if location.speed == 0{
+                    else if location?.speed == 0{
                         
                         print("user stopped")
                         print("distance : \(self.locationPlist.getDistanceInMetter())")
@@ -137,7 +138,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
     }
     
     
-    func checkIfAccelerationChanged(block : ((CMAcceleration!)->())!){
+    func checkIfAccelerationChanged(block : ((CMAcceleration?)->())!){
         
         
         getMotionDetector().accelerationChangedBlock = block
@@ -174,22 +175,22 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
     
     private func saveLocation(location : CLLocation){
         
-        locationPlist.saveLocation(location)
+        locationPlist.saveLocation(location: location)
         
         //                print(locationPlist.readLastLocation().date)
-        locationPlist.saveLastLocationInformation(location)
+        locationPlist.saveLastLocationInformation(location: location)
     }
     
     func showStartTripAlert(viewController activeViewCont : UIViewController){
         
-        let alert = UIAlertController(title: "Zoba", message: "looks like you are moving  ", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "Zoba", message: "looks like you are moving  ", preferredStyle: .alert)
         
-        let activateAutoReport = UIAlertAction(title: "Auto report", style:.Default) { (action) in
+        let activateAutoReport = UIAlertAction(title: "Auto report", style:.default) { (action) in
             
             print("auto reprt started")
             //            SessionObjects.motionMonitor.startNewTrip()
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 
                 if activeViewCont is MotionDetecionMapController{
                     (activeViewCont as! MotionDetecionMapController).clearView()
@@ -197,22 +198,22 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
                 else {
                     
                     let story = UIStoryboard.init(name: "MotionDetection", bundle: nil)
-                    let controller = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
+                    let controller = story.instantiateViewController(withIdentifier: "autoReporting") as! MotionDetecionMapController
                     
                     activeViewCont.navigationController?.pushViewController(controller, animated: true)
                     
                 }
-            })
-            alert.dismissViewControllerAnimated(true, completion: nil)
+            }
+            alert.dismiss(animated: true, completion: nil)
         }
         
-        let cancel = UIAlertAction(title: "cancel", style: .Cancel, handler: nil)
+        let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: nil)
         
         
         alert.addAction(activateAutoReport)
         alert.addAction(cancel)
         
-        activeViewCont.presentViewController(alert, animated: true, completion: nil)
+        activeViewCont.present(alert, animated: true, completion: nil)
         
     }
     
@@ -226,19 +227,19 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
         else {
             
             
-            let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Zoba", message: "you have stopped  ", preferredStyle: .alert)
             
-            let stopAutoReport = UIAlertAction(title: "ok", style:.Default) { (action) in
+            let stopAutoReport = UIAlertAction(title: "ok", style:.default) { (action) in
                 
                 let story = UIStoryboard(name: "MotionDetection", bundle: nil)
-                let motionDetection = story.instantiateViewControllerWithIdentifier("autoReporting") as! MotionDetecionMapController
+                let motionDetection = story.instantiateViewController(withIdentifier: "autoReporting") as! MotionDetecionMapController
                 activeViewCont.navigationController?.pushViewController(motionDetection, animated: true)
                 //SessionObjects.motionMonitor.stopTrip()
-                alert.dismissViewControllerAnimated(true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
             }
             
-            let cancel = UIAlertAction(title: "cancel", style:.Default) { (action) in
-                alert.dismissViewControllerAnimated(true, completion: nil)
+            let cancel = UIAlertAction(title: "cancel", style:.default) { (action) in
+                alert.dismiss(animated: true, completion: nil)
                 
                 self.presentCheckIfStillMovingNotification()
             }
@@ -246,7 +247,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
             
             alert.addAction(stopAutoReport)
             alert.addAction(cancel)
-            activeViewCont.presentViewController(alert, animated: true, completion: nil)
+            activeViewCont.present(alert, animated: true, completion: nil)
         }
         
     }
@@ -258,14 +259,14 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
         notif.alertTitle = "Zoba"
         notif.category = "zoba_start_motion"
         
-        if (UIApplication.sharedApplication().applicationState == .Background) {
+        if (UIApplication.shared.applicationState == .background) {
             
             
             
-            UIApplication.sharedApplication().presentLocalNotificationNow(notif)
+            UIApplication.shared.presentLocalNotificationNow(notif)
         }else {
             
-            UIApplication.sharedApplication().delegate?.application!(UIApplication.sharedApplication(), didReceiveLocalNotification: notif)
+            UIApplication.shared.delegate?.application!(UIApplication.shared, didReceive: notif)
         }
         
     }
@@ -278,14 +279,13 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
         notif.category = "zoba_stop_motion"
         
         
-        if (UIApplication.sharedApplication().applicationState == .Background) {
+        if (UIApplication.shared.applicationState == .background) {
             
-            
-            
-            UIApplication.sharedApplication().presentLocalNotificationNow(notif)
+    
+            UIApplication.shared.presentLocalNotificationNow(notif)
         }else {
             
-            UIApplication.sharedApplication().delegate?.application!(UIApplication.sharedApplication(), didReceiveLocalNotification: notif)
+            UIApplication.shared.delegate?.application!(UIApplication.shared, didReceive: notif)
         }
         
     }
@@ -313,10 +313,7 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
         
         // isUserStoppedBefore = !isUserStoppedBefore
         
-        UIApplication.sharedApplication().delegate?.application!(UIApplication.sharedApplication(), didReceiveLocalNotification: notif)
-        
-        
-        
+        UIApplication.shared.delegate?.application!(UIApplication.shared, didReceive: notif)
     }
     
     
@@ -329,8 +326,10 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
             }
             else{
                 print("checking not moving : user still stopped")
-                NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector(self.presentCheckIfStillMovingNotification()), userInfo: nil, repeats: false)
-                //                presentCheckIfStillMovingNotification()
+                
+                Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(LocationMonitor.presentCheckIfStillMovingNotification) , userInfo: nil, repeats: false)
+                
+                //  presentCheckIfStillMovingNotification()
             }
         }
         else{
@@ -339,22 +338,17 @@ class LocationMonitor:NSObject,CLLocationManagerDelegate , MKMapViewDelegate {
     }
     
     
-    
-    
-    
     func getLocation(coordinate : TripCoordinate){
-        
-        
+    
         let location = CLLocation(latitude: Double(coordinate.latitude!), longitude: Double(coordinate.longtitude!))
         
-        
         CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (places, error) in
-            dispatch_async(dispatch_get_main_queue(), {
+             DispatchQueue.main.async {
                 if places!.count > 0 {
                     coordinate.address =  places!.first?.name
                     coordinate.save()
                 }
-            })
+            }
             
             
         })
