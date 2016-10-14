@@ -14,14 +14,14 @@ class DataValidations
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
 
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        let result = emailTest.evaluateWithObject(testStr)
+        let result = emailTest.evaluate(with: testStr)
         return result
     }
     
     static func isValidPhone(str:String) -> Bool {
         let phonePattern = "^\\d{3}-\\d{3}-\\d{4}$"
         let phoneTest = NSPredicate(format:"SELF MATCHES %@", phonePattern)
-        let result = phoneTest.evaluateWithObject(str)
+        let result = phoneTest.evaluate(with: str)
         return result
         
     }
@@ -29,7 +29,7 @@ class DataValidations
     static func isValidPassword(str:String) -> Bool {
         let passwordPattern = "^\\d{3}-\\d{3}-\\d{4}$"
         let passwordTest = NSPredicate(format:"SELF MATCHES %@", passwordPattern)
-        let result = passwordTest.evaluateWithObject(str)
+        let result = passwordTest.evaluate(with: str)
         return result
         
     }
@@ -37,7 +37,7 @@ class DataValidations
     static func isValidUesrName(str:String) -> Bool {
         let userNamePattern = "[a-z]{1,10}$"
         let userNameTest = NSPredicate(format:"SELF MATCHES %@", userNamePattern)
-        let result = userNameTest.evaluateWithObject(str)
+        let result = userNameTest.evaluate(with: str)
         return result
     }
     
@@ -45,21 +45,21 @@ class DataValidations
     {
         let noWhiteSpacesPattern = "^[\\S]*$"
         let noWhiteSpaceTest = NSPredicate(format:"SELF MATCHES %@" , noWhiteSpacesPattern)
-        let result = noWhiteSpaceTest.evaluateWithObject(str)
+        let result = noWhiteSpaceTest.evaluate(with: str)
         return result
     }
     static func isValidDate(str:String) -> Bool
     {
         let datePattern = "^([1-9]\\d{0,2}(,\\d{3})*|([1-9]\\d*))(\\.\\d{2})?$"
         let datePatternTest = NSPredicate(format:"SELF MATCHES %@" , datePattern)
-        let result = datePatternTest.evaluateWithObject(str)
+        let result = datePatternTest.evaluate(with: str)
         return result
     }
     static func isValidFloatNumber(str:String) -> Bool
     {
         let floatNumber = "^[0-9]*\\.?[0-9]*$"
         let floatNumberTest = NSPredicate(format:"SELF MATCHES %@" , floatNumber)
-        let result = floatNumberTest.evaluateWithObject(str)
+        let result = floatNumberTest.evaluate(with: str)
         return result
     }
 }
