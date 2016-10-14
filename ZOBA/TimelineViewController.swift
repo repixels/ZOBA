@@ -152,7 +152,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
     func prepareNavigationBar()
     {
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0)
-        self.edgesForExtendedLayout = UIRectEdge.None
+        self.edgesForExtendedLayout = []
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false
         

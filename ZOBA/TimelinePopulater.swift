@@ -23,7 +23,7 @@ class TimelinePopulater
     
     var tableCells : [TimeLineCell]
     
-    var timelineDate : NSDate?
+    var timelineDate : Date?
     
     init(tableView:UITableView)
     {
@@ -52,11 +52,11 @@ class TimelinePopulater
         for trip in self.trips!
         {
             
-            let tripCell = tableView.dequeueReusableCellWithIdentifier(TripCell.identifier) as! TripCell
+            let tripCell = tableView.dequeueReusableCell(withIdentifier: TripCell.identifier) as! TripCell
             
             let date = NSDate(timeIntervalSince1970:  Double(trip.dateAdded!))
             tripCell.timeLineDate = date
-            tripCell.tripDate!.text = String(date)
+            tripCell.tripDate!.text = String(describing: date)
             tripCell.tripTitle!.text = (trip.vehicle!.name)!+" Trip"
             tripCell.initialOdemeter!.text = trip.initialOdemeter!.stringValue
             tripCell.distanceCovered!.text = trip.coveredKm!.stringValue
@@ -76,12 +76,12 @@ class TimelinePopulater
         
         for fuel in vehicleFuelTrackingData!{
             
-            let fuelCell = tableView.dequeueReusableCellWithIdentifier(FuelCell.identifier) as! FuelCell
+            let fuelCell = tableView.dequeueReusableCell(withIdentifier: FuelCell.identifier) as! FuelCell
             fuelCell.timeLineDate = fuel.dateAdded!
             fuelCell.fuelAmount!.text = fuel.value!
             fuelCell.fuelTitle?.text = (fuel.vehicle!.name)! + " Fuel"
-            fuelCell.fuelDate?.text = String(fuelCell.timeLineDate)
-            fuelCell.initialOdemeter!.text = String(fuel.initialOdemeter!)
+            fuelCell.fuelDate?.text = String(describing: fuelCell.timeLineDate)
+            fuelCell.initialOdemeter!.text = String(describing: fuel.initialOdemeter!)
             fuelCell.serviceProvider!.text = fuel.serviceProviderName
             
             fuelCells.append(fuelCell)
@@ -97,12 +97,12 @@ class TimelinePopulater
         
         for oil in vehicleOilTrackingData!{
             
-            let oilCell = tableView.dequeueReusableCellWithIdentifier(OilCell.identifier) as! OilCell
+            let oilCell = tableView.dequeueReusableCell(withIdentifier: OilCell.identifier) as! OilCell
             oilCell.timeLineDate = oil.dateAdded!
             oilCell.oilAmount!.text = oil.value!
             oilCell.oilTitle?.text = (oil.vehicle!.name)! + " Oil"
-            oilCell.oilDate?.text = String(oilCell.timeLineDate)
-            oilCell.initialOdemeter!.text = String(oil.initialOdemeter!)
+            oilCell.oilDate?.text = String(describing: oilCell.timeLineDate)
+            oilCell.initialOdemeter!.text = String(describing: oil.initialOdemeter!)
             oilCell.serviceProvider!.text = oil.serviceProviderName
             
             oilCells.append(oilCell)
@@ -142,9 +142,9 @@ class TimelinePopulater
         self.populateTripsCells()
         
         //sort table cell
-        tableCells.sortInPlace { (firstCell, secondCell) -> Bool in
+        tableCells.sort { (firstCell, secondCell) -> Bool in
             
-            return firstCell.timeLineDate.compare(secondCell.timeLineDate) == NSComparisonResult.OrderedDescending
+            return firstCell.timeLineDate.compare(secondCell.timeLineDate as Date) == ComparisonResult.orderedDescending
         }
         
         
@@ -152,22 +152,22 @@ class TimelinePopulater
         var sortedCells = [TimeLineCell]()
         
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: DaySummaryCell.identifier) as! DaySummaryCell
         cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter?.stringValue != nil ? SessionObjects.currentVehicle.currentOdemeter!.stringValue : "Not Available"
         cell.salutation?.text = contextAwareTitle()
         cell.monthLabel?.text = "Hello"
-        timelineDate = NSDate()
+        timelineDate = Date()
         if timelineDate != nil
         {
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             
             formatter.dateFormat = "MMM"
             
-            cell.monthLabel?.text = formatter.stringFromDate(timelineDate!).uppercaseString
-            print(formatter.stringFromDate(timelineDate!).uppercaseString)
+            cell.monthLabel?.text = formatter.string(from: timelineDate!).uppercased()
+            print(formatter.string(from: timelineDate!).uppercased())
             
             formatter.dateFormat = "dd"
-            cell.dayLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
+            cell.dayLabel!.text = formatter.string(from: timelineDate! as Date).uppercased()
             
             
 
@@ -179,45 +179,43 @@ class TimelinePopulater
         {
             for i in 0 ..< tableCells.count - 1
             {
-                let cal = NSCalendar.currentCalendar()
-                cal.timeZone = NSTimeZone(name: "UTC")!
-                var firstComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i].timeLineDate)
-                var secondComps = cal.component(NSCalendarUnit.Day, fromDate: tableCells[i+1].timeLineDate)
+                var cal = Calendar.current
+                cal.timeZone = NSTimeZone(name: "UTC")! as TimeZone
+                var firstComps = cal.component(.day, from: tableCells[i].timeLineDate as Date)
+                var secondComps = cal.component(.day, from: tableCells[i+1].timeLineDate as Date)
                 firstComps -= 1
                 secondComps -= 1
                 
-                let firstMonthComps = cal.component(NSCalendarUnit.Month, fromDate: tableCells[i].timeLineDate)
-                let secondMonthComps = cal.component(NSCalendarUnit.Month, fromDate: tableCells[i+1].timeLineDate)
+                let firstMonthComps = cal.component(.month, from: tableCells[i].timeLineDate as Date)
+                let secondMonthComps = cal.component(.month, from: tableCells[i+1].timeLineDate as Date)
                 
-                let firstYearComps = cal.component(NSCalendarUnit.Year, fromDate: tableCells[i].timeLineDate)
-                let secondYearComps = cal.component(NSCalendarUnit.Year, fromDate: tableCells[i+1].timeLineDate)
+                let firstYearComps = cal.component(.year, from: tableCells[i].timeLineDate as Date)
+                let secondYearComps = cal.component(.year, from: tableCells[i+1].timeLineDate as Date)
                 
                 if firstComps > secondComps || firstMonthComps > secondMonthComps || firstYearComps > secondYearComps
                 {
-                    timelineDate = tableCells[i].timeLineDate
-                    timelineDate = timelineDate?.dateByAddingTimeInterval(60*60*24 * -1)
+                    timelineDate = tableCells[i].timeLineDate as Date
+                    timelineDate = timelineDate?.addingTimeInterval(60*60*24 * -1)
                     
                     
-                    let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
+                    let cell = tableView.dequeueReusableCell(withIdentifier: DaySummaryCell.identifier) as! DaySummaryCell
                     cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter?.stringValue != nil ? SessionObjects.currentVehicle.currentOdemeter!.stringValue : "Not Available"
-                    cell.currentOdemeter?.hidden = true
+                    cell.currentOdemeter?.isHidden = true
                     cell.dayImage?.image = nil
-                    cell.dayImage?.hidden = true
+                    cell.dayImage?.isHidden = true
                     cell.salutation?.text = contextAwareTitle()
                     
                     if timelineDate != nil
                     {
-                        let formatter = NSDateFormatter()
+                        let formatter = DateFormatter()
                         
                         formatter.dateFormat = "MMM"
                         
-                        cell.monthLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
-                        
+                        cell.monthLabel!.text = formatter.string(from: timelineDate! as Date).uppercased()
                         formatter.dateFormat = "dd"
-                        cell.dayLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
-                        
+                        cell.dayLabel!.text = formatter.string(from: timelineDate! as Date).uppercased()
                         formatter.dateFormat = "EEEE"
-                        cell.salutation?.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                        cell.salutation?.text = formatter.string(from: timelineDate! as Date).uppercased()
                     }
                     
                     sortedCells.append(cell)
@@ -230,30 +228,30 @@ class TimelinePopulater
         if tableCells.count > 0
         {
         
-                timelineDate = tableCells.last!.timeLineDate
+                timelineDate = tableCells.last!.timeLineDate as Date
 //                timelineDate = timelineDate?.dateByAddingTimeInterval(60*60*24 * -1)
             
                 
-                let cell = tableView.dequeueReusableCellWithIdentifier(DaySummaryCell.identifier) as! DaySummaryCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: DaySummaryCell.identifier) as! DaySummaryCell
                 cell.currentOdemeter?.text = SessionObjects.currentVehicle.currentOdemeter?.stringValue != nil ? SessionObjects.currentVehicle.currentOdemeter!.stringValue : "Not Available"
-                cell.currentOdemeter?.hidden = true
+                cell.currentOdemeter?.isHidden = true
                 cell.dayImage?.image = nil
-                cell.dayImage?.hidden = true
+                cell.dayImage?.isHidden = true
                 cell.salutation?.text = contextAwareTitle()
                 
                 if timelineDate != nil
                 {
-                    let formatter = NSDateFormatter()
+                    let formatter = DateFormatter()
                     
                     formatter.dateFormat = "MMM"
                     
-                    cell.monthLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                    cell.monthLabel!.text = formatter.string(from: timelineDate!).uppercased()
                     
                     formatter.dateFormat = "dd"
-                    cell.dayLabel!.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                    cell.dayLabel!.text = formatter.string(from: timelineDate!).uppercased()
                     
                     formatter.dateFormat = "EEEE"
-                    cell.salutation?.text = formatter.stringFromDate(timelineDate!).uppercaseString
+                    cell.salutation?.text = formatter.string(from: timelineDate!).uppercased()
                 }
                 
                 sortedCells.append(cell)
@@ -279,10 +277,9 @@ class TimelinePopulater
     
     func contextAwareTitle() -> String?
     {
-        let now = NSDate()
-        let cal = NSCalendar.currentCalendar()
-        let comps = cal.component(NSCalendarUnit.Hour, fromDate: now)
-        
+        let now = Date()
+        let cal = Calendar.current
+        let comps = cal.component(.hour, from: now)
         switch comps {
         case 0 ... 12:
             return "Good Morning"
