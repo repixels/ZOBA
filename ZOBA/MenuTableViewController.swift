@@ -28,10 +28,11 @@ class MenuTableViewController: UITableViewController {
     @IBOutlet weak var welcomeMessage: UILabel!
     
     @IBOutlet weak var backgroundColor: UITableViewCell!
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
         
-        self.welcomeMessage.text = contextAwareTitle()?.capitalizedString
+        self.welcomeMessage.text = contextAwareTitle()?.capitalized
+        
         loadUserImage()
         
     }
@@ -50,7 +51,7 @@ class MenuTableViewController: UITableViewController {
         self.oilStoryBoard =  UIStoryboard(name: "oil", bundle: nil)
         self.vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
         self.tripsStoryBoard =  UIStoryboard(name: "VehicleTrips", bundle: nil)
-        self.homeViewController = self.homeStoryBoard!.instantiateViewControllerWithIdentifier("HomeTabController") as? HomeViewController
+        self.homeViewController = self.homeStoryBoard!.instantiateViewController(withIdentifier: "HomeTabController") as? HomeViewController
         self.serviceProviderStoryBoard = UIStoryboard(name: "ServiceProvider", bundle: nil)
         
         self.loginStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -62,7 +63,7 @@ class MenuTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)  {
         switch indexPath.section {
         case 1:
             switch indexPath.row
@@ -79,19 +80,20 @@ class MenuTableViewController: UITableViewController {
             switch indexPath.row
             {
             case 0:
-                let userProfileNavigationController = self.userProfileStoryBoard!.instantiateViewControllerWithIdentifier("UserProfileNavigation")
+                let userProfileNavigationController = self.userProfileStoryBoard!.instantiateViewController(withIdentifier: "UserProfileNavigation")
                 self.slideMenuController()?.changeMainViewController(userProfileNavigationController, close: true)
                 break;
             case 1:
-                let vehicleNavigationController = self.vehiclesStoryBoard?.instantiateViewControllerWithIdentifier("VehicleNavigation") as! UINavigationController
+                let vehicleNavigationController = self.vehiclesStoryBoard?.instantiateViewController(withIdentifier: "VehicleNavigation") as! UINavigationController
                 vehicleNavigationController.title = "Your Vehicles"
              
                 
                 let vehicleTableVC = vehicleNavigationController.viewControllers[0] as! VehicleTableViewController
                 
-                let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MenuTableViewController.openSlideMenu) )
+                let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(MenuTableViewController.openSlideMenu) )
                 
-                menuButton.tintColor = UIColor.whiteColor()
+                menuButton.tintColor = UIColor.white
+                
                     
                 vehicleTableVC.navigationItem.leftBarButtonItem = menuButton
               
@@ -106,18 +108,18 @@ class MenuTableViewController: UITableViewController {
             switch indexPath.row
             {
             case 0:
-                let homeTabBarController = self.homeStoryBoard?.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                let homeTabBarController = self.homeStoryBoard?.instantiateViewController(withIdentifier: "HomeTabController") as! HomeViewController
                 homeTabBarController.selectedIndex = 1
                 self.slideMenuController()?.changeMainViewController(homeTabBarController
                     , close: true)
             case 1:
-                let homeTabBarController = self.homeStoryBoard?.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                let homeTabBarController = self.homeStoryBoard?.instantiateViewController(withIdentifier: "HomeTabController") as! HomeViewController
                 homeTabBarController.selectedIndex = 3
                 self.slideMenuController()?.changeMainViewController(homeTabBarController
                     , close: true)
                 break
             case 2:
-                let homeTabBarController = self.homeStoryBoard?.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                let homeTabBarController = self.homeStoryBoard?.instantiateViewController(withIdentifier: "HomeTabController") as! HomeViewController
                 homeTabBarController.selectedIndex = 2
                 self.slideMenuController()?.changeMainViewController(homeTabBarController
                     , close: true)
@@ -127,7 +129,7 @@ class MenuTableViewController: UITableViewController {
                 break
             }
         case 4:
-            let serviceProviderNavigationController = self.serviceProviderStoryBoard!.instantiateViewControllerWithIdentifier("ServiceProviders")
+            let serviceProviderNavigationController = self.serviceProviderStoryBoard!.instantiateViewController(withIdentifier: "ServiceProviders")
             self.slideMenuController()?.changeMainViewController(serviceProviderNavigationController, close: true)
             break;
         case 5:
@@ -135,19 +137,19 @@ class MenuTableViewController: UITableViewController {
             
             if SessionObjects.currentVehicle != nil  {
                 
-            SessionObjects.currentUser.release(SessionObjects.currentManageContext)
-            SessionObjects.currentVehicle.release(SessionObjects.currentManageContext)
+            SessionObjects.currentUser.release(managedObjectContext: SessionObjects.currentManageContext)
+            SessionObjects.currentVehicle.release(managedObjectContext: SessionObjects.currentManageContext)
             
             }
             else
             {
-                SessionObjects.currentUser.release(SessionObjects.currentManageContext)
+                SessionObjects.currentUser.release(managedObjectContext: SessionObjects.currentManageContext)
             }
             
-            deleteEntities("MyUser")
-            deleteEntities("Vehicle")
-            deleteEntities("Make")
-            deleteEntities("ServiceProvider")
+            deleteEntities(etitiyName: "MyUser")
+            deleteEntities(etitiyName:"Vehicle")
+            deleteEntities(etitiyName:"Make")
+            deleteEntities(etitiyName:"ServiceProvider")
             
             Defaults[.curentVehicleName] = nil
             Defaults[.isFBLogin] = false
@@ -156,9 +158,9 @@ class MenuTableViewController: UITableViewController {
             Defaults[.useremail] = nil
             
             
-            let login = self.loginStoryboard!.instantiateViewControllerWithIdentifier("loginNavigationController") as! UINavigationController
+            let login = self.loginStoryboard!.instantiateViewController(withIdentifier: "loginNavigationController") as! UINavigationController
             
-            self.slideMenuController()!.presentViewController(login, animated: true, completion: nil)
+            self.slideMenuController()!.present(login, animated: true, completion: nil)
 //            self.slideMenuController()!.presentedViewController(login, animated: true, completion: nil)
 //            self.slideMenuController()?.closeLeft()
             
@@ -171,7 +173,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     // MARK: - Scroll View Events
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if self.tableView == scrollView {
             scrollView.alwaysBounceHorizontal = false
             scrollView.alwaysBounceVertical = true
@@ -245,11 +247,11 @@ class MenuTableViewController: UITableViewController {
         if (SessionObjects.currentUser.image != nil)
         {
             profilePicture.image = UIImage(data: SessionObjects.currentUser.image!)
-            initialsLabel.hidden = true
+            initialsLabel.isHidden = true
             
             profilePicture.layer.borderWidth = 2.5
             profilePicture.layer.masksToBounds = false
-            profilePicture.layer.borderColor = UIColor.whiteColor().CGColor
+            profilePicture.layer.borderColor = UIColor.white.cgColor
             profilePicture.layer.cornerRadius = profilePicture.frame.height/2
             profilePicture.clipsToBounds = true
         }
@@ -272,23 +274,25 @@ class MenuTableViewController: UITableViewController {
                     
                 }
             }
-            initialsLabel.hidden = false
-            initialsLabel.text = userIntials.uppercaseString
+            initialsLabel.isHidden = false
+            initialsLabel.text = userIntials.uppercased()
+            
         }
     }
     
     func contextAwareTitle() -> String?
     {
-        let now = NSDate()
-        let cal = NSCalendar.currentCalendar()
-        let comps = cal.component(NSCalendarUnit.Hour, fromDate: now)
+        let now = Date()
+        let cal = NSCalendar.current
+        let comps = cal.component(Calendar.Component.hour, from: now)
+//        (NSCalendar.Unit.Hour, from: now)
         
         switch comps {
         case 0 ... 12:
-            self.backgroundColor.backgroundColor = UIColor.flatBlueColor()
+            self.backgroundColor.backgroundColor = UIColor.flatBlue()
             return "Good Morning"
         case 13 ... 17:
-            self.backgroundColor.backgroundColor = UIColor.flatMintColor()
+            self.backgroundColor.backgroundColor = UIColor.flatMint()
             return "Good Afternoon"
         case 18 ... 23:
             return "Good Evening"
@@ -300,16 +304,16 @@ class MenuTableViewController: UITableViewController {
     
     func deleteEntities(etitiyName : String)
     {
-        let fetchRequest = NSFetchRequest(entityName: etitiyName)
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: etitiyName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest )
         
         // delegate objects
         let myManagedObjectContext = SessionObjects.currentManageContext
-        let myPersistentStoreCoordinator = (UIApplication.sharedApplication().delegate as! AppDelegate).persistentStoreCoordinator
+        let myPersistentStoreCoordinator = (UIApplication.shared.delegate as! AppDelegate).persistentStoreCoordinator
         
         // perform the delete
         do {
-            try myPersistentStoreCoordinator.executeRequest(deleteRequest, withContext: myManagedObjectContext)
+            try myPersistentStoreCoordinator.execute(deleteRequest, with: myManagedObjectContext!)
         } catch let error as NSError {
             print(error)
         }

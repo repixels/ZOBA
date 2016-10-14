@@ -17,7 +17,7 @@ extension MyUser {
     @NSManaged var deviceToken: String?
     @NSManaged var email: String?
     @NSManaged var firstName: String?
-    @NSManaged var image: NSData?
+    @NSManaged var image: Data?
     @NSManaged var lastName: String?
     @NSManaged var password: String?
     @NSManaged var phone: String?
