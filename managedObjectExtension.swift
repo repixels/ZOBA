@@ -12,7 +12,8 @@ import UIKit
 
 extension NSManagedObject{
     
-    static private var privateContext : NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+    
+    static private var privateContext : NSManagedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     
     func release (managedObjectContext : NSManagedObjectContext){
         managedObjectContext.reset()
@@ -21,7 +22,7 @@ extension NSManagedObject{
     static func getPrivateContext() -> NSManagedObjectContext
     {
     
-        privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         //let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         privateContext.persistentStoreCoordinator = SessionObjects.currentManageContext.persistentStoreCoordinator
         
@@ -36,14 +37,14 @@ extension NSManagedObject{
     convenience init(unmanagedEntity : String){
         
         let privateContext =  NSManagedObject.getPrivateContext()
-        let desc = NSEntityDescription.entityForName(unmanagedEntity, inManagedObjectContext: privateContext)
-        self.init(entity: desc!,insertIntoManagedObjectContext:nil)
+        let desc = NSEntityDescription.entity(forEntityName: unmanagedEntity, in: privateContext)
+        self.init(entity: desc!,insertInto:nil)
     }
     
-    convenience init(managedObjectContext moc: NSManagedObjectContext , entityName entity: String){
+     public convenience init(managedObjectContext moc: NSManagedObjectContext , entityName entity: String){
     
-        let desc = NSEntityDescription.entityForName(entity, inManagedObjectContext: moc)
-        self.init(entity: desc!,insertIntoManagedObjectContext:moc)
+        let desc = NSEntityDescription.entity(forEntityName: entity, in: moc)
+        self.init(entity: desc!,insertInto:moc)
     }
     
     
@@ -66,7 +67,7 @@ extension NSManagedObject{
     func delete(){
     
         let moc = self.managedObjectContext
-        moc?.deleteObject(self)
+        moc?.delete(self)
         save()
     
     }

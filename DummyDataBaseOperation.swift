@@ -51,12 +51,14 @@ class DummyDataBaseOperation {
         let url = "http://10.118.48.143:8080/WebServiceProject/rest/img/mas"
         
         
-        _ = NSBundle.mainBundle().URLForResource("add-trip", withExtension: "png")
+        _ = Bundle.main.url(forResource: "add-trip", withExtension: "png")
         
         
-        let base64String = data!.base64EncodedStringWithOptions([])
-        
-        Alamofire.request(.POST, url , parameters: ["image":base64String,"userId":1,"fileExt":"png"]).response { (req, res, data, error) in
+        let base64String = data!.base64EncodedString(options: [])
+//            .base64EncodedStringWithOptions([])
+    
+        Alamofire.request( url,method: .post , parameters: ["image":base64String,"userId":1,"fileExt":"png"])
+            .response { (req, res, data, error) in
             print(res)
         }
         

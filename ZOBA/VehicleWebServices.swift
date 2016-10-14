@@ -161,13 +161,11 @@ class VehicleWebServices {
                                               "initialOdemeter":vehicle.initialOdemeter!,
                                               "licencePlate":vehicle.licensePlate! as AnyObject]
         Alamofire.request(vehicleUrl, method: .get, parameters: params).responseJSON { (response) in
-//            <#code#>
-//        }
-//        Alamofire.request(.GET,vehicleUrl ,parameters: params).responseJSON { response in
+            
             switch response.result
             {
                 
-            case .success(let _data):
+            case .success(let _data as NSDictionary):
                 
                 let connectionStatus = _data["status"] as! String
                 switch connectionStatus
@@ -176,8 +174,8 @@ class VehicleWebServices {
                     let vehicleJson = _data["result"]
                     
                     
-                    let vehicle = Mapper<Vehicle>().map(vehicleJson)
-                    result(returnedVehicle: vehicle!, code: "success")
+                    let vehicle = Mapper<Vehicle>().map(JSON : vehicleJson as! [String : Any])
+                    result(vehicle!, "success")
                     
                     
                     break;

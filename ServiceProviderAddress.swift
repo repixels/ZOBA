@@ -18,7 +18,7 @@ class ServiceProviderAddress: NSManagedObject , Mappable{
         super.init(entity: entity, insertInto: context)
     }
     
-    required init?(_ map: Map) {
+    required init?( map: Map) {
         
         let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entity(forEntityName: "ServiceProviderAddress", in: managedContext!)
@@ -27,7 +27,7 @@ class ServiceProviderAddress: NSManagedObject , Mappable{
         
     }
     
-    func mapping(_ map: Map) {
+    func mapping( map: Map) {
         
         var longtitudeStr = ""
         longtitudeStr <- map["longitude"]

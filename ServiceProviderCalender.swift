@@ -14,16 +14,16 @@ import ObjectMapper
 class ServiceProviderCalender: NSManagedObject , Mappable{
     
     // Insert code here to add functionality to your managed object subclass
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
         let managedContext = SessionObjects.currentManageContext
-        let entity = NSEntityDescription.entityForName("ServiceProviderCalender", inManagedObjectContext: managedContext)
+        let entity = NSEntityDescription.entity(forEntityName: "ServiceProviderCalender", in: managedContext!)
         
-        super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        super.init(entity: entity!, insertInto: managedContext)
     }
     
     func mapping(map: Map) {
@@ -34,17 +34,17 @@ class ServiceProviderCalender: NSManagedObject , Mappable{
         endingHRStr <- map["endingHour"]
         startingHRStr <- map["startingHour"]
         
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm"
         
         
         if endingHRStr != nil {
             
-            self.endingHour = formatter.dateFromString(endingHRStr!)?.timeIntervalSince1970
+            self.endingHour = formatter.date(from: endingHRStr!)?.timeIntervalSince1970 as NSNumber?
         }
         
         if startingHRStr != nil {
-            self.startingHour      = formatter.dateFromString(startingHRStr!)?.timeIntervalSince1970
+            self.startingHour      = formatter.date(from: startingHRStr!)?.timeIntervalSince1970 as NSNumber?
             
         }
         

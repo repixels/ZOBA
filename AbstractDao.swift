@@ -20,12 +20,14 @@ class AbstractDao {
     func selectAll(entityName entity : String  )-> [NSManagedObject]{
         
         
-        let fetchRequest = NSFetchRequest(entityName: entity )
+        let fetchRequest :NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entity)
+        
         
         
         var res : [NSManagedObject]!
         do{
-            res = try moc.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            res = try moc.fetch(fetchRequest) 
+//            executeFetchRequest(fetchRequest)
         } catch let error {
             print(error)
         }
@@ -37,14 +39,14 @@ class AbstractDao {
     func selectByString(entityName entity : String ,AttributeName attribute : String , value : String  )-> [NSManagedObject]{
       
         
-        let fetchRequest = NSFetchRequest(entityName: entity )
+        let fetchRequest :NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entity)
         
         
         let predicate = NSPredicate(format:   "%K= %@",attribute,value)
         fetchRequest.predicate = predicate
         var res : [NSManagedObject]!
         do{
-            res = try moc.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            res = try moc.fetch(fetchRequest)
         } catch let error {
             print(error)
         }
@@ -57,14 +59,14 @@ class AbstractDao {
     func selectByInt(entityName entity : String ,AttributeName attribute : String , value : Int  )-> [NSManagedObject]{
         
         
-        let fetchRequest = NSFetchRequest(entityName: entity)
+        let fetchRequest :NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entity)
         
         
         let predicate = NSPredicate(format:   "%K= %d",attribute,value)
         fetchRequest.predicate = predicate
         var res : [NSManagedObject]!
         do{
-            res = try moc.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+            res = try moc.fetch(fetchRequest) 
         } catch let error {
             print(error)
         }
