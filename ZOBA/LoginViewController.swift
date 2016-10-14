@@ -121,7 +121,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     switch code
                     {
                     case "success":
-                        userWebService.user?.image = imageData
+                        userWebService.user?.image = imageData as Data?
                         self.navigateToMain(userWebService)
                         break;
                     case "error":

@@ -74,7 +74,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         
     }
     
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         if ((error) != nil)
         {
             let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.alert)
@@ -105,14 +105,15 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
             }
             else
             {
-                let userId = result.value(forKey: "id") as? String
-                let firstName = result.value(forKey: "first_name") as? String
-                let lastName = result.value(forKey: "last_name") as? String
-                let userEmail = (result.value(forKey: "email") as? String)!
+                let userId = (result as AnyObject).value(forKey: "id") as? String
+                let firstName = (result as AnyObject).value(forKey: "first_name") as? String
+                let lastName = (result as AnyObject).value(forKey: "last_name") as? String
+                let userEmail = ((result as AnyObject).value(forKey: "email") as? String)!
                 let userName = userEmail.components(separatedBy: "@")[0]
                 let userProfileImage = "http://graph.facebook.com/\(userId!)/picture?type=large"
                 
-                let  fbUser = MyUser(entity: SessionObjects.currentManageContext, insertIntoManagedObjectContext: "MyUser")
+                let  fbUser = MyUser(managedObjectContext: SessionObjects.currentManageContext, entityName: "MyUser")
+                
                 fbUser.email = userEmail
                 fbUser.userName = userName
                 fbUser.firstName = firstName
@@ -121,7 +122,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                 fbUser.password = self.randomAlphaNumericString(6)
                 let userWebService = UserWebservice(currentUser: fbUser)
                 
-                userWebService.getUserImageFromFacebook(userProfileImage, result: { (imageData, code) in
+                userWebService.getUserImageFromFacebook(profilePictureURL: userProfileImage, result: { (imageData, code) in
                     switch code
                     {
                     case "success":
@@ -140,7 +141,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     func navigateToMain(_ userWebService: UserWebservice)
     {
-        userWebService.registerWithFaceBook({ (user, code) in
+        userWebService.registerWithFaceBook(result: { (user, code) in
             
             switch code{
                 
@@ -213,7 +214,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     @IBAction func validateUserEmail(_ sender: AnyObject)
     {
-        if(DataValidations.isValidEmail(emailTextField.text!))
+        if(DataValidations.isValidEmail(testStr: emailTextField.text!))
         {
             hideErrorMessage("Email", textField: emailTextField)
             isEmailValid = true
@@ -228,7 +229,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     @IBAction func validateFirstName(_ sender: AnyObject)
     {
-        if(firstNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(firstNameTextField.text!))
+        if(firstNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(str: firstNameTextField.text!))
         {
             hideErrorMessage("First Name", textField: firstNameTextField)
             isFirstNameValid = true
@@ -243,7 +244,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     @IBAction func validateLastName(_ sender: AnyObject)
     {
-        if(lastNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(lastNameTextField.text!))
+        if(lastNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(str: lastNameTextField.text!))
         {
             hideErrorMessage("Last Name", textField: lastNameTextField)
             isLastNameValid = true
@@ -258,7 +259,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     @IBAction func validateUserName(_ sender: AnyObject)
     {
-        if(userNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(userNameTextField.text!))
+        if(userNameTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(str: userNameTextField.text!))
         {
             hideErrorMessage("User Name", textField: userNameTextField)
             isUserNameValid = true
@@ -273,7 +274,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     @IBAction func validatePassword(_ sender: AnyObject)
     {
-        if(passwordTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(passwordTextField.text!))
+        if(passwordTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(str: passwordTextField.text!))
         {
             hideErrorMessage("Password", textField: passwordTextField)
             isPasswordValid = true
@@ -312,9 +313,9 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     func showErrorMessage(_ message:String , textField:HoshiTextField)
     {
-        textField.borderInactiveColor = UIColor.redColor()
-        textField.borderActiveColor = UIColor.redColor()
-        textField.placeholderColor = UIColor.redColor()
+        textField.borderInactiveColor = UIColor.red
+        textField.borderActiveColor = UIColor.red
+        textField.placeholderColor = UIColor.red
         textField.placeholderLabel.text = message
         textField.placeholderLabel.sizeToFit()
         textField.placeholderLabel.alpha = 1.0
@@ -322,9 +323,9 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     func hideErrorMessage(_ message : String , textField: HoshiTextField)
     {
-        textField.borderInactiveColor = UIColor.greenColor()
-        textField.borderActiveColor = UIColor.greenColor()
-        textField.placeholderColor = UIColor.whiteColor()
+        textField.borderInactiveColor = UIColor.green
+        textField.borderActiveColor = UIColor.green
+        textField.placeholderColor = UIColor.white
         textField.placeholderLabel.text = message
     }
     
@@ -333,7 +334,8 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
         switch identifier {
         case "Register To Main":
             
-            let managedUser = MyUser(entity: SessionObjects.currentManageContext , insertIntoManagedObjectContext:"MyUser")
+            let managedUser = MyUser(managedObjectContext: SessionObjects.currentManageContext, entityName: "MyUser")
+            
             let userWebservice = UserWebservice(currentUser: managedUser)
             
             
@@ -343,7 +345,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
             managedUser.lastName = lastNameTextField.text
             managedUser.userName = userNameTextField.text
             
-            userWebservice.registerUser({ (user, code) in
+            userWebservice.registerUser(result: { (user, code) in
                 
                 switch code
                 {
@@ -365,16 +367,16 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                     
                     
                     let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
-                    let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                    let homeTabController : HomeViewController = homeStoryBoard.instantiateViewController(withIdentifier: "HomeTabController") as! HomeViewController
                     
                     let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
-                    let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                    let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuTableViewController
                     
                     
                     let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
                     slideMenuController.automaticallyAdjustsScrollViewInsets = true
                     
-                    let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let app = UIApplication.shared.delegate as! AppDelegate
                     app.window?.rootViewController = slideMenuController
                     
                     //start detection if user has car
@@ -385,11 +387,11 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
                     }
                     
                     let serviceCenterWebSevice = ServiceProviderWebService()
-                    serviceCenterWebSevice.getServiceProvider({ (serviceProvider, code) in
+                    serviceCenterWebSevice.getServiceProvider(result: { (serviceProvider, code) in
                         switch code{
                         case "success" :
-                            print("serviceProviders count : \(serviceProvider.count)")
-                            serviceProvider[0].save()
+                            print("serviceProviders count : \(serviceProvider?.count)")
+                            serviceProvider?[0].save()
                         default :
                             print("failed")
                             DummyDataBaseOperation.populateOnlyOnce()
