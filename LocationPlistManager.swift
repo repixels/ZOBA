@@ -22,16 +22,16 @@ class LocationPlistManager {
         
         self.name = "CoordinateList"
         
-        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         let url = NSURL(string: paths)
-        path = (url?.URLByAppendingPathComponent(name+".plist"))!
-        let fileManager = NSFileManager.defaultManager()
-        if (!(fileManager.fileExistsAtPath((path.absoluteString))))
+        path = (url?.appendingPathComponent(name+".plist"))! as NSURL
+        let fileManager = FileManager.default
+        if (!(fileManager.fileExists(atPath: (path.absoluteString)!)))
         {
             do {
                 //try fileManager.removeItemAtPath(path!.absoluteString)
-                let bundle : NSString = NSBundle.mainBundle().pathForResource(name, ofType: "plist")!
-                try  fileManager.copyItemAtPath(bundle as String, toPath: path.absoluteString)
+                let bundle : NSString = Bundle.main.path(forResource: name, ofType: "plist")! as NSString
+                try  fileManager.copyItem(atPath: bundle as String, toPath: path.absoluteString!)
             }
                 
             catch let error {
@@ -45,17 +45,17 @@ class LocationPlistManager {
         // if plist is empty then this is the first location to save then no distance to calc
         let locationsArray = self.getLocationsDictionaryArray()
         if(locationsArray.count>0){
-            let lastLoc = self.getLocationFromDictionary(self.getLocationDictionaryAt(locationsArray.count - 1))
+            let lastLoc = self.getLocationFromDictionary(dictionary: self.getLocationDictionaryAt(index: locationsArray.count - 1))
             
-            LocationPlistManager.distance += location.distanceFromLocation(lastLoc)
+            LocationPlistManager.distance += location.distance(from: lastLoc)
         }else {
             print("saving first location")
             print("\(location.timestamp) \n \(location.coordinate.longitude ) \n \(location.coordinate.latitude)")
             print("==========================")
-            saveFirstLocationInformation(location)
+            saveFirstLocationInformation(location: location)
             LocationPlistManager.distance = 0
         }
-        self.saveLastLocationInformation(location)
+        self.saveLastLocationInformation(location: location)
         
         //      self.savePoint(location)
         
@@ -63,17 +63,17 @@ class LocationPlistManager {
         
         if firstPoint == nil{
             firstPoint = location.coordinate
-            self.savePoint(location)
+            self.savePoint(location: location)
             print("first point is nil and count : \(locationsArray.count)")
         }else if secondPoint == nil {
             secondPoint = location.coordinate
-            self.savePoint(location)
+            self.savePoint(location: location)
             print("second point is nil and count : \(locationsArray.count)")
             
-        }else if !isOnTheSameLine(firstPoint,secondPoint: secondPoint,thirdPoint: location.coordinate){
+        }else if !isOnTheSameLine(firstPoint: firstPoint,secondPoint: secondPoint,thirdPoint: location.coordinate){
             
             self.removeLastLocation()
-            self.savePoint(location)
+            self.savePoint(location: location)
             firstPoint = location.coordinate
             secondPoint = nil
             print("not on the same line and count : \(locationsArray.count)")
@@ -84,17 +84,14 @@ class LocationPlistManager {
     
     private func savePoint(location :CLLocation){
         
-        
-        
-        
-        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString)
-        let arr = dict?.mutableArrayValueForKey("Points")
+        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString!)
+        let arr = dict?.mutableArrayValue(forKey: "Points")
         let point = NSMutableDictionary()
         point.setValue(String(location.coordinate.latitude), forKey: "latitude")
         point.setValue(String(location.coordinate.longitude), forKey: "longitude")
         point.setValue(String(location.speed), forKey: "speed")
-        arr?.addObject(point)
-        dict?.writeToFile(path.absoluteString, atomically: false)
+        arr?.add(point)
+        dict?.write(toFile: path.absoluteString!, atomically: false)
         
     }
     
@@ -113,17 +110,17 @@ class LocationPlistManager {
     
     
     func getLocationsDictionaryArray() -> NSArray {
-        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString)
-        let arr = dict?.mutableArrayValueForKey("Points")
+        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString!)
+        let arr = dict?.mutableArrayValue(forKey: "Points")
         return arr!;
     }
     
     
     func clearPlist(){
-        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString)
-        let arr = dict?.mutableArrayValueForKey("Points")
+        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString!)
+        let arr = dict?.mutableArrayValue(forKey: "Points")
         arr?.removeAllObjects()
-        dict?.writeToFile(path.absoluteString, atomically: false)
+        dict?.write(toFile: path.absoluteString!, atomically: false)
         LocationPlistManager.distance = 0
         
         
@@ -133,15 +130,15 @@ class LocationPlistManager {
     }
     
     private func removeLastLocation(){
-        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString)
-        let arr = dict?.mutableArrayValueForKey("Points")
-        let oldLastLocation = getLocationFromDictionary((arr?.lastObject)! as! NSMutableDictionary)
+        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString!)
+        let arr = dict?.mutableArrayValue(forKey: "Points")
+        let oldLastLocation = getLocationFromDictionary(dictionary: (arr?.lastObject)! as! NSMutableDictionary)
         arr?.removeLastObject()
-        let newLastLocation = getLocationFromDictionary((arr?.lastObject)! as! NSMutableDictionary)
+        let newLastLocation = getLocationFromDictionary(dictionary: (arr?.lastObject)! as! NSMutableDictionary)
         
-        dict?.writeToFile(path.absoluteString, atomically: false)
+        dict?.write(toFile: path.absoluteString!, atomically: false)
         
-        LocationPlistManager.distance -= oldLastLocation.distanceFromLocation(newLastLocation)
+        LocationPlistManager.distance -= oldLastLocation.distance(from: newLastLocation)
         
     }
     
@@ -153,9 +150,8 @@ class LocationPlistManager {
     
     func getLocationFromDictionary(dictionary : NSMutableDictionary ) ->(CLLocation){
         
-        
-        let lat = CLLocationDegrees.init(dictionary.valueForKey("latitude") as! String)
-        let long = CLLocationDegrees.init(dictionary.valueForKey("longitude") as! String)
+        let lat = CLLocationDegrees.init(dictionary.value(forKey: "latitude") as! String)
+        let long = CLLocationDegrees.init(dictionary.value(forKey: "longitude") as! String)
         
         let location:CLLocation = CLLocation(latitude: lat!, longitude: long!)
         
@@ -164,15 +160,15 @@ class LocationPlistManager {
     
     func getSpeed(atIndex : Int)-> Double
     {
-        let dictionary = getLocationDictionaryAt(atIndex)
-        let speed = dictionary.valueForKey("speed") as! Double
+        let dictionary = getLocationDictionaryAt(index: atIndex)
+        let speed = dictionary.value(forKey: "speed") as! Double
         return speed
     }
     
     func getCoordinatesArray() -> [CLLocationCoordinate2D]{
         var coordinates = [CLLocationCoordinate2D]()
         for i in 0 ..< self.getLocationsDictionaryArray().count {
-            let location = self.getLocationFromDictionary(self.getLocationDictionaryAt(i))
+            let location = self.getLocationFromDictionary(dictionary: self.getLocationDictionaryAt(index: i))
             coordinates.append(location.coordinate)
             
         }
@@ -191,22 +187,22 @@ class LocationPlistManager {
     
     
     func saveFirstLocationInformation(location : CLLocation){
-        let userDefault =  NSUserDefaults.standardUserDefaults()
+        let userDefault =  UserDefaults.standard
         
-        userDefault.setObject(location.timestamp, forKey: "firstDate")
-        userDefault.setObject(location.coordinate.latitude, forKey: "firstLatitude")
-        userDefault.setObject(location.coordinate.longitude, forKey: "firstLongitude")
+        userDefault.set(location.timestamp, forKey: "firstDate")
+        userDefault.set(location.coordinate.latitude, forKey: "firstLatitude")
+        userDefault.set(location.coordinate.longitude, forKey: "firstLongitude")
         
     }
     
-    func readFirstLocation() -> (date: NSDate! ,latitude: CLLocationDegrees! ,longitude : CLLocationDegrees!){
+    func readFirstLocation() -> (date: NSDate? ,latitude: CLLocationDegrees? ,longitude : CLLocationDegrees?){
         
-        let userDefault =  NSUserDefaults.standardUserDefaults()
-        if ( userDefault.objectForKey("firstDate") != nil){
-            let date = userDefault.objectForKey("firstDate") as! NSDate
+        let userDefault =  UserDefaults.standard
+        if ( userDefault.object(forKey: "firstDate") != nil){
+            let date = userDefault.object(forKey: "firstDate") as! NSDate
             
-            let latitude = userDefault.objectForKey("firstLatitude") as! CLLocationDegrees
-            let longitude = userDefault.objectForKey("firstLongitude") as! CLLocationDegrees
+            let latitude = userDefault.object(forKey: "firstLatitude") as! CLLocationDegrees
+            let longitude = userDefault.object(forKey: "firstLongitude") as! CLLocationDegrees
             
             return (date ,latitude ,longitude)
         }
@@ -218,22 +214,22 @@ class LocationPlistManager {
     
     
     func saveLastLocationInformation(location : CLLocation){
-        let userDefault =  NSUserDefaults.standardUserDefaults()
+        let userDefault =  UserDefaults.standard
         
-        userDefault.setObject(location.timestamp, forKey: "lastDate")
-        userDefault.setObject(location.coordinate.latitude, forKey: "lastLatitude")
-        userDefault.setObject(location.coordinate.longitude, forKey: "lastLongitude")
+        userDefault.set(location.timestamp, forKey: "lastDate")
+        userDefault.set(location.coordinate.latitude, forKey: "lastLatitude")
+        userDefault.set(location.coordinate.longitude, forKey: "lastLongitude")
         
     }
     
-    func readLastLocation() -> (date: NSDate! ,latitude: CLLocationDegrees! ,longitude : CLLocationDegrees!){
+    func readLastLocation() -> (date: NSDate? ,latitude: CLLocationDegrees? ,longitude : CLLocationDegrees?){
         
-        let userDefault =  NSUserDefaults.standardUserDefaults()
-        if ( userDefault.objectForKey("lastDate") != nil){
-            let date = userDefault.objectForKey("lastDate") as! NSDate
+        let userDefault =  UserDefaults.standard
+        if ( userDefault.object(forKey: "lastDate") != nil){
+            let date = userDefault.object(forKey: "lastDate") as! NSDate
             
-            let latitude = userDefault.objectForKey("lastLatitude") as! CLLocationDegrees
-            let longitude = userDefault.objectForKey("lastLongitude") as! CLLocationDegrees
+            let latitude = userDefault.object(forKey: "lastLatitude") as! CLLocationDegrees
+            let longitude = userDefault.object(forKey: "lastLongitude") as! CLLocationDegrees
             
             return (date ,latitude ,longitude)
         }
@@ -244,12 +240,12 @@ class LocationPlistManager {
     }
     
     func removeAllButLastLocation(){
-        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString)
-        let oldArr = dict?.mutableArrayValueForKey("Points")
+        let dict = NSMutableDictionary.init(contentsOfFile: path.absoluteString!)
+        let oldArr = dict?.mutableArrayValue(forKey: "Points")
        
-        while oldArr?.count > 1 {
-            oldArr?.removeObjectAtIndex(0)
+        while (oldArr?.count)! > 1 {
+            oldArr?.removeObject(at: 0)
         }
-        dict?.writeToFile(path.absoluteString, atomically: false)
+        dict?.write(toFile: path.absoluteString!, atomically: false)
     }
 }
