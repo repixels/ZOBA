@@ -33,9 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.application = application
         
         //AlamoFire Network Indicator
-        NetworkActivityIndicatorManager.sharedManager.isEnabled = true
-        NetworkActivityIndicatorManager.sharedManager.startDelay = 0
-        NetworkActivityIndicatorManager.sharedManager.completionDelay = 0.5
+        NetworkActivityIndicatorManager.shared.isEnabled = true
+        NetworkActivityIndicatorManager.shared.startDelay = 0
+        NetworkActivityIndicatorManager.shared.completionDelay = 0.5
         
         
         
