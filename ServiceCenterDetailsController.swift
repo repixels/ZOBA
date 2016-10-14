@@ -84,7 +84,7 @@ class ServiceCenterDetailsController: UIViewController  {
             }
         }
         
-        nameInitialTextField.text = serviceInitial.capitalizedString
+        nameInitialTextField.text = serviceInitial.capitalized
         
     }
     

@@ -8,36 +8,44 @@
 
 import Foundation
 
-extension NSDate {
-    func yearsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Year, fromDate: date, toDate: self, options: []).year
+extension Date {
+    /// Returns the amount of years from another date
+    func years(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.year], from: date, to: self).year ?? 0
     }
-    func monthsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Month, fromDate: date, toDate: self, options: []).month
+    /// Returns the amount of months from another date
+    func months(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
     }
-    func weeksFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.WeekOfYear, fromDate: date, toDate: self, options: []).weekOfYear
+    /// Returns the amount of weeks from another date
+    func weeks(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.weekOfYear], from: date, to: self).weekOfYear ?? 0
     }
-    func daysFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Day, fromDate: date, toDate: self, options: []).day
+    /// Returns the amount of days from another date
+    func days(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
     }
-    func hoursFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Hour, fromDate: date, toDate: self, options: []).hour
+    /// Returns the amount of hours from another date
+    func hours(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.hour], from: date, to: self).hour ?? 0
     }
-    func minutesFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Minute, fromDate: date, toDate: self, options: []).minute
+    /// Returns the amount of minutes from another date
+    func minutes(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.minute], from: date, to: self).minute ?? 0
     }
-    func secondsFrom(date:NSDate) -> Int{
-        return NSCalendar.currentCalendar().components(.Second, fromDate: date, toDate: self, options: []).second
+    /// Returns the amount of seconds from another date
+    func seconds(from date: Date) -> Int {
+        return Calendar.current.dateComponents([.second], from: date, to: self).second ?? 0
     }
-    func offsetFrom(date:NSDate) -> String {
-        if yearsFrom(date)   > 0 { return "\(yearsFrom(date))y"   }
-        if monthsFrom(date)  > 0 { return "\(monthsFrom(date))M"  }
-        if weeksFrom(date)   > 0 { return "\(weeksFrom(date))w"   }
-        if daysFrom(date)    > 0 { return "\(daysFrom(date))d"    }
-        if hoursFrom(date)   > 0 { return "\(hoursFrom(date))h"   }
-        if minutesFrom(date) > 0 { return "\(minutesFrom(date))m" }
-        if secondsFrom(date) > 0 { return "\(secondsFrom(date))s" }
+    /// Returns the a custom time interval description from another date
+    func offset(from date: Date) -> String {
+        if years(from: date)   > 0 { return "\(years(from: date))y"   }
+        if months(from: date)  > 0 { return "\(months(from: date))M"  }
+        if weeks(from: date)   > 0 { return "\(weeks(from: date))w"   }
+        if days(from: date)    > 0 { return "\(days(from: date))d"    }
+        if hours(from: date)   > 0 { return "\(hours(from: date))h"   }
+        if minutes(from: date) > 0 { return "\(minutes(from: date))m" }
+        if seconds(from: date) > 0 { return "\(seconds(from: date))s" }
         return ""
     }
 }
