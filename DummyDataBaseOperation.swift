@@ -58,8 +58,8 @@ class DummyDataBaseOperation {
 //            .base64EncodedStringWithOptions([])
     
         Alamofire.request( url,method: .post , parameters: ["image":base64String,"userId":1,"fileExt":"png"])
-            .response { (req, res, data, error) in
-            print(res)
+           .response { (response) in
+            print(response.response)
         }
         
     }
@@ -78,7 +78,7 @@ class DummyDataBaseOperation {
         measuringUnitObj.name = "liters"
         measuringUnitObj.suffix = "L"
         
-        measuringUnitObj.mutableSetValueForKey("trackingType").addObject(trackingType)
+        measuringUnitObj.mutableSetValue(forKey: "trackingType").add(trackingType)
         
         measuringUnitObj.save()
         
@@ -86,7 +86,7 @@ class DummyDataBaseOperation {
         
         serobj.name = name!
         serobj.save()
-        serobj.mutableSetValueForKey("trackingType").addObject(trackingType)
+        serobj.mutableSetValue(forKey: "trackingType").add(trackingType)
         
     }
     
@@ -120,8 +120,8 @@ class DummyDataBaseOperation {
         for i in 2000...2015
         {
             let year = Year(managedObjectContext: SessionObjects.currentManageContext, entityName: "Year")
-            year.name = i
-            year.yearId = i
+            year.name = i as NSNumber?
+            year.yearId = i as NSNumber?
             year.save()
             
         }
@@ -240,11 +240,11 @@ class DummyDataBaseOperation {
         
         let serviceProvider = ServiceProvider(managedObjectContext: SessionObjects.currentManageContext, entityName: "ServiceProvider")
         serviceProvider.address = serviceProviderAddress
-        serviceProvider.calender?.mutableSetValueForKey("calender").addObject(serviceProviderCalendar)
+        serviceProvider.calender?.mutableSetValue(forKey: "calender").add(serviceProviderCalendar)
         serviceProvider.email = "info@total.eg"
         serviceProvider.webSite = "total.eg"
         serviceProvider.name = "Total Egypt"
-        serviceProvider.phone?.mutableSetValueForKey("phone").addObject(serviceProviderPhone)
+        serviceProvider.phone?.mutableSetValue(forKey: "phone").add(serviceProviderPhone)
         serviceProvider.save()
         
         

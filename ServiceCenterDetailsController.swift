@@ -37,7 +37,7 @@ class ServiceCenterDetailsController: UIViewController  {
         
         nameTextField.text = serviceProvider.name!
         prepareInitials()
-        prepareNavigationBar(serviceProvider.name!)
+        prepareNavigationBar(title: serviceProvider.name!)
         self.addAnnotation()
         
         let address = serviceProvider.address
@@ -107,28 +107,27 @@ class ServiceCenterDetailsController: UIViewController  {
     func prepareNavigationBar(title: String)
     {
         self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+            [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.navigationController!.navigationBar.tintColor = UIColor.white;
         // self.title = self.contextAwareTitle()
         self.title = title
-        self.navigationController?.navigationBar.userInteractionEnabled = true
+        self.navigationController?.navigationBar.isUserInteractionEnabled = true
         
         
     }
     
     
     
-    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
         
         if segue.identifier == "servicesSegue"
         {
-            let controller = segue.destinationViewController as! ServicesTableViewController
+            let controller = segue.destination as! ServicesTableViewController
             
             controller.serviceProvider = self.serviceProvider
         
