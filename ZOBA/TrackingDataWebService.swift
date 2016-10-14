@@ -24,45 +24,47 @@ class TrackingDataWebService {
         let url = buildUrl("trackingData/add")
         let params :[String : AnyObject]? =
             [ "intialOdemeter" : trackingData.initialOdemeter!,
-              "dataAdded" : String(trackingData.dateAdded!),
-              "dataModified" : String(trackingData.dateAdded!),
+              "dataAdded" : String(describing: trackingData.dateAdded!)  as AnyObject ,
+              "dataModified" : String(describing: trackingData.dateAdded!) as AnyObject,
               "typeId" : trackingData.trackingType!.typeId! ,
-              "value" : trackingData.value!,
+              "value" : trackingData.value! as AnyObject,
               "vehicleId" : trackingData.vehicle!.vehicleId!
             ]
         
-        Alamofire.request(.GET,url,parameters: params).responseJSON { (response) in
+        Alamofire.request(url,method : .get,parameters: params).responseJSON { (response) in
             switch response.result
             {
                 
-            case .Success(let _data):
+            case .success(_):
                 
-                let connectionStatus = _data["status"] as! String
-                switch connectionStatus
+                if let data = response.result.value as? [String : AnyObject]
                 {
-                case "success":
+                    let connectionStatus = data["status"] as! String
+                    switch connectionStatus
+                    {
+                    case "success":
                     
-                    let trackingDataJson = _data["result"]
+                        let trackingDataJson = data["result"] as?  [String :AnyObject]
                     
                     
-                    let returnedTrackingData = Mapper<TrackingData>().map(trackingDataJson)
-                    result(trackingData: returnedTrackingData!, code: "success")
+                        let returnedTrackingData = Mapper<TrackingData>().map(JSON :trackingDataJson!)
+                        result(returnedTrackingData!, "success")
                     
                     
-                    break;
-                case "error":
-                    result(trackingData: nil, code: "error")
+                        break;
+                    case "error":
+                        result(nil, "error")
                     
-                    break;
-                default:
+                        break;
+                    default:
                     
-                    break;
+                        break;
                     
+                    }
                 }
-                
                 break
-            case .Failure( _):
-                result(trackingData: nil, code: "error")
+            case .failure(_):
+                result(nil, "error")
                 break
             }
             

@@ -35,28 +35,32 @@ class DeviceWebservice {
     func registerUserDevice()
     {
         self.buildRegisterDeviceURL()
-        Alamofire.request(.GET, self.registerDeviceURL)
+        Alamofire.request( self.registerDeviceURL,method : .get )
             .responseJSON { response in
                 switch response.result
                 {
-                case .Success(let _data):
-                    let connectionStatus = _data["status"] as! String
-                    switch connectionStatus
+                case .success(_):
+                    if  let data = response.result.value as? [String:AnyObject]
                     {
+                        let connectionStatus = data["status"] as! String
+                        switch connectionStatus
+                        {
                         case "success":
-                            print(_data)
-                            break;
-                        case "error":
-                            print(_data)
-                            break;
-                        default:
-                            print(_data)
-                            break;
+                                print(data)
+                                break;
+                            case "error":
+                                print(data)
+                                break;
+                            default:
+                                print(data)
+                                break;
                         
                     }
+                }
                     break;
-                case .Failure(let _error):
-                    print(_error)
+                case .failure(let error):
+                    print(error)
+
                     break;
                 }
                 

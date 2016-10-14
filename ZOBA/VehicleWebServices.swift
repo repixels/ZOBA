@@ -22,29 +22,32 @@ class VehicleWebServices {
     func getMakes(result : @escaping ((_ makes : [Make]? ,_ code :String)->())){
         let makeUrl = buildUrl(url: "vehicle/makes")
         print(makeUrl)
-        Alamofire.request(.GET,makeUrl).responseJSON { (response) in
+        Alamofire.request( makeUrl ,method : .get).responseJSON { (response) in
             
             switch response.result {
                 
-            case .Success(let data):
-                print(data["status"])
-                let connectionStatus = data["status"] as! String
-                switch connectionStatus
-                {
-                case "success":
-                    let makeJson = data["result"] as! NSArray
-                    let makesArray = Mapper<Make>().mapArray(makeJson)
-                    result(makes: makesArray, code: "success")
-                case "error" :
-                    result(makes: nil, code: "error")
-                    break
-                default :
-                    result(makes: nil, code: "error")
-                    break
+            case .success(_):
+                if let data = response.result.value as? [String : AnyObject]
+                    {
+                        let connectionStatus = data["status"] as! String
+                        switch connectionStatus
+                        {
+                        case "success":
+                            let makeJson = data["result"] as! [[String : AnyObject]]
+                            
+                            let makesArray = Mapper<Make>().mapArray(JSONArray: makeJson)
+                            result(makesArray, "success")
+                        case "error" :
+                            result(nil, "error")
+                            break
+                        default :
+                            result(nil, "error")
+                            break
+                        }
                 }
-            case .Failure(let error):
+            case .failure(let error) :
                 print(error)
-                result(makes: nil, code: "error")
+                result(nil, "error")
                 break
             }
             
@@ -55,28 +58,33 @@ class VehicleWebServices {
     
     func getModels(makeName : String , result : @escaping ((_ models : [Model]? ,_ code :String)->())){
         let makeUrl = buildUrl(url: "vehicle/models")
-        Alamofire.request(.GET,makeUrl,parameters: ["make":makeName]).responseJSON { (response) in
+        Alamofire.request(makeUrl, method : .get ,parameters: ["make":makeName]).responseJSON { (response) in
             
             switch response.result {
                 
-            case .Success(let data):
-                let connectionStatus = data["status"] as! String
-                switch connectionStatus
+            case .success(_):
+                if let data = response.result.value as? [String : AnyObject]
                 {
-                case "success":
-                    let json = data["result"]
-                    let modelsArray = Mapper<Model>().mapArray(json)
-                    result(models: modelsArray!, code: connectionStatus)
-                case "error" :
-                    result(models: nil, code: "error")
-                    break
-                default :
-                    result(models: nil, code: "error")
-                    break
+                    let connectionStatus = data["status"] as! String
+                    switch connectionStatus
+                    {
+                    case "success":
+                        let json = data["result"] as? [[String : AnyObject]]
+                        let modelsArray = Mapper<Model>().mapArray(JSONArray: json!)
+                        
+                        result(modelsArray!, connectionStatus)
+                    case "error" :
+                        result(nil, "error")
+                        break
+                    default :
+                        result(nil, "error")
+                        break
                 }
-            case .Failure(let error):
+            }
+                break
+            case .failure(let error):
                 print(error)
-                result(models: nil, code: "We're having a tiny problem. try again later")
+                result(nil, "We're having a tiny problem. try again later")
                 break
             }
             
@@ -87,27 +95,30 @@ class VehicleWebServices {
     
     func getYears(modelName : String , result : @escaping ((_ years : [Year]? ,_ code :String)->())){
         let makeUrl = buildUrl(url: "vehicle/year")
-        Alamofire.request(.GET,makeUrl,parameters: ["model":modelName]).responseJSON { (response) in
+        Alamofire.request(makeUrl, method : .get ,parameters: ["model":modelName]).responseJSON { (response) in
             
             switch response.result {
                 
-            case .Success(let data):
+            case .success(_):
+                if let data = response.result.value as? [String : AnyObject]
+                {
                 print(data["status"])
                 let connectionStatus = data["status"] as! String
                 switch connectionStatus
                 {
                 case "success":
-                    let json = data["result"]
-                    let yearArray = Mapper<Year>().mapArray(json)
-                    result(years: yearArray!, code: connectionStatus)
+                    let json = data["result"] as? [[String : AnyObject]]
+                    let yearArray = Mapper<Year>().mapArray(JSONArray:json!)
+                    result(yearArray!, connectionStatus)
                 case "error" :
-                    result(years: nil, code: "no years")
+                    result(nil, "no years")
                     break
                 default :
                     break
                 }
-            case .Failure(let error):
-                result(years: nil, code: "We're having a tiny problem. try again later")
+            }
+            case .failure(_):
+                result(nil, "We're having a tiny problem. try again later")
                 break
             }
             
@@ -120,27 +131,30 @@ class VehicleWebServices {
         
         let makeUrl = buildUrl(url: "vehicle/trim")
         
-        Alamofire.request(.GET,makeUrl,parameters: ["model":modelName,"year":year]).responseJSON { (response) in
+        Alamofire.request(makeUrl,method : .get,parameters: ["model":modelName,"year":year]).responseJSON { (response) in
             
             switch response.result
             {
-            case .Success(let data):
+            case .success(_):
+                if let data = response.result.value as? [String : AnyObject]
+                {
                 let connectionStatus = data["status"] as! String
                 switch connectionStatus
                 {
                 case "success":
-                    let json = data["result"]
-                    let trimsArray = Mapper<Trim>().mapArray(json)
-                    result(trims: trimsArray!, code: connectionStatus)
+                    let json = data["result"] as? [[String : AnyObject]]
+                    let trimsArray = Mapper<Trim>().mapArray(JSONArray :json!)
+                    result(trimsArray!, connectionStatus)
                 case "error" :
-                    result(trims: nil, code: "error")
+                    result(nil, "error")
                     break
                 default :
                     break
                 }
-            case .Failure(let error):
+                 }
+            case .failure(let error):
                 print(error)
-                result(trims: nil, code: "We're having a tiny problem. try again later")
+                result(nil, "We're having a tiny problem. try again later")
                 break
             }
         }
@@ -165,13 +179,15 @@ class VehicleWebServices {
             switch response.result
             {
                 
-            case .success(let _data as NSDictionary):
+            case .success(_):
+                if let data = response.result.value as? [String : AnyObject]
+                {
                 
-                let connectionStatus = _data["status"] as! String
+                let connectionStatus = data["status"] as! String
                 switch connectionStatus
                 {
                 case "success":
-                    let vehicleJson = _data["result"]
+                    let vehicleJson = data["result"]
                     
                     
                     let vehicle = Mapper<Vehicle>().map(JSON : vehicleJson as! [String : Any])
@@ -180,8 +196,7 @@ class VehicleWebServices {
                     
                     break;
                 case "error":
-                    
-                    print(_data)
+                    print(data)
                     result(nil, "error")
                     
                     break;
@@ -190,11 +205,9 @@ class VehicleWebServices {
                     break;
                     
                 }
-                
+                 }
                 break
-            case .failure( _):
-                
-                
+            case .failure(_):
                 result(nil, "error")
                 break
             }

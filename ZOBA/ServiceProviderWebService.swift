@@ -27,43 +27,40 @@ class ServiceProviderWebService {
         
         
         
-        Alamofire.request(.GET,url ).responseJSON { response in
+        Alamofire.request(url,method :.get ).responseJSON { response in
             print(response.request)
             
             switch response.result
             {
                 
-            case .Success(let _data):
-                
-                let connectionStatus = _data["status"] as! String
-                switch connectionStatus
+            case .success(_):
+                if let data = response.result.value as? [String: AnyObject]
                 {
-                case "success":
-                    let serviceProvidersJson = _data["result"]
-                    print(serviceProvidersJson)
+                    let connectionStatus = data["status"] as! String
+                    switch connectionStatus
+                    {
+                    case "success":
+                        let serviceProvidersJson = data["result"] as? [[String : AnyObject]]
+                         print(serviceProvidersJson)
                     
-                    let serviceProviders = Mapper<ServiceProvider>().mapArray(serviceProvidersJson)
-                    result(serviceProvider: serviceProviders!, code: "success")
+                        let serviceProviders = Mapper<ServiceProvider>().mapArray(JSONArray :serviceProvidersJson!)
+                        result(serviceProviders!, "success")
+
+                        break;
+                    case "error":
+                        print(data)
+                        result(nil, "error")
                     
+                        break;
+                    default:
                     
-                    break;
-                case "error":
+                        break;
                     
-                    print(_data)
-                    result(serviceProvider: nil, code: "error")
-                    
-                    break;
-                default:
-                    
-                    break;
-                    
+                    }
                 }
-                
                 break
-            case .Failure( _):
-                
-                
-                result(serviceProvider: nil, code: "error")
+            case .failure(_):
+                result(nil, "error")
                 break
             }
             

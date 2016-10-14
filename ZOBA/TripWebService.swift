@@ -21,33 +21,33 @@ class TripWebService {
     
     func saveTrip(trip : Trip,result : @escaping ((_ returnedTrip : Trip? , _ code : String)->())){
         let tripUrl = buildUrl(url: "trip/addTrip")
-        Alamofire.request(.GET,tripUrl ,parameters: ["vehicleId": Int(trip.vehicle!.vehicleId!), "initialOdemeter": Int(trip.initialOdemeter!) , "coveredMilage" :Int(trip.coveredKm!)] ).responseJSON { response in
+        Alamofire.request(tripUrl , method :.get ,parameters: ["vehicleId": Int(trip.vehicle!.vehicleId!), "initialOdemeter": Int(trip.initialOdemeter!) , "coveredMilage" :Int(trip.coveredKm!)] ).responseJSON { response in
             switch response.result
             {
-            case .Success(let _data):
-                let connectionStatus = _data["status"] as! String
-                switch connectionStatus
+            case .success(_):
+                if let data = response.result.value as? [String : AnyObject]
                 {
-                case "success":
-                    let tripJson = _data["result"]
+                    let connectionStatus = data["status"] as! String
+                    switch connectionStatus
+                    {
+                    case "success":
+                        let tripJson = data["result"] as? [String : AnyObject]
+                        let trip = Mapper<Trip>().map(JSON: tripJson!)
+                        result(trip!, "success")
+                        break;
+                    case "error":
+                        result(nil, "error")
                     
+                        break;
+                    default:
                     
-                    let trip = Mapper<Trip>().map(tripJson)
-                    result(returnedTrip: trip!, code: "success")
-                    break;
-                case "error":
-                    result(returnedTrip: nil, code: "error")
+                        break;
                     
-                    break;
-                default:
-                    
-                    break;
-                    
+                    }
                 }
-                
                 break
-            case .Failure( _):
-                result(returnedTrip: nil, code: "error")
+            case .failure(_):
+                result(nil, "error")
                 break
             }
             
@@ -61,33 +61,34 @@ class TripWebService {
     func saveCoordinate(vehicleId :Int , coordinate :TripCoordinate,tripId : Int,result : @escaping ((_ returnedCoordinate : TripCoordinate? , _ code : String)->())){
         
         let tripUrl = buildUrl(url: "trip/addCoordinates")
-        Alamofire.request(.GET,tripUrl ,parameters: ["vehicleId": vehicleId  , "longitude": Double(coordinate.longtitude!) , "latitude" :Double(coordinate.latitude!),"tripId" : tripId] ).responseJSON {response in
+        Alamofire.request(tripUrl,method: .get ,parameters: ["vehicleId": vehicleId  , "longitude": Double(coordinate.longtitude!) , "latitude" :Double(coordinate.latitude!),"tripId" : tripId] ).responseJSON {response in
             
             switch response.result
             {
-            case .Success(let _data):
-                let connectionStatus = _data["status"] as! String
-                switch connectionStatus
+            case .success(_):
+                if let data = response.result.value as? [String : AnyObject]
                 {
-                case "success":
-                    let coordinateJson = _data["result"]
+                    let connectionStatus = data["status"] as! String
+                    switch connectionStatus
+                    {
+                        case "success":
+                            let coordinateJson = data["result"] as? [String : AnyObject]
                     
+                        let coordinate = Mapper<TripCoordinate>().map(JSON :coordinateJson!)
+                        result(coordinate!, "success")
+                        break;
+                    case "error":
+                        result(nil, "error")
+                        break;
+                    default:
                     
-                    let coordinate = Mapper<TripCoordinate>().map(coordinateJson)
-                    result(returnedCoordinate: coordinate!, code: "success")
-                    break;
-                case "error":
-                    result(returnedCoordinate: nil, code: "error")
-                    break;
-                default:
-                    
-                    break;
+                        break;
                     
                 }
-                
+            }
                 break
-            case .Failure( _):
-                result(returnedCoordinate:nil, code: "error")
+            case .failure(_):
+                result(nil, "error")
                 break
             }
             

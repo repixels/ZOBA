@@ -72,44 +72,48 @@ class UserWebservice
     {
         self.buildRegisterURL()
         
-        Alamofire.request(.GET, self.registerURL)
+        Alamofire.request(self.registerURL,method :.get )
             .responseJSON { response in
                 switch response.result
                 {
-                case .Success(let _data):
-                    let connectionStatus = _data["status"] as! String
-                    switch connectionStatus
+                case .success(_):
+                    if let data = response.result.value as? [String:AnyObject]
                     {
-                    case "success":
-                        if let userJSON = _data["result"] as? NSDictionary
-                        {
-                            let mappedUser = Mapper<MyUser>().map(userJSON)
-                            
-                            if(Defaults[.deviceToken] != nil)
-                            {
-                                mappedUser?.deviceToken = Defaults[.deviceToken]
-                            }
-                            
-                            result(user: mappedUser,code: connectionStatus)
-                            SessionObjects.currentManageContext.deleteObject(self.user!)
-                            //release(SessionObjects.currentManageContext)
-                        }
+                        let connectionStatus = data["status"] as! String
                         
-                        break;
-                    case "error":
-                        let returnedJSON = _data["result"] as? String
-                        result(user: nil,code: returnedJSON!)
-                        break;
-                    default:
-                        result(user: nil,code: connectionStatus)
-                        break;
+                        switch connectionStatus
+                        {
+                        case "success":
+                            if let userJSON = data["result"] as?  [String : Any]
+                            {
+                                let mappedUser = Mapper<MyUser>().map(JSON: userJSON )
+                            
+                                if(Defaults[.deviceToken] != nil)
+                                {
+                                    mappedUser?.deviceToken = Defaults[.deviceToken]
+                                }
+                            
+                                result(mappedUser,connectionStatus)
+                                SessionObjects.currentManageContext.delete(self.user!)
+                                //release(SessionObjects.currentManageContext)
+                            }
+                        
+                            break;
+                            
+                        case "error":
+                            let returnedJSON = data["result"] as? String
+                            result(nil,returnedJSON!)
+                            break;
+                        default:
+                            result(nil,connectionStatus)
+                            break;
                         
                     }
-                    
+                }
                     break
-                case .Failure( _):
+                case .failure(_):
                     let errorMessage = "We're having a tiny problem. Try loging in later!"
-                    result(user: nil,code: errorMessage)
+                    result(nil,errorMessage)
                     break
                 }
                 
@@ -120,37 +124,41 @@ class UserWebservice
     func loginUser (result: @escaping (_ user:MyUser? , _ code:String)->Void)
     {
         self.buildLoginByUserEmailURL()
-        Alamofire.request(.GET, self.loginURL)
+        Alamofire.request(self.loginURL ,method :.get)
             .responseJSON { response in
                 switch response.result
                 {
-                case .Success(let _data):
-                    let connectionStatus = _data["status"] as! String
+                case .success(_):
+                    if let data = response.result.value as? [String:AnyObject]
+                    {
+
+                    let connectionStatus = data["status"] as! String
                     switch connectionStatus
                     {
                     case "success":
-                        if let userJSON = _data["result"] as? NSDictionary
+                        if let userJSON = data["result"] as? [String : AnyObject]
                         {
-                            let mappedUser = Mapper<MyUser>().map(userJSON)
+                            let mappedUser = Mapper<MyUser>().map(JSON: userJSON)
                             result(mappedUser, connectionStatus)
 //                            result(user: mappedUser,code: connectionStatus)
                         }
                         
                         break;
                     case "error":
-                        let returnedJSON = _data["result"] as? String
-                        result(user: nil,code: returnedJSON!)
+                        let returnedJSON = data["result"] as? String
+                        result( nil,returnedJSON!)
                         break;
                     default:
-                        result(user: nil,code: connectionStatus)
+                        result(nil,connectionStatus)
                         break;
                         
                     }
-                    
+                }
                     break
-                case .Failure(_):
+                        
+                case .failure(_):
                     let errorMessage = "We're having a tiny problem. Try loging in later!"
-                    result(user: nil,code: errorMessage)
+                    result(nil,errorMessage)
                     break
                 }
                 
@@ -162,18 +170,16 @@ class UserWebservice
     func saveProfilePicture(userId : Int , image : UIImage , imageExtension : String){
         
         
-        
-        
         let data = UIImagePNGRepresentation(image)
         
         let url = StringConstants.servicesDomain + "img"
         
-        
         let base64String = data?.base64EncodedString()
         //data!.base64EncodedStringWithOptions([])
         
-        Alamofire.request(.POST, url , parameters: ["image":base64String,"userId":userId,"fileExt":imageExtension]).response { (req, res, data, error) in
-        }
+    
+//        Alamofire.request(url ,method :.post , parameters: ["image":base64String,"userId":userId,"fileExt":imageExtension]).response { (req, res, data, error) in
+//        }
         
     }
     
@@ -189,36 +195,37 @@ class UserWebservice
                                               "lastName" : user!.lastName as Optional<AnyObject>,
                                               "phone" : user!.phone as Optional<AnyObject>]
         
-        Alamofire.request(.GET,faceBookRegisterUrl,parameters: params).responseJSON { (response) in
+        Alamofire.request(faceBookRegisterUrl, method :.get,parameters: params).responseJSON { (response) in
             switch response.result {
-            case .Success(let _data):
-               
-                let connectionStatus = _data["status"] as! String
-                switch connectionStatus
+            case .success(_):
+                if let data = response.result.value as? [String:AnyObject]
                 {
-                case "success":
-                    if let userJSON = _data["result"] as? NSDictionary
+                    let connectionStatus = data["status"] as! String
+                    switch connectionStatus
                     {
-                        let mappedUser = Mapper<MyUser>().map(userJSON)
-                        mappedUser?.image = self.user?.image
-                        result(user: mappedUser,code: connectionStatus)
+                    case "success":
+                        if let userJSON = data["result"] as? [String:AnyObject]
+                        {
+                            let mappedUser = Mapper<MyUser>().map(JSON: userJSON)
+                            mappedUser?.image = self.user?.image
+                            result( mappedUser, connectionStatus)
+                        }
+                    
+                        break;
+                    case "error":
+                        let returnedJSON = data["result"] as? String
+                        result(nil,returnedJSON!)
+                        break;
+                    default:
+                        result(nil,connectionStatus)
+                        break;
                     }
-                    
-                    break;
-                case "error":
-                    let returnedJSON = _data["result"] as? String
-                    result(user: nil,code: returnedJSON!)
-                    break;
-                default:
-                    result(user: nil,code: connectionStatus)
-                    break;
-                    
                 }
-                
+            
                 break
-            case .Failure(_):
+            case .failure(_):
                 let errorMessage = "We're having a tiny problem. Try loging in later!"
-                result(user: nil,code: errorMessage)
+                result(nil,errorMessage)
                 break
                 
         
@@ -230,14 +237,14 @@ class UserWebservice
     
     func getUserImageFromFacebook(profilePictureURL : String , result: @escaping (_ imageData : NSData? , _ code:String)-> Void)
     {
-        Alamofire.request(.GET, profilePictureURL)
+        Alamofire.request(profilePictureURL,method :.get)
             .responseImage { response in
                 if let image = response.result.value {
-                    result(imageData: UIImagePNGRepresentation(image)!,code: "success")
+                    result(UIImagePNGRepresentation(image)! as NSData?,"success")
                 }
                 else
                 {
-                    result(imageData: nil,code: "error")
+                    result(nil,"error")
                 }
         }
     }
