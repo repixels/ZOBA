@@ -14,16 +14,16 @@ import ObjectMapper
 class ServiceProvider: NSManagedObject , Mappable {
     
     // Insert code here to add functionality to your managed object subclass
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
     }
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
         let managedContext = SessionObjects.currentManageContext
-        let entity = NSEntityDescription.entityForName("ServiceProvider", inManagedObjectContext: managedContext)
+        let entity = NSEntityDescription.entity(forEntityName: "ServiceProvider", in: managedContext!)
         
-        super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        super.init(entity: entity!, insertInto: managedContext)
         
     }
     

@@ -18,8 +18,8 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
         prepareTabBar()
         self.tabBarView.delegate = self
         
-        UINavigationBar.appearance().setBackgroundImage(UIImage(named: "nav-background"), forBarMetrics: .Default)
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().setBackgroundImage(UIImage(named: "nav-background"), for: .default)
+        UINavigationBar.appearance().tintColor = UIColor.white
         
         // Do any additional setup after loading the view.
     }
@@ -53,7 +53,7 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarViewDelegate ,YAL
         self.tabBarView.offsetForExtraTabBarItems = YALForExtraTabBarItemsDefaultOffset
         self.leftBarItems = [item1, item2]
         self.rightBarItems = [item3, item4]
-        self.centerButtonImage = UIImage(named: "plus_icon")
+        self.centerButtonImage = UIImage(named: "plus_icon")!
         self.tabBarViewHeight = 70.0
         self.tabBarView.backgroundColor = UIColor.init(red: 94.0/255.0, green: 91.0/255.0 , blue: 178.0/255.0, alpha: 1.0)
         

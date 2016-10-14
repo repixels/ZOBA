@@ -375,16 +375,17 @@ class AddVehicleTableViewController: UITableViewController,UIPickerViewDataSourc
     
     @IBAction func saveVehiclePresses(_ sender: UIBarButtonItem) {
         
+
         
-        
-        let vehicle = Vehicle(entity: SessionObjects.currentManageContext, insertIntoManagedObjectContext: "Vehicle")
+        let vehicle = Vehicle(managedObjectContext: SessionObjects.currentManageContext, entityName: "Vehicle")
         
         vehicle.name = vehicleNameTextField.text
         vehicle.initialOdemeter = Int (initialOdemeterTextField.text!)!
         vehicle.currentOdemeter = Int (initialOdemeterTextField.text!)!
         vehicle.licensePlate = licensePlateTextField.text
+
         
-        let vehicleModel = VehicleModel(entity: SessionObjects.currentManageContext, insertIntoManagedObjectContext: "VehicleModel")
+        let vehicleModel = VehicleModel(managedObjectContext: SessionObjects.currentManageContext, entityName: "VehicleModel")
         selectedModel.make = selectedMake
         vehicleModel.model = selectedModel
         vehicleModel.trim = selectedTrim

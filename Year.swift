@@ -16,17 +16,17 @@ class Year: NSManagedObject , Mappable
     
     // Insert code here to add functionality to your managed object subclass
     
-    override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        
+        super.init(entity: entity, insertInto: context)
     }
     
-    required init?(_ map: Map) {
-        
+    required init?(map: Map) {
         
         let managedContext = SessionObjects.currentManageContext
-        let entity = NSEntityDescription.entityForName("Year", inManagedObjectContext: managedContext)
+        let entity = NSEntityDescription.entity(forEntityName: "Year", in: managedContext!)
         
-        super.init(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        super.init(entity: entity!, insertInto: managedContext)
         
     }
     
@@ -37,7 +37,7 @@ class Year: NSManagedObject , Mappable
         var nameInt : Int = 0
         
         nameInt <- map["name"]
-        self.name = NSNumber(integer: nameInt)
+        self.name = NSNumber(value: nameInt)
         self.yearId <- map["id"]
         
         vehicleModelsArrray <- map["vehicleModel"]

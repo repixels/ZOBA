@@ -20,7 +20,7 @@ class ServiceProviderPhone: NSManagedObject , Mappable {
         super.init(entity: entity, insertInto: context)
     }
     
-    required init?(_ map: Map) {
+    required init?(map: Map) {
         
         let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entity(forEntityName: "ServiceProviderPhone", in: managedContext!)
@@ -29,7 +29,7 @@ class ServiceProviderPhone: NSManagedObject , Mappable {
         
     }
     
-    func mapping(_ map: Map) {
+    func mapping(map: Map) {
         
         self.phone <- map["phone"]
         self.phoneId <- map["id"]

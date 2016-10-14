@@ -69,7 +69,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     }
     
     
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         if ((error) != nil)
         {
             let alert = UIAlertController(title: "Facebook Login Failed", message: "Sorry Champ! We Couldn't Login with your Facebook. Try Again Later!", preferredStyle: UIAlertControllerStyle.alert)
@@ -98,25 +98,26 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                 self.present(alert, animated: true, completion: nil)
                 print("Error: \(error)")
             }
-            else
+            else if let userData = result as? [String:AnyObject]
             {
-                let userId = result.value(forKey: "id") as? String
-                let firstName = result.value(forKey: "first_name") as? String
-                let lastName = result.value(forKey: "last_name") as? String
-                let userEmail = (result.value(forKey: "email") as? String)!
+                let userId = userData["id"] as? String
+                let firstName = userData["first_name"] as? String
+                let lastName =  userData["last_name"] as? String
+                let userEmail = (userData[ "email"] as? String)!
                 let userName = userEmail.components(separatedBy: "@")[0]
                 let userProfileImage = "http://graph.facebook.com/\(userId!)/picture?type=large"
-                
-                let  fbUser = MyUser(entity: SessionObjects.currentManageContext, insertIntoManagedObjectContext: "MyUser")
+            
+                 let  fbUser = MyUser(managedObjectContext: SessionObjects.currentManageContext, entityName: "MyUser")
                 fbUser.email = userEmail
                 fbUser.userName = userName
                 fbUser.firstName = firstName
                 fbUser.lastName = lastName
                 fbUser.phone = "1234567"
                 fbUser.password = self.randomAlphaNumericString(6)
+            
                 let userWebService = UserWebservice(currentUser: fbUser)
                 
-                userWebService.getUserImageFromFacebook(userProfileImage, result: { (imageData, code) in
+                userWebService.getUserImageFromFacebook(profilePictureURL: userProfileImage, result: { (imageData, code) in
                     switch code
                     {
                     case "success":
@@ -130,6 +131,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     }
                 })
             }
+        
         })
     }
     
@@ -196,7 +198,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     
     @IBAction func emailEditingDidEnd(_ sender: AnyObject) {
         
-        if(DataValidations.isValidEmail(emailTextField.text!))
+        if(DataValidations.isValidEmail(testStr: emailTextField.text!))
         {
             showEmailValidMessage("Email")
             isEmailReady = true
@@ -212,7 +214,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     
     @IBAction func emailEditingDidBegin(_ sender: AnyObject)
     {
-        if(DataValidations.isValidEmail(emailTextField.text!))
+        if(DataValidations.isValidEmail(testStr: emailTextField.text!))
         {
             isEmailReady = true
         }
@@ -225,7 +227,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     
     @IBAction func emailEditingChanged(_ sender: AnyObject)
     {
-        if(DataValidations.isValidEmail(emailTextField.text!))
+        if(DataValidations.isValidEmail(testStr: emailTextField.text!))
         {
             isEmailReady = true
         }
@@ -238,7 +240,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     
     @IBAction func passwordEditingDidEnd(_ sender: AnyObject)
     {
-        if(passwordTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(passwordTextField.text!))
+        if(passwordTextField.text?.isNotEmpty == true && DataValidations.hasNoWhiteSpaces(str: passwordTextField.text!))
         {
             isPasswordReady = true
         }
@@ -281,9 +283,9 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     
     func showEmailErrorMessage(_ message:String)
     {
-        self.emailTextField.borderInactiveColor = UIColor.redColor()
-        self.emailTextField.borderActiveColor = UIColor.redColor()
-        self.emailTextField.placeholderColor = UIColor.redColor()
+        self.emailTextField.borderInactiveColor = UIColor.red
+        self.emailTextField.borderActiveColor = UIColor.red
+        self.emailTextField.placeholderColor = UIColor.red
         self.emailTextField.placeholderLabel.text = message
         self.emailTextField.placeholderLabel.sizeToFit()
         self.emailTextField.placeholderLabel.alpha = 1.0
@@ -292,9 +294,9 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     
     func showEmailValidMessage(_ message:String)
     {
-        self.emailTextField.borderInactiveColor = UIColor.greenColor()
-        self.emailTextField.borderActiveColor = UIColor.greenColor()
-        self.emailTextField.placeholderColor = UIColor.whiteColor()
+        self.emailTextField.borderInactiveColor = UIColor.green
+        self.emailTextField.borderActiveColor = UIColor.green
+        self.emailTextField.placeholderColor = UIColor.white
         self.emailTextField.placeholderLabel.text = message
         enableLoginBTN()
     }
@@ -304,13 +306,13 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
         
         if identifier == "loginSegue"
         {
-            let managedUser = MyUser(entity: SessionObjects.currentManageContext , insertIntoManagedObjectContext: "MyUser")
-            
+
+            let managedUser = MyUser(managedObjectContext: SessionObjects.currentManageContext, entityName: "MyUser")
             managedUser.email = emailTextField.text
             managedUser.password = passwordTextField.text
             
             let userWebservice = UserWebservice(currentUser: managedUser)
-            userWebservice.loginUser({ (user, code) in
+            userWebservice.loginUser(result: { (user, code) in
                 switch code
                 {
                 case "success":
@@ -329,20 +331,20 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     
                     
                     let homeStoryBoard : UIStoryboard = UIStoryboard(name: "HomeStoryBoard", bundle: nil)
-                    let homeTabController : HomeViewController = homeStoryBoard.instantiateViewControllerWithIdentifier("HomeTabController") as! HomeViewController
+                    let homeTabController : HomeViewController = homeStoryBoard.instantiateViewController(withIdentifier: "HomeTabController") as! HomeViewController
                     
                     let sideMenuStoryBoard : UIStoryboard = UIStoryboard(name: "SideMenu", bundle: nil)
-                    let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuTableViewController
+                    let sideMenuController : MenuTableViewController = sideMenuStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuTableViewController
                     
                     
                     let slideMenuController = SlideMenuController(mainViewController: homeTabController, leftMenuViewController: sideMenuController)
                     slideMenuController.automaticallyAdjustsScrollViewInsets = true
                     
-                    let app = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let app = UIApplication.shared.delegate as! AppDelegate
                     app.window?.rootViewController = slideMenuController
                     
                     print(SessionObjects.currentUser.vehicle?.count )
-                    if SessionObjects.currentUser.vehicle?.count > 0 {
+                    if (SessionObjects.currentUser.vehicle?.count)! > 0 {
                         SessionObjects.currentVehicle = SessionObjects.currentUser.vehicle?.allObjects[0] as! Vehicle
                         Defaults[.curentVehicleName] = SessionObjects.currentVehicle.name
                     }
@@ -355,11 +357,11 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
                     }
                     
                     let serviceCenterWebSevice = ServiceProviderWebService()
-                    serviceCenterWebSevice.getServiceProvider({ (serviceProvider, code) in
+                    serviceCenterWebSevice.getServiceProvider(result: { (serviceProvider, code) in
                         switch code{
                         case "success" :
-                            print("serviceProviders count : \(serviceProvider.count)")
-                            serviceProvider[0].save()
+                            print("serviceProviders count : \(serviceProvider?.count)")
+                            serviceProvider?[0].save()
                         default :
                             DummyDataBaseOperation.populateOnlyOnce()
                         }
@@ -410,7 +412,7 @@ class LoginViewController:UIViewController ,FBSDKLoginButtonDelegate , UITextFie
     
     func navigateToMain(_ userWebService: UserWebservice)
     {
-        userWebService.registerWithFaceBook({ (user, code) in
+        userWebService.registerWithFaceBook(result: { (user, code) in
             
             switch code{
                 
