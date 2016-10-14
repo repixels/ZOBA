@@ -18,7 +18,9 @@ class MeasuringUnit: NSManagedObject , Mappable {
         super.init(entity: entity, insertInto: context)
     }
     
+
     required init?( map: Map) {
+
         
         let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entity(forEntityName: "MeasuringUnit", in: managedContext!)

@@ -22,7 +22,7 @@ class MyUser: NSManagedObject , Mappable {
         
         let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entity(forEntityName: "MyUser", in: managedContext!)
-        
+
         super.init(entity: entity!, insertInto: managedContext)
         
     }

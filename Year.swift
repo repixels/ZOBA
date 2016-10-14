@@ -17,11 +17,12 @@ class Year: NSManagedObject , Mappable
     // Insert code here to add functionality to your managed object subclass
     
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+
         super.init(entity: entity, insertInto: context)
     }
     
     required init?(map: Map) {
-        
+
         
         let managedContext = SessionObjects.currentManageContext
         let entity = NSEntityDescription.entity(forEntityName: "Year", in: managedContext!)

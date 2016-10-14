@@ -17,8 +17,7 @@ class Days: NSManagedObject , Mappable {
     override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
     }
-    
-    
+
     required init?(map: Map) {
         
         let managedContext = SessionObjects.currentManageContext
