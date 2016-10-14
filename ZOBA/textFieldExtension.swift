@@ -50,8 +50,11 @@ extension UITextField {
         
         let selection = selectedTextRange
         // 7
+//        text = prospectiveText.substring(with:
+//            Range<String.Index>(prospectiveText.startIndex ..< prospectiveText.startIndex.advancedBy(maxLength))
         text = prospectiveText.substring(with:
-            Range<String.Index>(prospectiveText.startIndex ..< prospectiveText.startIndex.advancedBy(maxLength))
+                Range<String.Index>(prospectiveText.startIndex ..< prospectiveText.index(prospectiveText.startIndex, offsetBy: maxLength))
+                
         )
         
         
