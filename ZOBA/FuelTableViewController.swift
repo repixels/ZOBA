@@ -12,17 +12,17 @@ class FuelTableViewController: UITableViewController {
     
     var dao : AbstractDao!
     
-    var fuelTrackingData =  [TrackingData]?()
+    var fuelTrackingData : [TrackingData]? =  [TrackingData]()
     
     @IBOutlet weak var addDataBTN: UIBarButtonItem!
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         if SessionObjects.currentVehicle != nil
         {
-            addDataBTN.enabled = true
-            addDataBTN.tintColor = UIColor.whiteColor()
+            addDataBTN.isEnabled = true
+            addDataBTN.tintColor = UIColor.white
             fuelTrackingData = [TrackingData]()
             let vehicleName = SessionObjects.currentVehicle.name != nil ? SessionObjects.currentVehicle.name!+" " : ""
-            self.prepareNavigationBar(vehicleName + "Fuel")
+            self.prepareNavigationBar(title: vehicleName + "Fuel")
             
             for trackingData in SessionObjects.currentVehicle.traclingData!.allObjects as! [TrackingData]
             {
@@ -37,9 +37,9 @@ class FuelTableViewController: UITableViewController {
         }
         else
         {
-            addDataBTN.enabled = false
-            addDataBTN.tintColor = UIColor.flatGrayColor()
-            self.prepareNavigationBar("No Vehicle Selected")
+            addDataBTN.isEnabled = false
+            addDataBTN.tintColor = UIColor.flatGray()
+            self.prepareNavigationBar(title: "No Vehicle Selected")
         }
     }
     
@@ -49,35 +49,34 @@ class FuelTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return fuelTrackingData != nil ? fuelTrackingData!.count : 0
     }
 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("fuelCell", forIndexPath: indexPath) as! FuelTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "fuelCell", for: indexPath) as! FuelTableViewCell
         let serviceProviderName = fuelTrackingData![indexPath.row].serviceProviderName
         
         cell.fuelAmountLabel.text = fuelTrackingData![indexPath.row].value!
         cell.fuelUnitLabel.text = fuelTrackingData![indexPath.row].trackingType!.measuringUnit!.name!
         cell.serviceProviderNameLabel.text = serviceProviderName != nil ? serviceProviderName! : "Not Available"
-        cell.startingOdemeterLabel.text = String(fuelTrackingData![indexPath.row].initialOdemeter!)
-        cell.dateLabel.text  = String(fuelTrackingData![indexPath.row].dateAdded!)
+        cell.startingOdemeterLabel.text = fuelTrackingData![indexPath.row].initialOdemeter!.stringValue
+        cell.dateLabel.text  = String(describing: fuelTrackingData![indexPath.row].dateAdded!)
         // Configure the cell...
             return cell
+     
     }
  
-
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-       
-        let detailsView = self.storyboard?.instantiateViewControllerWithIdentifier("details") as! FuelDetailViewController
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let detailsView = self.storyboard?.instantiateViewController(withIdentifier: "details") as! FuelDetailViewController
         
         detailsView.data = fuelTrackingData![indexPath.row]
         
@@ -133,11 +132,11 @@ class FuelTableViewController: UITableViewController {
     func prepareNavigationBar(title:String)
     {
         self.navigationController?.navigationBar.titleTextAttributes =
-            [NSForegroundColorAttributeName: UIColor.whiteColor(),
+            [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        self.navigationController!.navigationBar.tintColor = UIColor.whiteColor();
+        self.navigationController!.navigationBar.tintColor = UIColor.white
         self.title = title
-        self.navigationController?.navigationBar.userInteractionEnabled = true
+        self.navigationController?.navigationBar.isUserInteractionEnabled = true
     }
     
     @IBAction func menuButtonClicked(sender: AnyObject) {
