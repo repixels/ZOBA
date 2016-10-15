@@ -170,7 +170,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         }
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let span = MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
         let region = MKCoordinateRegion(center: locations.first!.coordinate, span: span)
@@ -220,13 +220,14 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let point = locationPlist.getLocationsDictionaryArray()
         
         let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-        firstCoordinate.latitude =  NSDecimalNumber(string: (point.firstObject as AnyObject).object("latitude") as? String )
-        firstCoordinate.longtitude = NSDecimalNumber(string: (point.firstObject as AnyObject).object("longitude") as? String)
+        firstCoordinate.latitude =  NSDecimalNumber(string: (point.firstObject as AnyObject).object(forKey: "latitude")as? String)
+        
+        firstCoordinate.longtitude = NSDecimalNumber(string: (point.firstObject as AnyObject).object(forKey: "longitude") as? String)
         
         let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
         
-        lastCoordinate.latitude = NSDecimalNumber(string: (point.lastObject as AnyObject).object("latitude") as? String)
-        lastCoordinate.longtitude = NSDecimalNumber(string: (point.lastObject as AnyObject).object("longitude") as? String)
+        lastCoordinate.latitude = NSDecimalNumber(string: (point.lastObject as AnyObject).object(forKey: "latitude") as? String)
+        lastCoordinate.longtitude = NSDecimalNumber(string: (point.lastObject as AnyObject).object(forKey: "longitude") as? String)
         
         tripObj = Trip(managedObjectContext: SessionObjects.currentManageContext, entityName: "Trip")
         
