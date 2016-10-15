@@ -456,8 +456,8 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     }
     
     func keyboardWillHide(_ notification: Notification) {
-        if let userInfo = (notification as NSNotification).userInfo {
-            if let _: CGSize =  (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
+        if let userInfo = notification.userInfo {
+            if let _: CGSize =  (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size {
                 let contentInset = UIEdgeInsets.zero;
                 
                 self.scrollview.contentInset = contentInset

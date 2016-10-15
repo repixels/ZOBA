@@ -127,6 +127,7 @@
 		83B042071D1BACD000C6CAD1 /* ServiceProviderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B042061D1BACD000C6CAD1 /* ServiceProviderCell.swift */; };
 		83B042091D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B042081D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift */; };
 		83BAC8A01D048766006CC257 /* AbstractDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BAC89F1D048766006CC257 /* AbstractDao.swift */; };
+		8C10C5FE1DB2C923000621DA /* BTNavigationDropdownMenu.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8C10C5FD1DB2C923000621DA /* BTNavigationDropdownMenu.bundle */; };
 		8C20A7181DAD887C0069908F /* BTNavigationDropdownMenu 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C20A7171DAD887C0069908F /* BTNavigationDropdownMenu 2.swift */; };
 		8C9E429F1D03280900DB1E56 /* managedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */; };
 		D7E3809149A0ABDF4F894412 /* Pods_ZOBATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F22B55CA5A4F6D9EB169C8 /* Pods_ZOBATests.framework */; };
@@ -342,6 +343,7 @@
 		83B042061D1BACD000C6CAD1 /* ServiceProviderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderCell.swift; sourceTree = "<group>"; };
 		83B042081D1BB84B00C6CAD1 /* ServiceCenterDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCenterDetailsController.swift; sourceTree = "<group>"; };
 		83BAC89F1D048766006CC257 /* AbstractDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDao.swift; sourceTree = "<group>"; };
+		8C10C5FD1DB2C923000621DA /* BTNavigationDropdownMenu.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = BTNavigationDropdownMenu.bundle; sourceTree = "<group>"; };
 		8C20A7171DAD887C0069908F /* BTNavigationDropdownMenu 2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BTNavigationDropdownMenu 2.swift"; sourceTree = "<group>"; };
 		8C9E429E1D03280900DB1E56 /* managedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = managedObjectExtension.swift; sourceTree = "<group>"; };
 		B7974B3E65B33BEAC6D00F69 /* Pods-ZOBAUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZOBAUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZOBAUITests/Pods-ZOBAUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				8C20A7171DAD887C0069908F /* BTNavigationDropdownMenu 2.swift */,
+				8C10C5FD1DB2C923000621DA /* BTNavigationDropdownMenu.bundle */,
 				DCFC30E11CFDDF250018BBD3 /* DAO */,
 				DCFC30DA1CFDDE740018BBD3 /* poco */,
 				827827551CF837D600684CE5 /* ZOBA */,
@@ -1028,6 +1031,7 @@
 				82F8B8C41CF89A2500E46B05 /* splash-logo.png in Resources */,
 				829825641D0D538600FCC4C8 /* UserProfile.storyboard in Resources */,
 				82501A751D05A9A3008272CB /* add-fuel.png in Resources */,
+				8C10C5FE1DB2C923000621DA /* BTNavigationDropdownMenu.bundle in Resources */,
 				827827611CF837D600684CE5 /* Assets.xcassets in Resources */,
 				830ACD791D119B7F00AD457B /* CoordinateList.plist in Resources */,
 				82F8B8C01CF8905B00E46B05 /* sf-outer-limits.upright.ttf in Resources */,
