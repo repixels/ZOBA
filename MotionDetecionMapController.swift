@@ -12,7 +12,7 @@ import TextFieldEffects
 import SwiftyUserDefaults
 import FoldingTabBar
 
-class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,MKMapViewDelegate , UIScrollViewDelegate , YALTabBarViewDelegate , YALTabBarInteracting
+class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,MKMapViewDelegate , UIScrollViewDelegate , YALTabBarDelegate
 {    @IBOutlet weak var scrollView: UIScrollView!
     
     
@@ -220,7 +220,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         let point = locationPlist.getLocationsDictionaryArray()
         
         let firstCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")
-        firstCoordinate.latitude =  NSDecimalNumber(string: (point.firstObject as AnyObject).object("latitude") as? String)
+        firstCoordinate.latitude =  NSDecimalNumber(string: (point.firstObject as AnyObject).object("latitude") as? String )
         firstCoordinate.longtitude = NSDecimalNumber(string: (point.firstObject as AnyObject).object("longitude") as? String)
         
         let lastCoordinate = TripCoordinate(managedObjectContext: SessionObjects.currentManageContext, entityName: "TripCoordinate")

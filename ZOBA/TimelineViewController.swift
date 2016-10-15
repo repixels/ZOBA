@@ -13,7 +13,7 @@ import SwiftyUserDefaults
 import CoreLocation
 import FoldingTabBar
 
-class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YALTabBarInteracting {
+class TimelineViewController: UITableViewController ,YALTabBarDelegate   {
     var menuView: BTNavigationDropdownMenu!
     let locationManager = CLLocationManager()
     var timelinePopulater : TimelinePopulater?
@@ -185,7 +185,7 @@ class TimelineViewController: UITableViewController , YALTabBarViewDelegate , YA
         menuView.cellHeight = 40
         menuView.cellBackgroundColor = UIColor.flatWhite()
         menuView.cellSelectionColor = UIColor.flatSand()
-        menuView.keepSelectedCellColor = true
+        menuView.shouldKeepSelectedCellColor = true
         menuView.cellTextLabelColor = UIColor.flatWatermelon()
         menuView.cellTextLabelFont = UIFont(name: "Continuum Medium", size: 20)
         
