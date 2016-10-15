@@ -152,7 +152,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate , UIPickerV
     }
     
     
-    @IBAction func fuelAmountEditingDidEnd(sender: AnyObject) {
+    @IBAction func fuelAmountEditingDidEnd(_ sender: AnyObject) {
         
         
         if (fuelAmountTextField.text?.isNotEmpty ==  true && DataValidations.hasNoWhiteSpaces(str: fuelAmountTextField.text!))
@@ -166,7 +166,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate , UIPickerV
         }
     }
     
-    @IBAction func fuelAmountEditingChang(sender: AnyObject)
+    @IBAction func fuelAmountEditingChang(_ sender: AnyObject)
     {
         
         if(fuelAmountTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: fuelAmountTextField!.text!) && Int(fuelAmountTextField.text!)! > 0)
@@ -192,7 +192,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate , UIPickerV
         validateSaveBtn()
     }
     
-    @IBAction func currentOdemterEditingDidEnd(sender: AnyObject)
+    @IBAction func currentOdemterEditingDidEnd(_ sender: AnyObject)
     {
         if(currentOdometerTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: currentOdometerTextField!.text!) && Int(currentOdometerTextField.text!)! > 0)
         {
@@ -215,7 +215,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate , UIPickerV
         validateSaveBtn()
     }
     
-    @IBAction func currentOdemeterEditingChang(sender: AnyObject) {
+    @IBAction func currentOdemeterEditingChang(_ sender: AnyObject) {
         
         if(currentOdometerTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: currentOdometerTextField!.text!) && Int(currentOdometerTextField.text!)! > 0)
         {
@@ -364,7 +364,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate , UIPickerV
     
     
     
-    @IBAction func dateUpdate(sender: AnyObject) {
+    @IBAction func dateUpdate(_ sender: AnyObject) {
         
         datePickerView = UIDatePicker()
         datePickerView.maximumDate =
@@ -393,7 +393,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate , UIPickerV
         
     }
     
-    @IBAction func servicePROVIDER(sender: AnyObject) {
+    @IBAction func servicePROVIDER(_ sender: AnyObject) {
         
         serviceProviderTextFeild.inputView = serviceProviderPickerView
         
@@ -415,7 +415,7 @@ class AddFuelViewController: UIViewController , UIPickerViewDelegate , UIPickerV
     }
     
     
-    @IBAction func saveFuel(sender: AnyObject) {
+    @IBAction func saveFuel(_ sender: AnyObject) {
         
         let trackingDataObj = TrackingData(managedObjectContext: SessionObjects.currentManageContext , entityName: "TrackingData")
         

@@ -156,7 +156,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     }
     
     
-    @IBAction func fuelAmountEditingDidEnd(sender: AnyObject) {
+    @IBAction func fuelAmountEditingDidEnd(_ sender: AnyObject) {
         
         
         if (oilAmountTextField.text?.isNotEmpty ==  true && DataValidations.hasNoWhiteSpaces(str: oilAmountTextField.text!))
@@ -169,7 +169,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         }
     }
     
-    @IBAction func fuelAmountEditingChang(sender: AnyObject)
+    @IBAction func fuelAmountEditingChang(_ sender: AnyObject)
     {
         
         if(oilAmountTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: oilAmountTextField!.text!) && Int(oilAmountTextField.text!)! > 0)
@@ -196,7 +196,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
     }
     
     
-    @IBAction func currentOdemeterEditingChang(sender: AnyObject) {
+    @IBAction func currentOdemeterEditingChang(_ sender: AnyObject) {
         
         if(currentOdometerTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: currentOdometerTextField!.text!) && Int(currentOdometerTextField.text!)! > 0)
         {
@@ -345,7 +345,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         view.endEditing(true)
     }
     
-    @IBAction func dateUpdate(sender: AnyObject) {
+    @IBAction func dateUpdate(_ sender: AnyObject) {
         
         datePickerView.datePickerMode = UIDatePickerMode.date
         
@@ -369,7 +369,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         
     }
     
-    @IBAction func servicePROVIDER(sender: AnyObject) {
+    @IBAction func servicePROVIDER(_ sender: AnyObject) {
         
         serviceProviderTextFeild.inputView = serviceProviderPickerView
         
@@ -389,7 +389,7 @@ class AddOilViewController: UIViewController ,UIPickerViewDelegate , UIPickerVie
         return index
     }
     
-    @IBAction func saveOil(sender: AnyObject) {
+    @IBAction func saveOil(_ sender: AnyObject) {
         
         let trackingDataObj = TrackingData(managedObjectContext: SessionObjects.currentManageContext , entityName: "TrackingData")
         

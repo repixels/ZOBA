@@ -100,7 +100,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     }
     
     //Mark: - validating textfields
-    @IBAction func emailEndEditing(sender: AnyObject) {
+    @IBAction func emailEndEditing(_ sender: AnyObject) {
         
         if(emailTextField.text!.isNotEmpty && DataValidations.isValidEmail(testStr: emailTextField.text!))
         {
@@ -117,7 +117,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         
     }
     
-    @IBAction func passwordEndEditing(sender: AnyObject) {
+    @IBAction func passwordEndEditing(_ sender: AnyObject) {
         
         if(passwordTextField.text!.isNotEmpty && DataValidations.isValidPassword(str: passwordTextField.text!))
         {
@@ -134,7 +134,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         
     }
     
-    @IBAction func userNameEndEditing(sender: AnyObject) {
+    @IBAction func userNameEndEditing(_ sender: AnyObject) {
         if(userNameTextField.text!.isNotEmpty && DataValidations.isValidUesrName(str: userNameTextField.text!))
         {
             hideErrorMessage(message: "User name", textField: userNameTextField)
@@ -149,7 +149,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         
     }
     
-    @IBAction func phoneEndEditing(sender: AnyObject) {
+    @IBAction func phoneEndEditing(_ sender: AnyObject) {
         
         if(phoneTextField.text!.isNotEmpty && DataValidations.isValidPhone(str: phoneTextField.text!))
         {
@@ -167,7 +167,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         
     }
     
-    @IBAction func firstNameEndEditing(sender: AnyObject) {
+    @IBAction func firstNameEndEditing(_ sender: AnyObject) {
         
         if(firstNameTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: firstNameTextField.text!))
         {
@@ -183,7 +183,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         
     }
     
-    @IBAction func lastNameEndEditing(sender: AnyObject) {
+    @IBAction func lastNameEndEditing(_ sender: AnyObject) {
         
         if(lastNameTextField.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: lastNameTextField.text!))
         {
@@ -236,7 +236,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
     
     
     
-    @IBAction func save(sender: AnyObject) {
+    @IBAction func save(_ sender: AnyObject) {
         
         
         SessionObjects.currentUser.phone = phoneTextField.text != nil ? phoneTextField.text  : nil
@@ -251,7 +251,7 @@ class UserProfileEditController: UIViewController,UIPopoverPresentationControlle
         
     }
     
-    @IBAction func selectUserImage(sender: AnyObject) {
+    @IBAction func selectUserImage( sender: AnyObject) {
         
         let actionSheet = UIAlertController(title: "New Photo", message: nil, preferredStyle: .actionSheet)
         

@@ -139,7 +139,7 @@ class FuelTableViewController: UITableViewController {
         self.navigationController?.navigationBar.isUserInteractionEnabled = true
     }
     
-    @IBAction func menuButtonClicked(sender: AnyObject) {
+    @IBAction func menuButtonClicked(_ sender: AnyObject) {
         self.slideMenuController()?.openLeft()
     }
     

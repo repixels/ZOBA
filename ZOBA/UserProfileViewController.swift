@@ -63,7 +63,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), for: .default)
     }
-    @IBAction func rightBarButtonClicked(sender: UIBarButtonItem) {
+    @IBAction func rightBarButtonClicked(_ sender: UIBarButtonItem) {
         
         if !isEditMode
         {
@@ -170,7 +170,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         SessionObjects.currentUser.save()
     }
     
-    @IBAction func updateUserImage(sender: AnyObject) {
+    @IBAction func updateUserImage(_ sender: AnyObject) {
         let actionSheet = UIAlertController(title: "New Photo", message: nil, preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { action in
@@ -225,7 +225,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func menuButtonClicked(sender: AnyObject) {
+    @IBAction func menuButtonClicked(_ sender: AnyObject) {
         self.slideMenuController()?.openLeft()
     }
     

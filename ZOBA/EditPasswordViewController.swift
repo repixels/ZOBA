@@ -32,7 +32,7 @@ class EditPasswordViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    @IBAction func isOldPasswordValid(sender: HoshiTextField)
+    @IBAction func isOldPasswordValid(_ sender: HoshiTextField)
     {
         if(sender.text!.isNotEmpty && !DataValidations.hasNoWhiteSpaces(str: sender.text!))
         {
@@ -46,7 +46,7 @@ class EditPasswordViewController: UIViewController {
         }
     }
     
-    @IBAction func isOldPasswordMatch(sender: HoshiTextField)
+    @IBAction func isOldPasswordMatch(_ sender: HoshiTextField)
     {
         if SessionObjects.currentUser.password == currentPassword.text
         {
@@ -58,7 +58,7 @@ class EditPasswordViewController: UIViewController {
         }
     }
     
-    @IBAction func checkNewPassword(sender: HoshiTextField)
+    @IBAction func checkNewPassword(_ sender: HoshiTextField)
     {
         if(newPassword.text!.isNotEmpty && !DataValidations.hasNoWhiteSpaces(str: newPassword.text!))
         {
@@ -71,7 +71,7 @@ class EditPasswordViewController: UIViewController {
         }
     }
     
-    @IBAction func checkConfirmNewPassword(sender: HoshiTextField)
+    @IBAction func checkConfirmNewPassword(_ sender: HoshiTextField)
     {
         if(newPasswordConfirm.text!.isNotEmpty && !DataValidations.hasNoWhiteSpaces(str: newPasswordConfirm.text!))
         {
@@ -88,7 +88,7 @@ class EditPasswordViewController: UIViewController {
     }
     
     
-    @IBAction func isNewPasswordMatch(sender: HoshiTextField)
+    @IBAction func isNewPasswordMatch(_ sender: HoshiTextField)
     {
         if(newPassword.text == newPasswordConfirm.text)
         {
@@ -121,7 +121,7 @@ class EditPasswordViewController: UIViewController {
     }
     
     
-    @IBAction func updateUserPassword(sender:AnyObject)
+    @IBAction func updateUserPassword(_ sender:AnyObject)
     {
         SessionObjects.currentUser.password = newPassword.text
         SessionObjects.currentUser.save()

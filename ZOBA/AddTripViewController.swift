@@ -160,7 +160,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     }
     
     //MARK: date picker
-    @IBAction func dateEditingBegin(sender: HoshiTextField) {
+    @IBAction func dateEditingBegin(_ sender: HoshiTextField) {
         
         datePickerView.maximumDate = Date()
         datePickerView.datePickerMode = UIDatePickerMode.date
@@ -187,12 +187,12 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     
     
-    @IBAction func vehicleEditingBegin(sender: HoshiTextField) {
+    @IBAction func vehicleEditingBegin(_ sender: HoshiTextField) {
     }
     
     
     //MARK: Odemeter textField editing
-    @IBAction func finalOdemeterEdited(sender:AnyObject) {
+    @IBAction func finalOdemeterEdited(_ sender:AnyObject) {
         
         if ( self.finalOdemeter.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: self.finalOdemeter.text!)){
             let dif : Int = Int(self.finalOdemeter.text!)! - Int(self.currentOdemeter.text!)!
@@ -219,7 +219,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         }
     }
     
-    @IBAction func coveredKmEdited(sender: AnyObject){
+    @IBAction func coveredKmEdited(_ sender: AnyObject){
         
         if ( self.coveredKm.text!.isNotEmpty && DataValidations.hasNoWhiteSpaces(str: self.coveredKm.text!) && Int(self.coveredKm.text!)! > 0 ){
             let km = Int(self.coveredKm.text!)
@@ -253,7 +253,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     
     //MARK: get user Location
-    @IBAction func getStartPoint(sender : AnyObject){
+    @IBAction func getStartPoint(_ sender : AnyObject){
         
         isSecondPoint = false
         presentMap()
@@ -262,7 +262,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         
     }
     
-    @IBAction func getEndPoint(sender : AnyObject){
+    @IBAction func getEndPoint(_ sender : AnyObject){
         isSecondPoint = true
         presentMap()
         isDestinationCoordinateValid = true
@@ -402,7 +402,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     }
     
     
-    @IBAction func saveTrip(sender: AnyObject) {
+    @IBAction func saveTrip(_ sender: AnyObject) {
         
         //save Trip
         

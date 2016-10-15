@@ -177,7 +177,7 @@ class MotionDetecionMapController: UIViewController ,CLLocationManagerDelegate ,
         self.map.setRegion(region, animated: true)
         
     }
-    @IBAction func stopDetecionTapped(sender: AnyObject) {
+    @IBAction func stopDetecionTapped(_ sender: AnyObject) {
         
         if  Defaults[.isHavingTrip]
         {

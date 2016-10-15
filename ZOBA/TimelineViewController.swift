@@ -128,7 +128,7 @@ class TimelineViewController: UITableViewController ,YALTabBarDelegate   {
     }
     
     
-    @IBAction func menuButtonClicked(sender: AnyObject) {
+    @IBAction func menuButtonClicked(_ sender: AnyObject) {
         
         self.slideMenuController()?.openLeft()
         menuView.animationDuration = 0
