@@ -442,7 +442,7 @@ class RegisterViewController: UIViewController,FBSDKLoginButtonDelegate {
     //MARK: - keyboard
     func keyBoardWillAppear(_ notification : Notification){
         if let userInfo = (notification as NSNotification).userInfo {
-            if let keyboardSize: CGSize =    (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
+            if let keyboardSize: CGSize =    (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size {
                 let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
                 
                 self.scrollview.contentInset = contentInset

@@ -86,7 +86,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     func keyBoardWillAppear(notification : NSNotification){
         
         if let userInfo = notification.userInfo {
-            if let keyboardSize: CGSize =    (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
+            if let keyboardSize: CGSize =    (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size {
                 let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
                 
                 self.scrollView.contentInset = contentInset
@@ -101,7 +101,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
     
     func keyboardWillHide(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let _: CGSize =  (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
+            if let _: CGSize =  (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size {
                 let contentInset = UIEdgeInsets.zero
                 
                 

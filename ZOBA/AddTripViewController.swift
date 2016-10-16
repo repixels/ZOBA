@@ -498,7 +498,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     //MARK: - keyboard
     func keyBoardWillAppear(notification : NSNotification){        
         if let userInfo = notification.userInfo {
-            if let keyboardSize: CGSize =    (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
+            if let keyboardSize: CGSize =    (userInfo[UIKeyboardFrameEndUserInfoKey]  as! NSValue).cgRectValue.size {
                 let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height,  0.0);
                 
                 self.scrollview.contentInset = contentInset
@@ -513,7 +513,7 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
     
     func keyboardWillHide(notification: NSNotification) {
         if let userInfo = notification.userInfo {
-            if let _: CGSize =  (userInfo[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size {
+            if let _: CGSize =  (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size {
                 let contentInset = UIEdgeInsets.zero;
                 
                 self.scrollview.contentInset = contentInset
