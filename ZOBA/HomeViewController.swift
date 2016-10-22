@@ -17,7 +17,7 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarDelegate {//,YALT
         super.viewDidLoad()
         prepareTabBar()
         self.tabBarView.delegate = self
-        
+       
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "nav-background"), for: .default)
         UINavigationBar.appearance().tintColor = UIColor.white
         
@@ -54,7 +54,7 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarDelegate {//,YALT
         self.leftBarItems = [item1, item2]
         self.rightBarItems = [item3, item4]
         self.centerButtonImage = UIImage(named: "plus_icon")!
-        self.tabBarViewHeight = 70.0
+//        self.tabBarViewHeight = 70.0
         self.tabBarView.backgroundColor = UIColor.init(red: 94.0/255.0, green: 91.0/255.0 , blue: 178.0/255.0, alpha: 1.0)
         
         self.tabBarView.tabBarColor = UIColor.init(red: 72.0/255.0, green: 211.0/255.0 , blue: 178.0/255.0, alpha: 1.0)
