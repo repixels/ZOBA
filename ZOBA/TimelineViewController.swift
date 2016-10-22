@@ -135,14 +135,16 @@ class TimelineViewController: UITableViewController ,YALTabBarDelegate   {
         menuView.hide()
     }
     
-    func extraRightItemDidPress() {
+  
+    
+    func tabBarDidSelectExtraRightItem(_ tabBar: YALFoldingTabBar) {
         
         let MotionDetectionStoryBoard =  UIStoryboard(name: "MotionDetection", bundle: nil)
         let MotionNavigationController = MotionDetectionStoryBoard.instantiateViewController(withIdentifier: "autoReporting") as! MotionDetecionMapController
         self.navigationController?.pushViewController(MotionNavigationController, animated: true)
     }
     
-    func extraLeftItemDidPress() {
+    func tabBarDidSelectExtraLeftItem(_ tabBar: YALFoldingTabBar){
         
         let vehiclesStoryBoard =  UIStoryboard(name: "Vehicle", bundle: nil)
         let vehicleNavigationController = vehiclesStoryBoard.instantiateViewController(withIdentifier: "vehicleTable")
