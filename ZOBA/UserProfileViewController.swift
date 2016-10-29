@@ -61,7 +61,7 @@ class UserProfileViewController: UIViewController , UIPopoverPresentationControl
         imageView.layer.cornerRadius = imageView.frame.height/2
         imageView.clipsToBounds = true
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), for: .default)
+      //  self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), for: .default)
     }
     @IBAction func rightBarButtonClicked(_ sender: UIBarButtonItem) {
         

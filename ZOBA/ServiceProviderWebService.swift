@@ -25,7 +25,7 @@ class ServiceProviderWebService {
         
         
         
-        
+        print(url)
         
         Alamofire.request(url,method :.get ).responseJSON { response in
             print(response.request)
@@ -36,6 +36,7 @@ class ServiceProviderWebService {
             case .success(_):
                 if let data = response.result.value as? [String: AnyObject]
                 {
+                    print(data)
                     let connectionStatus = data["status"] as! String
                     switch connectionStatus
                     {

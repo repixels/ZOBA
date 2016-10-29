@@ -393,8 +393,8 @@ class AddTripViewController: UIViewController , mapDelegate ,UIPopoverPresentati
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), for: .default)
-        self.navigationController!.navigationBar.tintColor = UIColor.white
+      //  self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "nav-background"), for: .default)
+       // self.navigationController!.navigationBar.tintColor = UIColor.white
         
         saveBtn.isEnabled = false
         saveBtn.tintColor = UIColor.gray

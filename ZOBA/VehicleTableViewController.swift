@@ -28,7 +28,7 @@ class VehicleTableViewController: UITableViewController {
             self.vehicles = [Vehicle]()
         }
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.blue
+       // self.navigationController?.navigationBar.barTintColor = UIColor.blue
         self.navigationController?.navigationController?.navigationBar.tintColor = UIColor.blue
         self.navigationController?.navigationBar.backItem?.backBarButtonItem?.tintColor = UIColor.blue
         self.tabBarController?.navigationController?.navigationBar.tintColor = UIColor.blue

@@ -29,6 +29,7 @@ class VehicleWebServices {
             case .success(_):
                 if let data = response.result.value as? [String : AnyObject]
                     {
+                        print(data)
                         let connectionStatus = data["status"] as! String
                         switch connectionStatus
                         {

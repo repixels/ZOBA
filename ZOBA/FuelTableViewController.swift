@@ -134,7 +134,7 @@ class FuelTableViewController: UITableViewController {
         self.navigationController?.navigationBar.titleTextAttributes =
             [NSForegroundColorAttributeName: UIColor.white,
              NSFontAttributeName: UIFont(name: "Continuum Medium", size: 22)!]
-        self.navigationController!.navigationBar.tintColor = UIColor.white
+        //self.navigationController!.navigationBar.tintColor = UIColor.white
         self.title = title
         self.navigationController?.navigationBar.isUserInteractionEnabled = true
     }

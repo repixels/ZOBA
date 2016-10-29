@@ -151,7 +151,6 @@ class AllOilTableViewController: UITableViewController {
         }
      }
  */
-    
     func prepareNavigationBar(title: String)
     {
         self.navigationController?.navigationBar.titleTextAttributes =

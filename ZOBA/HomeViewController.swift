@@ -15,9 +15,12 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarDelegate {//,YALT
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         prepareTabBar()
         self.tabBarView.delegate = self
+        
        
+        
         UINavigationBar.appearance().setBackgroundImage(UIImage(named: "nav-background"), for: .default)
         UINavigationBar.appearance().tintColor = UIColor.white
         
@@ -42,7 +45,7 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarDelegate {//,YALT
     
     func prepareTabBar()
     {
-
+        
         let item1 = YALTabBarItem(itemImage: UIImage(named: "home-icon"), leftItemImage: UIImage(named: "add-vehicle"), rightItemImage: UIImage(named: "auto-report"))
         
         let item2 = YALTabBarItem(itemImage: UIImage(named: "add-trip"), leftItemImage:nil, rightItemImage: nil)
@@ -54,6 +57,7 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarDelegate {//,YALT
         self.leftBarItems = [item1, item2]
         self.rightBarItems = [item3, item4]
         self.centerButtonImage = UIImage(named: "plus_icon")!
+         self.selectedIndex = 0
 //        self.tabBarViewHeight = 70.0
         self.tabBarView.backgroundColor = UIColor.init(red: 94.0/255.0, green: 91.0/255.0 , blue: 178.0/255.0, alpha: 1.0)
         
@@ -62,6 +66,7 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarDelegate {//,YALT
         self.tabBarView.extraTabBarItemHeight = 50.0
         self.tabBarView.tabBarViewEdgeInsets = YALTabBarViewHDefaultEdgeInsets
         self.tabBarView.tabBarItemsEdgeInsets = YALTabBarViewItemsDefaultEdgeInsets
+     
         
     }
     
