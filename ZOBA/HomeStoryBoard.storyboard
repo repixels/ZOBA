@@ -83,7 +83,7 @@
                                 <rect key="frame" x="0.0" y="234" width="375" height="194"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wo8-JU-xmz" id="OfQ-5k-9Lw">
-                                    <frame key="frameInset" width="336" height="194"/>
+                                    <frame key="frameInset" width="335" height="194"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" id="ede-HP-Qgx">
@@ -176,7 +176,7 @@
                                 <rect key="frame" x="0.0" y="428" width="375" height="194"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qFz-5w-2xk" id="5Ds-zY-VzC">
-                                    <frame key="frameInset" width="342" height="194"/>
+                                    <frame key="frameInset" width="341" height="194"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line.png" id="sTU-ud-rMf">
@@ -384,7 +384,7 @@
         <scene sceneID="xdp-DQ-QeS">
             <objects>
                 <tabBarController storyboardIdentifier="HomeTabController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Bsm-7X-oUo" customClass="HomeViewController" customModule="ZOBA" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="cKk-VT-02O">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="cKk-VT-02O" customClass="YALCustomHeightTabBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
