@@ -60,7 +60,7 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarDelegate {//,YALT
       
         
         self.centerButtonImage = UIImage(named: "plus_icon")!
-        self.selectedIndex = 1
+        self.selectedIndex = 0
         
 
         self.tabBarView.backgroundColor = UIColor(red: 94.0/255.0, green: 91.0/255.0, blue: 149.0/255.0, alpha: 1)
