@@ -73,7 +73,7 @@ class HomeViewController: YALFoldingTabBarController ,YALTabBarDelegate {//,YALT
         self.tabBarView.tabBarViewEdgeInsets = YALTabBarViewHDefaultEdgeInsets
         self.tabBarView.tabBarItemsEdgeInsets = YALTabBarViewItemsDefaultEdgeInsets
      
-        
+        self.selectedIndex = 0
     }
     
     

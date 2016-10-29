@@ -38,19 +38,21 @@ class TimelineViewController: UITableViewController ,YALTabBarDelegate   {
             timelinePopulater = TimelinePopulater(tableView: self.tableView)
             tableCells = (timelinePopulater?.populateTableData())!
             if SessionObjects.motionMonitor == nil {
-            SessionObjects.motionMonitor = LocationMonitor()
+                SessionObjects.motionMonitor = LocationMonitor()
             }
             SessionObjects.motionMonitor.startDetection()
             
         }
         else {
-           // SessionObjects.motionMonitor = LocationMonitor()
+            // SessionObjects.motionMonitor = LocationMonitor()
             if SessionObjects.motionMonitor != nil {
-            SessionObjects.motionMonitor.stopDetection()
+                SessionObjects.motionMonitor.stopDetection()
             }
         }
         
         self.tableView.reloadData()
+        
+        self.tabBarController!.tabBar.isHidden = false
     }
     
     
@@ -135,7 +137,7 @@ class TimelineViewController: UITableViewController ,YALTabBarDelegate   {
         menuView.hide()
     }
     
-  
+    
     
     func tabBarDidSelectExtraRightItem(_ tabBar: YALFoldingTabBar) {
         
